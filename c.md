@@ -1,4 +1,4 @@
-# C<sub> [*C90*](https://iso.org/standard/17782.html), [*C99*](https://iso.org/standard/29237.html), [*C11*](https://iso.org/standard/57853.html)</sub>
+# [C](http://open-std.org/jtc1/sc22/wg14/)<sub> [*C90*](https://iso.org/standard/17782.html), [*C99*](https://iso.org/standard/29237.html), [*C11*](https://iso.org/standard/57853.html)</sub>
 
 + *C*.
     + ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
