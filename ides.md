@@ -8,3 +8,4 @@
         + [*IncrediBuild*](https://incredibuild.com/).
     + Visual Studio.
         + [*ReSharper С++*](https://jetbrains.com/resharper-cpp/).
+        + [*Studio Styles*](https://studiostyl.es/).
