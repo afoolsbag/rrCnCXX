@@ -1,0 +1,36 @@
+#ifdef _MSC_VER
+# include "winres.h"
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+   FILEVERSION @PROJECT_VERSION_MAJOR@,@PROJECT_VERSION_MINOR@,@PROJECT_VERSION_PATCH@,@PROJECT_VERSION_TWEAK@
+   PRODUCTVERSION @PRODUCT_VERSION_MAJRO@,@PRODUCT_VERSION_MINOR@,@PRODUCT_VERSION_PATCH@,@PRODUCT_VERSION_TWEAK@
+   FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+   FILEFLAGS 0x1L
+#else
+   FILEFLAGS 0x0L
+#endif
+   FILEOS 0x40004L
+   FILETYPE 0x1L
+   FILESUBTYPE 0x0L
+BEGIN
+   BLOCK "StringFileInfo"
+   BEGIN
+      BLOCK "080404b0"
+      BEGIN
+         VALUE "CompanyName", "zhengrr"
+         VALUE "FileDescription", "@PROJECT_NAME@"
+         VALUE "FileVersion", "@PROJECT_VERSION@"
+         VALUE "InternalName", "@PROJECT_NAME@"
+         VALUE "LegalCopyright", "The MIT License"
+         VALUE "OriginalFilename", "@PROJECT_NAME@"
+         VALUE "ProductName", "@PRODUCT_NAME@"
+         VALUE "ProductVersion", "@PRODUCT_VERSION@"
+      END
+   END
+   BLOCK "VarFileInfo"
+   BEGIN
+      VALUE "Translation", 0x804, 1200
+   END
+END
