@@ -31,7 +31,7 @@ macro(add_subdirectory_with_option)
   endif()
 
   option(PROJECT_${option_name} "Project ${ARGV0}." ${option})
-  if(${option_name})
+  if(PROJECT_${option_name})
     add_subdirectory("${ARGV0}")
   endif()
 endmacro()
