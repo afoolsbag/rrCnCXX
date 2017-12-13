@@ -35,11 +35,14 @@ cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 #   adjust_compiler_warning_level_to_highest()
 function(adjust_compiler_warning_level_to_highest)
   get_property(langs GLOBAL PROPERTY ENABLED_LANGUAGES)
+
   # C language
   if("C" IN_LIST langs)
+
     # GCC C
     if(CMAKE_COMPILER_IS_GNUCC)
       string(CONCAT CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" " -Wall ")
+
     # Visual C++
     elseif(MSVC)
       if(CMAKE_C_FLAGS MATCHES "/Wall")
@@ -49,13 +52,18 @@ function(adjust_compiler_warning_level_to_highest)
         string(CONCAT CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" " /Wall ")
       endif()
     endif()
+
     set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} PARENT_SCOPE)
+
   endif()
+
   # C++ language
   if("CXX" IN_LIST langs)
+
     # GCC C++
     if(CMAKE_COMPILER_IS_GNUCXX)
       string(CONCAT CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" " -Wall ")
+
     # Visual C++
     elseif(MSVC)
       if(CMAKE_CXX_FLAGS MATCHES "/Wall")
@@ -65,6 +73,8 @@ function(adjust_compiler_warning_level_to_highest)
         string(CONCAT CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" " /Wall ")
       endif()
     endif()
+
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} PARENT_SCOPE)
+
   endif()
 endfunction()
