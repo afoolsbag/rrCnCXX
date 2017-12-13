@@ -1,5 +1,8 @@
 # [CLion](https://jetbrains.com/clion/)
 
++ [*MinGW*](http://mingw.org/).
++ [*Cygwin*](http://cygwin.com/).
+
 # [Visual Studio](https://visualstudio.com/)
 
 + *Visual Studio*.
