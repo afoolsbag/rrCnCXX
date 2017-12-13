@@ -1,15 +1,15 @@
 /** \file
  *  \brief *Programming Windows with MFC* 3.1.2.
  *  \author zhengrr
- *  \date 2017-12-9
+ *  \date 2017-12-9 – 13
  *  \copyright The MIT License
  */
-#ifdef ZRR_PWMFC_3_1_2
-
 #include <afxwin.h>
 
 #define EX 1
 #define OH 2
+
+namespace {
 
 /// CMyApp
 class CMyApp : public CWinApp {
@@ -45,7 +45,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
+#ifdef RRMFC_PWMFC_3_1_2_CPP_
 CMyApp myApp;
+#endif
 
 /// CMyApp::InitInstance
 BOOL CMyApp::InitInstance()
@@ -270,4 +272,4 @@ void CMainWindow::ResetGame()
     Invalidate();
 }
 
-#endif// ZRR PWMFC 3.1.2
+}// namespace

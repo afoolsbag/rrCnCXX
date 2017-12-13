@@ -1,16 +1,16 @@
 /** \file
  *  \brief *Programming Windows with MFC* 2.2.1.
  *  \author zhengrr
- *  \date 2017-12-8 – 9
+ *  \date 2017-12-8 – 13
  *  \copyright The MIT License
  */
-#ifdef ZRR_PWMFC_2_2_1
-
 #include <math.h>
 #include <afxwin.h>
 
 #define SEGMENTS 500
 #define PI 3.1415926
+
+namespace {
 
 /// CMyApp
 class CMyApp : public CWinApp {
@@ -27,7 +27,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
+#ifdef RRMFC_PWMFC_2_2_1_CPP_
 CMyApp myApp;
+#endif
 
 /// CMyApp::InitInstance
 BOOL CMyApp::InitInstance()
@@ -66,4 +68,4 @@ void CMainWindow::OnPaint()
     dc.Polyline(aPoint, SEGMENTS);  // [POLYLINE](https://docs.microsoft.com/cpp/mfc/reference/cdc-class#polyline)
 }
 
-#endif// ZRR PWMFC 2.2.1
+}// namespace

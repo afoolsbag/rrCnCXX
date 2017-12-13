@@ -1,14 +1,14 @@
 /** \file
  *  \brief *Programming Windows with MFC* 2.3.6.
  *  \author zhengrr
- *  \date 2017-12-8 – 9
+ *  \date 2017-12-8 – 13
  *  \copyright The MIT License
  */
-#ifdef ZRR_PWMFC_2_3_6
-
 #include <afxwin.h>
 
 #define LINESIZE 8
+
+namespace {
 
 /// CMyApp
 class CMyApp : public CWinApp {
@@ -41,7 +41,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
+#ifdef RRMFC_PWMFC_2_3_6_CPP_
 CMyApp myApp;
+#endif
 
 /// CMyApp::InitInstance
 BOOL CMyApp::InitInstance()
@@ -247,4 +249,4 @@ void CMainWindow::OnVScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar)
     }
 }
 
-#endif// ZRR PWMFC 2.3.6
+}// namespace

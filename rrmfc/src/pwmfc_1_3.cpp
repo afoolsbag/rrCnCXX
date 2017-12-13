@@ -1,12 +1,12 @@
 /** \file
  *  \brief *Programming Windows with MFC* 1.3.
  *  \author zhengrr
- *  \date 2017-12-8 – 9
+ *  \date 2017-12-8 – 13
  *  \copyright The MIT License
  */
-#ifdef ZRR_PWMFC_1_3
-
 #include <afxwin.h>
+
+namespace {
 
 /// CMyApp
 class CMyApp : public CWinApp {  // [Class WINdows APPlication](https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class)
@@ -23,7 +23,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
+#ifdef RRMFC_PWMFC_1_3_CPP_
 CMyApp myApp;
+#endif
 
 /// CMyApp::InitInstance
 BOOL CMyApp::InitInstance()
@@ -54,4 +56,4 @@ void CMainWindow::OnPaint()
     dc.DrawText(_T("Hello, MFC"), -1, &rect, DT_SINGLELINE|DT_CENTER|DT_VCENTER);  // [DRAW TEXT](https://docs.microsoft.com/cpp/mfc/reference/cdc-class#drawtext)
 }
 
-#endif// ZRR PWMFC 1.3
+}// namespace

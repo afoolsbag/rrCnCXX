@@ -1,12 +1,12 @@
 /** \file
  *  \brief *Programming Windows with MFC* 2.2.12.
  *  \author zhengrr
- *  \date 2017-12-8 – 9
+ *  \date 2017-12-8 – 13
  *  \copyright The MIT License
  */
-#ifdef ZRR_PWMFC_2_2_12
-
 #include <afxwin.h>
+
+namespace {
 
 /// CMyApp
 class CMyApp : public CWinApp {
@@ -23,7 +23,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
+#ifdef RRMFC_PWMFC_2_2_12_CPP_
 CMyApp myApp;
+#endif
 
 /// CMyApp::InitInstance
 BOOL CMyApp::InitInstance()
@@ -78,4 +80,4 @@ void CMainWindow::OnPaint()
     }
 }
 
-#endif// ZRR PWMFC 2.2.12
+}// namespace

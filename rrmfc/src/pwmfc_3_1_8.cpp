@@ -1,12 +1,12 @@
 /** \file
  *  \brief *Programming Windows with MFC* 3.1.8.
  *  \author zhengrr
- *  \date 2017-12-9
+ *  \date 2017-12-9 – 13
  *  \copyright The MIT License
  */
-#ifdef ZRR_PWMFC_3_1_8
-
 #include <afxwin.h>
+
+namespace {
 
 /// CMyApp
 class CMyApp : public CWinApp {
@@ -35,7 +35,9 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
+#ifndef RRMFC_PWMFC_3_1_8_CPP_
 CMyApp myApp;
+#endif
 
 /// CMyApp::InitInstance
 BOOL CMyApp::InitInstance()
@@ -122,4 +124,4 @@ void CMainWindow::InvertLine(CDC *pDC, CPoint ptFrom, CPoint ptTo)
     pDC->SetROP2(nOldMode);
 }
 
-#endif// ZRR PWMFC 3.1.8
+}// namespace

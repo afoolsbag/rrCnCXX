@@ -1,6 +1,8 @@
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 
+include_directories("C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/atlmfc/include")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 source_files_helper(
   RECURSE CONFIGURE CPP
