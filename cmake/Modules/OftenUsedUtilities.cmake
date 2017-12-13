@@ -9,29 +9,29 @@
 # 此模块提供了若干指令，用于简化常用操作。
 
 # .rst
-# .. command:: add_project_directory
+# .. command:: add_subdirectory_with_option
 #
-#   add_project_directory(
-#     [NAME "<project name>"]
-#     [DIRECTORY "<sub directory>"]
+#  带选项的``add_subdirectory``指令::
+#
+#   add_subdirectory_with_option(
+#     <source directory>
+#     [<initial option, default OFF>]
 #   )
-#
-#  注意::
-#
-#   此指令假定 NAME 参数仅由拉丁字母组成；
-#   此指令假定 DIRECTORY 参数是合法的；
-#   此指令假定"PRODUCT"相关变量已设置。
-macro(add_project_directory)
-  set(one_value_keywords "NAME" "DIRECTORY")
-  cmake_parse_arguments("TEMP" "" "${one_value_keywords}" "" ${ARGN})
-  if(PRODUCT_UNPARSED_ARGUMENTS)
-    message(FATAL_ERROR "Unexpected arguments '${PRODUCT_UNPARSED_ARGUMENTS}'.")
+macro(add_subdirectory_with_option)
+  if(${ARGC} GREATER 0)
+    string(TOUPPER "${ARGV0}" option_name)
+  elseif()
+    # 参数缺失交由 add_subdirectory 指令处理
   endif()
 
-  string(TOUPPER "${TEMP_NAME}" TEMP_NAME_UPPER)
+  if(${ARGC} GREATER 1)
+    set(initial_option "${ARGV1}")
+  elseif()
+    set(initial_option "OFF")
+  endif()
 
-  option(${PRODUCT_NAME_UPPER}-${TEMP_NAME_UPPER} "Project ${PRODUCT_NAME}-${TEMP_NAME}." OFF)
-  if(${PRODUCT_NAME_UPPER}-${TEMP_NAME_UPPER})
-    add_subdirectory("${TEMP_DIRECTORY}")
+  option(PROJECT_${option_name} "Project ${ARGV0}." ${option})
+  if(${option_name})
+    add_subdirectory("${ARGV0}")
   endif()
 endmacro()
