@@ -49,7 +49,7 @@
 #   PRODUCT_COPYRIGHT
 #
 #  注意::
-$
+#
 #   此指令假定 PRODUCT_NAME 仅由拉丁字母、连字符与下划线组成；
 #   此指令通过将连字符替换为双下划线的方式，去除连字符。
 macro(make_product_variables)
