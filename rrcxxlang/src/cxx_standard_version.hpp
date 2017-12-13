@@ -36,7 +36,8 @@
 
 #define CXX_GCC_7     70000
 #define CXX_GCC_4_8_1 40801
-#define CXX_GCC_4_4   40300
+#define CXX_GCC_4_4_3 40403
+#define CXX_GCC_4_4   40400
 #define CXX_GCC_4_3   40300
 
 /* Microsoft Visual C++ */
