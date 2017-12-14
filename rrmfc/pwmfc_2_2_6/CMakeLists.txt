@@ -1,3 +1,6 @@
+project("rrMFC_PWMFC_2_2_6" LANGUAGES CXX)
+make_project_extra_variables()
+
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 

@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-13
+# 2017-12-13 – 14
 # The MIT License
 
 #.rst:
@@ -7,6 +7,16 @@
 # ------------------
 #
 # 此模块提供了若干指令，用于简化常用操作。
+
+# .rst
+# .. command:: add_subdirectory_all
+#
+#  包含所有子文件夹的``add_subdirectory``指令::
+#
+#   add_subdirectory_with_option(
+#     <source directory>
+#     [<initial option, default OFF>]
+#   )
 
 # .rst
 # .. command:: add_subdirectory_with_option

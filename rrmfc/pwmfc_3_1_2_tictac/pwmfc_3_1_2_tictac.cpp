@@ -1,7 +1,7 @@
 /** \file
- *  \brief *Programming Windows with MFC* 3.1.2.
+ *  \brief *Programming Windows with MFC* 3.1.2 TicTac.
  *  \author zhengrr
- *  \date 2017-12-9 – 13
+ *  \date 2017-12-9 – 14
  *  \copyright The MIT License
  */
 #include <afxwin.h>
@@ -11,13 +11,13 @@
 
 namespace {
 
-/// CMyApp
+/// Class MY APPlication.
 class CMyApp : public CWinApp {
 public:
     virtual BOOL InitInstance();
 };
 
-/// CMainWindow
+/// Class MAIN WINDOW.
 class CMainWindow : public CWnd {
 public:
     CMainWindow();
@@ -33,7 +33,7 @@ protected:
     static const CRect m_rcSquares[9];
     int m_nGameGrid[9];
     int m_nNextChar;
-    int GetRextID(CPoint point);
+    int GetNextID(CPoint point);
     void DrawBoard(CDC *pDC);
     void DrawX(CDC *pDC, int nPos);
     void DrawO(CDC *pDC, int nPos);
@@ -45,11 +45,13 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-#ifdef RRMFC_PWMFC_3_1_2_CPP_
+// -------------------------------------------------------------------------
+
+#ifdef RRMFC_PWMFC_3_1_2_TICTAC_CPP_
 CMyApp myApp;
 #endif
 
-/// CMyApp::InitInstance
+/// Class MY APPlication :: INITialize INSTANCE.
 BOOL CMyApp::InitInstance()
 {
     m_pMainWnd = new CMainWindow;
@@ -65,46 +67,64 @@ BEGIN_MESSAGE_MAP(CMainWindow, CWnd)
     ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
-/// CMainWindow::CMainWindow
+/// Class MAIN WINDOW :: Constructor.
+/** \sa [CALCulates WINDOW RECT](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#calcwindowrect). */
 CMainWindow::CMainWindow()
 {
     m_nNextChar = EX;
     ::ZeroMemory(m_nGameGrid, 9 * sizeof m_nGameGrid[0]);
 
-    CString strWndClass = AfxRegisterWndClass(
-        CS_DBLCLKS,
-        AfxGetApp()->LoadStandardCursor(IDC_ARROW),
-        (HBRUSH)(COLOR_3DFACE + 1),
-        AfxGetApp()->LoadStandardIcon(IDI_WINLOGO));
+    CString strWndClass = AfxRegisterWndClass(       // 创建框架窗口类：
+        CS_DBLCLKS,                                  // 类样式：注册双击事件；
+        AfxGetApp()->LoadStandardCursor(IDC_ARROW),  // 窗口光标；
+        (HBRUSH)(COLOR_3DFACE + 1),                  // 窗口背景色；
+        AfxGetApp()->LoadStandardIcon(IDI_WINLOGO)   // 窗口图标。
+    );
 
-    CreateEx(
-        0, strWndClass, _T("Tic-Tac-Toe"),
-        WS_OVERLAPPED|WS_SYSMENU|WS_CAPTION|WS_MINIMIZEBOX,
-        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL);
+    CreateEx(                          // 创建窗口：
+        0,                             // 无扩展样式；
+        strWndClass,                   // 自定义框架；
+        _T("Tic-Tac-Toe"),             // 自定义标题；
+          WS_OVERLAPPED                // 标题、边框、
+        | WS_CAPTION                   // 标题、
+        | WS_SYSMENU                   // 系统菜单、
+        | WS_MINIMIZEBOX,              // 最小化；
+        CW_USEDEFAULT, CW_USEDEFAULT,  // 初始位置；
+        CW_USEDEFAULT, CW_USEDEFAULT,  // 初始尺寸。
+        NULL, NULL
+    );
 
     CRect rect(0, 0, 352, 352);
     CalcWindowRect(&rect);
-    SetWindowPos(NULL, 0, 0, rect.Width(), rect.Height(), SWP_NOZORDER|SWP_NOMOVE|SWP_NOREDRAW);
+    SetWindowPos(                     // 设置窗口位置：
+        NULL,
+        0, 0,                         // 位置；
+        rect.Width(), rect.Height(),  // 尺寸；
+          SWP_NOZORDER                // 不前置后置（Z轴）、
+        | SWP_NOMOVE                  // 不移动（忽略位置参数）、
+        | SWP_NOREDRAW                // 不重绘。
+    );
 }
 
-/// CMainWindow::PostNcDestroy
+/// Class MAIN WINDOW :: POST NonClient DESTROY.
+/** \sa [POST NonClient DESTROY](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#postncdestroy). */
 void CMainWindow::PostNcDestroy()
 {
     delete this;
 }
 
-/// CMainWindow::OnPaint
+/// Class MAIN WINDOW :: ON PAINT
 void CMainWindow::OnPaint()
 {
     CPaintDC dc(this);
     DrawBoard(&dc);
 }
 
-/// CMainWindow::OnLButtonDown
+/// Class MAIN WINDOW :: ON Left BUTTON DOWN
 void CMainWindow::OnLButtonDown(UINT nFlags, CPoint point)
 {
     if (EX != m_nNextChar) return;
-    int nPos = GetRextID(point);
+    int nPos = GetNextID(point);
     if (-1 == nPos || 0 != m_nGameGrid[nPos]) return;
 
     m_nGameGrid[nPos] = EX;
@@ -115,18 +135,18 @@ void CMainWindow::OnLButtonDown(UINT nFlags, CPoint point)
     CheckForGameOver();
 }
 
-/// CMainWindow::OnNcLButtonDblClk
+/// Class MAIN WINDOW :: ON Left BUTTON DouBLe CLicK
 void CMainWindow::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
     CClientDC dc(this);
     if (RGB(0, 0, 0) == dc.GetPixel(point)) ResetGame();
 }
 
-/// CMainWindow::OnRButtonDown
+/// Class MAIN WINDOW ::ON Right BUTTON DOWN
 void CMainWindow::OnRButtonDown(UINT nFlags, CPoint point)
 {
     if (OH != m_nNextChar) return;
-    int nPos = GetRextID(point);
+    int nPos = GetNextID(point);
     if (-1 == nPos || 0 != m_nGameGrid[nPos]) return;
 
     m_nGameGrid[nPos] = OH;
@@ -137,7 +157,7 @@ void CMainWindow::OnRButtonDown(UINT nFlags, CPoint point)
     CheckForGameOver();
 }
 
-/// CMainWindow::m_rcSquares
+/// Class MAIN WINDOW :: m_rcSquares
 const CRect CMainWindow::m_rcSquares[9] = {
     CRect( 16,  16, 112, 112),
     CRect(128,  16, 224, 112),
@@ -150,8 +170,8 @@ const CRect CMainWindow::m_rcSquares[9] = {
     CRect(240, 240, 336, 336)
 };
 
-/// CMainWindow::GetRextID
-int CMainWindow::GetRextID(CPoint point)
+/// Class MAIN WINDOW :: GET NEXT ID
+int CMainWindow::GetNextID(CPoint point)
 {
     for (int i = 0; i < 9; ++i) {
         if (m_rcSquares[i].PtInRect(point)) return i;
@@ -159,7 +179,7 @@ int CMainWindow::GetRextID(CPoint point)
     return -1;
 }
 
-/// CMainWindow::DrawBoard
+/// Class MAIN WINDOW :: DRAW BOARD
 void CMainWindow::DrawBoard(CDC *pDC)
 {
     CPen pen(PS_SOLID, 16, RGB(0, 0, 0));
@@ -182,7 +202,7 @@ void CMainWindow::DrawBoard(CDC *pDC)
     pDC->SelectObject(&pOldPen);
 }
 
-/// void CMainWindow::DrawX
+/// Class MAIN WINDOW :: DRAW X
 void CMainWindow::DrawX(CDC *pDC, int nPos)
 {
     CPen pen(PS_SOLID, 16, RGB(255, 0, 0));
@@ -198,7 +218,7 @@ void CMainWindow::DrawX(CDC *pDC, int nPos)
     pDC->SelectObject(&pOldPen);
 }
 
-/// void CMainWindow::DrawO
+/// Class MAIN WINDOW :: DRAW O
 void CMainWindow::DrawO(CDC *pDC, int nPos)
 {
     CPen pen(PS_SOLID, 16, RGB(0, 0, 255));
@@ -211,7 +231,7 @@ void CMainWindow::DrawO(CDC *pDC, int nPos)
     pDC->SelectObject(&pOldPen);
 }
 
-/// void CMainWindow::CheckForGameOver
+/// Class MAIN WINDOW :: CHECK FOR GAME OVER
 void CMainWindow::CheckForGameOver()
 {
     int nWinner;
@@ -226,7 +246,7 @@ void CMainWindow::CheckForGameOver()
     }
 }
 
-/// int CMainWindow::IsWinner
+/// Class MAIN WINDOW :: IS WINNER
 int CMainWindow::IsWinner()
 {
     /* 6 7 8 *
@@ -255,7 +275,7 @@ int CMainWindow::IsWinner()
     return 0;
 }
 
-/// BOOL CMainWindow::IsDraw
+/// Class MAIN WINDOW :: IS DRAW
 BOOL CMainWindow::IsDraw()
 {
     for (int i = 0; i < 9; ++i) {
@@ -264,7 +284,7 @@ BOOL CMainWindow::IsDraw()
     return TRUE;
 }
 
-/// CMainWindow::ResetGame
+/// Class MAIN WINDOW :: RESET GAME
 void CMainWindow::ResetGame()
 {
     m_nNextChar = EX;

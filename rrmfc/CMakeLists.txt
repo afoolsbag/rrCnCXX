@@ -1,12 +1,12 @@
-# zhengrr
-# 2017-12-8 – 13
-# The MIT License
-
-cmake_minimum_required(VERSION 3.0)
-
-project("rrMFC" LANGUAGES CXX)
-make_project_extra_variables()
-
 adjust_compiler_warning_level_to_highest()
 
-add_subdirectory("src")
+add_subdirectory("pwmfc_1_3_hello")
+add_subdirectory("pwmfc_2_2_1")
+add_subdirectory("pwmfc_2_2_6")
+add_subdirectory("pwmfc_2_2_8")
+add_subdirectory("pwmfc_2_2_12_ruler")
+add_subdirectory("pwmfc_2_3_6_accel")
+add_subdirectory("pwmfc_3_1_2_tictac")
+add_subdirectory("pwmfc_3_1_8_mousecap")
+add_subdirectory("pwmfc_3_3_visualkb")
+add_subdirectory("pwmfc_4_2_shapes")

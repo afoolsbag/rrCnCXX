@@ -1,7 +1,7 @@
 /** \file
- *  \brief *Programming Windows with MFC* 2.3.6.
+ *  \brief *Programming Windows with MFC* 2.3.6 Accel.
  *  \author zhengrr
- *  \date 2017-12-8 – 13
+ *  \date 2017-12-8 – 14
  *  \copyright The MIT License
  */
 #include <afxwin.h>
@@ -10,23 +10,23 @@
 
 namespace {
 
-/// CMyApp
+/// Class MY APPlication.
 class CMyApp : public CWinApp {
 public:
     virtual BOOL InitInstance();
 };
 
-/// CMainWindow
+/// Class MAIN WINDOW.
 class CMainWindow : public CFrameWnd {
 public:
     CMainWindow();
 
 protected:
     afx_msg void OnPaint();
-    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);  // [ON CREATE](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#oncreate)
-    afx_msg void OnSize(UINT nType, int cx, int cy);  // [ON SIZE changed](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onsize)
-    afx_msg void OnHScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar);  // [ON Horizontal SCROLL bar](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onhscroll)
-    afx_msg void OnVScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar);  // [ON Vertical SCROLL bar](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onvscroll)
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg void OnHScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar);
+    afx_msg void OnVScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar);
 
     int m_nCellWidth;    ///< 单元格宽度；
     int m_nCellHeight;   ///< 单元格高度；
@@ -41,11 +41,13 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-#ifdef RRMFC_PWMFC_2_3_6_CPP_
+// -------------------------------------------------------------------------
+
+#ifdef RRMFC_PWMFC_2_3_6_ACCEL_CPP_
 CMyApp myApp;
 #endif
 
-/// CMyApp::InitInstance
+/// Class MY APPlication :: INITialize INSTANCE.
 BOOL CMyApp::InitInstance()
 {
     m_pMainWnd = new CMainWindow;
@@ -62,47 +64,71 @@ BEGIN_MESSAGE_MAP(CMainWindow, CFrameWnd)
     ON_WM_VSCROLL()
 END_MESSAGE_MAP()
 
-/// CMainWindow::CMainWindow
+/// Class MAIN WINDOW :: Constructor.
 CMainWindow::CMainWindow()
 {
-    Create(NULL, _T("Accel"), WS_OVERLAPPEDWINDOW|WS_HSCROLL|WS_VSCROLL);
+    Create(                    // 创建窗口：
+        NULL,                  // 默认框架；
+        _T("Accel"),           // 自定义标题；
+          WS_OVERLAPPEDWINDOW  // 标题、系统菜单、最小化、最大化、边框、缩放；
+        | WS_HSCROLL           // 水平滚动条；
+        | WS_VSCROLL           // 垂直滚动条。
+    );
 }
 
-/// CMainWindow::OnCreate
+/// Class MAIN WINDOW :: ON CREATE.
+/** \sa [ON CREATE](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#oncreate).
+ *  \sa [Class CLIENT Device-Context](https://docs.microsoft.com/cpp/mfc/reference/cclientdc-class).
+ *  \sa [GETs DEVICE CAPS](https://docs.microsoft.com/cpp/mfc/reference/cdc-class#getdevicecaps).
+ */
 int CMainWindow::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    if (-1 == CFrameWnd::OnCreate(lpCreateStruct))
+    if (-1 == CFrameWnd::OnCreate(lpCreateStruct))  // 此函数应当总是调用其基类函数。
         return -1;
 
-    CClientDC dc(this);  // [Class CLIENT Device-Context](https://docs.microsoft.com/cpp/mfc/reference/cclientdc-class)
-    m_nCellWidth = dc.GetDeviceCaps(LOGPIXELSX);  // [GETs DEVICE CAPS](https://docs.microsoft.com/cpp/mfc/reference/cdc-class#getdevicecaps)
-    m_nCellHeight = dc.GetDeviceCaps(LOGPIXELSY)/4;
-    m_nRibbonWidth = m_nCellWidth/2;
+    CClientDC dc(this);
+    // Cell     1.  in. *   .25 in.
+    // Ribbon    .5 in. *   .25 in.
+    // View    26.5 in. * 25.   in.
+    m_nCellWidth = dc.GetDeviceCaps(LOGPIXELSX);       // 水平方向，一英寸对应像素数；
+    m_nCellHeight = dc.GetDeviceCaps(LOGPIXELSY) / 4;  // 垂直方向，一英寸对应像素数
+    m_nRibbonWidth = m_nCellWidth / 2;
     m_nViewWidth = 26 * m_nCellWidth + m_nRibbonWidth;
     m_nViewHeight = 100 * m_nCellHeight;
     return 0;
 }
 
-/// CMainWindow::OnSize
+/// Class MAIN WINDOW :: ON SIZE.
+/** \sa [ON SIZE changed](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onsize).
+ *  \sa [SCROLL INFOrmation](https://msdn.microsoft.com/library/bb787537.aspx).
+ *  \sa [SET SCROLL INFOrmation](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#setscrollinfo).
+ */
 void CMainWindow::OnSize(UINT nType, int cx, int cy)
 {
     CFrameWnd::OnSize(nType, cx, cy);
 
+    // 初始化
     int nHScrollMax = 0;
     m_nHScrollPos = m_nHPageSize = 0;
+
+    // 若逻辑尺寸大于设备尺寸（太宽，一页放不下）
     if (cx < m_nViewWidth) {
         nHScrollMax = m_nViewWidth - 1;
         m_nHPageSize = cx;
-        m_nHScrollPos = min(m_nHScrollPos, m_nViewWidth - m_nHPageSize - 1);
+        m_nHScrollPos = min(m_nHScrollPos, m_nViewWidth - m_nHPageSize - 1);  // 防抖动
     }
 
-    SCROLLINFO si;  // [SCROLL INFOrmation](https://msdn.microsoft.com/library/bb787537.aspx)
-    si.fMask = SIF_PAGE|SIF_RANGE|SIF_POS;
-    si.nMin = 0;
-    si.nMax = nHScrollMax;
-    si.nPos = m_nHScrollPos;
-    si.nPage = m_nHPageSize;
-    SetScrollInfo(SB_HORZ, &si, TRUE);  // [SET SCROLL INFOrmation](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#setscrollinfo)
+    SCROLLINFO si;
+    si.fMask = SIF_ALL;       // 等价于 SIF_PAGE|SIF_POS|SIF_RANGE;
+    si.nMin = 0;              // 范围下限；
+    si.nMax = nHScrollMax;    // 范围上限；
+    si.nPos = m_nHScrollPos;  // 位置；
+    si.nPage = m_nHPageSize;  // 页面尺寸。
+    SetScrollInfo(            // 设置滚动条：
+        SB_HORZ,              // 水平滚动条；
+        &si,                  // 滚动条信息；
+        TRUE                  // 需要重绘滚动条。
+    );
 
     int nVScrollMax = 0;
     m_nVScrollPos = m_nVPageSize = 0;
@@ -120,15 +146,18 @@ void CMainWindow::OnSize(UINT nType, int cx, int cy)
     SetScrollInfo(SB_VERT, &si, TRUE);
 }
 
-/// CMainWindow::OnPaint
+/// Class MAIN WINDOW :: ON PAINT.
+/** \sa [SETs Window ORiGin](https://docs.microsoft.com/cpp/mfc/reference/cdc-class#setwindoworg).
+ *  \sa [Class PEN](https://docs.microsoft.com/cpp/mfc/reference/cpen-class).
+ */
 void CMainWindow::OnPaint()
 {
     CPaintDC dc(this);
 
-    dc.SetWindowOrg(m_nHScrollPos, m_nVScrollPos);  // [SETs Window ORiGin](https://docs.microsoft.com/cpp/mfc/reference/cdc-class#setwindoworg)
+    dc.SetWindowOrg(m_nHScrollPos, m_nVScrollPos);
 
     /* 画网格线 */
-    CPen pen(PS_SOLID, 0, RGB(192, 192, 192));  // [Class PEN](https://docs.microsoft.com/cpp/mfc/reference/cpen-class)
+    CPen pen(PS_SOLID, 0, RGB(192, 192, 192));
     CPen *pOldPen = dc.SelectObject(&pen);
 
     for (int i = 0; i < 99; ++i) {
@@ -191,15 +220,17 @@ void CMainWindow::OnPaint()
     }
 }
 
-/// CMainWindow::OnHScroll
+/// Class MAIN WINDOW :: ON Horizontal SCROLL.
+/** \sa [ON Horizontal SCROLL bar](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onhscroll).
+ */
 void CMainWindow::OnHScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar)
 {
     int nDelta;
 
     switch (nCode) {
-        case SB_LINELEFT: nDelta = -LINESIZE; break;
-        case SB_PAGELEFT: nDelta = -m_nHPageSize; break;
-        case SB_THUMBTRACK: nDelta = (int)nPos - m_nHScrollPos; break;
+        case SB_LINELEFT: nDelta = -LINESIZE; break;                    // 箭头被单击；
+        case SB_PAGELEFT: nDelta = -m_nHPageSize; break;                // 轨道被单击；
+        case SB_THUMBTRACK: nDelta = (int)nPos - m_nHScrollPos; break;  // 滑块被拖动。
         case SB_PAGERIGHT: nDelta = m_nHPageSize; break;
         case SB_LINERIGHT: nDelta = LINESIZE; break;
         default: return;
@@ -220,7 +251,9 @@ void CMainWindow::OnHScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar)
     }
 }
 
-/// CMainWindow::OnVScroll
+/// Class MAIN WINDOW :: ON Vertical SCROLL.
+/** \sa [ON Vertical SCROLL bar](https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onvscroll).
+ */
 void CMainWindow::OnVScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar)
 {
     int nDelta;
