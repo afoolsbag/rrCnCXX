@@ -1,12 +1,8 @@
-adjust_compiler_warning_level_to_highest()
+#            __  __ _____ ____
+#  _ __ _ __|  \/  |  ___/ ___|
+# | '__| '__| |\/| | |_ | |
+# | |  | |  | |  | |  _|| |___
+# |_|  |_|  |_|  |_|_|   \____|
+#               rrMFC by FIGlet
 
-add_subdirectory("pwmfc_1_3_hello")
-add_subdirectory("pwmfc_2_2_1")
-add_subdirectory("pwmfc_2_2_6")
-add_subdirectory("pwmfc_2_2_8")
-add_subdirectory("pwmfc_2_2_12_ruler")
-add_subdirectory("pwmfc_2_3_6_accel")
-add_subdirectory("pwmfc_3_1_2_tictac")
-add_subdirectory("pwmfc_3_1_8_mousecap")
-add_subdirectory("pwmfc_3_3_visualkb")
-add_subdirectory("pwmfc_4_2_shapes")
+add_all_subdirectories()

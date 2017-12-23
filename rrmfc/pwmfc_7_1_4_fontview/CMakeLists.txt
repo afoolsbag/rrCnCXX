@@ -1,7 +1,5 @@
-project("rrMFC_PWMFC_1_3_Hello" LANGUAGES CXX)
+project("rrMFC_PWMFC_7_1_4_FontView" LANGUAGES CXX)
 make_project_extra_variables()
-
-adjust_compiler_warning_level_to_highest()
 
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)

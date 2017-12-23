@@ -1,12 +1,9 @@
-﻿# zhengrr
-# 2016-10-12 – 2017-12-13
-# The MIT License
+﻿#             ____ _
+#  _ __ _ __ / ___| |    __ _ _ __   __ _ _   _  __ _  __ _  ___
+# | '__| '__| |   | |   / _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \
+# | |  | |  | |___| |__| (_| | | | | (_| | |_| | (_| | (_| |  __/
+# |_|  |_|   \____|_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|
+#                                   |___/             |___/
+#                                           rrCLanguage by FIGlet
 
-cmake_minimum_required(VERSION 3.0)
-
-project("rrCLanguage" LANGUAGES C)
-make_project_extra_variables()
-
-adjust_compiler_warning_level_to_highest()
-
-add_subdirectory("src")
+add_all_subdirectories()

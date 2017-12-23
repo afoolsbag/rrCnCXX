@@ -1,3 +1,10 @@
+#            _   _ _   _ _ _ _   _
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___
+# | '__| '__| | | | __| | | | __| |/ _ / __|
+# | |  | |  | |_| | |_| | | | |_| |  __\__ \
+# |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/
+#                      rrUtilities by FIGlet
+
 # zhengrr
 # 2016-10-8 – 2017-12-20
 # The MIT License
@@ -276,6 +283,7 @@ endfunction()
 #     [EXCLUDE_FROM_ALL                                           ]
 #   )
 function(add_all_subdirectories)
+
   set(opts "EXCLUDE_FROM_ALL")
   set(ovks "SRC_PRT_DIR" "BIN_PRT_DIR")
   set(mvks)
@@ -285,10 +293,10 @@ function(add_all_subdirectories)
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_PRT_DIR)
-    set(path "${CMAKE_CURRENT_LIST_DIR}")
-  else()
+  if(DEFINED ARG_SRC_PRT_DIR)
     set(path "${ARG_SRC_PRT_DIR}")
+  else()
+    set(path "${CMAKE_CURRENT_LIST_DIR}")
   endif()
 
   file(GLOB files LIST_DIRECTORIES TRUE RELATIVE "${path}" "${path}/*")
@@ -296,16 +304,16 @@ function(add_all_subdirectories)
   foreach(file IN LISTS files)
     if(IS_DIRECTORY "${path}/${file}")
 
-      if(NOT DEFINED ARG_SRC_PRT_DIR)
-        set(srcdir "${file}")
-      else()
+      if(DEFINED ARG_SRC_PRT_DIR)
         set(srcdir "${path}/${file}")
+      else()
+        set(srcdir "${file}")
       endif()
 
-      if(NOT DEFINED ARG_BIN_PRT_DIR)
-        unset(bindir)
-      else()
+      if(DEFINED ARG_BIN_PRT_DIR)
         set(bindir "${parent_binary_dir}/${dir}")
+      else()
+        unset(bindir)
       endif()
 
       if(ARG_EXCLUDE_FROM_ALL)
@@ -333,6 +341,7 @@ endfunction()
 #     [INITIAL_OPTION    <OFF|ON>           ]
 #   )
 function(add_subdirectory_with_option)
+
   set(opts "EXCLUDE_FROM_ALL")
   set(ovks "SRC_DIR" "BIN_DIR" "INITIAL_OPTION")
   set(mvks)
@@ -354,16 +363,16 @@ function(add_subdirectory_with_option)
 
   string(TOUPPER "${ARG_SRC_DIR}" optionname)
 
-  if(NOT DEFINED ARG_INITIAL_OPTION)
-    set(initialoption OFF)
-  else()
+  if(DEFINED ARG_INITIAL_OPTION)
     set(initialoption "${ARG_INITIAL_OPTION}")
+  else()
+    set(initialoption OFF)
   endif()
 
-  if(NOT DEFINED ARG_BIN_DIR)
-    unset(bindir)
-  else()
+  if(DEFINED ARG_BIN_DIR)
     set(bindir "${ARG_BIN_DIR}")
+  else()
+    unset(bindir)
   endif()
 
   if(ARG_EXCLUDE_FROM_ALL)
@@ -376,6 +385,7 @@ function(add_subdirectory_with_option)
   if(${optionname})
     add_subdirectory("${ARG_SRC_DIR}" ${bindir} ${exclude_from_all})
   endif()
+
 endfunction()
 
 #                                                    _ _               _
@@ -399,6 +409,7 @@ endfunction()
 #      SRC_VAR   <source variable>
 #   )
 function(aux_source_directory_with_group)
+
   set(opts "RECURSE")
   set(ovks "SRC_DIR" "GRP_DIR" "SRC_VAR")
   set(mvks "SRC_EXTS")
@@ -464,6 +475,7 @@ function(aux_source_directory_with_group)
   endforeach()
 
   set(${ARG_SRC_VAR} "${srcfiles}" PARENT_SCOPE)
+
 endfunction()
 
 # .rst
@@ -480,6 +492,7 @@ endfunction()
 #      SRC_VAR   <source variable>
 #   )
 function(aux_source_directory_with_group_and_config)
+
   set(opts "RECURSE")
   set(ovks "SRC_DIR" "GRP_DIR" "GEN_DIR" "SRC_VAR")
   set(mvks "SRC_EXTS")
@@ -564,6 +577,7 @@ function(aux_source_directory_with_group_and_config)
   endforeach()
 
   set(${ARG_SRC_VAR} "${srcfiles}" PARENT_SCOPE)
+
 endfunction()
 
 # .rst
@@ -578,6 +592,7 @@ endfunction()
 #      INS_DIR  "<install directory>"
 #   )
 function(aux_source_directory_with_install)
+
   set(opts "RECURSE")
   set(ovks "SRC_DIR" "INS_DIR")
   set(mvks "SRC_EXTS")
@@ -634,6 +649,7 @@ function(aux_source_directory_with_install)
 
     endforeach()
   endforeach()
+
 endfunction()
 
 # .rst
@@ -656,7 +672,8 @@ endfunction()
 #     [C] [CXX] [QT]
 #   )
 function(quick_aux_source_directory)
-  set(opts "RECURSE" "CONFIGURE" "INSTALL" "C" "CPP" "QT")
+
+  set(opts "RECURSE" "CONFIGURE" "INSTALL" "C" "CXX" "QT")
   set(ovks "SRC_DIR" "GRP_DIR" "GEN_DIR" "INS_DIR" "SRC_VAR")
   set(mvks "SRC_EXTS" "CFG_EXTS" "INS_EXTS")
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
@@ -690,7 +707,7 @@ function(quick_aux_source_directory)
   if(ARG_C)
     list(APPEND srcexts ".h" ".c")
   endif()
-  if(ARG_CPP)
+  if(ARG_CXX)
     list(APPEND srcexts ".H" ".hh" ".hpp" ".hxx" ".inl" ".C" ".cc" ".cpp" ".cxx")
   endif()
   if(ARG_QT)
@@ -711,16 +728,16 @@ function(quick_aux_source_directory)
     unset(recurse)
   endif()
 
-  if(NOT DEFINED ARG_GRP_DIR)
-    set(grpdir "${relpath}")
-  else()
+  if(DEFINED ARG_GRP_DIR)
     set(grpdir "${ARG_GRP_DIR}")
+  else()
+    set(grpdir "${relpath}")
   endif()
 
-  if(NOT DEFINED ARG_CFG_EXTS)
-    set(cfgexts ".in")
-  else()
+  if(DEFINED ARG_CFG_EXTS)
     set(cfgexts ${ARG_CFG_EXTS})
+  else()
+    set(cfgexts ".in")
   endif()
   foreach(ext ${cfgexts})
     check_name_with_file_extension_rules("${ext}" conformed)
@@ -746,7 +763,7 @@ function(quick_aux_source_directory)
   if(ARG_C)
     list(APPEND insexts ".h")
   endif()
-  if(ARG_CPP)
+  if(ARG_CXX)
     list(APPEND insexts ".H" ".hh" ".hpp" ".hxx" ".inl")
   endif()
   foreach(ext ${insexts})
@@ -817,4 +834,204 @@ function(quick_aux_source_directory)
   endif()
 
   set(${ARG_SRC_VAR} "${srcfiles1}" "${srcfiles2}" PARENT_SCOPE)
+
+endfunction()
+
+#            _     _                _                  _                       _
+#   __ _  __| | __| | ___ _   _ ___| |_ ___  _ __ ___ | |_ __ _ _ __ __ _  ___| |_
+#  / _` |/ _` |/ _` |/ __| | | / __| __/ _ \| '_ ` _ \| __/ _` | '__/ _` |/ _ | __|
+# | (_| | (_| | (_| | (__| |_| \__ | || (_) | | | | | | || (_| | | | (_| |  __| |_
+#  \__,_|\__,_|\__,_|\___|\__,_|___/\__\___/|_| |_| |_|\__\__,_|_|  \__, |\___|\__|
+#                                                                   |___/
+#                                                       add_custom_target by FIGlet
+
+# .rst
+# .. command:: quick_add_executable_with_option
+#
+#  简便生成可执行文件::
+#
+#   quick_add_executable_with_option(
+#      SRC_VAR  <source variable>
+#     [CSTD     <90|99|11>       ]
+#     [CXXSTD   <98|11|14|17>    ]
+#   )
+function(quick_add_executable_with_option)
+
+  set(opts)
+  set(ovks "SRC_VAR" "CSTD" "CXXSTD")
+  set(mvks)
+  cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
+  if(DEFINED ARG_UNPARSED_ARGUMENTS)
+    message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
+    return()
+  endif()
+
+  if(NOT DEFINED ARG_SRC_VAR)
+    message(SEND_ERROR "Missing SRC_VAR.")
+    return()
+  endif()
+
+  if(DEFINED ARG_CSTD)
+    set(cstd "C_STANDARD ${ARG_CSTD} C_STANDARD_REQUIRED ON")
+  else()
+    unset(cstd)
+  endif()
+
+  if(DEFINED ARG_CXXSTD)
+    set(cxxstd "CXX_STANDARD ${ARG_CXXSTD} CXX_STANDARD_REQUIRED ON")
+  else()
+    unset(cxxstd)
+  endif()
+
+  string(TOUPPER "${PROJECT_NAME}" upper)
+  string(TOLOWER "${PROJECT_NAME}" lower)
+
+  option(${upper}_COMPILE_EXE "Build executable file." ON)
+  if(${upper}_COMPILE_EXE)
+    add_executable(${lower}_exe ${${ARG_SRC_VAR}})
+    set_target_properties(${lower}_exe PROPERTIES
+      cstd
+      cxxstd
+      OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
+    install(TARGETS ${lower}_exe DESTINATION "bin")
+  endif()
+
+endfunction()
+
+# .rst
+# .. command:: quick_add_library_with_option
+#
+#  简便生成库::
+#
+#   quick_add_library_with_option(
+#      SRC_VAR  <source variable>
+#     [TYPE     <STATIC|SHARED|MODULE>]
+#     [CSTD     <90|99|11>            ]
+#     [CXXSTD   <98|11|14|17>         ]
+#   )
+function(quick_add_library_with_option)
+
+  set(opts)
+  set(ovks "SRC_VAR" "TYPE" "CSTD" "CXXSTD")
+  set(mvks)
+  cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
+  if(DEFINED ARG_UNPARSED_ARGUMENTS)
+    message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
+    return()
+  endif()
+
+  if(NOT DEFINED ARG_SRC_VAR)
+    message(SEND_ERROR "Missing SRC_VAR.")
+    return()
+  endif()
+
+  if(NOT DEFINED ARG_TYPE)
+    set(typetext "library")
+    set(typeupper "LIBRARY")
+    set(typelower "library")
+  elseif("${ARG_TYPE}" STREQUAL "STATIC")
+    set(typetext "static library")
+    set(typeupper "STATIC")
+    set(typelower "static")
+  elseif("${ARG_TYPE}" STREQUAL "SHARED")
+    set(typetext "shared library")
+    set(typeupper "SHARED")
+    set(typelower "shared")
+  elseif("${ARG_TYPE}" STREQUAL "MODULE")
+    set(typetext "module library")
+    set(typeupper "MODULE")
+    set(typelower "module")
+  else()
+    message(SEND_ERROR "Undesirable TYPE(${ARG_TYPE}).")
+    return()
+  endif()
+
+  if(DEFINED ARG_CSTD)
+    set(cstd "C_STANDARD ${ARG_CSTD} C_STANDARD_REQUIRED ON")
+  else()
+    unset(cstd)
+  endif()
+
+  if(DEFINED ARG_CXXSTD)
+    set(cxxstd "CXX_STANDARD ${ARG_CXXSTD} CXX_STANDARD_REQUIRED ON")
+  else()
+    unset(cxxstd)
+  endif()
+
+  string(TOUPPER "${PROJECT_NAME}" nameupper)
+  string(TOLOWER "${PROJECT_NAME}" namelower)
+
+  option(${nameupper}_COMPILE_${typeupper} "Build ${typetext}." ON)
+  if(${nameupper}_COMPILE_${typeupper})
+    add_library(${namelower}_${typelower} ${ARG_TYPE} ${${ARG_SRC_VAR}})
+    set_target_properties(${namelower}_${typelower} PROPERTIES
+      cstd
+      cxxstd
+      OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
+    install(TARGETS ${namelower}_${typelower} DESTINATION "lib")
+  endif()
+
+endfunction()
+
+# .rst
+# .. command:: quick_add_doxygen_with_option
+#
+#  简便生成Ｄｏｘｙｇｅｎ文档::
+#
+#   quick_add_doxygen_with_option(
+#     [SPECIAL <API|DEV>]
+#   )
+function(quick_add_doxygen_with_option)
+
+  set(opts)
+  set(ovks "SPECIAL")
+  set(mvks)
+  cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
+  if(DEFINED ARG_UNPARSED_ARGUMENTS)
+    message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
+    return()
+  endif()
+
+  if(NOT DEFINED ARG_SPECIAL)
+    set(text "documentation")
+    set(upper "DOC")
+    set(lower "doc")
+  elseif("${ARG_SPECIAL}" STREQUAL "API")
+    set(text "API documentation")
+    set(upper "API_DOC")
+    set(lower "api_doc")
+  elseif("${ARG_SPECIAL}" STREQUAL "DEV")
+    set(text "developing documentation")
+    set(upper "DEV_DOC")
+    set(lower "dev_doc")
+  else()
+    message(SEND_ERROR "Undesirable SPECIAL(${ARG_SPECIAL}).")
+    return()
+  endif()
+
+  find_package(Doxygen)
+  option(${PROJECT_NAME_UPPER}_GEN_${upper} "Generate ${text} (requires Doxygen)." ${DOXYGEN_FOUND})
+  if(${PROJECT_NAME_UPPER}_GEN_${upper})
+    if(NOT DOXYGEN_FOUND)
+      message(SEND_ERROR "Doxygen is needed to generate the ${text}.")
+      return()
+    endif()
+
+    set(doxyfile_in "${PROJECT_SOURCE_DIR}/doxygen/Doxyfile.in")
+    set(doxyfile    "${PROJECT_BINARY_DIR}/doxygen/Doxyfile")
+    configure_file(${doxyfile_in} ${doxyfile} @ONLY)
+
+    file(GLOB srcfiles "*.h" "*.hpp")
+    list(APPEND srcfiles ${doxyfile_in})
+    source_group("" FILES ${srcfiles})
+
+    add_custom_target(${PROJECT_NAME_LOWER}_${lower}
+      COMMAND "${DOXYGEN_EXECUTABLE}" "${doxyfile}"
+      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+      COMMENT "Generating ${text} with Doxygen."
+      VERBATIM
+      SOURCES ${srcfiles})
+    install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen/docs/" DESTINATION "docs")
+  endif()
+
 endfunction()

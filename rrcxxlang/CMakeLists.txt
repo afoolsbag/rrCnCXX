@@ -1,12 +1,9 @@
-﻿# zhengrr
-# 2016-10-13 – 2017-12-13
-# The MIT License
+﻿#             ______  ___  ___
+#  _ __ _ __ / ___\ \/ \ \/ | |    __ _ _ __   __ _ _   _  __ _  __ _  ___
+# | '__| '__| |    \  / \  /| |   / _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \
+# | |  | |  | |___ /  \ /  \| |__| (_| | | | | (_| | |_| | (_| | (_| |  __/
+# |_|  |_|   \____/_/\_/_/\_|_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|
+#                                             |___/             |___/
+#                                                   rrCXXLanguage by FIGlet
 
-cmake_minimum_required(VERSION 3.0)
-
-project("rrCXXLanguage" LANGUAGES CXX)
-make_project_extra_variables()
-
-adjust_compiler_warning_level_to_highest()
-
-add_subdirectory("src")
+add_all_subdirectories()
