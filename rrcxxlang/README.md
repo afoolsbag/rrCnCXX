@@ -4,5 +4,5 @@
     + ["C++ reference"](http://cppreference.com/). *cppreference.com*.
     + [*cplusplus.com*](http://cplusplus.com/)
 + ["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.
-    + [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide.html)
+    + [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide.html)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>.
     + [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)

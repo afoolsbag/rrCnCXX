@@ -1,10 +1,10 @@
 # zhengrr
-# 2016-10-13 – 2017-12-25
+# 2017-12-25
 # The MIT License
 
 cmake_minimum_required(VERSION 3.0)
 
-project("rrCxxLanguage_singleton" LANGUAGES CXX)
+project("rrCxxLanguage_conversions" LANGUAGES CXX)
 set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()
@@ -19,5 +19,4 @@ list(APPEND srcfiles "../cxx_standard_version.hpp")
 
 quick_add_executable_with_option(
   SRCVAR srcfiles
-  CXXSTD 11
 )

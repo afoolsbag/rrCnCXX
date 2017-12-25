@@ -7,7 +7,7 @@
 
 #include "../cxx_standard_version.hpp"
 
-#if CXX_N2535
+#if CXXN2535
 
 #include <cassert>
 
@@ -36,4 +36,4 @@ int main()
     assert(67 == lib::version());
 }
 
-#endif// CXX_N2535
+#endif// CXXN2535

@@ -8,10 +8,12 @@
 
 #include <cassert>
 
-#if !CXX_N2660
+#if !CXXN2660
 #else
 #include <mutex>
 #endif
+
+namespace {
 
 /* 结论：
  * 　若非必要，建议使用提前初始化单例模式，其无需互斥锁；
@@ -36,10 +38,10 @@ private:
 
 ThreadSafeLazySingleton &ThreadSafeLazySingleton::Instance()
 {
-#if CXX_N2660
+#if CXXN2660
     static ThreadSafeLazySingleton instance;
     return instance;
-#else
+#else// !CXXN2660
     // 为什么不用双重检查锁定
     // <http://blog.jobbole.com/86392/>
     static ThreadSafeLazySingleton *instance_pointer {};
@@ -51,8 +53,10 @@ ThreadSafeLazySingleton &ThreadSafeLazySingleton::Instance()
         mutex.unlock();
     }
     return *instptr;
-#endif
+#endif// CXXN2660
 };
+
+}// namespace
 
 int main()
 {

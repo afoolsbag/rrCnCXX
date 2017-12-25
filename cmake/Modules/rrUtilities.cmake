@@ -278,14 +278,14 @@ endfunction()
 #  将目录下所有子目录添加到构建::
 #
 #   add_all_subdirectories(
-#     [SRC_PRT_DIR      "<parent directory of source directories>"]
-#     [BIN_PRT_DIR      "<parent directory of binary directories>"]
+#     [SRCDIR           "<parent directory of source directories>"]
+#     [BINDIR           "<parent directory of binary directories>"]
 #     [EXCLUDE_FROM_ALL                                           ]
 #   )
 function(add_all_subdirectories)
 
   set(opts "EXCLUDE_FROM_ALL")
-  set(ovks "SRC_PRT_DIR" "BIN_PRT_DIR")
+  set(ovks "SRCDIR" "BINDIR")
   set(mvks)
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
@@ -293,8 +293,8 @@ function(add_all_subdirectories)
     return()
   endif()
 
-  if(DEFINED ARG_SRC_PRT_DIR)
-    set(path "${ARG_SRC_PRT_DIR}")
+  if(DEFINED ARG_SRCDIR)
+    set(path "${ARG_SRCDIR}")
   else()
     set(path "${CMAKE_CURRENT_LIST_DIR}")
   endif()
@@ -304,13 +304,13 @@ function(add_all_subdirectories)
   foreach(file IN LISTS files)
     if(IS_DIRECTORY "${path}/${file}")
 
-      if(DEFINED ARG_SRC_PRT_DIR)
+      if(DEFINED ARG_SRCDIR)
         set(srcdir "${path}/${file}")
       else()
         set(srcdir "${file}")
       endif()
 
-      if(DEFINED ARG_BIN_PRT_DIR)
+      if(DEFINED ARG_BINDIR)
         set(bindir "${parent_binary_dir}/${dir}")
       else()
         unset(bindir)
@@ -335,15 +335,15 @@ endfunction()
 #  提供选项，可选地将子目录添加到构建::
 #
 #   add_subdirectory_with_option(
-#      SRC_DIR          "<source directory>"
-#     [BIN_DIR          "<binary directory>"]
+#      SRCDIR           "<source directory>"
+#     [BINDIR           "<binary directory>"]
 #     [EXCLUDE_FROM_ALL                     ]
 #     [INITIAL_OPTION    <OFF|ON>           ]
 #   )
 function(add_subdirectory_with_option)
 
   set(opts "EXCLUDE_FROM_ALL")
-  set(ovks "SRC_DIR" "BIN_DIR" "INITIAL_OPTION")
+  set(ovks "SRCDIR" "BINDIR" "INITIAL_OPTION")
   set(mvks)
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
@@ -351,17 +351,17 @@ function(add_subdirectory_with_option)
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_DIR)
-    message(SEND_ERROR "Missing SRC_DIR.")
+  if(NOT DEFINED ARG_SRCDIR)
+    message(SEND_ERROR "Missing SRCDIR.")
     return()
   endif()
-  check_name_with_cmake_recommend_variable_rules("${ARG_SRC_DIR}" conformed)
+  check_name_with_cmake_recommend_variable_rules("${ARG_SRCDIR}" conformed)
   if(NOT conformed)
-    message(SEND_ERROR "Undesirable SRC_DIR(${ARG_SRC_DIR}).")
+    message(SEND_ERROR "Undesirable SRCDIR(${ARG_SRCDIR}).")
     return()
   endif()
 
-  string(TOUPPER "${ARG_SRC_DIR}" optionname)
+  string(TOUPPER "${ARG_SRCDIR}" optionname)
 
   if(DEFINED ARG_INITIAL_OPTION)
     set(initialoption "${ARG_INITIAL_OPTION}")
@@ -369,8 +369,8 @@ function(add_subdirectory_with_option)
     set(initialoption OFF)
   endif()
 
-  if(DEFINED ARG_BIN_DIR)
-    set(bindir "${ARG_BIN_DIR}")
+  if(DEFINED ARG_BINDIR)
+    set(bindir "${ARG_BINDIR}")
   else()
     unset(bindir)
   endif()
@@ -381,9 +381,9 @@ function(add_subdirectory_with_option)
     unset(exclude_from_all)
   endif()
 
-  option(${optionname} "Subdirectory ${ARG_SRC_DIR}." ${initialoption})
+  option(${optionname} "Subdirectory ${ARG_SRCDIR}." ${initialoption})
   if(${optionname})
-    add_subdirectory("${ARG_SRC_DIR}" ${bindir} ${exclude_from_all})
+    add_subdirectory("${ARG_SRCDIR}" ${bindir} ${exclude_from_all})
   endif()
 
 endfunction()
@@ -402,38 +402,38 @@ endfunction()
 #  查找目录下所有指定文件并分组::
 #
 #   aux_source_directory_with_group(
-#      SRC_DIR  "<source directory>"
-#      SRC_EXTS "<source extensions>"...
-#     [RECURSE                          ]
-#      GRP_DIR  "<group directory>"
-#      SRC_VAR   <source variable>
+#      SRCDIR  "<source directory>"
+#      SRCEXTS "<source extensions>"...
+#     [RECURSE                         ]
+#      GRPDIR  "<group directory>"
+#      SRCVAR   <source variable>
 #   )
 function(aux_source_directory_with_group)
 
   set(opts "RECURSE")
-  set(ovks "SRC_DIR" "GRP_DIR" "SRC_VAR")
-  set(mvks "SRC_EXTS")
+  set(ovks "SRCDIR" "GRPDIR" "SRCVAR")
+  set(mvks "SRCEXTS")
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_DIR)
-    message(SEND_ERROR "Missing SRC_DIR.")
+  if(NOT DEFINED ARG_SRCDIR)
+    message(SEND_ERROR "Missing SRCDIR.")
     return()
   endif()
-  if(NOT IS_DIRECTORY "${ARG_SRC_DIR}")
-    message(SEND_ERROR "Undesirable SRC_DIR(${ARG_SRC_DIR}).")
+  if(NOT IS_DIRECTORY "${ARG_SRCDIR}")
+    message(SEND_ERROR "Undesirable SRCDIR(${ARG_SRCDIR}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_EXTS)
-    message(SEND_ERROR "Missing SRC_EXTS.")
+  if(NOT DEFINED ARG_SRCEXTS)
+    message(SEND_ERROR "Missing SRCEXTS.")
     return()
   endif()
-  list(REMOVE_DUPLICATES ARG_SRC_EXTS)
-  foreach(ext ${ARG_SRC_EXTS})
+  list(REMOVE_DUPLICATES ARG_SRCEXTS)
+  foreach(ext ${ARG_SRCEXTS})
     check_name_with_file_extension_rules("${ext}" conformed)
     if(NOT conformed)
       message(SEND_ERROR "Undesirable extension(${ext}).")
@@ -447,34 +447,34 @@ function(aux_source_directory_with_group)
     set(recurse "GLOB")
   endif()
 
-  # GRP_DIR
+  # GRPDIR
 
-  if(NOT DEFINED ARG_SRC_VAR)
-    message(SEND_ERROR "Missing SRC_VAR.")
+  if(NOT DEFINED ARG_SRCVAR)
+    message(SEND_ERROR "Missing SRCVAR.")
     return()
   endif()
-  check_name_with_cmake_recommend_variable_rules("${ARG_SRC_VAR}" conformed)
+  check_name_with_cmake_recommend_variable_rules("${ARG_SRCVAR}" conformed)
   if(NOT conformed)
-    message(SEND_ERROR "Undesirable SRC_VAR(${ARG_SRC_VAR}).")
+    message(SEND_ERROR "Undesirable SRCVAR(${ARG_SRCVAR}).")
     return()
   endif()
 
   unset(srcfiles)
-  foreach(ext ${ARG_SRC_EXTS})
-    file(${recurse} files "${ARG_SRC_DIR}/*${ext}")
+  foreach(ext ${ARG_SRCEXTS})
+    file(${recurse} files "${ARG_SRCDIR}/*${ext}")
     foreach(file ${files})
 
       list(APPEND srcfiles "${file}")
 
       get_filename_component(filedir "${file}" DIRECTORY)
-      string(REGEX REPLACE "^${ARG_SRC_DIR}" "" relpath "${filedir}")
-      string(REPLACE "/" "\\\\" grpdir "${ARG_GRP_DIR}${relpath}")
+      string(REGEX REPLACE "^${ARG_SRCDIR}" "" relpath "${filedir}")
+      string(REPLACE "/" "\\\\" grpdir "${ARG_GRPDIR}${relpath}")
       source_group("${grpdir}" FILES "${file}")
 
     endforeach()
   endforeach()
 
-  set(${ARG_SRC_VAR} "${srcfiles}" PARENT_SCOPE)
+  set(${ARG_SRCVAR} "${srcfiles}" PARENT_SCOPE)
 
 endfunction()
 
@@ -484,39 +484,39 @@ endfunction()
 #  查找目录下所有指定文件、分组并配置::
 #
 #   aux_source_directory_with_group(
-#      SRC_DIR  "<source directory>"
-#      SRC_EXTS "<source extensions>"...
-#     [RECURSE                          ]
-#      GRP_DIR  "<group directory>"
-#      GEN_DIR  "<generating directory>"
-#      SRC_VAR   <source variable>
+#      SRCDIR  "<source directory>"
+#      SRCEXTS "<source extensions>"...
+#     [RECURSE                         ]
+#      GRPDIR  "<group directory>"
+#      GENDIR  "<generating directory>"
+#      SRCVAR   <source variable>
 #   )
 function(aux_source_directory_with_group_and_config)
 
   set(opts "RECURSE")
-  set(ovks "SRC_DIR" "GRP_DIR" "GEN_DIR" "SRC_VAR")
-  set(mvks "SRC_EXTS")
+  set(ovks "SRCDIR" "GRPDIR" "GENDIR" "SRCVAR")
+  set(mvks "SRCEXTS")
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_DIR)
-    message(SEND_ERROR "Missing SRC_DIR.")
+  if(NOT DEFINED ARG_SRCDIR)
+    message(SEND_ERROR "Missing SRCDIR.")
     return()
   endif()
-  if(NOT IS_DIRECTORY "${ARG_SRC_DIR}")
-    message(SEND_ERROR "Undesirable SRC_DIR(${ARG_SRC_DIR}).")
+  if(NOT IS_DIRECTORY "${ARG_SRCDIR}")
+    message(SEND_ERROR "Undesirable SRCDIR(${ARG_SRCDIR}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_EXTS)
-    message(SEND_ERROR "Missing SRC_EXTS.")
+  if(NOT DEFINED ARG_SRCEXTS)
+    message(SEND_ERROR "Missing SRCEXTS.")
     return()
   endif()
-  list(REMOVE_DUPLICATES ARG_SRC_EXTS)
-  foreach(ext ${ARG_SRC_EXTS})
+  list(REMOVE_DUPLICATES ARG_SRCEXTS)
+  foreach(ext ${ARG_SRCEXTS})
     check_name_with_file_extension_rules("${ext}" conformed)
     if(NOT conformed)
       message(SEND_ERROR "Undesirable extension(${ext}).")
@@ -530,43 +530,43 @@ function(aux_source_directory_with_group_and_config)
     set(recurse "GLOB")
   endif()
 
-  # GRP_DIR
+  # GRPDIR
 
-  if(NOT DEFINED ARG_GEN_DIR)
-    message(SEND_ERROR "Missing GEN_DIR.")
+  if(NOT DEFINED ARG_GENDIR)
+    message(SEND_ERROR "Missing GENDIR.")
     return()
   endif()
-  if(NOT IS_ABSOLUTE "${ARG_GEN_DIR}")
-    message(SEND_ERROR "Undesirable GEN_DIR(${ARG_GEN_DIR}).")
+  if(NOT IS_ABSOLUTE "${ARG_GENDIR}")
+    message(SEND_ERROR "Undesirable GENDIR(${ARG_GENDIR}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_VAR)
-    message(SEND_ERROR "Missing SRC_VAR.")
+  if(NOT DEFINED ARG_SRCVAR)
+    message(SEND_ERROR "Missing SRCVAR.")
     return()
   endif()
-  check_name_with_cmake_recommend_variable_rules("${ARG_SRC_VAR}" conformed)
+  check_name_with_cmake_recommend_variable_rules("${ARG_SRCVAR}" conformed)
   if(NOT conformed)
-    message(SEND_ERROR "Undesirable SRC_VAR(${ARG_SRC_VAR}).")
+    message(SEND_ERROR "Undesirable SRCVAR(${ARG_SRCVAR}).")
     return()
   endif()
 
   unset(srcfiles)
-  foreach(ext ${ARG_SRC_EXTS})
-    file(${recurse} files "${ARG_SRC_DIR}/*${ext}")
+  foreach(ext ${ARG_SRCEXTS})
+    file(${recurse} files "${ARG_SRCDIR}/*${ext}")
     foreach(file ${files})
 
       list(APPEND srcfiles "${file}")
 
       get_filename_component(filedir "${file}" DIRECTORY)
-      string(REGEX REPLACE "^${ARG_SRC_DIR}" "" relpath "${filedir}")
-      string(REPLACE "/" "\\\\" grpdir "${ARG_GRP_DIR}${relpath}")
+      string(REGEX REPLACE "^${ARG_SRCDIR}" "" relpath "${filedir}")
+      string(REPLACE "/" "\\\\" grpdir "${ARG_GRPDIR}${relpath}")
       source_group("${grpdir}" FILES "${file}")
 
       get_filename_component(filename "${file}" NAME)
       string(REPLACE "." "[.]" extregex "${ext}")
       string(REGEX REPLACE "${extregex}$" "" genfilename "${filename}")
-      set(genfile "${ARG_GEN_DIR}${relpath}/${genfilename}")
+      set(genfile "${ARG_GENDIR}${relpath}/${genfilename}")
       configure_file("${file}" "${genfile}" @ONLY)
 
       list(APPEND srcfiles "${genfile}")
@@ -576,7 +576,7 @@ function(aux_source_directory_with_group_and_config)
     endforeach()
   endforeach()
 
-  set(${ARG_SRC_VAR} "${srcfiles}" PARENT_SCOPE)
+  set(${ARG_SRCVAR} "${srcfiles}" PARENT_SCOPE)
 
 endfunction()
 
@@ -586,37 +586,37 @@ endfunction()
 #  查找目录下所有指定文件并安装::
 #
 #   aux_source_directory_with_install(
-#      SRC_DIR  "<source directory>"
-#      SRC_EXTS "<source extensions>"...
-#     [RECURSE                          ]
-#      INS_DIR  "<install directory>"
+#      SRCDIR  "<source directory>"
+#      SRCEXTS "<source extensions>"...
+#     [RECURSE                         ]
+#      INSDIR  "<install directory>"
 #   )
 function(aux_source_directory_with_install)
 
   set(opts "RECURSE")
-  set(ovks "SRC_DIR" "INS_DIR")
-  set(mvks "SRC_EXTS")
+  set(ovks "SRCDIR" "INSDIR")
+  set(mvks "SRCEXTS")
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_DIR)
-    message(SEND_ERROR "Missing SRC_DIR.")
+  if(NOT DEFINED ARG_SRCDIR)
+    message(SEND_ERROR "Missing SRCDIR.")
     return()
   endif()
-  if(NOT IS_DIRECTORY "${ARG_SRC_DIR}")
-    message(SEND_ERROR "Undesirable SRC_DIR(${ARG_SRC_DIR}).")
+  if(NOT IS_DIRECTORY "${ARG_SRCDIR}")
+    message(SEND_ERROR "Undesirable SRCDIR(${ARG_SRCDIR}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_EXTS)
-    message(SEND_ERROR "Missing SRC_EXTS.")
+  if(NOT DEFINED ARG_SRCEXTS)
+    message(SEND_ERROR "Missing SRCEXTS.")
     return()
   endif()
-  list(REMOVE_DUPLICATES ARG_SRC_EXTS)
-  foreach(ext ${ARG_SRC_EXTS})
+  list(REMOVE_DUPLICATES ARG_SRCEXTS)
+  foreach(ext ${ARG_SRCEXTS})
     check_name_with_file_extension_rules("${ext}" conformed)
     if(NOT conformed)
       message(SEND_ERROR "Undesirable extension(${ext}).")
@@ -630,22 +630,22 @@ function(aux_source_directory_with_install)
     set(recurse "GLOB")
   endif()
 
-  if(NOT DEFINED ARG_INS_DIR)
-    message(SEND_ERROR "Missing INS_DIR.")
+  if(NOT DEFINED ARG_INSDIR)
+    message(SEND_ERROR "Missing INSDIR.")
     return()
   endif()
-  if(NOT IS_ABSOLUTE "${ARG_INS_DIR}")
-    message(SEND_ERROR "Undesirable INS_DIR(${ARG_INS_DIR}).")
+  if(NOT IS_ABSOLUTE "${ARG_INSDIR}")
+    message(SEND_ERROR "Undesirable INSDIR(${ARG_INSDIR}).")
     return()
   endif()
 
-  foreach(ext ${ARG_SRC_EXTS})
-    file(${recurse} files "${ARG_SRC_DIR}/*${ext}")
+  foreach(ext ${ARG_SRCEXTS})
+    file(${recurse} files "${ARG_SRCDIR}/*${ext}")
     foreach(file ${files})
 
       get_filename_component(filedir "${file}" DIRECTORY)
-      string(REGEX REPLACE "^${ARG_SRC_DIR}" "" relpath "${filedir}")
-      install(FILES "${file}" DESTINATION "${ARG_INS_DIR}${relpath}")
+      string(REGEX REPLACE "^${ARG_SRCDIR}" "" relpath "${filedir}")
+      install(FILES "${file}" DESTINATION "${ARG_INSDIR}${relpath}")
 
     endforeach()
   endforeach()
@@ -658,24 +658,24 @@ endfunction()
 #  简便查找、分组、配置、安装源文件::
 #
 #   quick_aux_source_directory(
-#     [SRC_DIR  "<source directory>"                  ]
-#     [SRC_EXTS "<source extensions>"...              ]
-#     [RECURSE                                        ]
-#     [GRP_DIR   <group directory>                    ]
-#     [CONFIGURE                                      ]
-#     [CFG_EXTS "<source and configure extensions>"...]
-#     [GEN_DIR   <generate directory>                 ]
-#     [INSTALL                                        ]
-#     [INS_EXTS "<install extensions>"...             ]
-#     [INS_DIR   <install directory>                  ]
-#      SRC_VAR <source variable>
+#     [SRCDIR    "<source directory>"                  ]
+#     [SRCEXTS   "<source extensions>"...              ]
+#     [RECURSE                                         ]
+#     [GRPDIR     <group directory>                    ]
+#     [CONFIGURE                                       ]
+#     [CFGEXTS   "<source and configure extensions>"...]
+#     [GENDIR     <generate directory>                 ]
+#     [INSTALL                                         ]
+#     [INSEXTS   "<install extensions>"...             ]
+#     [INSDIR     <install directory>                  ]
+#      SRCVAR     <source variable>
 #     [C] [CXX] [QT]
 #   )
 function(quick_aux_source_directory)
 
   set(opts "RECURSE" "CONFIGURE" "INSTALL" "C" "CXX" "QT")
-  set(ovks "SRC_DIR" "GRP_DIR" "GEN_DIR" "INS_DIR" "SRC_VAR")
-  set(mvks "SRC_EXTS" "CFG_EXTS" "INS_EXTS")
+  set(ovks "SRCDIR" "GRPDIR" "GENDIR" "INSDIR" "SRCVAR")
+  set(mvks "SRCEXTS" "CFGEXTS" "INSEXTS")
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${ARG_UNPARSED_ARGUMENTS}).")
@@ -691,15 +691,15 @@ function(quick_aux_source_directory)
   set(prjinsdir "${CMAKE_INSTALL_PREFIX}")
   set(curinsdir "${prjinsdir}/include/${prjlower}")
 
-  if(NOT DEFINED ARG_SRC_DIR)
+  if(NOT DEFINED ARG_SRCDIR)
     set(srcdir "${cursrcdir}")
-  elseif(NOT IS_DIRECTORY "${ARG_SRC_DIR}")
-    set(srcdir "${cursrcdir}/${ARG_SRC_DIR}")
+  elseif(NOT IS_DIRECTORY "${ARG_SRCDIR}")
+    set(srcdir "${cursrcdir}/${ARG_SRCDIR}")
   else()
-    set(srcdir "${ARG_SRC_DIR}")
+    set(srcdir "${ARG_SRCDIR}")
   endif()
   if(NOT IS_DIRECTORY "${srcdir}")
-    message(SEND_ERROR "Undesirable SRC_DIR(${ARG_SRC_DIR}).")
+    message(SEND_ERROR "Undesirable SRCDIR(${ARG_SRCDIR}).")
     return()
   endif()
 
@@ -728,14 +728,14 @@ function(quick_aux_source_directory)
     unset(recurse)
   endif()
 
-  if(DEFINED ARG_GRP_DIR)
-    set(grpdir "${ARG_GRP_DIR}")
+  if(DEFINED ARG_GRPDIR)
+    set(grpdir "${ARG_GRPDIR}")
   else()
     set(grpdir "${relpath}")
   endif()
 
-  if(DEFINED ARG_CFG_EXTS)
-    set(cfgexts ${ARG_CFG_EXTS})
+  if(DEFINED ARG_CFGEXTS)
+    set(cfgexts ${ARG_CFGEXTS})
   else()
     set(cfgexts ".in")
   endif()
@@ -747,19 +747,19 @@ function(quick_aux_source_directory)
     endif()
   endforeach()
 
-  if(NOT DEFINED ARG_GEN_DIR)
+  if(NOT DEFINED ARG_GENDIR)
     set(gendir "${curbindir}")
-  elseif(NOT IS_ABSOLUTE "${ARG_GEN_DIR}")
-    set(gendir "${curbindir}/${ARG_GEN_DIR}")
+  elseif(NOT IS_ABSOLUTE "${ARG_GENDIR}")
+    set(gendir "${curbindir}/${ARG_GENDIR}")
   else()
-    set(gendir "${ARG_GEN_DIR}")
+    set(gendir "${ARG_GENDIR}")
   endif()
   if(NOT IS_ABSOLUTE "${gendir}")
-    message(SEND_ERROR "Undesirable GEN_DIR(${ARG_GEN_DIR}).")
+    message(SEND_ERROR "Undesirable GENDIR(${ARG_GENDIR}).")
     return()
   endif()
 
-  set(insexts ${ARG_INS_EXTS})
+  set(insexts ${ARG_INSEXTS})
   if(ARG_C)
     list(APPEND insexts ".h")
   endif()
@@ -774,66 +774,66 @@ function(quick_aux_source_directory)
     endif()
   endforeach()
 
-  if(NOT DEFINED ARG_INS_DIR)
+  if(NOT DEFINED ARG_INSDIR)
     set(insdir "${curinsdir}")
-  elseif(NOT IS_ABSOLUTE "${ARG_INS_DIR}")
-    set(insdir "${curinsdir}/${ARG_INS_DIR}")
+  elseif(NOT IS_ABSOLUTE "${ARG_INSDIR}")
+    set(insdir "${curinsdir}/${ARG_INSDIR}")
   else()
-    set(insdir "${ARG_INS_DIR}")
+    set(insdir "${ARG_INSDIR}")
   endif()
   if(NOT IS_ABSOLUTE "${insdir}")
-    message(SEND_ERROR "Undesirable INS_DIR(${ARG_INS_DIR}).")
+    message(SEND_ERROR "Undesirable INSDIR(${ARG_INSDIR}).")
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_VAR)
-    message(SEND_ERROR "Missing SRC_VAR.")
+  if(NOT DEFINED ARG_SRCVAR)
+    message(SEND_ERROR "Missing SRCVAR.")
     return()
   endif()
-  check_name_with_cmake_recommend_variable_rules("${ARG_SRC_VAR}" conformed)
+  check_name_with_cmake_recommend_variable_rules("${ARG_SRCVAR}" conformed)
   if(NOT conformed)
-    message(SEND_ERROR "Undesirable SRC_VAR(${ARG_SRC_VAR}).")
+    message(SEND_ERROR "Undesirable SRCVAR(${ARG_SRCVAR}).")
     return()
   endif()
 
   aux_source_directory_with_group(
-    SRC_DIR    "${srcdir}"
-    SRC_EXTS    ${srcexts}
+    SRCDIR     "${srcdir}"
+    SRCEXTS     ${srcexts}
     ${recurse}
-    GRP_DIR    "${grpdir}"
-    SRC_VAR    srcfiles1
+    GRPDIR     "${grpdir}"
+    SRCVAR      srcfiles1
   )
 
   if(ARG_CONFIGURE)
     aux_source_directory_with_group_and_config(
-      SRC_DIR    "${srcdir}"
-      SRC_EXTS    ${cfgexts}
+      SRCDIR     "${srcdir}"
+      SRCEXTS     ${cfgexts}
       ${recurse}
-      GRP_DIR    "${grpdir}"
-      GEN_DIR    "${gendir}"
-      SRC_VAR     srcfiles2
+      GRPDIR     "${grpdir}"
+      GENDIR     "${gendir}"
+      SRCVAR      srcfiles2
     )
   endif()
 
   if(ARG_INSTALL)
     aux_source_directory_with_install(
-      SRC_DIR    "${srcdir}"
-      SRC_EXTS    ${insexts}
+      SRCDIR     "${srcdir}"
+      SRCEXTS     ${insexts}
       ${recurse}
-      INS_DIR    "${insdir}"
+      INSDIR     "${insdir}"
     )
   endif()
 
   if(ARG_INSTALL AND ARG_CONFIGURE)
     aux_source_directory_with_install(
-      SRC_DIR    "${gendir}"
-      SRC_EXTS    ${insexts}
+      SRCDIR     "${gendir}"
+      SRCEXTS     ${insexts}
       ${recurse}
-      INS_DIR    "${insdir}"
+      INSDIR     "${insdir}"
     )
   endif()
 
-  set(${ARG_SRC_VAR} "${srcfiles1}" "${srcfiles2}" PARENT_SCOPE)
+  set(${ARG_SRCVAR} "${srcfiles1}" "${srcfiles2}" PARENT_SCOPE)
 
 endfunction()
 
@@ -851,14 +851,14 @@ endfunction()
 #  简便生成可执行文件::
 #
 #   quick_add_executable_with_option(
-#      SRC_VAR  <source variable>
-#     [CSTD     <90|99|11>       ]
-#     [CXXSTD   <98|11|14|17>    ]
+#      SRCVAR  <source variable>
+#     [CSTD    <90|99|11>       ]
+#     [CXXSTD  <98|11|14|17>    ]
 #   )
 function(quick_add_executable_with_option)
 
   set(opts)
-  set(ovks "SRC_VAR" "CSTD" "CXXSTD")
+  set(ovks "SRCVAR" "CSTD" "CXXSTD")
   set(mvks)
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
@@ -866,8 +866,8 @@ function(quick_add_executable_with_option)
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_VAR)
-    message(SEND_ERROR "Missing SRC_VAR.")
+  if(NOT DEFINED ARG_SRCVAR)
+    message(SEND_ERROR "Missing SRCVAR.")
     return()
   endif()
 
@@ -888,7 +888,7 @@ function(quick_add_executable_with_option)
 
   option(${upper}_COMPILE_EXE "Build executable file." ON)
   if(${upper}_COMPILE_EXE)
-    add_executable(${lower}_exe ${${ARG_SRC_VAR}})
+    add_executable(${lower}_exe ${${ARG_SRCVAR}})
     set_target_properties(${lower}_exe PROPERTIES
       cstd
       cxxstd
@@ -904,15 +904,15 @@ endfunction()
 #  简便生成库::
 #
 #   quick_add_library_with_option(
-#      SRC_VAR  <source variable>
-#     [TYPE     <STATIC|SHARED|MODULE>]
-#     [CSTD     <90|99|11>            ]
-#     [CXXSTD   <98|11|14|17>         ]
+#      SRCVAR  <source variable>
+#     [TYPE    <STATIC|SHARED|MODULE>]
+#     [CSTD    <90|99|11>            ]
+#     [CXXSTD  <98|11|14|17>         ]
 #   )
 function(quick_add_library_with_option)
 
   set(opts)
-  set(ovks "SRC_VAR" "TYPE" "CSTD" "CXXSTD")
+  set(ovks "SRCVAR" "TYPE" "CSTD" "CXXSTD")
   set(mvks)
   cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
   if(DEFINED ARG_UNPARSED_ARGUMENTS)
@@ -920,8 +920,8 @@ function(quick_add_library_with_option)
     return()
   endif()
 
-  if(NOT DEFINED ARG_SRC_VAR)
-    message(SEND_ERROR "Missing SRC_VAR.")
+  if(NOT DEFINED ARG_SRCVAR)
+    message(SEND_ERROR "Missing SRCVAR.")
     return()
   endif()
 
@@ -963,7 +963,7 @@ function(quick_add_library_with_option)
 
   option(${nameupper}_COMPILE_${typeupper} "Build ${typetext}." ON)
   if(${nameupper}_COMPILE_${typeupper})
-    add_library(${namelower}_${typelower} ${ARG_TYPE} ${${ARG_SRC_VAR}})
+    add_library(${namelower}_${typelower} ${ARG_TYPE} ${${ARG_SRCVAR}})
     set_target_properties(${namelower}_${typelower} PROPERTIES
       cstd
       cxxstd
