@@ -3,9 +3,7 @@
 # | '__| '__| | | | __| | | | __| |/ _ / __|
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/
-#                      rrUtilities by FIGlet
-
-# zhengrr
+# zhengrr              rrUtilities by FIGlet
 # 2016-10-8 – 2017-12-20
 # The MIT License
 
