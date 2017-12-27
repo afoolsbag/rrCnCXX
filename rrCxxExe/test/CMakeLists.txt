@@ -1,0 +1,3 @@
+enable_testing()
+quick_aux_source_directory(sourceFiles RECURSE CONFIGURE CXX)
+quick_add_googletest_with_option(sourceFiles)

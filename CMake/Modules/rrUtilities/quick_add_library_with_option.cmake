@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-26
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-27
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -13,74 +13,67 @@
 # .rst
 # .. command:: quick_add_library_with_option
 #
-#  简便生成库::
+#  简便生成库文件::
 #
 #   quick_add_library_with_option(
-#      SRCVAR  <source variable>
-#     [TYPE    <STATIC|SHARED|MODULE>]
-#     [CSTD    <90|99|11>            ]
-#     [CXXSTD  <98|11|14|17>         ]
+#     <source_variable>
+#     [SPECIAL STATIC|SHARED|MODULE]
+#     [C_STANDARD 90|99|11]
+#     [CXX_STANDARD 98|11|14|17]
 #   )
-function(quick_add_library_with_option)
-
-  set(opts)
-  set(ovks "SRCVAR" "TYPE" "CSTD" "CXXSTD")
-  set(mvks)
-  cmake_parse_arguments("" "${opts}" "${ovks}" "${mvks}" ${ARGN})
+function(quick_add_library_with_option _SOURCE_VARIABLE)
+  set(oneValueKeywords "SPECIAL" "C_STANDARD" "CXX_STANDARD")
+  cmake_parse_arguments(PARSE_ARGV 1 "" "" "${oneValueKeywords}" "")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  if(NOT DEFINED _SRCVAR)
-    message(SEND_ERROR "Missing SRCVAR.")
+  string(TOUPPER "${PROJECT_NAME}" projectNameUpper)
+  string(TOLOWER "${PROJECT_NAME}" projectNameLower)
+
+  if(NOT DEFINED _SPECIAL)
+    set(textName "library")
+    set(optionName "${projectNameUpper}_COMPILE_LIBRARY")
+    set(targetName "${projectNameLower}_library")
+  elseif(_SPECIAL STREQUAL "STATIC")
+    set(textName "static library")
+    set(optionName "${projectNameUpper}_COMPILE_STATIC")
+    set(targetName "${projectNameLower}_static")
+  elseif(_SPECIAL STREQUAL "SHARED")
+    set(textName "shared library")
+    set(optionName "${projectNameUpper}_COMPILE_SHARED")
+    set(targetName "${projectNameLower}_shared")
+  elseif(_SPECIAL STREQUAL "MODULE")
+    set(textName "module library")
+    set(optionName "${projectNameUpper}_COMPILE_MODULE")
+    set(targetName "${projectNameLower}_module")
+  else()
+    message(SEND_ERROR "Undesirable SPECIAL(${_SPECIAL}).")
     return()
   endif()
 
-  if(NOT DEFINED _TYPE)
-    set(typetext "library")
-    set(typeupper "LIBRARY")
-    set(typelower "library")
-  elseif("${_TYPE}" STREQUAL "STATIC")
-    set(typetext "static library")
-    set(typeupper "STATIC")
-    set(typelower "static")
-  elseif("${_TYPE}" STREQUAL "SHARED")
-    set(typetext "shared library")
-    set(typeupper "SHARED")
-    set(typelower "shared")
-  elseif("${_TYPE}" STREQUAL "MODULE")
-    set(typetext "module library")
-    set(typeupper "MODULE")
-    set(typelower "module")
+  if(DEFINED _C_STANDARD)
+    set(cStandardProperty C_STANDARD ${_C_STANDARD} C_STANDARD_REQUIRED ON)
   else()
-    message(SEND_ERROR "Undesirable TYPE(${_TYPE}).")
+    set(cStandardProperty)
+  endif()
+
+  if(DEFINED _CXX_STANDARD)
+    set(cxxStandardProperty CXX_STANDARD ${_CXX_STANDARD} CXX_STANDARD_REQUIRED ON)
+  else()
+    set(cxxStandardProperty)
+  endif()
+
+  option(${optionName} "Build ${typetext}." ON)
+  if(NOT ${optionName})
     return()
   endif()
 
-  if(DEFINED _CSTD)
-    set(cstd "C_STANDARD ${_CSTD} C_STANDARD_REQUIRED ON")
-  else()
-    unset(cstd)
-  endif()
-
-  if(DEFINED _CXXSTD)
-    set(cxxstd "CXX_STANDARD ${_CXXSTD} CXX_STANDARD_REQUIRED ON")
-  else()
-    unset(cxxstd)
-  endif()
-
-  string(TOUPPER "${PROJECT_NAME}" nameupper)
-  string(TOLOWER "${PROJECT_NAME}" namelower)
-
-  option(${nameupper}_COMPILE_${typeupper} "Build ${typetext}." ON)
-  if(${nameupper}_COMPILE_${typeupper})
-    add_library(${namelower}_${typelower} ${_TYPE} ${${_SRCVAR}})
-    set_target_properties(${namelower}_${typelower} PROPERTIES
-      cstd
-      cxxstd
-      OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
-    install(TARGETS ${namelower}_${typelower} DESTINATION "lib")
-  endif()
-
+  add_library(${targetName} ${_TYPE} ${${_SOURCE_VARIABLE}})
+  set_target_properties(${targetName} PROPERTIES
+    ${cStandardProperty}
+    ${cxxStandardProperty}
+    OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
+  install(TARGETS ${targetName} DESTINATION "lib")
 endfunction()

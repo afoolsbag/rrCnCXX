@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-26
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-27
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -16,59 +16,59 @@
 #  简便生成Ｄｏｘｙｇｅｎ文档::
 #
 #   quick_add_doxygen_with_option(
-#     [SPECIAL <API|DEV>]
+#     [SPECIAL API|DEV]
 #   )
 function(quick_add_doxygen_with_option)
-
-  set(opts)
-  set(ovks "SPECIAL")
-  set(mvks)
-  cmake_parse_arguments("ARG" "${opts}" "${ovks}" "${mvks}" ${ARGN})
+  set(oneValueKeywords "SPECIAL")
+  cmake_parse_arguments(PARSE_ARGV 0 "" "" "${oneValueKeywords}" "")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
+  string(TOUPPER "${PROJECT_NAME}" projectNameUpper)
+  string(TOLOWER "${PROJECT_NAME}" projectNameLower)
+
   if(NOT DEFINED _SPECIAL)
-    set(text "documentation")
-    set(upper "DOC")
-    set(lower "doc")
+    set(textName "documentation")
+    set(optionName "${projectNameUpper}_GENERATE_DOC")
+    set(targetName "${projectNameLower}_doc")
   elseif("${_SPECIAL}" STREQUAL "API")
-    set(text "API documentation")
-    set(upper "API_DOC")
-    set(lower "api_doc")
+    set(textName "API documentation")
+    set(optionName "${projectNameUpper}_GENERATE_APIDOC")
+    set(targetName "${projectNameLower}_apidoc")
   elseif("${_SPECIAL}" STREQUAL "DEV")
-    set(text "developing documentation")
-    set(upper "DEV_DOC")
-    set(lower "dev_doc")
+    set(textName "developing documentation")
+    set(optionName "${projectNameUpper}_GENERATE_DEVDOC")
+    set(targetName "${projectNameLower}_devdoc")
   else()
     message(SEND_ERROR "Undesirable SPECIAL(${_SPECIAL}).")
     return()
   endif()
 
   find_package(Doxygen)
-  option(${PROJECT_NAME_UPPER}_GEN_${upper} "Generate ${text} (requires Doxygen)." ${DOXYGEN_FOUND})
-  if(${PROJECT_NAME_UPPER}_GEN_${upper})
-    if(NOT DOXYGEN_FOUND)
-      message(SEND_ERROR "Doxygen is needed to generate the ${text}.")
-      return()
-    endif()
-
-    set(doxyfile_in "${PROJECT_SOURCE_DIR}/doxygen/Doxyfile.in")
-    set(doxyfile    "${PROJECT_BINARY_DIR}/doxygen/Doxyfile")
-    configure_file(${doxyfile_in} ${doxyfile} @ONLY)
-
-    file(GLOB srcfiles "*.h" "*.hpp")
-    list(APPEND srcfiles ${doxyfile_in})
-    source_group("" FILES ${srcfiles})
-
-    add_custom_target(${PROJECT_NAME_LOWER}_${lower}
-      COMMAND "${DOXYGEN_EXECUTABLE}" "${doxyfile}"
-      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-      COMMENT "Generating ${text} with Doxygen."
-      VERBATIM
-      SOURCES ${srcfiles})
-    install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen/docs/" DESTINATION "docs")
+  option(${optionName} "Generate ${textName} (requires Doxygen)." ${DOXYGEN_FOUND})
+  if(NOT ${optionName})
+    return()
+  endif()
+  if(NOT DOXYGEN_FOUND)
+    message(SEND_ERROR "Doxygen is needed to generate the ${textName}.")
+    return()
   endif()
 
+  set(doxyfile_in "${PROJECT_SOURCE_DIR}/doxygen/Doxyfile.in")
+  set(doxyfile "${PROJECT_BINARY_DIR}/doxygen/Doxyfile")
+  configure_file(${doxyfile_in} ${doxyfile} @ONLY)
+
+  file(GLOB srcfiles "*.h" "*.H" "*.hh" "*.hpp" "*.hxx")
+  list(APPEND srcfiles ${doxyfile_in})
+  source_group("" FILES ${srcfiles})
+
+  add_custom_target(${targetName}
+    COMMAND "${DOXYGEN_EXECUTABLE}" "${doxyfile}"
+    WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
+    COMMENT "Generating ${textName} with Doxygen."
+    VERBATIM
+    SOURCES ${srcfiles})
+  install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen/docs/" DESTINATION "docs")
 endfunction()

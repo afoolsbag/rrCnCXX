@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                      2017-12-18 – 27
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                           2017-12-27
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -11,49 +11,39 @@
 #                                       add_custom_target by FIGlet |___/
 
 # .rst
-# .. command:: quick_add_executable_with_option
+# .. command:: quick_add_googletest_with_option
 #
-#  简便生成可执行文件::
+#  简便生成ＧｏｏｇｌｅＴｅｓｔ测试::
 #
-#   quick_add_executable_with_option(
+#   quick_add_googletest_with_option(
 #     <source_variable>
-#     [C_STANDARD 90|99|11]
-#     [CXX_STANDARD 98|11|14|17]
 #   )
-function(quick_add_executable_with_option _SOURCE_VARIABLE)
-  set(oneValueKeywords "C_STANDARD" "CXX_STANDARD")
-  cmake_parse_arguments(PARSE_ARGV 1 "" "" "${oneValueKeywords}" "")
+function(quick_add_googletest_with_option _SOURCE_VARIABLE)
+  cmake_parse_arguments(PARSE_ARGV 1 "" "" "" "")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  if(DEFINED _C_STANDARD)
-    set(cStandardProperty C_STANDARD ${_C_STANDARD} C_STANDARD_REQUIRED ON)
-  else()
-    set(cStandardProperty)
-  endif()
-
-  if(DEFINED _CXX_STANDARD)
-    set(cxxStandardProperty CXX_STANDARD ${_CXX_STANDARD} CXX_STANDARD_REQUIRED ON)
-  else()
-    set(cxxStandardProperty)
-  endif()
-
   string(TOUPPER "${PROJECT_NAME}" projectNameUpper)
   string(TOLOWER "${PROJECT_NAME}" projectNameLower)
-  set(optionName "${projectNameUpper}_COMPILE_EXE")
-  set(targetName "${projectNameLower}_exe")
+  set(optionName "${projectNameUpper}_COMPILE_TEST")
+  set(targetName "${projectNameLower}_test")
+  set(testName "${PROJECT_NAME}_GoogleTest")
 
-  option(${optionName} "Build executable file." ON)
+  find_package(GTest)
+  option(${optionName} "Build test file (requires GoogleTest)." ${GTEST_FOUND})
   if(NOT ${optionName})
     return()
   endif()
+  if(NOT GTEST_FOUND)
+    message(SEND_ERROR "GoogleTest is needed to build test.")
+    return()
+  endif()
 
+  include_directories(${GTEST_INCLUDE_DIRS})
   add_executable(${targetName} ${${_SOURCE_VARIABLE}})
-  set_target_properties(${targetName} PROPERTIES
-    ${cStandardProperty}
-    ${cxxStandardProperty}
-    OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
-  install(TARGETS ${targetName} DESTINATION "bin")
+  target_link_libraries(${targetName} GTest::GTest GTest::Main)
+
+  add_test(NAME ${testName} COMMAND ${targetName})
 endfunction()

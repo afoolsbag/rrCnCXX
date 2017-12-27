@@ -7,8 +7,11 @@
 #                           ___| |__   ___  ___| | _ _ __   __ _ _ __ ___   ___
 #                          / __| '_ \ / _ \/ __| |/ | '_ \ / _` | '_ ` _ \ / _ \
 # zhengrr                 | (__| | | |  __| (__|   <| | | | (_| | | | | | |  __/
-# 2016-10-8 – 2017-12-26   \___|_| |_|\___|\___|_|\_|_| |_|\__,_|_| |_| |_|\___|
+# 2017-12-18 – 27          \___|_| |_|\___|\___|_|\_|_| |_|\__,_|_| |_| |_|\___|
 # The MIT License                                           check_name by FIGlet
+
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+cmake_policy(SET CMP0054 NEW) #3.1+
 
 # .rst
 # .. command:: check_name_with_c_identifier_rules
@@ -16,12 +19,11 @@
 #  检查输入是否符合Ｃ语言标识符（命名）规则::
 #
 #   check_name_with_c_identifier_rules(
-#     "<name>"
-#      <result>
+#     <name>
+#     <result>
 #   )
 function(check_name_with_c_identifier_rules _NAME _RESULT)
-
-  if(NOT "${ARGC}" EQUAL 2)
+  if(NOT ${ARGC} EQUAL 2)
     message(SEND_ERROR "Incorrect number of arguments (${ARGN}).")
     return()
   endif()
@@ -31,5 +33,4 @@ function(check_name_with_c_identifier_rules _NAME _RESULT)
   else()
     set(${_RESULT} FALSE PARENT_SCOPE)
   endif()
-
 endfunction()

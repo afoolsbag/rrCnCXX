@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-26
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                      2017-12-18 – 27
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -18,55 +18,60 @@ include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_cmake_recommend_variable_rule
 #  提供选项，可选地将子目录添加到构建::
 #
 #   add_subdirectory_with_option(
-#      SRCDIR           "<source directory>"
-#     [BINDIR           "<binary directory>"]
-#     [EXCLUDE_FROM_ALL                     ]
-#     [INITIAL_OPTION    <OFF|ON>           ]
+#     <source_directory>
+#     [binary_directory]
+#     [EXCLUDE_FROM_ALL]
+#     [ON|OFF]            // option initial value
 #   )
-function(add_subdirectory_with_option)
-
-  set(opts "EXCLUDE_FROM_ALL")
-  set(ovks "SRCDIR" "BINDIR" "INITIAL_OPTION")
-  set(mvks)
-  cmake_parse_arguments("" "${opts}" "${ovks}" "${mvks}" ${ARGN})
-  if(DEFINED _UNPARSED_ARGUMENTS)
-    message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
+#
+#  BUG:
+#
+#   此命令的实现，强制要求源目录为直接子目录。
+function(add_subdirectory_with_option _SOURCE_DIRECTORY)
+  set(_BINARY_DIRECTORY)
+  set(options "EXCLUDE_FROM_ALL" "ON" "OFF")
+  cmake_parse_arguments(PARSE_ARGV 1 "" "${options}" "" "")
+  list(LENGTH _UNPARSED_ARGUMENTS unparsedArgumentsNumber)
+  if(unparsedArgumentsNumber GREATER 0)
+    list(GET _UNPARSED_ARGUMENTS 0 _BINARY_DIRECTORY)
+  endif()
+  if(unparsedArgumentsNumber GREATER 1)
+    message(SEND_ERROR "Incorrect number of arguments.")
     return()
   endif()
 
-  if(NOT DEFINED _SRCDIR)
-    message(SEND_ERROR "Missing SRCDIR.")
+  check_name_with_cmake_recommend_variable_rules("${_SOURCE_DIRECTORY}" checkPassed)
+  if(NOT checkPassed)
+    message(SEND_ERROR "Undesirable argument(${_SOURCE_DIRECTORY}).")
     return()
   endif()
-  check_name_with_cmake_recommend_variable_rules("${_SRCDIR}" conformed)
-  if(NOT conformed)
-    message(SEND_ERROR "Undesirable SRCDIR(${_SRCDIR}).")
-    return()
-  endif()
+  string(TOUPPER "${_SOURCE_DIRECTORY}" optionName)
 
-  string(TOUPPER "${_SRCDIR}" optionname)
-
-  if(DEFINED _INITIAL_OPTION)
-    set(initialoption "${_INITIAL_OPTION}")
+  if(DEFINED _BINARY_DIRECTORY)
+    set(binaryDirectory "${_BINARY_DIRECTORY}")
   else()
-    set(initialoption OFF)
-  endif()
-
-  if(DEFINED _BINDIR)
-    set(bindir "${_BINDIR}")
-  else()
-    unset(bindir)
+    set(binaryDirectory)
   endif()
 
   if(_EXCLUDE_FROM_ALL)
-    set(exclude_from_all "EXCLUDE_FROM_ALL")
+    set(excludeFromAll "EXCLUDE_FROM_ALL")
   else()
-    unset(exclude_from_all)
+    set(excludeFromAll)
   endif()
 
-  option(${optionname} "Subdirectory ${_SRCDIR}." ${initialoption})
-  if(${optionname})
-    add_subdirectory("${_SRCDIR}" ${bindir} ${exclude_from_all})
+  if(_ON AND _OFF)
+    message(SEND_ERROR "Undesirable arguments(${_ON} & ${_OFF}).")
+    return()
+  elseif(_ON)
+    set(optionInitialValue ON)
+  elseif(_OFF)
+    set(optionInitialValue OFF)
+  else()
+    set(optionInitialValue)
   endif()
 
+  option(${optionName} "Subdirectory ${_SOURCE_DIRECTORY}." ${optionInitialValue})
+  if(${optionName})
+    add_subdirectory("${_SOURCE_DIRECTORY}" ${binaryDirectory} ${excludeFromAll})
+  endif()
 endfunction()

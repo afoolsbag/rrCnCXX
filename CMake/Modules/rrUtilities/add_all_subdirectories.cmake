@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-26
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                      2017-12-18 – 27
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -10,59 +10,66 @@
 #   \__,_|\__,_|\__,_|___/\__,_|_.__/ \__,_|_|_|  \___|\___|\__\___/|_|   \__, |
 #                                              add_subdirectory by FIGlet |___/
 
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+cmake_policy(SET CMP0057 NEW) #3.3+
+
 # .rst
 # .. command:: add_all_subdirectories
 #
 #  将目录下所有子目录添加到构建::
 #
 #   add_all_subdirectories(
-#     [SRCDIR           "<parent directory of source directories>"]
-#     [BINDIR           "<parent directory of binary directories>"]
-#     [EXCLUDE_FROM_ALL                                           ]
+#     [parent_directory_of_source_directories]
+#     [parent_directory_of_binary_directories]
+#     [EXCLUDE_FROM_ALL]
 #   )
 function(add_all_subdirectories)
-
-  set(opts "EXCLUDE_FROM_ALL")
-  set(ovks "SRCDIR" "BINDIR")
-  set(mvks)
-  cmake_parse_arguments("" "${opts}" "${ovks}" "${mvks}" ${ARGN})
-  if(DEFINED _UNPARSED_ARGUMENTS)
-    message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
+  set(_SOURCE_PARENT_DIRECTORY)
+  set(_BINARY_PARENT_DIRECTORY)
+  set(options "EXCLUDE_FROM_ALL")
+  cmake_parse_arguments(PARSE_ARGV 0 "" "${options}" "" "")
+  list(LENGTH _UNPARSED_ARGUMENTS unparsedArgumentsNumber)
+  if(unparsedArgumentsNumber GREATER 0)
+    list(GET _UNPARSED_ARGUMENTS 0 _SOURCE_PARENT_DIRECTORY)
+  endif()
+  if(unparsedArgumentsNumber GREATER 1)
+    list(GET _UNPARSED_ARGUMENTS 1 _BINARY_PARENT_DIRECTORY)
+  endif()
+  if(unparsedArgumentsNumber GREATER 2)
+    message(SEND_ERROR "Incorrect number of arguments.")
     return()
   endif()
 
-  if(DEFINED _SRCDIR)
-    set(path "${_SRCDIR}")
+  if(DEFINED _SOURCE_PARENT_DIRECTORY)
+    set(sourceParentDirectory "${_SOURCE_PARENT_DIRECTORY}")
   else()
-    set(path "${CMAKE_CURRENT_LIST_DIR}")
+    set(sourceParentDirectory "${CMAKE_CURRENT_LIST_DIR}")
+  endif()
+  file(GLOB directories
+    LIST_DIRECTORIES TRUE RELATIVE "${sourceParentDirectory}"
+    "${sourceParentDirectory}/*")
+
+  if(_EXCLUDE_FROM_ALL)
+    set(excludeFromAll "EXCLUDE_FROM_ALL")
+  else()
+    set(excludeFromAll)
   endif()
 
-  file(GLOB files LIST_DIRECTORIES TRUE RELATIVE "${path}" "${path}/*")
-
-  foreach(file IN LISTS files)
-    if(IS_DIRECTORY "${path}/${file}")
-
-      if(DEFINED _SRCDIR)
-        set(srcdir "${path}/${file}")
+  foreach(directory IN LISTS directories)
+    if(IS_DIRECTORY "${sourceParentDirectory}/${directory}")
+      if(DEFINED _SOURCE_PARENT_DIRECTORY)
+        set(sourceDirectory "${_SOURCE_PARENT_DIRECTORY}/${directory}")
       else()
-        set(srcdir "${file}")
+        set(sourceDirectory "${directory}")
       endif()
 
-      if(DEFINED _BINDIR)
-        set(bindir "${parent_binary_dir}/${dir}")
+      if(DEFINED _BINARY_PARENT_DIRECTORY)
+        set(binaryDirectory "${_BINARY_PARENT_DIRECTORY}/${directory}")
       else()
-        unset(bindir)
+        set(binaryDirectory)
       endif()
 
-      if(_EXCLUDE_FROM_ALL)
-        set(exclude_from_all "EXCLUDE_FROM_ALL")
-      else()
-        unset(exclude_from_all)
-      endif()
-
-      add_subdirectory("${srcdir}" ${bindir} ${exclude_from_all})
-
+      add_subdirectory("${sourceDirectory}" ${binaryDirectory} ${excludeFromAll})
     endif()
   endforeach()
-
 endfunction()
