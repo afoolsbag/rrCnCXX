@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-18 – 2017-1-2
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-18 – 2017-1-3
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -17,18 +17,28 @@
 #
 #   quick_add_executable_with_option(
 #     <source_variable>
+#     [ORIGINAL_NAME original_name]  // not target name
 #     [WIN32]
-#     [NAME target_name]
 #     [C_STANDARD 90|99|11]
 #     [CXX_STANDARD 98|11|14|17]
 #   )
 function(quick_add_executable_with_option _SOURCE_VARIABLE)
   set(options "WIN32")
-  set(oneValueKeywords "NAME" "C_STANDARD" "CXX_STANDARD")
+  set(oneValueKeywords "ORIGINAL_NAME" "C_STANDARD" "CXX_STANDARD")
   cmake_parse_arguments(PARSE_ARGV 1 "" "${options}" "${oneValueKeywords}" "")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
     return()
+  endif()
+
+  if(DEFINED _ORIGINAL_NAME)
+    set(name "${_ORIGINAL_NAME}")
+    string(TOUPPER "${_ORIGINAL_NAME}" nameUpper)
+    string(TOLOWER "${_ORIGINAL_NAME}" nameLower)
+  else()
+    set(name "${PROJECT_NAME}")
+    string(TOUPPER "${PROJECT_NAME}" nameUpper)
+    string(TOLOWER "${PROJECT_NAME}" nameLower)
   endif()
 
   if(_WIN32)
@@ -36,16 +46,6 @@ function(quick_add_executable_with_option _SOURCE_VARIABLE)
   else()
     set(win32)
   endif()
-
-  if(DEFINED _NAME)
-    string(TOUPPER "${_NAME}" nameUpper)
-    string(TOLOWER "${_NAME}" nameLower)
-  else()
-    string(TOUPPER "${PROJECT_NAME}" nameUpper)
-    string(TOLOWER "${PROJECT_NAME}" nameLower)
-  endif()
-  set(optionName "${nameUpper}_COMPILE_EXE")
-  set(targetName "${nameLower}_exe")
 
   if(DEFINED _C_STANDARD)
     set(cStandardProperty C_STANDARD ${_C_STANDARD} C_STANDARD_REQUIRED ON)
@@ -59,6 +59,9 @@ function(quick_add_executable_with_option _SOURCE_VARIABLE)
     set(cxxStandardProperty)
   endif()
 
+  set(optionName "${nameUpper}_COMPILE_EXE")
+  set(targetName "${nameLower}_exe")
+
   option(${optionName} "Build executable file." ON)
   if(NOT ${optionName})
     return()
@@ -68,6 +71,6 @@ function(quick_add_executable_with_option _SOURCE_VARIABLE)
   set_target_properties(${targetName} PROPERTIES
     ${cStandardProperty}
     ${cxxStandardProperty}
-    OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
+    OUTPUT_NAME "${name}" CLEAN_DIRECT_OUTPUT ON)
   install(TARGETS ${targetName} DESTINATION "bin")
 endfunction()

@@ -15,5 +15,5 @@ adjust_compiler_warning_level_to_highest()
 quick_add_doxygen_with_option()
 
 enable_testing()
-quick_aux_source_directory(sourceFiles RECURSE CXX)
+quick_aux_source_directory(sourceFiles CXX)
 quick_add_googletest_with_option(sourceFiles)

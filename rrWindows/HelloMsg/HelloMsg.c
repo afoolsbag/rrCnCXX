@@ -1,22 +1,24 @@
 /** \file
- *  \brief *Programming Windows* 1.3.2.
+ *  \brief Ｗｉｎｄｏｗｓ桌面应用程序入口。
+ *  \sa *Programming Windows* 1.3.2 & 2.2.4
  *  \author zhengrr
- *  \date 2018-1-2
+ *  \date 2016-10-12 – 2018-1-3
  *  \copyright The MIT License */
 
 #include <windows.h>
+#include <tchar.h>
 
-/** \param hInstance     实例句柄（Instance Handle）；
+/** Ｗｉｎｄｏｗｓ桌面应用程序入口。
+ *  \param hInstance     实例句柄（Instance Handle）；
  *  \param hPrevInstance 前一实例句柄，ＷＩＮ３２中弃置，恒为`NULL`；
  *  \param szCmdLine     命令行（Command Line）；
- *  \param iCmdShow      显示方式。
+ *  \param codeCmdShow   显示方式。
  *  \return 退出状态（exit status）。
- *  \sa <http://msdn.microsoft.com/ms633559>
- */
-INT WINAPI WinMain(HINSTANCE Instance, HINSTANCE PrevInstance,
-                   PSTR CmdLine, INT CmdShow)
+ *  \sa ["WinMain entry point"](http://msdn.microsoft.com/ms633559). *MSDN*. */
+INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                     PTSTR szCmdLine, INT codeCmdShow)
 {
-    MessageBox(NULL, "Hello, Windows 98!", "HelloMsg", MB_OK);
+        MessageBox(NULL, _T("Hello, Windows 98!"), _T("HelloMsg"), MB_OK);
 
-    return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
 }

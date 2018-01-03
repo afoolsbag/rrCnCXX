@@ -1,0 +1,5 @@
+#set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_executable(${PROJECT_NAME}WinSock_TcpClient "WinSockTcpClient.c")
+#add_executable(${PROJECT_NAME}WinSock_TcpServer "WinSockTcpServer.c")
+#add_executable(${PROJECT_NAME}WinSock_UdpClient "WinSockUdpClient.c")
+#add_executable(${PROJECT_NAME}WinSock_UdpServer "WinSockUdpServer.c")

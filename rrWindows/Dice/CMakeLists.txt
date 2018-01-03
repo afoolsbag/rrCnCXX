@@ -1,0 +1,5 @@
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+#add_library(${PROJECT_NAME}_dicelib_static STATIC "DiceLib.h" "DiceLib.c")
+add_library(${PROJECT_NAME}_dicelib_shared SHARED "DiceLib.h" "DiceLib.c")
+add_executable(${PROJECT_NAME}_dice_exe "Dice.c")
+target_link_libraries(${PROJECT_NAME}_dice_exe ${PROJECT_NAME}_dicelib_shared)
