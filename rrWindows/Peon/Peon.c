@@ -14,7 +14,8 @@
 
 static VOID ThreadWork(PVOID pVoid);
 
-/** \sa [`CreateThread`与`_beginthreadex`本质区别](http://blog.csdn.net/morewindows/article/details/7421759)
+/** \sa [`CreateThread`与`_beginthreadex`](http://cnblogs.com/lgxqf/archive/2009/02/10/1387480.html)
+ *  \sa [`CloseHandle`与`_endthread`](http://blog.csdn.net/guyue35/article/details/45666143)
  *  \sa ["`_beginthread`"](https://msdn.microsoft.com/kdzttdcb). *MSDN*.
  *  \sa ["`WaitForSingleObject` function"](http://msdn.microsoft.com/ms687032). *MSDN*. */
 INT _tmain(INT argc, _TCHAR *argv[], _TCHAR *envp[])

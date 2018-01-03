@@ -1,5 +1,6 @@
 /** \file
  *  \brief Ｗｉｎｄｏｗｓ控制台应用程序入口。
+ *  \sa [ＵＴＦ８中文编码处理探究](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *  \author zhengrr
  *  \date 2016-10-12 – 2018-1-3
  *  \copyright The MIT License */
