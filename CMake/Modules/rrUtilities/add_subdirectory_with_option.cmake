@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                      2017-12-18 – 27
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-18 – 2018-1-4
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -24,7 +24,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_cmake_recommend_variable_rule
 #     [ON|OFF]            // option initial value
 #   )
 #
-#  BUG:
+#  BUG::
 #
 #   此命令的实现，强制要求源目录为直接子目录。
 function(add_subdirectory_with_option _SOURCE_DIRECTORY)

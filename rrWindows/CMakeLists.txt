@@ -4,7 +4,7 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-1-2
+# 2016-10-12 – 2018-1-4
 # The MIT License
 
 project("rrWindows" LANGUAGES C)
@@ -14,4 +14,13 @@ adjust_compiler_warning_level_to_highest()
 
 quick_add_doxygen_with_option()
 
-add_all_subdirectories()
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+quick_add_executable_with_option(SUBNAME "HelloWorld" "HelloWorld.c")
+quick_add_executable_with_option(SUBNAME "HelloMsg" WIN32 "HelloMsg.c")
+quick_add_executable_with_option(SUBNAME "Peon" "Peon.c")
+
+#add_library(${PROJECT_NAME}_dicelib_static STATIC "DiceLib.h" "DiceLib.c")
+add_library(${PROJECT_NAME_LOWER}_dicelib_shared SHARED "DiceLib.h" "DiceLib.c")
+add_executable(${PROJECT_NAME_LOWER}_dice_exe "Dice.c")
+target_link_libraries(${PROJECT_NAME_LOWER}_dice_exe ${PROJECT_NAME_LOWER}_dicelib_shared)
