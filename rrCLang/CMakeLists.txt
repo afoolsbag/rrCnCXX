@@ -4,7 +4,7 @@
 # | |  | |  | |___| |__| (_| | | | | (_| | |_| | (_| | (_| |  __/
 # |_|  |_|   \____|_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|
 # zhengrr                           |___/             |___/
-# 2016-10-12 – 2018-1-4                     rrCLanguage by FIGlet
+# 2016-10-12 – 2018-1-5                     rrCLanguage by FIGlet
 # The MIT License
 
 project("rrCLanguage" LANGUAGES C)
@@ -16,4 +16,5 @@ quick_add_doxygen_with_option()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-quick_add_executable_with_option(SUBNAME "HelloWorld" "hello_world.c")
+quick_add_executable_with_option(SUBNAME "Initialization" "c_standard_version.h" "initialization.c")
+quick_add_executable_with_option(SUBNAME "Main" "main.c")

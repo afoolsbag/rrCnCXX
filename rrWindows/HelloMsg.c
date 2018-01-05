@@ -1,14 +1,14 @@
 /** \file
- *  \brief Ｗｉｎｄｏｗｓ桌面应用程序入口。
- *  \sa *Programming Windows* 1.3.2 & 2.2.4
+ *  \brief Windows® 桌面应用入口
+ *  \sa *Programming Windows®* 1.3.2 & 2.2.4
  *  \author zhengrr
- *  \date 2016-10-12 – 2018-1-3
+ *  \date 2016-10-12 – 2018-1-5
  *  \copyright The MIT License */
 
 #include <windows.h>
 #include <tchar.h>
 
-/** Ｗｉｎｄｏｗｓ桌面应用程序入口。
+/** \brief Windows® 桌面应用入口
  *  \param hInstance     实例句柄（Instance Handle）；
  *  \param hPrevInstance 前一实例句柄，ＷＩＮ３２中弃置，恒为`NULL`；
  *  \param szCmdLine     命令行（Command Line）；

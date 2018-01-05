@@ -1,31 +1,29 @@
 /** \file
- *  \brief C++ 标准版本。
- *  \sa <https://sourceforge.net/p/predef/wiki/Compilers/>
- *  \sa <https://clang.llvm.org/cxx_status.html>
- *  \sa <https://gcc.gnu.org/projects/cxx-status.html>
- *  \sa <https://msdn.microsoft.com/library/hh567368.aspx>
+ *  \brief C++ 标准版本
+ *  \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
+ *  \sa ["Clang - C++17, C++14, C++11 and C++98 Status"](https://clang.llvm.org/cxx_status.html). *The LLVM Compiler Infrastructure Project*.
+ *  \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
+ *  \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
  *  \author zhengrr
- *  \date 2017-12-13 – 2018-1-2
+ *  \date 2017-12-13 – 2018-1-5
  *  \copyright The MIT License */
 
 #ifndef RRCXXLANG_CXX_STANDARD_VERSION_HPP_
 #define RRCXXLANG_CXX_STANDARD_VERSION_HPP_
 
 /* Language Standards */
-#if defined(__cplusplus)
-# define CXX_STANDARD_VERSION __cplusplus
-#else
+#ifndef __cplusplus
 # error A C++ compiler is required.
 #endif
 
-/** C++17. */
-#define CXXSTD17 (201703L <= CXX_STANDARD_VERSION)
-/** C++14. */
-#define CXXSTD14 (201402L <= CXX_STANDARD_VERSION)
-/** C++11. */
-#define CXXSTD11 (201103L <= CXX_STANDARD_VERSION)
-/** C++98. */
-#define CXXSTD98 (199711L <= CXX_STANDARD_VERSION)
+/** C++17 */
+#define CXXSTD17 (201703L <= __cplusplus)
+/** C++14 */
+#define CXXSTD14 (201402L <= __cplusplus)
+/** C++11 */
+#define CXXSTD11 (201103L <= __cplusplus)
+/** C++98 */
+#define CXXSTD98 (199711L <= __cplusplus)
 
 /* Clang */
 #if defined __clang__
@@ -50,15 +48,15 @@
 
 /* Language Features */
 /** Dynamic Initialization and Destruction with Concurrency.
- *  \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660> */
+ *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660 */
 #define CXXN2660 (CXXSTD11 || 40300<=CXX_GNUC_VERSION || 1900<=CXX_MSC_VERSION || 200806<=__cpp_threadsafe_static_init)
 
 /** Namespace Association ("inline namespace").
- *  \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2535> */
+ *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2535 */
 #define CXXN2535 (CXXSTD11 || 40300<=CXX_GNUC_VERSION || 1900<=CXX_MSC_VERSION)
 
 /** Deducing the type of variable from its initializer expression.
- *  \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1984> */
+ *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1984 */
 #define CXXN1984 (CXXSTD11 || 40400<=CXX_GNUC_VERSION || 1900<=CXX_MSC_VERSION)
 
 #endif// RRCXXLANG_CXX_STANDARD_VERSION_HPP_

@@ -1,8 +1,8 @@
 /** \file
- *  \brief Ｗｉｎｄｏｗｓ控制台应用程序入口。
- *  \sa [ＵＴＦ８中文编码处理探究](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
+ *  \brief Windows® 控制台应用入口
+ *  \sa [UTF8 中文编码处理探究](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *  \author zhengrr
- *  \date 2016-10-12 – 2018-1-3
+ *  \date 2016-10-12 – 2018-1-5
  *  \copyright The MIT License */
 
 #include <windows.h>
@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-/** Ｗｉｎｄｏｗｓ控制台应用程序入口。
+/** \brief Windows® 控制台应用入口
  *  \param argc 参数计数（argument count）；
  *  \param argv 参数矢量（argument vector）；
  *  \param envp 环境变量（environment pointer）。
