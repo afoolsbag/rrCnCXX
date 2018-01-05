@@ -26,21 +26,21 @@
 #define CXXSTD98 (199711L <= __cplusplus)
 
 /* Clang */
-#if defined __clang__
+#ifdef __clang__
 # define CXX_CLANG_VERSION (__clang_major__*10000 + __clang_minor__*100 + __clang_patchlevel__)
 #else
 # undef CXX_CLANG_VERSION
 #endif
 
 /* GCC C/C++ */
-#if defined __GNUC__
+#ifdef __GNUC__
 # define CXX_GNUC_VERSION (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__)
 #else
 # undef CXX_GNUC_VERSION
 #endif
 
 /* Microsoft Visual C++ */
-#if defined _MSC_VER
+#ifdef _MSC_VER
 # define CXX_MSC_VERSION _MSC_VER
 #else
 # undef CXX_MSC_VERSION

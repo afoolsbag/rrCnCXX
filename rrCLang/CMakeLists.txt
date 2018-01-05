@@ -12,9 +12,11 @@ set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()
 
-quick_add_doxygen_with_option()
+quick_add_doxygen_with_option(OPTIMIZE_OUTPUT_FOR_C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-quick_add_executable_with_option(SUBNAME "Initialization" "c_standard_version.h" "initialization.c")
+quick_add_executable_with_option(SUBNAME "Arithmetic" "arithmetic.c")
+quick_add_executable_with_option(SUBNAME "Array" "array.c" "c_standard_version.h")
 quick_add_executable_with_option(SUBNAME "Main" "main.c")
+quick_add_executable_with_option(SUBNAME "Struct" "struct.c" "c_standard_version.h")

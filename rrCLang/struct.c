@@ -1,24 +1,26 @@
 /** \file
- *  \brief 结构。
- *  \sa <http://en.cppreference.com/w/c/language/struct>
- *  \sa <http://en.cppreference.com/w/c/language/struct_initialization>
+ *  \brief 结构体
+ *  \sa ["Struct declaration"](http://en.cppreference.com/w/c/language/struct). *cppreference.com*.
+ *  \sa ["Struct and union initialization"](http://en.cppreference.com/w/c/language/struct_initialization). *cppreference.com*.
+ *  \sa ["compound literals"](http://en.cppreference.com/w/c/language/compound_literal). *cppreference.com*.
  *  \author zhengrr
- *  \date 2016-12-2
- *  \copyright The MIT License
- */
-#include <stdlib.h>
+ *  \date 2016-12-2 – 2018-1-5
+ *  \copyright The MIT License */
 
-/** \brief 灵活数组成员。
- */
-static int flexible_array_number(void)
-{
-        return EXIT_SUCCESS;
-}
+#include <assert.h>
 
-/** \brief 位域。
- *  \sa <http://en.cppreference.com/w/c/language/bit_field>
- */
-static int bit_field(void)
+#include "c_standard_version.h"
+
+static struct point {
+	double x, y;
+};
+
+int main()
 {
-        return EXIT_SUCCESS;
+#if CSTD99
+	/* 匿名结构体（复合字面量） */
+	struct point p_compound_literals = (struct point) {.x = 0, .y = 0};
+	assert(p_compound_literals.x == 0);
+	assert(p_compound_literals.y == 1);
+#endif// CSTD99
 }
