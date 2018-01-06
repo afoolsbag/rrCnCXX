@@ -1,5 +1,5 @@
 /** \file
- *  \brief 指针
+ *  \brief 类型系统：指针类型
  *  \sa ["Pointer declaration"](http://en.cppreference.com/w/c/language/pointer). *cppreference.com*.
  *  \sa ["Scalar initialization"](http://en.cppreference.com/w/c/language/scalar_initialization). *cppreference.com*.
  *  \author zhengrr
