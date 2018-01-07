@@ -4,7 +4,7 @@
 # | |  | |  | |___| | | | |___ >  < >  <
 # |_|  |_|   \____|_| |_|\____/_/\_/_/\_\
 # zhengrr               rrCnCxx by FIGlet
-# 2016-6-28 – 2017-12-26
+# 2016-6-28 – 2017-12-27
 # The MIT License
 
 cmake_minimum_required(VERSION 3.0)

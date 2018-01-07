@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                           2017-12-27
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-27 – 2018-1-2
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -31,6 +31,7 @@ function(quick_add_googletest_with_option _SOURCE_VARIABLE)
   set(targetName "${projectNameLower}_test")
   set(testName "${PROJECT_NAME}_GoogleTest")
 
+  set(GTEST_ROOT "" CACHE PATH "The root directory of the Google Test installation.")
   find_package(GTest)
   option(${optionName} "Build test file (requires GoogleTest)." ${GTEST_FOUND})
   if(NOT ${optionName})

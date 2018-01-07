@@ -1,33 +1,29 @@
 /** \file
- *  \brief C++ 标准版本。
- *  \sa <https://sourceforge.net/p/predef/wiki/Compilers/>
- *  \sa <https://clang.llvm.org/cxx_status.html>
- *  \sa <https://gcc.gnu.org/projects/cxx-status.html>
- *  \sa <https://msdn.microsoft.com/library/hh567368.aspx>
+ *  \brief C++ 标准版本
+ *  \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
+ *  \sa ["Clang - C++17, C++14, C++11 and C++98 Status"](https://clang.llvm.org/cxx_status.html). *The LLVM Compiler Infrastructure Project*.
+ *  \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
+ *  \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
  *  \author zhengrr
- *  \date 2017-12-13 – 25
+ *  \date 2017-12-13 – 2018-1-5
  *  \copyright The MIT License */
 
 #ifndef RRCXXLANG_CXX_STANDARD_VERSION_HPP_
 #define RRCXXLANG_CXX_STANDARD_VERSION_HPP_
 
 /* Language Standards */
-
-#ifdef __cplusplus
-  #define CXX_STANDARD_VERSION __cplusplus
-#else
-  #error A C++ compiler is required.
+#ifndef __cplusplus
+# error A C++ compiler is required.
 #endif
 
-#define CXX_STANDARD_17 201703L
-#define CXX_STANDARD_14 201402L
-#define CXX_STANDARD_11 201103L
-#define CXX_STANDARD_98 199711L
-
-#define CXXSTD17 (CXX_STANDARD_17 <= CXX_STANDARD_VERSION)
-#define CXXSTD14 (CXX_STANDARD_14 <= CXX_STANDARD_VERSION)
-#define CXXSTD11 (CXX_STANDARD_11 <= CXX_STANDARD_VERSION)
-#define CXXSTD98 (CXX_STANDARD_98 <= CXX_STANDARD_VERSION)
+/** C++17 */
+#define CXXSTD17 (201703L <= __cplusplus)
+/** C++14 */
+#define CXXSTD14 (201402L <= __cplusplus)
+/** C++11 */
+#define CXXSTD11 (201103L <= __cplusplus)
+/** C++98 */
+#define CXXSTD98 (199711L <= __cplusplus)
 
 /* Clang */
 #ifdef __clang__
@@ -36,58 +32,31 @@
 # undef CXX_CLANG_VERSION
 #endif
 
-#define CXX_CLANG_3_5 30500
-
 /* GCC C/C++ */
-
 #ifdef __GNUC__
 # define CXX_GNUC_VERSION (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__)
 #else
 # undef CXX_GNUC_VERSION
 #endif
 
-#define CXX_GNUC_7     70000
-#define CXX_GNUC_4_8_1 40801
-#define CXX_GNUC_4_4   40400
-#define CXX_GNUC_4_3   40300
-
 /* Microsoft Visual C++ */
-
 #ifdef _MSC_VER
 # define CXX_MSC_VERSION _MSC_VER
 #else
 # undef CXX_MSC_VERSION
 #endif
 
-#define CXX_MSC_2017 1910
-#define CXX_MSC_2015 1900
-#define CXX_MSC_2013 1800
-#define CXX_MSC_2012 1700
-#define CXX_MSC_2010 1600
-#define CXX_MSC_2008 1500
-#define CXX_MSC_2005 1400
-#define CXX_MSC_2003 1310
-#define CXX_MSC_7_0  1300
-#define CXX_MSC_6_0  1200
-#define CXX_MSC_5_0  1100
-#define CXX_MSC_4_2  1020
-#define CXX_MSC_4_0  1000
-#define CXX_MSC_3_0   900
-#define CXX_MSC_1_0   800
-
 /* Language Features */
+/** Dynamic Initialization and Destruction with Concurrency.
+ *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660 */
+#define CXXN2660 (CXXSTD11 || 40300<=CXX_GNUC_VERSION || 1900<=CXX_MSC_VERSION || 200806<=__cpp_threadsafe_static_init)
 
-#define CXXN2660 (   CXXSTD11 \
-                   || CXX_GNUC_4_3 <= CXX_GNUC_VERSION \
-                   || CXX_MSC_2015 <= CXX_MSC_VERSION \
-                   || 200806       <= __cpp_threadsafe_static_init)
+/** Namespace Association ("inline namespace").
+ *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2535 */
+#define CXXN2535 (CXXSTD11 || 40300<=CXX_GNUC_VERSION || 1900<=CXX_MSC_VERSION)
 
-#define CXXN2535 (   CXXSTD11 \
-                   || CXX_GNUC_4_4 <= CXX_GNUC_VERSION \
-                   || CXX_MSC_2015 <= CXX_MSC_VERSION)
-
-#define CXXN1984 (   CXXSTD11 \
-                   || CXX_GNUC_4_4 <= CXX_GNUC_VERSION \
-                   || CXX_MSC_2015 <= CXX_MSC_VERSION)
+/** Deducing the type of variable from its initializer expression.
+ *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1984 */
+#define CXXN1984 (CXXSTD11 || 40400<=CXX_GNUC_VERSION || 1900<=CXX_MSC_VERSION)
 
 #endif// RRCXXLANG_CXX_STANDARD_VERSION_HPP_

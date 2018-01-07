@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-27
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                 2016-10-8 – 2018-1-3
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -17,40 +17,28 @@
 #
 #   quick_add_library_with_option(
 #     <source_variable>
-#     [SPECIAL STATIC|SHARED|MODULE]
+#     [ORIGINAL_NAME original_name]  // not target name
+#     [STATIC] [SHARED] [MODULE]
 #     [C_STANDARD 90|99|11]
 #     [CXX_STANDARD 98|11|14|17]
 #   )
 function(quick_add_library_with_option _SOURCE_VARIABLE)
-  set(oneValueKeywords "SPECIAL" "C_STANDARD" "CXX_STANDARD")
+  set(options "STATIC" "SHARED" "MODULE")
+  set(oneValueKeywords "ORIGINAL_NAME" "SPECIAL" "C_STANDARD" "CXX_STANDARD")
   cmake_parse_arguments(PARSE_ARGV 1 "" "" "${oneValueKeywords}" "")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  string(TOUPPER "${PROJECT_NAME}" projectNameUpper)
-  string(TOLOWER "${PROJECT_NAME}" projectNameLower)
-
-  if(NOT DEFINED _SPECIAL)
-    set(textName "library")
-    set(optionName "${projectNameUpper}_COMPILE_LIBRARY")
-    set(targetName "${projectNameLower}_library")
-  elseif(_SPECIAL STREQUAL "STATIC")
-    set(textName "static library")
-    set(optionName "${projectNameUpper}_COMPILE_STATIC")
-    set(targetName "${projectNameLower}_static")
-  elseif(_SPECIAL STREQUAL "SHARED")
-    set(textName "shared library")
-    set(optionName "${projectNameUpper}_COMPILE_SHARED")
-    set(targetName "${projectNameLower}_shared")
-  elseif(_SPECIAL STREQUAL "MODULE")
-    set(textName "module library")
-    set(optionName "${projectNameUpper}_COMPILE_MODULE")
-    set(targetName "${projectNameLower}_module")
+  if(DEFINED _ORIGINAL_NAME)
+    set(name "${_ORIGINAL_NAME}")
+    string(TOUPPER "${_ORIGINAL_NAME}" nameUpper)
+    string(TOLOWER "${_ORIGINAL_NAME}" nameLower)
   else()
-    message(SEND_ERROR "Undesirable SPECIAL(${_SPECIAL}).")
-    return()
+    set(name "${PROJECT_NAME}")
+    string(TOUPPER "${PROJECT_NAME}" nameUpper)
+    string(TOLOWER "${PROJECT_NAME}" nameLower)
   endif()
 
   if(DEFINED _C_STANDARD)
@@ -65,15 +53,48 @@ function(quick_add_library_with_option _SOURCE_VARIABLE)
     set(cxxStandardProperty)
   endif()
 
-  option(${optionName} "Build ${typetext}." ON)
-  if(NOT ${optionName})
-    return()
+  if(_STATIC OR (NOT _STATIC AND NOT _SHARED AND NOT _MODULE AND NOT BUILD_SHARED_LIBS))
+    set(optionName "${nameUpper}_COMPILE_STATIC")
+    set(targetName "${nameLower}_static")
+    option(${optionName} "Build static library." ON)
+    if(NOT ${optionName})
+      return()
+    endif()
+    add_library(${targetName} STATIC ${${_SOURCE_VARIABLE}})
+    set_target_properties(${targetName} PROPERTIES
+      ${cStandardProperty}
+      ${cxxStandardProperty}
+      OUTPUT_NAME "${name}" CLEAN_DIRECT_OUTPUT ON)
+    install(TARGETS ${targetName} DESTINATION "lib")
   endif()
 
-  add_library(${targetName} ${_TYPE} ${${_SOURCE_VARIABLE}})
-  set_target_properties(${targetName} PROPERTIES
-    ${cStandardProperty}
-    ${cxxStandardProperty}
-    OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON)
-  install(TARGETS ${targetName} DESTINATION "lib")
+  if(_SHARED OR (NOT _STATIC AND NOT _SHARED AND NOT _MODULE AND BUILD_SHARED_LIBS))
+    set(optionName "${nameUpper}_COMPILE_SHARED")
+    set(targetName "${nameLower}_shared")
+    option(${optionName} "Build shared library." ON)
+    if(NOT ${optionName})
+      return()
+    endif()
+    add_library(${targetName} SHARED ${${_SOURCE_VARIABLE}})
+    set_target_properties(${targetName} PROPERTIES
+      ${cStandardProperty}
+      ${cxxStandardProperty}
+      OUTPUT_NAME "${name}" CLEAN_DIRECT_OUTPUT ON)
+    install(TARGETS ${targetName} DESTINATION "lib")
+  endif()
+
+  if(_MODULE)
+    set(optionName "${nameUpper}_COMPILE_MODULE")
+    set(targetName "${nameLower}_module")
+    option(${optionName} "Build module library." ON)
+    if(NOT ${optionName})
+      return()
+    endif()
+    add_library(${targetName} MODULE ${${_SOURCE_VARIABLE}})
+    set_target_properties(${targetName} PROPERTIES
+      ${cStandardProperty}
+      ${cxxStandardProperty}
+      OUTPUT_NAME "${name}" CLEAN_DIRECT_OUTPUT ON)
+    install(TARGETS ${targetName} DESTINATION "lib")
+  endif()
 endfunction()

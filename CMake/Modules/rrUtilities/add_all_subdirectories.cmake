@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                      2017-12-18 – 27
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-18 – 2018-1-4
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -16,26 +16,33 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # .rst
 # .. command:: add_all_subdirectories
 #
-#  将目录下所有子目录添加到构建::
+#    将目录下所有子目录添加到构建 ::
 #
-#   add_all_subdirectories(
-#     [parent_directory_of_source_directories]
-#     [parent_directory_of_binary_directories]
-#     [EXCLUDE_FROM_ALL]
-#   )
+#       add_all_subdirectories(
+#         [parent_directory_of_source_directories]
+#         [parent_directory_of_binary_directories]
+#         [EXCLUDE_FROM_ALL]
+#       )
+#
+#    参见
+#
+#    + `add_subdirectory <https://cmake.org/cmake/help/latest/command/add_subdirectory>`_
+#
 function(add_all_subdirectories)
-  set(_SOURCE_PARENT_DIRECTORY)
-  set(_BINARY_PARENT_DIRECTORY)
   set(options "EXCLUDE_FROM_ALL")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${options}" "" "")
-  list(LENGTH _UNPARSED_ARGUMENTS unparsedArgumentsNumber)
-  if(unparsedArgumentsNumber GREATER 0)
+
+  list(LENGTH _UNPARSED_ARGUMENTS unparsedArgumentsCount)
+  set(_SOURCE_PARENT_DIRECTORY)
+  set(_BINARY_PARENT_DIRECTORY)
+
+  if(unparsedArgumentsCount GREATER 0)
     list(GET _UNPARSED_ARGUMENTS 0 _SOURCE_PARENT_DIRECTORY)
   endif()
-  if(unparsedArgumentsNumber GREATER 1)
+  if(unparsedArgumentsCount GREATER 1)
     list(GET _UNPARSED_ARGUMENTS 1 _BINARY_PARENT_DIRECTORY)
   endif()
-  if(unparsedArgumentsNumber GREATER 2)
+  if(unparsedArgumentsCount GREATER 2)
     message(SEND_ERROR "Incorrect number of arguments.")
     return()
   endif()

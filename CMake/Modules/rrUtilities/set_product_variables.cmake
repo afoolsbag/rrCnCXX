@@ -6,7 +6,7 @@
 #              rrUtilities by FIGlet  __   ____ _ _ __(_) __ _| |__ | | ___ ___
 #                                     \ \ / / _` | '__| |/ _` | '_ \| |/ _ / __|
 # zhengrr                              \ V | (_| | |  | | (_| | |_) | |  __\__ \
-# 2016-10-8 – 2017-12-27                \_/ \__,_|_|  |_|\__,_|_.__/|_|\___|___/
+# 2016-10-8 – 2018-1-2                  \_/ \__,_|_|  |_|\__,_|_.__/|_|\___|___/
 # The MIT License                                            variables by FIGlet
 
 include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_c_identifier_rules.cmake")
@@ -33,6 +33,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_c_identifier_rules.cmake")
 #   PRODUCT_VERSION_MINOR
 #   PRODUCT_VERSION_PATCH
 #   PRODUCT_VERSION_TWEAK
+#   PRODUCT_DESCRIPTION
 #   PRODUCT_AUTHORS
 #   PRODUCT_COPYRIGHT
 function(set_product_variables)
@@ -63,6 +64,7 @@ function(set_product_variables)
   set(PRODUCT_VERSION_MINOR "${PROJECT_VERSION_MINOR}" PARENT_SCOPE)
   set(PRODUCT_VERSION_PATCH "${PROJECT_VERSION_PATCH}" PARENT_SCOPE)
   set(PRODUCT_VERSION_TWEAK "${PROJECT_VERSION_TWEAK}" PARENT_SCOPE)
+  set(PRODUCT_DESCRIPTION   "${PROJECT_DESCRIPTION}"   PARENT_SCOPE)
   set(PRODUCT_AUTHORS        ${_AUTHORS}               PARENT_SCOPE)
   set(PRODUCT_COPYRIGHT     "${_COPYRIGHT}"            PARENT_SCOPE)
 endfunction()
