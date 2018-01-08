@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-18 – 2018-1-4
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-18 – 2018-1-8
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -37,13 +37,11 @@ function(quick_add_executable_with_option)
 
   if(DEFINED _SUBNAME)
     set(name "${PROJECT_NAME}_${_SUBNAME}")
-    string(TOUPPER "${name}" nameUpper)
-    string(TOLOWER "${name}" nameLower)
   else()
     set(name "${PROJECT_NAME}")
-    string(TOUPPER "${name}" nameUpper)
-    string(TOLOWER "${name}" nameLower)
   endif()
+  string(TOUPPER "${name}" nameUpper)
+  string(TOLOWER "${name}" nameLower)
 
   if(_WIN32)
     set(win32 "WIN32")

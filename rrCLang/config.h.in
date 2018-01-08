@@ -1,0 +1,18 @@
+/** \file
+ *  \author zhengrr
+ *  \date 2016-8-3 – 2018-1-8
+ *  \copyright The MIT License */
+
+#ifndef RRCLANG_CONFIG_H_
+#define RRCLANG_CONFIG_H_
+
+#include <stdint.h>
+
+static const char * const RRCLANG_NAME = "@PROJECT_NAME@";  /**< 项目名 */
+static const char * const RRCLANG_VERSION = "@PROJECT_VERSION@"; /**< 项目版本号 */
+static const intmax_t RRCLANG_VERSION_MAJOR = @PROJECT_VERSION_MAJOR@;  /**< 项目主版本号 */
+static const intmax_t RRCLANG_VERSION_MINOR = @PROJECT_VERSION_MINOR@;  /**< 项目次版本号 */
+static const intmax_t RRCLANG_VERSION_PATCH = @PROJECT_VERSION_PATCH@;  /**< 项目补丁版本号 */
+static const intmax_t RRCLANG_VERSION_TWEAK = @PROJECT_VERSION_TWEAK@;  /**< 项目微调版本号 */
+
+#endif/*RRCLANG_CONFIG_H_*/

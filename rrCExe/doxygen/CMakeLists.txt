@@ -1,1 +1,0 @@
-quick_add_doxygen_with_option(SPECIAL DEV)

@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                 2016-10-8 – 2018-1-5
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                 2016-10-8 – 2018-1-8
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -51,7 +51,6 @@ function(quick_add_doxygen_with_option)
     set(optionName "${projectNameUpper}_GENERATE_DOC")
     set(targetName "${projectNameLower}_doc")
   endif()
-
 
   find_package(Doxygen OPTIONAL_COMPONENTS dot)
   option(${optionName} "Generate ${textName} (requires Doxygen)." ${DOXYGEN_FOUND})
