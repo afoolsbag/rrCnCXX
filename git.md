@@ -1,6 +1,8 @@
 # [Git](https://git-scm.com/)
 
-+ [Reference](https://git-scm.com/docs)
+**References**
+
++ ["Reference"](https://git-scm.com/docs). *Git*.
     + Basic Snapshotting
         + [commit](https://git-scm.com/docs/git-commit)
             + [*How to Write a Git Commit Message*](https://chris.beams.io/posts/git-commit/). 2014. Chris Beams.
@@ -10,6 +12,8 @@
         + [.gitignore](https://git-scm.com/docs/gitignore)
             + ["A collection of useful .gitignore templates"](https://github.com/github/gitignore). *GitHub*.
         + [.gitmodules](https://git-scm.com/docs/gitmodules)
-+ Guides
-    + [*Try Git*](https://try.github.io/)
-    + *Pro Git*. 2nd ed.<sub> [*en*](https://git-scm.com/book/en/v2), [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
+
+**Guides**
+
++ [*Try Git*](https://try.github.io/)
++ *Pro Git*. 2nd ed.<sub> [*en*](https://git-scm.com/book/en/v2), [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
