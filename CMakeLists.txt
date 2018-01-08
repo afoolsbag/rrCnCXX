@@ -22,9 +22,6 @@ add_subdirectory_with_option("rrOpenGL")
 add_subdirectory_with_option("rrWindows")
 
 add_subdirectory_with_option("rrCxxLang")
-add_subdirectory_with_option("rrCxxExe")
-add_subdirectory_with_option("rrCxxLib")
-
 add_subdirectory_with_option("rrBoost")
 add_subdirectory_with_option("rrDirectX")
 add_subdirectory_with_option("rrLIVE555")

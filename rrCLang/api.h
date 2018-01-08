@@ -1,8 +1,8 @@
 /** \file
  *  \author zhengrr
  *  \date 2016-8-1 – 2018-1-8
- *  \copyright The MIT License
- */
+ *  \copyright The MIT License */
+
 #ifndef RRCLANG_API_H_
 #define RRCLANG_API_H_
 
@@ -26,4 +26,4 @@
 # define RRCLANG_API RRCLANG_IMPORT_
 #endif
 
-#endif/*RRCLANG_API_H_*/
+#endif/* RRCLANG_API_H_*/

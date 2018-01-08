@@ -1,5 +1,5 @@
 /** \file
- *  \brief 解析位流（bit stream）。
+ *  \brief 库
  *  \author zhengrr
  *  \date 2017-1-6 – 2018-1-8
  *  \copyright The MIT License */
@@ -24,4 +24,4 @@ RRCLANG_API long rrclang_number();
 }
 #endif
 
-#endif/*RRCLANG_LIB_H_*/
+#endif/* RRCLANG_LIB_H_*/

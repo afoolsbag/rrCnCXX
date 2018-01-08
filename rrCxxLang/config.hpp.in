@@ -1,18 +1,16 @@
 /** \file
  *  \author zhengrr
- *  \date 2017-1-12 – 16
- *  \copyright The MIT License
- */
-#ifndef RRDEMO__CDOM__CPP_LIBRARY__CONFIG_HPP
-#define RRDEMO__CDOM__CPP_LIBRARY__CONFIG_HPP
+ *  \date 2017-1-12 – 2018-1-8
+ *  \copyright The MIT License */
+
+#ifndef RRCXXLANG_CONFIG_HPP_
+#define RRCXXLANG_CONFIG_HPP_
 
 #include <cstdint>
 
 #include "lang-constexpr-cpb.hpp"
 
-namespace rrdemo {
-namespace cdom {
-namespace cpp_library {
+namespace rrcxxlang {
 
 static constexpr char * const NAME {"@PROJECT_NAME@"};  ///< 项目名
 static constexpr char * const VERSION {"@PROJECT_VERSION@"};  ///< 项目版本
@@ -21,8 +19,6 @@ static constexpr intmax_t VERSION_MINOR {@PROJECT_VERSION_MINOR@};  ///< 项目�
 static constexpr intmax_t VERSION_PATCH {@PROJECT_VERSION_PATCH@};  ///< 项目补丁版本号
 static constexpr intmax_t VERSION_TWEAK {@PROJECT_VERSION_TWEAK@};  ///< 项目微调版本号
 
-}// namespace cpp_library
-}// namespace cdom
-}// namespace rrdemo
+}// namespace rrcxxlang
 
-#endif// RRDEMO__CDOM__CPP_LIBRARY__CONFIG_HPP
+#endif// RRCXXLANG_CONFIG_HPP_
