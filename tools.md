@@ -3,10 +3,6 @@
 + [*MinGW*](http://mingw.org/)
 + [*Cygwin*](http://cygwin.com/)
 
-**Text Editor**
-
-+ [*Visual Editor Improved*](http://vim.org/)
-
 **Documentation Generator**
 
 + [*Doxygen*](http://doxygen.org/)
