@@ -1,7 +1,8 @@
 /** \file
- *  \sa <http://en.cppreference.com/w/c/numeric/random>
+ *  \brief 随机
+ *  \sa ["Pseudo-random number generation"](http://en.cppreference.com/w/c/numeric/random). *cppreference.com*.
  *  \author zhengrr
- *  \date 2016-10-10 – 11-8
+ *  \date 2016-10-10 – 2018-1-9
  *  \copyright The MIT License */
 
 #include <stdlib.h>

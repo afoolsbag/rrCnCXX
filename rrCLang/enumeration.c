@@ -1,5 +1,5 @@
 /** \file
- *  \brief 类型系统：原子类型
+ *  \brief 枚举
  *  \author zhengrr
- *  \date 2018-1-6
+ *  \date 2016-12-2 – 2018-1-9
  *  \copyright The MIT License */

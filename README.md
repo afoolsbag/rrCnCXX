@@ -7,3 +7,26 @@
 + ["新手关于如何看编程经典书的一些疑惑？ - 孙天齐的回答"](https://www.zhihu.com/question/26157282/answer/32455092). *知乎*.
 + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
 + *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
+
+## 逛逛
+
+[*CodeProject*](https://codeproject.com/)
+[*SegmentFault*](https://segmentfault.com/)
+[*V2EX*](https://v2ex.com/)
+[*开源中国*](http://oschina.net/)
+[*前端乱炖*](http://html-js.com/)
+
+## 一些尚未收录，但预计有用的资源
+
+[*DevDocs*](https://devdocs.io/)
+[*developerWorks*](https://ibm.com/developerworks)
+[*Font Awesome*](http://fontawesome.io/)
+[*free-programming-books*](https://github.com/EbookFoundation/free-programming-books/)
+[*Free Programming Ebooks*](http://oreilly.com/programming/free/)
+[*“Hello World”大全*](http://netsmell.com/apps/helloworldcollection/)
+[*IT eBooks*](http://it-ebooks.info/)
+[*OverAPI.com*](http://overapi.com/)
+[*Regexper*](https://regexper.com/)
+[*tutorialspoint.com*](https://tutorialspoint.com/)
+[*动画展示各种路径搜索算法*](http://webhek.com/post/pathfinding.html)
+[*实验楼*](https://shiyanlou.com/)
