@@ -4,6 +4,7 @@
 
 + ["Syntax"](https://daringfireball.net/markdown/syntax). *Markdown*.
     + Block Elements
+        + [Blockquotes](https://daringfireball.net/markdown/syntax#blockquote)
         + [Lists](https://daringfireball.net/markdown/syntax#list)
 + ["Markdown support"](http://doxygen.org/manual/markdown.html). *Doxygen*.
     + [Standard Markdown](http://doxygen.org/manual/markdown.html#markdown_std)

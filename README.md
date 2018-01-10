@@ -2,6 +2,12 @@
 
 一份（为 zhengrr）定制化的、关于C语言、C++语言、以及相关和不那么相关技术的参考。
 
+> Everyone knows it's a mistake to write your whole program by hand in machine language.
+> What's less often understood is that there is a more general principle here:
+> that if you have a choice of several languages, it is, all other things being equal, a mistake to program in anything but the most powerful one.
+>
+> [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
+
 ## 计算科学与编程技术
 
 + ["新手关于如何看编程经典书的一些疑惑？ - 孙天齐的回答"](https://www.zhihu.com/question/26157282/answer/32455092). *知乎*.
@@ -18,6 +24,7 @@
 
 ## 一些尚未收录，但预计有用的资源
 
+[*3D Visualization of a Convolutional Neural Network*](http://scs.ryerson.ca/~aharley/vis/conv/)
 [*DevDocs*](https://devdocs.io/)
 [*developerWorks*](https://ibm.com/developerworks)
 [*Font Awesome*](http://fontawesome.io/)
