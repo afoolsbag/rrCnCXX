@@ -3,7 +3,7 @@
  *  \sa ["Array declaration"](http://en.cppreference.com/w/c/language/array). *cppreference.com*.
  *  \sa ["Array initialization"](http://en.cppreference.com/w/c/language/array_initialization). *cppreference.com*.
  *  \author zhengrr
- *  \date 2016-10-9 – 2018-1-9
+ *  \date 2016-10-9 – 2018-1-11
  *  \copyright The MIT License */
 
 #include "c_standard_version.h"
@@ -11,8 +11,7 @@
 #include <assert.h>
 
 /** \brief （匿名数组）复合字面量
- *  \sa "compound literals"<sub> [*en*](http://en.cppreference.com/w/c/language/compound_literal), [*cmn-Hans*](http://zh.cppreference.com/w/c/language/compound_literal)</sub>. *cppreference.com*.
- */
+ *  \sa ["compound literals"]<sub> [*cmn-Hans*](http://zh.cppreference.com/w/c/language/compound_literal)</sub>. *cppreference.com*. */
 void compound_literals()
 {
 #if CSTD99
@@ -20,7 +19,7 @@ void compound_literals()
 	assert(p_compound_literals[0] == 0);
 	assert(p_compound_literals[1] == 1);
 	assert(p_compound_literals[2] == 2);
-#endif// CSTD99
+#endif/* CSTD99*/
 }
 
 int main()

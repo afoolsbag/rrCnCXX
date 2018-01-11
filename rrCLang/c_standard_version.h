@@ -2,7 +2,7 @@
  *  \brief C 标准版本
  *  \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
  *  \author zhengrr
- *  \date 2018-1-5 – 8
+ *  \date 2018-1-5 – 11
  *  \copyright The MIT License */
 
 #ifndef RRCLANG_C_STANDARD_VERSION_HPP_

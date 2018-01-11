@@ -16,4 +16,4 @@
 ## Guides
 
 + [*Try Git*](https://try.github.io/)
-+ *Pro Git*. 2nd ed.<sub> [*en*](https://git-scm.com/book/en/v2), [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
++ [*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.

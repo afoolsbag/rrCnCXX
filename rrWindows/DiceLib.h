@@ -10,7 +10,7 @@
 # define EXPORT __declspec (dllexport)
 #endif
 
-/** \brief 掷骰子·美国信息交换标准码适配 */
+/** \brief 掷骰子·美国国家标准学会适配 */
 EXPORT INT CALLBACK DiceA();
 
 /** \brief 掷骰子·宽字符适配 */
