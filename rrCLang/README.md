@@ -1,13 +1,17 @@
-# [C](http://open-std.org/jtc1/sc22/wg14/)<sub> [*C90*](https://iso.org/standard/17782.html), [*C99*](https://iso.org/standard/29237.html), [*C11*](https://iso.org/standard/57853.html)</sub>
+# [C](http://open-std.org/jtc1/sc22/wg14/)
 
-**References**
+[*C90*](https://iso.org/standard/17782.html)
+[*C99*](https://iso.org/standard/29237.html)
+[*C11*](https://iso.org/standard/57853.html)
+
+## References
 
 + ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
 + ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft Docs*.
 + [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
 + ["C and C++ Language Syntax Reference"](https://cprogramming.com/reference/). *Cprogramming.com*.
 
-**Programming Styles**
+## Programming Styles
 
 + [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
     + [Indentation](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#1-indentation)
@@ -24,7 +28,7 @@
 + [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style/)
 + [*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
 
-**Guides**
+## Guides
 
 + ["C"](https://notabug.org/koz.ross/awesome-c). *Awesome*.
 + *C Programming: A Modern Approach.* 1st ed. 1996; [2nd ed.](http://knking.com/books/c2/) 2008. K. N. King.
@@ -33,7 +37,7 @@
     + *C Traps and Pitfalls*. 1989. Andrew Koenig.
     + *Expert C Programming: Deep C Secrets*. 1994. Peter van der Linden.
 
-**Others**
+## Others
 
 + *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
 + [*The C Library Reference Guide*](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide/). 1997. Eric Huss.

@@ -1,6 +1,6 @@
 # [Git](https://git-scm.com/)
 
-**References**
+## References
 
 + ["Reference"](https://git-scm.com/docs). *Git*.
     + Basic Snapshotting
@@ -13,7 +13,7 @@
             + ["A collection of useful .gitignore templates"](https://github.com/github/gitignore). *GitHub*.
         + [.gitmodules](https://git-scm.com/docs/gitmodules)
 
-**Guides**
+## Guides
 
 + [*Try Git*](https://try.github.io/)
 + *Pro Git*. 2nd ed.<sub> [*en*](https://git-scm.com/book/en/v2), [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.

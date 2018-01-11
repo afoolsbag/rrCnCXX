@@ -1,6 +1,6 @@
 # [Markdown](https://daringfireball.net/markdown/)
 
-**References**
+## References
 
 + ["Syntax"](https://daringfireball.net/markdown/syntax). *Markdown*.
     + Block Elements
@@ -11,6 +11,6 @@
     + [Markdown Extensions](http://doxygen.org/manual/markdown.html#markdown_extra)
     + [Doxygen specifics](http://doxygen.org/manual/markdown.html#markdown_dox)
 
-**Guides**
+## Guides
 
 + ["Mastering Markdown"](https://guides.github.com/features/mastering-markdown/). *GitHub Guides*.
