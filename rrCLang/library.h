@@ -19,12 +19,14 @@ extern "C" {
 
 /** \brief 库版本结构体 */
 struct rrclang_version {
-	int8_t major, minor, patch, tweak;
+	int16_t major,  /**< 库主版本号 */
+		minor,  /**< 库次版本号 */
+		patch,  /**< 库补丁版本号 */
+		tweak;  /**< 库微调版本号 */
 };
 
 /** \brief 获取库版本
- *  \param verptr[out] 库版本结构体的指针
- */
+ *  \param verptr[out] 库版本结构体的指针 */
 RRCLANG_API void rrclang_get_version(struct rrclang_version *verptr);
 
 /** \brief 叹 */

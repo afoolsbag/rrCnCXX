@@ -4,10 +4,10 @@
 # | |  | |  | |___| |__| (_| | | | | (_| | |_| | (_| | (_| |  __/
 # |_|  |_|   \____|_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|
 # zhengrr                           |___/             |___/
-# 2016-8-1 – 2018-1-11                      rrCLanguage by FIGlet
+# 2016-8-1 – 2018-1-12                      rrCLanguage by FIGlet
 # The MIT License
 
-project("rrCLanguage" VERSION 0.0.0.0 LANGUAGES C)
+project("rrCLanguage" VERSION 2018.1.12 LANGUAGES C)
 set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()

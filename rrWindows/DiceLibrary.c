@@ -2,7 +2,7 @@
 
 #include <windows.h>
 
-#include "DiceLib.h"
+#include "DiceLibrary.h"
 
 #include <time.h>
 

@@ -1,7 +1,7 @@
 /** \file
  *  \brief “掷骰子”库
  *  \author zhengrr
- *  \date 2018-1-3
+ *  \date 2018-1-3 – 12
  *  \copyright The MIT License */
 
 #ifdef __cplusplus
