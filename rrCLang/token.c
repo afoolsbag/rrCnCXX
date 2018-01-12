@@ -1,5 +1,5 @@
 /** \file
- *  \brief 标记
+ *  \brief 记号
  *  \sa [Alternative operators and tokens](http://en.cppreference.com/w/c/language/operator_alternative). *cppreference.com*.
  *  \author zhengrr
  *  \data 2016-11-7 – 2018-1-6

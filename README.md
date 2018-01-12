@@ -4,11 +4,11 @@
 
 > 人非生而知之者，孰能无惑？
 >
-> 　　　　　　　　　　　　　　　　　　　　　　　　　　　〔唐〕韩愈　《师说》
+> 　　　　　　　　　　　　　　　　　　　　　　　　　　——〔唐〕韩愈　《师说》
 
 > 君子性非异也，善假于物也。
 >
-> 　　　　　　　　　　　　　　　　　　　　　　　　　　〔先秦〕荀子　《劝学》
+> 　　　　　　　　　　　　　　　　　　　　　　　　　——〔先秦〕荀子　《劝学》
 
 > Everyone knows it's a mistake to write your whole program by hand in machine language.
 > What's less often understood is that there is a more general principle here:
@@ -16,24 +16,20 @@
 >
 > [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
-## 计算科学与编程技术
+## 技术，以效用为纲
 
-+ 技术，以效用为纲。
 + ["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
 + ["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
 + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
 + *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
-## 逛逛
+## 杂货铺
 
 [*CodeProject*](https://codeproject.com/)
 [*SegmentFault*](https://segmentfault.com/)
 [*V2EX*](https://v2ex.com/)
 [*开源中国*](http://oschina.net/)
 [*前端乱炖*](http://html-js.com/)
-
-## 一些尚未收录，但预计有用的资源
-
 [*3D Visualization of a Convolutional Neural Network*](http://scs.ryerson.ca/~aharley/vis/conv/)
 [*DevDocs*](https://devdocs.io/)
 [*developerWorks*](https://ibm.com/developerworks)

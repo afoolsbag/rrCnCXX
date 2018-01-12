@@ -11,7 +11,7 @@
 #include <assert.h>
 
 /** \brief （匿名数组）复合字面量
- *  \sa ["compound literals"]<sub> [*cmn-Hans*](http://zh.cppreference.com/w/c/language/compound_literal)</sub>. *cppreference.com*. */
+ *  \sa ["compound literals"](http://en.cppreference.com/w/c/language/compound_literal). *cppreference.com*. */
 void compound_literals()
 {
 #if CSTD99
