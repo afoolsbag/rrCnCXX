@@ -13,7 +13,7 @@ void rrclang_get_version(struct rrclang_version *verptr)
 	verptr->tweak = RRCLANG_VERSION_TWEAK;
 }
 
-int32_t rrclang_sigh()
+int32_t rrclang_sigh(void)
 {
 	return 709444800;
 }

@@ -1,9 +1,13 @@
-/** \file
- *  \brief 字符
- *  \sa ["character constant"](http://en.cppreference.com/w/c/language/character_constant)<sub> [*cmn-Hans*](http://zh.cppreference.com/w/c/language/character_constant)</sub>. *cppreference.com*.
- *  \author zhengrr
- *  \date 2016-10-9 – 2018-1-11
- *  \copyright The MIT License */
+/**
+ * \file
+ * \brief 字符
+ * \sa ["Character types"](http://en.cppreference.com/w/c/language/arithmetic_types#Character_types). *cppreference.com*.
+ * \sa ["character constant"](http://en.cppreference.com/w/c/language/character_constant). *cppreference.com*.
+ * \sa ["Escape sequences"](http://en.cppreference.com/w/c/language/escape). *cppreference.com*.
+ * \author zhengrr
+ * \date 2016-10-9 – 2018-1-15
+ * \copyright The MIT License
+ */
 
 #include "c_standard_version.h"
 
@@ -23,7 +27,7 @@ char hex_int_to_char(const int hexint)
 	return "0123456789ABCDEF"[hexint % 16];
 }
 
-int main()
+int main(void)
 {
 	char ascii = 'a';  /* U+0061 */
 	assert('\141' == ascii);

@@ -4,7 +4,7 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-1-12
+# 2016-10-12 – 2018-1-15
 # The MIT License
 
 project("rrWindows" VERSION 2018.1.12 LANGUAGES C)
@@ -18,6 +18,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 quick_add_executable_with_option(SUBNAME "ConsoleApplication" "ConsoleApplication.c")
 quick_add_executable_with_option(SUBNAME "DesktopApplication" WIN32 "DesktopApplication.c")
+quick_add_executable_with_option(SUBNAME "FileAttribute" "FileAttribute.c" "Error.h" "Error.c")
+quick_add_executable_with_option(SUBNAME "FindFile" "FindFile.c" "Error.h" "Error.c")
+quick_add_executable_with_option(SUBNAME "InitializationFile" "InitializationFile.c" "Error.h" "Error.c")
 quick_add_executable_with_option(SUBNAME "Peon" "Peon.c")
 quick_add_executable_with_option(SUBNAME "Unicode" "Unicode.c")
 

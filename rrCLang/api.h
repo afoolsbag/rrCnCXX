@@ -1,7 +1,9 @@
-/** \file
- *  \author zhengrr
- *  \date 2016-8-1 – 2018-1-8
- *  \copyright The MIT License */
+/**
+ * \file
+ * \author zhengrr
+ * \date 2016-8-1 – 2018-1-15
+ * \copyright The MIT License
+ */
 
 #ifndef RRCLANG_API_H_
 #define RRCLANG_API_H_

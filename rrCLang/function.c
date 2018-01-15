@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "c_standard_version.h"
+
 /** \page page_function
  *  \section sec_char_array_vs_char_pointer_in_function_prototype 函数原型里的字符数组与字符指针
  *
@@ -33,19 +35,21 @@ static int discard_return_value(void)
 	return EXIT_SUCCESS;
 }
 
-#if (defined(__STDC_VERSION__) && 199901L <= __STDC_VERSION__ /*C99*/) || \
-    (defined(__GNUC__) && (0 < __GNUC__ || 0 == __GNUC__ && 9 <= __GNUC_MINOR__) /*GCC0.9*/)
-/** \brief 变长数组作为形式参数。
+// func() 与 func(void) 含义不同
+
+#if CSTD99
+
+/**
+ * \brief 变长数组作为形式参数。
  */
-static int vla_as_param(int length, int array[*])
+static int vla_as_param(int length, int array[length])
 {
 }
-#endif
 
-#if (defined(__STDC_VERSION__) && 199901L <= __STDC_VERSION__ /*C99*/)
-/** \brief static 声明形式参数数组最小长度。
+/**
+ * \brief static 声明形式参数数组最小长度。
  */
 static int static_array_param(int array[static 3])
 {
 }
-#endif
+#endif/* CSTD99*/
