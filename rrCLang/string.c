@@ -3,7 +3,7 @@
  * \brief 字符串
  * \sa ["Null-terminated byte strings"](http://en.cppreference.com/w/c/string/byte). *cppreference.com*.
  * \author zhengrr
- * \date 2018-1-5 – 15
+ * \date 2018-1-5 – 16
  * \copyright The MIT License
  */
 
@@ -24,9 +24,9 @@ void string_copy(void)
 
 	strcpy(dst, src);
 
-#if CSTD11 && CN1225
+#if CN1225
 	strcpy_s(dst, sizeof(dst), src);
-#endif// CN1225
+#endif/* CN1225*/
 
 	assert(!strcmp(src, dst));
 }
@@ -112,6 +112,7 @@ int main(void)
 	string_copy();
 	string_n_copy();
 	string_concatenate();
+	string_n_concatenate();
 
 	/* String examination */
 	string_length();

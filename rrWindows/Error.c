@@ -24,7 +24,7 @@ VOID ShowLastError(PCTSTR tips)
 		0,
 		NULL);
 	OutputDebugString(messageLastError);
-	_ftprintf_s(stderr, TEXT("%s: system error %d, %s\n"),
+	_ftprintf_s(stderr, TEXT("%s: system error %d, %s"),
 		    tips, codeLastError, messageLastError);
 	LocalFree(messageLastError);
 }

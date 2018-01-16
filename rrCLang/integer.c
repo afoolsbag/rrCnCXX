@@ -4,6 +4,7 @@
  * \sa \ref page_integer
  * \sa ["Integer types"](http://en.cppreference.com/w/c/language/arithmetic_types#Integer_types). *cppreference.com*.
  * \sa ["integer constant"](http://en.cppreference.com/w/c/language/integer_constant). *cppreference.com*.
+ * \sa ["Limits of integer types"](http://en.cppreference.com/w/c/types/limits#Limits_of_integer_types). *cppreference.com*.
  * \sa ["Expressions"](http://en.cppreference.com/w/c/language/expressions). *cppreference.com*.
  * \sa ["C Operator Precedence"](http://en.cppreference.com/w/c/language/operator_precedence). *cppreference.com*.
  * \author zhengrr
@@ -49,4 +50,8 @@
  * \sa ["Remainder"](http://en.cppreference.com/w/c/language/operator_arithmetic#Remainder). *cppreference.com*.
  */
 
-// sizeof size_t %zu
+// TODO:
+// signal
+// error
+// wchar
+// time
