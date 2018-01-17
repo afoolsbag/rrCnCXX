@@ -1,9 +1,14 @@
-**Environment**
+## Text Editor
+
++ [*Notepad++*](https://notepad-plus-plus.org/)
++ [*Visual Studio Code*](https://code.visualstudio.com/)
+
+## Environment
 
 + [*MinGW*](http://mingw.org/)
 + [*Cygwin*](http://cygwin.com/)
 
-**Documentation Generator**
+## Documentation Generator
 
 + [*Doxygen*](http://doxygen.org/)
     + [Manual](http://doxygen.org/manual/)
@@ -12,7 +17,7 @@
 + [*Graphviz*](https://graphviz.gitlab.io/)
 + [*PlantUML*](http://plantuml.com/)
 
-**Integrated Development Environment**
+## Integrated Development Environment
 
 + [*CLion*](https://jetbrains.com/clion/)
 + [*Understand™*](https://scitools.com/)
@@ -24,6 +29,6 @@
     + Visual Studio
         + [*ReSharper С++*](https://jetbrains.com/resharper-cpp/)
 
-**Others**
+## Others
 
 + [*Dependency Walker*](http://dependencywalker.com/)

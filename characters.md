@@ -1,9 +1,9 @@
-**字符**
+## 字符
 
 + [*Unicode® character table*](http://unicode-table.com/)
 + [*Emoji*](http://iemoji.com/)
 
-**辞典**
+## 辞典
 
 + [*The Free Dictionary*](http://thefreedictionary.com/)
 + :cn:

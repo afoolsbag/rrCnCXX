@@ -18,35 +18,31 @@
 >
 > [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
-**Fortran**, 1957, John Backus
-
-　　公式翻译（Formula Translation）
+**Fortran**, 1957, John Backus.
+Formula Translation.
 
 **ALGOL**, 1958
+Algorithmic Language.
 
-　　算法语言（Algorithmic Language）
+**Lisp**, 1958, John McCarthy.
+List Processor.
 
-**Lisp**, 1958, John McCarthy
+**COBOL**, 1959.
+Common Business Oriented Language.
 
-　　列表处理器（List Processor）
+**CPL**, 1963.
+Combined Programming Language.
 
-**COBOL**, 1959
+**BCPL**, 1966.
+Basic Combined Programming Language.
 
-　　通用商业语言（Common Business Oriented Language）
+**B**, 1969, Ken Thompson.
 
-**CPL**, 1963
+**C**, 1972, Dennis Ritchie.
 
-　　组合编程语言（Combined Programming Language）
+**C++**, 1985, Bjarne Stroustrup.
 
-**BCPL**, 1966
-
-　　基本组合编程语言（Basic Combined Programming Language）
-
-**B**, 1969, Ken Thompson
-
-**C**, 1972, Dennis Ritchie
-
-**C++**, 1985, Bjarne Stroustrup
+**Python**, 1991, Guido van Rossum.
 
 ## 杂货
 
