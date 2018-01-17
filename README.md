@@ -4,11 +4,11 @@
 
 > 人非生而知之者，孰能无惑？
 >
-> 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　《师说》〔唐〕韩愈
+> *《师说》*〔唐〕韩愈
 
 > 君子性非异也，善假于物也。
 >
-> 　　　　　　　　　　　　　　　　　　　　　　　　　　　　《劝学》〔先秦〕荀子
+> *《劝学》*〔先秦〕荀子
 
 ## 编程语言
 
@@ -16,7 +16,7 @@
 > What's less often understood is that there is a more general principle here:
 > that if you have a choice of several languages, it is, all other things being equal, a mistake to program in anything but the most powerful one.
 >
-> 　　　　　　　　　　　　　　　　　[*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
+> [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
 **Fortran**, 1957, John Backus
 
