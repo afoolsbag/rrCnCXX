@@ -37,7 +37,7 @@
  * \param envp 环境变量（environment pointer）
  * \sa ["main: Program Startup"](https://docs.microsoft.com/cpp/cpp/main-program-startup). *Microsoft® Docs*.
  */
-INT _tmain(INT argc, _TCHAR *argv[], _TCHAR *envp[])
+INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
 	_tprintf_s(TEXT("Hello, Windows 98!"));
 

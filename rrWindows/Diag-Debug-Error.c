@@ -1,8 +1,16 @@
-/** \copyright The MIT License */
-
-#include "Diag-Debug-Error.h"
+/**
+* \file
+* \brief 错误处理
+* \sa ["Error Handling"](https://msdn.microsoft.com/library/ms679320). *Microsoft® Developer Network*.
+* \author zhengrr
+* \date 2018-1-15 – 17
+* \copyright The MIT License
+*/
 
 #include <stdio.h>
+
+#include <tchar.h>
+#include <Windows.h>
 
 /**
  * \sa [GetLastError function](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.

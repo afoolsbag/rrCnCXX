@@ -25,7 +25,7 @@
 #endif/* CP_UTF8*/
 
 /**
-* \brief 多字节字符串　转　多字节字符串
+* \brief 多字节字符串 转 多字节字符串
 * \details 字符串由'\0'表示终止，字符串尺寸用于越界检查。
 * \param[in]  bufOrig 原始字符串缓冲区
 * \param[in]  sizOrig 原始字符串有效尺寸
@@ -81,9 +81,8 @@ BOOL MultiByteToMultiByte(
 	if (!WideCharToMultiByte(cpConv, 0,
 				 bufUtf16, (int) lenUtf16,
 				 bufConv, (int) lenConv,
-				 NULL, NULL)) {
+				 NULL, NULL))
 		goto EXCEPTION_HANDLING_FREE_BUFUTF16;
-	}
 
 	free(bufUtf16);
 	return TRUE;
@@ -94,7 +93,7 @@ EXCEPTION_HANDLING_FREE_BUFUTF16:
 }
 
 /**
- * \brief 国标简中字符集（GB 2312）字符串　转　八位统一码转换格式（UTF-8）字符串
+ * \brief 国标简中字符集（GB 2312）字符串 转 八位统一码转换格式（UTF-8）字符串
  * \details 字符串由'\0'表示终止，字符串尺寸用于越界检查。
  * \param[in]  bufGb2312 原始字符串缓冲区
  * \param[in]  sizGb2312 原始字符串有效尺寸
@@ -110,7 +109,7 @@ inline BOOL Gb2312ToUtf8(const PCSTR bufGb2312, const SIZE_T sizGb2312,
 }
 
 /**
- * \brief 国标中文字符集（GB 18030）字符串　转　八位统一码转换格式（UTF-8）字符串
+ * \brief 国标中文字符集（GB 18030）字符串 转 八位统一码转换格式（UTF-8）字符串
  * \details 字符串由'\0'表示终止，字符串尺寸用于越界检查。
  * \param[in]  bufGb18030 原始字符串缓冲区
  * \param[in]  sizGb18030 原始字符串有效尺寸

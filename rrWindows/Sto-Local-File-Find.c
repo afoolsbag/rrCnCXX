@@ -6,6 +6,8 @@
  * \copyright The MIT License
  */
 
+#include <stdio.h>
+
 #include <tchar.h>
 #include <windows.h>
 
@@ -18,26 +20,27 @@
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-	WIN32_FIND_DATA dataFind = {0};
-	HANDLE handleFind = INVALID_HANDLE_VALUE;
+	WIN32_FIND_DATA dFild = {0};
+	HANDLE hFind = INVALID_HANDLE_VALUE;
 
-	handleFind = FindFirstFile(TEXT("DirectoryPath/*"), &dataFind);
-	if (INVALID_HANDLE_VALUE == handleFind) {
+	hFind = FindFirstFile(TEXT("DirectoryPath/*"), &dFild);
+	if (INVALID_HANDLE_VALUE == hFind) {
 		ShowLastError(TEXT("FindFirstFile"));
 		return EXIT_FAILURE;
 	}
 
 	do {
-		if (dataFind.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-			_tprintf(TEXT("  %s   <DIR>\n"), dataFind.cFileName);
+		if (dFild.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+			_tprintf_s(TEXT("DIR:  %s\n"), dFild.cFileName);
 		} else {
-			_tprintf(TEXT("  %s   \n"), dataFind.cFileName);
+			_tprintf_s(TEXT("FILE: %s\n"), dFild.cFileName);
 		}
-	} while (0 != FindNextFile(handleFind, &dataFind));
+	} while (0 != FindNextFile(hFind, &dFild));
+
 	if (ERROR_NO_MORE_FILES != GetLastError()) {
 		ShowLastError(TEXT("FindNextFile"));
 	}
 
-	FindClose(handleFind);
+	FindClose(hFind);
 	return EXIT_SUCCESS;
 }
