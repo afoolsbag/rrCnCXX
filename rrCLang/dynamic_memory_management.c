@@ -1,9 +1,10 @@
-/** \file
- *  \brief 内存
- *  \sa ["C memory management library"](http://en.cppreference.com/w/c/memory). *cppreference.com*.
- *  \author zhengrr
- *  \date 2016-12-2 – 2018-1-15
- *  \copyright The MIT License
+/**
+ * \file
+ * \brief 动态内存管理
+ * \sa ["C memory management library"](http://en.cppreference.com/w/c/memory). *cppreference.com*.
+ * \author zhengrr
+ * \date 2016-12-2 – 2018-1-17
+ * \copyright The MIT License
  */
 
 #include <stdlib.h>

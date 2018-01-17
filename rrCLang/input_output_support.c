@@ -1,9 +1,9 @@
 /**
  * \file
- * \brief 输入输出
+ * \brief 输入输出支持
  * \sa ["File input/output"](http://en.cppreference.com/w/c/io). *cppreference.com*.
  * \author zhengrr
- * \date 2016-11-14 – 2018-1-16
+ * \date 2016-11-14 – 2018-1-17
  * \copyright The MIT License
  */
 

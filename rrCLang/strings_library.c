@@ -1,9 +1,9 @@
 /**
  * \file
- * \brief 字符串
+ * \brief 字符串库
  * \sa ["Null-terminated byte strings"](http://en.cppreference.com/w/c/string/byte). *cppreference.com*.
  * \author zhengrr
- * \date 2018-1-5 – 16
+ * \date 2018-1-5 – 17
  * \copyright The MIT License
  */
 
