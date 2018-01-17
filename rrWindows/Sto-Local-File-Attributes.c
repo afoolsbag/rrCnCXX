@@ -9,7 +9,7 @@
 #include <tchar.h>
 #include <windows.h>
 
-#include "Error.h"
+#include "Diag-Debug-Error.h"
 
 /**
  * \sa [WIN32_FILE_ATTRIBUTE_DATA structure](https://msdn.microsoft.com/library/aa365739)
@@ -18,13 +18,13 @@
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-        WIN32_FILE_ATTRIBUTE_DATA attributes = {0};
-        FILETIME ftimeLocal = {0};
-        SYSTEMTIME stimeLocal = {0};
+	WIN32_FILE_ATTRIBUTE_DATA attributes = {0};
+	FILETIME ftimeLocal = {0};
+	SYSTEMTIME stimeLocal = {0};
 
 	GetFileAttributesEx("FilePath", GetFileExInfoStandard, &attributes);
 
-        FileTimeToLocalFileTime(&attributes.ftCreationTime, &ftimeLocal);
-        FileTimeToSystemTime(&ftimeLocal, &stimeLocal);
-        _tprintf_s(TEXT("CreationTime: %d:%d:%d\n"), stimeLocal.wHour, stimeLocal.wMinute, stimeLocal.wSecond);
+	FileTimeToLocalFileTime(&attributes.ftCreationTime, &ftimeLocal);
+	FileTimeToSystemTime(&ftimeLocal, &stimeLocal);
+	_tprintf_s(TEXT("CreationTime: %d:%d:%d\n"), stimeLocal.wHour, stimeLocal.wMinute, stimeLocal.wSecond);
 }

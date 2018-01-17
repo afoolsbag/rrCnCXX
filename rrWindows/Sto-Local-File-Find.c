@@ -9,7 +9,7 @@
 #include <tchar.h>
 #include <windows.h>
 
-#include "Error.h"
+#include "Diag-Debug-Error.h"
 
 /**
  * \sa [WIN32_FILE_ATTRIBUTE_DATA structure](https://msdn.microsoft.com/library/aa365739)

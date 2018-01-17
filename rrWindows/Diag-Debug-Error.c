@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#include "Error.h"
+#include "Diag-Debug-Error.h"
 
 #include <stdio.h>
 
@@ -10,21 +10,20 @@
  */
 VOID ShowLastError(PCTSTR tips)
 {
-	DWORD codeLastError = GetLastError();
-	PTSTR messageLastError = NULL;
+	DWORD code = GetLastError();
+	PTSTR msg = NULL;
 
 	FormatMessage(
 		FORMAT_MESSAGE_ALLOCATE_BUFFER |
 		FORMAT_MESSAGE_FROM_SYSTEM |
 		FORMAT_MESSAGE_IGNORE_INSERTS,
 		NULL,
-		codeLastError,
+		code,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-		(LPSTR) &messageLastError,
+		(LPSTR) &msg,
 		0,
 		NULL);
-	OutputDebugString(messageLastError);
-	_ftprintf_s(stderr, TEXT("%s: system error %d, %s"),
-		    tips, codeLastError, messageLastError);
-	LocalFree(messageLastError);
+
+	_ftprintf_s(stderr, TEXT("%s: system error %d, %s"), tips, code, msg);
+	LocalFree(msg);
 }

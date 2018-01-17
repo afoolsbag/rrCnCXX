@@ -5,10 +5,15 @@
 [Graphics and game technologies](https://msdn.microsoft.com/library/windows/desktop/ee663279)
 [API index](https://msdn.microsoft.com/library/windows/desktop/hh920508)
 
-+ References
-    + ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft® Developer Network*.
-+ Programming Styles
-    + ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
-    + ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft® Docs*.
-+ Guides
-    + *Programming Windows®*. 5th ed. 1999; 6th ed. 2013. Charles Petzold.
+## References
+
++ ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft® Developer Network*.
+
+## Programming Styles
+
++ ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
++ ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft® Docs*.
+
+## Guides
+
++ *Programming Windows®*. 5th ed. 1999; 6th ed. 2013. Charles Petzold.

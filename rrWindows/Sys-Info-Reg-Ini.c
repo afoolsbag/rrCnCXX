@@ -1,6 +1,6 @@
 /**
  * \file
- * \brief Windows® 初始化文件
+ * \brief Windows®初始化文件
  * \author zhengrr
  * \date 2018-1-15
  * \copyright The MIT License
@@ -11,7 +11,7 @@
 #include <tchar.h>
 #include <windows.h>
 
-#include "Error.h"
+#include "Diag-Debug-Error.h"
 
 #define INI_VALUE_LIMIT 80
 

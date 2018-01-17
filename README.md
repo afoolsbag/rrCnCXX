@@ -46,13 +46,27 @@ Basic Combined Programming Language.
 
 ## 杂货
 
-["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
++ ["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
++ ["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
++ *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
++ *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
-["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
-
-*The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
-
-*Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
+[*Notepad++*](https://notepad-plus-plus.org/)
+[*Visual Studio Code*](https://code.visualstudio.com/)
+[*MinGW*](http://mingw.org/)
+[*Cygwin*](http://cygwin.com/)
+[*Graphviz*](https://graphviz.gitlab.io/)
+[*PlantUML*](http://plantuml.com/)
+[*CLion*](https://jetbrains.com/clion/)
+[*Understand™*](https://scitools.com/)
+[*Visual Studio*](https://visualstudio.com/)
+[*Studio Styles*](https://studiostyl.es/)
+Visual Studio 2008
+[*Visual Assist*](https://wholetomato.com/)
+[*IncrediBuild*](https://incredibuild.com/)
+Visual Studio
+[*ReSharper С++*](https://jetbrains.com/resharper-cpp/)
+[*Dependency Walker*](http://dependencywalker.com/)
 
 [*CodeProject*](https://codeproject.com/)
 [*SegmentFault*](https://segmentfault.com/)

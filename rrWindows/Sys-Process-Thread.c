@@ -1,8 +1,8 @@
 /**
  * \file
- * \brief 苦工（Windows® 线程简单示例）
+ * \brief 苦工（Windows®线程简单示例）
  * \author zhengrr
- * \date 2016-11-8 – 2018-1-15
+ * \date 2016-11-8 – 2018-1-17
  * \copyright The MIT License
  */
 
@@ -12,7 +12,7 @@
 #include <process.h>
 
 #include <tchar.h>
-#include <windows.h>
+#include <Windows.h>
 
 static VOID ThreadWork(PVOID pVoid);
 

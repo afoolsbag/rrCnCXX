@@ -1,16 +1,16 @@
 /**
  * \file
- * \brief Windows® 控制台应用入口
+ * \brief Windows®控制台应用入口
  * \sa \ref page_console_application
  * \author zhengrr
- * \date 2016-10-12 – 2018-1-15
+ * \date 2016-10-12 – 2018-1-17
  * \copyright The MIT License
  */
 
 #include <stdio.h>
 
 #include <tchar.h>
-#include <windows.h>
+#include <Windows.h>
 
 /**
  * \page page_console_application
@@ -39,7 +39,7 @@
  */
 INT _tmain(INT argc, _TCHAR *argv[], _TCHAR *envp[])
 {
-	_tprintf(_T("Hello, Windows 98!"));
+	_tprintf_s(TEXT("Hello, Windows 98!"));
 
 	return EXIT_SUCCESS;
 }

@@ -1,14 +1,14 @@
 /**
  * \file
- * \brief Windows® 桌面应用入口
+ * \brief Windows®桌面应用入口
  * \sa *Programming Windows®* §1.3.2 & §2.2.4
  * \author zhengrr
- * \date 2016-10-12 – 2018-1-15
+ * \date 2016-10-12 – 2018-1-17
  * \copyright The MIT License
  */
 
 #include <tchar.h>
-#include <windows.h>
+#include <Windows.h>
 
 /**
  * \brief Windows® 桌面应用入口
@@ -17,7 +17,7 @@
  * \param szCmdLine     命令行（Command Line）
  * \param codeCmdShow   显示方式
  * \return 退出状态（exit status）
- * \sa ["main: Program Startup"](https://msdn.microsoft.com/library/windows/desktop/ms633559). *Microsoft® Developer Network*.
+ * \sa ["WinMain entry point"](https://msdn.microsoft.com/library/ms633559). *Microsoft® Developer Network*.
  */
 INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		     PTSTR szCommandLine, INT codeCommandShow)
