@@ -1,114 +1,120 @@
 /**
  * \file
  * \author zhengrr
- * \date 2016-12-24 – 2018-1-17
+ * \date 2016-12-24 – 2018-1-18
  * \copyright The MIT License
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
+#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <Windows.h>
-
 #include <WinSock2.h>
+#include <WS2tcpip.h>
 
 #pragma comment(lib, "Ws2_32.lib")
 
-#define BUFFER_SIZE 512
-
-int _tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
+/**
+ * \sa ["recvfrom function"](https://msdn.microsoft.com/library/ms740120). *Microsoft® Developer Network*.
+ * \sa ["sendto function"](https://msdn.microsoft.com/library/ms740148). *Microsoft® Developer Network*.
+ */
+int _tmain(int argc, TCHAR *argv[], TCHAR *envp[])
 {
 	INT codeError;
-	unixtimeCurrentTime;
-	htons; // host-to-network short
 
-	WSADATA dataWinsockApi;
-	SOCKADDR_IN netAddressSocket;
-	SOCKET refSocket;
-
-	/* Initializing Windows Socket
-	 * <https://msdn.microsoft.com/ms742213> */
-	_tprintf_s(_T("Startuping windows socket..."));
-	codeError = WSAStartup(MAKEWORD(2, 2), &dataWinSocketApp);
+	WSADATA dWsa;
+	codeError = WSAStartup(MAKEWORD(2, 2), &dWsa);
 	if (NO_ERROR != codeError) {
-		_tprintf_s(_T(" error, WSAStartup() failed with error %d.\n"),
-			   codeError);
+		_ftprintf_s(stderr, TEXT("WSAStartup failed with error: %d\n"), codeError);
 		return EXIT_FAILURE;
 	}
-	_tprintf_s(_T(" done.\n"));
 
+	ADDRINFOT aiHints;
+	ZeroMemory(&aiHints, sizeof(aiHints));
+	aiHints.ai_flags = AI_PASSIVE;
+	aiHints.ai_family = AF_INET;
+	aiHints.ai_socktype = SOCK_DGRAM;
+	aiHints.ai_protocol = IPPROTO_UDP;
 
-	/* Creating Socket
-	 * <https://msdn.microsoft.com/ms740506> */
-	_tprintf_s(_T("Creating socket..."));
-	refSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-	if (INVALID_SOCKET == refSocket) {
-		_tprintf_s(_T(" error, socket() failed with error %d.\n"),
-			   WSAGetLastError());
-		WSACleanup();
-		return EXIT_FAILURE;
-	}
-	_tprintf_s(_T(" done.\n"));
-
-
-	/* 绑定地址
-	 * <https://msdn.microsoft.com/ms737550> */
-	ZeroMemory(&networkSocketAddress, sizeof networkSocketAddress);
-	networkSocketAddress.sin_family = AF_INET;
-	networkSocketAddress.sin_addr.s_addr = htonl(INADDR_ANY);
-	networkSocketAddress.sin_port = htons(10096);
-	codeError = bind(
-		refSocket,
-		(PSOCKADDR) &networkSocketAddress,
-		sizeof networkSocketAddress
-	);
-	if (SOCKET_ERROR == codeError) {
-		_ASSERTE(codeError && FALSE);
-		closesocket(refSocket);
+	ADDRINFOT *paiServer;
+	codeError = GetAddrInfo(NULL, TEXT("10086"), &aiHints, &paiServer);
+	if (NO_ERROR != codeError) {
+		_ftprintf_s(stderr, TEXT("GetAddrInfo failed with error: %d\n"), codeError);
 		WSACleanup();
 		return EXIT_FAILURE;
 	}
 
-	/* 收流与处理 */
-	char buf[512];
-	while (TRUE) {
-		_tprintf_s(_T("*** Waiting for data..."));
-		ZeroMemory(buf, sizeof buf);
-		SOCKADDR_IN ano;
-		int anolen = sizeof ano;
-		int datalen;
+	SOCKET skt = socket(paiServer->ai_family, paiServer->ai_socktype, paiServer->ai_protocol);
+	if (INVALID_SOCKET == skt) {
+		_ftprintf_s(stderr, TEXT("socket failed with error: %d\n"), WSAGetLastError());
+		FreeAddrInfo(paiServer);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
 
-		datalen = recvfrom(skt, buf, sizeof buf, 0, (PSOCKADDR) &ano, &anolen);
-		if (SOCKET_ERROR == datalen) {
-			_tprintf_s(_T(" error, recvfrom() failed with error %d.\n"),
-				   WSAGetLastError());
+	if (SOCKET_ERROR == bind(skt, paiServer->ai_addr, paiServer->ai_addrlen)) {
+		_ftprintf_s(stderr, TEXT("bind failed with error: %d\n"), WSAGetLastError());
+		closesocket(skt);
+		FreeAddrInfo(paiServer);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	FreeAddrInfo(paiServer);
+
+	CHAR bufRecv[1024];
+	INT bytesRecv;
+	SOCKADDR saClient;
+	INT sizsaClient = sizeof(saClient);
+	INT bytesSend;
+	for (;;) {
+		ZeroMemory(bufRecv, sizeof(bufRecv));
+
+		bytesRecv = recvfrom(skt, bufRecv, sizeof(bufRecv), 0, &saClient, &sizsaClient);
+		if (SOCKET_ERROR == bytesRecv) {
+			_ftprintf_s(stderr, TEXT("recvfrom failed with error: %d\n"), WSAGetLastError());
 			closesocket(skt);
 			WSACleanup();
 			return EXIT_FAILURE;
 		}
 
-		_tprintf_s(_T("\n >> Received packet from %hhu.%hhu.%hhu.%hhu:%hu.\n"),
-			   ano.sin_addr.s_net, ano.sin_addr.s_host, ano.sin_addr.s_lh,
-			   ano.sin_addr.s_impno, ntohs(ano.sin_port));
-		_tprintf_s(_T("    Message: %s\n"), buf);
+		_tprintf_s(TEXT("New udp packet, %d bytes received:\n"), bytesRecv);
 
-		_tprintf_s(_T("  < Sending echo..."));
-		if (SOCKET_ERROR ==
-		    sendto(skt, buf, datalen, 0, (PSOCKADDR) &ano, anolen)) {
-			_tprintf_s(_T(" error, sendto() failed with error %d.\n"),
-				   WSAGetLastError());
+		if (AF_INET == saClient.sa_family) {
+			const SOCKADDR_IN *const saIpv4 = (SOCKADDR_IN *) &saClient;
+			TCHAR addrIpv4[INET_ADDRSTRLEN];
+			InetNtop(saIpv4->sin_family, &saIpv4->sin_addr, addrIpv4, sizeof(addrIpv4));
+			const UINT16 portIpv4 = ntohs(saIpv4->sin_port);
+			_tprintf_s(TEXT(" from %s:%hu\n"), addrIpv4, portIpv4);
+		} else if (AF_INET6 == saClient.sa_family) {
+			const SOCKADDR_IN6 *const saIpv6 = (SOCKADDR_IN6 *) &saClient;
+			TCHAR addrIpv6[INET6_ADDRSTRLEN];
+			InetNtop(saIpv6->sin6_family, &saIpv6->sin6_addr, addrIpv6, sizeof(addrIpv6));
+			const UINT16 portIpv6 = ntohs(saIpv6->sin6_port);
+			_tprintf_s(TEXT(" from %s:%hu\n"), addrIpv6, portIpv6);
+		}
+
+		_tprintf_s(TEXT(" message: %s\n"), bufRecv);
+
+		_putts(TEXT(" sending echo..."));
+
+		bytesSend = sendto(skt, bufRecv, bytesRecv, 0, (SOCKADDR *) &saClient, sizsaClient);
+
+		if (SOCKET_ERROR == bytesSend) {
+			_ftprintf_s(stderr, TEXT("sendto failed with error: %d\n"), WSAGetLastError());
 			closesocket(skt);
 			WSACleanup();
 			return EXIT_FAILURE;
 		}
-		_tprintf_s(_T(" done.\n"));
+
+		_tprintf_s(TEXT(" done, %d bytes sent.\n"), bytesSend);
+
+		_putts(TEXT(""));
 	}
 
-	/* 关闭套接字 */
 	closesocket(skt);
-
-	/* 清理 Windows Socket */
 	WSACleanup();
-
 	return EXIT_SUCCESS;
 }

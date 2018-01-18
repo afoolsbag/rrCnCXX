@@ -1,19 +1,21 @@
 /**
  * \file
  * \brief Windows®控制台应用入口
- * \sa \ref page_console_application
+ * \sa \ref page_main
  * \author zhengrr
- * \date 2016-10-12 – 2018-1-17
+ * \date 2016-10-12 – 2018-1-18
  * \copyright The MIT License
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
+#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <Windows.h>
 
 /**
- * \page page_console_application
+ * \page page_main
  * \section sec_hungarian_notation 匈牙利命名法
  *
  * 在业务级编程里，

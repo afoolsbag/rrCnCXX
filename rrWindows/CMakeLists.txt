@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-1-17
+# 2016-10-12 – 2018-1-18
 # The MIT License
 
-project("rrWindows" VERSION 2018.1.17 LANGUAGES C)
+project("rrWindows" VERSION 2018.1.18 LANGUAGES C)
 set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()

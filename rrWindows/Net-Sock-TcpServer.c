@@ -1,136 +1,139 @@
 /**
  * \file
+ * \sa ["Complete Winsock Server Code"](https://msdn.microsoft.com/library/ms737593). *Microsoft® Developer Network*.
  * \author zhengrr
- * \date 2016-12-23 – 2018-1-17
+ * \date 2016-12-23 – 2018-1-18
  * \copyright The MIT License
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
+#define WIN32_LEAN_AND_MEAN
+#include <tchar.h>
 #include <Windows.h>
 #include <WinSock2.h>
 #include <WS2tcpip.h>
-#include <tchar.h>
 
 #pragma comment(lib, "Ws2_32.lib")
 
-static USHORT get_in_port(PSOCKADDR addr)
+/**
+ * \sa ["WSAStartup function"](https://msdn.microsoft.com/library/ms742213). *Microsoft® Developer Network*.
+ * \sa ["WSACleanup function"](https://msdn.microsoft.com/library/ms741549). *Microsoft® Developer Network*.
+ * \sa ["WSAGetLastError function"](https://msdn.microsoft.com/library/ms741580). *Microsoft® Developer Network*.
+ * \sa ["addrinfo structure"](https://msdn.microsoft.com/library/ms737530). *Microsoft® Developer Network*.
+ * \sa ["getaddrinfo function"](https://msdn.microsoft.com/library/ms738520). *Microsoft® Developer Network*.
+ * \sa ["freeaddrinfo function"](https://msdn.microsoft.com/library/ms737931). *Microsoft® Developer Network*.
+ * \sa ["socket function"](https://msdn.microsoft.com/library/ms740506). *Microsoft® Developer Network*.
+ * \sa ["closesocket function"](https://msdn.microsoft.com/library/ms737582). *Microsoft® Developer Network*.
+ * \sa ["bind function"](https://msdn.microsoft.com/library/ms737550). *Microsoft® Developer Network*.
+ * \sa ["listen function"](https://msdn.microsoft.com/library/ms739168). *Microsoft® Developer Network*.
+ * \sa ["accept function"](https://msdn.microsoft.com/library/ms737526). *Microsoft® Developer Network*.
+ * \sa ["recv function"](https://msdn.microsoft.com/library/ms740121). *Microsoft® Developer Network*.
+ * \sa ["send function"](https://msdn.microsoft.com/library/ms740149). *Microsoft® Developer Network*.
+ * \sa ["shutdown function"](https://msdn.microsoft.com/library/ms740481). *Microsoft® Developer Network*.
+ */
+INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-    if (AF_INET == addr->sa_family)
-        return ((PSOCKADDR_IN) addr)->sin_port;
-    else if (AF_INET6 == addr->sa_family)
-        return ((PSOCKADDR_IN6) addr)->sin6_port;
-    else
-        return -1;
+	INT codeError;
+
+	WSADATA dWsa;
+	codeError = WSAStartup(MAKEWORD(2, 2), &dWsa);
+	if (NO_ERROR != codeError) {
+		_ftprintf_s(stderr, TEXT("WSAStartup failed with error: %d\n"), codeError);
+		return EXIT_FAILURE;
+	}
+
+	ADDRINFOT aiHints;
+	ZeroMemory(&aiHints, sizeof(aiHints));
+	aiHints.ai_flags = AI_PASSIVE;
+	aiHints.ai_family = AF_INET;
+	aiHints.ai_socktype = SOCK_STREAM;
+	aiHints.ai_protocol = IPPROTO_TCP;
+
+	ADDRINFOT *paiServer;
+	codeError = GetAddrInfo(NULL, TEXT("10086"), &aiHints, &paiServer);
+	if (NO_ERROR != codeError) {
+		_ftprintf_s(stderr, TEXT("GetAddrInfo failed with error: %d\n"), codeError);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	SOCKET sktListen = socket(paiServer->ai_family, paiServer->ai_socktype, paiServer->ai_protocol);
+	if (INVALID_SOCKET == sktListen) {
+		_ftprintf_s(stderr, TEXT("socket failed with error: %d\n"), WSAGetLastError());
+		FreeAddrInfo(paiServer);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	if (SOCKET_ERROR == bind(sktListen, paiServer->ai_addr, paiServer->ai_addrlen)) {
+		_ftprintf_s(stderr, TEXT("bind failed with error: %d\n"), WSAGetLastError());
+		closesocket(sktListen);
+		FreeAddrInfo(paiServer);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	FreeAddrInfo(paiServer);
+
+	if (SOCKET_ERROR == listen(sktListen, SOMAXCONN)) {
+		_ftprintf_s(stderr, TEXT("listen failed with error: %d\n"), WSAGetLastError());
+		closesocket(sktListen);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	SOCKET sktAccept = accept(sktListen, NULL, NULL);
+	if (INVALID_SOCKET == sktAccept) {
+		_ftprintf_s(stderr, TEXT("accept failed with error: %d\n"), WSAGetLastError());
+		closesocket(sktListen);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	closesocket(sktListen);
+
+	CHAR bufRecv[512];
+	INT bytesRecv;
+	INT bytesSend;
+	for (;;) {
+		bytesRecv = recv(sktAccept, bufRecv, sizeof(bufRecv), 0);
+
+		if (SOCKET_ERROR == bytesRecv) {
+			_ftprintf_s(stderr, TEXT("recv failed with error: %d\n"), WSAGetLastError());
+			closesocket(sktAccept);
+			WSACleanup();
+			return EXIT_FAILURE;
+		}
+
+		if (0 == bytesRecv) {
+			_tprintf_s(TEXT("Connection closed.\n"));
+			break;
+		}
+
+		_tprintf_s(TEXT("Bytes received: %d\n"), bytesRecv);
+
+		bytesSend = send(sktAccept, bufRecv, bytesRecv, 0);
+
+		if (SOCKET_ERROR == bytesSend) {
+			_ftprintf_s(stderr, TEXT("send failed with error: %d\n"), WSAGetLastError());
+			closesocket(sktAccept);
+			WSACleanup();
+			return EXIT_FAILURE;
+		}
+
+		_tprintf_s(TEXT("Bytes send: %d\n"), bytesSend);
+	}
+
+	if (SOCKET_ERROR == shutdown(sktAccept, SD_SEND)) {
+		_ftprintf_s(stderr, TEXT("shutdown failed with error: %d\n"), WSAGetLastError());
+		closesocket(sktAccept);
+		WSACleanup();
+		return EXIT_FAILURE;
+	}
+
+	closesocket(sktAccept);
+	WSACleanup();
+	return EXIT_SUCCESS;
 }
-
-static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
-{
-    /* 启动 Windows Socket */
-    WSADATA data;
-    int rwsas = WSAStartup(MAKEWORD(2, 2), &data);  // Result of WSAStartup
-    if (NO_ERROR != rwsas) {
-        _tprintf_s(_T("'WSAStartup' failed with error %d.\n"), rwsas);
-        return EXIT_FAILURE;
-    }
-
-    /* 确定监听套接字信息 */
-    ADDRINFOA hints;
-    ZeroMemory(&hints, sizeof hints);
-    hints.ai_family = AF_INET;        // IPv4
-    hints.ai_socktype = SOCK_STREAM;  // TCP
-    hints.ai_protocol = IPPROTO_TCP;  // TCP
-    hints.ai_flags = AI_PASSIVE;
-    PADDRINFOA info;
-    int rgai = getaddrinfo(NULL, "10096", &hints, &info);
-    if (NO_ERROR != rgai) {
-        _tprintf_s(_T("'getaddrinfo' failed with error %d.\n"), rgai);
-        WSACleanup();
-        return EXIT_FAILURE;
-    }
-
-    /* 创建监听套接字 */
-    SOCKET lskt;  // listening socket
-    if (INVALID_SOCKET == (lskt = socket(info->ai_family, info->ai_socktype,
-                                         info->ai_protocol))) {
-        _tprintf_s(_T("'socket' failed with error %d.\n"), WSAGetLastError());
-        freeaddrinfo(info);
-        WSACleanup();
-        return EXIT_FAILURE;
-    }
-
-    /* 监听套接字绑定地址与端口 */
-    if (SOCKET_ERROR == bind(lskt, info->ai_addr, info->ai_addrlen)) {
-        _tprintf_s(_T("'bind' failed with error %d.\n"), WSAGetLastError());
-        closesocket(lskt);
-        freeaddrinfo(info);
-        WSACleanup();
-        return EXIT_FAILURE;
-    }
-    _tprintf_s(_T("Listen to port %d is ready.\n"),
-               ntohs(get_in_port(info->ai_addr)));
-
-    freeaddrinfo(info);  // 释放监听套接字信息
-
-    /* 监听套接字开始监听 */
-    if (SOCKET_ERROR == listen(lskt, SOMAXCONN)) {
-        _tprintf_s(_T("'listen' failed with error %d.\n"), WSAGetLastError());
-        closesocket(lskt);
-        WSACleanup();
-        return EXIT_FAILURE;
-    }
-
-    /* 创建收容套接字，调用收容函数，阻塞并等待套接字请求 */
-    SOCKET askt;  // accept socket
-    if (INVALID_SOCKET == (askt = accept(lskt, NULL, NULL))) {
-        _tprintf_s(_T("'accept' failed with error %d.\n"), WSAGetLastError());
-        closesocket(lskt);
-        WSACleanup();
-        return EXIT_FAILURE;
-    }
-    _tprintf_s(_T("A new request has arrived.\n"));
-
-    closesocket(lskt);
-
-    char recvbuf[512];
-    int rr;
-    do {
-        rr = recv(askt, recvbuf, sizeof recvbuf, 0);
-        if (0 < rr) {
-            printf("Bytes received: %d.\n", rr);
-            int rs = send(askt, recvbuf, rr, 0);
-            if (SOCKET_ERROR == rs) {
-                printf("'send' failed with error %d.\n", WSAGetLastError());
-                closesocket(askt);
-                WSACleanup();
-                return EXIT_FAILURE;
-            }
-            printf("Bytes sent: %d\n", rs);
-        } else if (rr == 0) {
-            printf("Connection closed.\n");
-        } else {
-            printf("'recv' failed with error %d.\n", WSAGetLastError());
-            closesocket(askt);
-            WSACleanup();
-            return 1;
-        }
-    } while (rr > 0);
-
-    /* 断开连接并关闭套接字 */
-    if (SOCKET_ERROR == shutdown(askt, SD_SEND)) {
-        printf("'shutdown' failed with error %d.\n", WSAGetLastError());
-        closesocket(askt);
-        WSACleanup();
-        return 1;
-    }
-
-    closesocket(askt);
-
-    WSACleanup();
-
-    return EXIT_SUCCESS;
-}
-
-#ifdef ENTRY_SWITCH
-int _tmain(int argc, _TCHAR *argv[], _TCHAR *envp[]) { return tmain(argc, argv, envp); }
-#endif// ENTRY SWITCH
