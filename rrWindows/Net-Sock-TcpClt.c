@@ -2,7 +2,7 @@
  * \file
  * \sa ["Complete Winsock Client Code"](https://msdn.microsoft.com/library/ms737591). *Microsoft® Developer Network*.
  * \author zhengrr
- * \date 2016-12-23 – 2018-1-18
+ * \date 2016-12-23 – 2018-1-20
  * \copyright The MIT License
  */
 
@@ -27,7 +27,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 	WSADATA dWsa;
 	codeError = WSAStartup(MAKEWORD(2, 2), &dWsa);
 	if (NO_ERROR != codeError) {
-		_ftprintf_s(stderr, TEXT("WSAStartup failed with error: %d\n"), codeError);
+		_ftprintf_s(stderr, TEXT("WSAStartup failed with error: %i\n"), codeError);
 		return EXIT_FAILURE;
 	}
 
@@ -40,7 +40,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 	ADDRINFOT *paiServer;
 	codeError = GetAddrInfo(TEXT("127.0.0.1"), TEXT("10086"), &aiHints, &paiServer);
 	if (NO_ERROR != codeError) {
-		_ftprintf_s(stderr, TEXT("GetAddrInfo failed with error: %d\n"), codeError);
+		_ftprintf_s(stderr, TEXT("GetAddrInfo failed with error: %i\n"), codeError);
 		WSACleanup();
 		return EXIT_FAILURE;
 	}
@@ -49,7 +49,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 	for (ADDRINFOT *iai = paiServer; iai != NULL; iai = iai->ai_next) {
 		skt = socket(iai->ai_family, iai->ai_socktype, iai->ai_protocol);
 		if (INVALID_SOCKET == skt) {
-			_ftprintf_s(stderr, TEXT("socket failed with error: %d\n"), WSAGetLastError());
+			_ftprintf_s(stderr, TEXT("socket failed with error: %i\n"), WSAGetLastError());
 			WSACleanup();
 			return EXIT_FAILURE;
 		}
@@ -74,12 +74,12 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 	CHAR bufSend[] = "this is a test";
 	INT bytesSend = send(skt, bufSend, sizeof(bufSend), 0);
 	if (SOCKET_ERROR == bytesSend) {
-		_ftprintf_s(stderr, TEXT("send failed with error: %d\n"), WSAGetLastError());
+		_ftprintf_s(stderr, TEXT("send failed with error: %i\n"), WSAGetLastError());
 		closesocket(skt);
 		WSACleanup();
 		return EXIT_FAILURE;
 	}
-	_tprintf_s("Bytes sent: %d\n", bytesSend);
+	_tprintf_s("Bytes sent: %i\n", bytesSend);
 
 	CHAR bufRecv[512];
 	INT bytesRecv;
@@ -87,7 +87,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 		bytesRecv = recv(skt, bufRecv, sizeof(bufRecv), 0);
 
 		if (SOCKET_ERROR == bytesRecv) {
-			_ftprintf_s(stderr, TEXT("recv failed with error: %d\n"), WSAGetLastError());
+			_ftprintf_s(stderr, TEXT("recv failed with error: %i\n"), WSAGetLastError());
 			closesocket(skt);
 			WSACleanup();
 			return EXIT_FAILURE;
@@ -98,7 +98,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 			break;
 		}
 
-		_tprintf_s(TEXT("Bytes received: %d\n"), bytesRecv);
+		_tprintf_s(TEXT("Bytes received: %i\n"), bytesRecv);
 	}
 
 	closesocket(skt);

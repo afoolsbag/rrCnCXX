@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.0)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake/Modules")
 include("rrUtilities")
 
-project("rrCnCXX" VERSION 1.3.3.7 LANGUAGES NONE)
+project("rrCnCxx" VERSION 1.3.3.7 LANGUAGES NONE)
 set_product_variables(AUTHORS "zhengrr" COPYRIGHT "The MIT License")
 
 add_subdirectory_with_option("rrCLang")

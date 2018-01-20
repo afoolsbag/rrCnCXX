@@ -1,10 +1,13 @@
 /** \copyright The MIT License */
 
-#include <windows.h>
-
 #include "Sys-Dyn-Lib.h"
 
 #include <time.h>
+
+#include <Windows.h>
+
+#define WIN32_LEAN_AND_MEAN
+
 
 INT WINAPI DllMain(HINSTANCE hInstance, DWORD fdwReason, PVOID pvReserved)
 {

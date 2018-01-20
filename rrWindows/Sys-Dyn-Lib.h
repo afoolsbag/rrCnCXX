@@ -6,6 +6,11 @@
  * \copyright The MIT License
  */
 
+#ifndef RRWINDOWS_DYNLIB_H_
+#define RRWINDOWS_DYNLIB_H_
+
+#include <windef.h>
+
 #ifdef __cplusplus
 # define EXPORT extern "C" __declspec (dllexport)
 #else
@@ -23,3 +28,5 @@ EXPORT INT CALLBACK DiceW();
 #else
 # define Dice DiceA
 #endif
+
+#endif/* RRWINDOWS_DYNLIB_H_*/

@@ -1,23 +1,18 @@
 /**
  * \file
- * \brief Windows® 查找文件
+ * \brief Windows®查找文件
  * \author zhengrr
- * \date 2018-1-15
+ * \date 2018-1-15 – 20
  * \copyright The MIT License
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
+#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <windows.h>
 
-#include "Diag-Debug-Error.h"
-
-/**
- * \sa [WIN32_FILE_ATTRIBUTE_DATA structure](https://msdn.microsoft.com/library/aa365739)
- * \sa [GetFileAttributesEx function](https://msdn.microsoft.com/library/aa364946)
- * \sa [FileTimeToSystemTime function](https://msdn.microsoft.com/library/ms724280)
- */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
 	WIN32_FIND_DATA dFild = {0};
@@ -25,7 +20,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 
 	hFind = FindFirstFile(TEXT("DirectoryPath/*"), &dFild);
 	if (INVALID_HANDLE_VALUE == hFind) {
-		ShowLastError(TEXT("FindFirstFile"));
+		_ftprintf_s(stderr, TEXT("FindFirstFile failed with error: %d\n"), GetLastError());
 		return EXIT_FAILURE;
 	}
 
@@ -38,7 +33,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 	} while (0 != FindNextFile(hFind, &dFild));
 
 	if (ERROR_NO_MORE_FILES != GetLastError()) {
-		ShowLastError(TEXT("FindNextFile"));
+		_ftprintf_s(stderr, TEXT("FindNextFile failed with error: %d\n"), GetLastError());
 	}
 
 	FindClose(hFind);

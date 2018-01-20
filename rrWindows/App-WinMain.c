@@ -23,7 +23,7 @@
  * \sa ["WinMain entry point"](https://msdn.microsoft.com/library/ms633559). *Microsoft® Developer Network*.
  */
 INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-		     PTSTR szCommandLine, INT codeCommandShow)
+		     PTSTR szCmdLine, INT codeCmdShow)
 {
 	MessageBox(NULL, TEXT("Hello, Windows 98!"), TEXT("HelloMsg"), MB_OK);
 

@@ -41,7 +41,7 @@
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-	_tprintf_s(TEXT("Hello, Windows 98!"));
+	_putts(TEXT("Hello, Windows 98!"));
 
 	return EXIT_SUCCESS;
 }

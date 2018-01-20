@@ -2,19 +2,21 @@
  * \file
  * \brief 苦工（Windows®线程简单示例）
  * \author zhengrr
- * \date 2016-11-8 – 2018-1-17
+ * \date 2016-11-8 – 2018-1-20
  * \copyright The MIT License
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 #include <process.h>
 
+#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <Windows.h>
 
-static VOID ThreadWork(PVOID pVoid);
+static VOID ThreadWork(VOID *pVoid);
 
 /**
  * \sa [`CreateThread`与`_beginthreadex`](http://cnblogs.com/lgxqf/archive/2009/02/10/1387480.html)
@@ -24,9 +26,7 @@ static VOID ThreadWork(PVOID pVoid);
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-	HANDLE hPeon;
-
-	hPeon = (HANDLE) _beginthread(ThreadWork, 0, _T("Peon"));
+	const HANDLE hPeon = (HANDLE) _beginthread(ThreadWork, 0, TEXT("Peon"));
 	if (hPeon) {
 		_tprintf_s(TEXT("Main: A peon has been produced.\n"));
 	} else {
@@ -41,9 +41,9 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 }
 
 /** \sa ["`Sleep` function"](http://msdn.microsoft.com/ms686298). *Microsoft® Developer Network*. */
-static VOID ThreadWork(PVOID pVoid)
+static VOID ThreadWork(VOID *pVoid)
 {
-	PTSTR name = (PTSTR) pVoid;
+	TCHAR *name = pVoid;
 	INT maxWorkload = 0;
 	INT iWorkload = 0;
 
@@ -57,20 +57,16 @@ static VOID ThreadWork(PVOID pVoid)
 		srand((UINT) time(NULL));
 		switch (rand() % 4) {
 		case 0:
-			_tprintf_s(TEXT("%s: Be happy to. (%d/%d)\n"),
-				   name, iWorkload, maxWorkload);
+			_tprintf_s(TEXT("%s: Be happy to. (%d/%d)\n"), name, iWorkload, maxWorkload);
 			break;
 		case 1:
-			_tprintf_s(TEXT("%s: I can do that. (%d/%d)\n"),
-				   name, iWorkload, maxWorkload);
+			_tprintf_s(TEXT("%s: I can do that. (%d/%d)\n"), name, iWorkload, maxWorkload);
 			break;
 		case 2:
-			_tprintf_s(TEXT("%s: Okie dokie. (%d/%d)\n"),
-				   name, iWorkload, maxWorkload);
+			_tprintf_s(TEXT("%s: Okie dokie. (%d/%d)\n"), name, iWorkload, maxWorkload);
 			break;
 		case 3:
-			_tprintf_s(TEXT("%s: Work, work. (%d/%d)\n"),
-				   name, iWorkload, maxWorkload);
+			_tprintf_s(TEXT("%s: Work, work. (%d/%d)\n"), name, iWorkload, maxWorkload);
 			break;
 		default:
 			break;

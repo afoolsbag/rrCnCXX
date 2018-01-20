@@ -5,7 +5,7 @@
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  * \author zhengrr
- * \date 2018-1-11 – 17
+ * \date 2018-1-11 – 20
  * \copyright The MIT License
  */
 
@@ -38,9 +38,8 @@
 * \sa [WideCharToMultiByte function](https://msdn.microsoft.com/library/dd374130). *Microsoft® Developer Network*.
 * \sa [Code Page Identifiers](https://msdn.microsoft.com/library/dd317756). *Microsoft® Developer Network*.
 */
-BOOL MultiByteToMultiByte(
-	const PCSTR bufOrig, const SIZE_T sizOrig, const UINT cpOrig,
-	const PSTR bufConv, const SIZE_T sizConv, const UINT cpConv)
+BOOL MultiByteToMultiByte(const CHAR *const bufOrig, const SIZE_T sizOrig, const UINT cpOrig,
+			  CHAR *const bufConv, const SIZE_T sizConv, const UINT cpConv)
 {
 	if (NULL == bufOrig || 0 == sizOrig || NULL == bufConv || 0 == sizConv)
 		return FALSE;
@@ -55,33 +54,21 @@ BOOL MultiByteToMultiByte(
 		return TRUE;
 	}
 
-	const SIZE_T lenUtf16 =
-		(SIZE_T) MultiByteToWideChar(cpOrig, 0,
-					     bufOrig, (int) lenOrig,
-					     NULL, 0);
-	const PWSTR bufUtf16 = (PWSTR) calloc(lenUtf16, sizeof(WCHAR));
+	const SIZE_T lenUtf16 = (SIZE_T) MultiByteToWideChar(cpOrig, 0, bufOrig, (int) lenOrig, NULL, 0);
+	WCHAR *bufUtf16 = (WCHAR *) calloc(lenUtf16, sizeof(WCHAR));
 	if (NULL == bufUtf16)
 		return FALSE;
 
-	if (!MultiByteToWideChar(cpOrig, 0,
-				 bufOrig, (int) lenOrig,
-				 bufUtf16, (int) lenUtf16))
+	if (!MultiByteToWideChar(cpOrig, 0, bufOrig, (int) lenOrig, bufUtf16, (int) lenUtf16))
 		goto EXCEPTION_HANDLING_FREE_BUFUTF16;
 
 	/* UTF-16 String to Converted String */
-	const SIZE_T lenConv =
-		(SIZE_T) WideCharToMultiByte(cpConv, 0,
-					     bufUtf16, (int) lenUtf16,
-					     NULL, 0,
-					     NULL, NULL);
+	const SIZE_T lenConv = (SIZE_T) WideCharToMultiByte(cpConv, 0, bufUtf16, (int) lenUtf16, NULL, 0, NULL, NULL);
 	if (sizConv < lenConv)
 		goto EXCEPTION_HANDLING_FREE_BUFUTF16;
 
 	ZeroMemory(bufConv, sizConv);
-	if (!WideCharToMultiByte(cpConv, 0,
-				 bufUtf16, (int) lenUtf16,
-				 bufConv, (int) lenConv,
-				 NULL, NULL))
+	if (!WideCharToMultiByte(cpConv, 0, bufUtf16, (int) lenUtf16, bufConv, (int) lenConv, NULL, NULL))
 		goto EXCEPTION_HANDLING_FREE_BUFUTF16;
 
 	free(bufUtf16);
@@ -101,11 +88,9 @@ EXCEPTION_HANDLING_FREE_BUFUTF16:
  * \param[in]  sizUtf8   转换后字符串有效尺寸
  * \return 成功或失败
  */
-inline BOOL Gb2312ToUtf8(const PCSTR bufGb2312, const SIZE_T sizGb2312,
-			 const PSTR bufUtf8, const SIZE_T sizUtf8)
+inline BOOL Gb2312ToUtf8(const CHAR *const bufGb2312, const SIZE_T sizGb2312, CHAR *const bufUtf8, const SIZE_T sizUtf8)
 {
-	return MultiByteToMultiByte(bufGb2312, sizGb2312, CP_GB2312,
-				    bufUtf8, sizUtf8, CP_UTF8);
+	return MultiByteToMultiByte(bufGb2312, sizGb2312, CP_GB2312, bufUtf8, sizUtf8, CP_UTF8);
 }
 
 /**
@@ -117,11 +102,9 @@ inline BOOL Gb2312ToUtf8(const PCSTR bufGb2312, const SIZE_T sizGb2312,
  * \param[in]  sizUtf8    转换后字符串有效尺寸
  * \return 成功或失败
  */
-inline BOOL Gb18030ToUtf8(const PCSTR bufGb18030, const SIZE_T sizGb18030,
-			  const PSTR bufUtf8, const SIZE_T sizUtf8)
+inline BOOL Gb18030ToUtf8(const CHAR *const bufGb18030, const SIZE_T sizGb18030, CHAR *const bufUtf8, const SIZE_T sizUtf8)
 {
-	return MultiByteToMultiByte(bufGb18030, sizGb18030, CP_GB18030,
-				    bufUtf8, sizUtf8, CP_UTF8);
+	return MultiByteToMultiByte(bufGb18030, sizGb18030, CP_GB18030, bufUtf8, sizUtf8, CP_UTF8);
 }
 
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])

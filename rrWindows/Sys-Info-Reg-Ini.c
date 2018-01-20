@@ -2,16 +2,16 @@
  * \file
  * \brief Windows®初始化文件
  * \author zhengrr
- * \date 2018-1-15
+ * \date 2018-1-15 – 20
  * \copyright The MIT License
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
+#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
-#include <windows.h>
-
-#include "Diag-Debug-Error.h"
+#include <Windows.h>
 
 #define INI_VALUE_LIMIT 80
 
@@ -25,37 +25,30 @@
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-	TCHAR pathApp[_MAX_PATH] = {'\0'};
-	TCHAR drApp[_MAX_DRIVE] = {'\0'};
-	TCHAR dirApp[_MAX_DIR] = {'\0'};
-	TCHAR nameApp[_MAX_FNAME] = {'\0'};
-	TCHAR extApp[_MAX_EXT] = {'\0'};
-
-	TCHAR pathIni[MAX_PATH] = {'\0'};
-
-	TCHAR valueStr[INI_VALUE_LIMIT] = {'\0'};
-	INT valueInt = 0;
-
+	TCHAR pathApp[_MAX_PATH] = {TEXT('\0')};
 	GetModuleFileName(NULL, pathApp, _MAX_PATH);
-	_tsplitpath_s(pathApp, drApp, _MAX_DRIVE, dirApp, _MAX_DIR,
-		      nameApp, _MAX_FNAME, extApp, _MAX_EXT);
+
+	TCHAR drApp[_MAX_DRIVE] = {TEXT('\0')};
+	TCHAR dirApp[_MAX_DIR] = {TEXT('\0')};
+	TCHAR nameApp[_MAX_FNAME] = {TEXT('\0')};
+	TCHAR extApp[_MAX_EXT] = {TEXT('\0')};
+	_tsplitpath_s(pathApp, drApp, _MAX_DRIVE, dirApp, _MAX_DIR, nameApp, _MAX_FNAME, extApp, _MAX_EXT);
+
+	TCHAR pathIni[MAX_PATH] = {TEXT('\0')};
 	_stprintf_s(pathIni, _MAX_PATH, "%s%s/app.ini", drApp, dirApp);
 
-	if (!WritePrivateProfileString(TEXT("app"), TEXT("string"), TEXT("wow"),
-				       pathIni)) {
-		ShowLastError(TEXT("WritePrivateProfileString"));
+	if (!WritePrivateProfileString(TEXT("app"), TEXT("string"), TEXT("wow"), pathIni)) {
+		_ftprintf_s(stderr, TEXT("WritePrivateProfileString failed with error: %lu\n"), GetLastError());
 		return EXIT_FAILURE;
 	}
-	if (!WritePrivateProfileString(TEXT("app"), TEXT("int"), TEXT("666"),
-				       pathIni)) {
-		ShowLastError(TEXT("WritePrivateProfileString"));
+	if (!WritePrivateProfileString(TEXT("app"), TEXT("int"), TEXT("666"), pathIni)) {
+		_ftprintf_s(stderr, TEXT("WritePrivateProfileString failed with error: %lu\n"), GetLastError());
 		return EXIT_FAILURE;
 	}
 
-	GetPrivateProfileString(TEXT("app"), TEXT("string"), TEXT(""),
-				valueStr, INI_VALUE_LIMIT, pathIni);
-	valueInt = GetPrivateProfileInt(TEXT("app"), TEXT("int"), 1337,
-					pathIni);
+	TCHAR valueStr[INI_VALUE_LIMIT] = {TEXT('\0')};
+	GetPrivateProfileString(TEXT("app"), TEXT("string"), TEXT(""), valueStr, INI_VALUE_LIMIT, pathIni);
+	const INT valueInt = GetPrivateProfileInt(TEXT("app"), TEXT("int"), 1337, pathIni);
 
 	_tprintf_s(TEXT("app:string: %s\n"), valueStr);
 	_tprintf_s(TEXT("app:int: %d\n"), valueInt);

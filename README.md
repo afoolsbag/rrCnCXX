@@ -66,6 +66,7 @@ Visual Studio 2008
 [*IncrediBuild*](https://incredibuild.com/)
 Visual Studio
 [*ReSharper С++*](https://jetbrains.com/resharper-cpp/)
+[*CodeMaid*](http://codemaid.net/)
 [*Dependency Walker*](http://dependencywalker.com/)
 
 [*CodeProject*](https://codeproject.com/)
