@@ -17,3 +17,4 @@
 
 + [*Try Git*](https://try.github.io/)
 + [*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
++ ["Git教程"](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000). *廖雪峰的官方网站*.
