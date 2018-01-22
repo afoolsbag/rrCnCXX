@@ -8,7 +8,7 @@
 
 ## References
 
-+ ["C++ reference"](http://cppreference.com/). *cppreference.com*.
++ ["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
 + [*cplusplus.com*](http://cplusplus.com/)
 
 ## Programming Styles
