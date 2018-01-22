@@ -1,9 +1,11 @@
-/** \file
- *  \brief 友元。
- *  \sa <http://en.cppreference.com/w/cpp/language/friend>
- *  \author zhengrr
- *  \date 2016-10-25 – 2017-12-28
- *  \copyright The MIT License */
+/**
+ * \file
+ * \brief 友元
+ * \sa ["friend declaration"](http://en.cppreference.com/w/cpp/language/friend)
+ * \author zhengrr
+ * \date 2016-10-25 – 2018-1-22
+ * \copyright The MIT License
+ */
 
 namespace {
 

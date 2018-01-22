@@ -29,5 +29,5 @@
  */
 int main(int argc, char *argv[]) {
   std::cout << "Hello, world!" << std::endl;
-  return 0;  // 主函数中，若无显式返回，则隐式地在末尾返回`0`。
+  return 0;
 }

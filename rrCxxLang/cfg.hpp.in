@@ -1,24 +1,24 @@
-/** \file
- *  \author zhengrr
- *  \date 2017-1-12 – 2018-1-8
- *  \copyright The MIT License */
+/**
+ * \file
+ * \author zhengrr
+ * \date 2017-1-12 – 2018-1-22
+ * \copyright The MIT License
+ */
 
-#ifndef RRCXXLANG_CONFIG_HPP_
-#define RRCXXLANG_CONFIG_HPP_
+#ifndef RRCXXLANG_CFG_HPP_
+#define RRCXXLANG_CFG_HPP_
 
 #include <cstdint>
-
-#include "lang-constexpr-cpb.hpp"
 
 namespace rrcxxlang {
 
 static constexpr char * const NAME {"@PROJECT_NAME@"};  ///< 项目名
 static constexpr char * const VERSION {"@PROJECT_VERSION@"};  ///< 项目版本
-static constexpr intmax_t VERSION_MAJOR {@PROJECT_VERSION_MAJOR@};  ///< 项目主版本号
-static constexpr intmax_t VERSION_MINOR {@PROJECT_VERSION_MINOR@};  ///< 项目次版本号
-static constexpr intmax_t VERSION_PATCH {@PROJECT_VERSION_PATCH@};  ///< 项目补丁版本号
-static constexpr intmax_t VERSION_TWEAK {@PROJECT_VERSION_TWEAK@};  ///< 项目微调版本号
+static constexpr std::intmax_t VERSION_MAJOR {@PROJECT_VERSION_MAJOR@+0};  ///< 项目主版本号
+static constexpr std::intmax_t VERSION_MINOR {@PROJECT_VERSION_MINOR@+0};  ///< 项目次版本号
+static constexpr std::intmax_t VERSION_PATCH {@PROJECT_VERSION_PATCH@+0};  ///< 项目补丁版本号
+static constexpr std::intmax_t VERSION_TWEAK {@PROJECT_VERSION_TWEAK@+0};  ///< 项目微调版本号
 
 }// namespace rrcxxlang
 
-#endif// RRCXXLANG_CONFIG_HPP_
+#endif// RRCXXLANG_CFG_HPP_

@@ -18,5 +18,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hpp.in" "cfg.hpp" @ONLY)
 
 quick_add_executable_with_option(SUBNAME "Main" "lang/basic_concepts/main.cpp")
+quick_add_executable_with_option(SUBNAME "NameSpace" "lang/basic_concepts/namespace.cpp" "cxx_std_ver.hpp")
+
+quick_add_executable_with_option(SUBNAME "Enumeration" "lang/basic_concepts/type/enum.cpp")
+
+quick_add_executable_with_option(SUBNAME "ClassExplicit" "lang/classes/explicit.cpp")
 
 quick_add_library_with_option(SUBNAME "Library" "${PROJECT_BINARY_DIR}/cfg.hpp" "api.hpp" "lib.hpp" "lib.cpp")

@@ -1,11 +1,13 @@
-/** \file
- *  \brief 库
- *  \author zhengrr
- *  \date 2018-1-9
- *  \copyright The MIT License */
+/**
+ * \file
+ * \brief 库
+ * \author zhengrr
+ * \date 2018-1-9 – 2018-1-22
+ * \copyright The MIT License
+ */
 
-#ifndef RRCXXLANG_LIBRARY_HPP_
-#define RRCXXLANG_LIBRARY_HPP_
+#ifndef RRCXXLANG_LIB_HPP_
+#define RRCXXLANG_LIB_HPP_
 
 #include <string>
 
@@ -17,4 +19,4 @@ namespace rrcxxlang {
 
 }// namespace rrcxxlang
 
-#endif// RRCXXLANG_LIBRARY_HPP_
+#endif// RRCXXLANG_LIB_HPP_

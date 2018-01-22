@@ -1,9 +1,9 @@
 /** \copyright The MIT License */
 
 #define RRCLANG_EXPORTS
-#include "library.h"
+#include "lib.h"
 
-#include "config.h"
+#include "cfg.h"
 
 void rrclang_get_version(struct rrclang_version *verptr)
 {

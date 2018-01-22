@@ -1,6 +1,6 @@
 /**
  * \file
- * \brief 类型转换。
+ * \brief 类型转换
  * \sa ["Conversions"](http://en.cppreference.com/w/cpp/language/expressions#Conversions). *cppreference.com*.
  * \sa <http://en.cppreference.com/w/cpp/language/const_cast>
  * \sa <http://en.cppreference.com/w/cpp/language/static_cast>

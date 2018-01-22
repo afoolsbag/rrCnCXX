@@ -5,8 +5,8 @@
  * \copyright The MIT License
  */
 
-#ifndef RRCLANG_CONFIG_H_
-#define RRCLANG_CONFIG_H_
+#ifndef RRCLANG_CFG_H_
+#define RRCLANG_CFG_H_
 
 #include <stdint.h>
 
@@ -17,4 +17,4 @@ static const intmax_t RRCLANG_VERSION_MINOR = @PROJECT_VERSION_MINOR@+0;  /**< �
 static const intmax_t RRCLANG_VERSION_PATCH = @PROJECT_VERSION_PATCH@+0;  /**< 项目补丁版本号 */
 static const intmax_t RRCLANG_VERSION_TWEAK = @PROJECT_VERSION_TWEAK@+0;  /**< 项目微调版本号 */
 
-#endif/* RRCLANG_CONFIG_H_*/
+#endif/* RRCLANG_CFG_H_*/

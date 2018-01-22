@@ -1,26 +1,27 @@
-/** \file
- *  \brief 枚举。
- *  \sa <http://en.cppreference.com/w/cpp/language/enum>
- *  \author zhengrr
- *  \date 2017-12-27 – 28
- *  \copyright The MIT License */
+/**
+ * \file
+ * \brief 枚举
+ * \sa ["Type"](http://en.cppreference.com/w/cpp/language/type). *cppreference.com*.
+ * \sa ["enumeration declaration"](http://en.cppreference.com/w/cpp/language/enum). *cppreference.com*.
+ * \author zhengrr
+ * \date 2017-12-27 – 2018-1-22
+ * \copyright The MIT License
+ */
 
-#include <gtest/gtest.h>
+namespace {
 
-TEST(enumeration, unscoped_enumeration)
-{
-    enum RgbPrimaryColor {
-        kRed, kGreen, kBlue
-    } blue = kBlue;
+enum RgbPrimaryColor {
+  kRed, kGreen, kBlue
+};// enum RgbPrimaryColor
 
-    SUCCEED();
-}
+enum class CmykPrimaryColor {
+  kCyan, kMagenta, kYellow, kKey, kBlack = static_cast<int>(kKey)
+};// enum class CmykPrimaryColor
 
-TEST(enumeration, scoped_enumerations)
-{
-    enum class RgbPrimaryColor {
-        kRed, kGreen, kBlue
-    } blue = RgbPrimaryColor::kBlue;
+}// namespace
 
-    SUCCEED();
+int main() {
+  RgbPrimaryColor red = kRed;
+
+  CmykPrimaryColor cyan = CmykPrimaryColor::kCyan;
 }
