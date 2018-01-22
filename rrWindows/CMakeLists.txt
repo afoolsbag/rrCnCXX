@@ -22,7 +22,7 @@ quick_add_executable_with_option(SUBNAME "FileAttrs" "DaSto/LocalFS/FileMgmt/Att
 quick_add_executable_with_option(SUBNAME "FileExists" "DaSto/LocalFS/FileMgmt/Exists.c")
 quick_add_executable_with_option(SUBNAME "FileFild" "DaSto/LocalFS/FileMgmt/Find.c")
 quick_add_executable_with_option(SUBNAME "Unicode" "DesktopAppUi/I18n4WinApps/Unicode.c")
-quick_add_executable_with_option(SUBNAME "ErrHandling" "Dgs/DebugEh/ErrHandling.c")
+quick_add_executable_with_option(SUBNAME "ErrHandling" "Diags/DebugEh/ErrHandling.c")
 quick_add_executable_with_option(SUBNAME "TcpClient" "NetInternet/WinSock2/TcpClient.c")
 quick_add_executable_with_option(SUBNAME "TcpServer" "NetInternet/WinSock2/TcpServer.c")
 quick_add_executable_with_option(SUBNAME "UdpClient" "NetInternet/WinSock2/UdpClient.c")

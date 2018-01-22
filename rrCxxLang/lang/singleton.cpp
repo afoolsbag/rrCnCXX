@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxx_standard_version.hpp"
+#include "cxx_std_ver.hpp"
 
 #if !CXXN2660
 #include <mutex>

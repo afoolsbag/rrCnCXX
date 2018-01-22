@@ -5,7 +5,7 @@
  *  \date 2017-12-25
  *  \copyright The MIT License */
 
-#include "cxx_standard_version.hpp"
+#include "cxx_std_ver.hpp"
 
 #if CXXSTD11
 

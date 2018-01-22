@@ -4,10 +4,10 @@
 # | |  | |  | |___ >  < >  <| |__| (_| | | | | (_| | |_| | (_| | (_| |  __/
 # |_|  |_|   \____/_/\_/_/\_|_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|
 # zhengrr                                     |___/             |___/
-# 2016-8-1 – 2018-1-9                               rrCxxLanguage by FIGlet
+# 2016-8-1 – 2018-1-22                              rrCxxLanguage by FIGlet
 # The MIT License
 
-project("rrCxxLanguage" VERSION 0.0.0.0 LANGUAGES CXX)
+project("rrCxxLanguage" VERSION 2018.1.22 LANGUAGES CXX)
 set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()
@@ -15,10 +15,8 @@ adjust_compiler_warning_level_to_highest()
 quick_add_doxygen_with_option()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-configure_file("config.hpp.in" "config.hpp" @ONLY)
+configure_file("cfg.hpp.in" "cfg.hpp" @ONLY)
 
-quick_add_library_with_option(SUBNAME "Library" "${PROJECT_BINARY_DIR}/config.hpp" "api.hpp" "library.hpp" "library.cpp")
+quick_add_executable_with_option(SUBNAME "Main" "lang/basic_concepts/main.cpp")
 
-#enable_testing()
-#quick_aux_source_directory(sourceFiles CXX)
-#quick_add_googletest_with_option(sourceFiles)
+quick_add_library_with_option(SUBNAME "Library" "${PROJECT_BINARY_DIR}/cfg.hpp" "api.hpp" "lib.hpp" "lib.cpp")
