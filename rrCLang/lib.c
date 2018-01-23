@@ -5,12 +5,12 @@
 
 #include "cfg.h"
 
-void rrclang_get_version(struct rrclang_version *verptr)
+void rrclang_get_ver(struct rrclang_ver *verptr)
 {
-	verptr->major = RRCLANG_VERSION_MAJOR;
-	verptr->minor = RRCLANG_VERSION_MINOR;
-	verptr->patch = RRCLANG_VERSION_PATCH;
-	verptr->tweak = RRCLANG_VERSION_TWEAK;
+	verptr->major = RRCLANG_VER_MAJOR;
+	verptr->minor = RRCLANG_VER_MINOR;
+	verptr->patch = RRCLANG_VER_PATCH;
+	verptr->tweak = RRCLANG_VER_TWEAK;
 }
 
 int32_t rrclang_sigh(void)

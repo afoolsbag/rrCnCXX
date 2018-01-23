@@ -11,18 +11,20 @@
 
 #include <assert.h>
 
-#include "c_standard_version.h"
+#include "c_std_ver.h"
 
+/** \brief point */
 static struct point {
 	double x, y;
 };
 
+/** \brief main */
 int main(void)
 {
 	/* 匿名结构体（复合字面量） */
-#if CSTD99
+#if C_STD_99
 	struct point p_compound_literals = (struct point) {.x = 0, .y = 0};
 	assert(p_compound_literals.x == 0);
 	assert(p_compound_literals.y == 0);
-#endif// CSTD99
+#endif/* C_STD_99*/
 }

@@ -1,9 +1,10 @@
 /**
  * \file
- * \brief 输入输出
- * \sa ["File input/output"](http://en.cppreference.com/w/c/io). *cppreference.com*.
+ * \brief 文件输入/输出
+ * \sa ["File input/output (文件输入/输出)"](http://en.cppreference.com/w/c/io). *cppreference.com*.
+ * \sa \ref index
  * \author zhengrr
- * \date 2016-11-14 – 2018-1-17
+ * \date 2016-11-14 – 2018-1-23
  * \copyright The MIT License
  */
 
@@ -12,8 +13,6 @@
 
 /**
  * \brief 打开文件
- * \sa ["fopen"](http://cplusplus.com/reference/cstdio/fopen/). *C++ Reference*.
- * \sa ["fclose"](http://cplusplus.com/reference/cstdio/fclose/). *C++ Reference*.
  * \sa ["fopen, fopen_s"](http://en.cppreference.com/w/c/io/fopen). *cppreference.com*.
  * \sa ["fclose"](http://en.cppreference.com/w/c/io/fclose). *cppreference.com*.
  */
@@ -30,7 +29,6 @@ void file_open(void)
 
 /**
  * \brief 文件重打开
- * \sa ["freopen"](http://cplusplus.com/reference/cstdio/freopen/). *C++ Reference*.
  * \sa ["freopen, freopen_s"](http://en.cppreference.com/w/c/io/freopen). *cppreference.com*.
  */
 void file_reopen(void)
@@ -44,9 +42,6 @@ void file_reopen(void)
 
 /**
  * \brief 缓冲
- * \sa ["fflush"](http://cplusplus.com/reference/cstdio/fflush/). *C++ Reference*.
- * \sa ["setbuf"](http://cplusplus.com/reference/cstdio/setbuf/). *C++ Reference*.
- * \sa ["setvbuf"](http://cplusplus.com/reference/cstdio/setvbuf/). *C++ Reference*.
  * \sa ["fflush"](http://en.cppreference.com/w/c/io/fflush). *cppreference.com*.
  * \sa ["setbuf"](http://en.cppreference.com/w/c/io/setbuf). *cppreference.com*.
  * \sa ["setvbuf"](http://en.cppreference.com/w/c/io/setvbuf). *cppreference.com*.
@@ -55,10 +50,6 @@ void file_buffer(void) {}
 
 /**
  * \brief 取、放字符
- * \sa ["getchar"](http://cplusplus.com/reference/cstdio/getchar/). *C++ Reference*.
- * \sa ["getc"](http://cplusplus.com/reference/cstdio/getc/). *C++ Reference*.
- * \sa ["putchar"](http://cplusplus.com/reference/cstdio/putchar/). *C++ Reference*.
- * \sa ["putc"](http://cplusplus.com/reference/cstdio/putc/). *C++ Reference*.
  * \sa ["getchar"](http://en.cppreference.com/w/c/io/getchar). *cppreference.com*.
  * \sa ["fgetc, getc"](http://en.cppreference.com/w/c/io/fgetc). *cppreference.com*.
  * \sa ["putchar"](http://en.cppreference.com/w/c/io/putchar). *cppreference.com*.
@@ -88,10 +79,6 @@ void get_put_character(void)
 
 /**
  * \brief 取、放字符串
- * \sa ["gets"](http://cplusplus.com/reference/cstdio/gets/). *C++ Reference*.
- * \sa ["fgets"](http://cplusplus.com/reference/cstdio/fgets/). *C++ Reference*.
- * \sa ["puts"](http://cplusplus.com/reference/cstdio/puts/). *C++ Reference*.
- * \sa ["fputs"](http://cplusplus.com/reference/cstdio/fputs/). *C++ Reference*.
  * \sa ["gets, gets_s"](http://en.cppreference.com/w/c/io/gets). *cppreference.com*.
  * \sa ["fgets"](http://en.cppreference.com/w/c/io/fgets). *cppreference.com*.
  * \sa ["puts"](http://en.cppreference.com/w/c/io/puts). *cppreference.com*.
@@ -124,8 +111,6 @@ void get_put_string(void)
 
 /**
  * \brief 格式化扫描（输入）打印（输出）
- * \sa ["scanf"](http://cplusplus.com/reference/cstdio/scanf/). *C++ Reference*.
- * \sa ["printf"](http://cplusplus.com/reference/cstdio/printf/). *C++ Reference*.
  * \sa ["scanf, fscanf, sscanf, scanf_s, fscanf_s, sscanf_s"](http://en.cppreference.com/w/c/io/fscanf). *cppreference.com*.
  * \sa ["printf, fprintf, sprintf, snprintf, printf_s, fprintf_s"](http://en.cppreference.com/w/c/io/fprintf). *cppreference.com*.
  */
@@ -147,21 +132,18 @@ void scan_print_formatted(void)
 
 /**
  * \brief 移除（文件）
- * \sa ["remove"](http://cplusplus.com/reference/cstdio/remove/). *C++ Reference*.
  * \sa ["remove"](http://en.cppreference.com/w/c/io/remove). *cppreference.com*.
  */
 void remove_file(void) {}
 
 /**
  * \brief 重命名（文件）
- * \sa ["rename"](http://cplusplus.com/reference/cstdio/rename/). *C++ Reference*.
  * \sa ["rename"](http://en.cppreference.com/w/c/io/rename). *cppreference.com*.
  */
 void rename_file(void) {}
 
 /**
  * \brief 临时文件
- * \sa ["tmpfile"](http://cplusplus.com/reference/cstdio/tmpfile/). *C++ Reference*.
  * \sa ["tmpfile, tmpfile_s"](http://en.cppreference.com/w/c/io/tmpfile). *cppreference.com*.
  */
 void temporary_file(void)
@@ -177,7 +159,6 @@ void temporary_file(void)
 
 /**
  * \brief 临时文件名
- * \sa ["tmpnam"](http://cplusplus.com/reference/cstdio/tmpnam/). *C++ Reference*.
  * \sa ["tmpnam, tmpnam_s"](http://en.cppreference.com/w/c/io/tmpnam). *cppreference.com*.
  */
 void temporary_filename(void)
@@ -189,6 +170,7 @@ void temporary_filename(void)
 	}
 }
 
+/** \brief main */
 int main(void)
 {
 	/* File access */

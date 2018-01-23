@@ -7,8 +7,8 @@
  * \copyright The MIT License
  */
 
-#ifndef RRCLANG_LIBRARY_H_
-#define RRCLANG_LIBRARY_H_
+#ifndef RRCLANG_LIB_H_
+#define RRCLANG_LIB_H_
 
 #include <stdint.h>
 
@@ -19,18 +19,18 @@ extern "C" {
 #endif
 
 /** \brief 库版本结构体 */
-struct rrclang_version {
-	int16_t major,  /**< 库主版本号 */
-		minor,  /**< 库次版本号 */
-		patch,  /**< 库补丁版本号 */
-		tweak;  /**< 库微调版本号 */
+struct rrclang_ver {
+	int16_t major;  /**< 库主版本号 */
+	int16_t minor;  /**< 库次版本号 */
+	int16_t patch;  /**< 库补丁版本号 */
+	int16_t tweak;  /**< 库微调版本号 */
 };
 
 /**
  * \brief 获取库版本
- * \param verptr[out] 库版本结构体的指针
+ * \param[out] verptr 库版本结构体的指针
  */
-RRCLANG_API void rrclang_get_version(struct rrclang_version *verptr);
+RRCLANG_API void rrclang_get_ver(struct rrclang_ver *verptr);
 
 /**
  * \brief 叹
@@ -41,4 +41,4 @@ RRCLANG_API int32_t rrclang_sigh(void);
 }
 #endif
 
-#endif/* RRCLANG_LIBRARY_H_*/
+#endif/* RRCLANG_LIB_H_*/

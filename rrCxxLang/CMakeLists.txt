@@ -17,6 +17,11 @@ quick_add_doxygen_with_option()
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hpp.in" "cfg.hpp" @ONLY)
 
+quick_add_executable_with_option(SUBNAME "Vectory" "conts_lib/vector.cpp")
+
+quick_add_executable_with_option(SUBNAME "UniquePtr" "general_utils_lib/dyn_mem_mgmt/unique_ptr.cpp" "cxx_std_ver.hpp")
+quick_add_executable_with_option(SUBNAME "SharedPtr" "general_utils_lib/dyn_mem_mgmt/shared_ptr.cpp" "cxx_std_ver.hpp")
+
 quick_add_executable_with_option(SUBNAME "Main" "lang/basic_concepts/main.cpp")
 quick_add_executable_with_option(SUBNAME "NameSpace" "lang/basic_concepts/namespace.cpp" "cxx_std_ver.hpp")
 
@@ -25,3 +30,5 @@ quick_add_executable_with_option(SUBNAME "Enumeration" "lang/basic_concepts/type
 quick_add_executable_with_option(SUBNAME "ClassExplicit" "lang/classes/explicit.cpp")
 
 quick_add_library_with_option(SUBNAME "Library" "${PROJECT_BINARY_DIR}/cfg.hpp" "api.hpp" "lib.hpp" "lib.cpp")
+
+quick_add_executable_with_option(SUBNAME "Singleton" "dzn_patterns/singleton.cpp" "cxx_std_ver.hpp")

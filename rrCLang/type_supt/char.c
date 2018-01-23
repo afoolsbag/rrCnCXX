@@ -9,13 +9,13 @@
  * \copyright The MIT License
  */
 
-#include "c_standard_version.h"
+#include "c_std_ver.h"
 
 #include <assert.h>
-#if CSTD95
+#if C_STD_95
 # include <wchar.h>
 #endif/* CSTD95*/
-#if CN1040
+#if C_N1040
 # include <uchar.h>
 #endif/* CN1040*/
 
@@ -27,6 +27,7 @@ char hex_int_to_char(const int hexint)
 	return "0123456789ABCDEF"[hexint % 16];
 }
 
+/** \brief main */
 int main(void)
 {
 	char ascii = 'a';  /* U+0061 */
@@ -35,13 +36,13 @@ int main(void)
 
 	wchar_t utf16 = L'喵';  /* U+55B5 */
 
-#if CSTD99
+#if C_STD_99
 	assert(L'\u55B5' == utf16);
 
 	wchar_t utf32 = U'𝌀';
-#endif/* CSTD99*/
+#endif/* C_STD_99*/
 
-#ifdef CSTD11
+#ifdef C_STD_11
 
-#endif/* CSTD11*/
+#endif/* C_STD_11*/
 }

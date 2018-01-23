@@ -3,7 +3,7 @@
  * \brief 记号
  * \sa \ref page_token
  * \author zhengrr
- * \data 2016-11-7 – 2018-1-17
+ * \date 2016-11-7 – 2018-1-17
  * \copyright The MIT License
  */
 
@@ -45,9 +45,10 @@
 
 /**
  * \page page_token
- * \section sec_alternative_tokens 运算符宏（Operator macros）（C95）
+ * \section sec_operator_macros 运算符宏（Operator macros）（C95）
  *
  * \sa ["Operator macros"](http://en.cppreference.com/w/c/language/operator_alternative#Operator_macros.28C95.29). *cppreference.com*.
  */
 
+/** \brief main */
 int main(void) {}

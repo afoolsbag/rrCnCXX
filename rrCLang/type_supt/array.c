@@ -28,6 +28,7 @@ void compound_literals()
 
 // C99 变长数组
 
+/** \brief main */
 int main(void)
 {
 }

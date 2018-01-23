@@ -46,10 +46,12 @@ Basic Combined Programming Language.
 
 ## 杂货
 
++ ["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/).  *计算机书籍控*.
+    + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
+    + *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
+
 + ["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
 + ["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
-+ *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
-+ *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
 [*Notepad++*](https://notepad-plus-plus.org/)
 [*Visual Studio Code*](https://code.visualstudio.com/)

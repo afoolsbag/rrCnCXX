@@ -4,5 +4,3 @@
 #include "lib.hpp"
 
 #include "cfg.hpp"
-
-
