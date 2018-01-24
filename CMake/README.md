@@ -1,25 +1,19 @@
-# [CMake](https://cmake.org/)
+# [CMake](https://cmake.org)
 
 ## References
 
-+ [Reference Documentation](https://cmake.org/cmake/help/latest/)
++ [Reference Documentation](https://cmake.org/cmake/help/latest)
     + [cmake-commands(7)](https://cmake.org/cmake/help/latest/manual/cmake-commands.7)
-        + [add_custom_target](https://cmake.org/cmake/help/latest/command/add_custom_target)
-        + [add_library](https://cmake.org/cmake/help/latest/command/add_library)
-        + [add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory)
-        + [add_test](https://cmake.org/cmake/help/latest/command/add_test)
-        + [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required)
-        + [cmake_parse_arguments](https://cmake.org/cmake/help/latest/command/cmake_parse_arguments)
-        + [function](https://cmake.org/cmake/help/latest/command/function)
-        + [if](https://cmake.org/cmake/help/latest/command/if)
-        + [include_directories](https://cmake.org/cmake/help/latest/command/include_directories)
-        + [list](https://cmake.org/cmake/help/latest/command/list)
-        + [macro](https://cmake.org/cmake/help/latest/command/macro)
-        + [message](https://cmake.org/cmake/help/latest/command/message)
-        + [option](https://cmake.org/cmake/help/latest/command/option)
-        + [set_target_properties](https://cmake.org/cmake/help/latest/command/set_target_properties)
-        + [string](https://cmake.org/cmake/help/latest/command/string)
     + [cmake-language(7)](https://cmake.org/cmake/help/latest/manual/cmake-language.7)
     + [cmake-developer(7)](https://cmake.org/cmake/help/latest/manual/cmake-developer.7)
-+ [Wiki](https://cmake.org/Wiki/)
++ [Wiki](https://cmake.org/Wiki)
     + [CMake Useful Variables](https://cmake.org/Wiki/CMake_Useful_Variables)
+
+## Programming Styles
+
+```CMake
+set(sStr     "Make sure only a string")
+set(zStrList "String(s)" "str2" "str3")
+set(vVar     TheVarWhatOnlyOne        )
+set(wVarList Variables var2 var3 var4 )
+```

@@ -1,11 +1,14 @@
 /**
  * \page p_iter_lib 迭代器库
+ * \tableofcontents
  *
+ * <table> <tr> <td>
+ * + \ref p_iter_lib
+ * </td> <td>
  * + ["Iterator library (迭代器库)"](http://en.cppreference.com/w/cpp/iterator). *cppreference.com*.
- *
- * \sa \ref index
+ * </td> </tr> </table>
  *
  * \author zhengrr
- * \date 2018-1-23
+ * \date 2018-1-23 – 24
  * \copyright The MIT License
  */

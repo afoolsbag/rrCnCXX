@@ -1,6 +1,25 @@
 /**
  * \page p_dyn_mem_mgmt 动态内存管理
  *
+ * <table> <tr> <td>
+ * + \ref p_dyn_mem_mgmt
+ *     + -
+ *         + -
+ *             + unique_ptr.cpp
+ *             + shared_ptr.cpp
+ *             + -
+ *             + -
+ *         + -
+ *             + -
+ *             + -
+ *             + -
+ *             + -
+ *     + -
+ *     + -
+ *     + -
+ *     + -
+ *     + -
+ * </td> <td>
  * + ["Dynamic memory management (动态内存管理)"](http://en.cppreference.com/w/cpp/memory). *cppreference.com*.
  *     + Smart pointers (智能指针)
  *         + Pointer categories (指针类别)
@@ -18,10 +37,9 @@
  *     + Uninitialized storage (未初始化存储)
  *     + Garbage collector support (垃圾收集器支持)
  *     + Miscellaneous (杂项)
- *
- * \sa \ref p_general_utils_lib
+ * </td> </tr> </table>
  *
  * \author zhengrr
- * \date 2018-1-23
+ * \date 2018-1-23 – 24
  * \copyright The MIT License
  */

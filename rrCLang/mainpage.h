@@ -1,5 +1,5 @@
 /**
- * \mainpage C 参考手册
+ * \mainpage 主页
  *
  * + ["C reference (C 参考手册)"](http://en.cppreference.com/w/c). *cppreference.com*.
  *     + \ref p_c_lang,          [Language (语言)](http://en.cppreference.com/w/c/language)

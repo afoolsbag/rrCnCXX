@@ -8,11 +8,11 @@
 
 #include "cxx_std_ver.hpp"
 
-#include <cassert>
-
 #if !CXX_N2660
 #include <mutex>
 #endif
+
+#include <gtest/gtest.h>
 
 namespace {
 
@@ -77,7 +77,7 @@ LazySingleton &LazySingleton::Instance() {
 
 }// namespace
 
-int main() {
+TEST(singleton, preliminary) {
   auto &eagerSingleton1 = EagerSingleton::Instance();
   auto &eagerSingleton2 = EagerSingleton::Instance();
   assert(&eagerSingleton1 == &eagerSingleton2);

@@ -50,5 +50,3 @@ class Class {
 };// class Class
 
 }// namespace
-
-int main() {}

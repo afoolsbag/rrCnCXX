@@ -7,6 +7,8 @@
  * \copyright The MIT License
  */
 
+#include <gtest/gtest.h>
+
 namespace {
 
 struct Class {
@@ -21,7 +23,8 @@ struct Clazz {
 
 }// namespace
 
-int main() {
+/// GoogleTest explicit_specifier preliminary
+TEST(explicit_specifier, preliminary) {
   Class a1(1);                       // ✓ 直接初始化
   Class a2 = 2;                      // ✓ 复制初始化
   Class a3{3};                       // ✓ 直接列表初始化

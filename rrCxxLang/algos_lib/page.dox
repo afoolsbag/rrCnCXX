@@ -1,11 +1,14 @@
 /**
  * \page p_algos_lib 算法库
+ * \tableofcontents
  *
+ * <table> <tr> <td>
+ * + \ref p_algos_lib
+ * </td> <td>
  * + ["Algorithms library (算法库)"](http://en.cppreference.com/w/cpp/algorithm). *cppreference.com*.
- *
- * \sa \ref index
+ * </td> </tr> </table>
  *
  * \author zhengrr
- * \date 2018-1-23
+ * \date 2018-1-23 – 24
  * \copyright The MIT License
  */

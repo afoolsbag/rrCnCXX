@@ -1,12 +1,14 @@
 /**
  * \file
  * \brief 枚举
- * \sa ["Type"](http://en.cppreference.com/w/cpp/language/type). *cppreference.com*.
- * \sa ["enumeration declaration"](http://en.cppreference.com/w/cpp/language/enum). *cppreference.com*.
+ * \sa ["Type (类型)"](http://en.cppreference.com/w/cpp/language/type). *cppreference.com*.
+ * \sa ["enumeration declaration (枚举声明)"](http://en.cppreference.com/w/cpp/language/enum). *cppreference.com*.
  * \author zhengrr
- * \date 2017-12-27 – 2018-1-22
+ * \date 2017-12-27 – 2018-1-24
  * \copyright The MIT License
  */
+
+#include <gtest/gtest.h>
 
 namespace {
 
@@ -20,8 +22,11 @@ enum class CmykPrimaryColor {
 
 }// namespace
 
-int main() {
+TEST(enumeration, preliminary) {
+
   RgbPrimaryColor red = kRed;
 
   CmykPrimaryColor cyan = CmykPrimaryColor::kCyan;
+
+  SUCCEED();
 }

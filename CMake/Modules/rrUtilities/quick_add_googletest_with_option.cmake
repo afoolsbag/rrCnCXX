@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___                2017-12-27 – 2018-1-2
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2017-12-27 – 2018-1-24
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -13,28 +13,23 @@
 # .rst
 # .. command:: quick_add_googletest_with_option
 #
-#  简便生成ＧｏｏｇｌｅＴｅｓｔ测试::
+#    简便生成 Google Test 测试::
 #
-#   quick_add_googletest_with_option(
-#     <source_variable>
-#   )
-function(quick_add_googletest_with_option _SOURCE_VARIABLE)
-  cmake_parse_arguments(PARSE_ARGV 1 "" "" "" "")
-  if(DEFINED _UNPARSED_ARGUMENTS)
-    message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
-    return()
-  endif()
-
-  string(TOUPPER "${PROJECT_NAME}" projectNameUpper)
-  string(TOLOWER "${PROJECT_NAME}" projectNameLower)
-  set(optionName "${projectNameUpper}_COMPILE_TEST")
-  set(targetName "${projectNameLower}_test")
-  set(testName "${PROJECT_NAME}_GoogleTest")
+#       quick_add_googletest_with_option(
+#         <source>...
+#       )
+#
+function(quick_add_googletest_with_option)
+  string(TOUPPER "${PROJECT_NAME}" sProjectNameUpper)
+  string(TOLOWER "${PROJECT_NAME}" sProjectNameLower)
+  set(vOption "${sProjectNameUpper}_COMPILE_TEST")
+  set(vTarget "${sProjectNameLower}_test")
+  set(vGoogleTest "${PROJECT_NAME}_GoogleTest")
 
   set(GTEST_ROOT "" CACHE PATH "The root directory of the Google Test installation.")
-  find_package(GTest)
-  option(${optionName} "Build test file (requires GoogleTest)." ${GTEST_FOUND})
-  if(NOT ${optionName})
+  find_package("GTest")
+  option(${vOption} "Build test file (requires GoogleTest)." ${GTEST_FOUND})
+  if(NOT ${vOption})
     return()
   endif()
   if(NOT GTEST_FOUND)
@@ -43,8 +38,8 @@ function(quick_add_googletest_with_option _SOURCE_VARIABLE)
   endif()
 
   include_directories(${GTEST_INCLUDE_DIRS})
-  add_executable(${targetName} ${${_SOURCE_VARIABLE}})
-  target_link_libraries(${targetName} GTest::GTest GTest::Main)
+  add_executable(${vTarget} ${ARGN})
+  target_link_libraries(${vTarget} GTest::GTest GTest::Main)
 
-  add_test(NAME ${testName} COMMAND ${targetName})
+  add_test(NAME ${vGoogleTest} COMMAND ${vTarget})
 endfunction()

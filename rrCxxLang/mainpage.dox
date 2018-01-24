@@ -1,0 +1,48 @@
+/**
+ * \mainpage 主页
+ * \tableofcontents
+ *
+ * <table> <tr> <td>
+ * + \ref index
+ *     + \subpage p_cpp_lang
+ *     + -
+ *     + -
+ *     + -
+ *     + \subpage p_err_handling
+ *     + \subpage p_utils_lib
+ *     + \subpage p_strs_lib
+ *     + \subpage p_conts_lib
+ *     + \subpage p_iter_lib
+ *     + \subpage p_algos_lib
+ *     + \subpage p_numerics_lib
+ *     + \subpage p_io_lib
+ *     + \subpage p_l10n_lib
+ *     + \subpage p_regexs_lib
+ *     + \subpage p_atom_ops_lib
+ *     + \subpage p_thrd_supt_lib
+ *     + \subpage p_fsys_lib
+ * </td> <td>
+ * + ["C++ reference (C++ 参考手册)"](http://en.cppreference.com/w/cpp). *cppreference.com*.
+ *     + [Language (语言)](http://en.cppreference.com/w/cpp)
+ *     + [Headers (头文件)](http://en.cppreference.com/w/cpp/header)
+ *     + [Library concepts (库概念)](http://en.cppreference.com/w/cpp/concept)
+ *     + [Language support library (语言支持库)](http://en.cppreference.com/w/cpp/utility#Language_support)
+ *     + [Diagnostics library (诊断库)](http://en.cppreference.com/w/cpp/error)
+ *     + [General utilities library (通用工具库)](http://en.cppreference.com/w/cpp/utility#General-purpose_utilities)
+ *     + [Strings library (字符串库)](http://en.cppreference.com/w/cpp/string)
+ *     + [Containers library (容器库)](http://en.cppreference.com/w/cpp/container)
+ *     + [Iterators library (迭代器库)](http://en.cppreference.com/w/cpp/iterator)
+ *     + [Algorithms library (算法库)](http://en.cppreference.com/w/cpp/algorithm)
+ *     + [Numerics library (数值库)](http://en.cppreference.com/w/cpp/numeric)
+ *     + [Input/output library (输入/输出库)](http://en.cppreference.com/w/cpp/io)
+ *     + [Localizations library (本地化库)](http://en.cppreference.com/w/cpp/locale)
+ *     + [Regular expressions library (正则表达式库)](http://en.cppreference.com/w/cpp/regex)
+ *     + [Atomic operations library (原子操作库)](http://en.cppreference.com/w/cpp/atomic)
+ *     + [Thread support library (线程支持库)](http://en.cppreference.com/w/cpp/thread)
+ *     + [Filesystem library (文件系统库)](http://en.cppreference.com/w/cpp/filesystem)
+ * </td> </tr> </table>
+ *
+ * \author zhengrr
+ * \date 2018-1-23 – 24
+ * \copyright The MIT License
+ */

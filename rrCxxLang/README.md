@@ -13,25 +13,39 @@
 
 ## Programming Styles
 
+**缩进**：
+随意。
+不合意？格式化工具，请。
+
 **命名**：
 以助辨识、理解和记忆。
-过繁妨碍辨识，过简妨碍理解，依环境，无歧义、不冗余，刚刚好。
+过繁妨碍辨识，过简妨碍理解，无歧义不冗余刚刚好。
 
-**变量名**：
-宜紧凑、突出其为个体（驼峰式大小写）；
-区别于类型名（首字母用小写）；
-突出重点（匈牙利应用命名法）；
-全局变量前置`g`，常量前置`k`，类成员后置`_`。
-例：
-```cpp
-// global
-const int kAdultAge {18};
-int gErrorCode;
+*缩写*：
+[广为人知的](http://wikipedia.org "Wikipedia 可查的")应当使用（如：`TCP` `HTTP`），
+[业内通行的](http://Abbreviations.com "Abbreviations 推荐的")可以使用（如：`cur` `img`），
+自行约定的谨慎使用（如：`fs`/`fsys`/`file_system`）。
 
-// local
-const int kAgeOfAdult {18};
-int ageTheLittleOne;
-```
+*类型名*：
+驼峰式（紧凑、突出内聚感）；
+大驼峰（区别于对象）：
+`Account` `App` `Session`
+
+*对象名*：
+驼峰式（紧凑、突出内聚感）；
+小驼峰（区别于类型）；
+据环境，可选应用匈牙利式（突出重点）；
+常量前置`k`，全局前置`g`，属性后置`_`；
+例外的，类型属性采用大驼峰：
+`kAdultAge` `gErrorCode` `.birthday_` `.OperationHours_` `kAgeOfAdult` `ageTheLittleOne`
+
+*方法名*：
+对象方法采用小驼峰，类型方法采用大驼峰：
+`.getId` `.setName` `.doSomething` `.SetUp`
+
+*函数名*：
+全小写配下划线（继承自 C）：
+`do_something` `make_it_better`
 
 + [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
 
