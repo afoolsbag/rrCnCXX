@@ -7,7 +7,8 @@
 # 2016-10-21 – 2018-1-25
 # The MIT License
 
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
 #.rst:
 # FindQt5Package
@@ -46,4 +47,9 @@ mark_as_advanced(Qt5Package_PREFIX_PATH)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
-  Qt5Package DEFAULT_MSG Qt5Package_PREFIX_PATH)
+  Qt5Package DEFAULT_MSG
+    Qt5Package_PREFIX_PATH)
+
+if((Qt5Package_FOUND) AND (NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH))
+  list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
+endif()
