@@ -1,0 +1,9 @@
+/**
+ * \defgroup g_algos 算法
+ * \ingroup g_c_ref
+ *
+ * \sa ["Algorithms (算法)"](http://en.cppreference.com/w/c/algorithm). *cppreference.com*.
+ * \author zhengrr
+ * \date 2018-1-17 – 25
+ * \copyright The MIT License
+ */

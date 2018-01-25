@@ -10,6 +10,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake/Modules")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake/Modules")
 include("rrUtilities")
 
 project("rrCnCxx" VERSION 2018.1.22 LANGUAGES NONE)

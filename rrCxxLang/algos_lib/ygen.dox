@@ -1,0 +1,9 @@
+/**
+ * \defgroup g_algos_lib 算法库
+ * \ingroup g_cpp_ref
+ *
+ * \sa ["Algorithms library (算法库)"](http://en.cppreference.com/w/cpp/algorithm). *cppreference.com*.
+ * \author zhengrr
+ * \date 2018-1-23 – 25
+ * \copyright The MIT License
+ */

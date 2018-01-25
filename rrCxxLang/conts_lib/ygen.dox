@@ -1,31 +1,8 @@
 /**
- * \page p_conts_lib 容器库
- * \tableofcontents
+ * \defgroup g_conts_lib 容器库
+ * \ingroup g_cpp_ref
  *
- * <table> <tr> <td>
- * + \ref p_conts_lib
- *     + -
- *         + -
- *         + vector.cpp
- *         + -
- *         + -
- *         + -
- *     + -
- *         + -
- *         + -
- *         + -
- *         + -
- *     + -
- *         + -
- *         + -
- *         + -
- *         + -
- *     + -
- *         + -
- *         + -
- *         + -
- * </td> <td>
- * + ["Containers library (容器库)"](http://en.cppreference.com/w/cpp/container). *cppreference.com*.
+ * \sa ["Containers library (容器库)"](http://en.cppreference.com/w/cpp/container). *cppreference.com*.
  *     + [Sequence containers (顺序容器)](http://en.cppreference.com/w/cpp/container#Sequence_containers)
  *         + [array (静态相接数组)](http://en.cppreference.com/w/cpp/container/array)
  *         + [vector (动态相接数组)](http://en.cppreference.com/w/cpp/container/vector)
@@ -46,9 +23,7 @@
  *         + [stack (堆栈适配器)](http://en.cppreference.com/w/cpp/container/stack)
  *         + [queue (队列适配器)](http://en.cppreference.com/w/cpp/container/queue)
  *         + [priority_queue (优先级队列适配器)](http://en.cppreference.com/w/cpp/container/priority_queue)
- * </td> </tr> </table>
- *
  * \author zhengrr
- * \date 2018-1-22 – 24
+ * \date 2018-1-22 – 25
  * \copyright The MIT License
  */

@@ -1,0 +1,9 @@
+/**
+ * \defgroup g_vardic_funcs 变参数函数
+ * \ingroup g_c_ref
+ *
+ * \sa ["Variadic functions (变参数函数)"](http://en.cppreference.com/w/c/variadic). *cppreference.com*.
+ * \author zhengrr
+ * \date 2018-1-23 – 25
+ * \copyright The MIT License
+ */

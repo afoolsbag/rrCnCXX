@@ -1,10 +1,12 @@
 /**
- * \file
- * \brief 字符串复制
- * \sa \ref p_strs_lib
+ * \defgroup g_str_cpy 字符串复制
+ * \ingroup g_strs_lib
+ *
  * \author zhengrr
- * \date 2018-1-5 – 23
+ * \date 2018-1-5 – 25
  * \copyright The MIT License
+ *
+ * @{
  */
 
 #include <assert.h>
@@ -51,3 +53,5 @@ int main(void)
 	string_copy();
 	string_n_copy();
 }
+
+/** @} */

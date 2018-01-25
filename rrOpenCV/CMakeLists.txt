@@ -4,7 +4,7 @@
 # | |  | |  | |_| | |_) |  __| | | | |___  \ V /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____|  \_/
 # zhengrr         |_|           rrOpenCV by FIGlet
-# 2018-1-22
+# 2018-1-22 – 25
 # The MIT License
 
 project("rrOpenCV" VERSION 2018.1.22 LANGUAGES CXX)
@@ -14,7 +14,7 @@ adjust_compiler_warning_level_to_highest()
 
 quick_add_doxygen_with_option()
 
-project(DisplayImage)
-find_package(OpenCV REQUIRED)
-add_executable(DisplayImage DisplayImage.cpp)
+find_package(OpenCV)
+include_directories(${OpenCV_INCLUDE_DIRS})
+add_executable(DisplayImage test.cpp)
 target_link_libraries(DisplayImage ${OpenCV_LIBS})

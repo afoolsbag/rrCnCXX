@@ -1,11 +1,13 @@
 /**
- * \file
- * \brief 文件输入/输出
+ * \defgroup g_file_io 文件输入/输出
+ * \ingroup g_c_ref
+ *
  * \sa ["File input/output (文件输入/输出)"](http://en.cppreference.com/w/c/io). *cppreference.com*.
- * \sa \ref index
  * \author zhengrr
- * \date 2016-11-14 – 2018-1-23
+ * \date 2016-11-14 – 2018-1-25
  * \copyright The MIT License
+ *
+ * @{
  */
 
 #include <stdbool.h>
@@ -197,3 +199,5 @@ int main(void)
 	temporary_file();
 	temporary_filename();
 }
+
+/** @} */

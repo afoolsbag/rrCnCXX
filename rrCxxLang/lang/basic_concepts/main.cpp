@@ -1,10 +1,12 @@
 /**
- * \file
- * \brief 主函数
- * \sa \ref p_main_func
+ * \defgroup g_main_func 主函数
+ * \ingroup g_basic_concepts
+ *
  * \author zhengrr
- * \date 2016-10-12 – 2018-1-24
+ * \date 2016-10-12 – 2018-1-25
  * \copyright The MIT License
+ *
+ * @{
  */
 
 #include <gtest/gtest.h>
@@ -21,3 +23,5 @@ int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+
+/** @} */

@@ -13,9 +13,9 @@
 # zhengrr's CMake Utilities.
 
 function(_rr_utilities)
-  file(GLOB modules "${CMAKE_CURRENT_LIST_DIR}/rrUtilities/*.cmake")
-  foreach(module ${modules})
-    include("${module}")
+  file(GLOB zModules "${CMAKE_CURRENT_LIST_DIR}/rrUtilities/*.cmake")
+  foreach(sModule ${zModules})
+    include("${sModule}")
   endforeach()
 endfunction()
 

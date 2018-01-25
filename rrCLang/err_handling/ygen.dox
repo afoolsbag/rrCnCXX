@@ -1,0 +1,9 @@
+/**
+ * \defgroup g_err_handling 错误处理
+ * \ingroup g_c_ref
+ *
+ * \sa ["Error handling (错误处理)"](http://en.cppreference.com/w/c/error). *cppreference.com*.
+ * \author zhengrr
+ * \date 2018-1-23 – 25
+ * \copyright The MIT License
+ */

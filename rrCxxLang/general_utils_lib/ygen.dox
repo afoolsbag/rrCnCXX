@@ -1,18 +1,8 @@
 /**
- * \page p_utils_lib 工具库
- * \tableofcontents
+ * \defgroup g_utils_lib 工具库
+ * \ingroup g_cpp_ref
  *
- * <table> <tr> <td>
- * + \ref p_utils_lib
- *     + -
- *         + -
- *         + \subpage p_dyn_mem_mgmt
- *         + -
- *         + -
- *         + -
- *     + -
- * </td> <td>
- * + ["Utility library (工具库)"](http://en.cppreference.com/w/cpp/utility). *cppreference.com*.
+ * \sa ["Utility library (工具库)"](http://en.cppreference.com/w/cpp/utility). *cppreference.com*.
  *     + Language support (语言支持)
  *         + Type support (类型支持)
  *         + [Dynamic memory management (动态内存管理)](http://en.cppreference.com/w/cpp/memory)
@@ -20,9 +10,7 @@
  *         + Initializer lists (初始化器列表)
  *         + Variadic functions (变参数函数)
  *     + General-purpose utilities (通用工具)
- * </td> </tr> </table>
- *
  * \author zhengrr
- * \date 2018-1-23 – 24
+ * \date 2018-1-23 – 25
  * \copyright The MIT License
  */

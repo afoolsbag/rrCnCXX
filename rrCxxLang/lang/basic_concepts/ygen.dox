@@ -1,12 +1,16 @@
 /**
- * \page p_main_func 主函数
- * \tableofcontents
+ * \defgroup g_basic_concepts 基本概念
+ * \ingroup g_cpp_lang
  *
  * \sa main.cpp
  * \author zhengrr
- * \date 2018-1-23 – 24
+ * \date 2018-1-23 – 25
  * \copyright The MIT License
- *
+ */
+
+/**
+ * \page p_basic_concepts 基本概念话题
+ * \tableofcontents
  *
  * ----------------------------------
  * \section s_return_vs_exit_vs_abort 主函数中 `return`、`exit` 和 `abort` 的差异

@@ -1,18 +1,16 @@
 /**
- * \page p_thrd_supt_lib 线程支持库
- * \tableofcontents
+ * \defgroup g_thrd_supt_lib 线程支持库
+ * \ingroup g_cpp_lang
  *
- * <table> <tr> <td>
- * + \ref p_thrd_supt_lib
- * </td> <td>
- * + ["Thread support library (线程支持库)"](http://en.cppreference.com/w/cpp/thread). *cppreference.com*.
- * </td> </tr> </table>
- *
- * \sa thrd.cpp
+ * \sa ["Thread support library (线程支持库)"](http://en.cppreference.com/w/cpp/thread). *cppreference.com*.
  * \author zhengrr
  * \date 2018-1-23 – 24
  * \copyright The MIT License
- *
+ */
+
+/**
+ * \page p_thrd_supt_lib 线程支持库话题
+ * \tableofcontents
  *
  * -----------------------
  * \section s_stdendl_vs_n `std::endl` 和 `\n` 的差异

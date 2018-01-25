@@ -2,7 +2,7 @@
 
 ## References
 
-+ [*Vim Documentation*](http://vimdoc.sourceforge.net/)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/)</sub>
++ [*Vim Documentation*](http://vimdoc.sourceforge.net)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net)</sub>
     + [help](http://vimdoc.sourceforge.net/htmldoc/help.html)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/help.html)</sub>
     + [quickref](http://vimdoc.sourceforge.net/htmldoc/quickref.html)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html)</sub>
     + index<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/index.html)</sub>

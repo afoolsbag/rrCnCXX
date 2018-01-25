@@ -7,7 +7,7 @@
 #                           ___| |__   ___  ___| | _ _ __   __ _ _ __ ___   ___
 #                          / __| '_ \ / _ \/ __| |/ | '_ \ / _` | '_ ` _ \ / _ \
 # zhengrr                 | (__| | | |  __| (__|   <| | | | (_| | | | | | |  __/
-# 2017-12-18 – 27          \___|_| |_|\___|\___|_|\_|_| |_|\__,_|_| |_| |_|\___|
+# 2017-12-18 – 2018-1-25   \___|_| |_|\___|\___|_|\_|_| |_|\__,_|_| |_| |_|\___|
 # The MIT License                                           check_name by FIGlet
 
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
@@ -16,12 +16,13 @@ cmake_policy(SET CMP0054 NEW) #3.1+
 # .rst
 # .. command:: check_name_with_c_identifier_rules
 #
-#  检查输入是否符合Ｃ语言标识符（命名）规则::
+#    检查输入是否符合 C语言标识符（命名）规则::
 #
-#   check_name_with_c_identifier_rules(
-#     <name>
-#     <result>
-#   )
+#       check_name_with_c_identifier_rules(
+#         <name>
+#         <result>
+#       )
+#
 function(check_name_with_c_identifier_rules _NAME _RESULT)
   if(NOT ${ARGC} EQUAL 2)
     message(SEND_ERROR "Incorrect number of arguments (${ARGN}).")

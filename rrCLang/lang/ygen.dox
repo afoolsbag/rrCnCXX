@@ -1,7 +1,8 @@
 /**
- * \page p_c_lang C 语言
+ * \defgroup g_c_lang C 语言
+ * \ingroup g_c_ref
  *
- * + ["C language (C 语言)"](http://en.cppreference.com/w/c/language). *cppreference.com*.
+ * \sa ["C language (C 语言)"](http://en.cppreference.com/w/c/language). *cppreference.com*.
  *     + [Basic concepts (基本概念)](http://en.cppreference.com/w/c/language/basic_concepts)
  *     + [Keywords (关键词)](http://en.cppreference.com/w/c/keyword)
  *     + [Preprocessor (预处理器)](http://en.cppreference.com/w/c/preprocessor)
@@ -11,10 +12,7 @@
  *     + [Declarations (声明)](http://en.cppreference.com/w/c/language/declarations)
  *     + [Functions (函数)](http://en.cppreference.com/w/c/language/functions)
  *     + Miscellaneous (杂项)
- *
- * \sa \ref index
- *
  * \author zhengrr
- * \date 2018-1-23
+ * \date 2018-1-23 – 25
  * \copyright The MIT License
  */

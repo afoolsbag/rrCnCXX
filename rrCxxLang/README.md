@@ -54,3 +54,7 @@
 + ["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.
 + [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
 + ["C++必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
+
+## Others
+
++ [*Google Test*](https://github.com/google/googletest)

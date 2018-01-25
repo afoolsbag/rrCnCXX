@@ -1,38 +1,8 @@
 /**
- * \page p_cpp_lang C++ 语言
- * \tableofcontents
+ * \defgroup g_cpp_lang C++ 语言
+ * \ingroup g_cpp_ref
  *
- * <table> <tr> <td>
- * + \ref p_cpp_lang
- *     + -
- *         + -
- *         + -
- *         + -
- *         + -
- *             + -
- *         + -
- *             + -
- *             + -
- *         + -
- *         + -
- *             + -
- *             + -
- *         + -
- *         + -
- *         + \subpage p_main_func
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- *     + -
- * </td> <td>
- * + ["C++ language (C++ 语言)"](http://en.cppreference.com/w/cpp/language). *cppreference.com*.
+ * \sa ["C++ language (C++ 语言)"](http://en.cppreference.com/w/cpp/language). *cppreference.com*.
  *     + [Basic concepts (基本概念)](http://en.cppreference.com/w/cpp/language/basic_concepts)
  *         + [Comments (注释)](http://en.cppreference.com/w/cpp/comment)
  *         + [ASCII chart (ASCII 码表)](http://en.cppreference.com/w/cpp/language/ascii)
@@ -60,9 +30,7 @@
  *     + [Templates (模板)](http://en.cppreference.com/w/cpp/language/templates)
  *     + [Exceptions (异常)](http://en.cppreference.com/w/cpp/language/exceptions)
  *     + Miscellaneous (杂项)
- * </td> </tr> </table>
- *
  * \author zhengrr
- * \date 2018-1-23 – 24
+ * \date 2018-1-23 – 25
  * \copyright The MIT License
  */

@@ -1,11 +1,13 @@
 /**
- * \file
- * \brief 日期和时间工具
+ * \defgroup g_date_time_utils 日期和时间工具
+ * \ingroup g_c_ref
+ *
  * \sa ["Date and time utilities (日期和时间工具)"](http://en.cppreference.com/w/c/chrono). *cppreference.com*.
- * \sa \ref index
  * \author zhengrr
- * \date 2016-12-2 – 2018-1-23
+ * \date 2016-12-2 – 2018-1-25
  * \copyright The MIT License
+ *
+ * @{
  */
 
 #include <stdio.h>
@@ -87,3 +89,5 @@ int main(void)
 	clock_time();
 	specifying_time();
 }
+
+/** @} */

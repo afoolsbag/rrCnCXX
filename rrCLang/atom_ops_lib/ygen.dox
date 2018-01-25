@@ -1,0 +1,9 @@
+/**
+ * \defgroup g_atom_ops_lib 原子操作库
+ * \ingroup g_c_ref
+ *
+ * \sa ["Atomic operations library (原子操作库)"](http://en.cppreference.com/w/c/atomic). *cppreference.com*.
+ * \author zhengrr
+ * \date 2018-1-23 – 25
+ * \copyright The MIT License
+ */

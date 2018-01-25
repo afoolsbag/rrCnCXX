@@ -1,0 +1,26 @@
+/**
+ * \defgroup g_strs_lib 字符串库
+ * \ingroup g_c_ref
+ *
+ * \sa ["Strings library (字符串库)"](http://en.cppreference.com/w/c/string). *cppreference.com*.
+ *     + [Null-terminated byte string management (空终止字节字符串管理)](http://en.cppreference.com/w/c/string/byte)
+ *         + [Character classification (字符分类)](http://en.cppreference.com/w/c/string/byte#Character_classification)
+ *         + [Character manipulation (字符操作)](http://en.cppreference.com/w/c/string/byte#Character_manipulation)
+ *         + [Conversions to numeric formats (转换成数值格式)](http://en.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats)
+ *         + [String manipulation (字符串操作)](http://en.cppreference.com/w/c/string/byte#String_manipulation)
+ *         + [String examination (字符串检验)](http://en.cppreference.com/w/c/string/byte#String_examination)
+ *         + [Character array manipulation (字符数组操作)](http://en.cppreference.com/w/c/string/byte#Character_array_manipulation)
+ *         + [Miscellaneous (杂项)](http://en.cppreference.com/w/c/string/byte#Miscellaneous)
+ *     + [Null-terminated multibyte string management (空终止多字节字符串管理)](http://en.cppreference.com/w/c/string/multibyte)
+ *         + [Multibyte/wide character conversions (多字节/宽字符转换)](http://en.cppreference.com/w/c/string/multibyte#Multibyte.2Fwide_character_conversions)
+ *     + [Null-terminated wide string management (空终止宽字符串管理)](http://en.cppreference.com/w/c/string/wide)
+ *         + [Character classification (字符分类)](http://en.cppreference.com/w/c/string/wide#Character_classification)
+ *         + [Character manipulation (字符操作)](http://en.cppreference.com/w/c/string/wide#Character_manipulation)
+ *         + [Conversions to numeric formats (转换成数值格式)](http://en.cppreference.com/w/c/string/wide#Conversions_to_numeric_formats)
+ *         + [String manipulation (字符串操作)](http://en.cppreference.com/w/c/string/wide#String_manipulation)
+ *         + [String examination (字符串检验)](http://en.cppreference.com/w/c/string/wide#String_examination)
+ *         + [Wide character array manipulation (宽字符数组操作)](http://en.cppreference.com/w/c/string/wide#Character_array_manipulation)
+ * \author zhengrr
+ * \date 2018-1-23 – 25
+ * \copyright The MIT License
+ */

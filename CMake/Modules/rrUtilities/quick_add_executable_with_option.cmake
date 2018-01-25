@@ -1,5 +1,5 @@
 #            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2017-12-18 – 2018-1-24
+#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2017-12-18 – 2018-1-25
 # | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
 # | |  | |  | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
@@ -13,7 +13,7 @@
 # .rst
 # .. command:: quick_add_executable_with_option
 #
-#    简便生成可执行文件 ::
+#    简便生成可执行文件::
 #
 #       quick_add_executable_with_option(
 #         [SUBNAME subname]
@@ -22,6 +22,10 @@
 #         [CXX98 | CXX11 | CXX14 | CXX17]
 #         <source>...
 #       )
+#
+#    选项名形如 ``<PROJECT_NAME_UPPER>[_<subname_upper>]_COMPILE_EXE``
+#
+#    目标名形如 ``<PROJECT_NAME_LOWER>[_<subname_lower>]_exe``
 #
 #    参见
 #

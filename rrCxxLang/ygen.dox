@@ -1,28 +1,16 @@
 /**
- * \mainpage 主页
+ * \mainpage
  * \tableofcontents
  *
- * <table> <tr> <td>
- * + \ref index
- *     + \subpage p_cpp_lang
- *     + -
- *     + -
- *     + -
- *     + \subpage p_err_handling
- *     + \subpage p_utils_lib
- *     + \subpage p_strs_lib
- *     + \subpage p_conts_lib
- *     + \subpage p_iter_lib
- *     + \subpage p_algos_lib
- *     + \subpage p_numerics_lib
- *     + \subpage p_io_lib
- *     + \subpage p_l10n_lib
- *     + \subpage p_regexs_lib
- *     + \subpage p_atom_ops_lib
- *     + \subpage p_thrd_supt_lib
- *     + \subpage p_fsys_lib
- * </td> <td>
- * + ["C++ reference (C++ 参考手册)"](http://en.cppreference.com/w/cpp). *cppreference.com*.
+ * \author zhengrr
+ * \date 2018-1-23 – 25
+ * \copyright The MIT License
+ */
+
+/**
+ * \defgroup g_cpp_ref C++ 参考手册
+ *
+ * \sa ["C++ reference (C++ 参考手册)"](http://en.cppreference.com/w/cpp). *cppreference.com*.
  *     + [Language (语言)](http://en.cppreference.com/w/cpp)
  *     + [Headers (头文件)](http://en.cppreference.com/w/cpp/header)
  *     + [Library concepts (库概念)](http://en.cppreference.com/w/cpp/concept)
@@ -40,9 +28,7 @@
  *     + [Atomic operations library (原子操作库)](http://en.cppreference.com/w/cpp/atomic)
  *     + [Thread support library (线程支持库)](http://en.cppreference.com/w/cpp/thread)
  *     + [Filesystem library (文件系统库)](http://en.cppreference.com/w/cpp/filesystem)
- * </td> </tr> </table>
- *
  * \author zhengrr
- * \date 2018-1-23 – 24
+ * \date 2018-1-23 – 25
  * \copyright The MIT License
  */
