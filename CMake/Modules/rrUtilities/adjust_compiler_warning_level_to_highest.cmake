@@ -7,7 +7,7 @@
 #                           ___| |__   ___  ___| | _ _ __   __ _ _ __ ___   ___
 #                          / __| '_ \ / _ \/ __| |/ | '_ \ / _` | '_ ` _ \ / _ \
 # zhengrr                 | (__| | | |  __| (__|   <| | | | (_| | | | | | |  __/
-# 2016-10-8 – 2017-12-27   \___|_| |_|\___|\___|_|\_|_| |_|\__,_|_| |_| |_|\___|
+# 2016-10-8 – 2018-1-26    \___|_| |_|\___|\___|_|\_|_| |_|\__,_|_| |_| |_|\___|
 # The MIT License                                           check_name by FIGlet
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -16,9 +16,14 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #.rst:
 # .. command:: adjust_compiler_warning_level_to_highest
 #
-#  尝试将编译器警告等级调整至最高::
+#    尝试将编译器警告等级调整至最高::
 #
-#   adjust_compiler_warning_level_to_highest()
+#       adjust_compiler_warning_level_to_highest()
+#
+#    参见
+#
+#    + `CMAKE_<LANG>_FLAGS <https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS>`_
+#
 function(adjust_compiler_warning_level_to_highest)
   get_property(langs GLOBAL PROPERTY ENABLED_LANGUAGES)
 

@@ -1,37 +1,44 @@
 ## ?
 
-+ ["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
-+ ["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
+["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
+
+["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
 
 ## books
 
-+ ["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book).  *计算机书籍控*.
-    + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
-    + *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
+["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book).  *计算机书籍控*.
++ *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
++ *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
 ## envirs
 
-+ [*Cygwin*](http://cygwin.com)
-+ [*MinGW (Minimalist GNU for Windows)*](http://mingw.org)
+[*Cygwin*](http://cygwin.com)
+
+[*MinGW (Minimalist GNU for Windows)*](http://mingw.org)
 
 ## editors
 
-+ [*Emacs (Editor Macros)*](https://gnu.org/software/emacs/)
-+ [*Vim (Visual Editor Improved)*](http://vim.org/)
-+ [*Notepad++*](https://notepad-plus-plus.org)
-+ [*Visual Studio Code*](https://code.visualstudio.com)
+[*Emacs (Editor Macros)*](https://gnu.org/software/emacs/)
+
+[*Vim (Visual Editor Improved)*](http://vim.org/)
+
+[*Notepad++*](https://notepad-plus-plus.org)
+
+[*Visual Studio Code*](https://code.visualstudio.com)
 
 ## ide
 
-+ [*Visual Studio*](https://visualstudio.com)
-    + [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
-    + [*CodeMaid*](http://codemaid.net)
-    + 2008 [*Visual Assist*](https://wholetomato.com)
-    + 2008 [*IncrediBuild*](https://incredibuild.com)
-    + [*Studio Styles*](https://studiostyl.es)
-    + [*Dependency Walker*](http://dependencywalker.com)
-+ [*Understand™*](https://scitools.com)
-+ [*CLion*](https://jetbrains.com/clion)
+[*Visual Studio*](https://visualstudio.com)
++ [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
++ [*CodeMaid*](http://codemaid.net)
++ 2008 [*Visual Assist*](https://wholetomato.com)
++ 2008 [*IncrediBuild*](https://incredibuild.com)
++ [*Studio Styles*](https://studiostyl.es)
++ [*Dependency Walker*](http://dependencywalker.com)
+
+[*Understand™*](https://scitools.com)
+
+[*CLion*](https://jetbrains.com/clion)
 
 ## grocs
 

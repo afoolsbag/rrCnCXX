@@ -8,8 +8,9 @@
 
 ## References
 
-+ ["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
-+ [*cplusplus.com*](http://cplusplus.com/)
+["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
+
+[*cplusplus.com*](http://cplusplus.com/)
 
 ## Programming Styles
 
@@ -47,14 +48,16 @@
 全小写配下划线（继承自 C）：
 `do_something` `make_it_better`
 
-+ [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
+[*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
 
 ## Guides
 
-+ ["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.
-+ [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
-+ ["C++必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
+["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.
+
+[*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
+
+["C++必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
 
 ## Others
 
-+ [*Google Test*](https://github.com/google/googletest)
+[*Google Test*](https://github.com/google/googletest)

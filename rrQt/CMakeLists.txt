@@ -10,7 +10,7 @@ make_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()
 
-find_package(Qt5Directory)
-if(QT5DIRECTORY_FOUND)
+find_package(Qt5Package)
+if(Qt5Package_FOUND)
   add_subdirectory("src")
 endif()
