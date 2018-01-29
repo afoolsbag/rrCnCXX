@@ -4,6 +4,8 @@
 [*C99*](https://iso.org/standard/29237.html)
 [*C11*](https://iso.org/standard/57853.html)
 
+操作系统，嵌入式系统，
+
 ## References
 
 ["C reference"](http://cppreference.com/w/c). *cppreference.com*.

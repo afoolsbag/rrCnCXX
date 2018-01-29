@@ -1,13 +1,13 @@
-﻿#             ____ _
-#  _ __ _ __ / ___| |    __ _ _ __   __ _ _   _  __ _  __ _  ___
-# | '__| '__| |   | |   / _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \
-# | |  | |  | |___| |__| (_| | | | | (_| | |_| | (_| | (_| |  __/
-# |_|  |_|   \____|_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___|
-# zhengrr                           |___/             |___/
-# 2016-8-1 – 2018-1-23                      rrCLanguage by FIGlet
+﻿#             ____
+# _ __ _ __  / ___|
+# | '__| '__| |
+# | |  | |  | |___
+# |_|  |_|   \____| rrC by FIGlet
+# zhengrr
+# 2016-8-1 – 2018-1-23
 # The MIT License
 
-project("rrCLanguage" VERSION 2018.1.23 LANGUAGES C)
+project("rrC" VERSION 2018.1.29 LANGUAGES C)
 set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()

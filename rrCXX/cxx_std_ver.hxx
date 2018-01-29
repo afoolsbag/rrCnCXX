@@ -11,8 +11,8 @@
  * \copyright The MIT License
  */
 
-#ifndef RRCXXLANG_CXX_STD_VER_HPP_
-#define RRCXXLANG_CXX_STD_VER_HPP_
+#ifndef RRCXX_CXX_STD_VER_HXX_
+#define RRCXX_CXX_STD_VER_HXX_
 
 /* Language Standards */
 #ifndef __cplusplus
@@ -62,4 +62,4 @@
  *  \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1984 */
 #define CXX_N1984 (CXX_STD_11 || 40400<=CXX_GNUC_VER || 1900<=CXX_MSC_VER)
 
-#endif// RRCXXLANG_CXX_STD_VER_HPP_
+#endif// RRCXX_CXX_STD_VER_HXX_
