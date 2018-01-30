@@ -16,9 +16,9 @@ enum RgbPrimaryColor {
   kRed, kGreen, kBlue
 };// enum RgbPrimaryColor
 
-enum class CmykPrimaryColor {
+enum struct CmykPrimaryColor {
   kCyan, kMagenta, kYellow, kKey, kBlack = static_cast<int>(kKey)
-};// enum class CmykPrimaryColor
+};// enum struct CmykPrimaryColor
 
 }// namespace
 
@@ -28,5 +28,6 @@ TEST(enumeration, preliminary) {
 
   CmykPrimaryColor cyan = CmykPrimaryColor::kCyan;
 
-  SUCCEED();
+  GTEST_ASSERT_EQ(red, kRed);
+  GTEST_ASSERT_EQ(cyan, CmykPrimaryColor::kCyan);
 }

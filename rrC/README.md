@@ -4,13 +4,11 @@
 [*C99*](https://iso.org/standard/29237.html)
 [*C11*](https://iso.org/standard/57853.html)
 
-操作系统，嵌入式系统，
-
 ## References
 
 ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
 
-["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft Docs*.
+["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft® Docs*.
 
 [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
 
@@ -19,17 +17,8 @@
 ## Programming Styles
 
 [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
-+ [Indentation](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#1-indentation)
-+ [Breaking long lines and strings](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#2-breaking-long-lines-and-strings)
-+ [Placing Braces and Spaces](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#3-placing-braces-and-spaces)
-+ [Naming](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#4-naming)
-+ [Typedefs](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#5-typedefs)
-+ [Functions](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#6-functions)
-+ [Centralized exiting of functions](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#7-centralized-exiting-of-functions)
-+ [Commenting](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#8-commenting)
-+ [Macros, Enums and RTL](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#12-macros-enums-and-rtl)
-+ [The inline disease](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#15-the-inline-disease)
-+ [Function return values and names](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst#16-function-return-values-and-names)
+
+[*GNU Coding Standards*](https://gnu.org/prep/standards/standards.html)
 
 [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
 
@@ -45,7 +34,7 @@
 + *C Traps and Pitfalls*. 1989. Andrew Koenig.
 + *Expert C Programming: Deep C Secrets*. 1994. Peter van der Linden.
 
-## Others
+## Groceries
 
 [*cmocka*](https://cmocka.org)
 

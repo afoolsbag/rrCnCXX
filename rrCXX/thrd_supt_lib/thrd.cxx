@@ -8,7 +8,7 @@
  * \copyright The MIT License
  */
 
-#include "cxx_std_ver.hpp"
+#include "cxx_std_ver.hxx"
 
 #if CXX_STD_11 && !CXX_GNUC_VER
 

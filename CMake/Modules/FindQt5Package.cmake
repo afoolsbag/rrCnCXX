@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-1-26
+# 2016-10-21 – 2018-1-29
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -40,7 +40,7 @@ find_path(
   HINTS
     "${QTDIR${_sAddressWidth}}"
     "${QTDIR}"
-    "$ENV{QTDIR${sAddressWidth}}"
+    "$ENV{QTDIR${_sAddressWidth}}"
     "$ENV{QTDIR}"
   NO_DEFAULT_PATH)
 mark_as_advanced(Qt5Package_PREFIX_PATH)

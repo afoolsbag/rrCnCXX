@@ -1,7 +1,9 @@
 /**
  * \file
+ * \brief API import/export macro definition
+ * \details 应用程序接口导入/导出宏定义。
  * \author zhengrr
- * \date 2016-8-1 – 2018-1-23
+ * \date 2016-8-1 – 2018-1-30
  * \copyright The MIT License
  */
 

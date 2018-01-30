@@ -19,9 +19,11 @@ configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)
 
 enable_testing()
 quick_add_googletest_with_option(
+  "algos_lib/nonmod_seq_ops.cxx"
   "conts_lib/vector.cxx"
   "general_utils_lib/dyn_mem_mgmt/unique_ptr.cxx"
   "general_utils_lib/dyn_mem_mgmt/shared_ptr.cxx"
+  "io_lib/std_stream_objs.cxx"
   "lang/basic_concepts/main.cxx"
   "lang/basic_concepts/name_spc.cxx"
   "lang/basic_concepts/type/enum.cxx"

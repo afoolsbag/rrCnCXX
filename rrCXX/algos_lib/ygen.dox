@@ -3,7 +3,21 @@
  * \ingroup g_cpp_ref
  *
  * \sa ["Algorithms library (算法库)"](http://en.cppreference.com/w/cpp/algorithm). *cppreference.com*.
+ *     + Execution policies (执行策略)
+ *     + [Non-modifying sequence operations (不修改序列的操作)](http://en.cppreference.com/w/cpp/algorithm#Non-modifying_sequence_operations)
+ *     + Modifying sequence operations (修改序列的操作)
+ *     + Partitioning operations (划分操作)
+ *     + Sorting operations (排序操作)
+ *     + Binary search operations (on sorted ranges) (二分搜索操作（在已排序范围上）)
+ *     + Set operations (on sorted ranges) (集合操作（在已排序范围上）)
+ *     + Heap operations (堆操作)
+ *     + Minimum/maximum operations (最小/最大操作)
+ *     + Comparison operations (比较操作)
+ *     + Permutation operations (排列操作)
+ *     + Numeric operations (数值运算)
+ *     + Operations on uninitialized memory (未初始化内存上的操作)
+ *     + C library (C 库)
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 29
  * \copyright The MIT License
  */

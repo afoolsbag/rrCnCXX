@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxx_std_ver.hpp"
+#include "cxx_std_ver.hxx"
 
 /// shared_ptr preliminary
 TEST(shared_ptr, preliminary) {
