@@ -1,16 +1,8 @@
-#            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2016-10-8 – 2017-12-27
-# | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
-# | |  | |  | |_| | |_| | | | |_| |  __\__ \
-# |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/
-#                      rrUtilities by FIGlet         _ _               _
-#   __ _ _   ___  _ ___  ___  _   _ _ __ ___ ___  __| (_)_ __ ___  ___| |_ ___  _ __ _   _
-#  / _` | | | \ \/ / __|/ _ \| | | | '__/ __/ _  / _` | | '__/ _ \/ __| __/ _ \| '__| | | |
-# | (_| | |_| |>  <\__ | (_) | |_| | | | (_|  __| (_| | | | |  __| (__| || (_) | |  | |_| |
-#  \__,_|\__,_/_/\_|___/\___/ \__,_|_|  \___\___ \__,_|_|_|  \___|\___|\__\___/|_|   \__, |
-#                                                      aux_source_director by FIGlet |___/
+# zhengrr
+# 2016-10-8 – 2018-1-30
+# The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_file_extension_rules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/ckname_w_fileextrul.cmake")
 
 # .rst
 # .. command:: aux_source_directory_with_install

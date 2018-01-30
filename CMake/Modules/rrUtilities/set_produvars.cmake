@@ -1,15 +1,8 @@
-#            _   _ _   _ _ _ _   _
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___
-# | '__| '__| | | | __| | | | __| |/ _ / __|
-# | |  | |  | |_| | |_| | | | |_| |  __\__ \
-# |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/           _       _     _
-#              rrUtilities by FIGlet  __   ____ _ _ __(_) __ _| |__ | | ___ ___
-#                                     \ \ / / _` | '__| |/ _` | '_ \| |/ _ / __|
-# zhengrr                              \ V | (_| | |  | | (_| | |_) | |  __\__ \
-# 2016-10-8 – 2018-1-2                  \_/ \__,_|_|  |_|\__,_|_.__/|_|\___|___/
-# The MIT License                                            variables by FIGlet
+# zhengrr
+# 2016-10-8 – 2018-1-30
+# The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_c_identifier_rules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/ckname_w_cidrul.cmake")
 
 # .rst
 # .. command:: set_product_variables
@@ -43,20 +36,20 @@ function(set_product_variables)
     return()
   endif()
 
-  set(oneValueKeywords "COPYRIGHT")
-  set(multiValueKeywords "AUTHORS")
-  cmake_parse_arguments(PARSE_ARGV 0 "" "" "${oneValueKeywords}" "${multiValueKeywords}")
+  set(zOneValueKeywords "COPYRIGHT")
+  set(zMultiValueKeywords "AUTHORS")
+  cmake_parse_arguments(PARSE_ARGV 0 "" "" "${zOneValueKeywords}" "${zMultiValueKeywords}")
   if(DEFINED _UNPARSED_ARGUMENTS)
-    message(SEND_ERROR "Unexpected arguments(${_UNPARSED_ARGUMENTS}).")
+    message(SEND_ERROR "Unexpected arguments (${_UNPARSED_ARGUMENTS}).")
     return()
   endif()
 
-  string(TOUPPER "${PROJECT_NAME}" projectNameUpper)
-  string(TOLOWER "${PROJECT_NAME}" projectNameLower)
+  string(TOUPPER "${PROJECT_NAME}" sProjectNameUpper)
+  string(TOLOWER "${PROJECT_NAME}" sProjectNameLower)
 
   set(PRODUCT_NAME          "${PROJECT_NAME}"          PARENT_SCOPE)
-  set(PRODUCT_NAME_UPPER    "${projectNameUpper}"      PARENT_SCOPE)
-  set(PRODUCT_NAME_LOWER    "${projectNameLower}"      PARENT_SCOPE)
+  set(PRODUCT_NAME_UPPER    "${sProjectNameUpper}"     PARENT_SCOPE)
+  set(PRODUCT_NAME_LOWER    "${sProjectNameLower}"     PARENT_SCOPE)
   set(PRODUCT_SOURCE_DIR    "${PROJECT_SOURCE_DIR}"    PARENT_SCOPE)
   set(PRODUCT_BINARY_DIR    "${PROJECT_BINARY_DIR}"    PARENT_SCOPE)
   set(PRODUCT_VERSION       "${PROJECT_VERSION}"       PARENT_SCOPE)

@@ -1,55 +1,56 @@
-#            _   _ _   _ _ _ _   _                                       zhengrr
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___               2017-12-27 – 2018-1-25
-# | '__| '__| | | | __| | | | __| |/ _ / __|                     The MIT License
-# | |  | |  | |_| | |_| | | | |_| |  __\__ \
-# |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/ rrUtilities by FIGlet
-#            _     _                _                  _                       _
-#   __ _  __| | __| | ___ _   _ ___| |_ ___  _ __ ___ | |_ __ _ _ __ __ _  ___| |_
-#  / _` |/ _` |/ _` |/ __| | | / __| __/ _ \| '_ ` _ \| __/ _` | '__/ _` |/ _ | __|
-# | (_| | (_| | (_| | (__| |_| \__ | || (_) | | | | | | || (_| | | | (_| |  __| |_
-#  \__,_|\__,_|\__,_|\___|\__,_|___/\__\___/|_| |_| |_|\__\__,_|_|  \__, |\___|\__|
-#                                       add_custom_target by FIGlet |___/
+# zhengrr
+# 2017-12-17 – 2018-1-30
+# The MIT License
 
 # .rst
 # .. command:: quick_add_googletest_with_option
 #
-#    简便生成 Google Test::
+#    轻快生成GoogleTest测试：
+#    ::
 #
 #       quick_add_googletest_with_option(
 #         <source>...
 #       )
 #
-#    选项名形如 ``<PROJECT_NAME_UPPER>_COMPILE_TEST``
+#    缓存变量：
+#    ::
 #
-#    目标名形如 ``<PROJECT_NAME_LOWER>_test``
+#       GTEST_ROOT
 #
-#    测试名形如 ``<PROJECT_NAME>_GoogleTest``
+#    影响：
 #
-#    参见
+#    :option:                ``<PROJECT_NAME_UPPER>_COMPILE_TEST``
+#    :add_executable:        ``<PROJECT_NAME_LOWER>_test``
+#    :set_target_properties: ``OUTPUT_NAME <PROJECT_NAME>Test``
+#    :add_test:              ``<PROJECT_NAME>Test``
 #
-#    + `enable_testing <https://cmake.org/cmake/help/latest/command/enable_testing>`_
+#    参见：
+#
+#    + `"enable_testing" <https://cmake.org/cmake/help/latest/command/enable_testing>`_. *CMake Documentation*.
 #
 function(quick_add_googletest_with_option)
-  string(TOUPPER "${PROJECT_NAME}" sProjectNameUpper)
-  string(TOLOWER "${PROJECT_NAME}" sProjectNameLower)
-  set(vOption "${sProjectNameUpper}_COMPILE_TEST")
-  set(vTarget "${sProjectNameLower}_test")
-  set(vGoogleTest "${PROJECT_NAME}_Test")
+  string(TOUPPER "${PROJECT_NAME}" sPrjNameUpr)
+  string(TOLOWER "${PROJECT_NAME}" sPrjNameLwr)
+  set(vOptName "${sPrjNameUpr}_COMPILE_TEST")
+  set(vTgtName "${sPrjNameLwr}_test")
+  set(vTesName "${PROJECT_NAME}Test")
 
   set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the Google Test installation.")
   find_package(GTest)
-  option(${vOption} "Build test file (requires GoogleTest)." ${GTEST_FOUND})
-  if(NOT ${vOption})
+  option(${vOptName} "Build test executable file (requires GoogleTest)." ${GTEST_FOUND})
+  if(NOT ${vOptName})
     return()
   endif()
   if(NOT GTEST_FOUND)
-    message(SEND_ERROR "GoogleTest is needed to build test.")
+    message(SEND_ERROR "GoogleTest is needed to build the test.")
     return()
   endif()
 
   include_directories(${GTEST_INCLUDE_DIRS})
-  add_executable(${vTarget} ${ARGN})
-  target_link_libraries(${vTarget} GTest::GTest GTest::Main)
+  add_executable(${vTgtName} ${ARGN})
+  set_target_properties(${vTgtName} PROPERTIES
+    OUTPUT_NAME "${vTesName}" CLEAN_DIRECT_OUTPUT ON)
+  target_link_libraries(${vTgtName} GTest::GTest GTest::Main)
 
-  add_test(NAME ${vGoogleTest} COMMAND ${vTarget})
+  add_test(NAME ${vTesName} COMMAND ${vTgtName})
 endfunction()

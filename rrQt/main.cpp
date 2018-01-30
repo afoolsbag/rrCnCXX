@@ -7,7 +7,9 @@
 
 #include "ui/main_window.hpp"
 
-namespace {
+namespace
+{
+
 /// Qt程序入口。
 /** \param argc 参数计数。
  *  \param argv 参数向量。
@@ -22,6 +24,7 @@ int Main(int argc, char *argv[])
 
     return app.exec();
 }
+
 }// namespace
 #ifdef ENTRY_SWITCH
 int main(int argc, char *argv[]) { return Main(argc, argv); }

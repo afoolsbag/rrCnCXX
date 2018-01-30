@@ -1,15 +1,8 @@
-#            _   _ _   _ _ _ _   _
-#  _ __ _ __| | | | |_(_| (_| |_(_) ___ ___
-# | '__| '__| | | | __| | | | __| |/ _ / __|
-# | |  | |  | |_| | |_| | | | |_| |  __\__ \
-# |_|  |_|   \___/ \__|_|_|_|\__|_|\___|___/           _       _     _
-#              rrUtilities by FIGlet  __   ____ _ _ __(_) __ _| |__ | | ___ ___
-#                                     \ \ / / _` | '__| |/ _` | '_ \| |/ _ / __|
-# zhengrr                              \ V | (_| | |  | | (_| | |_) | |  __\__ \
-# 2016-10-8 – 2017-12-27                \_/ \__,_|_|  |_|\__,_|_.__/|_|\___|___/
-# The MIT License                                            variables by FIGlet
+# zhengrr
+# 2016-10-8 – 2018-1-30
+# The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_c_identifier_rules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/ckname_w_cidrul.cmake")
 
 # .rst
 # .. command:: set_project_extra_variables

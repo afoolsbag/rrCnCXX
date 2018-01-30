@@ -15,5 +15,11 @@
 set(sStr     "Make sure only a string")
 set(zStrList "String(s)" "str2" "str3")
 set(vVar     TheVarWhatOnlyOne        )
-set(wVarList Variables var2 var3 var4 )
+set(wVarList Variables Var2 Var3 Var4 )
 ```
+
+## Groceries
+
+[*reStructuredText*](http://docutils.sourceforge.net/rst.html)
++ [Quick reStructuredText](http://docutils.sourceforge.net/docs/user/rst/quickref.html)
++ [*Online reStructuredText editor*](http://rst.ninjs.org/)
