@@ -7,14 +7,14 @@
 # 2016-6-28 – 2018-1-29
 # The MIT License
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.9.6)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake/Modules")
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake/Modules")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake/Modules")
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake/Modules")
 include("rrUtilities")
 
-project("rrCnCxx" VERSION 2018.1.22 LANGUAGES NONE)
-set_product_variables(AUTHORS "zhengrr" COPYRIGHT "The MIT License")
+project("rrCnCxx" VERSION 2018.1.31 LANGUAGES NONE)
+product_variables(AUTHORS "zhengrr" COPYRIGHT "The MIT License")
 
 add_subdirectory_with_option("rrC")
 add_subdirectory_with_option("rrLinux")

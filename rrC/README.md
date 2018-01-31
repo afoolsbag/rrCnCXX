@@ -36,7 +36,7 @@
 
 ## Groceries
 
-[*cmocka*](https://cmocka.org)
+[*Check*](https://libcheck.github.io/check)
 
 *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
 

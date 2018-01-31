@@ -8,17 +8,16 @@
 # The MIT License
 
 project("rrCXX" VERSION 2018.1.29 LANGUAGES CXX)
-set_project_extra_variables()
+project_variables()
+highest_warning_level()
 
-adjust_compiler_warning_level_to_highest()
-
-quick_add_doxygen_with_option()
+quick_doxygen()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)
 
 enable_testing()
-quick_add_googletest_with_option(
+quick_googletest(
   "algos_lib/nonmod_seq_ops.cxx"
   "conts_lib/vector.cxx"
   "general_utils_lib/dyn_mem_mgmt/unique_ptr.cxx"
@@ -33,4 +32,10 @@ quick_add_googletest_with_option(
   "dzn_patterns/singleton.cxx"
 )
 
-quick_add_library_with_option(SUBNAME "Library" "${PROJECT_BINARY_DIR}/cfg.hxx" "api.hxx" "lib.hxx" "lib.cxx")
+quick_library(
+  SUBNAME "Lib"
+  "${PROJECT_BINARY_DIR}/cfg.hxx"
+  "api.hxx"
+  "lib.hxx"
+  "lib.cxx"
+)
