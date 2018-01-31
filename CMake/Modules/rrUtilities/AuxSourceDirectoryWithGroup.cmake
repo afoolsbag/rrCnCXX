@@ -2,25 +2,24 @@
 # 2016-10-8 – 2018-1-30
 # The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_cmake_recommend_variable_rules.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_file_extension_rules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithCmakeRecommendVariableRules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithFileExtensionRules.cmake")
 
 # .rst
-# .. command:: aux_source_directory_with_group_and_config
+# .. command:: aux_source_directory_with_group
 #
-#  查找目录下所有指定文件、分组并配置::
+#  查找目录下所有指定文件并分组::
 #
 #   aux_source_directory_with_group(
-#     <SOURCE_VARIABLE     source_variable>
-#     <SOURCE_DIRECTORY    source_directory>
-#     <SOURCE_EXTENSIONS   source_extensions...>
-#     <GROUP_DIRECTORY     group_directory>
-#     <GENERATED_DIRECTORY generated_directory>"
+#     <SOURCE_VARIABLE   source_variable>
+#     <SOURCE_DIRECTORY  source_directory>
+#     <SOURCE_EXTENSIONS source_extensions...>
+#     <GROUP_DIRECTORY   group_directory>
 #     [RECURSE]
 #   )
-function(aux_source_directory_with_group_and_config)
+function(aux_source_directory_with_group)
   set(options "RECURSE")
-  set(oneValueKeywords "SOURCE_VARIABLE" "SOURCE_DIRECTORY" "GROUP_DIRECTORY" "GENERATED_DIRECTORY")
+  set(oneValueKeywords "SOURCE_VARIABLE" "SOURCE_DIRECTORY" "GROUP_DIRECTORY")
   set(multiValueKeywords "SOURCE_EXTENSIONS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${options}" "${oneValueKeywords}" "${multiValueKeywords}")
   if(DEFINED _UNPARSED_ARGUMENTS)
@@ -60,15 +59,6 @@ function(aux_source_directory_with_group_and_config)
     endif()
   endforeach()
 
-  if(NOT DEFINED _GENERATED_DIRECTORY)
-    message(SEND_ERROR "Missing argument GENERATED_DIRECTORY.")
-    return()
-  endif()
-  if(NOT IS_ABSOLUTE "${_GENERATED_DIRECTORY}")
-    message(SEND_ERROR "Undesirable argument GENERATED_DIRECTORY(${_GENERATED_DIRECTORY}).")
-    return()
-  endif()
-
   if(_RECURSE)
     set(recurse "GLOB_RECURSE")
   else()
@@ -85,16 +75,6 @@ function(aux_source_directory_with_group_and_config)
       string(REGEX REPLACE "^${_SOURCE_DIRECTORY}" "" relativePath "${fileDirectory}")
       string(REPLACE "/" "\\\\" fileGroupDirectory "${_GROUP_DIRECTORY}${relativePath}")
       source_group("${fileGroupDirectory}" FILES "${file}")
-      # generate file
-      get_filename_component(fileName "${file}" NAME)
-      string(REPLACE "." "[.]" extensionRegex "${extension}")
-      string(REGEX REPLACE "${extensionRegex}$" "" generatedFileName "${fileName}")
-      set(generatedFile "${_GENERATED_DIRECTORY}${relativePath}/${generatedFileName}")
-      configure_file("${file}" "${generatedFile}" @ONLY)
-      # append generated file
-      list(APPEND ${_SOURCE_VARIABLE} "${generatedFile}")
-      # group generated file
-      source_group("${fileGroupDirectory}" FILES "${generatedFile}")
     endforeach()
   endforeach()
 

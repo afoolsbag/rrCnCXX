@@ -2,7 +2,7 @@
 # 2016-10-8 – 2018-1-30
 # The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_c_identifier_rules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithCIdentifierRules.cmake")
 
 # .rst
 # .. command:: set_product_variables
