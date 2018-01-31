@@ -11,13 +11,6 @@
 
 ## Programming Styles
 
-```CMake
-set(sStr     "Make sure only a string")
-set(zStrList "String(s)" "str2" "str3")
-set(vVar     TheVarWhatOnlyOne        )
-set(wVarList Variables Var2 Var3 Var4 )
-```
-
 ## Groceries
 
 [*reStructuredText*](http://docutils.sourceforge.net/rst.html)

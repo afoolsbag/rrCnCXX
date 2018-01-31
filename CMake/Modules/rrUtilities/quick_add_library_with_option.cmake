@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 2018-1-30
+# 2016-10-8 – 2018-1-31
 # The MIT License
 
 # .rst
@@ -18,20 +18,22 @@
 #
 #    影响：
 #
-#    :option:                ``<NAME_UPPER>_COMPILE_<STATIC|SHARED|MODULE>``
-#    :add_executable:        ``<NAME_LOWER>_<static|shared|module>``
-#    :set_target_properties: ``OUTPUT_NAME <NAME>``
-#    :install:               to ``lib``
+#    :NAME:           ``<name>`` or ``<PROJECT_NAME>_<subname>`` or ``<PROJECT_NAME>``
+#    :option:         ``<NAME_UPPER>_COMPILE_<STATIC|SHARED|MODULE>``
+#    :add_executable: ``<NAME_LOWER>_<static|shared|module>``
+#    :output:         ``<NAME>``
+#    :install:        to ``lib``
 #
 function(quick_add_library_with_option)
   set(zOpts "STATIC" "SHARED" "MODULE" "C90" "C99" "C11" "CXX98" "CXX11" "CXX14" "CXX17")
   set(zOneValKws "NAME" "SUBNAME")
-  cmake_parse_arguments(PARSE_ARGV 0 "" "${zOpts}" "${zOneValKws}" "")
+  set(zMutValKws)
+  cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
   if(DEFINED _NAME)
     set(sName "${_NAME}")
   elseif(DEFINED _SUBNAME)
-    set(sName "${PROJECT_NAME}${_SUBNAME}")
+    set(sName "${PROJECT_NAME}_${_SUBNAME}")
   else()
     set(sName "${PROJECT_NAME}")
   endif()
@@ -62,43 +64,43 @@ function(quick_add_library_with_option)
 
   if(_STATIC OR ((NOT _STATIC) AND (NOT _SHARED) AND (NOT _MODULE) AND (NOT BUILD_SHARED_LIBS)))
     set(vOptName "${sNameUpr}_COMPILE_STATIC")
-    set(vTgtName "${sNameLwr}_static")
+    set(sTgtName "${sNameLwr}_static")
     option(${vOptName} "Build static library." ON)
     if(${vOptName})
-      add_library(${vTgtName} STATIC ${_UNPARSED_ARGUMENTS})
-      set_target_properties(${vTgtName} PROPERTIES
+      add_library("${sTgtName}" STATIC ${_UNPARSED_ARGUMENTS})
+      set_target_properties("${sTgtName}" PROPERTIES
         ${zPropertyCStd}
         ${zPropertyCxxStd}
         OUTPUT_NAME "${sName}" CLEAN_DIRECT_OUTPUT ON)
-      install(TARGETS ${vTgtName} DESTINATION "lib")
+      install(TARGETS "${sTgtName}" DESTINATION "lib")
     endif()
   endif()
 
   if(_SHARED OR ((NOT _STATIC) AND (NOT _SHARED) AND (NOT _MODULE) AND (BUILD_SHARED_LIBS)))
     set(vOptName "${sNameUpr}_COMPILE_SHARED")
-    set(vTgtName "${sNameLwr}_shared")
+    set(sTgtName "${sNameLwr}_shared")
     option(${vOptName} "Build shared library." ON)
     if(${vOptName})
-      add_library(${vTgtName} SHARED ${_UNPARSED_ARGUMENTS})
-      set_target_properties(${vTgtName} PROPERTIES
+      add_library("${sTgtName}" SHARED ${_UNPARSED_ARGUMENTS})
+      set_target_properties("${sTgtName}" PROPERTIES
         ${zPropertyCStd}
         ${zPropertyCxxStd}
         OUTPUT_NAME "${sName}" CLEAN_DIRECT_OUTPUT ON)
-      install(TARGETS ${vTgtName} DESTINATION "lib")
+      install(TARGETS "${sTgtName}" DESTINATION "lib")
     endif()
   endif()
 
   if(_MODULE)
     set(vOptName "${sNameUpr}_COMPILE_MODULE")
-    set(vTgtName "${sNameLwr}_module")
+    set(sTgtName "${sNameLwr}_module")
     option(${vOptName} "Build module library." ON)
     if(${vOptName})
-      add_library(${vTgtName} MODULE ${_UNPARSED_ARGUMENTS})
-      set_target_properties(${vTgtName} PROPERTIES
+      add_library("${sTgtName}" MODULE ${_UNPARSED_ARGUMENTS})
+      set_target_properties("${sTgtName}" PROPERTIES
         ${zPropertyCStd}
         ${zPropertyCxxStd}
         OUTPUT_NAME "${sName}" CLEAN_DIRECT_OUTPUT ON)
-      install(TARGETS ${vTgtName} DESTINATION "lib")
+      install(TARGETS "${sTgtName}" DESTINATION "lib")
     endif()
   endif()
 endfunction()

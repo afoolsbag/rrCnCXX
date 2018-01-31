@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-1-30
+# 2017-12-18 – 2018-1-31
 # The MIT License
 
 # .rst
@@ -16,29 +16,31 @@
 #         <source>...
 #       )
 #
-#    影响：
+#    作用：
 #
-#    :option:                ``<NAME_UPPER>_COMPILE_EXE``
-#    :add_executable:        ``<NAME_LOWER>_exe``
-#    :set_target_properties: ``OUTPUT_NAME <NAME>``
-#    :install:               to ``bin``
+#    :NAME:           ``<name>`` or ``<PROJECT_NAME>_<subname>`` or ``<PROJECT_NAME>``
+#    :option:         ``<NAME_UPPER>_COMPILE_EXE``
+#    :add_executable: ``<NAME_LOWER>_exe``
+#    :output:         ``<NAME>``
+#    :install:        to ``bin``
 #
 #    参见
 #
-#    + `"add_executable" <https://cmake.org/cmake/help/latest/command/add_executable>`_
-#    + `"set_target_properties" <https://cmake.org/cmake/help/latest/command/set_target_properties>`_
-#    + `"C_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/C_STANDARD>`_
-#    + `"CXX_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD>`_
+#    + `"add_executable" <https://cmake.org/cmake/help/latest/command/add_executable>`_. *CMake Documentation*.
+#    + `"set_target_properties" <https://cmake.org/cmake/help/latest/command/set_target_properties>`_. *CMake Documentation*.
+#    + `"C_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/C_STANDARD>`_. *CMake Documentation*.
+#    + `"CXX_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD>`_. *CMake Documentation*.
 #
 function(quick_add_executable_with_option)
-  set(zOpts "WIN32" "C90" "C99" "C11" "CXX98" "CXX11" "CXX14" "CXX17")
+  set(zOptKws "WIN32" "C90" "C99" "C11" "CXX98" "CXX11" "CXX14" "CXX17")
   set(zOneValKws "NAME" "SUBNAME")
-  cmake_parse_arguments(PARSE_ARGV 0 "" "${zOpts}" "${zOneValKws}" "")
+  set(zMutValKws)
+  cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
   if(DEFINED _NAME)
     set(sName "${_NAME}")
   elseif(DEFINED _SUBNAME)
-    set(sName "${PROJECT_NAME}${_SUBNAME}")
+    set(sName "${PROJECT_NAME}_${_SUBNAME}")
   else()
     set(sName "${PROJECT_NAME}")
   endif()
@@ -74,18 +76,18 @@ function(quick_add_executable_with_option)
   endif()
 
   set(vOptName "${sNameUpr}_COMPILE_EXE")
-  set(vTgtName "${sNameLwr}_exe")
+  set(sTgtName "${sNameLwr}_exe")
 
   option(${vOptName} "Build executable file." ON)
   if(NOT ${vOptName})
     return()
   endif()
 
-  add_executable(${vTgtName} ${sWin32} ${_UNPARSED_ARGUMENTS})
-  set_target_properties(${vTgtName} PROPERTIES
+  add_executable("${sTgtName}" ${sWin32} ${_UNPARSED_ARGUMENTS})
+  set_target_properties("${sTgtName}" PROPERTIES
     ${zPropertyCStd}
     ${zPropertyCxxStd}
     OUTPUT_NAME "${sName}" CLEAN_DIRECT_OUTPUT ON)
 
-  install(TARGETS ${vTgtName} DESTINATION "bin")
+  install(TARGETS "${sTgtName}" DESTINATION "bin")
 endfunction()

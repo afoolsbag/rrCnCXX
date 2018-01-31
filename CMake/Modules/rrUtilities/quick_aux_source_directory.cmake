@@ -2,11 +2,11 @@
 # 2016-10-8 – 2018-1-30
 # The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/aux_srcdir_w_grp.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/aux_srcdir_w_grp_n_cfg.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/aux_srcdir_w_install.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/ckname_w_cmakerecvarrul.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/ckname_w_fileextrul.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/aux_source_directory_with_group.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/aux_source_directory_with_group_and_config.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/aux_source_directory_with_install.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_cmake_recommend_variable_rules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/check_name_with_file_extension_rules.cmake")
 
 # .rst
 # .. command:: quick_aux_source_directory

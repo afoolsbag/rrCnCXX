@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-1-30
+# 2016-10-21 – 2018-1-31
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -34,25 +34,26 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # + `"FindPackageHandleStandardArgs" <https://cmake.org/cmake/help/latest/module/FindPackageHandleStandardArgs>`_. *CMake Documentation*.
 # + `"mark_as_advanced" <https://cmake.org/cmake/help/latest/command/mark_as_advanced>`_. *CMake Documentation*.
 #
-set(_sAddressWidth)
-if(CMAKE_SIZEOF_VOID_P)
-  math(EXPR _sAddressWidth "${CMAKE_SIZEOF_VOID_P} * 8")
+if(DEFINED CMAKE_SIZEOF_VOID_P)
+  math(EXPR sAddrWitdh "${CMAKE_SIZEOF_VOID_P} * 8")
+else()
+  set(sAddrWitdh)
 endif()
 
 find_path(
   Qt5Package_PREFIX_PATH
     "Qt5/Qt5Config.cmake"
   HINTS
-    "${QTDIR${_sAddressWidth}}/lib/cmake"
+    "${QTDIR${sAddrWitdh}}/lib/cmake"
     "${QTDIR}/lib/cmake"
-    "$ENV{QTDIR${_sAddressWidth}}/lib/cmake"
+    "$ENV{QTDIR${sAddrWitdh}}/lib/cmake"
     "$ENV{QTDIR}/lib/cmake"
   NO_DEFAULT_PATH)
 mark_as_advanced(Qt5Package_PREFIX_PATH)
 
-include(FindPackageHandleStandardArgs)
+include("FindPackageHandleStandardArgs")
 find_package_handle_standard_args(
-  Qt5Package DEFAULT_MSG
+  "Qt5Package" DEFAULT_MSG
     Qt5Package_PREFIX_PATH)
 
 if((Qt5Package_FOUND) AND (NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH))
