@@ -104,3 +104,12 @@ function(quick_add_library_with_option)
     endif()
   endif()
 endfunction()
+
+# .rst
+# .. command:: quick_library
+#
+#    同``quick_add_library_with_option``。
+#
+macro(quick_library)
+  quick_add_library_with_option(${ARGN})
+endmacro()

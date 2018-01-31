@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 2018-1-30
+# 2016-10-8 – 2018-1-31
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -47,3 +47,12 @@ function(adjust_compiler_warning_level_to_highest)
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} PARENT_SCOPE)
   endif()
 endfunction()
+
+# .rst
+# .. command:: highest_warning_level
+#
+#    同``adjust_compiler_warning_level_to_highest``。
+#
+macro(highest_warning_level)
+  adjust_compiler_warning_level_to_highest(${ARGN})
+endmacro()

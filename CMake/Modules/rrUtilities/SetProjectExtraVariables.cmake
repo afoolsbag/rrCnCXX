@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 2018-1-30
+# 2016-10-8 – 2018-1-31
 # The MIT License
 
 include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithCIdentifierRules.cmake")
@@ -51,3 +51,12 @@ function(set_project_extra_variables)
   set(PROJECT_AUTHORS     ${_AUTHORS}          PARENT_SCOPE)
   set(PROJECT_COPYRIGHT  "${_COPYRIGHT}"       PARENT_SCOPE)
 endfunction()
+
+# .rst
+# .. command:: project_variables
+#
+#    同``set_project_extra_variables``。
+#
+macro(project_variables)
+  set_project_extra_variables(${ARGN})
+endmacro()

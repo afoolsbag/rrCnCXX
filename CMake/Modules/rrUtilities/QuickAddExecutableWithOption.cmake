@@ -91,3 +91,12 @@ function(quick_add_executable_with_option)
 
   install(TARGETS "${sTgtName}" DESTINATION "bin")
 endfunction()
+
+# .rst
+# .. command:: quick_executable
+#
+#    同``quick_add_executable_with_option``。
+#
+macro(quick_executable)
+  quick_add_executable_with_option(${ARGN})
+endmacro()

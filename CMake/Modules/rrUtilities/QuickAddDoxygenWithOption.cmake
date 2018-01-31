@@ -85,3 +85,12 @@ function(quick_add_doxygen_with_option)
 
   install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen" DESTINATION "docs/${PROJECT_NAME}")
 endfunction()
+
+# .rst
+# .. command:: quick_doxygen
+#
+#    同``quick_add_doxygen_with_option``。
+#
+macro(quick_doxygen)
+  quick_add_doxygen_with_option(${ARGN})
+endmacro()

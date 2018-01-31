@@ -3,6 +3,9 @@
 ## References
 
 [*Qt Documentation*](https://doc.qt.io)
++ [All Modules](https://doc.qt.io/qt-5/qtmodules.html)
++ [Qt Reference Pages](http://doc.qt.io/qt-5/reference-overview.html)
+    + [QDoc Manual](https://doc.qt.io/qt-5/qdoc-index.html)
 
 [*Qi Wiki*](https://wiki.qt.io)
 

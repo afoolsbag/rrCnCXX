@@ -54,3 +54,12 @@ function(quick_add_googletest_with_option)
 
   add_test(NAME "${sTesName}" COMMAND "${sTgtName}")
 endfunction()
+
+# .rst
+# .. command:: quick_googletest
+#
+#    同``quick_add_googletest_with_option``。
+#
+macro(quick_googletest)
+  quick_add_googletest_with_option(${ARGN})
+endmacro()
