@@ -11,7 +11,7 @@
 
 #include <assert.h>
 
-#include "c_std_ver.h"
+#include "std.h"
 
 /** \brief point */
 static struct point {

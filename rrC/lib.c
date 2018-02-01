@@ -5,15 +5,15 @@
 
 #include "cfg.h"
 
-void rrclang_get_ver(struct rrclang_ver *verptr)
+void rrc_get_ver(struct rrc_ver *const pver)
 {
-	verptr->major = RRCLANG_VER_MAJOR;
-	verptr->minor = RRCLANG_VER_MINOR;
-	verptr->patch = RRCLANG_VER_PATCH;
-	verptr->tweak = RRCLANG_VER_TWEAK;
+	pver->major = RRCLANG_VER_MAJOR;
+	pver->minor = RRCLANG_VER_MINOR;
+	pver->patch = RRCLANG_VER_PATCH;
+	pver->tweak = RRCLANG_VER_TWEAK;
 }
 
-int32_t rrclang_sigh(void)
+time_t rrc_sigh(void)
 {
-	return 709444800;
+	return (time_t)709444800;
 }

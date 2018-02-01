@@ -12,7 +12,7 @@
 #include <assert.h>
 #include <string.h>
 
-#include "c_std_ver.h"
+#include "std.h"
 
 /**
  * \brief 字符串链接

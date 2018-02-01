@@ -1,16 +1,21 @@
-/**
+/*===-- Library ------------------------------------------------*- C -*-===*//**
+ *
  * \file
  * \brief 库
+ *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
+ *
  * \author zhengrr
- * \date 2017-1-6 – 2018-1-22
+ * \date 2017-1-6 – 2018-2-1
  * \copyright The MIT License
- */
+ *
+**//*===-------------------------------------------------------------------===*/
 
-#ifndef RRCLANG_LIB_H_
-#define RRCLANG_LIB_H_
+#ifndef RRC_LIB_H_
+#define RRC_LIB_H_
 
 #include <stdint.h>
+#include <time.h>
 
 #include "api.h"
 
@@ -19,7 +24,7 @@ extern "C" {
 #endif
 
 /** \brief 库版本结构体 */
-struct rrclang_ver {
+struct rrc_ver {
 	int16_t major;  /**< 库主版本号 */
 	int16_t minor;  /**< 库次版本号 */
 	int16_t patch;  /**< 库补丁版本号 */
@@ -28,17 +33,15 @@ struct rrclang_ver {
 
 /**
  * \brief 获取库版本
- * \param[out] verptr 库版本结构体的指针
+ * \param[out] pver 指向库版本结构体的指针
  */
-RRCLANG_API void rrclang_get_ver(struct rrclang_ver *verptr);
+RRC_API void rrc_get_ver(struct rrc_ver *const pver);
 
-/**
- * \brief 叹
- */
-RRCLANG_API int32_t rrclang_sigh(void);
+/** \brief 叹 */
+RRC_API time_t rrc_sigh(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif/* RRCLANG_LIB_H_*/
+#endif/* RRC_LIB_H_*/

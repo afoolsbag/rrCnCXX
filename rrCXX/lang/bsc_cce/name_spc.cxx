@@ -11,7 +11,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxx_std_ver.hxx"
+#include "std.hxx"
 
 #if CXX_N2535
 

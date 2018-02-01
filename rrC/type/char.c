@@ -9,7 +9,7 @@
  * \copyright The MIT License
  */
 
-#include "c_std_ver.h"
+#include "std.h"
 
 #include <assert.h>
 #if C_STD_95

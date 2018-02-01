@@ -1,13 +1,18 @@
-/**
+/*===-- Main Page ----------------------------------------------*- C -*-===*//**
+ *
  * \mainpage
+ *
  * \tableofcontents
  *
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 2-1
  * \copyright The MIT License
- */
+ *
+*//*===--------------------------------------------------------------------===*/
 
-/**
+
+/*===-- C Reference --------------------------------------------*- C -*-===*//**
+ *
  * \defgroup g_c_ref C 参考手册
  *
  * \sa ["C reference (C 参考手册)"](http://en.cppreference.com/w/c). *cppreference.com*.
@@ -26,7 +31,9 @@
  *     + [Localization support (本地化支持)](http://en.cppreference.com/w/c/locale)
  *     + [Atomic operations library (原子操作库)](http://en.cppreference.com/w/c/atomic)
  *     + [Thread support library (线程支持库)](http://en.cppreference.com/w/c/thread)
+ *
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 2-1
  * \copyright The MIT License
- */
+ *
+*//*===--------------------------------------------------------------------===*/
