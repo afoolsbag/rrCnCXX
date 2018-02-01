@@ -13,7 +13,7 @@
 
 #include "std.hxx"
 
-#if CXX_N2535
+#if N2535
 
 /* 应用：提供默认版本。
  *

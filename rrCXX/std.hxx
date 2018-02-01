@@ -26,12 +26,15 @@
 /// ISO/IEC 14882:2017
 /// https://iso.org/standard/68564.html
 #define CXX17 (201703L <= __cplusplus)
+
 /// ISO/IEC 14882:2014
 /// \sa https://iso.org/standard/64029.html
 #define CXX14 (201402L <= __cplusplus)
+
 /// ISO/IEC 14882:2011
 /// \sa https://iso.org/standard/50372.html
 #define CXX11 (201103L <= __cplusplus)
+
 /// ISO/IEC 14882:1998
 /// \sa https://iso.org/standard/25845.html
 #define CXX98 (199711L <= __cplusplus)
@@ -58,6 +61,11 @@
 #endif
 
 // Language Features
+
+/// Non-static data member initializers.
+/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2756
+#define N2756 (CXX11 || 40700<=GNUC_VER || 1800<=MSC_VER || 200809<=__cpp_nsdmi)
+
 /// Dynamic Initialization and Destruction with Concurrency.
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660
 #define N2660 (CXX11 || 40300<=GNUC_VER || 1900<=MSC_VER || 200806<=__cpp_threadsafe_static_init)

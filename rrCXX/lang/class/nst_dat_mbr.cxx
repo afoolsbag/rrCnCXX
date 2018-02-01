@@ -16,7 +16,7 @@
 
 #include "std.hxx"
 
-#if CXX_STD_11
+#if N2756
 
 namespace {
 
@@ -27,10 +27,10 @@ public:
 
 }// namespace
 
-/// 默认成员初始化器
-TEST(nonstatic_data_members, default_member_initializer) {
+/// 非静态数据成员初始值设定项
+TEST(nst_dat_mbr, nsami) {
   GamePlayer player;
   GTEST_ASSERT_EQ(player.mCurrentTurns, 0);
 }
 
-#endif// CXX_STD_11
+#endif// N2756

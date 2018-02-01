@@ -11,7 +11,7 @@
 
 #include "std.hxx"
 
-#if !CXX_N2660
+#if !N2660
 #include <mutex>
 #endif
 
@@ -50,10 +50,10 @@ class LazySingleton {
 };// class LazySingleton
 
 LazySingleton &LazySingleton::Instance() {
-#if CXX_N2660
+#if N2660
   static LazySingleton inst;
   return inst;
-#else// !CXX_N2660
+#else// !N2660
   static LazySingleton *pInst{};
   static std::mutex mutex;
   mutex.lock();
@@ -63,7 +63,7 @@ LazySingleton &LazySingleton::Instance() {
   }
   mutex.unlock();
   return *pInst;
-#endif// CXX_N2660
+#endif// N2660
 };
 
 }// namespace
