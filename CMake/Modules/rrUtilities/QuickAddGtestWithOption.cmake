@@ -1,14 +1,14 @@
 # zhengrr
-# 2017-12-17 – 2018-1-31
+# 2017-12-17 – 2018-2-2
 # The MIT License
 
 # .rst
-# .. command:: quick_add_googletest_with_option
+# .. command:: quick_add_gtest_with_option
 #
-#    轻快生成GoogleTest测试：
+#    轻快生成GTest测试：
 #    ::
 #
-#       quick_add_googletest_with_option(
+#       quick_add_gtest_with_option(
 #         <source>...
 #       )
 #
@@ -28,21 +28,21 @@
 #
 #    + `"enable_testing" <https://cmake.org/cmake/help/latest/command/enable_testing>`_. *CMake Documentation*.
 #
-function(quick_add_googletest_with_option)
+function(quick_add_gtest_with_option)
   string(TOUPPER "${PROJECT_NAME}" sPrjNameUpr)
   string(TOLOWER "${PROJECT_NAME}" sPrjNameLwr)
   set(vOptName "${sPrjNameUpr}_COMPILE_TEST")
   set(sTgtName "${sPrjNameLwr}_test")
   set(sTesName "${PROJECT_NAME}_Test")
 
-  set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the Google Test installation.")
+  set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the GTest installation.")
   find_package(GTest)
-  option(${vOptName} "Build test executable file (requires GoogleTest)." ${GTEST_FOUND})
+  option(${vOptName} "Build test executable file (requires GTest)." ${GTEST_FOUND})
   if(NOT ${vOptName})
     return()
   endif()
   if(NOT GTEST_FOUND)
-    message(SEND_ERROR "GoogleTest is needed to build the test.")
+    message(SEND_ERROR "GTest is needed to build the test.")
     return()
   endif()
 
@@ -56,10 +56,10 @@ function(quick_add_googletest_with_option)
 endfunction()
 
 # .rst
-# .. command:: quick_googletest
+# .. command:: quick_gtest
 #
-#    同``quick_add_googletest_with_option``。
+#    同``quick_add_gtest_with_option``。
 #
-macro(quick_googletest)
-  quick_add_googletest_with_option(${ARGN})
+macro(quick_gtest)
+  quick_add_gtest_with_option(${ARGN})
 endmacro()

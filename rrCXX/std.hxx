@@ -25,7 +25,7 @@
 
 /// \brief C++20
 /// \sa https://isocpp.org/std/status
-#define CXX20 0
+#define CXX20 (0)
 
 /// \brief ISO/IEC 14882:2017
 /// \sa https://iso.org/standard/68564.html

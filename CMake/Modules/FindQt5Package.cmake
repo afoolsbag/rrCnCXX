@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-1-31
+# 2016-10-21 – 2018-2-2
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -24,8 +24,8 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # 结果变量：
 # ::
 #
-#    Qt5Package_FOUND
-#    Qt5Package_PREFIX_PATH
+#    QT5_PACKAGE_FOUND
+#    QT5_PACKAGE_PREFIX_PATH
 #
 # 参见：
 #
@@ -40,8 +40,8 @@ else()
   set(sAddrWitdh)
 endif()
 
-find_path(
-  Qt5Package_PREFIX_PATH
+find_path(QT5_PACKAGE_PREFIX_PATH
+  NAMES
     "Qt5/Qt5Config.cmake"
   HINTS
     "${QTDIR${sAddrWitdh}}/lib/cmake"
@@ -49,13 +49,13 @@ find_path(
     "$ENV{QTDIR${sAddrWitdh}}/lib/cmake"
     "$ENV{QTDIR}/lib/cmake"
   NO_DEFAULT_PATH)
-mark_as_advanced(Qt5Package_PREFIX_PATH)
+mark_as_advanced(QT5_PACKAGE_PREFIX_PATH)
 
 include("FindPackageHandleStandardArgs")
-find_package_handle_standard_args(
-  "Qt5Package" DEFAULT_MSG
-    Qt5Package_PREFIX_PATH)
+find_package_handle_standard_args("QT5_PACKAGE"
+  DEFAULT_MSG
+    QT5_PACKAGE_PREFIX_PATH)
 
-if((Qt5Package_FOUND) AND (NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH))
-  list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
+if((QT5_PACKAGE_FOUND) AND (NOT QT5_PACKAGE_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH))
+  list(APPEND CMAKE_PREFIX_PATH "${QT5_PACKAGE_PREFIX_PATH}")
 endif()

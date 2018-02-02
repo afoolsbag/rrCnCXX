@@ -7,10 +7,10 @@
 
 void rrc_get_ver(struct rrc_ver *const pver)
 {
-	pver->major = RRCLANG_VER_MAJOR;
-	pver->minor = RRCLANG_VER_MINOR;
-	pver->patch = RRCLANG_VER_PATCH;
-	pver->tweak = RRCLANG_VER_TWEAK;
+	pver->major = RRC_VERSION_MAJOR;
+	pver->minor = RRC_VERSION_MINOR;
+	pver->patch = RRC_VERSION_PATCH;
+	pver->tweak = RRC_VERSION_TWEAK;
 }
 
 time_t rrc_sigh(void)

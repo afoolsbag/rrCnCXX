@@ -4,10 +4,10 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-8-1 – 2018-1-25
+# 2016-8-1 – 2018-2-2
 # The MIT License
 
-project("rrCXX" VERSION 2018.1.29 LANGUAGES CXX)
+project("rrCXX" VERSION 2018.2.2 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -17,7 +17,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)
 
 enable_testing()
-quick_googletest(
+quick_gtest(
   "algo/nmodseq.cxx"
   "cont/vector.cxx"
   "gen/mem/unique_ptr.cxx"
@@ -34,8 +34,7 @@ quick_googletest(
   "dzn/singleton.cxx"
 )
 
-quick_library(
-  SUBNAME "Lib"
+quick_library(SUBNAME "Library"
   "${PROJECT_BINARY_DIR}/cfg.hxx"
   "api.h"
   "lib.h"
