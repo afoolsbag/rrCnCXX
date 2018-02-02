@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 2018-1-31
+# 2016-10-8 – 2018-2-2
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -13,6 +13,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 #       quick_add_doxygen_with_option(
 #         [API | DEV]
+#         [JAVADOC_AUTOBRIEF]
 #         [OPTIMIZE_OUTPUT_FOR_C]
 #       )
 #
@@ -37,7 +38,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #    + `"install" <https://cmake.org/cmake/help/latest/command/install>`_. *CMake Documentation*.
 #
 function(quick_add_doxygen_with_option)
-  set(zOptKws "API" "DEV" "OPTIMIZE_OUTPUT_FOR_C")
+  set(zOptKws "API" "DEV" "JAVADOC_AUTOBRIEF" "OPTIMIZE_OUTPUT_FOR_C")
   set(zOneValKws)
   set(zMutValKws)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
@@ -74,6 +75,7 @@ function(quick_add_doxygen_with_option)
   endif()
 
   set(DOXYGEN_STRIP_FROM_PATH       "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
+  set(DOXYGEN_JAVADOC_AUTOBRIEF     "${_JAVADOC_AUTOBRIEF}")
   set(DOXYGEN_OPTIMIZE_OUTPUT_FOR_C "${_OPTIMIZE_OUTPUT_FOR_C}")
   set(DOXYGEN_HTML_OUTPUT           "doxygen")
   set(DOXYGEN_DOT_PATH              "" CACHE FILEPATH "The path where the dot tool can be found.")

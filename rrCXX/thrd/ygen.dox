@@ -1,10 +1,10 @@
 /**
  * \defgroup g_thrd_supt_lib 线程支持库
- * \ingroup g_cpp_lang
+ * \ingroup g_ref
  *
  * \sa ["Thread support library (线程支持库)"](http://en.cppreference.com/w/cpp/thread). *cppreference.com*.
  * \author zhengrr
- * \date 2018-1-23 – 24
+ * \date 2018-1-23 – 2-2
  * \copyright The MIT License
  */
 

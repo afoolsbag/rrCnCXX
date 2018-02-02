@@ -1,10 +1,13 @@
-/**
+/*===-- Library ------------------------------------------------*- C -*-===*//**
+ *
  * \file
  * \brief 库
+ *
  * \author zhengrr
  * \date 2018-1-9 – 2018-2-1
  * \copyright The MIT License
- */
+ *
+**//*===-------------------------------------------------------------------===*/
 
 #ifndef RRCXX_LIB_H_
 #define RRCXX_LIB_H_
@@ -20,10 +23,10 @@ extern "C" {
 
 /** \brief 库版本结构体 */
 struct rrcxx_ver {
-  uint16_t major;  ///< 库主版本号 `YYYY`
-  uint8_t minor;   ///< 库次版本号 `MM`
-  uint8_t patch;   ///< 库补丁版本号 `DD`
-  uint16_t tweak;  ///< 库微调版本号 `hhmm`
+  uint16_t major;  /**< 库主版本号 `YYYY` */
+  uint8_t minor;   /**< 库次版本号 `MM` */
+  uint8_t patch;   /**< 库补丁版本号 `DD` */
+  uint16_t tweak;  /**< 库微调版本号 `hhmm` */
 };
 
 /**

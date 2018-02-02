@@ -1,6 +1,6 @@
 /**
  * \defgroup g_iter_lib 迭代器库
- * \ingroup g_cpp_ref
+ * \ingroup g_ref
  *
  * \sa ["Iterator library (迭代器库)"](http://en.cppreference.com/w/cpp/iterator). *cppreference.com*.
  * \author zhengrr

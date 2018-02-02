@@ -1,6 +1,6 @@
 /**
  * \defgroup g_l10n_lib 本地化库
- * \ingroup g_cpp_ref
+ * \ingroup g_ref
  *
  * \sa ["Localization library (本地化库)"](http://en.cppreference.com/w/cpp/locale). *cppreference.com*.
  * \author zhengrr

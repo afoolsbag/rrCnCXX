@@ -1,6 +1,6 @@
 /**
  * \defgroup g_utils_lib 工具库
- * \ingroup g_cpp_ref
+ * \ingroup g_ref
  *
  * \sa ["Utility library (工具库)"](http://en.cppreference.com/w/cpp/utility). *cppreference.com*.
  *     + Language support (语言支持)

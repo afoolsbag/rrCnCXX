@@ -1,7 +1,7 @@
 //===-- Static Data Members -------------------------------------*- C++ -*-===//
 ///
 /// \defgroup g_sta_dat_mbr （类的）静态数据成员
-/// \ingroup g_cla
+/// \ingroup g_class
 ///
 /// \sa ["static members"](http://en.cppreference.com/w/cpp/language/static). *cppreference.com*.
 ///

@@ -20,8 +20,8 @@
 namespace rrcxx {
 namespace cfg {
 
-const std::string kName{"@PROJECT_NAME@"};  ///< 项目名
-const std::string kVer{"@PROJECT_VERSION@"};  ///< 项目版本
+const std::string kName{"@PROJECT_NAME@"};                   ///< 项目名
+const std::string kVer{"@PROJECT_VERSION@"};                 ///< 项目版本
 constexpr std::intmax_t kVerMajor{@PROJECT_VERSION_MAJOR@};  ///< 项目主版本号
 constexpr std::intmax_t kVerMinor{@PROJECT_VERSION_MINOR@};  ///< 项目次版本号
 constexpr std::intmax_t kVerPatch{@PROJECT_VERSION_PATCH@};  ///< 项目补丁版本号

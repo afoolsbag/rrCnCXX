@@ -1,11 +1,13 @@
-/**
+/*===-- API Import/Export Macro Definition ---------------------*- C -*-===*//**
+ *
  * \file
- * \brief API import/export macro definition
- * \details 应用程序接口导入/导出宏定义。
+ * \brief 应用程序接口导入/导出宏定义
+ *
  * \author zhengrr
  * \date 2017-1-12 – 2018-2-1
  * \copyright The MIT License
- */
+ *
+**//*===-------------------------------------------------------------------===*/
 
 #ifndef RRCXX_API_H_
 #define RRCXX_API_H_

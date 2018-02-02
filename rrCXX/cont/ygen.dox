@@ -1,6 +1,6 @@
 /**
  * \defgroup g_conts_lib 容器库
- * \ingroup g_cpp_ref
+ * \ingroup g_ref
  *
  * \sa ["Containers library (容器库)"](http://en.cppreference.com/w/cpp/container). *cppreference.com*.
  *     + [Sequence containers (顺序容器)](http://en.cppreference.com/w/cpp/container#Sequence_containers)

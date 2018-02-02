@@ -1,38 +1,39 @@
 //===-- C++ Language --------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_cpp_lng C++ 语言
-/// \ingroup g_cpp_ref
+/// \defgroup g_lang C++语言
+/// \ingroup g_ref
 ///
-/// \sa ["C++ language (C++ 语言)"](http://en.cppreference.com/w/cpp/language). *cppreference.com*.
-///     + [Basic concepts (基本概念)](http://en.cppreference.com/w/cpp/language/basic_concepts)
-///         + [Comments (注释)](http://en.cppreference.com/w/cpp/comment)
-///         + [ASCII chart (ASCII 码表)](http://en.cppreference.com/w/cpp/language/ascii)
-///         + [Names and identifiers (名称与标识符)](http://en.cppreference.com/w/cpp/language/identifiers)
-///         + [Types (类型)](http://en.cppreference.com/w/cpp/language/type)
-///             + [Fundamental types (基础类型)](http://en.cppreference.com/w/cpp/language/types)
-///         + [Object (对象)](http://en.cppreference.com/w/cpp/language/object)
-///             + [Scope (作用域)](http://en.cppreference.com/w/cpp/language/scope)
-///             + [Lifetime (生存期)](http://en.cppreference.com/w/cpp/language/lifetime)
-///         + [Definitions and ODR (定义与 ODR)](http://en.cppreference.com/w/cpp/language/definition)
-///         + [Name lookup (名称查找)](http://en.cppreference.com/w/cpp/language/lookup)
-///             + [qualified (有限定)](http://en.cppreference.com/w/cpp/language/qualified_lookup)
-///             + [unqualified (无限定)](http://en.cppreference.com/w/cpp/language/unqualified_lookup)
-///         + [Memory model and data races (内存模型与数据竞争)](http://en.cppreference.com/w/cpp/language/memory_model)
-///         + [Phases of translation (翻译阶段)](http://en.cppreference.com/w/cpp/language/translation_phases)
-///         + [The main() function (main() 函数)](http://en.cppreference.com/w/cpp/language/main_function)
-///     + [C++ Keywords (C++ 关键词)](http://en.cppreference.com/w/cpp/keyword)
-///     + [Preprocessor (预处理器)](http://en.cppreference.com/w/cpp/preprocessor)
-///     + [Expressions (表达式)](http://en.cppreference.com/w/cpp/language/expressions)
-///     + [Declaration (声明)](http://en.cppreference.com/w/cpp/language/declarations)
-///     + [Initialization (初始化)](http://en.cppreference.com/w/cpp/language/initialization)
-///     + [Functions (函数)](http://en.cppreference.com/w/cpp/language/functions)
-///     + [Statements (语句)](http://en.cppreference.com/w/cpp/language/statements)
-///     + [Classes (类)](http://en.cppreference.com/w/cpp/language/classes)
-///     + [Templates (模板)](http://en.cppreference.com/w/cpp/language/templates)
-///     + [Exceptions (异常)](http://en.cppreference.com/w/cpp/language/exceptions)
-///     + Miscellaneous (杂项)
+/// \sa ["C++ language"](http://en.cppreference.com/w/cpp/language). *cppreference.com*.
+///     + [Basic concepts](http://en.cppreference.com/w/cpp/language/basic_concepts)
+///         + [Comments](http://en.cppreference.com/w/cpp/comment)
+///         + [ASCII chart](http://en.cppreference.com/w/cpp/language/ascii)
+///         + [Names and identifiers](http://en.cppreference.com/w/cpp/language/identifiers)
+///         + [Types](http://en.cppreference.com/w/cpp/language/type)
+///             + [Fundamental types](http://en.cppreference.com/w/cpp/language/types)
+///         + [Object](http://en.cppreference.com/w/cpp/language/object)
+///             + [Scope](http://en.cppreference.com/w/cpp/language/scope)
+///             + [Lifetime](http://en.cppreference.com/w/cpp/language/lifetime)
+///         + [Definitions and ODR](http://en.cppreference.com/w/cpp/language/definition)
+///         + [Name lookup](http://en.cppreference.com/w/cpp/language/lookup)
+///             + [qualified](http://en.cppreference.com/w/cpp/language/qualified_lookup)
+///             + [unqualified](http://en.cppreference.com/w/cpp/language/unqualified_lookup)
+///         + [Memory model and data races](http://en.cppreference.com/w/cpp/language/memory_model)
+///         + [Phases of translation](http://en.cppreference.com/w/cpp/language/translation_phases)
+///         + [The main() function](http://en.cppreference.com/w/cpp/language/main_function)
+///     + [C++ Keywords](http://en.cppreference.com/w/cpp/keyword)
+///     + [Preprocessor](http://en.cppreference.com/w/cpp/preprocessor)
+///     + [Expressions](http://en.cppreference.com/w/cpp/language/expressions)
+///     + [Declaration](http://en.cppreference.com/w/cpp/language/declarations)
+///     + [Initialization](http://en.cppreference.com/w/cpp/language/initialization)
+///     + [Functions](http://en.cppreference.com/w/cpp/language/functions)
+///     + [Statements](http://en.cppreference.com/w/cpp/language/statements)
+///     + [Classes](http://en.cppreference.com/w/cpp/language/classes)
+///     + [Templates](http://en.cppreference.com/w/cpp/language/templates)
+///     + [Exceptions](http://en.cppreference.com/w/cpp/language/exceptions)
+///     + Miscellaneous
+///
 /// \author zhengrr
-/// \date 2018-1-23 – 2-1
+/// \date 2018-1-23 – 2-2
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//

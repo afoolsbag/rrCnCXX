@@ -1,6 +1,6 @@
 /**
  * \defgroup g_io_lib 输入/输出库
- * \ingroup g_cpp_ref
+ * \ingroup g_ref
  *
  * \sa ["Input/output library (输入/输出库)"](http://en.cppreference.com/w/cpp/io). *cppreference.com*.
  *     + Abstraction (抽象)
