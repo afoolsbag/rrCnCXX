@@ -3,6 +3,7 @@
 
 #include <check.h>
 
+TCase *bstrcnv_tcs(void);
 TCase *bstrexam_tcs(void);
 
 Suite *str_ste(void);

@@ -6,7 +6,7 @@
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
  *
  * \author zhengrr
- * \date 2018-1-5 – 2018-2-2
+ * \date 2018-1-5 – 2018-2-3
  * \copyright The MIT License
  *
 **//*===-------------------------------------------------------------------===*/
@@ -35,43 +35,70 @@
  *  \sa https://iso.org/standard/17782.html */
 #define C90 (!0)
 
-/**
- * \brief ANSI X3.159-1989
+/** \brief ANSI X3.159-1989
  */
 #define C89 (!0)
 
 /* Language Features */
 
-/** \brief Floating-point extensions for C, Part 1: Binary floating-point arithmetic
- *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/1778 */
-#define N1778 (200ymmL<=__STDC_ALLOC_LIB__)
+/** \brief Thread-based parallelism
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n2170 */
+#define N2170 (201709L<=__STDC_PARALLEL_EXT__)
 
-/** \brief Extensions to the C Library, Part II: Dynamic allocation functions
- *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1337 */
-#define N1337 (200nnnL<=__STDC_ALLOC_LIB__)
+/** \brief Vulnerability descriptions
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n2169 */
+#define N2169 (0)
 
-/** \brief Extensions to the C Library, Part II: Dynamic Allocation Functions
+/** \brief Supplementary attributes
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n2004 */
+#define N2004 (201000L<=__STDC_IEC_60559_ATTRIBS__)
+
+/** \brief Transactional Memory
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1961 */
+#define N1961 (0)
+
+/** \brief Supplementary functions
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1950 */
+#define N1950 (201506L<=__STDC_IEC_60559_FUNCS__)
+
+/** \brief Interchange and extended types
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1945 */
+#define N1945 (201506L<=__STDC_IEC_60559_TYPES__)
+
+/** \brief Decimal floating-point arithmetic
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1912 */
+#define N1912 (201000L<=__STDC_IEC_60559_DFP__)
+
+/** \brief Binary floating-point arithmetic
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1778 */
+#define N1778 (201000L<=__STDC_IEC_60559_BFP__)
+
+/** \brief Secure coding rules
+ *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1624 */
+#define N1624 (0)
+
+/** \brief Dynamic allocation functions
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1248 */
-#define N1248 (200nnnL<=__STDC_ALLOC_LIB__)
+#define N1248 (200000<=__STDC_ALLOC_LIB__)
 
-/** \brief Extension to support decimal floating-point arithmetic
+/** \brief Decimal floating-point arithmetic
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1241 */
 #define N1241 (200704L<=__STDC_DEC_FP__)
 
-/** \brief Extensions to the C Library, Part I: Bounds-checking interfaces
+/** \brief Bounds-checking interfaces
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1225 */
 #define N1225 (200509L<=__STDC_LIB_EXT1__)
 
-/** \brief Extensions to the C Library, to Support Mathematical Special Functions
+/** \brief Mathematical special functions
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1182 */
 #define N1182 (0)
 
-/** \brief Extensions to support embedded processors
+/** \brief Embedded processors
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1169 */
 #define N1169 (0)
 
-/** \brief Extensions to support new character data types
+/** \brief New character data types
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1040 */
-#define N1014 (0)
+#define N1040 (0)
 
 #endif/* RRC_STD_H_*/

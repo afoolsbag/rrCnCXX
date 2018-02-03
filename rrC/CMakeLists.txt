@@ -4,10 +4,10 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-8-1 – 2018-2-2
+# 2016-8-1 – 2018-2-3
 # The MIT License
 
-project("rrC" VERSION 2018.2.2 LANGUAGES C)
+project("rrC" VERSION 2018.2.3 LANGUAGES C)
 project_variables()
 highest_warning_level()
 
@@ -19,9 +19,11 @@ configure_file("cfg.h.in" "cfg.h" @ONLY)
 enable_testing()
 quick_check(
   "lang/main.c"
+  "str/bstrcnv.c"
   "str/bstrexam.c"
   "str/test.h"
   "str/test.c"
+  "std.h"
 )
 
 quick_executable(SUBNAME "DateTime" "std.h"
@@ -35,11 +37,6 @@ quick_executable(SUBNAME "Main"
 
 quick_executable(SUBNAME "Memery"
   "mem/c_mem_mgmt_lib.c")
-
-quick_executable(SUBNAME "StringCopy" "std.h"
-  "str/str_cpy.c")
-quick_executable(SUBNAME "StringCatenate" "std.h"
-  "str/bstrexam.c")
 
 quick_executable(SUBNAME "Array" "std.h"
   "type/array.c")

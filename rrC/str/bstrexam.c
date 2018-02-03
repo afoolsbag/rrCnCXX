@@ -12,15 +12,12 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <assert.h>
 #include <string.h>
-
-#include "std.h"
 
 #include "str/test.h"
 
 /**
- * \brief 字符串复制
+ * \brief 字符串复制（String Copies）
  * \sa ["strcpy, strcpy_s"](http://en.cppreference.com/w/c/string/byte/strcpy). *cppreference.com*.
  */
 START_TEST(bstrcpy)
@@ -29,16 +26,13 @@ START_TEST(bstrcpy)
 		const char src[4] = "abc";
 
 		strcpy(dst, src);
-#if N1225
-		strcpy_s(dst, sizeof(dst), src);
-#endif/* N1225*/
 
 		ck_assert_str_eq(src, dst);
 	}
 END_TEST
 
 /**
- * \brief 字符串复制
+ * \brief 字符串复制（String N Copies）
  * \sa ["strncpy, strncpy_s"](http://en.cppreference.com/w/c/string/byte/strncpy). *cppreference.com*.
  */
 START_TEST(bstrncpy)
@@ -54,7 +48,7 @@ START_TEST(bstrncpy)
 END_TEST
 
 /**
- * \brief 字符串链接
+ * \brief 字符串链接（String Catenates）
  * \sa ["strcat, strcat_s"](http://en.cppreference.com/w/c/string/byte/strcat). *cppreference.com*.
  */
 START_TEST(bstrcat)
@@ -69,7 +63,7 @@ START_TEST(bstrcat)
 END_TEST
 
 /**
- * \brief 字符串链接
+ * \brief 字符串链接（String N Catenates）
  * \sa ["strncat, strncat_s"](http://en.cppreference.com/w/c/string/byte/strncat). *cppreference.com*.
  */
 START_TEST(bstrncat)
@@ -83,6 +77,15 @@ START_TEST(bstrncat)
 	}
 END_TEST
 
+/**
+ * \brief strxfrm
+ * \sa ["strxfrm"](http://en.cppreference.com/w/c/string/byte/strxfrm). *cppreference.com*.
+ */
+START_TEST(bstrxfrm)
+	{
+	}
+END_TEST
+
 /** @} */
 
 TCase *bstrexam_tcs(void)
@@ -92,5 +95,6 @@ TCase *bstrexam_tcs(void)
 	tcase_add_test(tcs, bstrncpy);
 	tcase_add_test(tcs, bstrcat);
 	tcase_add_test(tcs, bstrncat);
+	tcase_add_test(tcs, bstrxfrm);
 	return tcs;
 }
