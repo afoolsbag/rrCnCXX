@@ -32,3 +32,6 @@
 + [*ISO 639 — Language codes*](https://iso.org/iso-639-language-codes.html)
 + [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
     + ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
+
+___
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
