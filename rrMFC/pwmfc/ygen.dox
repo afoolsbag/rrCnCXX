@@ -1,0 +1,37 @@
+//===-- Programming Windows with MFC ----------------------------*- C++ -*-===//
+///
+/// \defgroup g_pwmfc MFC Windows®程序设计
+///
+/// \author zhengrr
+/// \date 2018-2-5 – 6
+/// \copyright The MIT License
+///
+//===----------------------------------------------------------------------===//
+
+
+//===-- Programming Windows with MFC Topics --------------------*- C++ -*-===*//
+///
+/// \page p_pwmfc MFC Windows®程序设计
+/// \tableofcontents
+///
+/// ______________________
+/// \section s_afx_and_mfc AFC和MFC
+///
+/// AFX就是MFC。
+///
+/// 因Microsoft Foundation Class Library这一名称提出太晚，来不及做细致的替换，
+/// 在之前它被称作Application Framework Extensions。
+///
+/// \sa ["Microsoft Foundation Class Library"](https://wikipedia.org/wiki/Application_Framework_eXtensions). *Wikipedia*.
+///
+/// ____________________________________
+/// \section s_where_is_delete_cframewnd `delete CFrameWnd`在哪
+///
+/// `CFreamWnd`及其子类在`OnNcDestroy`回调中会`delete this`，因而无需担心内存泄露；
+/// 但`CFreamWnd`的父类`CWnd`没有此操作，因而直接继承于`CWnd`的类需要关注其销毁。
+///
+/// \author zhengrr
+/// \date 2018-2-5 – 6
+/// \copyright The MIT License
+///
+//===----------------------------------------------------------------------===//

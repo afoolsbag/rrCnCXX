@@ -1,0 +1,28 @@
+/*===-- Desktop App User Interface -----------------------------*- C -*-===*//**
+ *
+ * \defgroup g_ui 桌面应用用户界面
+ * \ingroup g_dvlp
+ *
+ * \sa ["Desktop App User Interface"](https://msdn.microsoft.com/library/ff657751). *Microsoft® Developer Network*.
+ *     + [Getting Started Developing User Interfaces for Windows Applications](https://msdn.microsoft.com/library/ff728822)
+ *     + [Windows User Experience Interaction Guidelines](https://msdn.microsoft.com/library/aa511258)
+ *     + [Internationalization for Windows Applications](https://msdn.microsoft.com/library/dd318661)
+ *     + [Accessibility](https://msdn.microsoft.com/library/ee663255)
+ *     + [User Interaction](https://msdn.microsoft.com/library/ff657750)
+ *     + [Windows and Messages](https://msdn.microsoft.com/library/ms632586)
+ *     + [Desktop Window Manager](https://msdn.microsoft.com/library/aa969540)
+ *     + [Dialog Boxes](https://msdn.microsoft.com/library/ms632588)
+ *     + [Menus and Other Resources](https://msdn.microsoft.com/library/ms632583)
+ *     + [Data Exchange](https://msdn.microsoft.com/library/ms632538)
+ *     + [High DPI](https://msdn.microsoft.com/library/mt843498)
+ *     + [Windows Animation Manager](https://msdn.microsoft.com/library/dd371981)
+ *     + [Windows Controls](https://msdn.microsoft.com/library/bb773173)
+ *     + [Windows Ribbon Framework](https://msdn.microsoft.com/library/dd371191)
+ *     + [Tiles, badges, and notifications for Classic desktop applications](https://msdn.microsoft.com/library/mt643716)
+ *     + [Title Callable UI](https://msdn.microsoft.com/library/mt421177)
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

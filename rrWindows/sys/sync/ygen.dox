@@ -1,0 +1,12 @@
+/*===-- Synchronization ----------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_sync 同步
+ * \ingroup g_sys
+ *
+ * \sa ["Synchronization"](https://msdn.microsoft.com/library/ms686353). *Microsoft® Developer Network*.
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

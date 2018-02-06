@@ -1,0 +1,29 @@
+/*===-- Diagnostics --------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_diag 诊断
+ * \ingroup g_dvlp
+ *
+ * \sa ["Diagnostics"](https://msdn.microsoft.com/library/ee663269). *Microsoft® Developer Network*.
+ *     + [Assessment Execution Engine](https://msdn.microsoft.com/library/hh437709)
+ *     + [Debugging and Error Handling](https://msdn.microsoft.com/library/ee663265)
+ *     + [Hardware Counter Profiling](https://msdn.microsoft.com/library/dd796395)
+ *     + [Network Diagnostics Framework](https://msdn.microsoft.com/library/aa369892)
+ *     + [Network Monitor](https://msdn.microsoft.com/library/ee831989)
+ *     + [Performance Counters](https://msdn.microsoft.com/library/aa373083)
+ *     + [Performance Logs and Alerts](https://msdn.microsoft.com/library/aa372635)
+ *     + [Process Snapshotting](https://msdn.microsoft.com/library/dn457825)
+ *     + [Process Status API](https://msdn.microsoft.com/library/ms684884)
+ *     + [System Event Notification Service](https://msdn.microsoft.com/library/cc185680)
+ *     + [System Monitor](https://msdn.microsoft.com/library/dd408124)
+ *     + [Tool Help Library](https://msdn.microsoft.com/library/ms686837)
+ *     + [Windows Error Reporting](https://msdn.microsoft.com/library/bb513641)
+ *     + [Windows Events](https://msdn.microsoft.com/library/aa964766)
+ *     + [Windows Performance Analyzer (WPA)](https://msdn.microsoft.com/library/ff191077)
+ *     + [Windows Performance Toolkit (WPT)](https://msdn.microsoft.com/library/hh162945)
+ *     + [Windows Troubleshooting Platform](https://msdn.microsoft.com/library/dd323778)
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

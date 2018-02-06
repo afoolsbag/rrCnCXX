@@ -1,0 +1,12 @@
+/*===-- Registry -----------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_reg 注册表
+ * \ingroup g_info
+ *
+ * \sa ["Registry"](https://msdn.microsoft.com/library/ms724871). *Microsoft® Developer Network*.
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

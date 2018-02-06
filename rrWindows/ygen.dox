@@ -1,0 +1,72 @@
+/*===-- Main Page ----------------------------------------------*- C -*-===*//**
+ *
+ * \mainpage
+ * \tableofcontents
+ *
+ * \author zhengrr
+ * \date 2018-1-22 – 2-6
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/
+
+
+/*===-- Develop Desktop Applications ---------------------------*- C -*-===*//**
+ *
+ * \defgroup g_dvlp 开发桌面应用程序
+ *
+ * \sa ["Develop desktop applications"](https://developer.microsoft.com/windows/desktop/develop). *Microsoft® Docs*.
+ *     + [Desktop technologies](https://msdn.microsoft.com/library/bg126469)
+ *         + [Desktop app UI](https://msdn.microsoft.com/library/ff657751)
+ *         + [Desktop environment](https://msdn.microsoft.com/library/ee663298)
+ *         + [Application installation and servicing](https://msdn.microsoft.com/library/ee663259)
+ *         + [Audio and video](https://msdn.microsoft.com/library/ee663260)
+ *         + [Data access and storage](https://msdn.microsoft.com/library/ee663264)
+ *         + [Devices](https://msdn.microsoft.com/library/hh750300)
+ *         + [Diagnostics](https://msdn.microsoft.com/library/ee663269)
+ *         + [Documents and printing](https://msdn.microsoft.com/library/ff686798)
+ *         + [Graphics and gaming](https://msdn.microsoft.com/library/ee663279)
+ *         + [Networking and Internet](https://msdn.microsoft.com/library/ee663286)
+ *         + [Security and identity](https://msdn.microsoft.com/library/ee663293)
+ *         + [System services](https://msdn.microsoft.com/library/ee663297)
+ *     + [Server and system technologies](https://msdn.microsoft.com/library/mt842907)
+ *     + [Graphics and game technologies](https://msdn.microsoft.com/library/ee663279)
+ *     + [API index](https://msdn.microsoft.com/library/hh920508)
+ *
+ * \author zhengrr
+ * \date 2018-1-22 – 2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/
+
+
+/*===-- Develop Desktop Applications Topics --------------------*- C -*-===*//**
+ *
+ * \page p_dvlp 开发桌面应用程序议题
+ * \tableofcontents
+ *
+ * _____________________________
+ * \section s_hungarian_notation 匈牙利命名法
+ *
+ * > 匈牙利命名法由 Simonyi Károly 发明，其名称源自对 Simonyi 祖籍的一种讽刺：
+ * > 匈牙利人的姓名习惯，与多数其它欧洲人的姓名习惯是互反的，即姓在前而名在后。
+ *
+ * 类似的，一般变量的描述习惯，是修饰词在前，名词在后，如 `aLongLongLongNameVar`；
+ * 而匈牙利命名法将其命名为 `varLongLongLongName`，将`var`提到最前。
+ *
+ * 系统匈牙利命名法（System Hungarian Notation）仅适用于无类型或弱类型语言。
+ * 不要画蛇添足。
+ *
+ * 应用匈牙利命名法（Apps Hungarian Notation）可以适时地使用：
+ * + 最常见的，区分类似语义的多个变量，譬如`strWidth`, `intWidth`, `dblWidth`。
+ *   在类型转换和遍历迭代时很有用；
+ * + 在不提供模块、包、命名空间等相似功能的语言里，使用前缀以区分不同模块；
+ * + 在任何更有助于理解的情况下使用。
+ *
+ * \sa ["Hungarian notation"](https://wikipedia.org/wiki/Hungarian_notation). *Wikipedia*.
+ * \sa ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
+ *
+ * \author zhengrr
+ * \date 2018-1-23 – 2-6
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

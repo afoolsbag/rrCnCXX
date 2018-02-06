@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-17 – 2018-2-2
+# 2017-12-17 – 2018-2-6
 # The MIT License
 
 # .rst
@@ -47,6 +47,7 @@ function(quick_add_gtest_with_option)
   endif()
 
   include_directories(${GTEST_INCLUDE_DIRS})
+  source_group("" FILES ${ARGN})
   add_executable("${sTgtName}" ${ARGN})
   set_target_properties("${sTgtName}" PROPERTIES
     OUTPUT_NAME "${sTesName}" CLEAN_DIRECT_OUTPUT ON)

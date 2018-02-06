@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 2018-1-31
+# 2016-10-8 – 2018-2-6
 # The MIT License
 
 # .rst
@@ -67,6 +67,7 @@ function(quick_add_library_with_option)
     set(sTgtName "${sNameLwr}_static")
     option(${vOptName} "Build static library." ON)
     if(${vOptName})
+      source_group("" FILES ${_UNPARSED_ARGUMENTS})
       add_library("${sTgtName}" STATIC ${_UNPARSED_ARGUMENTS})
       set_target_properties("${sTgtName}" PROPERTIES
         ${zPropertyCStd}
@@ -81,6 +82,7 @@ function(quick_add_library_with_option)
     set(sTgtName "${sNameLwr}_shared")
     option(${vOptName} "Build shared library." ON)
     if(${vOptName})
+      source_group("" FILES ${_UNPARSED_ARGUMENTS})
       add_library("${sTgtName}" SHARED ${_UNPARSED_ARGUMENTS})
       set_target_properties("${sTgtName}" PROPERTIES
         ${zPropertyCStd}
@@ -95,6 +97,7 @@ function(quick_add_library_with_option)
     set(sTgtName "${sNameLwr}_module")
     option(${vOptName} "Build module library." ON)
     if(${vOptName})
+      source_group("" FILES ${_UNPARSED_ARGUMENTS})
       add_library("${sTgtName}" MODULE ${_UNPARSED_ARGUMENTS})
       set_target_properties("${sTgtName}" PROPERTIES
         ${zPropertyCStd}

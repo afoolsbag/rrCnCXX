@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-2-2
+# 2018-2-2 – 6
 # The MIT License
 
 # .rst
@@ -46,6 +46,7 @@ function(quick_add_check_with_option)
   endif()
 
   include_directories(${CHECK_INCLUDE_DIRS})
+  source_group("" FILES ${ARGN})
   add_executable("${sTgtName}" ${ARGN})
   set_target_properties("${sTgtName}" PROPERTIES
     OUTPUT_NAME "${sTesName}" CLEAN_DIRECT_OUTPUT ON)

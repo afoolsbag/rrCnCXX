@@ -1,0 +1,18 @@
+/*===-- Windows System Information -----------------------------*- C -*-===*//**
+ *
+ * \defgroup g_info Windows©系统信息
+ * \ingroup g_sys
+ *
+ * \sa ["Windows System Information"](https://msdn.microsoft.com/library/ee663297). *Microsoft® Developer Network*.
+ *     + [Handles and Objects](https://msdn.microsoft.com/library/ms724457)
+ *     + [Registry](https://msdn.microsoft.com/library/ms724871)
+ *     + [System Information](https://msdn.microsoft.com/library/ms724951)
+ *     + [Time](https://msdn.microsoft.com/library/ms724962)
+ *     + [Time Provider](https://msdn.microsoft.com/library/ms725475)
+ *     + [WaaS Assessment Platform](https://msdn.microsoft.com/library/mt808050)
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

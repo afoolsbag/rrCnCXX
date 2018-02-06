@@ -1,0 +1,38 @@
+/*===-- Data Access and Storage --------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_data 数据访问和存储
+ * \ingroup g_dvlp
+ *
+ * \sa ["Data Access and Storage"](https://msdn.microsoft.com/library/ee663264). *Microsoft® Developer Network*.
+ *     + [Background Intelligent Transfer Service](https://msdn.microsoft.com/library/bb968799)
+ *     + [Backup](https://msdn.microsoft.com/library/ee663261)
+ *     + [Cloud Filter API](https://msdn.microsoft.com/library/mt827575)
+ *     + [Common Log File System](https://msdn.microsoft.com/library/bb986747)
+ *     + [Distributed File System](https://msdn.microsoft.com/library/bb524800)
+ *     + [Distributed File System Replication](https://msdn.microsoft.com/library/bb540031)
+ *     + [Extensible Storage Engine](https://msdn.microsoft.com/library/gg269259)
+ *     + [File Management API (FMAPI)](https://msdn.microsoft.com/library/dd239113)
+ *     + [Image Mastering API](https://msdn.microsoft.com/library/aa366450)
+ *     + [Imaging API](https://msdn.microsoft.com/library/dd851933)
+ *     + [iSCSI Discovery Library API](https://msdn.microsoft.com/library/bb870774)
+ *     + [iSCSI Software Target API](https://msdn.microsoft.com/library/hh830439)
+ *     + [Local File Systems](https://msdn.microsoft.com/library/aa364407)
+ *     + [MSXML](https://msdn.microsoft.com/library/ms763742)
+ *     + [Non-Volatile Memory Library (NVML)](https://msdn.microsoft.com/library/mt806229)
+ *     + [Offline Files](https://msdn.microsoft.com/library/cc296092)
+ *     + [Packaging](https://msdn.microsoft.com/library/dd371623)
+ *     + [Remote Differential Compression](https://msdn.microsoft.com/library/aa373254)
+ *     + [User State Management API](https://msdn.microsoft.com/library/hh830616)
+ *     + [Virtual Disk Service](https://msdn.microsoft.com/library/bb986750)
+ *     + [Virtual Storage](https://msdn.microsoft.com/library/dd323653)
+ *     + [Windows Data Access Components](https://msdn.microsoft.com/library/aa968814)
+ *     + [Windows Storage Management API](https://msdn.microsoft.com/library/hh830613)
+ *     + [Windows Sync](https://msdn.microsoft.com/library/dd317274)
+ *     + [WMI Provider for NFS](https://msdn.microsoft.com/library/ff706658)
+ *     + [XmlLite](https://msdn.microsoft.com/library/ms752872)
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

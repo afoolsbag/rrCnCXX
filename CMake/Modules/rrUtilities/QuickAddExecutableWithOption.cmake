@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-1-31
+# 2017-12-18 – 2018-2-6
 # The MIT License
 
 # .rst
@@ -83,6 +83,7 @@ function(quick_add_executable_with_option)
     return()
   endif()
 
+  source_group("" FILES ${_UNPARSED_ARGUMENTS})
   add_executable("${sTgtName}" ${sWin32} ${_UNPARSED_ARGUMENTS})
   set_target_properties("${sTgtName}" PROPERTIES
     ${zPropertyCStd}

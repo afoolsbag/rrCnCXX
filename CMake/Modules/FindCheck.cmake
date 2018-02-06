@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-2-2
+# 2018-2-2 – 5
 # The MIT License
 
 #.rst:
@@ -36,26 +36,27 @@ find_path(CHECK_INCLUDE_DIRS
   NO_DEFAULT_PATH)
 mark_as_advanced(CHECK_INCLUDE_DIRS)
 
-find_library(CHECK_LIBRARY_check
+find_library(CHECK_check_LIBRARY
   NAMES
     "check"
   HINTS
     "${CHECK_ROOT}/lib"
     "$ENV{CHECK_ROOT}/lib"
   NO_DEFAULT_PATH)
-find_library(CHECK_LIBRARY_compat
+mark_as_advanced(CHECK_check_LIBRARY)
+find_library(CHECK_compat_LIBRARY
   NAMES
     "compat"
   HINTS
     "${CHECK_ROOT}/lib"
     "$ENV{CHECK_ROOT}/lib"
   NO_DEFAULT_PATH)
-set(CHECK_LIBRARIES "${CHECK_LIBRARY_check}" "${CHECK_LIBRARY_compat}")
-mark_as_advanced(CHECK_LIBRARIES)
+mark_as_advanced(CHECK_compat_LIBRARY)
+set(CHECK_LIBRARIES "${CHECK_check_LIBRARY}" "${CHECK_compat_LIBRARY}")
 
 include("FindPackageHandleStandardArgs")
-find_package_handle_standard_args("CHECK"
+find_package_handle_standard_args("Check"
   DEFAULT_MSG
-    Check_INCLUDE_DIRS
-    CHECK_LIBRARY_check
-    CHECK_LIBRARY_compat)
+    CHECK_INCLUDE_DIRS
+    CHECK_check_LIBRARY
+    CHECK_compat_LIBRARY)

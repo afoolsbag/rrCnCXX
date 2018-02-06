@@ -1,0 +1,45 @@
+/*===-- Networking and Internet --------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_net 网络和互联网
+ * \ingroup g_dvlp
+ *
+ * \sa ["Networking and Internet"](https://msdn.microsoft.com/library/ee663286). *Microsoft® Developer Network*.
+ *     + [Delivery Optimization (DO)](https://msdn.microsoft.com/library/mt493216)
+ *     + [Domain Name System (DNS)](https://msdn.microsoft.com/library/ms682100)
+ *     + [Dynamic Host Configuration Protocol (DHCP)](https://msdn.microsoft.com/library/aa363383)
+ *     + [Fax Service](https://msdn.microsoft.com/library/ms692855)
+ *     + [Get Connected Wizard API](https://msdn.microsoft.com/library/ff956214)
+ *     + [HTTP Server API](https://msdn.microsoft.com/library/aa364510)
+ *     + [IP Helper](https://msdn.microsoft.com/library/aa366073)
+ *     + [Management Information Base](https://msdn.microsoft.com/library/aa366934)
+ *     + [Message Queuing (MSMQ)](https://msdn.microsoft.com/library/ms711472)
+ *     + [Multicast Address Dynamic Client Allocation Protocol (MADCAP)](https://msdn.microsoft.com/library/ms691987)
+ *     + [Network List Manager](https://msdn.microsoft.com/library/aa370803)
+ *     + [Network Management](https://msdn.microsoft.com/library/aa370672)
+ *     + [Network Share Management](https://msdn.microsoft.com/library/bb525392)
+ *     + [Peer-to-Peer](https://msdn.microsoft.com/library/aa371704)
+ *     + [Quality of Service (QOS)](https://msdn.microsoft.com/library/aa374094)
+ *     + [Remote Procedure Call (RPC)](https://msdn.microsoft.com/library/aa378651)
+ *     + [Routing and Remote Access Service](https://msdn.microsoft.com/library/bb545679)
+ *     + [Simple Network Management Protocol](https://msdn.microsoft.com/library/aa379100)
+ *     + [SMB Management API](https://msdn.microsoft.com/library/hh830479)
+ *     + [Telephony Application Programming Interfaces (TAPI)](https://msdn.microsoft.com/library/ms734273)
+ *     + [Teredo](https://msdn.microsoft.com/library/aa965909)
+ *     + [WebSocket Protocol Component API](https://msdn.microsoft.com/library/hh437448)
+ *     + [Windows Filtering Platform](https://msdn.microsoft.com/library/aa366510)
+ *     + [Windows Firewall Technologies](https://msdn.microsoft.com/library/aa366319)
+ *     + [Windows Networking (WNet)](https://msdn.microsoft.com/library/aa385406)
+ *     + [Windows Network Virtualization](https://msdn.microsoft.com/library/jj673986)
+ *     + [Windows RSS Platform](https://msdn.microsoft.com/library/ms684701)
+ *     + [Windows Sockets 2](https://msdn.microsoft.com/library/ms740673)
+ *     + [Windows Web Services API](https://msdn.microsoft.com/library/dd430435)
+ *     + [WebDAV](https://msdn.microsoft.com/library/dd408161)
+ *     + [Windows HTTP Services (WinHTTP)](https://msdn.microsoft.com/library/aa384273)
+ *     + [XML HTTP Request 2](https://msdn.microsoft.com/library/hh831163)
+ *     + [Windows Internet (WinINet)](https://msdn.microsoft.com/library/aa385331)
+ *
+ * \author zhengrr
+ * \date 2018-2-5
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/
