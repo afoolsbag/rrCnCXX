@@ -20,23 +20,15 @@ enable_testing()
 quick_check(
   "lang/main.c"
   "str/bstrcnv.c"
-  "str/bstrexam.c"
-  "str/test.h"
-  "str/test.c"
-  "std.h"
+  "str/bstrexam.c" "str/test.c"
+  "time/time.c" "time/test.c"
 )
-
-quick_executable(SUBNAME "DateTime" "std.h"
-  "time/date_time_utils.c")
-
-quick_executable(SUBNAME "IO"
-  "io/file_io.c")
 
 quick_executable(SUBNAME "Main"
   "lang/main.c")
 
 quick_executable(SUBNAME "Memery"
-  "mem/c_mem_mgmt_lib.c")
+  "mem/mem.c")
 
 quick_executable(SUBNAME "Array" "std.h"
   "type/array.c")
@@ -50,4 +42,4 @@ quick_library(SUBNAME "Library"
   "api.h"
   "lib.h"
   "lib.c"
-)
+  )

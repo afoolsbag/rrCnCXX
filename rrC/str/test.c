@@ -1,4 +1,4 @@
-#include "str/test.h"
+#include "test.h"
 
 Suite *str_ste(void)
 {

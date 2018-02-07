@@ -1,14 +1,17 @@
-/**
- * \defgroup g_numerics 数值
- * \ingroup g_c_ref
+/*===-- Numerics -----------------------------------------------*- C -*-===*//**
  *
- * \sa ["Numerics (数值)"](http://en.cppreference.com/w/c/numeric). *cppreference.com*.
- *     + [Common mathematical functions (常用数学函数)](http://en.cppreference.com/w/c/numeric/math)
- *     + [Floating-point environment (浮点环境)](http://en.cppreference.com/w/c/numeric/fenv)
- *     + [Pseudo-random number generation (伪随机数生成)](http://en.cppreference.com/w/c/numeric/random)
- *     + [Complex number arithmetic (复数算术)](http://en.cppreference.com/w/c/numeric/complex)
- *     + [Type-generic math (泛型数学)](http://en.cppreference.com/w/c/numeric/tgmath)
+ * \defgroup g_numr 数值
+ * \ingroup g_ref
+ *
+ * \sa ["Numerics"](http://en.cppreference.com/w/c/numeric). *cppreference.com*.
+ *     + [Common mathematical functions](http://en.cppreference.com/w/c/numeric/math)
+ *     + [Floating-point environment](http://en.cppreference.com/w/c/numeric/fenv)
+ *     + [Pseudo-random number generation](http://en.cppreference.com/w/c/numeric/random)
+ *     + [Complex number arithmetic](http://en.cppreference.com/w/c/numeric/complex)
+ *     + [Type-generic math](http://en.cppreference.com/w/c/numeric/tgmath)
+ *
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 2-7
  * \copyright The MIT License
- */
+ *
+*//*===--------------------------------------------------------------------===*/

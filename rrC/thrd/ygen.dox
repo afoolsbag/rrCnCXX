@@ -1,9 +1,12 @@
-/**
- * \defgroup g_thrd_supt_lib 线程支持库
- * \ingroup g_c_ref
+/*===-- Thread Support Library ---------------------------------*- C -*-===*//**
  *
- * \sa ["Thread support library (线程支持库)"](http://en.cppreference.com/w/c/thread). *cppreference.com*.
+ * \defgroup g_thrd 线程支持库
+ * \ingroup g_ref
+ *
+ * \sa ["Thread support library"](http://en.cppreference.com/w/c/thread). *cppreference.com*.
+ *
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 2-7
  * \copyright The MIT License
- */
+ *
+*//*===--------------------------------------------------------------------===*/

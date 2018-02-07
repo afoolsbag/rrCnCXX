@@ -1,29 +1,49 @@
-/**
- * \defgroup g_conts_lib 容器库
- * \ingroup g_ref
- *
- * \sa ["Containers library (容器库)"](http://en.cppreference.com/w/cpp/container). *cppreference.com*.
- *     + [Sequence containers (顺序容器)](http://en.cppreference.com/w/cpp/container#Sequence_containers)
- *         + [array (静态相接数组)](http://en.cppreference.com/w/cpp/container/array)
- *         + [vector (动态相接数组)](http://en.cppreference.com/w/cpp/container/vector)
- *         + [deque (双端队列)](http://en.cppreference.com/w/cpp/container/deque)
- *         + [forward_list (单链表)](http://en.cppreference.com/w/cpp/container/forward_list)
- *         + [list (双链表)](http://en.cppreference.com/w/cpp/container/list)
- *     + [Associative containers (关联容器)](http://en.cppreference.com/w/cpp/container#Associative_containers)
- *         + [set (唯一键有序集合)](http://en.cppreference.com/w/cpp/container/set)
- *         + [map (键唯一的键值对有序集合)](http://en.cppreference.com/w/cpp/container/map)
- *         + [multiset (键有序集合)](http://en.cppreference.com/w/cpp/container/multiset)
- *         + [multimap (键值对有序集合)](http://en.cppreference.com/w/cpp/container/multimap)
- *     + [Unordered associative containers (无序关联容器)](http://en.cppreference.com/w/cpp/container#Unordered_associative_containers)
- *         + [unordered_set (唯一键散列集合)](http://en.cppreference.com/w/cpp/container/unordered_set)
- *         + [unordered_map (键唯一的键值对散列集合)](http://en.cppreference.com/w/cpp/container/unordered_map)
- *         + [unordered_multiset (键散列集合)](http://en.cppreference.com/w/cpp/container/unordered_multiset)
- *         + [unordered_multimap (键值对散列集合)](http://en.cppreference.com/w/cpp/container/unordered_multimap)
- *     + [Container adaptors (容器适配器)](http://en.cppreference.com/w/cpp/container#Container_adaptors)
- *         + [stack (堆栈适配器)](http://en.cppreference.com/w/cpp/container/stack)
- *         + [queue (队列适配器)](http://en.cppreference.com/w/cpp/container/queue)
- *         + [priority_queue (优先级队列适配器)](http://en.cppreference.com/w/cpp/container/priority_queue)
- * \author zhengrr
- * \date 2018-1-22 – 25
- * \copyright The MIT License
- */
+//===-- Containers Library --------------------------------------*- C++ -*-===//
+///
+/// \defgroup g_cont 容器库
+/// \ingroup g_ref
+///
+/// 顺序容器
+/// + `array` 数组，静态相接数组
+/// + `vector` 向量，动态相接数组
+/// + `deque` 双端队列
+/// + `forward_list` 单链表
+/// + `list` （双）链表
+///
+/// （有序）关联容器
+/// + `set` 集合，唯一键有序集合
+/// + `map` 映射，键唯一的键值对有序集合
+/// + `multiset`
+/// + `multimap`
+///
+/// 无序关联容器
+///
+/// 容器适配器
+///
+/// \sa ["Containers library"](http://en.cppreference.com/w/cpp/container). *cppreference.com*.
+///   + [Sequence containers](http://en.cppreference.com/w/cpp/container#Sequence_containers)
+///       + [array](http://en.cppreference.com/w/cpp/container/array)
+///       + [vector](http://en.cppreference.com/w/cpp/container/vector)
+///       + [deque](http://en.cppreference.com/w/cpp/container/deque)
+///       + [forward_list](http://en.cppreference.com/w/cpp/container/forward_list)
+///       + [list](http://en.cppreference.com/w/cpp/container/list)
+///   + [Associative containers](http://en.cppreference.com/w/cpp/container#Associative_containers)
+///       + [set](http://en.cppreference.com/w/cpp/container/set)
+///       + [map](http://en.cppreference.com/w/cpp/container/map)
+///       + [multiset](http://en.cppreference.com/w/cpp/container/multiset)
+///       + [multimap](http://en.cppreference.com/w/cpp/container/multimap)
+///   + [Unordered associative containers](http://en.cppreference.com/w/cpp/container#Unordered_associative_containers)
+///       + [unordered_set](http://en.cppreference.com/w/cpp/container/unordered_set)
+///       + [unordered_map](http://en.cppreference.com/w/cpp/container/unordered_map)
+///       + [unordered_multiset](http://en.cppreference.com/w/cpp/container/unordered_multiset)
+///       + [unordered_multimap](http://en.cppreference.com/w/cpp/container/unordered_multimap)
+///   + [Container adaptors](http://en.cppreference.com/w/cpp/container#Container_adaptors)
+///       + [stack](http://en.cppreference.com/w/cpp/container/stack)
+///       + [queue](http://en.cppreference.com/w/cpp/container/queue)
+///       + [priority_queue](http://en.cppreference.com/w/cpp/container/priority_queue)
+///
+/// \author zhengrr
+/// \date 2018-1-22 – 2-7
+/// \copyright The MIT License
+///
+//===----------------------------------------------------------------------===//

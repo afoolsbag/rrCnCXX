@@ -21,9 +21,9 @@
 /// unique_ptr preliminary
 TEST(unique_ptr, preliminary) {
 
-#if CXX_STD_14
+#if CXX14
   auto pint = std::make_unique<int>(666);
-#elif CXX_STD_11
+#elif CXX11
   std::unique_ptr<int> pint(new int);
   *pint = 666;
 #endif

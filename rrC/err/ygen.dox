@@ -1,9 +1,12 @@
-/**
- * \defgroup g_err_handling 错误处理
- * \ingroup g_c_ref
+/*===-- Error Handling -----------------------------------------*- C -*-===*//**
  *
- * \sa ["Error handling (错误处理)"](http://en.cppreference.com/w/c/error). *cppreference.com*.
+ * \defgroup g_err 错误处理
+ * \ingroup g_ref
+ *
+ * \sa ["Error handling"](http://en.cppreference.com/w/c/error). *cppreference.com*.
+ *
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 2-7
  * \copyright The MIT License
- */
+ *
+*//*===--------------------------------------------------------------------===*/

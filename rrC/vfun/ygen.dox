@@ -1,0 +1,12 @@
+/*===-- Variadic Functions -------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_vfun 变参数函数
+ * \ingroup g_ref
+ *
+ * \sa ["Variadic functions"](http://en.cppreference.com/w/c/variadic). *cppreference.com*.
+ *
+ * \author zhengrr
+ * \date 2018-1-23 – 2-7
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

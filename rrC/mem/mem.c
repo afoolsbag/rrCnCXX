@@ -1,14 +1,16 @@
-/**
- * \defgroup g_mem_mgmt_lib C 内存管理库
- * \ingroup g_c_ref
+/*===-- C Memory Management Library ----------------------------*- C -*-===*//**
  *
- * \sa ["C memory management library (C 内存管理库)"](http://en.cppreference.com/w/c/memory). *cppreference.com*.
+ * \defgroup g_mem C内存管理库
+ * \ingroup g_ref
+ *
+ * \sa ["C memory management library"](http://en.cppreference.com/w/c/memory). *cppreference.com*.
+ *
  * \author zhengrr
- * \date 2016-12-2 – 2018-1-25
+ * \date 2016-12-2 – 2-7
  * \copyright The MIT License
  *
  * @{
- */
+*//*===--------------------------------------------------------------------===*/
 
 #include <stdlib.h>
 

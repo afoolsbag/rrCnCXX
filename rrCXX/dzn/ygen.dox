@@ -7,10 +7,10 @@
  */
 
 /**
- * \page p_dzn_patterns 设计模式话题
+ * \page p_dzn_patterns 设计模式议题
  * \tableofcontents
  *
- * -----------------------
+ * _______________________
  * \section s_cxx_and_dclp C++ 和 DCLP 的风险
  *
  * 若非必要，建议使用提前初始化单例模式，其无需互斥锁；

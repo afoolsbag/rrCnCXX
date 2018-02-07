@@ -1,14 +1,17 @@
-/**
- * \defgroup g_type_supt 类型支持
- * \ingroup g_c_ref
+/*===-- Type Support -------------------------------------------*- C -*-===*//**
  *
- * \sa ["Type support (类型支持)"](http://en.cppreference.com/w/c/types). *cppreference.com*.
- *     + [Fundamental types defined by the language (语言定义的基础类型)](http://en.cppreference.com/w/c/language/types)
- *     + Additional basic types and convenience macros (附加基本类型及便利宏)
- *     + [Boolean type support (布尔类型支持)](http://en.cppreference.com/w/c/types/boolean)
- *     + [Fixed width integer types (定宽整数类型)](http://en.cppreference.com/w/c/types/integer)
- *     + [Numeric limits (数值极限)](http://en.cppreference.com/w/c/types/limits)
+ * \defgroup g_type 类型支持
+ * \ingroup g_ref
+ *
+ * \sa ["Type support"](http://en.cppreference.com/w/c/types). *cppreference.com*.
+ *     + [Fundamental types defined by the language](http://en.cppreference.com/w/c/language/types)
+ *     + Additional basic types and convenience macros
+ *     + [Boolean type support](http://en.cppreference.com/w/c/types/boolean)
+ *     + [Fixed width integer types](http://en.cppreference.com/w/c/types/integer)
+ *     + [Numeric limits](http://en.cppreference.com/w/c/types/limits)
+ *
  * \author zhengrr
- * \date 2018-1-23 – 25
+ * \date 2018-1-23 – 2-7
  * \copyright The MIT License
- */
+ *
+*//*===--------------------------------------------------------------------===*/

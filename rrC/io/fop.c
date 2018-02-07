@@ -1,20 +1,25 @@
-/**
- * \defgroup g_file_io 文件输入/输出
- * \ingroup g_c_ref
+/*===-- File Input/Output --------------------------------------*- C -*-===*//**
  *
- * \sa ["File input/output (文件输入/输出)"](http://en.cppreference.com/w/c/io). *cppreference.com*.
+ * \defgroup g_io 文件输入/输出
+ * \ingroup g_ref
+ *
+ * \sa ["File input/output"](http://en.cppreference.com/w/c/io). *cppreference.com*.
+ *
  * \author zhengrr
- * \date 2016-11-14 – 2018-1-25
+ * \date 2016-11-14 – 2-7
  * \copyright The MIT License
  *
  * @{
- */
+*//*===--------------------------------------------------------------------===*/
 
 #include <stdbool.h>
 #include <stdio.h>
 
+#include "test.h"
+
 /**
  * \brief 打开文件
+ *
  * \sa ["fopen, fopen_s"](http://en.cppreference.com/w/c/io/fopen). *cppreference.com*.
  * \sa ["fclose"](http://en.cppreference.com/w/c/io/fclose). *cppreference.com*.
  */
@@ -201,3 +206,9 @@ int main(void)
 }
 
 /** @} */
+
+TCase *fileio_test_case(void)
+{
+	TCase *tcs = tcase_create("fop");
+	return tcs;
+}

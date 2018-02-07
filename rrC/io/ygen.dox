@@ -1,0 +1,19 @@
+/*===-- File Input/Output --------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_io 文件输入/输出
+ * \ingroup g_ref
+ *
+ * \sa ["File input/output"](http://en.cppreference.com/w/c/io). *cppreference.com*.
+ *     + [File access](http://en.cppreference.com/w/c/io#File_access)
+ *     + [Direct input/output](http://en.cppreference.com/w/c/io#Direct_input.2Foutput)
+ *     + [Unformatted input/output](http://en.cppreference.com/w/c/io#Unformatted_input.2Foutput)
+ *     + [Formatted input/output](http://en.cppreference.com/w/c/io#Formatted_input.2Foutput)
+ *     + [File positioning](http://en.cppreference.com/w/c/io#File_positioning)
+ *     + [Error handling](http://en.cppreference.com/w/c/io#Error_handling)
+ *     + [Operations on files](http://en.cppreference.com/w/c/io#Operations_on_files)
+ *
+ * \author zhengrr
+ * \date 2016-11-14 – 2-7
+ * \copyright The MIT License
+ *
+*//*===--------------------------------------------------------------------===*/

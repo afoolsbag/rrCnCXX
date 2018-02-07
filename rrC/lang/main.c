@@ -4,15 +4,16 @@
  * \ingroup g_lang
  *
  * \author zhengrr
- * \date 2016-10-9 – 2018-2-3
+ * \date 2016-10-9 – 2018-2-7
  * \copyright The MIT License
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <check.h>
+#include <stdio.h>
 
 #include "str/test.h"
+#include "time/test.h"
 
 /**
  * \brief 主函数
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
 {
 	SRunner *runner = srunner_create(NULL);
 	srunner_add_suite(runner, str_ste());
+	srunner_add_suite(runner, time_ste());
 
 	srunner_run_all(runner, CK_NORMAL);
 	int failed = srunner_ntests_failed(runner);

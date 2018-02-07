@@ -4,10 +4,10 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-8-1 – 2018-2-2
+# 2016-8-1 – 2018-2-7
 # The MIT License
 
-project("rrCXX" VERSION 2018.2.2 LANGUAGES CXX)
+project("rrCXX" VERSION 2018.2.7 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 

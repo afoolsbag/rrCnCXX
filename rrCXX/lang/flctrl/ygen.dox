@@ -25,7 +25,7 @@
 /// \sa ["return statement vs exit() in main()"](http://stackoverflow.com/questions/461449). *Stack Overflow*.
 ///
 /// \author zhengrr
-/// \date 2018-1-23 – 2-5
+/// \date 2018-1-23 – 2-7
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
