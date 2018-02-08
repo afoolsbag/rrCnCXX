@@ -16,22 +16,22 @@
 
 ## Programming Styles
 
-+ 遵循传统；
-+ 屏幕：80字符×24行；
-+ 缩进：8空格宽制表符（`Tab`）；
-+ 命名：以助于辨识和理解；
++ 遵循传统
++ 屏幕：80字符×24行
++ 缩进：8空格宽制表符（`Tab`）
++ 命名：以助于辨识和理解
     + 缩写：
       [广为人知](https://wikipedia.org)的应当使用（`tcp` `http`），
       [业内通行](https://abbreviations.com)的可以使用（`cur` `img`），
-      自行约定的审慎使用（`fs` `fsys` `file_system`）；
-    + 全局对象应描述性命名，且仅使用广为人知的缩写（`count_active_users()`）；
-    + 宏、枚举值、常量：以下划线分隔全大写（`RED` `GREEN` `BLUE`）；
-    + 类型、函数、变量：以下划线分隔全小写（`size_t` `do_something()` `tmp`）；
-+ 大括号：函数的新起一行，其他的置于行尾；
-+ 函数：应简短、甜美且专注；
-    + 宽度一屏内（80字符）；
-    + 长度两屏内（约50行），长而简明的函数除外（如长长的`switch-case`函数）；
-    + 晦涩（过长或过深）应考虑重构。
+      自行约定的审慎使用（`fs` `fsys` `file_system`）
+    + 全局对象应描述性命名，且仅使用广为人知的缩写（`count_active_users()`）
+    + 宏、枚举值、常量：全大写配下划线式（`RED` `GREEN` `BLUE`）
+    + 类型、函数、变量：全小写配下划线式（`size_t` `do_something()` `tmp`）
++ 大括号：函数的新起一行，其他的置于行尾
++ 函数：应简短、甜美且专注
+    + 宽度一屏内（80字符）
+    + 长度两屏内（约50行），长而简明的函数除外（如长长的`switch-case`函数）
+    + 晦涩（过长或过深）应考虑重构
 
 [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
 

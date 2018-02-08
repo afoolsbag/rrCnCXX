@@ -6,9 +6,7 @@ namespace {
 const int kLineSize = 8;
 }// namespace
 
-
-CAccelApp gApp;
-
+CAccelApp g_app;
 
 BOOL CAccelApp::InitInstance()
 {
@@ -17,7 +15,6 @@ BOOL CAccelApp::InitInstance()
     m_pMainWnd->UpdateWindow();
     return TRUE;
 }
-
 
 BEGIN_MESSAGE_MAP(CAccelMainWnd, CFrameWnd)
     ON_WM_CREATE()
@@ -39,70 +36,79 @@ CAccelMainWnd::CAccelMainWnd()
 
 // https://docs.microsoft.com/cpp/mfc/reference/cclientdc-class
 // https://docs.microsoft.com/cpp/mfc/reference/cdc-class#getdevicecaps
-int CAccelMainWnd::OnCreate(LPCREATESTRUCT infoptrCreate)
+INT CAccelMainWnd::OnCreate(LPCREATESTRUCT creating_info)
 {
     // 此函数应当总是调用其基类函数
-    if (-1 == CFrameWnd::OnCreate(infoptrCreate))
+    if (-1 == CFrameWnd::OnCreate(creating_info))
         return -1;
 
     CClientDC dc(this);
+
     //      Ribbon Cell x 26
     // Cell
     //   x               .25 in
     //  100 .5 in  1 in
-    cellWidth_ = dc.GetDeviceCaps(LOGPIXELSX);      // 水平方向，一英寸对应像素数
-    ribbonWidth_ = cellWidth_ / 2;
-    cellHeight_ = dc.GetDeviceCaps(LOGPIXELSY) / 4;  // 垂直方向，一英寸对应像素数
-    sheetWidth_ = ribbonWidth_ + 26 * cellWidth_;
-    sheetHeigth_ = 100 * cellHeight_;
+
+    CONST INT kInchWidth = dc.GetDeviceCaps(LOGPIXELSX);
+    CONST INT kInchHeight = dc.GetDeviceCaps(LOGPIXELSY);
+
+    ribbon_width_ = kInchWidth / 2;
+    cell_width_ = kInchWidth;
+    cell_height_ = kInchHeight / 4;
+    sheet_width_ = ribbon_width_ + 26 * cell_width_;
+    sheet_heigth_ = 100 * cell_height_;
+
     return 0;
 }
 
 // https://msdn.microsoft.com/library/bb787537.aspx
 // https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#setscrollinfo
-void CAccelMainWnd::OnSize(UINT tySize, INT wdClient, INT htClient)
+VOID CAccelMainWnd::OnSize(UINT size_type, INT client_width, INT client_height)
 {
-    CFrameWnd::OnSize(tySize, wdClient, htClient);
+    CFrameWnd::OnSize(size_type, client_width, client_height);
 
-    clientWidth = wdClient;
-    clientHeight = htClient;
-    SCROLLINFO infoScoll;
+    client_width_ = client_width;
+    client_height_ = client_height;
+
+    SCROLLINFO scoll_info;
 
     // 水平滚动条
-    INT hmaxHrzScroll = 0;
-    hposHrzScroll_ = 0;
+    INT hrz_scroll_max = 0;
+    hrz_scroll_pos_ = 0;
 
     // 若表格尺寸大于用户区尺寸（太宽，一页放不下）
-    if (clientWidth < sheetWidth_) {
-        hmaxHrzScroll = sheetWidth_ - 1;
-        hposHrzScroll_ = min(hposHrzScroll_, sheetWidth_ - wdClient_ - 1);  // 防抖动
+    if (client_width_ < sheet_width_) {
+        hrz_scroll_max = sheet_width_ - 1;
+        hrz_scroll_pos_ = min(hrz_scroll_pos_,
+                              sheet_width_ - client_width_ - 1);  // 防抖动
     }
 
-    infoScoll.fMask = SIF_RANGE | SIF_PAGE | SIF_POS;
-    infoScoll.nMin = 0;               // 范围下限
-    infoScoll.nMax = hmaxHrzScroll;   // 范围上限
-    infoScoll.nPage = clientWidth;      // 页面尺寸
-    infoScoll.nPos = hposHrzScroll_;  // 位置
+    scoll_info.fMask = SIF_RANGE | SIF_PAGE | SIF_POS;
+    scoll_info.nMin = 0;                // 范围下限
+    scoll_info.nMax = hrz_scroll_max;   // 范围上限
+    scoll_info.nPage = client_width_;   // 页面尺寸
+    scoll_info.nPos = hrz_scroll_pos_;  // 位置
     // 设置滚动条
-    SetScrollInfo(SB_HORZ,     // 水平滚动条
-                  &infoScoll,  // 滚动条信息
-                  TRUE);       // 需要重绘滚动条
+    SetScrollInfo(SB_HORZ,      // 水平滚动条
+                  &scoll_info,  // 滚动条信息
+                  TRUE);        // 需要重绘滚动条
 
     // 垂直滚动条，同水平滚动条
-    INT vmaxVrtScroll = 0;
-    vposVrtScroll_ = 0;
+    INT vrt_scroll_max = 0;
+    vrt_scroll_pos_ = 0;
 
-    if (clientHeight < sheetHeigth_) {
-        vmaxVrtScroll = sheetHeigth_ - 1;
-        vposVrtScroll_ = min(vposVrtScroll_, htSheet_ - htClient_ - 1);
+    if (client_height_ < sheet_heigth_) {
+        vrt_scroll_max = sheet_heigth_ - 1;
+        vrt_scroll_pos_ = min(vrt_scroll_pos_,
+                              sheet_heigth_ - client_height_ - 1);
     }
 
-    infoScoll.fMask = SIF_RANGE | SIF_PAGE | SIF_POS;
-    infoScoll.nMin = 0;
-    infoScoll.nMax = vmaxVrtScroll;
-    infoScoll.nPage = clientHeight;
-    infoScoll.nPos = vposVrtScroll_;
-    SetScrollInfo(SB_VERT, &infoScoll, TRUE);
+    scoll_info.fMask = SIF_RANGE | SIF_PAGE | SIF_POS;
+    scoll_info.nMin = 0;
+    scoll_info.nMax = vrt_scroll_max;
+    scoll_info.nPage = client_height_;
+    scoll_info.nPos = vrt_scroll_pos_;
+    SetScrollInfo(SB_VERT, &scoll_info, TRUE);
 }
 
 // https://docs.microsoft.com/cpp/mfc/reference/cdc-class#setwindoworg
@@ -111,101 +117,98 @@ void CAccelMainWnd::OnPaint()
 {
     CPaintDC dc(this);
 
-    dc.SetWindowOrg(hposHrzScroll_, vposVrtScroll_);
+    dc.SetWindowOrg(hrz_scroll_pos_, vrt_scroll_pos_);
 
     // 画网格线
     CPen pen(PS_SOLID, 0, RGB(192, 192, 192));
-    CPen *penptrOld = dc.SelectObject(&pen);
+    CPen *old_pen = dc.SelectObject(&pen);
 
     for (int hrzline = 0; hrzline < 99; ++hrzline) {
-        int y = cellHeight_ + hrzline * cellHeight_;
+        int y = cell_height_ + hrzline * cell_height_;
         dc.MoveTo(0, y);
-        dc.LineTo(sheetWidth_, y);
+        dc.LineTo(sheet_width_, y);
     }
 
     for (int vrtline = 0; vrtline < 26; ++vrtline) {
-        int x = ribbonWidth_ + vrtline * cellWidth_;
+        int x = ribbon_width_ + vrtline * cell_width_;
         dc.MoveTo(x, 0);
-        dc.LineTo(x, sheetHeigth_);
+        dc.LineTo(x, sheet_heigth_);
     }
 
-    dc.SelectObject(penptrOld);
+    dc.SelectObject(old_pen);
 
     // 画头行、头列
     CBrush brush;
     brush.CreateStockObject(LTGRAY_BRUSH);
 
-    CRect rectTop(0, 0, sheetWidth_, cellHeight_);
+    CRect rectTop(0, 0, sheet_width_, cell_height_);
     dc.FillRect(rectTop, &brush);
-    CRect rectLeft(0, 0, ribbonWidth_, sheetHeigth_);
+    CRect rectLeft(0, 0, ribbon_width_, sheet_heigth_);
     dc.FillRect(rectLeft, &brush);
 
-    // 
-    dc.MoveTo(0, cellHeight_);
-    dc.LineTo(sheetWidth_, cellHeight_);
-    dc.MoveTo(ribbonWidth_, 0);
-    dc.LineTo(ribbonWidth_, sheetHeigth_);
+    dc.MoveTo(0, cell_height_);
+    dc.LineTo(sheet_width_, cell_height_);
+    dc.MoveTo(ribbon_width_, 0);
+    dc.LineTo(ribbon_width_, sheet_heigth_);
 
-    /* 画列头、行头 */
+    // 画列头、行头
     dc.SetBkMode(TRANSPARENT);
     for (int i = 0; i < 99; ++i) {
-        int y = i * m_nCellHeight + m_nCellHeight;
+        int y = i * cell_height_ + cell_height_;
         dc.MoveTo(0, y);
-        dc.LineTo(m_nRibbonWidth, y);
+        dc.LineTo(ribbon_width_, y);
 
-        CString string;
-        string.Format(_T("%d"), 1 + i);
+        CString text;
+        text.Format(TEXT("%i"), 1 + i);
 
-        CRect rect(0, y, m_nRibbonWidth, y + m_nCellHeight);
-        dc.DrawText(string, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+        CRect rect(0, y, ribbon_width_, y + cell_height_);
+        dc.DrawText(text, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 
         rect.top++;
         dc.Draw3dRect(rect, RGB(255, 255, 255), RGB(128, 128, 128));
     }
 
     for (int j = 0; j < 26; ++j) {
-        int x = j * m_nCellWidth + m_nRibbonWidth;
+        int x = j * cell_width_ + ribbon_width_;
         dc.MoveTo(x, 0);
-        dc.LineTo(x, m_nCellHeight);
+        dc.LineTo(x, cell_height_);
 
-        CString string;
-        string.Format(_T("%c"), 'A' + j);
-        CRect rect(x, 0, x + m_nCellWidth, m_nCellHeight);
-        dc.DrawText(string, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+        CString text;
+        text.Format(TEXT("%c"), 'A' + j);
+        CRect rect(x, 0, x + cell_width_, cell_height_);
+        dc.DrawText(text, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 
         rect.left++;
         dc.Draw3dRect(rect, RGB(255, 255, 255), RGB(128, 128, 128));
     }
 }
 
-/// Class Main Window :: On Horizontal Scroll.
-/** \sa <https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onhscroll>.
- */
-void CMainWindow::OnHScroll(UINT nCode, UINT nPos, CScrollBar *pScrollBar)
+VOID CAccelMainWnd::OnHScroll(
+    UINT scroll_code, UINT scroll_pos, CScrollBar *scroll_bar)
 {
-    int nDelta;
+    INT delta;
 
-    switch (nCode) {
-    case SB_LINELEFT: nDelta = -LINESIZE; break;                    // 箭头被单击；
-    case SB_PAGELEFT: nDelta = -m_nHPageSize; break;                // 轨道被单击；
-    case SB_THUMBTRACK: nDelta = (int)nPos - m_nHScrollPos; break;  // 滑块被拖动。
-    case SB_PAGERIGHT: nDelta = m_nHPageSize; break;
-    case SB_LINERIGHT: nDelta = LINESIZE; break;
+    switch (scroll_code) {
+    case SB_LINELEFT: delta = -kLineSize; break;
+    case SB_PAGELEFT: delta = -client_width_; break;
+    case SB_THUMBTRACK: delta = (INT)scroll_pos - hrz_scroll_pos_; break;
+    case SB_PAGERIGHT: delta = client_width_; break;
+    case SB_LINERIGHT: delta = kLineSize; break;
     default: return;
     }
 
-    int nScrollPos = m_nHScrollPos + nDelta;
-    int nMaxPos = m_nViewWidth - m_nHPageSize;
+    CONST INT kMaxPos = sheet_width_ - client_width_;
+    INT pos = hrz_scroll_pos_ + delta;
 
-    if (nScrollPos < 0)
-        nDelta = -m_nHScrollPos;
-    else if (nScrollPos > nMaxPos)
-        nDelta = nMaxPos - m_nHScrollPos;
+    if (pos < 0)
+        delta = -hrz_scroll_pos_;
+    else if (pos > kMaxPos)
+        delta = kMaxPos - hrz_scroll_pos_;
 
-    if (0 != nDelta) {
-        m_nHScrollPos += nDelta;
-        SetScrollPos(SB_HORZ, m_nHScrollPos, TRUE);
-        ScrollWindow(-nDelta, 0);
+    if (0 != delta) {
+        hrz_scroll_pos_ += delta;
+        SetScrollPos(SB_HORZ, hrz_scroll_pos_, TRUE);
+        ScrollWindow(-delta, 0);
     }
 }
 
