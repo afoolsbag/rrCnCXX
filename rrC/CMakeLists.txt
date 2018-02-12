@@ -4,10 +4,10 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-8-1 – 2018-2-3
+# 2016-8-1 – 2018-2-9
 # The MIT License
 
-project("rrC" VERSION 2018.2.3 LANGUAGES C)
+project("rrC" VERSION 2018.2.9 LANGUAGES C)
 project_variables()
 highest_warning_level()
 
@@ -30,16 +30,12 @@ quick_executable(SUBNAME "Main"
 quick_executable(SUBNAME "Memery"
   "mem/mem.c")
 
-quick_executable(SUBNAME "Array" "std.h"
+quick_executable(SUBNAME "Array"
   "type/array.c")
-quick_executable(SUBNAME "Character" "std.h"
+quick_executable(SUBNAME "Character"
   "type/char.c")
-quick_executable(SUBNAME "Structure" "std.h"
+quick_executable(SUBNAME "Structure"
   "type/struct.c")
 
 quick_library(SUBNAME "Library"
-  "${PROJECT_BINARY_DIR}/cfg.h"
-  "api.h"
-  "lib.h"
-  "lib.c"
-  )
+  "lib.c")

@@ -4,10 +4,10 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-8-1 – 2018-2-7
+# 2016-8-1 – 2018-2-9
 # The MIT License
 
-project("rrCXX" VERSION 2018.2.7 LANGUAGES CXX)
+project("rrCXX" VERSION 2018.2.9 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -30,13 +30,7 @@ quick_gtest(
   "lang/type/enum.cxx"
   "lang/namesp.cxx"
   "thrd/thrd.cxx"
-  "std.hxx"
-  "dzn/singleton.cxx"
-)
+  "dzn/singleton.cxx")
 
 quick_library(SUBNAME "Library"
-  "${PROJECT_BINARY_DIR}/cfg.hxx"
-  "api.h"
-  "lib.h"
-  "lib.cxx"
-)
+  "lib.cxx")

@@ -21,8 +21,8 @@
 + 缩进：8空格宽制表符（`Tab`）
 + 命名：以助于辨识和理解
     + 缩写：
-      [广为人知](https://wikipedia.org)的应当使用（`tcp` `http`），
-      [业内通行](https://abbreviations.com)的可以使用（`cur` `img`），
+      [广为人知的](https://wikipedia.org/)应当使用（`tcp` `http`），
+      [业内通行的](https://abbreviations.com/)<sub>[alt](https://allacronyms.com/)</sub>可以使用（`cur` `img`），
       自行约定的审慎使用（`fs` `fsys` `file_system`）
     + 全局对象应描述性命名，且仅使用广为人知的缩写（`count_active_users()`）
     + 宏、枚举值、常量：全大写配下划线式（`RED` `GREEN` `BLUE`）
