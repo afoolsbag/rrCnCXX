@@ -1,20 +1,22 @@
-//===-- Class Frame Application ---------------------------------*- C++ -*-===//
+//===-- Class Hello Application ---------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 框架（主窗口）应用类
+/// \brief Hello应用类
+///
+/// \sa *Programming Windows® with MFC* §1.3
 ///
 /// \author zhengrr
-/// \date 2017-12-8 – 2018-2-11
+/// \date 2017-12-8 – 2018-2-12
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
 
-/// \brief Class (Frame App) Application
+/// \brief Class Hello Application
 ///
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class
-class CFrameApp: public CWinApp {
+class CHelloApp: public CWinApp {
 public:
     /// \brief Initialize Instance
     ///

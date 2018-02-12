@@ -1,17 +1,17 @@
 /// \copyright The MIT License
 
-#include "Frame/stdafx.h"
-#include "Frame/FrameApp.h"
+#include "stdafx.h"
+#include "HelloApp.h"
 
-#include "Frame/FrameMainWnd.h"
+#include "HelloMainWnd.h"
 
-BOOL CFrameApp::InitInstance()
+BOOL CHelloApp::InitInstance()
 {
     // 此函数基类函数默认操作直接返回`TURE`，因而无需调用
     CWinApp::InitInstance();
 
     // 创建窗口类
-    m_pMainWnd = new CFrameMainWnd;
+    m_pMainWnd = new CHelloMainWnd;
     // https://docs.microsoft.com/cpp/mfc/reference/cwinthread-class#m_pmainwnd
 
     // 按给定方式，显示窗口
@@ -26,7 +26,7 @@ BOOL CFrameApp::InitInstance()
     return TRUE;
 }
 
-INT CFrameApp::ExitInstance()
+INT CHelloApp::ExitInstance()
 {
     // 调用基类函数，此函数返回值将作为退出代码
     return CWinApp::ExitInstance();

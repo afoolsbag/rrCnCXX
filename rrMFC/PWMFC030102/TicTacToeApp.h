@@ -1,20 +1,22 @@
-//===-- Class Drag Line Application -----------------------------*- C++ -*-===//
+//===-- Class TicTacToe Application -----------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 拖拽划线应用类
+/// \brief TicTacToe应用类
+///
+/// \sa *Programming Windows® with MFC* 3.1.2
 ///
 /// \author zhengrr
-/// \date 2018-2-9 – 11
+/// \date 2018-2-12
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
 
-/// \brief Class (Drag Line App) Application
+/// \brief Class TicTacToe Application
 ///
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class
-class CDragLineApp: public CWinApp {
+class CTicTacToeApp: public CWinApp {
 public:
     /// \brief Initialize Instance
     ///

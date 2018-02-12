@@ -1,20 +1,22 @@
-//===-- Class Combo Box List Application ------------------------*- C++ -*-===//
+//===-- Class Ruler Application ---------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 组合框列表应用类
+/// \brief Ruler应用类
+///
+/// \sa *Programming Windows® with MFC* 2.2.12
 ///
 /// \author zhengrr
-/// \date 2018-2-8 – 11
+/// \date 2018-2-12
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
 
-/// \brief Class Combo Box List Application
+/// \brief Class Ruler Application
 ///
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class
-class CComboBoxListApp: public CWinApp {
+class CRulerApp: public CWinApp {
 public:
     /// \brief Initialize Instance
     ///

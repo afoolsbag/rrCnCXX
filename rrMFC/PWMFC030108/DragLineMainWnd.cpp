@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
-#include "DragLine/stdafx.h"
-#include "DragLine/DragLineMainWnd.h"
+#include "stdafx.h"
+#include "DragLineMainWnd.h"
 
 BEGIN_MESSAGE_MAP(CDragLineMainWnd, CFrameWnd)
     ON_WM_LBUTTONDOWN()
@@ -11,7 +11,7 @@ END_MESSAGE_MAP()
 
 CDragLineMainWnd::CDragLineMainWnd()
 {
-    Create(NULL, TEXT("The Drag Line Application"));
+    Create(NULL, TEXT("The DragLine Application"));
 }
 
 VOID CDragLineMainWnd::OnLButtonDown(UINT flags, CPoint point)

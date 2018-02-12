@@ -1,20 +1,20 @@
 /// \copyright The MIT License
 
-#include "Frame/stdafx.h"
-#include "Frame/FrameMainWnd.h"
+#include "stdafx.h"
+#include "HelloMainWnd.h"
 
-BEGIN_MESSAGE_MAP(CFrameMainWnd, CFrameWnd)
+BEGIN_MESSAGE_MAP(CHelloMainWnd, CFrameWnd)
     ON_WM_PAINT()
 END_MESSAGE_MAP()
 
-CFrameMainWnd::CFrameMainWnd()
+CHelloMainWnd::CHelloMainWnd()
 {
     // 创建窗口，默认框架，自定义标题
-    Create(NULL, TEXT("The Frame Application"));
+    Create(NULL, TEXT("The Hello Application"));
     // https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#create
 }
 
-VOID CFrameMainWnd::OnPaint()
+VOID CHelloMainWnd::OnPaint()
 {
     // 设备上下文
     CPaintDC devctx(this);
@@ -30,7 +30,7 @@ VOID CFrameMainWnd::OnPaint()
     // 文本内容（前景色），文本长度
     // 绘制区域（背景色），单行、水平居中、垂直居中
     devctx.DrawText(
-        TEXT("The Frame Application"), -1,
+        TEXT("The Hello Application"), -1,
         &cltrect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
     // https://docs.microsoft.com/cpp/mfc/reference/cdc-class#drawtext
 }

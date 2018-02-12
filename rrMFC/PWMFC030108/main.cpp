@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
-#include "DragLine/stdafx.h"
-#include "DragLine/DragLineApp.h"
+#include "stdafx.h"
+#include "DragLineApp.h"
 
 /// \brief Global Application
 CDragLineApp g_app;

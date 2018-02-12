@@ -1,9 +1,9 @@
 /// \copyright The MIT License
 
-#include "DragLine/stdafx.h"
-#include "DragLine/DragLineApp.h"
+#include "stdafx.h"
+#include "DragLineApp.h"
 
-#include "DragLine/DragLineMainWnd.h"
+#include "DragLineMainWnd.h"
 
 BOOL CDragLineApp::InitInstance()
 {

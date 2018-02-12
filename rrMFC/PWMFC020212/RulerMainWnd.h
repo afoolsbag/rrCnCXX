@@ -1,22 +1,22 @@
-//===-- Class Frame Main Window ---------------------------------*- C++ -*-===//
+//===-- Class Ruler Main Window ---------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 框架（主窗口）主窗口类
+/// \brief Ruler主窗口类
 ///
 /// \author zhengrr
-/// \date 2017-12-8 – 2018-2-11
+/// \date 2018-2-12
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
 
-/// \brief Class (Frame App) Main Window
+/// \brief Class Ruler Main Window
 ///
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cframewnd-class
-class CFrameMainWnd: public CFrameWnd {
+class CRulerMainWnd: public CFrameWnd {
 public:
-    CFrameMainWnd();
+    CRulerMainWnd();
 
 protected:
     /// \brief On Paint

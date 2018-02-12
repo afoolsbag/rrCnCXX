@@ -13,7 +13,7 @@
 
 #include "ComboBoxList/ComboBoxListCtrl.h"
 
-/// \brief Class (Combo Box List App) Main Window
+/// \brief Class Combo Box List Main Window
 ///
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cframewnd-class
 class CComboBoxListMainWnd: public CFrameWnd {
