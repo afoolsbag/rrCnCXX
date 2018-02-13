@@ -4,10 +4,10 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-8 – 2018-2-12
+# 2017-12-8 – 2018-2-13
 # The MIT License
 
-project("rrMFC" VERSION 2018.2.12 LANGUAGES CXX)
+project("rrMFC" VERSION 2018.2.13 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -57,6 +57,14 @@ quick_executable(SUBNAME "PWMFC030108"
         "PWMFC030108/DragLineApp.cpp"
         "PWMFC030108/DragLineMainWnd.h"
         "PWMFC030108/DragLineMainWnd.cpp")
+
+quick_executable(SUBNAME "PWMFC030300"
+  WIN32 "PWMFC030300/main.cpp"
+        "PWMFC030300/stdafx.h"
+        "PWMFC030300/VisualKeyboardApp.h"
+        "PWMFC030300/VisualKeyboardApp.cpp"
+        "PWMFC030300/VisualKeyboardMainWnd.h"
+        "PWMFC030300/VisualKeyboardMainWnd.cpp")
 
 quick_executable(SUBNAME "ComboBoxList"
   WIN32 "ComboBoxList/main.cpp"

@@ -4,11 +4,11 @@
  * \tableofcontents
  *
  * \author zhengrr
- * \date 2018-1-23 – 2-1
+ * \version 2018-2-13
+ * \since 2018-1-23
  * \copyright The MIT License
  *
 *//*===--------------------------------------------------------------------===*/
-
 
 /*===-- C Reference --------------------------------------------*- C -*-===*//**
  *
@@ -32,7 +32,8 @@
  *     + [Thread support library](http://en.cppreference.com/w/c/thread)
  *
  * \author zhengrr
- * \date 2018-1-23 – 2-2
+ * \version 2018-2-13
+ * \since 2018-1-23
  * \copyright The MIT License
  *
 *//*===--------------------------------------------------------------------===*/

@@ -4,21 +4,30 @@
 #include "TicTacToeMainWnd.h"
 
 namespace {
-//       0 16 112 128 224 240 336 352
-//   0  .--------------------------.
-//  16  |  .---.   .---.   .---.   |
-// 112  |  '-0-'   '-1-'   '-2-'   | 120
-// 128  |  .---.   .---.   .---.   |
-// 224  |  '-3-'   '-4-'   '-5-'   |
-// 240  |  .---.   .---.   .---.   | 232
-// 336  |  '-6-'   '-7-'   '-8-'   |
-// 352  '--------------------------'
-//              120     232
+
+// Board       Hrz1    Hrz2    Hrz3
+//            16 112 128 224 240 336
+//          .-----------------------. 0
+//       16 | .---. | .---. | .---. |
+// Vrt1     | | 0 | | | 1 | | | 2 | |
+//      112 | '---' | '---' | '---' |
+//          | ------+-------+------ | 120 Vrt1/2
+//      128 | .---. | .---. | .---. |
+// Vrt2     | | 3 | | | 4 | | | 5 | |
+//      224 | '---' | '---' | '---' |
+//          | ------+-------+------ | 232 Vrt2/3
+//      240 | .---. | .---. | .---. |
+// Vrt3     | | 6 | | | 7 | | | 8 | |
+//      336 | '---' | '---' | '---' |
+//          '-----------------------' 352
+//          0      120     232     352
+//                Hrz1/2  Hrz2/3
 
 CONST INT kBoardLeft {0};
 CONST INT kBoardTop {0};
 CONST INT kBoardRight {352};
 CONST INT kBoardBottom {352};
+
 CONST INT kHrz1Left {16};
 CONST INT kHrz1Right {112};
 CONST INT kHrz12Line {120};
@@ -27,6 +36,7 @@ CONST INT kHrz2Right {224};
 CONST INT kHrz23Line {232};
 CONST INT kHrz3Left {240};
 CONST INT kHrz3Right {336};
+
 CONST INT kVrt1Top {16};
 CONST INT kVrt1Bottom {112};
 CONST INT kVrt12Line {120};
@@ -35,6 +45,7 @@ CONST INT kVrt2Bottom {224};
 CONST INT kVrt23Line {232};
 CONST INT kVrt3Top {240};
 CONST INT kVrt3Bottom {336};
+
 }// namespace
 
 BEGIN_MESSAGE_MAP(CTicTacToeMainWnd, CWnd)

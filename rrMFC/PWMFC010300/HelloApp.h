@@ -6,7 +6,8 @@
 /// \sa *Programming Windows® with MFC* §1.3
 ///
 /// \author zhengrr
-/// \date 2017-12-8 – 2018-2-12
+/// \version 2018-2-12
+/// \since 2017-12-8
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//

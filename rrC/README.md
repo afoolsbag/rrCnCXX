@@ -1,4 +1,4 @@
-# [C](http://open-std.org/jtc1/sc22/wg14)
+# [C](http://open-std.org/jtc1/sc22/wg14/)
 
 [*C90*](https://iso.org/standard/17782.html)
 [*C99*](https://iso.org/standard/29237.html)

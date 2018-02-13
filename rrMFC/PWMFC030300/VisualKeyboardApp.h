@@ -1,9 +1,9 @@
-//===-- Class DragLine Application ------------------------------*- C++ -*-===//
+//===-- Class VisualKeyboard Application ------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief DragLine应用类
+/// \brief VisualKeyboard应用类
 ///
-/// \sa *Programming Windows® with MFC* 3.1.8
+/// \sa *Programming Windows® with MFC* 3.3
 ///
 /// \author zhengrr
 /// \date 2018-2-9 – 12
@@ -13,10 +13,10 @@
 
 #pragma once
 
-/// \brief Class DragLine Application
+/// \brief Class VisualKeyboard Application
 ///
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class
-class CDragLineApp: public CWinApp {
+class CVisualKeyboardApp: public CWinApp {
 public:
     /// \brief Initialize Instance
     ///
