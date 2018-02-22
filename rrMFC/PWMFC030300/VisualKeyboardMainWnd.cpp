@@ -3,17 +3,6 @@
 #include "stdafx.h"
 #include "VisualKeyboardMainWnd.h"
 
-namespace {
-
-CONST INT kMarginLeft {16};
-CONST INT kMarginTop {16};
-CONST INT kMarginRight {16};
-CONST INT kMarginBottom {16};
-
-CONST INT kMaxMessages {12};
-
-}// namespace
-
 BEGIN_MESSAGE_MAP(CVisualKeyboardMainWnd, CWnd)
     ON_WM_CREATE()
     ON_WM_PAINT()
@@ -31,8 +20,8 @@ END_MESSAGE_MAP()
 
 CVisualKeyboardMainWnd::CVisualKeyboardMainWnd()
 {
-    arrow_cursor_ = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
-    ibeam_cursor_ = AfxGetApp()->LoadStandardCursor(IDC_IBEAM);
+    kArrowCursor = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
+    kIbeamCursor = AfxGetApp()->LoadStandardCursor(IDC_IBEAM);
 
     CString wndclname = AfxRegisterWndClass(
         0,
@@ -41,7 +30,7 @@ CVisualKeyboardMainWnd::CVisualKeyboardMainWnd()
         AfxGetApp()->LoadStandardIcon(IDI_WINLOGO)
     );
 
-    CreateEx(0, wndclname, TEXT("The Visual Keyboard Application"),
+    CreateEx(0, wndclname, TEXT("The VisualKeyboard Application"),
              WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX,
              CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
              NULL, NULL);
@@ -61,35 +50,36 @@ INT CVisualKeyboardMainWnd::OnCreate(LPCREATESTRUCT creating_info)
 
     TEXTMETRIC text_metric;
     devctx.GetTextMetrics(&text_metric);
-    char_width_ = text_metric.tmAveCharWidth;
-    char_height_ = text_metric.tmHeight;
-    line_height_ = text_metric.tmHeight + text_metric.tmExternalLeading;
+    kCharWd = text_metric.tmAveCharWidth;
+    kCharHt = text_metric.tmHeight;
+    kLineHt = text_metric.tmHeight + text_metric.tmExternalLeading;
 
-    text_box_border_.SetRect(
-        kMarginLeft,
-        kMarginTop,
-        kMarginLeft
-        + 64 * char_width_,
-        kMarginTop
-        + 1.5 * char_height_);
+    CONST INT kTxtPadBoxL = kWndBoxPadL;
+    CONST INT kTxtPadBoxT = kWndBoxPadT;
+    kTxtPadBox.SetRect(
+        kTxtPadBoxL,
+        kTxtPadBoxT,
+        kTxtPadBoxL + 64 * kCharWd,
+        kTxtPadBoxT + 1.5 * kCharHt);
 
-    text_box_ = text_box_border_;
-    text_box_.InflateRect(-2, -2);
+    kTxtEltBox = kTxtPadBox;
+    kTxtEltBox.InflateRect(-2, -2);
 
-    message_box_border_.SetRect(
-        kMarginLeft,
-        kMarginTop + 4 * char_height_,
-        kMarginLeft
-        + 64 * char_width_,
-        kMarginLeft + 4 * char_height_
-        + 2 * char_height_ + kMaxMessages * line_height_);
+    CONST INT kMsgPadBoxL = kWndBoxPadL;
+    CONST INT kMsgPadBoxT = kWndBoxPadT + 4 * kCharHt;
+    kMsgPadBox.SetRect(
+        kMsgPadBoxL,
+        kMsgPadBoxT,
+        kMsgPadBoxL + 64 * kCharWd,
+        kMsgPadBoxT + 2 * kCharHt + kMaxMsgs * kLineHt);
 
-    CRect rect(0,
-               0,
-               message_box_border_.right + kMarginRight,
-               message_box_border_.bottom + kMarginBottom);
-    CalcWindowRect(&rect);
-    SetWindowPos(NULL, 0, 0, rect.Width(), rect.Height(),
+    kWndPadBox.SetRect(
+        0, 0,
+        kMsgPadBox.right + kWndBoxPadR, kMsgPadBox.bottom + kWndBoxPadB);
+
+    CRect wndrect = kWndPadBox;
+    CalcWindowRect(&wndrect);
+    SetWindowPos(NULL, 0, 0, wndrect.Width(), wndrect.Height(),
                  SWP_NOZORDER | SWP_NOMOVE | SWP_NOREDRAW);
     return 0;
 }

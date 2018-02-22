@@ -19,9 +19,25 @@ public:
     CVisualKeyboardMainWnd();
 
 protected:
-    CRect text_box_;
-    CRect text_box_border_;
-    CRect message_box_border_;
+    HCURSOR kArrowCursor;
+    HCURSOR kIbeamCursor;
+
+    INT kCharWd;  ///< Char width
+    INT kCharHt;  ///< Char height
+    INT kLineHt;  ///< Line height
+
+    CRect kWndPadBox;            ///< Window padding box
+    CONST INT kWndBoxPadL {16};  ///< Window box padding left
+    CONST INT kWndBoxPadT {16};  ///< Window box padding top
+    CONST INT kWndBoxPadR {16};  ///< Window box padding right
+    CONST INT kWndBoxPadB {16};  ///< Window box padding bottom
+
+    CRect kTxtPadBox;  ///< Text padding box
+    CRect kTxtEltBox;  ///< Text element box
+
+    CRect kMsgPadBox;  ///< Message padding box
+
+    CONST INT kMaxMsgs {12};  ///< Max messages
 
     /// \brief Post Non-Client Destroy
     ///

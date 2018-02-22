@@ -76,3 +76,9 @@ quick_executable(SUBNAME "ComboBoxList"
         "ComboBoxList/ComboBoxListMainWnd.cpp"
 		"ComboBoxList/ComboBoxListCtrl.h"
         "ComboBoxList/ComboBoxListCtrl.cpp")
+
+quick_executable(SUBNAME "HttpFile"
+  WIN32 "HttpFile/main.cpp"
+        "HttpFile/stdafx.h"
+        "HttpFile/HttpFileApp.h"
+        "HttpFile/HttpFileApp.cpp")
