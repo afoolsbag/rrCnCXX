@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-2-9
+# 2016-10-12 – 2018-2-22
 # The MIT License
 
-project("rrWindows" VERSION 2018.2.9 LANGUAGES C)
+project("rrWindows" VERSION 2018.2.22 LANGUAGES C)
 project_variables()
 highest_warning_level()
 
@@ -24,19 +24,19 @@ quick_executable(SUBNAME "ConsoleApp"
 quick_executable(SUBNAME "DesktopApp"
   WIN32 "dtapp.c")
 
-quick_executable(SUBNAME "FileAttrs" "data/lfsys/fmgmt/Attrs.c")
-quick_executable(SUBNAME "FileExists" "data/lfsys/fmgmt/Exists.c")
-quick_executable(SUBNAME "FileFild" "data/lfsys/fmgmt/Find.c")
-quick_executable(SUBNAME "Unicode" "ui/i18n/Unicode.c")
-quick_executable(SUBNAME "ErrHandling" "diag/debug/ErrHandling.c")
-quick_executable(SUBNAME "TcpClient" "net/winsock/TcpClient.c")
-quick_executable(SUBNAME "TcpServer" "net/winsock/TcpServer.c")
-quick_executable(SUBNAME "UdpClient" "net/winsock/UdpClient.c")
-quick_executable(SUBNAME "UdpServer" "net/winsock/UdpServer.c")
-quick_executable(SUBNAME "Thread" "sys/procthrd/Thread.c")
-quick_executable(SUBNAME "SglInstApp" "sys/sync/SglInstApp.c")
-quick_executable(SUBNAME "IniFile" "sys/info/reg/IniFile.c")
+quick_executable(SUBNAME "FileAttrs" "data/lfsys/fmgmt/attrs.c")
+quick_executable(SUBNAME "FileExists" "data/lfsys/fmgmt/exists.c")
+quick_executable(SUBNAME "FileFild" "data/lfsys/fmgmt/find.c")
+quick_executable(SUBNAME "Unicode" "ui/i18n/unicode.c")
+quick_executable(SUBNAME "ErrHandling" "diag/debug/err_handling.c")
+quick_executable(SUBNAME "TcpClient" "net/winsock/tcp_client.c")
+quick_executable(SUBNAME "TcpServer" "net/winsock/tcp_server.c")
+quick_executable(SUBNAME "UdpClient" "net/winsock/udp_client.c")
+quick_executable(SUBNAME "UdpServer" "net/winsock/udp_server.c")
+quick_executable(SUBNAME "Thread" "sys/procthrd/thread.c")
+quick_executable(SUBNAME "SglInstApp" "sys/sync/sgl_inst_app.c")
+quick_executable(SUBNAME "IniFile" "sys/info/reg/ini_file.c")
 
-add_library(${PROJECT_NAME_LOWER}_dll_shared SHARED "sys/dll/Lib.h" "sys/dll/Lib.c")
-add_executable(${PROJECT_NAME_LOWER}_dll_exe "sys/dll/Exe.c")
+add_library(${PROJECT_NAME_LOWER}_dll_shared SHARED "sys/dll/lib.h" "sys/dll/lib.c")
+add_executable(${PROJECT_NAME_LOWER}_dll_exe "sys/dll/exe.c")
 target_link_libraries(${PROJECT_NAME_LOWER}_dll_exe ${PROJECT_NAME_LOWER}_dll_shared)

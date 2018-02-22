@@ -2,8 +2,8 @@
 
 ## References
 
-+ [*OpenCV documentation index*](https://docs.opencv.org/)
+[*OpenCV documentation index*](https://docs.opencv.org/)
 
 ## Guides
 
-+ [*OpenCV中文网站*](http://opencv.org.cn/)
+[*OpenCV中文网站*](http://opencv.org.cn/)

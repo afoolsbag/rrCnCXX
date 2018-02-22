@@ -4,10 +4,10 @@
 # | |  | |  | |_| | |_) |  __| | | | |___  \ V /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____|  \_/
 # zhengrr         |_|           rrOpenCV by FIGlet
-# 2018-1-22 – 25
+# 2018-1-22 – 2-22
 # The MIT License
 
-project("rrOpenCV" VERSION 2018.1.22 LANGUAGES CXX)
+project("rrOpenCV" VERSION 2018.2.22 LANGUAGES CXX)
 set_project_extra_variables()
 
 adjust_compiler_warning_level_to_highest()

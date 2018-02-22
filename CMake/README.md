@@ -2,12 +2,13 @@
 
 ## References
 
-+ [Reference Documentation](https://cmake.org/cmake/help/latest)
-    + [cmake-commands(7)](https://cmake.org/cmake/help/latest/manual/cmake-commands.7)
-    + [cmake-language(7)](https://cmake.org/cmake/help/latest/manual/cmake-language.7)
-    + [cmake-developer(7)](https://cmake.org/cmake/help/latest/manual/cmake-developer.7)
-+ [Wiki](https://cmake.org/Wiki)
-    + [CMake Useful Variables](https://cmake.org/Wiki/CMake_Useful_Variables)
+[Reference Documentation](https://cmake.org/cmake/help/latest)
++ [cmake-commands(7)](https://cmake.org/cmake/help/latest/manual/cmake-commands.7)
++ [cmake-language(7)](https://cmake.org/cmake/help/latest/manual/cmake-language.7)
++ [cmake-developer(7)](https://cmake.org/cmake/help/latest/manual/cmake-developer.7)
+
+[Wiki](https://cmake.org/Wiki)
++ [CMake Useful Variables](https://cmake.org/Wiki/CMake_Useful_Variables)
 
 ## Programming Styles
 
