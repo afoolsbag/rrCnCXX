@@ -1,11 +1,14 @@
 /**
  * \file
  * \brief 统一码与字符集
+ * 
  * \sa ["Unicode and Character Sets"](https://msdn.microsoft.com/library/dd374083). *Microsoft® Developer Network*.
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
+ * 
  * \author zhengrr
- * \date 2018-1-11 – 20
+ * \version 2018-2-22
+ * \since 2018-1-11
  * \copyright The MIT License
  */
 
