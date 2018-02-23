@@ -11,10 +11,11 @@
 #define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <Windows.h>
+
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 
-#pragma comment(lib, "Ws2_32.lib")
+#pragma comment(lib, "WS2_32.Lib")
 
 int _tmain(int argc, TCHAR *argv[], TCHAR *envp[])
 {

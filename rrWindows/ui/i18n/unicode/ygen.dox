@@ -1,0 +1,13 @@
+/*===-- Unicode and Character Sets -----------------------------*- C -*-===*//**
+ *
+ * \defgroup g_unicode 统一码和字符集
+ * \ingroup g_i18n
+ *
+ * \sa ["Unicode and Character Sets"](https://msdn.microsoft.com/library/dd374083). *Microsoft® Developer Network*.
+ *
+ * \author zhengrr
+ * \version 2018-2-23
+ * \since 2018-1-11
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

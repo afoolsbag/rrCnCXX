@@ -4,12 +4,11 @@
  * \tableofcontents
  *
  * \author zhengrr
- * \version 2018-2-22
+ * \version 2018-2-23
  * \since 2018-1-22
- * \copyright The MIT License
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/
-
 
 /*===-- Develop Desktop Applications ---------------------------*- C -*-===*//**
  *
@@ -34,12 +33,11 @@
  *     + [API index](https://msdn.microsoft.com/library/hh920508)
  *
  * \author zhengrr
- * \version 2018-2-22
+ * \version 2018-2-23
  * \since 2018-1-22
- * \copyright The MIT License
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/
-
 
 /*===-- Develop Desktop Applications Topics --------------------*- C -*-===*//**
  *
@@ -68,8 +66,8 @@
  * \sa ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
  *
  * \author zhengrr
- * \version 2018-2-22
+ * \version 2018-2-23
  * \since 2018-1-23
- * \copyright The MIT License
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

@@ -1,10 +1,11 @@
 /*===-- Windows Console Application ----------------------------*- C -*-===*//**
  *
- * \defgroup g_csapp Windows®控制台应用程序
+ * \defgroup g_win_con_app Windows®控制台应用程序
  * \ingroup g_dvlp
  *
  * \author zhengrr
- * \date 2016-10-12 – 2018-2-5
+ * \version 2018-2-23
+ * \since 2016-10-12
  * \copyright The MIT License
  *
  * @{
@@ -30,9 +31,9 @@
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-	_putts(TEXT("Hello, windows."));
+    _putts(TEXT("Hello, windows."));
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
 /** @} */

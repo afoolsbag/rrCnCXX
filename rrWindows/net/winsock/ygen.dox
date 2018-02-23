@@ -6,7 +6,8 @@
  * \sa ["Windows Sockets 2"](https://msdn.microsoft.com/library/ms740673). *Microsoft® Developer Network*.
  *
  * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-2-23
+ * \since 2018-2-5
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

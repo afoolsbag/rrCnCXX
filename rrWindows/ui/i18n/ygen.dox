@@ -4,9 +4,17 @@
  * \ingroup g_ui
  *
  * \sa ["Internationalization for Windows Applications"](https://msdn.microsoft.com/library/dd318661). *Microsoft® Developer Network*.
+ *     + [Getting Started with International Windows Development](https://msdn.microsoft.com/library/ee845044)
+ *     + [Globalization Services](https://msdn.microsoft.com/library/dd318140)
+ *     + [Input Method Manager](https://msdn.microsoft.com/library/dd318641)
+ *     + [International Fonts and Text Display](https://msdn.microsoft.com/library/dd318659)
+ *     + [Multilingual User Interface](https://msdn.microsoft.com/library/dd319073)
+ *     + [Unicode and Character Sets](https://msdn.microsoft.com/library/dd374083)
+ *     + [Security Considerations: International Features](https://msdn.microsoft.com/library/dd374047)
  *
  * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-2-23
+ * \since 2018-2-5
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/
