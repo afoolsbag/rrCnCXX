@@ -66,15 +66,28 @@ quick_executable(SUBNAME "PWMFC030300"
         "PWMFC030300/VisualKeyboardMainWnd.h"
         "PWMFC030300/VisualKeyboardMainWnd.cpp")
 
+quick_executable(SUBNAME "PWMFC040200"
+  WIN32 "PWMFC040200/main.cpp"
+        "PWMFC040200/stdafx.h"
+        "PWMFC040200/resource.h"
+        "PWMFC040200/ShapesApp.h"
+        "PWMFC040200/ShapesApp.cpp"
+        "PWMFC040200/ShapesAboutDlg.h"
+        "PWMFC040200/ShapesAboutDlg.cpp"
+        "PWMFC040200/ShapesMainFrm.h"
+        "PWMFC040200/ShapesMainFrm.cpp"
+        "PWMFC040200/ShapesChildView.h"
+        "PWMFC040200/ShapesChildView.cpp")
+
 quick_executable(SUBNAME "ComboBoxList"
   WIN32 "ComboBoxList/main.cpp"
         "ComboBoxList/stdafx.h"
-		"ComboBoxList/resource.h"
+        "ComboBoxList/resource.h"
         "ComboBoxList/ComboBoxListApp.h"
         "ComboBoxList/ComboBoxListApp.cpp"
         "ComboBoxList/ComboBoxListMainWnd.h"
         "ComboBoxList/ComboBoxListMainWnd.cpp"
-		"ComboBoxList/ComboBoxListCtrl.h"
+        "ComboBoxList/ComboBoxListCtrl.h"
         "ComboBoxList/ComboBoxListCtrl.cpp")
 
 quick_executable(SUBNAME "HttpFile"

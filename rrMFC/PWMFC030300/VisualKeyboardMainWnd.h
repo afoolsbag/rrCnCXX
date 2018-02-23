@@ -32,12 +32,20 @@ protected:
     CONST INT kWndBoxPadR {16};  ///< Window box padding right
     CONST INT kWndBoxPadB {16};  ///< Window box padding bottom
 
-    CRect kTxtPadBox;  ///< Text padding box
-    CRect kTxtEltBox;  ///< Text element box
+    CRect kTxtPadBox;   ///< Text padding box
+    CRect kTxtEltBox;   ///< Text element box
+    CPoint kTxtPos;
+    CString txt_;       ///< 键入字符
+    INT txt_lim_;       ///< 键入字符限制
+    INT txt_idx_;       ///< 键入字符索引
+    CPoint caret_pos_;  ///< 插入符位置
 
-    CRect kMsgPadBox;  ///< Message padding box
+    INT getTxtIdx(CPoint point);
 
-    CONST INT kMaxMsgs {12};  ///< Max messages
+    CRect kMsgPadBox;                ///< Message padding box
+    static CONST INT kMaxMsgs {12};  ///< Max messages
+    CString msgs_[kMaxMsgs];         ///< 显示消息
+    INT msg_idx_;                    ///< 显示消息索引
 
     /// \brief Post Non-Client Destroy
     ///

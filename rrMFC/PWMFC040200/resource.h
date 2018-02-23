@@ -7,9 +7,16 @@
 ///
 /// \author zhengrr
 /// \version 2018-2-23
-/// \since 2018-2-8
+/// \since 2018-2-23
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
-#define IDC_COMBO_BOX_LIST 100
+#define IDD_ABOUTBOX      (   100 + 1)
+
+#define IDR_MAINFRAME     (  0x80 + 1)
+#define IDR_SHAPESTYPE    (  0x80 + 2)
+
+#define ID_SHAPE_CIRCLE   (0x8000 + 1)
+#define ID_SHAPE_TRIANGLE (0x8000 + 2)
+#define ID_SHAPE_SQUARE   (0x8000 + 3)
