@@ -13,9 +13,6 @@ highest_warning_level()
 
 quick_doxygen()
 
-facile_add_opencv_executable(
-  test.cpp
+facile_add_opencv_executable(SUBNAME "Scan"
+  "tut/core/scan.cpp"
 )
-#include_directories(${OpenCV_INCLUDE_DIRS})
-#add_executable(DisplayImage test.cpp)
-#target_link_libraries(DisplayImage ${OpenCV_LIBS})
