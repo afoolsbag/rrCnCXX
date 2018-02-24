@@ -24,18 +24,18 @@ quick_check(
   "time/time.c" "time/test.c"
 )
 
-quick_executable(SUBNAME "Main"
+facile_add_executable(SUBNAME "Main"
   "lang/main.c")
 
-quick_executable(SUBNAME "Memery"
+facile_add_executable(SUBNAME "Memery"
   "mem/mem.c")
 
-quick_executable(SUBNAME "Array"
+facile_add_executable(SUBNAME "Array"
   "type/array.c")
-quick_executable(SUBNAME "Character"
+facile_add_executable(SUBNAME "Character"
   "type/char.c")
-quick_executable(SUBNAME "Structure"
+facile_add_executable(SUBNAME "Structure"
   "type/struct.c")
 
-quick_library(SUBNAME "Library"
+facile_add_executable(SUBNAME "Library"
   "lib.c")

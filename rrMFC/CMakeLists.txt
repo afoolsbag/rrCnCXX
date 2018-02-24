@@ -18,7 +18,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 
-quick_executable(SUBNAME "PWMFC010300"
+facile_add_executable(SUBNAME "PWMFC010300"
   WIN32 "PWMFC010300/main.cpp"
         "PWMFC010300/stdafx.h"
         "PWMFC010300/HelloApp.h"
@@ -26,7 +26,7 @@ quick_executable(SUBNAME "PWMFC010300"
         "PWMFC010300/HelloMainWnd.h"
         "PWMFC010300/HelloMainWnd.cpp")
 
-quick_executable(SUBNAME "PWMFC020212"
+facile_add_executable(SUBNAME "PWMFC020212"
   WIN32 "PWMFC020212/main.cpp"
         "PWMFC020212/stdafx.h"
         "PWMFC020212/RulerApp.h"
@@ -34,7 +34,7 @@ quick_executable(SUBNAME "PWMFC020212"
         "PWMFC020212/RulerMainWnd.h"
         "PWMFC020212/RulerMainWnd.cpp")
 
-quick_executable(SUBNAME "PWMFC020306"
+facile_add_executable(SUBNAME "PWMFC020306"
   WIN32 "PWMFC020306/main.cpp"
         "PWMFC020306/stdafx.h"
         "PWMFC020306/AccelApp.h"
@@ -42,7 +42,7 @@ quick_executable(SUBNAME "PWMFC020306"
         "PWMFC020306/AccelMainWnd.h"
         "PWMFC020306/AccelMainWnd.cpp")
 
-quick_executable(SUBNAME "PWMFC030102"
+facile_add_executable(SUBNAME "PWMFC030102"
   WIN32 "PWMFC030102/main.cpp"
         "PWMFC030102/stdafx.h"
         "PWMFC030102/TicTacToeApp.h"
@@ -50,7 +50,7 @@ quick_executable(SUBNAME "PWMFC030102"
         "PWMFC030102/TicTacToeMainWnd.h"
         "PWMFC030102/TicTacToeMainWnd.cpp")
 
-quick_executable(SUBNAME "PWMFC030108"
+facile_add_executable(SUBNAME "PWMFC030108"
   WIN32 "PWMFC030108/main.cpp"
         "PWMFC030108/stdafx.h"
         "PWMFC030108/DragLineApp.h"
@@ -58,7 +58,7 @@ quick_executable(SUBNAME "PWMFC030108"
         "PWMFC030108/DragLineMainWnd.h"
         "PWMFC030108/DragLineMainWnd.cpp")
 
-quick_executable(SUBNAME "PWMFC030300"
+facile_add_executable(SUBNAME "PWMFC030300"
   WIN32 "PWMFC030300/main.cpp"
         "PWMFC030300/stdafx.h"
         "PWMFC030300/VisualKeyboardApp.h"
@@ -66,7 +66,7 @@ quick_executable(SUBNAME "PWMFC030300"
         "PWMFC030300/VisualKeyboardMainWnd.h"
         "PWMFC030300/VisualKeyboardMainWnd.cpp")
 
-quick_executable(SUBNAME "PWMFC040200"
+facile_add_executable(SUBNAME "PWMFC040200"
   WIN32 "PWMFC040200/main.cpp"
         "PWMFC040200/stdafx.h"
         "PWMFC040200/resource.h"
@@ -80,7 +80,7 @@ quick_executable(SUBNAME "PWMFC040200"
         "PWMFC040200/ShapesChildView.h"
         "PWMFC040200/ShapesChildView.cpp")
 
-quick_executable(SUBNAME "ComboBoxList"
+facile_add_executable(SUBNAME "ComboBoxList"
   WIN32 "ComboBoxList/main.cpp"
         "ComboBoxList/stdafx.h"
         "ComboBoxList/resource.h"
@@ -91,7 +91,7 @@ quick_executable(SUBNAME "ComboBoxList"
         "ComboBoxList/ComboBoxListCtrl.h"
         "ComboBoxList/ComboBoxListCtrl.cpp")
 
-quick_executable(SUBNAME "HttpFile"
+facile_add_executable(SUBNAME "HttpFile"
   WIN32 "HttpFile/main.cpp"
         "HttpFile/stdafx.h"
         "HttpFile/HttpFileApp.h"

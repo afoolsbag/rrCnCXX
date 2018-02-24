@@ -8,7 +8,7 @@
 :gb:
 + [*Abbreviations.com*](https://abbreviations.com/) & [*All Acronyms Dictionary*](https://allacronyms.com/)
 + [*Dictionary.com*](http://dictionary.com/) & [*Thesaurus.com*](http://thesaurus.com/)
-+ [*Cambridge*](http://dictionary.cambridge.org/), [*Longman*](http://ldoceonline.com/), [*Oxford*](http://oxforddictionaries.com/) & [*Merriam-Webster*](http://merriam-webster.com/)
++ [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
 
 ## Characters
 

@@ -15,50 +15,50 @@ quick_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-quick_executable(SUBNAME "WinConApp"
+facile_add_executable(SUBNAME "WinConApp"
   "win_con_app.c")
 
-quick_executable(SUBNAME "WinDtpApp"
+facile_add_executable(SUBNAME "WinDtpApp"
   WIN32 "win_dtp_app.c")
 
-quick_executable(SUBNAME "FileAttrs"
+facile_add_executable(SUBNAME "FileAttrs"
   "data/lfsys/fmgmt/attrs.c")
-quick_executable(SUBNAME "FileExists"
+facile_add_executable(SUBNAME "FileExists"
   "data/lfsys/fmgmt/exists.c")
-quick_executable(SUBNAME "FileFild"
+facile_add_executable(SUBNAME "FileFild"
   "data/lfsys/fmgmt/find.c")
 
-quick_executable(SUBNAME "ErrHandling"
+facile_add_executable(SUBNAME "ErrHandling"
   "diag/debug/err_handling.c")
 
-quick_executable(SUBNAME "GenUuid"
+facile_add_executable(SUBNAME "GenUuid"
   "net/rpc/gen_uuid.c")
 
-quick_executable(SUBNAME "TcpClient"
+facile_add_executable(SUBNAME "TcpClient"
   "net/winsock/tcp_client.c")
-quick_executable(SUBNAME "TcpServer"
+facile_add_executable(SUBNAME "TcpServer"
   "net/winsock/tcp_server.c")
-quick_executable(SUBNAME "UdpClient"
+facile_add_executable(SUBNAME "UdpClient"
   "net/winsock/udp_client.c")
-quick_executable(SUBNAME "UdpServer"
+facile_add_executable(SUBNAME "UdpServer"
   "net/winsock/udp_server.c")
 
-quick_executable(SUBNAME "AcsShrFlr"
+facile_add_executable(SUBNAME "AcsShrFlr"
   "net/wnet/acs_shr_flr.c")
 
-quick_executable(SUBNAME "Thread"
+facile_add_executable(SUBNAME "Thread"
   "sys/procthrd/thread.c")
 
-quick_executable(SUBNAME "SglInstApp"
+facile_add_executable(SUBNAME "SglInstApp"
   "sys/sync/sgl_inst_app.c")
 
-quick_executable(SUBNAME "IniFile"
+facile_add_executable(SUBNAME "IniFile"
   "sys/info/reg/ini_file.c")
 
-quick_executable(SUBNAME "Gb2312Utf8"
+facile_add_executable(SUBNAME "Gb2312Utf8"
   "ui/i18n/unicode/gb2312_utf8.c")
 
-quick_executable(SUBNAME "CnvUpr"
+facile_add_executable(SUBNAME "CnvUpr"
   "ui/res/str/cnv_upr.c")
 
 add_library(${PROJECT_NAME_LOWER}_dll_shared SHARED "sys/dll/lib.h" "sys/dll/lib.c")

@@ -1,40 +1,46 @@
 # zhengrr
-# 2017-12-18 – 2018-2-6
+# 2017-12-18 – 2018-2-24
 # The MIT License
 
 # .rst
-# .. command:: quick_add_executable_with_option
+# .. command:: facile_add_executable
 #
-#    轻快生成可执行文件：
+#    便捷加入可执行文件：
 #    ::
 #
-#       quick_add_executable_with_option(
+#       facile_add_executable(
 #         [NAME name | SUBNAME subname]
 #         [WIN32]
 #         [C90 | C99 | C11]
 #         [CXX98 | CXX11 | CXX14 | CXX17]
 #         <source>...
+#         [PROPS <prop> <value>...]
+#         [LINKS <library>...]
 #       )
 #
-#    作用：
+#    约定：
 #
 #    :NAME:           ``<name>`` or ``<PROJECT_NAME>_<subname>`` or ``<PROJECT_NAME>``
 #    :option:         ``<NAME_UPPER>_COMPILE_EXE``
+#    :source_group:   to ``\\``
 #    :add_executable: ``<NAME_LOWER>_exe``
 #    :output:         ``<NAME>``
 #    :install:        to ``bin``
 #
-#    参见
+#    参见：
 #
+#    + `"option" <https://cmake.org/cmake/help/latest/command/option>`_. *CMake Documentation*.
+#    + `"source_group" <https://cmake.org/cmake/help/latest/command/source_group>`_. *CMake Documentation*.
 #    + `"add_executable" <https://cmake.org/cmake/help/latest/command/add_executable>`_. *CMake Documentation*.
 #    + `"set_target_properties" <https://cmake.org/cmake/help/latest/command/set_target_properties>`_. *CMake Documentation*.
+#    + `"target_link_libraries" <https://cmake.org/cmake/help/latest/command/target_link_libraries>`_. *CMake Documentation*.
 #    + `"C_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/C_STANDARD>`_. *CMake Documentation*.
 #    + `"CXX_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD>`_. *CMake Documentation*.
 #
-function(quick_add_executable_with_option)
+function(facile_add_executable)
   set(zOptKws "WIN32" "C90" "C99" "C11" "CXX98" "CXX11" "CXX14" "CXX17")
   set(zOneValKws "NAME" "SUBNAME")
-  set(zMutValKws)
+  set(zMutValKws "PROPS" "LINKS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
   if(DEFINED _NAME)
@@ -83,21 +89,16 @@ function(quick_add_executable_with_option)
     return()
   endif()
 
-  source_group("" FILES ${_UNPARSED_ARGUMENTS})
+  source_group("\\" FILES ${_UNPARSED_ARGUMENTS})
   add_executable("${sTgtName}" ${sWin32} ${_UNPARSED_ARGUMENTS})
   set_target_properties("${sTgtName}" PROPERTIES
     ${zPropertyCStd}
     ${zPropertyCxxStd}
-    OUTPUT_NAME "${sName}" CLEAN_DIRECT_OUTPUT ON)
+    OUTPUT_NAME "${sName}" CLEAN_DIRECT_OUTPUT ON
+    ${_PROPS})
+  if(DEFINED _LINKS)
+    target_link_libraries("${sTgtName}" ${_LINKS})
+  endif()
 
   install(TARGETS "${sTgtName}" DESTINATION "bin")
 endfunction()
-
-# .rst
-# .. command:: quick_executable
-#
-#    同``quick_add_executable_with_option``。
-#
-macro(quick_executable)
-  quick_add_executable_with_option(${ARGN})
-endmacro()

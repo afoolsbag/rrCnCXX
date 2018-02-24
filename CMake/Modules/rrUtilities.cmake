@@ -12,11 +12,6 @@
 #
 # zhengrr's CMake Utilities.
 #
-# 参见：
-#
-# + `"foreach" <https://cmake.org/cmake/help/latest/command/foreach>`_. *CMake Documentation*.
-# + `"include" <https://cmake.org/cmake/help/latest/command/include>`_. *CMake Documentation*.
-#
 
 function(rr_utilities)
   file(GLOB zModuleFiles "${CMAKE_CURRENT_LIST_DIR}/rrUtilities/*.cmake")
