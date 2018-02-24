@@ -4,10 +4,10 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-8 – 2018-2-13
+# 2017-12-8 – 2018-2-24
 # The MIT License
 
-project("rrMFC" VERSION 2018.2.13 LANGUAGES CXX)
+project("rrMFC" VERSION 2018.2.24 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -70,6 +70,7 @@ quick_executable(SUBNAME "PWMFC040200"
   WIN32 "PWMFC040200/main.cpp"
         "PWMFC040200/stdafx.h"
         "PWMFC040200/resource.h"
+        "PWMFC040200/Shapes.rc"
         "PWMFC040200/ShapesApp.h"
         "PWMFC040200/ShapesApp.cpp"
         "PWMFC040200/ShapesAboutDlg.h"

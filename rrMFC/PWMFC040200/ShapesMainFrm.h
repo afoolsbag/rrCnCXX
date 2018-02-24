@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include "resource.h"
+
 #include "ShapesChildView.h"
 
 /// \brief Class Shapes Main Frame

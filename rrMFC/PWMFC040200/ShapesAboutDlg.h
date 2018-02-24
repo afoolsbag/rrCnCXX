@@ -21,7 +21,7 @@ class CShapesAboutDlg: public CDialog {
 public:
     CShapesAboutDlg();
 
-    enum { IDD = IDD_ABOUTBOX };
+    enum { IDD = IDD_ABOUT };
 
 protected:
     /// \brief Do Data Exchange

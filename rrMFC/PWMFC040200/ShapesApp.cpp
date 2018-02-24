@@ -22,7 +22,7 @@ BOOL CShapesApp::InitInstance()
     CShapesMainFrm *mainfrm = new CShapesMainFrm;
     m_pMainWnd = mainfrm;
 
-    mainfrm->LoadFrame(IDR_MAINFRAME,
+    mainfrm->LoadFrame(IDR_MAIN_FRM,
                        WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL,
                        NULL);
     mainfrm->ShowWindow(SW_SHOW);
