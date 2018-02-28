@@ -1,187 +1,97 @@
-//===-- OpenCV - Tutorials - Core - Scan ------------------------*- C++ -*-===//
+//===-- OpenCV Tutorials - Core - Scan --------------------------*- C++ -*-===//
 ///
 /// \file
 /// \brief OpenCV教程：扫描图像
 ///
-/// \sa "How to scan images, lookup tables and time measurement with OpenCV". *OpenCV 2.3.2*.
+/// \sa http://opencv.org.cn/opencvdoc/2.3.2/html/doc/tutorials/core/how_to_scan_images/how_to_scan_images.html
+/// \sa https://docs.opencv.org/3.4.1/db/da5/tutorial_how_to_scan_images.html
 ///
 /// \author zhengrr
-/// \version 2018-2-24
+/// \version 2018-2-28
 /// \since 2018-2-24
 /// \copyright The MIT License
-///
-/// @{
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
-#include <sstream>
 
-#include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 namespace {
 
-/// \brief 扫描图像并缩减其颜色空间（C风格）
+/// \brief 颜色缩减
 ///
-/// \param img    图像矩阵
-/// \param maptbl 映射表（mapping table）
-/// \return 处理后的图像矩阵
-cv::Mat &scan_image_and_reduce_c(cv::Mat &img, const uchar *const maptbl)
+/// \param rsltimg  成果图像
+/// \param kinpimg  输入图像
+/// \param kdivisor 缩减系数
+void color_reduce(cv::Mat &rsltimg, const cv::Mat &kinpimg, const int kdivisor = 4)
 {
-    CV_Assert(img.depth() < sizeof(uchar));
+    CV_Assert(0 < kdivisor);
+    cv::Mat maptbl(1, 256, CV_8U);
+    for (int i = 0; i < 256; ++i)
+        maptbl.ptr()[i] = i / kdivisor * kdivisor;
 
-    int rows = img.rows * img.channels();
-    int cols = img.cols;
-
-    if (img.isContinuous()) {
-        cols *= rows;
-        rows = 1;
-    }
-
-    for (int r = 0; r < rows; ++r) {
-        uchar *p = img.ptr<uchar>(r);
-        for (int c = 0; c < cols; ++c) {
-            p[c] = maptbl[p[c]];
-        }
-    }
-
-    return img;
+    LUT(kinpimg, maptbl, rsltimg);
 }
 
-/// \brief 扫描图像并缩减其颜色空间（迭代器）
-///
-/// \param img    图像矩阵
-/// \param maptbl 映射表（mapping table）
-/// \return 处理后的图像矩阵
-cv::Mat &scan_image_and_reduce_iterator(cv::Mat &img, const uchar *const maptbl)
+struct userdata {
+    const cv::Mat &kinpimg;       ///< input image
+    cv::Mat &rsltimg;             ///< result image
+    const std::string &kwndname;  ///< window name
+};
+
+/// \brief 滑动条滑动回调
+void on_trackbar_change(int pos, void *usrd)
 {
-    CV_Assert(img.depth() < (int)sizeof(uchar));
-
-    switch (img.channels()) {
-    case 1: {
-        for (auto it = img.begin<uchar>(); it != img.end<uchar>(); ++it)
-            *it = maptbl[*it];
-        break; }
-    case 3: {
-        for (auto it = img.begin<cv::Vec3b>(); it != img.end<cv::Vec3b>(); ++it) {
-            (*it)[0] = maptbl[(*it)[0]];
-            (*it)[1] = maptbl[(*it)[1]];
-            (*it)[2] = maptbl[(*it)[2]];
-        }
-        break; }
-    }
-
-    return img;
-}
-
-/// \brief 扫描图像并缩减其颜色空间（随机访问）
-///
-/// \param img    图像矩阵
-/// \param maptbl 映射表（mapping table）
-/// \return 处理后的图像矩阵
-cv::Mat &scan_image_and_reduce_random_access(cv::Mat &img, const uchar *const maptbl)
-{
-    CV_Assert(img.depth() < sizeof(uchar));
-
-    switch (img.channels()) {
-    case 1: {
-        for (int r = 0; r < img.rows; ++r)
-            for (int c = 0; c < img.cols; ++c)
-                img.at<uchar>(r, c) = maptbl[img.at<uchar>(r, c)];
-        break; }
-    case 3: {
-        for (int r = 0; r < img.rows; ++r)
-            for (int c = 0; c < img.cols; ++c) {
-                img.at<cv::Vec3b>(r, c)[0] = maptbl[img.at<cv::Vec3b>(r, c)[0]];
-                img.at<cv::Vec3b>(r, c)[1] = maptbl[img.at<cv::Vec3b>(r, c)[1]];
-                img.at<cv::Vec3b>(r, c)[2] = maptbl[img.at<cv::Vec3b>(r, c)[2]];
-            }
-        break; }
-    }
-
-    return img;
+    auto const kusrd = reinterpret_cast<struct userdata *>(usrd);
+    color_reduce(kusrd->rsltimg, kusrd->kinpimg, 0 < pos ? pos : 1);
+    cv::imshow(kusrd->kwndname, kusrd->rsltimg);
 }
 
 }// namespace
 
-/// @}
-
 int main(int argc, char *argv[])
 {
-    if (argc < 3) {
-        std::cout << "Not enough parameters." << std::endl;
-        return -1;
+    // input
+
+    if (argc != 2) {
+        std::cout << "Incorrect number of arguments." << "\n"
+            << "Usage: " << argv[0] << " <image path>" << std::endl;
+        return EXIT_FAILURE;
     }
 
-    cv::Mat img;
-    if (argc == 4 && !strcmp(argv[3], "G"))
-        img = cv::imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
-    else
-        img = cv::imread(argv[1], CV_LOAD_IMAGE_COLOR);
-
-    if (!img.data) {
-        std::cout << "The image " << argv[1] << " could not be loaded." << std::endl;
-        return -1;
+    const cv::Mat kinpimg = cv::imread(argv[1], CV_LOAD_IMAGE_COLOR);
+    if (kinpimg.empty()) {
+        std::cout << "Can't open image \"" << argv[1] << "\"." << std::endl;
+        return EXIT_FAILURE;
     }
 
-    int divide;
-    std::stringstream str;
-    str << argv[2];
-    if (!str) {
-        std::cout << "Invalid number entered for dividing." << std::endl;
-        return -1;
+    // result buffer
+
+    cv::Mat rsltimg;
+
+    // window
+
+    const std::string kwndname = "Reduce Image Color";
+    cv::namedWindow(kwndname);
+
+    // trackbar
+
+    struct userdata usrd { kinpimg, rsltimg, kwndname };
+
+    const std::string ktrkbarname = "Divisor";
+
+    int kslidermax;
+    switch (kinpimg.depth()) {
+    case CV_8U: //FALLTHROUGH
+    default: kslidermax = std::pow(2, sizeof(uchar) * 8 - 1); break;
     }
-    str >> divide;
 
-    uchar maptbl[256];
-    for (int i = 0; i < sizeof(maptbl); ++i)
-        maptbl[i] = divide * (i / divide);
+    cv::createTrackbar(ktrkbarname, kwndname, nullptr, kslidermax, on_trackbar_change, &usrd);
 
-    cv::Mat maptblmat(1, 256, CV_8U);
-    uchar *p = maptblmat.data;
-    for (int i = 0; i < 256; ++i)
-        p[i] = maptbl[i];
+    // start-up
 
-    const int kTimes {1};
-    cv::Mat redimg;
-    double time;
+    on_trackbar_change(0, &usrd);
 
-    time = cv::getTickCount();
-    for (int i = 0; i < kTimes; ++i)
-        redimg = scan_image_and_reduce_c(img.clone(), maptbl);
-    time = (cv::getTickCount() - time) / cv::getTickFrequency() * 1000;
-    time /= kTimes;
-    std::cout << "Time of reducing with the C operator [] (averaged for "
-        << kTimes << " runs): " << time << " milliseconds." << std::endl;
-
-    time = cv::getTickCount();
-    for (int i = 0; i < kTimes; ++i)
-        redimg = scan_image_and_reduce_iterator(img.clone(), maptbl);
-    time = (cv::getTickCount() - time) / cv::getTickFrequency() * 1000;
-    time /= kTimes;
-    std::cout << "Time of reducing with the iterator (averaged for "
-        << kTimes << " runs): " << time << " milliseconds." << std::endl;
-
-    time = cv::getTickCount();
-    for (int i = 0; i < kTimes; ++i)
-        scan_image_and_reduce_random_access(img.clone(), maptbl);
-    time = (cv::getTickCount() - time) / cv::getTickFrequency() * 1000;
-    time /= kTimes;
-    std::cout << "Time of reducing with the on-the-fly address generation - at function (averaged for "
-        << kTimes << " runs): " << time << " milliseconds." << std::endl;
-
-    time = cv::getTickCount();
-    for (int i = 0; i < kTimes; ++i)
-        LUT(img, maptblmat, redimg);
-    time = (cv::getTickCount() - time) / cv::getTickFrequency() * 1000;
-    time /= kTimes;
-    std::cout << "Time of reducing with the LUT function (averaged for "
-        << kTimes << " runs): " << time << " milliseconds." << std::endl;
-
-    str.str(std::string());
-    str.clear();
-    str << "red" << divide << (img.channels() == 1 ? "G" : "") << ".jpg";
-    cv::imwrite(str.str(), redimg);
-
-    return 0;
+    cv::waitKey(0);
+    return EXIT_SUCCESS;
 }

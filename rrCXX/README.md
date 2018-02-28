@@ -14,17 +14,27 @@
 
 ## Programming Styles
 
-+ 遵循传统；
-+ 缩进：2空格；
++ 遵循传统
++ 缩进：2空格
 + 命名：
-    + 宏：全大写配下划线式
-    + 枚举值与常量：前缀`k`的小驼峰式（`kRed` `kGreen` `kBlue`）
-    + 类型：大驼峰式（`Player` `ProPlayer`）
-    + 函数、静态方法：大驼峰式（`GenerateRandomNumber()`）
-        + 成员方法：小驼峰式（`getPlayerName()`）
-    + 变量：全小写配下划线式（`user_name`）
-        + 成员私有变量后缀`_`（`obj.catch_size_`）
-        + 全局变量、静态变量前缀`g_`（`g_active_user_count`）
+    + 宏：全大写、下划线。
+      如`STILL_DEVELOPING`
+    + 类型：大驼峰。
+      如`Player`、`ProPlayer`
+    + 枚举值和编译时常量：前缀`k`、小驼峰。
+      如`kRed`、`kGreen`、`kBlue`
+	+ 运行时常量和全局运行时常量：前缀`k`、全小写。
+      如`k_user_name`、`kusername`、`kusr`、`k_program_startup_time`
+    + 变量：全小写。
+      如`pass_word`、`password`、`pwd`
+    + 全局变量和静态属性：前缀`g`、全小写。
+      如`g_active_user_count`
+    + 非公有成员属性：全小写、后缀`_`。
+      如`obj.catch_size_`
+    + 函数和静态方法：全小写、下划线。
+      如`generate_random_number()`
+    + 成员方法：小驼峰。
+      如`getPlayerName()`
 
 [*Bjarne Stroustrup's C++ Style and Technique FAQ*](http://stroustrup.com/bs_faq2.html)
 

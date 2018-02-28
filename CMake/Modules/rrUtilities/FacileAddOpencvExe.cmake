@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-2-24 – 2018-2-24
+# 2018-2-24 – 2018-2-27
 # The MIT License
 
 include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
@@ -20,7 +20,9 @@ include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
 #    + `"INCLUDE_DIRECTORIES" <https://cmake.org/cmake/help/latest/prop_dir/INCLUDE_DIRECTORIES>`_. *CMake Documentation*.
 #
 function(facile_add_opencv_executable)
-  find_package(OpenCV)
+  if(NOT OpenCV_FOUND)
+    find_package(OpenCV)
+  endif()
   if(NOT OpenCV_FOUND)
     message(WARNING "OpenCV is needed to generate opencv executable.")
     return()
