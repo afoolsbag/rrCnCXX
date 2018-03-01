@@ -26,5 +26,8 @@ facile_add_opencv_executable(SUBNAME "Scan"
 facile_add_opencv_executable(SUBNAME "Mask"
   "tut/core/mask.cpp")
 
+facile_add_opencv_executable(SUBNAME "Blending"
+  "tut/core/blending.cpp")
+
 facile_add_opencv_executable(SUBNAME "Trackbar"
   "tut/highgui/trackbar.cpp")
