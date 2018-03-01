@@ -4,6 +4,7 @@
 /// \brief OpenCV教程：滑动条
 ///
 /// \sa http://opencv.org.cn/opencvdoc/2.3.2/html/doc/tutorials/highgui/trackbar/trackbar.html
+/// \sa https://docs.opencv.org/3.4.1/da/d6a/tutorial_trackbar.html
 ///
 /// \author zhengrr
 /// \version 2018-2-28

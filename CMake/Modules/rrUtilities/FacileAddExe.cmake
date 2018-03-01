@@ -1,20 +1,21 @@
 # zhengrr
-# 2017-12-18 – 2018-2-24
+# 2017-12-18 – 2018-3-1
 # The MIT License
 
 # .rst
 # .. command:: facile_add_executable
 #
-#    便捷加入可执行文件：
+#    便捷加入可执行文件目标：
 #    ::
 #
 #       facile_add_executable(
-#         [NAME name | SUBNAME subname]
+#         [NAME <name> | SUBNAME <subname>]
+#         [OPTDESC <option description>]
 #         [WIN32]
 #         [C90 | C99 | C11]
 #         [CXX98 | CXX11 | CXX14 | CXX17]
 #         <source>...
-#         [PROPS <prop> <value>...]
+#         [PROPS <property> <value>...]
 #         [LINKS <library>...]
 #       )
 #
@@ -39,7 +40,7 @@
 #
 function(facile_add_executable)
   set(zOptKws "WIN32" "C90" "C99" "C11" "CXX98" "CXX11" "CXX14" "CXX17")
-  set(zOneValKws "NAME" "SUBNAME")
+  set(zOneValKws "NAME" "SUBNAME" "OPTDESC")
   set(zMutValKws "PROPS" "LINKS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
@@ -52,6 +53,12 @@ function(facile_add_executable)
   endif()
   string(TOUPPER "${sName}" sNameUpr)
   string(TOLOWER "${sName}" sNameLwr)
+
+  if(DEFINED _OPTDESC)
+    set(sOptDesc ${_OPTDESC})
+  else()
+    set(sOptDesc "Build executable.")
+  endif()
 
   if(_WIN32)
     set(sWin32 "WIN32")
@@ -84,7 +91,7 @@ function(facile_add_executable)
   set(vOptName "${sNameUpr}_COMPILE_EXE")
   set(sTgtName "${sNameLwr}_exe")
 
-  option(${vOptName} "Build executable file." ON)
+  option(${vOptName} ${sOptDesc} ON)
   if(NOT ${vOptName})
     return()
   endif()

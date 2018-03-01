@@ -4,14 +4,14 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-8-1 – 2018-2-9
+# 2016-8-1 – 2018-3-1
 # The MIT License
 
-project("rrC" VERSION 2018.2.9 LANGUAGES C)
+project("rrC" VERSION 2018.3.1 LANGUAGES C)
 project_variables()
 highest_warning_level()
 
-quick_doxygen(OPTIMIZE_OUTPUT_FOR_C)
+facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.h.in" "cfg.h" @ONLY)

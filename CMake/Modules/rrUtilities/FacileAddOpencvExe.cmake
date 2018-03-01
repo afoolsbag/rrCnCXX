@@ -12,6 +12,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
 #    额外约定：
 #
 #    :include_directories: ``${OpenCV_INCLUDE_DIRS}``
+#    :OPTDESC:             see code
 #    :LINKS:               ``${OpenCV_LIBS}``
 #
 #    参见：
@@ -24,14 +25,19 @@ function(facile_add_opencv_executable)
     find_package(OpenCV)
   endif()
   if(NOT OpenCV_FOUND)
-    message(WARNING "OpenCV is needed to generate opencv executable.")
-    return()
+    message(WARNING "OpenCV is needed to build executable with OpenCV.")
   endif()
 
   set(zOptKws)
-  set(zOneValKws)
+  set(zOneValKws "OPTDESC")
   set(zMutValKws "LINKS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
+
+  if(DEFINED _OPTDESC)
+    set(sOptDesc ${_OPTDESC})
+  else()
+    set(sOptDesc "Build executable with OpenCV (requires OpenCV).")
+  endif()
 
   foreach(sInclDir IN LISTS OpenCV_INCLUDE_DIRS)
     if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
@@ -45,5 +51,5 @@ function(facile_add_opencv_executable)
     endif()
   endforeach()
 
-  facile_add_executable(${_UNPARSED_ARGUMENTS} LINKS ${_LINKS})
+  facile_add_executable(${_UNPARSED_ARGUMENTS} OPTDESC "${sOptDesc}" LINKS ${_LINKS})
 endfunction()

@@ -8,13 +8,16 @@
 
 ## Others
 
-formulas
+["Including formulas"](http://doxygen.org/manual/formulas.html). *Doxygen Manual*.
 + [*LaTeX*](https://latex-project.org)
-+ [*Dvips*](http://tug.org/texinfohtml/dvips.html)
++ [*Dvips*](https://tug.org/texinfohtml/dvips.html)
 + [*GhostScript*](https://ghostscript.com)
++ [*MathJax*](https://mathjax.org/)
 
-graphs & diagrams
+["Graphs and diagrams"](http://doxygen.org/manual/diagrams.html). *Doxygen Manual*.
 + [*Graphviz*](https://graphviz.gitlab.io)
+
+["\startuml"](http://doxygen.org/manual/commands.html#cmdstartuml). *Doxygen Manual*.
 + [*PlantUML*](http://plantuml.com)
 
 ___

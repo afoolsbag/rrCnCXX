@@ -4,14 +4,21 @@
 # | |  | |  | |_| | |_) |  __| | | | |___  \ V /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____|  \_/
 # zhengrr         |_|           rrOpenCV by FIGlet
-# 2018-1-22 – 2-28
+# 2018-1-22 – 3-1
 # The MIT License
 
-project("rrOpenCV" VERSION 2018.2.24 LANGUAGES CXX)
+if(NOT OpenCV_FOUND)
+  find_package(OpenCV)
+endif()
+if(NOT OpenCV_FOUND)
+  message(WARNING "OpenCV is needed to generate opencv executable.")
+endif()
+
+project("rrOpenCV" VERSION 2018.3.1 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
-quick_doxygen()
+facile_add_doxygen()
 
 facile_add_opencv_executable(SUBNAME "Scan"
   "tut/core/scan.cpp")

@@ -10,6 +10,7 @@
 /// \version 2018-2-28
 /// \since 2018-2-27
 /// \copyright The MIT License
+///
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
@@ -18,22 +19,19 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-namespace {
-
-/// \brief 锐化
-///
-/// \param rsltimg 成果图像
-/// \param kinpimg 输入图像
-void sharpen(cv::Mat &rsltimg, const cv::Mat &kinpimg)
+/// 锐化
+void sharpen(
+    cv::Mat &rsltimg,       ///< [out] 成果图像（result image）
+    const cv::Mat &kinpimg  ///< [in]  输入图像（(const) input image）
+)
 {
     const cv::Mat kker = (cv::Mat_<char>(3, 3) <<
                           0, -1, 0,
                           -1, 5, -1,
-                          0, -1, 0);
+                          0, -1, 0);  // (const) kernel
+
     cv::filter2D(kinpimg, rsltimg, kinpimg.depth(), kker);
 }
-
-}// namespace
 
 int main(int argc, char *argv[])
 {
@@ -43,16 +41,16 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    const cv::Mat kinpimg = cv::imread(argv[1], CV_LOAD_IMAGE_COLOR);
+    const cv::Mat kinpimg = cv::imread(argv[1], CV_LOAD_IMAGE_COLOR);  // (const) imput image
     if (kinpimg.empty()) {
         std::cout << "Can't open image \"" << argv[1] << "\"." << std::endl;
         return EXIT_FAILURE;
     }
 
-    cv::Mat rsltimg;
+    cv::Mat rsltimg;  // result image
     sharpen(rsltimg, kinpimg);
 
-    const std::string kwndname = "Sharpen Image";
+    const std::string kwndname = "Sharpen Image";  // (const) window name
     cv::namedWindow(kwndname);
     cv::imshow(kwndname, rsltimg);
 
