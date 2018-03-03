@@ -1,6 +1,8 @@
-# zhengrr's C & C++
+# C & C++ in zhengrr's eyes
 
-一份（为 zhengrr）定制化的、关于C语言、C++语言、以及相关和不那么相关技术的参考。
+一份为zhengrr定制化的，关于C语言、C++语言、以及相关和不那么相关技术的备忘。
+
+## 关于编程语言
 
 > Everyone knows it's a mistake to write your whole program by hand in machine language.
 > What's less often understood is that there is a more general principle here:
