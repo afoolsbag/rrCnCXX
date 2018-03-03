@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-3-1
+# 2017-12-18 – 2018-3-3
 # The MIT License
 
 # .rst
@@ -10,12 +10,12 @@
 #
 #       facile_add_executable(
 #         [NAME <name> | SUBNAME <subname>]
-#         [OPTDESC <option description>]
+#         [OPTDESC <option_description>]
 #         [WIN32]
 #         [C90 | C99 | C11]
 #         [CXX98 | CXX11 | CXX14 | CXX17]
 #         <source>...
-#         [PROPS <property> <value>...]
+#         [PROPS <<property> <value>>...]
 #         [LINKS <library>...]
 #       )
 #

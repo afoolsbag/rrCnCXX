@@ -2,8 +2,8 @@
 # 2016-10-8 – 2018-1-30
 # The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithCmakeRecommendVariableRules.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithFileExtensionRules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CkNameFExt.cmake")
 
 # .rst
 # .. command:: aux_source_directory_with_group_and_config

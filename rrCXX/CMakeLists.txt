@@ -11,7 +11,7 @@ project("rrCXX" VERSION 2018.2.9 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
-quick_doxygen()
+facile_add_doxygen()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)

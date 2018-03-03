@@ -5,8 +5,8 @@
 include("${CMAKE_CURRENT_LIST_DIR}/AuxSourceDirectoryWithGroup.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/AuxSourceDirectoryWithGroupAndConfig.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/AuxSourceDirectoryWithInstall.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithCmakeRecommendVariableRules.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithFileExtensionRules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CkNameFExt.cmake")
 
 # .rst
 # .. command:: quick_aux_source_directory

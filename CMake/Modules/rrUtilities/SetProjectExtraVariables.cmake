@@ -2,7 +2,7 @@
 # 2016-10-8 – 2018-1-31
 # The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/CheckNameWithCIdentifierRules.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/CkNameCId.cmake")
 
 # .rst
 # .. command:: set_project_extra_variables
