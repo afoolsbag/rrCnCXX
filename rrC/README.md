@@ -1,6 +1,6 @@
 # [C](http://open-std.org/jtc1/sc22/wg14/)
 
-*Early C*(1972)
+*C*(1972)
 *K&R C*(1978)
 *ANSI C*(1989)
 [*C90*](https://iso.org/standard/17782.html)(1990)
