@@ -1,8 +1,11 @@
 # [C](http://open-std.org/jtc1/sc22/wg14/)
 
-[*C90*](https://iso.org/standard/17782.html)
-[*C99*](https://iso.org/standard/29237.html)
-[*C11*](https://iso.org/standard/57853.html)
+*Early C*(1972)
+*K&R C*(1978)
+*ANSI C*(1989)
+[*C90*](https://iso.org/standard/17782.html)(1990)
+[*C99*](https://iso.org/standard/29237.html)(1999)
+[*C11*](https://iso.org/standard/57853.html)(2011)
 
 ## References
 
