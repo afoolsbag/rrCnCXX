@@ -41,13 +41,14 @@ quickref
     + 转回普通模式`i_<ESC>` `i_<C-C>`
 + [insert: Special keys](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ss)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ss)</sub>
     + 粘贴`i_<C-R><reg>`
-    + 清空当前行`i_<C-U>`　删除前一单词`i_<C-W>`
+    + 清空整行`i_<C-U>`　删除前一单词`i_<C-W>`
     + 减少缩进`i_<C-T>`　增加缩进`i_<C-D>`
 + [insert: Digraphs](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_di)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_di)</sub>
 + [insert: Special inserts](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_si)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_si)</sub>
 + [change: Deleting text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_de)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_de)</sub>
     + 删除`d<motion>`
     + 删除整行`dd`　删除光标前字符`X`　删除光标处字符`x`　删除至底格`D`
+    + 连接下行`J`
 + [change: Copying and moving](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_cm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_cm)</sub>
     + 指定寄存器`"<reg>`　寄存表`:reg`
     + [registers](http://vimdoc.sourceforge.net/htmldoc/change.html#registers)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/change.html#registers)</sub>
@@ -61,6 +62,9 @@ quickref
 + [change: Complex](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_co)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_co)</sub>
 + [Visual mode](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_vi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_vi)</sub>
 + [Text objects](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_to)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_to)</sub>
+    + 单词`v_[ai]w`　字串`v_[ai]W`　句子`v_[ai]s`　段落`v_[ai]p`
+    + 圆括号块`v_[ai](`　方括号块`v[ai][`　花括号块`v_[ai]{`　尖括号块`v_[ai]<`　标签块`v_[ai]t`
+    + 单引号字符串`v_[ai]'`　双引号字符串`v_[ai]"`　反引号字符串`` v_[ai]` ``
 + [Repeating commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_re)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_re)</sub>
     + 重复改动`.`
 + [Key mapping](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_km)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_km)</sub>
