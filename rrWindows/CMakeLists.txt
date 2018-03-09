@@ -11,7 +11,7 @@ project("rrWindows" VERSION 2018.2.23 LANGUAGES C)
 project_variables()
 highest_warning_level()
 
-quick_doxygen(OPTIMIZE_OUTPUT_FOR_C)
+facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

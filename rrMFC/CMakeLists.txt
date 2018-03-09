@@ -11,88 +11,71 @@ project("rrMFC" VERSION 2018.2.24 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
-quick_doxygen()
+facile_add_doxygen()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 
-facile_add_executable(SUBNAME "PWMFC010300"
-  WIN32 "PWMFC010300/main.cpp"
-        "PWMFC010300/stdafx.h"
-        "PWMFC010300/HelloApp.h"
-        "PWMFC010300/HelloApp.cpp"
-        "PWMFC010300/HelloMainWnd.h"
-        "PWMFC010300/HelloMainWnd.cpp")
+facile_add_executable(SUBNAME "hello"
+  WIN32 "hello/main.cpp"
+        "hello/stdafx.h"
+        "hello/HelloApp.h"
+        "hello/HelloApp.cpp"
+        "hello/HelloMainWnd.h"
+        "hello/HelloMainWnd.cpp")
 
-facile_add_executable(SUBNAME "PWMFC020212"
-  WIN32 "PWMFC020212/main.cpp"
-        "PWMFC020212/stdafx.h"
-        "PWMFC020212/RulerApp.h"
-        "PWMFC020212/RulerApp.cpp"
-        "PWMFC020212/RulerMainWnd.h"
-        "PWMFC020212/RulerMainWnd.cpp")
+facile_add_executable(SUBNAME "ruler"
+  WIN32 "ruler/main.cpp"
+        "ruler/stdafx.h"
+        "ruler/RulerApp.h"
+        "ruler/RulerApp.cpp"
+        "ruler/RulerMainWnd.h"
+        "ruler/RulerMainWnd.cpp")
 
-facile_add_executable(SUBNAME "PWMFC020306"
-  WIN32 "PWMFC020306/main.cpp"
-        "PWMFC020306/stdafx.h"
-        "PWMFC020306/AccelApp.h"
-        "PWMFC020306/AccelApp.cpp"
-        "PWMFC020306/AccelMainWnd.h"
-        "PWMFC020306/AccelMainWnd.cpp")
+facile_add_executable(SUBNAME "accel"
+  WIN32 "accel/main.cpp"
+        "accel/stdafx.h"
+        "accel/AccelApp.h"
+        "accel/AccelApp.cpp"
+        "accel/AccelMainWnd.h"
+        "accel/AccelMainWnd.cpp")
 
-facile_add_executable(SUBNAME "PWMFC030102"
-  WIN32 "PWMFC030102/main.cpp"
-        "PWMFC030102/stdafx.h"
-        "PWMFC030102/TicTacToeApp.h"
-        "PWMFC030102/TicTacToeApp.cpp"
-        "PWMFC030102/TicTacToeMainWnd.h"
-        "PWMFC030102/TicTacToeMainWnd.cpp")
+facile_add_executable(SUBNAME "tictactoe"
+  WIN32 "tictactoe/main.cpp"
+        "tictactoe/stdafx.h"
+        "tictactoe/TicTacToeApp.h"
+        "tictactoe/TicTacToeApp.cpp"
+        "tictactoe/TicTacToeMainWnd.h"
+        "tictactoe/TicTacToeMainWnd.cpp")
 
-facile_add_executable(SUBNAME "PWMFC030108"
-  WIN32 "PWMFC030108/main.cpp"
-        "PWMFC030108/stdafx.h"
-        "PWMFC030108/DragLineApp.h"
-        "PWMFC030108/DragLineApp.cpp"
-        "PWMFC030108/DragLineMainWnd.h"
-        "PWMFC030108/DragLineMainWnd.cpp")
+facile_add_executable(SUBNAME "dragline"
+  WIN32 "dragline/main.cpp"
+        "dragline/stdafx.h"
+        "dragline/DragLineApp.h"
+        "dragline/DragLineApp.cpp"
+        "dragline/DragLineMainWnd.h"
+        "dragline/DragLineMainWnd.cpp")
 
-facile_add_executable(SUBNAME "PWMFC030300"
-  WIN32 "PWMFC030300/main.cpp"
-        "PWMFC030300/stdafx.h"
-        "PWMFC030300/VisualKeyboardApp.h"
-        "PWMFC030300/VisualKeyboardApp.cpp"
-        "PWMFC030300/VisualKeyboardMainWnd.h"
-        "PWMFC030300/VisualKeyboardMainWnd.cpp")
+facile_add_executable(SUBNAME "viskb"
+  WIN32 "viskb/main.cpp"
+        "viskb/stdafx.h"
+        "viskb/VisualKeyboardApp.h"
+        "viskb/VisualKeyboardApp.cpp"
+        "viskb/VisualKeyboardMainWnd.h"
+        "viskb/VisualKeyboardMainWnd.cpp")
 
-facile_add_executable(SUBNAME "PWMFC040200"
-  WIN32 "PWMFC040200/main.cpp"
-        "PWMFC040200/stdafx.h"
-        "PWMFC040200/resource.h"
-        "PWMFC040200/Shapes.rc"
-        "PWMFC040200/ShapesApp.h"
-        "PWMFC040200/ShapesApp.cpp"
-        "PWMFC040200/ShapesAboutDlg.h"
-        "PWMFC040200/ShapesAboutDlg.cpp"
-        "PWMFC040200/ShapesMainFrm.h"
-        "PWMFC040200/ShapesMainFrm.cpp"
-        "PWMFC040200/ShapesChildView.h"
-        "PWMFC040200/ShapesChildView.cpp")
-
-facile_add_executable(SUBNAME "ComboBoxList"
-  WIN32 "ComboBoxList/main.cpp"
-        "ComboBoxList/stdafx.h"
-        "ComboBoxList/resource.h"
-        "ComboBoxList/ComboBoxListApp.h"
-        "ComboBoxList/ComboBoxListApp.cpp"
-        "ComboBoxList/ComboBoxListMainWnd.h"
-        "ComboBoxList/ComboBoxListMainWnd.cpp"
-        "ComboBoxList/ComboBoxListCtrl.h"
-        "ComboBoxList/ComboBoxListCtrl.cpp")
-
-facile_add_executable(SUBNAME "HttpFile"
-  WIN32 "HttpFile/main.cpp"
-        "HttpFile/stdafx.h"
-        "HttpFile/HttpFileApp.h"
-        "HttpFile/HttpFileApp.cpp")
+facile_add_executable(SUBNAME "shapes"
+  WIN32 "shapes/main.cpp"
+        "shapes/stdafx.h"
+        "shapes/resource.h"
+        "shapes/resource.rc"
+        "shapes/ShapesApp.h"
+        "shapes/ShapesApp.cpp"
+        "shapes/ShapesAboutDlg.h"
+        "shapes/ShapesAboutDlg.cpp"
+        "shapes/ShapesMainFrm.h"
+        "shapes/ShapesMainFrm.cpp"
+        "shapes/ShapesChildView.h"
+        "shapes/ShapesChildView.cpp")

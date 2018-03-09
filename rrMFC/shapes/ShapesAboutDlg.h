@@ -1,7 +1,7 @@
 //===-- Class Shapes About Dialog -------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Shapes关于对话框类
+/// \brief Shapes鍏充簬瀵硅瘽妗嗙被
 ///
 /// \author zhengrr
 /// \version 2018-2-23
@@ -21,7 +21,7 @@ class CShapesAboutDlg: public CDialog {
 public:
     CShapesAboutDlg();
 
-    enum { IDD = IDD_ABOUT };
+    enum { IDD = IDD_ABOUT_DLG };
 
 protected:
     /// \brief Do Data Exchange
