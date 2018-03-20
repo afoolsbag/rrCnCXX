@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-3-3
+# 2017-12-18 – 2018-03-20
 # The MIT License
 
 # .rst
@@ -10,12 +10,14 @@
 #
 #       facile_add_executable(
 #         [NAME <name> | SUBNAME <subname>]
+#         [TGTNAMEVAR <target_name_variable>
 #         [OPTDESC <option_description>]
 #         [WIN32]
 #         [C90 | C99 | C11]
 #         [CXX98 | CXX11 | CXX14 | CXX17]
+#         [NOFLATGRP]  # don't flat group
 #         <source>...
-#         [PROPS <<property> <value>>...]
+#         [PROPS <property value>...]
 #         [LINKS <library>...]
 #       )
 #
@@ -39,8 +41,12 @@
 #    + `"CXX_STANDARD" <https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD>`_. *CMake Documentation*.
 #
 function(facile_add_executable)
-  set(zOptKws "WIN32" "C90" "C99" "C11" "CXX98" "CXX11" "CXX14" "CXX17")
-  set(zOneValKws "NAME" "SUBNAME" "OPTDESC")
+  set(zOptKws
+    "WIN32"
+    "C90" "C99" "C11"
+    "CXX98" "CXX11" "CXX14" "CXX17"
+    "FLATGRP")
+  set(zOneValKws "NAME" "SUBNAME" "TGTNAMEVAR" "OPTDESC")
   set(zMutValKws "PROPS" "LINKS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
@@ -90,13 +96,18 @@ function(facile_add_executable)
 
   set(vOptName "${sNameUpr}_COMPILE_EXE")
   set(sTgtName "${sNameLwr}_exe")
+  if(DEFINED _TGTNAMEVAR)
+    set(${_TGTNAMEVAR} "${sTgtName}" PARENT_SCOPE)
+  endif()
 
   option(${vOptName} ${sOptDesc} ON)
   if(NOT ${vOptName})
     return()
   endif()
 
-  source_group("\\" FILES ${_UNPARSED_ARGUMENTS})
+  if(NOT _NOFLATGRP)
+    source_group("\\" FILES ${_UNPARSED_ARGUMENTS})
+  endif()
   add_executable("${sTgtName}" ${sWin32} ${_UNPARSED_ARGUMENTS})
   set_target_properties("${sTgtName}" PROPERTIES
     ${zPropertyCStd}

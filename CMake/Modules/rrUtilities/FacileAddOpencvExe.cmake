@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-2-24 – 2018-2-27
+# 2018-02-24 – 03-19
 # The MIT License
 
 include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
@@ -39,17 +39,21 @@ function(facile_add_opencv_executable)
     set(sOptDesc "Build executable with OpenCV (requires OpenCV).")
   endif()
 
-  foreach(sInclDir IN LISTS OpenCV_INCLUDE_DIRS)
-    if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
-      include_directories(${sInclDir})
-    endif()
-  endforeach()
+  if(OpenCV_INCLUDE_DIRS)
+    foreach(sInclDir IN LISTS OpenCV_INCLUDE_DIRS)
+      if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
+        include_directories(${sInclDir})
+      endif()
+    endforeach()
+  endif()
 
-  foreach(sLib IN LISTS OpenCV_LIBS)
-    if(NOT sLib IN_LIST _LINKS)
-      list(APPEND _LINKS ${sLib})
-    endif()
-  endforeach()
+  if(OpenCV_LIBS)
+    foreach(sLib IN LISTS OpenCV_LIBS)
+      if(NOT sLib IN_LIST _LINKS)
+        list(APPEND _LINKS ${sLib})
+      endif()
+    endforeach()
+  endif()
 
   facile_add_executable(${_UNPARSED_ARGUMENTS} OPTDESC "${sOptDesc}" LINKS ${_LINKS})
 endfunction()

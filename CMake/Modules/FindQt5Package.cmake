@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-2-2
+# 2016-10-21 – 2018-03-19
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -19,7 +19,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # 缓存变量：
 # ::
 #
-#    QTDIR
+#    [ENV] QTDIR[32|64]
 #
 # 结果变量：
 # ::
@@ -29,33 +29,38 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 # 参见：
 #
+# + `"Find Modules" <https://cmake.org/cmake/help/latest/manual/cmake-developer.7#find-modules>`_. *CMake Documentation*.
 # + `"find_path" <https://cmake.org/cmake/help/latest/command/find_path>`_. *CMake Documentation*.
 # + `"ENV" <https://cmake.org/cmake/help/latest/variable/ENV>`_. *CMake Documentation*.
 # + `"FindPackageHandleStandardArgs" <https://cmake.org/cmake/help/latest/module/FindPackageHandleStandardArgs>`_. *CMake Documentation*.
 # + `"mark_as_advanced" <https://cmake.org/cmake/help/latest/command/mark_as_advanced>`_. *CMake Documentation*.
 #
 if(DEFINED CMAKE_SIZEOF_VOID_P)
-  math(EXPR sAddrWitdh "${CMAKE_SIZEOF_VOID_P} * 8")
+  math(EXPR sAddrWidth "${CMAKE_SIZEOF_VOID_P} * 8")
 else()
-  set(sAddrWitdh)
+  set(sAddrWidth)
 endif()
 
-find_path(QT5_PACKAGE_PREFIX_PATH
+find_path(QT5PACKAGE_PREFIX_PATH
   NAMES
     "Qt5/Qt5Config.cmake"
   HINTS
-    "${QTDIR${sAddrWitdh}}/lib/cmake"
-    "${QTDIR}/lib/cmake"
-    "$ENV{QTDIR${sAddrWitdh}}/lib/cmake"
-    "$ENV{QTDIR}/lib/cmake"
+    "${QTDIR${sAddrWidth}}"
+    "${QTDIR}"
+    "$ENV{QTDIR${sAddrWidth}}"
+    "$ENV{QTDIR}"
+  PATH_SUFFIXES
+    "lib/cmake"
   NO_DEFAULT_PATH)
-mark_as_advanced(QT5_PACKAGE_PREFIX_PATH)
+mark_as_advanced(QT5PACKAGE_PREFIX_PATH)
 
 include("FindPackageHandleStandardArgs")
-find_package_handle_standard_args("QT5_PACKAGE"
+find_package_handle_standard_args("Qt5Package"
   DEFAULT_MSG
-    QT5_PACKAGE_PREFIX_PATH)
+    QT5PACKAGE_PREFIX_PATH)
 
-if((QT5_PACKAGE_FOUND) AND (NOT QT5_PACKAGE_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH))
-  list(APPEND CMAKE_PREFIX_PATH "${QT5_PACKAGE_PREFIX_PATH}")
+if(QT5PACKAGE_FOUND)
+  if(NOT QT5PACKAGE_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
+    list(APPEND CMAKE_PREFIX_PATH "${QT5PACKAGE_PREFIX_PATH}")
+  endif()
 endif()

@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#define RRCLANG_EXPORTS
+#define RRC_EXPORTS
 #include "lib.h"
 
 #include "cfg.h"

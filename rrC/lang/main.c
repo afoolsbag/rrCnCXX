@@ -4,7 +4,8 @@
  * \ingroup g_lang
  *
  * \author zhengrr
- * \date 2016-10-9 – 2018-2-7
+ * \version 2018-03-19
+ * \date 2016-10-09
  * \copyright The MIT License
  *
  * @{

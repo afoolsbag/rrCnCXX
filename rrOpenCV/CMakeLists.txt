@@ -4,17 +4,17 @@
 # | |  | |  | |_| | |_) |  __| | | | |___  \ V /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____|  \_/
 # zhengrr         |_|           rrOpenCV by FIGlet
-# 2018-1-22 – 3-1
+# 2018-01-22 – 03-17
 # The MIT License
 
 if(NOT OpenCV_FOUND)
   find_package(OpenCV)
 endif()
 if(NOT OpenCV_FOUND)
-  message(WARNING "OpenCV is needed to generate opencv executable.")
+  message(WARNING "OpenCV is needed to generate the target.")
 endif()
 
-project("rrOpenCV" VERSION 2018.3.1 LANGUAGES CXX)
+project("rrOpenCV" VERSION 2018.3.17 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 

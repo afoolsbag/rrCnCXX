@@ -4,17 +4,24 @@
 # | |  | |  | |_| | |_
 # |_|  |_|   \__\_\\__| rrQt by FIGlet
 # zhengrr
-# 2016-6-28 – 2018-1-23
+# 2016-06-28 – 2018-03-19
 # The MIT License
 
-find_package(Qt5Package)
-if(NOT Qt5Package_FOUND)
-  return()
+if(NOT QT5PACKAGE_FOUND)
+  if(NOT "${CMAKE_CURRENT_LIST_DIR}/../" IN_LIST CMAKE_PREFIX_PATH)
+    list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/../")
+  endif()
+  if(NOT CMAKE_SIZEOF_VOID_P)
+    set(QTDIR "${QTDIR}" CACHE PATH "The root directory of the Qt5 installation.")
+  endif()
+  find_package(Qt5Package)
 endif()
 
-project("rrQt" VERSION 2018.1.29 LANGUAGES CXX)
+project("rrQt" VERSION 2018.3.19 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
+
+facile_add_doxygen()
 
 find_package(Qt5 COMPONENTS
   Core Gui Widgets
@@ -23,5 +30,13 @@ find_package(Qt5 COMPONENTS
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-quick_qt_executable(SUBNAME "ConsoleApp" "console_app.cpp" MODULES Qt5::Core)
-quick_qt_executable(SUBNAME "WidgetsApp" WIN32 "widgets_app.cpp" MODULES Qt5::Widgets)
+facile_add_qt_executable(SUBNAME "ConApp"
+  "con_app.cxx"
+  LINKS Qt5::Core)
+facile_add_qt_executable(SUBNAME "WgtApp"
+  WIN32 "wgt_app.cxx"
+  LINKS Qt5::Core Qt5::Gui Qt5::Widgets)
+
+facile_add_qt_executable(SUBNAME "QckApp"
+  WIN32 "QtQuick/qck_app.cxx"
+  LINKS Qt5::Core Qt5::Gui Qt5::Qml Qt5::Quick)
