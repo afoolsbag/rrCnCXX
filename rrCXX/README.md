@@ -14,33 +14,149 @@
 
 ## Programming Styles
 
-+ 遵循传统
-+ 缩进：2空格
-+ 命名：
-    + 宏：全大写、下划线。
-      如`STILL_DEVELOPING`
-    + 类型：大驼峰。
-      如`Player`、`ProPlayer`
-    + 枚举值和编译时常量：前缀`k`、小驼峰。
-      如`kRed`、`kGreen`、`kBlue`
-	+ 运行时常量和全局运行时常量：前缀`k`、全小写。
-      如`k_user_name`、`kusername`、`kusr`、`k_program_startup_time`
-    + 变量：全小写。
-      如`pass_word`、`password`、`pwd`
-    + 全局变量和静态属性：前缀`g`、全小写。
-      如`g_active_user_count`
-    + 非公有成员属性：全小写、后缀`_`。
-      如`obj.catch_size_`
-    + 函数和静态方法：全小写、下划线。
-      如`generate_random_number()`
-    + 成员方法：小驼峰。
-      如`getPlayerName()`
-
 [*Bjarne Stroustrup's C++ Style and Technique FAQ*](http://stroustrup.com/bs_faq2.html)
 
 [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
 
 [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
+
+### Goals of the Style Guide
+0. Style rules should pull their weight
+0. Optimize for the reader, not the writer
+0. ~~Be consistent with existing code~~
+0. Be consistent with the broader C++ community when appropriate
+0. Avoid surprising or dangerous constructs
+0. ~~Avoid constructs that our average C++ programmer would find tricky or hard to maintain~~
+0. Be mindful of our scale
+0. Concede to optimization when necessary
+
+### Header Files
++ `source.hxx` `source.cxx` `fragment.inc`
++ Self-contained Headers:
+  头文件应自给自足，可单独被调用
++ The #pragma once & #define Guard:
+  ```cpp
+  #pragma once
+  #ifndef PROJECT_PATH_FILE_HXX_
+  #define PROJECT_PATH_FILE_HXX_
+  // ...
+  #endif//PROJECT_PATH_FILE_HXX_
+  ```
++ Forward Declarations:
+  避免使用前置声明
++ Inline Functions:
+  经验规律，10行以内函数可内联
++ Names and Order of Includes:
+  ```cpp
+  #include "source.hxx"
+
+  #include <pthread.h>
+  #include <cstdlib>
+  #include <vector>
+
+  #include "thirdparty/lib1337.hh"
+  #include "src/other.hxx"
+  ```
+
+### Scoping
++ Namespaces:
+  ```cpp
+  namespace prj {
+  // ...
+  }//namespace prj
+  ```
+    + 禁止使用Using指令`using namespace`
+    + 头文件中谨慎使用命名空间别名`namespace alias`
+    + 仅在大型版本控制中使用内联命名空间`inline namespace`
++ Unnamed Namespaces and Static Variables:
+  ```cpp
+  namespace {
+  // ...
+  }//namespace
+  ```
+    + 头文件中谨慎使用文件作用域，源文件中鼓励使用
++ Nonmember, Static Member, and Global Functions
++ Local Variables:
+    + 使局部变量作用域尽可能窄
+    + 使局部变量声明处距定义处尽可能近，最好声明同时定义
+    + 使局部变量定义处距使用处尽可能近，最好定义后立即使用
++ Static and Global Variables:
+    + 静态变量泛指全局变量、文件静态变量、静态类属性和函数静态变量
+    + 静态变量限定数据类型：原生类型、及其指针、数组或结构体
+    + 额外的，类静态属性限定常量表达式`constexpr`
++ `thread_local` Variables
+
+### Classes
+
+### Functions
+
+### Other
+
+### Naming
++ General Naming Rules:
+  公开则详细，私有则简略，以尽量简便的形式表达尽量清晰的含义。
++ Folder Names:
+  全小写、下划线，`ui`、`net`、`algo`
++ File Names:
+    + 一般地，不缩写、全小写、下划线，`config.hxx`、`main.cxx`、`fuzzy_algorithm.cxx`
+    + 类定义文件可以类名为名，`FileOfClass.hxx`、`FileOfClass.cxx`
++ Type Names:
+  大驼峰，`Player`、`ProPlayer`
++ Variable Names:
+    + 一般地，全小写，`user_name`、`username`、`usr`
+    + 私有属性，后缀`_`，`catch_size_`
+    + 静态变量，前缀`s_`，`s_function_usage_count`，避免使用静态变量
+    + 全局变量，前缀`g_`，`g_active_user_count`，避免使用全局变量
++ Constant Names:
+    + 此处常量指编译时常量
+    + 前缀`k`、小驼峰：`kRed`、`kGreen`、`kBlue`
+    + 特别地，静态常量依此例，`kProjectName`
++ Function Names：
+    + 函数、类方法，大驼峰：`GeneratePlayerUuid()`
+    + 对象方法，小驼峰：`getPlayerName()`
++ Namespace Names:
+  不缩写、全小写、下划线：`rrcxx`
++ Enumerator Names:
+  同编译时常量
++ Macro Names:
+  全大写、下划线，`TESTING_DATA`
+
+### Comments
++ Comment Style:
+  尽可能使用`//`（文档注释使用`///`，特别地，在Qt中使用`//!`）
++ File Comments
++ Class Comments
++ Function Comments
++ Variable Comments
++ Implementation Comments
++ Punctuation, Spelling and Grammar
++ TODO Comments
++ Deprecation Comments
+
+### Formatting
++ Line Length:
+  80字符
++ Non-ASCII Characters:
+  使用UTF-8编码
++ Spaces vs. Tabs:
+  空格，缩进2空格
++ Function Declarations and Definitions
++ Lambda Expressions
++ Function Calls
++ Braced Initializer List Format
++ Conditionals
++ Loops and Switch Statements
++ Pointer and Reference Expressions
++ Boolean Expressions
++ Return Values
++ Variable and Array Initialization
++ Preprocessor Directives
++ Class Format
++ Constructor Initializer Lists
++ Namespace Formatting：
+  不缩进
++ Horizontal Whitespace
++ Vertical Whitespace
 
 ## Guides
 

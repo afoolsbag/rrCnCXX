@@ -8,9 +8,6 @@
 # The MIT License
 
 if(NOT QT5PACKAGE_FOUND)
-  if(NOT "${CMAKE_CURRENT_LIST_DIR}/../" IN_LIST CMAKE_PREFIX_PATH)
-    list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/../")
-  endif()
   if(NOT CMAKE_SIZEOF_VOID_P)
     set(QTDIR "${QTDIR}" CACHE PATH "The root directory of the Qt5 installation.")
   endif()
