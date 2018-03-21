@@ -21,6 +21,7 @@
 [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
 
 ### Goals of the Style Guide
+
 0. Style rules should pull their weight
 0. Optimize for the reader, not the writer
 0. ~~Be consistent with existing code~~
@@ -31,6 +32,7 @@
 0. Concede to optimization when necessary
 
 ### Header Files
+
 + `source.hxx` `source.cxx` `fragment.inc`
 + Self-contained Headers:
   头文件应自给自足，可单独被调用
@@ -59,6 +61,7 @@
   ```
 
 ### Scoping
+
 + Namespaces:
   ```cpp
   namespace prj {
@@ -93,6 +96,7 @@
 ### Other
 
 ### Naming
+
 + General Naming Rules:
   公开则详细，私有则简略，以尽量简便的形式表达尽量清晰的含义。
 + Folder Names:
@@ -122,6 +126,7 @@
   全大写、下划线，`TESTING_DATA`
 
 ### Comments
+
 + Comment Style:
   尽可能使用`//`（文档注释使用`///`，特别地，在Qt中使用`//!`）
 + File Comments
@@ -134,6 +139,7 @@
 + Deprecation Comments
 
 ### Formatting
+
 + Line Length:
   80字符
 + Non-ASCII Characters:
@@ -153,7 +159,7 @@
 + Preprocessor Directives
 + Class Format
 + Constructor Initializer Lists
-+ Namespace Formatting：
++ Namespace Formatting:
   不缩进
 + Horizontal Whitespace
 + Vertical Whitespace
