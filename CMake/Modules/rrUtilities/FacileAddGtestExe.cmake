@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-17 – 2018-03-19
+# 2017-12-17 – 2018-03-21
 # The MIT License
 
 # .rst
@@ -36,7 +36,7 @@ function(facile_add_gtest_executable)
   if(GTEST_INCLUDE_DIRS)
     foreach(sInclDir IN LISTS GTEST_INCLUDE_DIRS)
       if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
-        include_directories(${sInclDir})
+        include_directories("${sInclDir}")
       endif()
     endforeach()
   endif()
@@ -44,10 +44,13 @@ function(facile_add_gtest_executable)
   if(GTEST_BOTH_LIBRARIES)
     foreach(sLib IN LISTS GTEST_BOTH_LIBRARIES)
       if(NOT sLib IN_LIST _LINKS)
-        list(APPEND _LINKS ${sLib})
+        list(APPEND _LINKS "${sLib}")
       endif()
     endforeach()
   endif()
 
-  facile_add_executable(${_UNPARSED_ARGUMENTS} OPTDESC "${sOptDesc}" LINKS ${_LINKS})
+  facile_add_executable(
+    OPTDESC "${sOptDesc}"
+    ${_UNPARSED_ARGUMENTS}
+    LINKS ${_LINKS})
 endfunction()

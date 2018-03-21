@@ -128,7 +128,7 @@
 ### Comments
 
 + Comment Style:
-  尽可能使用`//`（文档注释使用`///`，特别地，在Qt中使用`//!`）
+  尽可能使用`//`和`///`
 + File Comments
 + Class Comments
 + Function Comments

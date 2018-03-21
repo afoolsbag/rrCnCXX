@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-01-30 – 03-19
+# 2018-01-30 – 03-21
 # The MIT License
 
 # .rst
@@ -38,5 +38,8 @@ function(facile_add_qt_executable)
     list(APPEND _PROPS "AUTORCC" "ON")
   endif()
 
-  facile_add_executable(${_UNPARSED_ARGUMENTS} OPTDESC "${sOptDesc}" PROPS ${_PROPS})
+  facile_add_executable(
+    OPTDESC "${sOptDesc}"
+    ${_UNPARSED_ARGUMENTS}
+    PROPS ${_PROPS})
 endfunction()

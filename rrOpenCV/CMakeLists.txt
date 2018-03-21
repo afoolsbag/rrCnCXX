@@ -10,9 +10,6 @@
 if(NOT OpenCV_FOUND)
   find_package(OpenCV)
 endif()
-if(NOT OpenCV_FOUND)
-  message(WARNING "OpenCV is needed to generate the target.")
-endif()
 
 project("rrOpenCV" VERSION 2018.3.17 LANGUAGES CXX)
 project_variables()

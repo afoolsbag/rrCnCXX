@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-03-20
+# 2017-12-18 – 2018-03-21
 # The MIT License
 
 # .rst
@@ -100,7 +100,7 @@ function(facile_add_executable)
     set(${_TGTNAMEVAR} "${sTgtName}" PARENT_SCOPE)
   endif()
 
-  option(${vOptName} ${sOptDesc} ON)
+  option(${vOptName} "${sOptDesc}" ON)
   if(NOT ${vOptName})
     return()
   endif()

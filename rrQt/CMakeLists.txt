@@ -4,17 +4,17 @@
 # | |  | |  | |_| | |_
 # |_|  |_|   \__\_\\__| rrQt by FIGlet
 # zhengrr
-# 2016-06-28 – 2018-03-19
+# 2016-06-28 – 2018-03-21
 # The MIT License
 
 if(NOT QT5PACKAGE_FOUND)
-  if(NOT CMAKE_SIZEOF_VOID_P)
+  find_package(Qt5Package)
+  if(NOT QT5PACKAGE_FOUND)
     set(QTDIR "${QTDIR}" CACHE PATH "The root directory of the Qt5 installation.")
   endif()
-  find_package(Qt5Package)
 endif()
 
-project("rrQt" VERSION 2018.3.19 LANGUAGES CXX)
+project("rrQt" VERSION 2018.3.21 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
