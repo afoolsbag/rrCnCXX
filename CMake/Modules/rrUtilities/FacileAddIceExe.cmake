@@ -21,10 +21,10 @@ include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
 #    + `"FindIce" <https://cmake.org/cmake/help/latest/module/FindIce>`_. *CMake Documentation*.
 #
 function(facile_add_ice_executable)
-  if(NOT ICE_FOUND)
+  if(NOT Ice_FOUND)
     find_package(Ice)
   endif()
-  if(NOT ICE_FOUND)
+  if(NOT Ice_FOUND)
     message(WARNING "ICE is needed to build executable with ICE.")
   endif()
 

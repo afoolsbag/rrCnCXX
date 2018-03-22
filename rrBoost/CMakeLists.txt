@@ -4,18 +4,23 @@
 # | |  | |  | |_) | (_) | (_) \__ | |_
 # |_|  |_|  |____/ \___/ \___/|___/\__|
 # zhengrr             rrBoost by FIGlet
-# 2016-10-27 – 2018-1-24
+# 2016-10-27 – 2018-03-22
 # The MIT License
 
-find_package(Boost 1.66 COMPONENTS program_options REQUIRED)
+project("rrBoost" VERSION 2018.3.22 LANGUAGES CXX)
+project_variables()
+highest_warning_level()
 
-project("rrBoost" VERSION 2018.1.24 LANGUAGES CXX)
-set_project_extra_variables()
+if(NOT Boost_FOUND)
+  find_package(Boost 1.66.0
+    COMPONENTS
+      regex)
+  if(NOT Boost_FOUND)
+    set(BOOST_ROOT "${BOOST_ROOT}" CACHE PATH "The root directory of the Boost installation.")
+  endif()
+endif()
 
-adjust_compiler_warning_level_to_highest()
+facile_add_doxygen()
 
-quick_add_doxygen_with_option()
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-add_subdirectory("src")
+facile_add_executable(SUBNAME "hello_boost"
+  "main.c")

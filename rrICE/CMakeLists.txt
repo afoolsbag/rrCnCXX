@@ -4,21 +4,21 @@
 # | |  | |  | | |___| |___
 # |_|  |_| |___\____|_____| rrICE by FIGlet
 # zhengrr
-# 2018-03-21 – 21
+# 2018-03-21 – 22
 # The MIT License
 
-project("rrICE" VERSION 2018.3.21 LANGUAGES CXX)
+project("rrICE" VERSION 2018.3.22 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
-if(NOT ICE_FOUND)
+if(NOT Ice_FOUND)
   find_package(Ice
     COMPONENTS
       Ice Ice++11
       IceDiscovery IceDiscovery++11
       IceLocatorDiscovery IceLocatorDiscovery++11
       IceSSL IceSSL++11)
-  if(NOT ICE_FOUND)
+  if(NOT Ice_FOUND)
     set(Ice_HOME "${Ice_HOME}" CACHE PATH "The root directory of the ICE installation.")
   endif()
 endif()
