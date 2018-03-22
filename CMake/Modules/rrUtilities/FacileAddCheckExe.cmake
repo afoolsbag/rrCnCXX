@@ -37,11 +37,7 @@ function(facile_add_check_executable)
   endif()
 
   if(CHECK_INCLUDE_DIRS)
-    foreach(sInclDir IN LISTS CHECK_INCLUDE_DIRS)
-      if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
-        include_directories("${sInclDir}")
-      endif()
-    endforeach()
+    include_directories(${CHECK_INCLUDE_DIRS})
   endif()
 
   if(CHECK_LIBRARIES)

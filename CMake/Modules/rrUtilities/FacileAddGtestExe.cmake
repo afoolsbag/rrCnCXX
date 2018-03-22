@@ -34,11 +34,7 @@ function(facile_add_gtest_executable)
   endif()
 
   if(GTEST_INCLUDE_DIRS)
-    foreach(sInclDir IN LISTS GTEST_INCLUDE_DIRS)
-      if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
-        include_directories("${sInclDir}")
-      endif()
-    endforeach()
+    include_directories(${GTEST_INCLUDE_DIRS})
   endif()
 
   if(GTEST_BOTH_LIBRARIES)

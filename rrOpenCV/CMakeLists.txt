@@ -4,16 +4,16 @@
 # | |  | |  | |_| | |_) |  __| | | | |___  \ V /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____|  \_/
 # zhengrr         |_|           rrOpenCV by FIGlet
-# 2018-01-22 – 03-17
+# 2018-01-22 – 03-21
 # The MIT License
-
-if(NOT OpenCV_FOUND)
-  find_package(OpenCV)
-endif()
 
 project("rrOpenCV" VERSION 2018.3.17 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
+
+if(NOT OpenCV_FOUND)
+  find_package(OpenCV)
+endif()
 
 facile_add_doxygen()
 

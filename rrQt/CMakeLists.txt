@@ -7,16 +7,16 @@
 # 2016-06-28 – 2018-03-21
 # The MIT License
 
+project("rrQt" VERSION 2018.3.21 LANGUAGES CXX)
+project_variables()
+highest_warning_level()
+
 if(NOT QT5PACKAGE_FOUND)
   find_package(Qt5Package)
   if(NOT QT5PACKAGE_FOUND)
     set(QTDIR "${QTDIR}" CACHE PATH "The root directory of the Qt5 installation.")
   endif()
 endif()
-
-project("rrQt" VERSION 2018.3.21 LANGUAGES CXX)
-project_variables()
-highest_warning_level()
 
 facile_add_doxygen()
 

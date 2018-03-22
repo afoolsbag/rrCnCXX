@@ -40,11 +40,7 @@ function(facile_add_opencv_executable)
   endif()
 
   if(OpenCV_INCLUDE_DIRS)
-    foreach(sInclDir IN LISTS OpenCV_INCLUDE_DIRS)
-      if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
-        include_directories("${sInclDir}")
-      endif()
-    endforeach()
+    include_directories(${OpenCV_INCLUDE_DIRS})
   endif()
 
   if(OpenCV_LIBS)

@@ -50,11 +50,7 @@ function(facile_add_ice_executable)
   string(REGEX REPLACE ".ice$" ".cpp" zSliceSrcs ${zSliceIces})
 
   if(Ice_INCLUDE_DIRS)
-    foreach(sInclDir IN LISTS Ice_INCLUDE_DIRS)
-      if(NOT sInclDir IN_LIST INCLUDE_DIRECTORIES)
-        include_directories("${sInclDir}")
-      endif()
-    endforeach()
+    include_directories(${Ice_INCLUDE_DIRS})
   endif()
 
   if(Ice_LIBRARIES)
@@ -83,7 +79,7 @@ function(facile_add_ice_executable)
     TGTNAMEVAR sTgtName OPTDESC "${sOptDesc}"
     ${zSliceIces} ${zSliceHdrs} ${zSliceSrcs} ${_UNPARSED_ARGUMENTS}
     LINKS ${_LINKS})
-  source_group("\\ice" FILES ${zSliceHdrs} ${zSliceSrcs})
+  source_group("\\ice" FILES ${zSliceIces} ${zSliceHdrs} ${zSliceSrcs})
   if(DEFINED _TGTNAMEVAR)
     set(${_TGTNAMEVAR} "${sTgtName}" PARENT_SCOPE)
   endif()
