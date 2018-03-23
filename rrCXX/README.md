@@ -157,11 +157,11 @@
   /// \remark 诞生啦。
   int func(const int arg);
   ```
-  其中，`\version`、`\date`和`\since`块内容用于迭代内交流，迭代末应清理：
+  其中，`\version`、`\date`和`\since`块内容用于迭代内交流，迭代末当清理：
   ```cpp
   /// \version 2018-03-23
   /// \since 2018-02-21
-  /// \authors zhengrr-α, zhengrr-β, zhengrr-γ
+  /// \authors zhengrr-α; zhengrr-β; zhengrr-γ
   ```
 + Variable Comments
 + Implementation Comments
