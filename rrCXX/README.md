@@ -132,6 +132,37 @@
 + File Comments
 + Class Comments
 + Function Comments
+  ```cpp
+  /// \brief 功能简述。
+  /// \details 功能详述。
+  /// \warning 警告。
+  ///
+  /// \param arg 一个参数。
+  /// \returns 输入的值。
+  ///
+  /// \pre 调用前置要求。
+  /// \note 调用注意事项。
+  /// \post 调用后续处理。
+  ///
+  /// \version 2018-03-23
+  /// \authors zhengrr-γ
+  /// \remark 当前版本。
+  ///
+  /// \date 2018-02-22
+  /// \authors zhengrr-β
+  /// \remark 重要版本更新。
+  ///
+  /// \since 2018-02-21
+  /// \authors zhengrr-α
+  /// \remark 诞生啦。
+  int func(const int arg);
+  ```
+  注：`\version`、`date`和`\since`块内容用于迭代内交流，迭代末应清理：
+  ```cpp
+  /// \version 2018-03-23
+  /// \since 2018-02-21
+  /// \authors zhengrr-α, zhengrr-β, zhengrr-γ
+  ```
 + Variable Comments
 + Implementation Comments
 + Punctuation, Spelling and Grammar
