@@ -3,13 +3,14 @@
  * \file
  * \brief 应用程序接口导入/导出宏定义
  *
- * \author zhengrr
- * \date 2018-03-19
+ * \version 2018-03-27
  * \since 2016-08-01
+ * \authors zhengrr
  * \copyright The MIT License
  *
 **//*===-------------------------------------------------------------------===*/
 
+#pragma once
 #ifndef RRC_API_H_
 #define RRC_API_H_
 

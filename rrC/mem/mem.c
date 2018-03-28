@@ -5,8 +5,9 @@
  *
  * \sa ["C memory management library"](http://en.cppreference.com/w/c/memory). *cppreference.com*.
  *
- * \author zhengrr
- * \date 2016-12-2 – 2-7
+ * \version 2018-03-27
+ * \since 2016-12-02
+ * \authors zhengrr
  * \copyright The MIT License
  *
  * @{

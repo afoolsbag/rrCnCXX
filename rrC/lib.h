@@ -5,12 +5,14 @@
  *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \author zhengrr
- * \date 2017-1-6 – 2018-2-1
+ * \version 2018-03-27
+ * \since 2017-01-06
+ * \authors zhengrr
  * \copyright The MIT License
  *
 **//*===-------------------------------------------------------------------===*/
 
+#pragma once
 #ifndef RRC_LIB_H_
 #define RRC_LIB_H_
 
@@ -35,7 +37,7 @@ struct rrc_ver {
  * \brief 获取库版本
  * \param[out] pver 指向库版本结构体的指针
  */
-RRC_API void rrc_get_ver(struct rrc_ver *const pver);
+RRC_API void rrc_get_ver(struct rrc_ver *ver_ptr);
 
 /** \brief 叹 */
 RRC_API time_t rrc_sigh(void);

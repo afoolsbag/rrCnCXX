@@ -19,11 +19,11 @@ configure_file("cfg.h.in" "cfg.h" @ONLY)
 #enable_testing()
 facile_add_check_executable(SUBNAME "Test"
   "lang/main.c"
-  "str/bstrcnv.c"
-  "str/bstrexam.c"
-  "str/test.h" "str/test.c"
+  "str/str_cnv.c"
+  "str/str_man.c"
+  "str/tsuite.h" "str/tsuite.c"
   "time/time.c"
-  "time/test.h" "time/test.c"
+  "time/tsuite.h" "time/tsuite.c"
 )
 #add_test(NAME "testname" COMMAND "targetname")
 

@@ -130,6 +130,19 @@
 + Comment Style:
   尽可能使用`//`和`///`
 + File Comments
+  ```cpp
+  //===-- File Brief ----------------------------------------------*- C++ -*-===//
+  ///
+  /// \file
+  /// \brief 文件简述。
+  ///
+  /// \version 2018-03-26
+  /// \since 2018-03-26
+  /// \authors zhengrr
+  /// \copyright The MIT License
+  ///
+  //===----------------------------------------------------------------------===//
+  ```
 + Class Comments
 + Function Comments
   ```cpp

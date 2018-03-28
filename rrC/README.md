@@ -7,6 +7,10 @@
 [*C99*](https://iso.org/standard/29237.html)(1999)
 [*C11*](https://iso.org/standard/57853.html)(2011)
 
+["C (programming language) Uses"](https://wikipedia.org/wiki/C_(programming_language)#Uses). *Wikipedia*.
+
+["Why does C programming suck?"](https://quora.com/Why-does-C-programming-suck). *Quora*.
+
 ## References
 
 ["C reference"](http://cppreference.com/w/c). *cppreference.com*.

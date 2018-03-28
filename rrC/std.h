@@ -5,12 +5,14 @@
  *
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
  *
- * \author zhengrr
- * \date 2018-1-5 – 2018-2-3
+ * \version 2018-03-27
+ * \since 2018-01-05
+ * \authors zhengrr
  * \copyright The MIT License
  *
 **//*===-------------------------------------------------------------------===*/
 
+#pragma once
 #ifndef RRC_STD_H_
 #define RRC_STD_H_
 
