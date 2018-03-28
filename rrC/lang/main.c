@@ -11,8 +11,9 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include "str/tsuite.h"
-#include "time/tsuite.h"
+#include "mem/tsuite_mem.h"
+#include "str/tsuite_str.h"
+#include "time/tsuite_time.h"
 
 /**
  * \brief 主函数
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
 {
 	SRunner *runner = srunner_create(NULL);
 
+	srunner_add_suite(runner, tsuite_mem());
 	srunner_add_suite(runner, tsuite_str());
 	srunner_add_suite(runner, tsuite_time());
 

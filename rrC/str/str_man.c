@@ -16,7 +16,7 @@
 #include <string.h>
 
 #include <check.h>
-#include "str/tsuite.h"
+#include "str/tsuite_str.h"
 
 /** \brief 字符串复制（String Copies）
  *  \sa ["strcpy, strcpy_s"](http://en.cppreference.com/w/c/string/byte/strcpy). *cppreference.com*. */

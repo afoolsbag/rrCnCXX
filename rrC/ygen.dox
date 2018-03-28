@@ -3,7 +3,7 @@
  * \mainpage
  * \tableofcontents
  *
- * \version 2018-03-19
+ * \version 2018-03-28
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -31,9 +31,9 @@
  *     + [Atomic operations library](http://en.cppreference.com/w/c/atomic)
  *     + [Thread support library](http://en.cppreference.com/w/c/thread)
  *
- * \author zhengrr
- * \version 2018-03-19
+ * \version 2018-03-28
  * \since 2018-01-23
+ * \authors zhengrr
  * \copyright The MIT License
  *
 *//*===--------------------------------------------------------------------===*/

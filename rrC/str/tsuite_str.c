@@ -1,4 +1,4 @@
-#include "str/tsuite.h"
+#include "str/tsuite_str.h"
 
 Suite *tsuite_str(void)
 {

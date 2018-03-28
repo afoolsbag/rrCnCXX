@@ -19,7 +19,7 @@
 
 #include <check.h>
 #include "std.h"
-#include "str/tsuite.h"
+#include "str/tsuite_str.h"
 
 /** \brief ASCII to Integer
  *  \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*. */

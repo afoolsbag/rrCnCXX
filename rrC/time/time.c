@@ -14,12 +14,11 @@
 *//*===--------------------------------------------------------------------===*/
 
 #include <inttypes.h>
-#include <stdio.h>
 #include <time.h>
 
 #include <check.h>
 #include "std.h"
-#include "time/tsuite.h"
+#include "time/tsuite_time.h"
 
 /** \brief 日历时间
  *  \sa ["tm"](http://en.cppreference.com/w/c/chrono/tm). *cppreference.com*.
@@ -51,6 +50,7 @@ START_TEST(test_epoch_time)
 	const time_t begin_time = time(NULL);
 	const time_t end_time = time(NULL);
 	const double running_time = difftime(end_time, begin_time);
+
 	(void) running_time;
 END_TEST
 
@@ -62,6 +62,7 @@ START_TEST(test_clock_time)
 	const clock_t end_clock = clock();
 	const double processor_time =
 		(end_clock - begin_clock) / (double) CLOCKS_PER_SEC;
+
 	(void) processor_time;
 END_TEST
 

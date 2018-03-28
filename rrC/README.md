@@ -7,81 +7,22 @@
 [*C99*](https://iso.org/standard/29237.html)(1999)
 [*C11*](https://iso.org/standard/57853.html)(2011)
 
-["C (programming language) Uses"](https://wikipedia.org/wiki/C_(programming_language)#Uses). *Wikipedia*.
-
-["Why does C programming suck?"](https://quora.com/Why-does-C-programming-suck). *Quora*.
++ ["C (programming language) Uses"](https://wikipedia.org/wiki/C_(programming_language)#Uses). *Wikipedia*.
++ ["Why does C programming suck?"](https://quora.com/Why-does-C-programming-suck). *Quora*.
 
 ## References
-
-["C reference"](http://cppreference.com/w/c). *cppreference.com*.
-
-["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft® Docs*.
-
-[*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
-
-["C and C++ Language Syntax Reference"](https://cprogramming.com/reference). *Cprogramming.com*.
++ ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
++ ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft® Docs*.
++ [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
++ ["C and C++ Language Syntax Reference"](https://cprogramming.com/reference). *Cprogramming.com*.
 
 ## Programming Styles
 
-[*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
-
-[*GNU Coding Standards*](https://gnu.org/prep/standards/standards.html)
-
-[*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
-
-[*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
-
-+ Indentation:
-  制表符（8空格宽）
-+ Breaking long lines and strings:
-  行宽80字符
-+ Placing Braces and Spaces:
-  除函数外，K&R
-+ Spaces
-+ Naming:
-    + [广为人知的](https://wikipedia.org/)应当使用（`tcp`、`http`），
-      [业内通行的](https://abbreviations.com/)<sub>[alt](https://allacronyms.com/)</sub>可以使用（`cur`、`img`），
-      自行约定的审慎使用（`fs`、`fsys`、`file_system`）
-    + 宏和编译时常量，全大写、下划线，`RED`、`GREEN`、`BLUE`
-    + 类型、函数和变量，全小写、下划线，`size_t`、`do_something()`、`tmp`
-+ Typedefs:
-  避免使用
-+ Functions:
-    + 宽不应超过一屏（80字符）
-    + 长不应超过两屏（约40行，单屏24行），长长的`switch-case`函数除外
-    + 局部变量不应超过10个
-+ Centralized exiting of functions:
-  ```c
-  int do_something(void)
-  {
-  	int errc = 0;
-
-  	uint8_t *bfr = malloc(SIZE);
-  	if (!bfr) {
-  		errc = -1;
-  		goto out;
-  	}
-
-  	if (/*...*/) {
-  		errc = -2;
-  		goto out_free_bfr;
-  	}
-
-  	/*...*/
-
-  out_free_bfr:
-  	free(bfr);
-  out:
-  	return errc;
-  }
-  ```
-+ Commenting
-+ Macros, Enums and RTL
-+ Function return values and names
-  ```c
-  int do_something(): return errc;  /* error-code */
-  int something_do(): return succ;  /* succeeded */
-  ```
++ [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
++ [*GNU Coding Standards*](https://gnu.org/prep/standards/standards.html)
++ [*SEI CERT C Coding Standard*](https://wiki.sei.cmu.edu/confluence/display/c)
++ [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
++ [*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
 
 ## Guides
 

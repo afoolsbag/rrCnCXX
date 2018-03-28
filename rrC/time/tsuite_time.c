@@ -1,4 +1,4 @@
-#include "time/tsuite.h"
+#include "time/tsuite_time.h"
 
 Suite *tsuite_time(void)
 {

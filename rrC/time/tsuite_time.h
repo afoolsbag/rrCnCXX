@@ -1,6 +1,6 @@
 #pragma once
-#ifndef TIME_TSUITE_H_
-#define TIME_TSUITE_H_
+#ifndef TIME_TSUITETIME_H_
+#define TIME_TSUITETIME_H_
 
 #include <check.h>
 
@@ -8,4 +8,4 @@ TCase *tcase_time(void);
 
 Suite *tsuite_time(void);
 
-#endif/*TIME_TSUITE_H_*/
+#endif/*TIME_TSUITETIME_H_*/

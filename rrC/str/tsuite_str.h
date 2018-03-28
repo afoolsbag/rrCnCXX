@@ -1,6 +1,6 @@
 #pragma once
-#ifndef STR_TSUITE_H_
-#define STR_TSUITE_H_
+#ifndef STR_TSUITESTR_H_
+#define STR_TSUITESTR_H_
 
 #include <check.h>
 
@@ -9,4 +9,4 @@ TCase *tcase_str_man(void);
 
 Suite *tsuite_str(void);
 
-#endif/*STR_TSUITE_H_*/
+#endif/*STR_TSUITESTR_H_*/

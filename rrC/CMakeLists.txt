@@ -19,19 +19,18 @@ configure_file("cfg.h.in" "cfg.h" @ONLY)
 #enable_testing()
 facile_add_check_executable(SUBNAME "Test"
   "lang/main.c"
+  "mem/mem.c"
+  "mem/tsuite_mem.h" "mem/tsuite_mem.c"
   "str/str_cnv.c"
   "str/str_man.c"
-  "str/tsuite.h" "str/tsuite.c"
+  "str/tsuite_str.h" "str/tsuite_str.c"
   "time/time.c"
-  "time/tsuite.h" "time/tsuite.c"
+  "time/tsuite_time.h" "time/tsuite_time.c"
 )
 #add_test(NAME "testname" COMMAND "targetname")
 
 facile_add_executable(SUBNAME "Main"
   "lang/main.c")
-
-facile_add_executable(SUBNAME "Memery"
-  "mem/mem.c")
 
 facile_add_executable(SUBNAME "Array"
   "type/array.c")
