@@ -1,38 +1,43 @@
-/**
- * \file
- * \brief 数组
+/*===-- Array --------------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_array 数组
+ * \ingroup g_type
+ *
  * \sa ["Array declaration"](http://en.cppreference.com/w/c/language/array). *cppreference.com*.
  * \sa ["Array initialization"](http://en.cppreference.com/w/c/language/array_initialization). *cppreference.com*.
- * \author zhengrr
- * \date 2016-10-9 – 2018-1-15
+ *
+ * \version 2018-03-29
+ * \since 2016-10-09
+ * \authors zhengrr
  * \copyright The MIT License
- */
+ *
+ * @{
+**//*===-------------------------------------------------------------------===*/
 
-#include "c_standard_version.h"
+#include <inttypes.h>
 
-#include <assert.h>
+#include <check.h>
+#include "std.h"
+#include "type/tsuite_type.h"
 
-/**
- * \brief （匿名数组）复合字面量
- * \sa ["compound literals"](http://en.cppreference.com/w/c/language/compound_literal). *cppreference.com*.
- */
-void compound_literals()
+/** \brief 复合字面量、匿名数组
+ *  \sa ["compound literals"](http://en.cppreference.com/w/c/language/compound_literal). *cppreference.com*. */
+START_TEST(test_array_compound_literals)
+#if C99
+	int *pcl = (int[]) {0, 1, 2};  /* pointer to compound literals */
+	ck_assert_int_eq(pcl[0], 0);
+	ck_assert_int_eq(pcl[0], 0);
+	ck_assert_int_eq(pcl[0], 0);
+#endif/*C99*/
+END_TEST
+
+/** @} */
+
+TCase *tcase_array(void)
 {
-#if CSTD99
-	int *p_compound_literals = (int[]) {0, 1, 2};
-	assert(p_compound_literals[0] == 0);
-	assert(p_compound_literals[1] == 1);
-	assert(p_compound_literals[2] == 2);
-#endif/* CSTD99*/
+	TCase *tcase = tcase_create("array");
+
+	tcase_add_test(tcase, test_array_compound_literals);
+
+	return tcase;
 }
-
-// C99 变长数组
-
-/** \brief main */
-int main(void)
-{
-}
-
-// 13.7
-// char d[][8]
-// char *d[8]

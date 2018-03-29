@@ -1,48 +1,61 @@
-/**
- * \file
- * \brief 字符
+/*===-- Character ----------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup g_char 字符
+ * \ingroup g_type
+ *
  * \sa ["Character types"](http://en.cppreference.com/w/c/language/arithmetic_types#Character_types). *cppreference.com*.
  * \sa ["character constant"](http://en.cppreference.com/w/c/language/character_constant). *cppreference.com*.
  * \sa ["Escape sequences"](http://en.cppreference.com/w/c/language/escape). *cppreference.com*.
- * \author zhengrr
- * \date 2016-10-9 – 2018-1-15
+ *
+ * \version 2018-03-29
+ * \since 2016-10-09
+ * \authors zhengrr
  * \copyright The MIT License
- */
+ *
+ * @{
+**//*===-------------------------------------------------------------------===*/
 
 #include "std.h"
 
-#include <assert.h>
-#if C_STD_95
-# include <wchar.h>
-#endif/* CSTD95*/
-#if C_N1040
+#include <inttypes.h>
+#if N1040
 # include <uchar.h>
-#endif/* CN1040*/
+#endif/*N1040*/
+#if C95
+# include <wchar.h>
+#endif/*C95*/
 
-/** \brief 一种巧妙的个位十六进制数到其字符编码的转换
- *  \param hexint 个位十六进制数（0x0 ~ 0xF）
- *  \return 对应的字符编码（'0' ~ 'F'） */
-char hex_int_to_char(const int hexint)
+#include <check.h>
+#include "type/tsuite_type.h"
+
+START_TEST(test_char)
+	char c = 'z';
+	ck_assert_int_eq(c, '\172');  /* Octal */
+	ck_assert_int_eq(c, '\x7a');  /* Hexadecimal */
+
+	wchar_t wc = L'喵';
+	ck_assert_int_eq(wc, L'\u55B5');
+END_TEST
+
+static char hex_digit_to_char(const int hexint)
 {
 	return "0123456789ABCDEF"[hexint % 16];
 }
 
-/** \brief main */
-int main(void)
+START_TEST(test_hex_digit_to_char)
+	ck_assert_int_eq(hex_digit_to_char(0x7), '7');
+	ck_assert_int_eq(hex_digit_to_char(0xA), 'A');
+	ck_assert_int_eq(hex_digit_to_char(0xF), 'F');
+END_TEST
+
+/** @} */
+
+TCase *tcase_char(void)
 {
-	char ascii = 'a';  /* U+0061 */
-	assert('\141' == ascii);
-	assert('\x61' == ascii);
+	TCase *tcase = tcase_create("char");
 
-	wchar_t utf16 = L'喵';  /* U+55B5 */
+	tcase_add_test(tcase, test_char);
+	tcase_add_test(tcase, test_hex_digit_to_char);
 
-#if C_STD_99
-	assert(L'\u55B5' == utf16);
-
-	wchar_t utf32 = U'𝌀';
-#endif/* C_STD_99*/
-
-#ifdef C_STD_11
-
-#endif/* C_STD_11*/
+	return tcase;
 }

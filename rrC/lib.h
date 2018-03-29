@@ -5,7 +5,7 @@
  *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2018-03-27
+ * \version 2018-03-29
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright The MIT License
@@ -25,25 +25,32 @@
 extern "C" {
 #endif
 
-/** \brief 库版本结构体 */
-struct rrc_ver {
-	int16_t major;  /**< 库主版本号 */
-	int16_t minor;  /**< 库次版本号 */
-	int16_t patch;  /**< 库补丁版本号 */
-	int16_t tweak;  /**< 库微调版本号 */
+/**
+ * \brief 库版本结构体。
+ *
+ * \version 2018-03-29
+ * \date 2018-03-09
+ */
+struct rrc_version_t {
+	int16_t major;  /**< 库主版本号。 */
+	int16_t minor;  /**< 库次版本号。 */
+	int16_t patch;  /**< 库补丁版本号。 */
+	int16_t tweak;  /**< 库微调版本号。 */
 };
 
 /**
- * \brief 获取库版本
- * \param[out] pver 指向库版本结构体的指针
+ * \brief 获取库版本。
+ * \param[out] version_ptr 指向库版本结构体的指针。
  */
-RRC_API void rrc_get_ver(struct rrc_ver *ver_ptr);
+RRC_API void rrc_get_version(struct rrc_version_t *version_ptr);
 
-/** \brief 叹 */
+/**
+ * \brief 叹。
+ */
 RRC_API time_t rrc_sigh(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif/* RRC_LIB_H_*/
+#endif/*RRC_LIB_H_*/

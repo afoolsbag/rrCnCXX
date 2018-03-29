@@ -4,10 +4,10 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-03-19
+# 2016-08-01 – 2018-03-29
 # The MIT License
 
-project("rrCXX" VERSION 2018.3.19 LANGUAGES CXX)
+project("rrCXX" VERSION 2018.3.29 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -16,8 +16,8 @@ facile_add_doxygen()
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)
 
-#enable_testing()
-facile_add_gtest_executable(SUBNAME "Test"
+enable_testing()
+facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sTgtName
   "algo/nmodseq.cxx"
   "cont/vector.cxx"
   "gen/mem/unique_ptr.cxx"
@@ -31,7 +31,7 @@ facile_add_gtest_executable(SUBNAME "Test"
   "lang/namesp.cxx"
   "thrd/thrd.cxx"
   "dzn/singleton.cxx")
-#add_test(NAME "testname" COMMAND "targetname")
+add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
 quick_library(SUBNAME "Library"
   "lib.cxx")

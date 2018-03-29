@@ -3,7 +3,7 @@
  * \defgroup g_main 主函数
  * \ingroup g_lang
  *
- * \version 2018-03-28
+ * \version 2018-03-29
  * \date 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License
@@ -14,6 +14,7 @@
 #include "mem/tsuite_mem.h"
 #include "str/tsuite_str.h"
 #include "time/tsuite_time.h"
+#include "type/tsuite_type.h"
 
 /**
  * \brief 主函数
@@ -31,6 +32,7 @@ int main(int argc, char *argv[])
 	srunner_add_suite(runner, tsuite_mem());
 	srunner_add_suite(runner, tsuite_str());
 	srunner_add_suite(runner, tsuite_time());
+	srunner_add_suite(runner, tsuite_type());
 
 	srunner_run_all(runner, CK_NORMAL);
 	int failed = srunner_ntests_failed(runner);

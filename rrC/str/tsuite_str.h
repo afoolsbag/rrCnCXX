@@ -4,8 +4,9 @@
 
 #include <check.h>
 
-TCase *tcase_str_cnv(void);
-TCase *tcase_str_man(void);
+TCase *tcase_bstr_cnv(void);
+TCase *tcase_bstr_exam(void);
+TCase *tcase_bstr_man(void);
 
 Suite *tsuite_str(void);
 

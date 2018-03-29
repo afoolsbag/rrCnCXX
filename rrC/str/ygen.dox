@@ -22,7 +22,7 @@
  *         + [String examination](http://en.cppreference.com/w/c/string/wide#String_examination)
  *         + [Wide character array manipulation](http://en.cppreference.com/w/c/string/wide#Character_array_manipulation)
  *
- * \date 2018-03-28
+ * \version 2018-03-29
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright The MIT License

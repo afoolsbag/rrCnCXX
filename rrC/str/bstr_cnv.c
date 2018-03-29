@@ -1,11 +1,11 @@
-/*===-- (Byte) String Conversions to Numeric Formats -----------*- C -*-===*//**
+/*===-- Byte String Conversions to Numeric Formats -------------*- C -*-===*//**
  *
- * \defgroup g_str_cnv （单字节）字符串转换成数值格式
+ * \defgroup g_bstr_cnv 单字节字符串转换成数值格式
  * \ingroup g_str
  *
  * \sa ["Conversions to numeric formats"](http://en.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
  *
- * \version 2018-03-28
+ * \version 2018-03-29
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright The MIT License
@@ -24,47 +24,63 @@
 /** \brief ASCII to Integer
  *  \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*. */
 START_TEST(test_atoi)
-	ck_assert_int_eq(atoi("2147483647"), INT32_MAX);
+	_Static_assert(sizeof(int) == sizeof(int32_t), "int isn't 32bits.");
+	const int i = atoi("2147483647");
+	ck_assert_int_eq(i, INT32_MAX);
 END_TEST
 
 /** \brief ASCII to Long
  *  \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*. */
 START_TEST(test_atol)
-	ck_assert_int_eq(atol("2147483647"), INT32_MAX);
+	_Static_assert(sizeof(long) == sizeof(int32_t), "long isn't 32bits.");
+	const long l = atol("2147483647");
+	ck_assert_int_eq(l, INT32_MAX);
 END_TEST
 
 /** \brief ASCII to Long-Long
  *  \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*. */
 START_TEST(test_atoll)
 #if C99
-	ck_assert_int_eq(atoll("9223372036854775807"), INT64_MAX);
+	_Static_assert(sizeof(long long) == sizeof(int64_t),
+		       "long long isn't 64bits.");
+	const long long ll = atoll("9223372036854775807");
+	ck_assert_int_eq(ll, INT64_MAX);
 #endif/*C99*/
 END_TEST
 
 /** \brief ASCII to Float
  *  \sa ["atof"](http://en.cppreference.com/w/c/string/byte/atof). *cppreference.com*. */
 START_TEST(test_atof)
-	DBL_DIG;
-	ck_assert_double_eq(atof("0.123456789012345"), 0.123456789012345);
+	_Static_assert(15 <= DBL_DIG, "double's decimal digits less 15.");
+	const double d = atof("0.123456789012345");
+	ck_assert_double_eq(d, 0.123456789012345);
 END_TEST
 
 /** \brief (Byte) String to Long
  *  \sa ["strtol, strtoll"](http://en.cppreference.com/w/c/string/byte/strtol). *cppreference.com*. */
 START_TEST(test_strtol)
-	ck_assert_int_eq(strtol("2147483647", NULL, 0), INT32_MAX);
+	_Static_assert(sizeof(long) == sizeof(int32_t), "long isn't 32bits.");
+	const long i = strtol("2147483647", NULL, 0);
+	ck_assert_int_eq(i, INT32_MAX);
 END_TEST
 
 /** \brief (Byte) String to Unsigned-Long
  *  \sa ["strtoul, strtoull"](http://en.cppreference.com/w/c/string/byte/strtoul). *cppreference.com*. */
 START_TEST(test_strtoul)
-	ck_assert_uint_eq(strtoul("4294967295", NULL, 0), UINT32_MAX);
+	_Static_assert(sizeof(unsigned long) == sizeof(uint32_t),
+		       "unsigned long isn't 32bits.");
+	const unsigned long l = strtoul("0xFFFFFFFF", NULL, 0);
+	ck_assert_uint_eq(l, UINT32_MAX);
 END_TEST
 
 /** \brief (Byte) String to Long-Long
  *  \sa ["strtol, strtoll"](http://en.cppreference.com/w/c/string/byte/strtol). *cppreference.com*. */
 START_TEST(test_strtoll)
 #if C99
-	ck_assert_int_eq(strtoll("9223372036854775807", NULL, 0), INT64_MAX);
+	_Static_assert(sizeof(long long) == sizeof(int64_t),
+		       "long long isn't 64bits.");
+	const long long ll = strtoll("9223372036854775807", NULL, 0);
+	ck_assert_int_eq(ll, INT64_MAX);
 #endif/*C99*/
 END_TEST
 
@@ -72,7 +88,10 @@ END_TEST
  *  \sa ["strtoul, strtoull"](http://en.cppreference.com/w/c/string/byte/strtoul). *cppreference.com*. */
 START_TEST(test_strtoull)
 #if C99
-	ck_assert_uint_eq(strtoull("18446744073709551615", NULL, 0), UINT64_MAX);
+	_Static_assert(sizeof(unsigned long long) == sizeof(uint64_t),
+		       "unsigned long long isn't 64bits.");
+	const unsigned long long ull = strtoull("0xFFFFFFFFFFFFFFFF", NULL, 0);
+	ck_assert_uint_eq(ull, UINT64_MAX);
 #endif/* C99*/
 END_TEST
 
@@ -80,7 +99,8 @@ END_TEST
  *  \sa ["strtoimax, strtoumax"](http://en.cppreference.com/w/c/string/byte/strtoimax). *cppreference.com*. */
 START_TEST(test_strtoimax)
 #if C99
-	ck_assert_int_eq(strtoimax("9223372036854775807", NULL, 0), INTMAX_MAX);
+	const intmax_t imax = strtoimax("9223372036854775807", NULL, 0);
+	ck_assert_int_eq(imax, INTMAX_MAX);
 #endif/*C99*/
 END_TEST
 
@@ -88,7 +108,8 @@ END_TEST
  *  \sa ["strtoimax, strtoumax"](http://en.cppreference.com/w/c/string/byte/strtoimax). *cppreference.com*. */
 START_TEST(test_strtoumax)
 #if C99
-	ck_assert_int_eq(strtoumax("18446744073709551615", NULL, 0), UINTMAX_MAX);
+	const uintmax_t umax = strtoumax("0xFFFFFFFFFFFFFFFF", NULL, 0);
+	ck_assert_int_eq(umax, UINTMAX_MAX);
 #endif/*C99*/
 END_TEST
 
@@ -98,7 +119,7 @@ END_TEST
  */
 START_TEST(test_strtof)
 #if C99
-	FLT_DIG;
+	_Static_assert(6 <= FLT_DIG, "float's decimal digits less 6.");
 	ck_assert_float_eq(strtof("0.123456", NULL), 0.123456f);
 #endif/*C99*/
 END_TEST
@@ -108,8 +129,9 @@ END_TEST
  * \sa ["strtof, strtod, strtold"](http://en.cppreference.com/w/c/string/byte/strtof). *cppreference.com*.
  */
 START_TEST(test_strtod)
-	DBL_DIG;
-	ck_assert_double_eq(strtod("0.123456789012345", NULL), 0.123456789012345);
+	_Static_assert(15 <= DBL_DIG, "double's decimal digits less 15.");
+	ck_assert_double_eq(strtod("0.123456789012345", NULL),
+			    0.123456789012345);
 END_TEST
 
 /**
@@ -118,16 +140,17 @@ END_TEST
  */
 START_TEST(test_strtold)
 #if C99
-	LDBL_DIG;
-	ck_assert_ldouble_eq(strtold("0.123456789012345678", NULL), 0.123456789012345678L);
+	_Static_assert(18 <= LDBL_DIG, "long double's decimal digits less 18.");
+	ck_assert_ldouble_eq(strtold("0.123456789012345678", NULL),
+			     0.123456789012345678L);
 #endif/*C99*/
 END_TEST
 
 /** @} */
 
-TCase *tcase_str_cnv(void)
+TCase *tcase_bstr_cnv(void)
 {
-	TCase *tcase = tcase_create("str_cnv");
+	TCase *tcase = tcase_create("bstr_cnv");
 
 	tcase_add_test(tcase, test_atoi);
 	tcase_add_test(tcase, test_atol);

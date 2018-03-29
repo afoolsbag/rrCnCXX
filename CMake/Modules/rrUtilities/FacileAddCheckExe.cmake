@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-02-02 – 03-21
+# 2018-02-02 – 03-29
 # The MIT License
 
 # .rst
@@ -26,7 +26,7 @@ function(facile_add_check_executable)
   endif()
 
   set(zOptKws)
-  set(zOneValKws "OPTDESC")
+  set(zOneValKws "TGTNAMEVAR" "OPTDESC")
   set(zMutValKws "LINKS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
@@ -49,7 +49,10 @@ function(facile_add_check_executable)
   endif()
 
   facile_add_executable(
-    OPTDESC "${sOptDesc}"
+    TGTNAMEVAR sTgtName OPTDESC "${sOptDesc}"
     ${_UNPARSED_ARGUMENTS}
     LINKS ${_LINKS})
+  if(DEFINED _TGTNAMEVAR)
+    set(${_TGTNAMEVAR} "${sTgtName}" PARENT_SCOPE)
+  endif()
 endfunction()

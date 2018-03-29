@@ -5,12 +5,12 @@
 
 #include "cfg.h"
 
-void rrc_get_ver(struct rrc_ver *const ver_ptr)
+void rrc_get_version(struct rrc_version_t *const version_ptr)
 {
-	ver_ptr->major = RRC_VERSION_MAJOR;
-	ver_ptr->minor = RRC_VERSION_MINOR;
-	ver_ptr->patch = RRC_VERSION_PATCH;
-	ver_ptr->tweak = RRC_VERSION_TWEAK;
+	version_ptr->major = RRC_VERSION_MAJOR;
+	version_ptr->minor = RRC_VERSION_MINOR;
+	version_ptr->patch = RRC_VERSION_PATCH;
+	version_ptr->tweak = RRC_VERSION_TWEAK;
 }
 
 time_t rrc_sigh(void)

@@ -1,11 +1,11 @@
 /*===-- Byte String Manipulation -------------------------------*- C -*-===*//**
  *
- * \defgroup g_str_man （单字节）字符串操作
+ * \defgroup g_bstr_man 单字节字符串操作
  * \ingroup g_str
  *
  * \sa ["String manipulation"](http://en.cppreference.com/w/c/string/byte#String_manipulation). *cppreference.com*.
  *
- * \version 2018-03-28
+ * \version 2018-03-29
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright The MIT License
@@ -62,9 +62,9 @@ END_TEST
 
 /** @} */
 
-TCase *tcase_str_man(void)
+TCase *tcase_bstr_man(void)
 {
-	TCase *tcase = tcase_create("str_man");
+	TCase *tcase = tcase_create("bstr_man");
 
 	tcase_add_test(tcase, test_strcpy);
 	tcase_add_test(tcase, test_strncpy);
