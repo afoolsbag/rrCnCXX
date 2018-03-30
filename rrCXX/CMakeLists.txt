@@ -33,5 +33,5 @@ facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sTgtName
   "dzn/singleton.cxx")
 add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
-quick_library(SUBNAME "Library"
+facile_add_library(SUBNAME "Library"
   "lib.cxx")

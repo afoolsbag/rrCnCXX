@@ -3,9 +3,9 @@
  * \defgroup g_acs_shr_flr 访问共享文件夹
  * \ingroup g_wnet
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-2-23
+ * \version 2018-03-29
+ * \since 2018-02-23
+ * \authors zhengrr
  * \copyright The MIT License
  *
  * @{
