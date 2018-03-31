@@ -27,15 +27,12 @@ extern "C" {
 
 /**
  * \brief 库版本结构体。
- *
- * \version 2018-03-29
- * \date 2018-03-09
  */
 struct rrc_version_t {
-	int16_t major;  /**< 库主版本号。 */
-	int16_t minor;  /**< 库次版本号。 */
-	int16_t patch;  /**< 库补丁版本号。 */
-	int16_t tweak;  /**< 库微调版本号。 */
+	uint16_t major;  /**< 库主版本号。 */
+	uint16_t minor;  /**< 库次版本号。 */
+	uint16_t patch;  /**< 库补丁版本号。 */
+	uint16_t tweak;  /**< 库微调版本号。 */
 };
 
 /**

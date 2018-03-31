@@ -4,10 +4,10 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-03-29
+# 2016-08-01 – 2018-03-31
 # The MIT License
 
-project("rrCXX" VERSION 2018.3.29 LANGUAGES CXX)
+project("rrCXX" VERSION 2018.3.31 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -17,7 +17,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)
 
 enable_testing()
-facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sTgtName
+facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sRrcxxGtestTgt
   "algo/nmodseq.cxx"
   "cont/vector.cxx"
   "gen/mem/unique_ptr.cxx"
@@ -31,7 +31,10 @@ facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sTgtName
   "lang/namesp.cxx"
   "thrd/thrd.cxx"
   "dzn/singleton.cxx")
-add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
+add_test(NAME "${sRrcxxGtestTgt}" COMMAND "${sRrcxxGtestTgt}")
 
-facile_add_library(SUBNAME "Library"
-  "lib.cxx")
+facile_add_library(SUBNAME "dl" TGTNAMEVAR sRrcxxDlLibTgt
+  SHARED "api.h" "lib.h" "lib.cxx")
+
+facile_add_executable(SUBNAME "dl"
+  "api.h" "lib.h" "exe.cxx" LINKS ${sRrcxxDlLibTgt})

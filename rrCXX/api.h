@@ -2,34 +2,60 @@
  *
  * \file
  * \brief 应用程序接口导入/导出宏定义
+ * \details ELF（Executable and Linkable Format）缺省导出/导出符号；
+ *          PE（Portable Executable）缺省隐藏符号。
  *
- * \author zhengrr
- * \date 2017-1-12 – 2018-2-1
+ * \version 2018-03-31
+ * \since 2017-01-12
+ * \authors zhengrr
  * \copyright The MIT License
  *
 **//*===-------------------------------------------------------------------===*/
 
+#pragma once
 #ifndef RRCXX_API_H_
 #define RRCXX_API_H_
 
-#if defined(_MSC_VER) || defined(__CYGWIN__)
-# define RRCXX_EXPORT_ __declspec(dllexport)                   /**< 导出（存储类型属性） */
-# define RRCXX_IMPORT_ __declspec(dllimport)                   /**< 导入（存储类型属性） */
-# define RRCXX_LOCAL_                                          /**< 本地（存储类型属性） */
-#elif 4 <= __GNUC__
-# define RRCXX_EXPORT_ __attribute__((visibility("default")))  /**< 导出（存储类型属性） */
-# define RRCXX_IMPORT_ __attribute__((visibility("default")))  /**< 导入（存储类型属性） */
-# define RRCXX_LOCAL_ __attribute__((visibility("hidden")))    /**< 本地（存储类型属性） */
+#if defined _WIN32 || defined __CYGWIN__
+# if defined _MSC_VER
+#  define RRCXX_DL_EXPORT_ __declspec(dllexport)
+#  define RRCXX_DL_IMPORT_ __declspec(dllimport)
+#  define RRCXX_DL_LOCAL_
+# elif defined __GNUC__
+#  define RRCXX_DL_EXPORT_ __attribute__ ((dllexport))
+#  define RRCXX_DL_IMPORT_ __attribute__ ((dllimport))
+#  define RRCXX_DL_LOCAL_
+# endif
+#
+#elif defined __unix__ || defined __linux__
+# if 4 <= __GNUC__
+#  define RRCXX_DL_EXPORT_ __attribute__ ((visibility ("default")))
+#  define RRCXX_DL_IMPORT_ __attribute__ ((visibility ("default")))
+#  define RRCXX_DL_LOCAL_  __attribute__ ((visibility ("hidden")))
+# else
+#  define RRCXX_DL_EXPORT_
+#  define RRCXX_DL_IMPORT_
+#  define RRCXX_DL_LOCAL_
+# endif
+#
 #else
-# define RRCXX_EXPORT_                                         /**< 导出（存储类型属性） */
-# define RRCXX_IMPORT_                                         /**< 导入（存储类型属性） */
-# define RRCXX_LOCAL_                                          /**< 本地（存储类型属性） */
+#  define RRCXX_DL_EXPORT_
+#  define RRCXX_DL_IMPORT_
+#  define RRCXX_DL_LOCAL_
+#
 #endif
 
-#ifdef RRCXX_EXPORTS
-# define RRCXX_API RRCXX_EXPORT_                               /**< 导出/导入（存储类型属性） */
+#if defined RRCXX_DL || !defined RRCXX_SL
+# if defined RRCXX_EXPORTS || defined RRCXX_DL_EXPORTS
+#  define RRCXX_API   RRCXX_DL_EXPORT_
+#  define RRCXX_LOCAL RRCXX_DL_LOCAL_
+# else
+#  define RRCXX_API   RRCXX_DL_IMPORT_
+#  define RRCXX_LOCAL RRCXX_DL_LOCAL_
+# endif
 #else
-# define RRCXX_API RRCXX_IMPORT_                               /**< 导出/导入（存储类型属性） */
+#  define RRCXX_API
+#  define RRCXX_LOCAL
 #endif
 
-#endif/* RRCXX_API_H_*/
+#endif/*RRCXX_API_H_*/

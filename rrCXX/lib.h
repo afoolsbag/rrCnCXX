@@ -3,12 +3,14 @@
  * \file
  * \brief 库
  *
- * \author zhengrr
- * \date 2018-1-9 – 2018-2-1
+ * \version 2018-02-31
+ * \since 2018-01-09
+ * \authors zhengrr
  * \copyright The MIT License
  *
 **//*===-------------------------------------------------------------------===*/
 
+#pragma once
 #ifndef RRCXX_LIB_H_
 #define RRCXX_LIB_H_
 
@@ -21,25 +23,29 @@
 extern "C" {
 #endif
 
-/** \brief 库版本结构体 */
-struct rrcxx_ver {
-  uint16_t major;  /**< 库主版本号 `YYYY` */
-  uint8_t minor;   /**< 库次版本号 `MM` */
-  uint8_t patch;   /**< 库补丁版本号 `DD` */
-  uint16_t tweak;  /**< 库微调版本号 `hhmm` */
+/**
+ * \brief 库版本结构体。
+ */
+struct rrcxx_version_t {
+	uint16_t major;  /**< 库主版本号。 */
+	uint16_t minor;  /**< 库次版本号。 */
+	uint16_t patch;  /**< 库补丁版本号。 */
+	uint16_t tweak;  /**< 库微调版本号。 */
 };
 
 /**
- * \brief 获取库版本
- * \param[out] pver 指向库版本结构体的指针
+ * \brief 获取库版本。
+ * \param[out] version_ptr 指向库版本结构体的指针。
  */
-RRCXX_API void rrcxx_get_ver(struct rrcxx_ver *const pver);
+RRCXX_API void rrcxx_get_version(struct rrcxx_version_t *const version_ptr);
 
-/** \brief 叹 */
+/**
+ * \brief 叹。
+ */
 RRCXX_API time_t rrcxx_sigh();
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif/* RRCXX_LIB_H_*/
+#endif/*RRCXX_LIB_H_*/

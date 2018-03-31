@@ -9,8 +9,9 @@
 /// \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
 /// \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
 ///
-/// \author zhengrr
-/// \date 2017-12-13 – 2018-2-2
+/// \version 2018-03-31
+/// \since 2017-12-13
+/// \authors zhengrr
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
