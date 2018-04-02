@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-03-19
+# 2016-10-21 – 2018-04-02
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -16,16 +16,27 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 # 寻找Qt5包。
 #
-# 缓存变量：
+# 缓存：
 # ::
 #
-#    [ENV] QTDIR[32|64]
+#    Qt5_ROOT_DIR
+#    ENV QTDIR[32|64]
 #
-# 结果变量：
+# 结果：
 # ::
 #
-#    QT5_PACKAGE_FOUND
-#    QT5_PACKAGE_PREFIX_PATH
+#    Qt5Package_FOUND
+#    Qt5Package_PREFIX_PATH
+#
+# 预期：
+# ::
+#
+#    v qt5_root_dir
+#       v lib
+#          v cmake
+#             v Qt5
+#                  Qt5Config.cmake
+#                  ...
 #
 # 参见：
 #
@@ -36,31 +47,30 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # + `"mark_as_advanced" <https://cmake.org/cmake/help/latest/command/mark_as_advanced>`_. *CMake Documentation*.
 #
 if(DEFINED CMAKE_SIZEOF_VOID_P)
-  math(EXPR sAddrWidth "${CMAKE_SIZEOF_VOID_P} * 8")
+  math(EXPR sArch "${CMAKE_SIZEOF_VOID_P} * 8")
 else()
-  set(sAddrWidth)
+  set(sArch)
 endif()
 
-find_path(QT5PACKAGE_PREFIX_PATH
+set(zHints "${Qt5_ROOT_DIR}" "$ENV{QTDIR${sArch}}" "$ENV{QTDIR}")
+
+find_path(Qt5Package_PREFIX_PATH
   NAMES
     "Qt5/Qt5Config.cmake"
   HINTS
-    "${QTDIR${sAddrWidth}}"
-    "${QTDIR}"
-    "$ENV{QTDIR${sAddrWidth}}"
-    "$ENV{QTDIR}"
+    ${zHints}
   PATH_SUFFIXES
     "lib/cmake"
   NO_DEFAULT_PATH)
-mark_as_advanced(QT5PACKAGE_PREFIX_PATH)
+mark_as_advanced(Qt5Package_PREFIX_PATH)
 
 include("FindPackageHandleStandardArgs")
 find_package_handle_standard_args("Qt5Package"
   DEFAULT_MSG
-    QT5PACKAGE_PREFIX_PATH)
+    Qt5Package_PREFIX_PATH)
 
-if(QT5PACKAGE_FOUND)
-  if(NOT QT5PACKAGE_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
-    list(APPEND CMAKE_PREFIX_PATH "${QT5PACKAGE_PREFIX_PATH}")
+if(Qt5Package_FOUND)
+  if(NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
+    list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
   endif()
 endif()

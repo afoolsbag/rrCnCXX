@@ -2,7 +2,7 @@
 #ifndef TIME_TSUITETIME_H_
 #define TIME_TSUITETIME_H_
 
-#include <check.h>
+#include <check/check.h>
 
 TCase *tcase_time(void);
 

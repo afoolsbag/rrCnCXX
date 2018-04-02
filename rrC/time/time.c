@@ -16,7 +16,7 @@
 #include <inttypes.h>
 #include <time.h>
 
-#include <check.h>
+#include <check/check.h>
 #include "std.h"
 #include "time/tsuite_time.h"
 

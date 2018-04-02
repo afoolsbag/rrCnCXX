@@ -2,7 +2,7 @@
 #ifndef STR_TSUITETYPE_H_
 #define STR_TSUITETYPE_H_
 
-#include <check.h>
+#include <check/check.h>
 
 TCase *tcase_array(void);
 TCase *tcase_char(void);

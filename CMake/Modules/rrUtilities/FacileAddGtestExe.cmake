@@ -1,27 +1,18 @@
 # zhengrr
-# 2017-12-17 – 2018-03-29
+# 2017-12-17 – 2018-04-02
 # The MIT License
 
 # .rst
 # .. command:: facile_add_gtest_executable
 #
-#    以``facile_add_executable``命令为基础，额外约定了若干默认参数：
+#    以``facile_add_executable``命令为基础，额外约定了若干缺省参数：
 #
 #    额外约定：
 #
-#    :include_directories: ``${GTEST_INCLUDE_DIRS}``
 #    :OPTDESC:             see code
-#    :LINKS:               ``${GTEST_BOTH_LIBRARIES}``
+#    :LINKS:               ``GTest::GTest``
 #
 function(facile_add_gtest_executable)
-  if(NOT GTEST_FOUND)
-    set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the GTest installation.")
-    find_package(GTest)
-  endif()
-  if(NOT GTEST_FOUND)
-    message(WARNING "GTest is needed to build executable with GTest.")
-  endif()
-
   set(zOptKws)
   set(zOneValKws "TGTNAMEVAR" "OPTDESC")
   set(zMutValKws "LINKS")
@@ -33,22 +24,29 @@ function(facile_add_gtest_executable)
     set(sOptDesc "Build executable with GTest (requires GTest).")
   endif()
 
-  if(GTEST_INCLUDE_DIRS)
-    include_directories(${GTEST_INCLUDE_DIRS})
+  if(NOT GTEST_FOUND)
+    find_package(GTest)
+    if(NOT GTEST_FOUND)
+      set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the GTest installation.")
+    endif()
+  endif()
+  if(NOT GTEST_FOUND)
+    message(WARNING "GTest is needed to build executable with GTest.")
   endif()
 
-  if(GTEST_BOTH_LIBRARIES)
-    foreach(sLib IN LISTS GTEST_BOTH_LIBRARIES)
-      if(NOT sLib IN_LIST _LINKS)
-        list(APPEND _LINKS "${sLib}")
-      endif()
-    endforeach()
+  if(GTEST_FOUND)
+    if(NOT GTest::GTest IN_LIST _LINKS)
+      list(APPEND _LINKS GTest::GTest)
+    endif()
   endif()
 
+  enable_testing()
   facile_add_executable(
     TGTNAMEVAR sTgtName OPTDESC "${sOptDesc}"
     ${_UNPARSED_ARGUMENTS}
     LINKS ${_LINKS})
+  add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
+
   if(DEFINED _TGTNAMEVAR)
     set(${_TGTNAMEVAR} "${sTgtName}" PARENT_SCOPE)
   endif()

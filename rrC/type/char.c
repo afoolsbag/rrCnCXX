@@ -25,7 +25,7 @@
 # include <wchar.h>
 #endif/*C95*/
 
-#include <check.h>
+#include <check/check.h>
 #include "type/tsuite_type.h"
 
 START_TEST(test_char)

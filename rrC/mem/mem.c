@@ -16,7 +16,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include <check.h>
+#include <check/check.h>
 #include "mem/tsuite_mem.h"
 
 /** \brief Memory Allocation

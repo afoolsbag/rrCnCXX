@@ -16,7 +16,7 @@
 #include <inttypes.h>
 #include <string.h>
 
-#include <check.h>
+#include <check/check.h>
 #include "str/tsuite_str.h"
 
 /** \brief String Length

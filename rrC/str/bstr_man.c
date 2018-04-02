@@ -15,7 +15,7 @@
 
 #include <string.h>
 
-#include <check.h>
+#include <check/check.h>
 #include "str/tsuite_str.h"
 
 /** \brief 字符串复制（String Copies）

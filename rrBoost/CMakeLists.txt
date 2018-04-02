@@ -4,10 +4,10 @@
 # | |  | |  | |_) | (_) | (_) \__ | |_
 # |_|  |_|  |____/ \___/ \___/|___/\__|
 # zhengrr             rrBoost by FIGlet
-# 2016-10-27 – 2018-03-31
+# 2016-10-27 – 2018-04-02
 # The MIT License
 
-project("rrBoost" VERSION 2018.3.22 LANGUAGES CXX)
+project("rrBoost" VERSION 2018.4.2 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
@@ -22,5 +22,7 @@ endif()
 
 facile_add_doxygen()
 
-facile_add_executable(SUBNAME "hello_boost"
-  "main.cxx")
+include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
+facile_add_executable(SUBNAME "ProgOpts" TGTNAMEVAR sTgtName
+  "prog_opts/main.cxx")

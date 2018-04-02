@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 03-19
+# 2018-02-02 – 04-02
 # The MIT License
 
 #.rst:
@@ -13,56 +13,84 @@
 #
 # 寻找Check包。
 #
-# 缓存变量：
+# 缓存：
 # ::
 #
-#    [ENV] CHECK_ROOT_DIR
+#    Check_ROOT_DIR
+#    ENV CHECKROOT
 #
-# 结果变量：
+# 结果：
 # ::
 #
-#    CHECK_FOUND
-#    CHECK_INCLUDE_DIRS
-#    CHECK_LIBRARIES
+#    Check_FOUND
+#    Check_INCLUDE_DIRS
+#    Check_LIBRARIES
 #
-find_path(CHECK_INCLUDE_DIRS
+# 预期：
+# ::
+#
+#    v check_root_dir
+#       v include
+#          v check
+#               check.h
+#               ...
+#       v lib
+#            check.lib
+#            libcheck.a
+#            ...
+#
+set(zHints "${Check_ROOT_DIR}" "$ENV{CHECKROOT}")
+
+find_path(Check_INCLUDE_DIRS
   NAMES
-    "check.h"
-    "check_stdint.h"
-    "libcompat.h"
+    "check/check.h"
   HINTS
-    "${CHECK_ROOT_DIR}"
-    "$ENV{CHECK_ROOT_DIR}"
+    ${zHints}
   PATH_SUFFIXES
     "include"
   NO_DEFAULT_PATH)
-mark_as_advanced(CHECK_INCLUDE_DIRS)
+mark_as_advanced(Check_INCLUDE_DIRS)
 
-find_library(CHECK_check_LIBRARY
+find_library(Check_check_LIBRARY
   NAMES
     "check"
   HINTS
-    "${CHECK_ROOT_DIR}"
-    "$ENV{CHECK_ROOT_DIR}"
+    ${zHints}
   PATH_SUFFIXES
     "lib"
   NO_DEFAULT_PATH)
-mark_as_advanced(CHECK_check_LIBRARY)
-find_library(CHECK_compat_LIBRARY
+mark_as_advanced(Check_check_LIBRARY)
+find_library(Check_compat_LIBRARY
   NAMES
     "compat"
   HINTS
-    "${CHECK_ROOT_DIR}"
-    "$ENV{CHECK_ROOT_DIR}"
+    ${zHints}
   PATH_SUFFIXES
     "lib"
   NO_DEFAULT_PATH)
-mark_as_advanced(CHECK_compat_LIBRARY)
-set(CHECK_LIBRARIES "${CHECK_check_LIBRARY}" "${CHECK_compat_LIBRARY}")
+mark_as_advanced(Check_compat_LIBRARY)
+set(Check_LIBRARIES ${Check_check_LIBRARY} ${Check_compat_LIBRARY})
 
 include("FindPackageHandleStandardArgs")
 find_package_handle_standard_args("Check"
   DEFAULT_MSG
-    CHECK_INCLUDE_DIRS
-    CHECK_check_LIBRARY
-    CHECK_compat_LIBRARY)
+    Check_INCLUDE_DIRS
+    Check_check_LIBRARY
+    Check_compat_LIBRARY)
+
+if(Check_FOUND)
+  if(NOT TARGET Check::Compat)
+    add_library(Check::Compat UNKNOWN IMPORTED)
+  endif()
+  set_target_properties(Check::Compat PROPERTIES
+    IMPORTED_LOCATION "${Check_compat_LIBRARY}"
+    INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
+
+  if(NOT TARGET Check::Check)
+    add_library(Check::Check UNKNOWN IMPORTED)
+  endif()
+  set_target_properties(Check::Check PROPERTIES
+    IMPORTED_LOCATION "${Check_check_LIBRARY}"
+    INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
+
+endif()

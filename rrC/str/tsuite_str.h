@@ -2,7 +2,7 @@
 #ifndef STR_TSUITESTR_H_
 #define STR_TSUITESTR_H_
 
-#include <check.h>
+#include <check/check.h>
 
 TCase *tcase_bstr_cnv(void);
 TCase *tcase_bstr_exam(void);

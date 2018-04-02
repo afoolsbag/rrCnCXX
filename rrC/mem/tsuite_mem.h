@@ -2,7 +2,7 @@
 #ifndef MEM_TSUITEMEM_H_
 #define MEM_TSUITEMEM_H_
 
-#include <check.h>
+#include <check/check.h>
 
 TCase *tcase_mem(void);
 

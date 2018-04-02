@@ -16,8 +16,7 @@ facile_add_doxygen()
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.hxx.in" "cfg.hxx" @ONLY)
 
-enable_testing()
-facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sRrcxxGtestTgt
+facile_add_gtest_executable(SUBNAME "Test"
   "algo/nmodseq.cxx"
   "cont/vector.cxx"
   "gen/mem/unique_ptr.cxx"
@@ -31,7 +30,6 @@ facile_add_gtest_executable(SUBNAME "Test" TGTNAMEVAR sRrcxxGtestTgt
   "lang/namesp.cxx"
   "thrd/thrd.cxx"
   "dzn/singleton.cxx")
-add_test(NAME "${sRrcxxGtestTgt}" COMMAND "${sRrcxxGtestTgt}")
 
 facile_add_library(SUBNAME "dl" TGTNAMEVAR sRrcxxDlLibTgt
   SHARED "api.h" "lib.h" "lib.cxx")

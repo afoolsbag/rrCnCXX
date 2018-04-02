@@ -17,7 +17,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include <check.h>
+#include <check/check.h>
 #include "std.h"
 #include "str/tsuite_str.h"
 

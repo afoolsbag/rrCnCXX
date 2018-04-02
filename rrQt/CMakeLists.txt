@@ -4,17 +4,17 @@
 # | |  | |  | |_| | |_
 # |_|  |_|   \__\_\\__| rrQt by FIGlet
 # zhengrr
-# 2016-06-28 – 2018-03-21
+# 2016-06-28 – 2018-04-02
 # The MIT License
 
-project("rrQt" VERSION 2018.3.21 LANGUAGES CXX)
+project("rrQt" VERSION 2018.4.2 LANGUAGES CXX)
 project_variables()
 highest_warning_level()
 
-if(NOT QT5PACKAGE_FOUND)
+if(NOT Qt5Package_FOUND)
   find_package(Qt5Package)
-  if(NOT QT5PACKAGE_FOUND)
-    set(QTDIR "${QTDIR}" CACHE PATH "The root directory of the Qt5 installation.")
+  if(NOT Qt5Package_FOUND)
+    set(Qt5_ROOT_DIR "${Qt5_ROOT_DIR}" CACHE PATH "The root directory of the Qt5 installation.")
   endif()
 endif()
 
