@@ -11,6 +11,7 @@
 + ["Why does C programming suck?"](https://quora.com/Why-does-C-programming-suck). *Quora*.
 
 ## References
+
 + ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
 + ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft® Docs*.
 + [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)

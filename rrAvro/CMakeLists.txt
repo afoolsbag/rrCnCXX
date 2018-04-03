@@ -12,9 +12,7 @@ project_variables()
 highest_warning_level()
 
 if(NOT Boost_FOUND)
-  find_package(Boost
-    COMPONENTS
-      program_options)
+  find_package(Boost)
   if(NOT Boost_FOUND)
     set(BOOST_ROOT "${BOOST_ROOT}" CACHE PATH "The root directory of the Boost installation.")
   endif()
@@ -29,5 +27,5 @@ endif()
 
 facile_add_doxygen()
 
-facile_add_executable(SUBNAME "Test" TGTNAMEVAR sTgtName
-  "test.cxx" LINKS Avro::Avro)
+facile_add_executable(SUBNAME "Abc"
+  "abc.cxx" LINKS Avro::Avro)

@@ -24,7 +24,7 @@
 8. 可选择时，与社区风格保持一致
 9. 在任何应当违背规则的地方，违背它
 
-+ [*C++ Core Guidelines*](https://github.com/isocpp/CppCoreGuidelines)<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
++ [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
 + [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
 + [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
 + [*SEI CERT C++ Coding Standard*](https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88046682)
