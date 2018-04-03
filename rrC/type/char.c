@@ -17,7 +17,6 @@
 
 #include "std.h"
 
-#include <inttypes.h>
 #if N1040
 # include <uchar.h>
 #endif/*N1040*/

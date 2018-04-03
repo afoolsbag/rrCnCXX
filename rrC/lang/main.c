@@ -11,6 +11,7 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#include <check/check.h>
 #include "mem/tsuite_mem.h"
 #include "str/tsuite_str.h"
 #include "time/tsuite_time.h"

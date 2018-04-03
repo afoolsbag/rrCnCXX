@@ -14,8 +14,6 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <inttypes.h>
-
 #include <check/check.h>
 #include "std.h"
 #include "type/tsuite_type.h"

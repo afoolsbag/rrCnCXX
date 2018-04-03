@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 04-02
+# 2018-02-02 – 04-03
 # The MIT License
 
 #.rst:
@@ -33,11 +33,11 @@
 #       v include
 #          v check
 #               check.h
-#               ...
+#               check_stdint.h
+#               libcompat.h
 #       v lib
 #            check.lib
-#            libcheck.a
-#            ...
+#            compat.lib
 #
 set(zHints "${Check_ROOT_DIR}" "$ENV{CHECKROOT}")
 
