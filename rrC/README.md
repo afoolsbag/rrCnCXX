@@ -25,6 +25,43 @@
 + [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
 + [*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
 
+### Naming Style
+
+| Entity Kinds                     | Preview       | Sample                       |
+|:-------------------------------- |:------------- |:---------------------------- |
+| folder                           | `all_lower`   | `flr`                        |
+| file                             | `all_lower`   | `main.c`                     |
+| macro                            | `ALL_UPPER`   | `COMPILE_FLAG`               |
+| typedef                          | `all_lower_t` | `special_id_t`               |
+| struct                           | `all_lower_t` | `custom_data_t`              |
+| struct field                     | `all_lower`   | `.id` `.name`                |
+| enum                             | `all_lower_t` | `transport_layer_protocol_t` |
+| enumerator                       | `ALL_UPPER`   | `.TCP` `.UDP`                |
+| union                            | `all_lower_t` |                              |
+| union member                     | `all_lower`   |                              |
+| function                         | `all_lower`   | `count_online_user()`        |
+| parameter                        | `all_lower`   |                              |
+
+| l/g      | a/r/t/s/e  | c/v          | Preview         | Sample                   |
+|:-------- |:---------- |:------------ |:--------------- |:------------------------ |
+| (local)  | (`auto`)   | ([`const`])  | `all_lower`     |                          |
+| (local)  | (`auto`)   | `volatile`   | `v_all_lower`   | `v_device_ready_flag`    |
+| (local)  | (`auto`)   | c-v          | `cv_all_lower`  |                          |
+| (local)  | `register` |              | `r_all_lower`   |                          |
+| (local)  | thread     |              | `t_all_lower`   | `t_thread_startup_time`  |
+| (local)  | `static`   |              | `s_all_lower`   | `s_function_usage_count` |
+| (local)  | <`static`> | <`const`>    | `ALL_UPPER`     | `XXX_FACTOR`             |
+| (local)  | `static`   | `volatile`   | `sv_all_lower`  |                          |
+| (local)  | `static`   | c-v          | `scv_all_lower` |                          |
+| (global) | `static`   |              | `s_all_lower`   | `s_module_usage_count`   |
+| (global) | <`static`> | <`const`>    | `ALL_UPPER`     | `MODULE_NAME`            |
+| (global) | `static`   | `volatile`   | `sv_all_lower`  |                          |
+| (global) | `static`   | c-v          | `scv_all_lower` |                          |
+| global   | (`extern`) |              | `g_all_lower`   | `g_thread_pool`          |
+| global   | <`extern`> | <`const`>    | `ALL_UPPER`     | `PRODUCT_NAME`           |
+| global   | (`extern`) | `volatile`   | `gv_all_lower`  |                          |
+| global   | (`extern`) | c-v          | `gcv_all_lower` |                          |
+
 ## Guides
 
 ["C"](https://notabug.org/koz.ross/awesome-c). *Awesome*.

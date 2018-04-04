@@ -31,8 +31,8 @@ facile_add_check_executable(SUBNAME "Test"
   "type/struct.c"
   "type/tsuite_type.h" "type/tsuite_type.c")
 
-facile_add_library(SUBNAME "dl" TGTNAMEVAR sRrcDlLibTgt
+facile_add_library(SUBNAME "dl" TARGET_NAME_VARIABLE sDlLib
   SHARED "api.h" "lib.h" "lib.c")
 
 facile_add_executable(SUBNAME "dl"
-  "api.h" "lib.h" "exe.c" LINKS ${sRrcDlLibTgt})
+  "api.h" "lib.h" "exe.c" LINK_LIBRARIES ${sDlLib})

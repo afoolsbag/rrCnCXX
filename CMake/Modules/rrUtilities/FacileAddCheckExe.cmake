@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-02-02 – 04-02
+# 2018-02-02 – 04-04
 # The MIT License
 
 # .rst
@@ -9,20 +9,24 @@
 #
 #    额外约定：
 #
-#    :OPTDESC:             see code
-#    :LINKS:               ``Check::Check``
+#    :OPTION_DESCRIPTION: see code
+#    :LINK_LIBRARIES:     ``Check::Check``
 #
 function(facile_add_check_executable)
   set(zOptKws)
-  set(zOneValKws "TGTNAMEVAR" "OPTDESC")
-  set(zMutValKws "LINKS")
+  set(zOneValKws "OPTION_DESCRIPTION" "TARGET_NAME_VARIABLE")
+  set(zMutValKws "LINK_LIBRARIES")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
-  if(DEFINED _OPTDESC)
-    set(sOptDesc ${_OPTDESC})
+  # OPTION_DESCRIPTION
+  if(DEFINED _OPTION_DESCRIPTION)
+    set(sOptDesc ${_OPTION_DESCRIPTION})
   else()
     set(sOptDesc "Build executable with Check (requires Check).")
   endif()
+
+  # LINK_LIBRARIES
+  set(zLinkLibs ${_LINK_LIBRARIES})
 
   if(NOT Check_FOUND)
     find_package(Check)
@@ -35,22 +39,24 @@ function(facile_add_check_executable)
   endif()
 
   if(Check_FOUND)
-    if(NOT Check::Check IN_LIST _LINKS)
-      list(APPEND _LINKS Check::Check)
+    if(NOT Check::Check IN_LIST zLinkLibs)
+      list(APPEND zLinkLibs Check::Check)
     endif()
-    if(NOT Check::Compat IN_LIST _LINKS)
-      list(APPEND _LINKS Check::Compat)
+    if(NOT Check::Compat IN_LIST zLinkLibs)
+      list(APPEND zLinkLibs Check::Compat)
     endif()
   endif()
 
+  # facile_add_executable
   enable_testing()
   facile_add_executable(
-    TGTNAMEVAR sTgtName OPTDESC "${sOptDesc}"
+    OPTION_DESCRIPTION     "${sOptDesc}"
+    TARGET_NAME_VARIABLE    sTgtName
     ${_UNPARSED_ARGUMENTS}
-    LINKS ${_LINKS})
+    LINK_LIBRARIES          ${zLinkLibs})
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
-  if(DEFINED _TGTNAMEVAR)
-    set(${_TGTNAMEVAR} "${sTgtName}" PARENT_SCOPE)
+  if(DEFINED _TARGET_NAME_VARIABLE)
+    set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
   endif()
 endfunction()
