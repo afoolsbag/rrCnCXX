@@ -58,7 +58,7 @@
 | (global) | `static`   | `volatile`   | `sv_all_lower`  |                          |
 | (global) | `static`   | c-v          | `scv_all_lower` |                          |
 | global   | (`extern`) |              | `g_all_lower`   | `g_thread_pool`          |
-| global   | <`extern`> | <`const`>    | `ALL_UPPER`     | `PRODUCT_NAME`           |
+| (global) | <`extern`> | <`const`>    | `ALL_UPPER`     | `PRODUCT_NAME`           |
 | global   | (`extern`) | `volatile`   | `gv_all_lower`  |                          |
 | global   | (`extern`) | c-v          | `gcv_all_lower` |                          |
 
