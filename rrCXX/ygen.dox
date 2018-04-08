@@ -3,10 +3,10 @@
 /// \mainpage
 /// \tableofcontents
 ///
-/// \author zhengrr
-/// \version 2018-03-27
+/// \version 2018-04-08
 /// \since 2018-01-23
-/// \copyright The MIT License
+/// \authors zhengrr
+/// \copyright CC BY 4.0
 ///
 //===----------------------------------------------------------------------===//
 
@@ -33,9 +33,9 @@
 ///     + [Thread support library](http://en.cppreference.com/w/cpp/thread)
 ///     + [Filesystem library](http://en.cppreference.com/w/cpp/filesystem)
 ///
-/// \author zhengrr
-/// \version 2018-03-27
+/// \version 2018-04-08
 /// \since 2018-01-23
-/// \copyright The MIT License
+/// \authors zhengrr
+/// \copyright CC BY 4.0
 ///
 //===----------------------------------------------------------------------===//

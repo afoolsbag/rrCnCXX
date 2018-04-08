@@ -3,9 +3,9 @@
  * \mainpage
  * \tableofcontents
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-1-22
+ * \version 2018-04-08
+ * \since 2018-01-22
+ * \authors zhengrr
  * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/
@@ -32,9 +32,9 @@
  *     + [Graphics and game technologies](https://msdn.microsoft.com/library/ee663279)
  *     + [API index](https://msdn.microsoft.com/library/hh920508)
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-1-22
+ * \version 2018-04-08
+ * \since 2018-01-22
+ * \authors zhengrr
  * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/
@@ -65,9 +65,9 @@
  * \sa ["Hungarian notation"](https://wikipedia.org/wiki/Hungarian_notation). *Wikipedia*.
  * \sa ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-1-23
+ * \version 2018-04-08
+ * \since 2018-01-23
+ * \authors zhengrr
  * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-04
+# 2016-10-08 – 2018-04-08
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -8,7 +8,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # .rst
 # .. command:: facile_add_doxygen
 #
-#    便捷加入Doxygen目标：
+#    便捷加入Doxygen文档（目标）：
 #    ::
 #
 #       facile_add_doxygen(

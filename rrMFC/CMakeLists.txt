@@ -4,7 +4,7 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-08 – 2018-04-04
+# 2017-12-08 – 2018-04-08
 # The MIT License
 
 project("rrMFC" VERSION 2018.2.24 LANGUAGES CXX)
@@ -25,15 +25,16 @@ facile_add_executable(SUBNAME "abc"
         "abc/MainWnd.h" "abc/MainWnd.cpp")
 
 facile_add_executable(SUBNAME "appdlg"
-  WIN32 "appdlg/main.cpp"
-        "appdlg/stdafx.h"   "appdlg/stdafx.cpp"
-        "appdlg/resource.h" "appdlg/resource.rc"
-        "appdlg/App.h"      "appdlg/App.cpp"
-        "appdlg/MainDlg.h"  "appdlg/MainDlg.cpp")
+  WIN32 "app_dlg/main.cpp"
+        "app_dlg/stdafx.h"   "app_dlg/stdafx.cpp"
+        "app_dlg/resource.h" "app_dlg/resource.rc"
+        "app_dlg/App.h"      "app_dlg/App.cpp"
+        "app_dlg/MainDlg.h"  "app_dlg/MainDlg.cpp")
 
 facile_add_executable(SUBNAME "ctrltab"
-  WIN32 "ctrltab/main.cpp"
-        "ctrltab/stdafx.h"   "ctrltab/stdafx.cpp"
-        "ctrltab/resource.h" "ctrltab/resource.rc"
-        "ctrltab/App.h"      "ctrltab/App.cpp"
-        "ctrltab/MainDlg.h"  "ctrltab/MainDlg.cpp")
+  WIN32 "ctrl_tab/main.cpp"
+        "ctrl_tab/stdafx.h"   "ctrl_tab/stdafx.cpp"
+        "ctrl_tab/resource.h" "ctrl_tab/resource.rc"
+        "ctrl_tab/App.h"      "ctrl_tab/App.cpp"
+        "ctrl_tab/MainDlg.h"  "ctrl_tab/MainDlg.cpp"
+        "ctrl_tab/PageDlg.h"  "ctrl_tab/PageDlg.cpp")

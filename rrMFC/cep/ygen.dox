@@ -1,0 +1,32 @@
+//===-- MFC Concepts --------------------------------------------*- C++ -*-===//
+///
+/// \defgroup g_cep MFC概念
+/// \ingroup g_mfc
+///
+/// \sa ["MFC Concepts"](https://docs.microsoft.com/cpp/mfc/mfc-concepts). *Microsoft® Docs*.
+///     + [General MFC Topics](https://docs.microsoft.com/cpp/mfc/general-mfc-topics)
+///     + [Using CObject](https://docs.microsoft.com/cpp/mfc/using-cobject)
+///     + [Collections](https://docs.microsoft.com/cpp/mfc/collections)
+///     + [Date and Time](https://docs.microsoft.com/cpp/atl-mfc-shared/date-and-time)
+///     + [Files](https://docs.microsoft.com/cpp/mfc/files-in-mfc)
+///     + [Memory Management (MFC)](https://docs.microsoft.com/cpp/mfc/memory-management)
+///     + [Message Handling and Mapping](https://docs.microsoft.com/cpp/mfc/message-handling-and-mapping)
+///     + [Serialization](https://docs.microsoft.com/cpp/mfc/serialization-in-mfc)
+/// \sa And
+///     + [Exception Handling in MFC](https://docs.microsoft.com/cpp/mfc/exception-handling-in-mfc)
+///     + [Interface Elements](https://docs.microsoft.com/cpp/mfc/interface-elements)
+///     + [MAPI](https://docs.microsoft.com/cpp/mfc/mapi)
+///     + [MFC COM](https://docs.microsoft.com/cpp/mfc/mfc-com)
+///     + [MFC Internet Programming Basics](https://docs.microsoft.com/cpp/mfc/mfc-internet-programming-basics)
+///     + [MFC Internet Programming Tasks](https://docs.microsoft.com/cpp/mfc/mfc-internet-programming-tasks)
+///     + [OLE in MFC](https://docs.microsoft.com/cpp/mfc/ole-in-mfc)
+///     + [User Interface Elements (MFC)](https://docs.microsoft.com/cpp/mfc/user-interface-elements-mfc)
+///     + [Windows Sockets](https://docs.microsoft.com/cpp/mfc/windows-sockets)
+///     + [Win32 Internet Extensions (WinInet)](https://docs.microsoft.com/cpp/mfc/win32-internet-extensions-wininet)
+///
+/// \version 2018-04-08
+/// \since 2018-04-08
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//
