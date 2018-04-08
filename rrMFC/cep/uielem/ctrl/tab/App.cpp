@@ -5,10 +5,10 @@
 
 #include "MainDlg.h"
 
-BEGIN_MESSAGE_MAP(CApp, CWinApp)
-    ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
-END_MESSAGE_MAP()
+IMPLEMENT_DYNCREATE(CApp, CWinApp)
 
+//BEGIN_MESSAGE_MAP(CApp, CWinApp)
+//END_MESSAGE_MAP()
 
 BOOL CApp::InitInstance()
 {

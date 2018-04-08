@@ -30,6 +30,80 @@
 + [*High Integrity C++ Coding Standard*](http://codingstandard.com/)
 + [*C++ Coding Standard*](http://possibility.com/Cpp/CppCodingStandard.html)
 
+Default as C Programming Styles.
+
+### Naming
+
+| Entity Kinds                     | Preview           | Sample                |
+|:-------------------------------- |:----------------- |:--------------------- |
+| file for class definition        | `UpperCamelCase`  | `CustomClass.hxx`     |
+| namespace                        | `all_lower`       | `rrcxx`               |
+| typedef                          | `UpperCamelCase`  | `CustomType`          |
+| struct/class                     | `UpperCamelCase`  | `CustomClass`         |
+| public struct/class field        | `all_lower`       | `.name`               |
+| non-public struct/class field    | `all_lower_`      | `.uuid_`              |
+| enum                             | `UpperCamelCase`  | `Color`               |
+| enumerator                       | `kUpperCamelCase` | `.kRed`               |
+| union                            | `UpperCamelCase`  |                       |
+| global function                  | `UpperCamelCase`  | `GenerateUuid()`      |
+| static member function           | `UpperCamelCase`  | `::ClassUsageCount()` |
+| non-static member function       | `lowerCamelCase`  | `.ObjectUsageCount()` |
+
+### Formatting
+
++ `.hxx` `.cxx`
++ 2 Spaces
+
+### Comments
+
++ File
+  ```cpp
+  //===-- File Brief ----------------------------------------------*- C++ -*-===//
+  ///
+  /// \file
+  /// \brief 文件简述。
+  /// \details 文件详述。
+  ///
+  /// \version 2018-03-26
+  /// \since 2018-03-26
+  /// \authors zhengrr
+  /// \copyright The MIT License
+  ///
+  //===----------------------------------------------------------------------===//
+  ```
++ Function
+  ```cpp
+  /// \brief 功能简述。
+  /// \details 功能详述。
+  /// \warning 警告。
+  ///
+  /// \param arg 一个参数。
+  /// \returns 返回值。
+  ///
+  /// \pre 调用前置要求。
+  /// \note 调用注意事项。
+  /// \post 调用后续处理。
+  ///
+  /// \version 2018-04-08
+  /// \since 2018-02-21
+  /// \authors zhengrr-α; zhengrr-β; zhengrr-γ
+  ///
+  /// OR
+  ///
+  /// \version 2018-04-08
+  /// \authors zhengrr-γ
+  /// \remark 当前版本。
+  ///
+  /// \date 2018-03-12
+  /// \authors zhengrr-β
+  /// \remark 重要版本更新。
+  ///
+  /// \since 2018-02-21
+  /// \authors zhengrr-α
+  /// \remark 诞生啦。
+  int func(const int arg);
+  ```
+
 ## Guides
 
 ["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.

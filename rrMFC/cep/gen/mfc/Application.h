@@ -1,11 +1,9 @@
-//===-- Class Application ---------------------------------------*- C++ -*-===//
+//===-- Application ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 应用类。
+/// \brief 应用（类）。
 ///
-/// \sa *Programming Windows? with MFC* §1.3
-///
-/// \version 2018-04-04
+/// \version 2018-04-08
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -14,18 +12,32 @@
 
 #pragma once
 
-/// \brief Class Application
-///
+/// \brief 应用（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class
-class CApp: public CWinApp {
+class Application: public CWinApp {
+    DECLARE_DYNCREATE(Application)
+public:
+
+// Attributes
+public:
+
+// Operations
+public:
+
+// Overrides
 public:
     /// \brief Initialize Instance
-    ///
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#initinstance
     virtual BOOL InitInstance();
 
     /// \brief Exit Instance
-    ///
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#exitinstance
     virtual INT ExitInstance();
+
+// Implementation
+public:
+
+// Generated message map functions
+protected:
+public:
 };

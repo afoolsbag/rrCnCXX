@@ -1,9 +1,9 @@
 //===-- Pre-Compiled Header -------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 预编译头文件
+/// \brief 预编译头文件。
 ///
-/// \version 2018-04-04
+/// \version 2018-04-08
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License

@@ -1,7 +1,8 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "App.h"
+
+#include "Application.h"
 
 /// \brief Global Application
-CApp g_app;
+Application GlobalApplication;

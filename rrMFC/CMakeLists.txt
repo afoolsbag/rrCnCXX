@@ -18,23 +18,30 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 
-facile_add_executable(SUBNAME "abc"
-  WIN32 "abc/main.cpp"
-        "abc/stdafx.h"  "abc/stdafx.cpp"
-        "abc/App.h"     "abc/App.cpp"
-        "abc/MainWnd.h" "abc/MainWnd.cpp")
+facile_add_executable(SUBNAME "MFC"
+  WIN32 "cep/gen/mfc/main.cpp"
+        "cep/gen/mfc/stdafx.h"      "cep/gen/mfc/stdafx.cpp"
+        "cep/gen/mfc/Application.h" "cep/gen/mfc/Application.cpp"
+        "cep/gen/mfc/MainWindow.h"  "cep/gen/mfc/MainWindow.cpp")
 
-facile_add_executable(SUBNAME "appdlg"
-  WIN32 "app_dlg/main.cpp"
-        "app_dlg/stdafx.h"   "app_dlg/stdafx.cpp"
-        "app_dlg/resource.h" "app_dlg/resource.rc"
-        "app_dlg/App.h"      "app_dlg/App.cpp"
-        "app_dlg/MainDlg.h"  "app_dlg/MainDlg.cpp")
+facile_add_executable(SUBNAME "DialogApplication"
+  WIN32 "cep/gen/dlg/main.cpp"
+        "cep/gen/dlg/stdafx.h"      "cep/gen/dlg/stdafx.cpp"
+        "cep/gen/dlg/resource.h"    "cep/gen/dlg/resource.rc"
+        "cep/gen/dlg/Application.h" "cep/gen/dlg/Application.cpp"
+        "cep/gen/dlg/MainDialog.h"  "cep/gen/dlg/MainDialog.cpp")
 
-facile_add_executable(SUBNAME "ctrltab"
-  WIN32 "ctrl_tab/main.cpp"
-        "ctrl_tab/stdafx.h"   "ctrl_tab/stdafx.cpp"
-        "ctrl_tab/resource.h" "ctrl_tab/resource.rc"
-        "ctrl_tab/App.h"      "ctrl_tab/App.cpp"
-        "ctrl_tab/MainDlg.h"  "ctrl_tab/MainDlg.cpp"
-        "ctrl_tab/PageDlg.h"  "ctrl_tab/PageDlg.cpp")
+facile_add_executable(SUBNAME "ListControl"
+  WIN32 "cep/uielem/ctrl/list/main.cpp"
+        "cep/uielem/ctrl/list/stdafx.h"      "cep/uielem/ctrl/list/stdafx.cpp"
+        "cep/uielem/ctrl/list/resource.h"    "cep/uielem/ctrl/list/resource.rc"
+        "cep/uielem/ctrl/list/Application.h" "cep/uielem/ctrl/list/Application.cpp"
+        "cep/uielem/ctrl/list/MainDialog.h"  "cep/uielem/ctrl/list/MainDialog.cpp")
+
+facile_add_executable(SUBNAME "TabCtrl"
+  WIN32 "cep/uielem/ctrl/tab/main.cpp"
+        "cep/uielem/ctrl/tab/stdafx.h"   "cep/uielem/ctrl/tab/stdafx.cpp"
+        "cep/uielem/ctrl/tab/resource.h" "cep/uielem/ctrl/tab/resource.rc"
+        "cep/uielem/ctrl/tab/App.h"      "cep/uielem/ctrl/tab/App.cpp"
+        "cep/uielem/ctrl/tab/MainDlg.h"  "cep/uielem/ctrl/tab/MainDlg.cpp"
+        "cep/uielem/ctrl/tab/PageDlg.h"  "cep/uielem/ctrl/tab/PageDlg.cpp")

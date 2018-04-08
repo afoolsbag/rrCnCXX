@@ -5,6 +5,21 @@
 + ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
 + ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines). *Microsoft® Docs*.
 
+Default as CXX Programming Styles.
+
+### Naming
+
++ 宏适用`ALL_UPPER`
++ 局部变量适用`camelCase`
++ 其它适用`PascalCase`
+
+### Formatting
+
++ Visual Studio Default
++ UTF-8
++ 4 Spaces
++ K&R (functions are special)
+
 ### `resource.h`
 
 | prefix | Recommend Range | brief            | Required Range  |               |

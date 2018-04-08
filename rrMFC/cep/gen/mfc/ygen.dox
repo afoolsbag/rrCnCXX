@@ -1,0 +1,26 @@
+//===-- General MFC Topics --------------------------------------*- C++ -*-===//
+///
+/// \defgroup g_gen 常规MFC主题
+/// \ingroup g_cep
+///
+/// \sa ["General MFC Topics"](https://docs.microsoft.com/cpp/mfc/general-mfc-topics). *Microsoft® Docs*.
+///     + [Using the MFC Source Files](https://docs.microsoft.com/cpp/mfc/using-the-mfc-source-files)
+///     + [MFC Library Versions](https://docs.microsoft.com/cpp/mfc/mfc-library-versions)
+///     + [Using the Classes to Write Applications for Windows](https://docs.microsoft.com/cpp/mfc/using-the-classes-to-write-applications-for-windows)
+///     + [Building on the Framework](https://docs.microsoft.com/cpp/mfc/building-on-the-framework)
+///     + [CWinApp: The Application Class](https://docs.microsoft.com/cpp/mfc/cwinapp-the-application-class)
+///     + [Document Templates and the Document/View Creation Process](https://docs.microsoft.com/cpp/mfc/document-templates-and-the-document-view-creation-process)
+///     + [Managing the State Data of MFC Modules](https://docs.microsoft.com/cpp/mfc/managing-the-state-data-of-mfc-modules)
+///     + [Idle Loop Processing](https://docs.microsoft.com/cpp/mfc/idle-loop-processing)
+///     + [Support for Activation Contexts in the MFC Module State](https://docs.microsoft.com/cpp/mfc/support-for-activation-contexts-in-the-mfc-module-state)
+///     + [Isolation of the MFC Common Controls Library](https://docs.microsoft.com/cpp/mfc/isolation-of-the-mfc-common-controls-library)
+///     + [Build Requirements for Windows Vista Common Controls](https://docs.microsoft.com/cpp/mfc/build-requirements-for-windows-vista-common-controls)
+///     + [How to: Add Restart Manager Support](https://docs.microsoft.com/cpp/mfc/how-to-add-restart-manager-support)
+///     + [Dynamic Layout](https://docs.microsoft.com/cpp/mfc/dynamic-layout)
+///
+/// \version 2018-04-08
+/// \since 2018-04-08
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//

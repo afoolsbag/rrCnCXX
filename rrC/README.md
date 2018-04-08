@@ -25,7 +25,7 @@
 + [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
 + [*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
 
-### Naming Style
+### Naming
 
 | Entity Kinds                     | Preview       | Sample                       |
 |:-------------------------------- |:------------- |:---------------------------- |
@@ -42,25 +42,35 @@
 | function                         | `all_lower`   | `count_online_user()`        |
 | parameter                        | `all_lower`   |                              |
 
-| l/g      | a/r/t/s/e  | c/v          | Preview         | Sample                   |
+总则：1. 变量小写； 2. 编译时常量大写； 3. 除“缺省”限定符外，指明作用域、生存期和CV。
+
+| l/g      | a/r/t/s/e  | cv           | Preview         | Sample                   |
 |:-------- |:---------- |:------------ |:--------------- |:------------------------ |
 | (local)  | (`auto`)   | ([`const`])  | `all_lower`     |                          |
 | (local)  | (`auto`)   | `volatile`   | `v_all_lower`   | `v_device_ready_flag`    |
-| (local)  | (`auto`)   | c-v          | `cv_all_lower`  |                          |
+| (local)  | (`auto`)   | cv           | `cv_all_lower`  |                          |
 | (local)  | `register` |              | `r_all_lower`   |                          |
 | (local)  | thread     |              | `t_all_lower`   | `t_thread_startup_time`  |
 | (local)  | `static`   |              | `s_all_lower`   | `s_function_usage_count` |
 | (local)  | <`static`> | <`const`>    | `ALL_UPPER`     | `XXX_FACTOR`             |
 | (local)  | `static`   | `volatile`   | `sv_all_lower`  |                          |
-| (local)  | `static`   | c-v          | `scv_all_lower` |                          |
+| (local)  | `static`   | cv           | `scv_all_lower` |                          |
 | (global) | `static`   |              | `s_all_lower`   | `s_module_usage_count`   |
 | (global) | <`static`> | <`const`>    | `ALL_UPPER`     | `MODULE_NAME`            |
 | (global) | `static`   | `volatile`   | `sv_all_lower`  |                          |
-| (global) | `static`   | c-v          | `scv_all_lower` |                          |
+| (global) | `static`   | cv           | `scv_all_lower` |                          |
 | global   | (`extern`) |              | `g_all_lower`   | `g_thread_pool`          |
 | (global) | <`extern`> | <`const`>    | `ALL_UPPER`     | `PRODUCT_NAME`           |
 | global   | (`extern`) | `volatile`   | `gv_all_lower`  |                          |
-| global   | (`extern`) | c-v          | `gcv_all_lower` |                          |
+| global   | (`extern`) | cv           | `gcv_all_lower` |                          |
+
+### Formatting
+
++ `.h` `.c`
++ UTF-8
++ 80 columns × 24 lines
++ 1 tab (8 characters)
++ K&R (functions are special)
 
 ## Guides
 
