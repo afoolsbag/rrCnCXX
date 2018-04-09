@@ -31,6 +31,13 @@ facile_add_executable(SUBNAME "DialogApplication"
         "cep/gen/dlg/Application.h" "cep/gen/dlg/Application.cpp"
         "cep/gen/dlg/MainDialog.h"  "cep/gen/dlg/MainDialog.cpp")
 
+facile_add_executable(SUBNAME "Timer"
+  WIN32 "cep/msg/timer/main.cpp"
+        "cep/msg/timer/stdafx.h"      "cep/msg/timer/stdafx.cpp"
+        "cep/msg/timer/resource.h"    "cep/msg/timer/resource.rc"
+        "cep/msg/timer/Application.h" "cep/msg/timer/Application.cpp"
+        "cep/msg/timer/MainDialog.h"  "cep/msg/timer/MainDialog.cpp")
+
 facile_add_executable(SUBNAME "ListControl"
   WIN32 "cep/uielem/ctrl/list/main.cpp"
         "cep/uielem/ctrl/list/stdafx.h"      "cep/uielem/ctrl/list/stdafx.cpp"
@@ -38,10 +45,10 @@ facile_add_executable(SUBNAME "ListControl"
         "cep/uielem/ctrl/list/Application.h" "cep/uielem/ctrl/list/Application.cpp"
         "cep/uielem/ctrl/list/MainDialog.h"  "cep/uielem/ctrl/list/MainDialog.cpp")
 
-facile_add_executable(SUBNAME "TabCtrl"
+facile_add_executable(SUBNAME "TabControl"
   WIN32 "cep/uielem/ctrl/tab/main.cpp"
-        "cep/uielem/ctrl/tab/stdafx.h"   "cep/uielem/ctrl/tab/stdafx.cpp"
-        "cep/uielem/ctrl/tab/resource.h" "cep/uielem/ctrl/tab/resource.rc"
-        "cep/uielem/ctrl/tab/App.h"      "cep/uielem/ctrl/tab/App.cpp"
-        "cep/uielem/ctrl/tab/MainDlg.h"  "cep/uielem/ctrl/tab/MainDlg.cpp"
-        "cep/uielem/ctrl/tab/PageDlg.h"  "cep/uielem/ctrl/tab/PageDlg.cpp")
+        "cep/uielem/ctrl/tab/stdafx.h"      "cep/uielem/ctrl/tab/stdafx.cpp"
+        "cep/uielem/ctrl/tab/resource.h"    "cep/uielem/ctrl/tab/resource.rc"
+        "cep/uielem/ctrl/tab/Application.h" "cep/uielem/ctrl/tab/Application.cpp"
+        "cep/uielem/ctrl/tab/MainDialog.h"  "cep/uielem/ctrl/tab/MainDialog.cpp"
+        "cep/uielem/ctrl/tab/PageDialog.h"  "cep/uielem/ctrl/tab/PageDialog.cpp")

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主对话框（类）。
 ///
-/// \verison 2018-04-08
+/// \verison 2018-04-09
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -15,6 +15,8 @@
 /// \brief 主对话框（类）。
 class MainDialog: public CDialog {
     DECLARE_DYNCREATE(MainDialog)
+
+// Constructors
 public:
     MainDialog(CWnd *pParent = NULL);
 
@@ -24,20 +26,17 @@ public:
 // Operations
 public:
 
-// Overrides
-public:
-    virtual void DoDataExchange(CDataExchange *pDX);
+// Overridables
+protected:
+    virtual VOID DoDataExchange(CDataExchange *pDX);
 
 // Implementation
-public:
-
-// Generated message map functions
 protected:
+
+// Message Handlers
+protected:
+    afx_msg VOID OnBnClickedOk();
+    afx_msg VOID OnBnClickedCancel();
+
     DECLARE_MESSAGE_MAP()
-
-public:
-
-protected:
-    afx_msg void OnBnClickedOk();
-    afx_msg void OnBnClickedCancel();
 };

@@ -1,9 +1,9 @@
 //===-- Page Dialog ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief （标签）页对话框类。
+/// \brief （标签）页对话框（类）。
 ///
-/// \verison 2018-04-08
+/// \verison 2018-04-09
 /// \since 2017-04-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,11 +12,13 @@
 
 #pragma once
 
-/// \brief Class Page Dialog
-class CPageDlg: public CDialog {
-    DECLARE_DYNCREATE(CPageDlg)
+/// \brief （标签）页对话框（类）。
+class PageDialog: public CDialog {
+    DECLARE_DYNCREATE(PageDialog)
+
+// Constructors
 public:
-    CPageDlg(CWnd *pParent = NULL);
+    PageDialog(CWnd *pParent = NULL);
 
 // Attributes
 public:
@@ -24,18 +26,13 @@ public:
 // Operations
 public:
 
-// Overrides
-public:
-
+// Overridables
 protected:
-    virtual void DoDataExchange(CDataExchange *pDX);
+    virtual VOID DoDataExchange(CDataExchange *pDX);
 
 // Implementation
-public:
-
-// Generated message map functions
 protected:
-    //DECLARE_MESSAGE_MAP()
 
-public:
+// Message Handlers
+protected:
 };

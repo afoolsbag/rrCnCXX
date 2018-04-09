@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \verison 2018-04-08
+/// \verison 2018-04-09
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -15,6 +15,8 @@
 /// \brief 应用（类）。
 class Application: public CWinApp {
     DECLARE_DYNCREATE(Application)
+
+// Constructors
 public:
 
 // Attributes
@@ -23,14 +25,13 @@ public:
 // Operations
 public:
 
-// Overrides
-public:
+// Overridables
+protected:
     virtual BOOL InitInstance();
 
 // Implementation
-public:
-
-// Generated message map functions
 protected:
-public:
+
+// Message Handlers
+protected:
 };

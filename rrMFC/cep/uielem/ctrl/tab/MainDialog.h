@@ -2,7 +2,6 @@
 ///
 /// \file
 /// \brief 主对话框（类）。
-
 ///
 /// \verison 2018-04-09
 /// \since 2017-04-04
@@ -12,6 +11,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
+
+#include "PageDialog.h"
 
 /// \brief 主对话框（类）。
 class MainDialog: public CDialog {
@@ -23,7 +24,6 @@ public:
 
 // Attributes
 public:
-    enum ListColumn { Id = 0, Name, Alias };
 
 // Operations
 public:
@@ -31,23 +31,18 @@ public:
 // Overridables
 protected:
     virtual VOID DoDataExchange(CDataExchange *pDX);
-
     virtual BOOL OnInitDialog();
 
 // Implementation
 protected:
-    CListCtrl ListControl;
+    CTabCtrl TabControl;
+    PageDialog TabPage0Control;
+    PageDialog TabPage1Control;
+    PageDialog TabPage2Control;
 
-    VOID InsertListItem(CONST INT itemIndex, CONST DWORD_PTR itemData, CONST CString &id, CONST CString &name, CONST CString &alias);
-    INT AppendListItem(CONST DWORD_PTR itemData, CONST CString &id, CONST CString &name, CONST CString &alias);
-
-    VOID ClearListSelected();
-    VOID SelectListItem(CONST INT itemIndex);
-
-// Generated message map functions
+// Message Handlers
 protected:
-    afx_msg void OnBnClickedAppendLastButton();
-    afx_msg void OnBnClickedDeleteFirstButton();
+    afx_msg VOID OnTcnSelchangeTab(NMHDR *pNMHDR, LRESULT *pResult);
 
     DECLARE_MESSAGE_MAP()
 };

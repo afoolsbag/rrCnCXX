@@ -16,18 +16,18 @@ MainDialog::MainDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD_MAIN_DIALOG, pParent)
 {}
 
-void MainDialog::DoDataExchange(CDataExchange *pDX)
+VOID MainDialog::DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
 }
 
-void MainDialog::OnBnClickedOk()
+VOID MainDialog::OnBnClickedOk()
 {
     AfxMessageBox(TEXT("OnBnClickedOk"));
     CDialog::OnOK();
 }
 
-void MainDialog::OnBnClickedCancel()
+VOID MainDialog::OnBnClickedCancel()
 {
     AfxMessageBox(TEXT("OnBnClickedCancel"));
     CDialog::OnCancel();
