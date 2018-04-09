@@ -4,7 +4,7 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-08 – 2018-04-08
+# 2017-12-08 – 2018-04-09
 # The MIT License
 
 project("rrMFC" VERSION 2018.2.24 LANGUAGES CXX)
@@ -17,6 +17,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
+
+facile_add_executable(SUBNAME "DateTime"
+  WIN32 "cep/dt/main.cpp"
+        "cep/dt/stdafx.h"      "cep/dt/stdafx.cpp"
+        "cep/dt/Application.h" "cep/dt/Application.cpp")
 
 facile_add_executable(SUBNAME "MFC"
   WIN32 "cep/gen/mfc/main.cpp"

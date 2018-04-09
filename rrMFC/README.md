@@ -1,5 +1,10 @@
 # [Microsoft Foundation Class (Library)](https://docs.microsoft.com/cpp/mfc)
 
+
+## References
+
++ [MFC Debugging Techniques](https://docs.microsoft.com/visualstudio/debugger/mfc-debugging-techniques). *Microsoft® Docs*.
+
 ## Programming Styles
 
 + ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.

@@ -48,4 +48,3 @@ VOID MainDialog::OnTimer(UINT_PTR nIDEvent)
         break;
     }
 }
-

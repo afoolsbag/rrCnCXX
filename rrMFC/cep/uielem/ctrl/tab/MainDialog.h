@@ -31,6 +31,9 @@ public:
 // Overridables
 protected:
     virtual VOID DoDataExchange(CDataExchange *pDX);
+
+    /// \brief On Initialize Dialog
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#oninitdialog
     virtual BOOL OnInitDialog();
 
 // Implementation
