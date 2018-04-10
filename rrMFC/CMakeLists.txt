@@ -19,41 +19,47 @@ add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 
 facile_add_executable(SUBNAME "DateTime"
-  WIN32 "cep/dt/main.cpp"
-        "cep/dt/stdafx.h"      "cep/dt/stdafx.cpp"
-        "cep/dt/Application.h" "cep/dt/Application.cpp")
+  WIN32 "dt/main.cpp"
+        "dt/stdafx.h"      "dt/stdafx.cpp"
+        "dt/Application.h" "dt/Application.cpp")
 
-facile_add_executable(SUBNAME "MFC"
-  WIN32 "cep/gen/mfc/main.cpp"
-        "cep/gen/mfc/stdafx.h"      "cep/gen/mfc/stdafx.cpp"
-        "cep/gen/mfc/Application.h" "cep/gen/mfc/Application.cpp"
-        "cep/gen/mfc/MainWindow.h"  "cep/gen/mfc/MainWindow.cpp")
+facile_add_executable(SUBNAME "MfcApplication"
+  WIN32 "gen/mfcapp/main.cpp"
+        "gen/mfcapp/stdafx.h"      "gen/mfcapp/stdafx.cpp"
+        "gen/mfcapp/Application.h" "gen/mfcapp/Application.cpp"
+        "gen/mfcapp/MainWindow.h"  "gen/mfcapp/MainWindow.cpp")
 
 facile_add_executable(SUBNAME "DialogApplication"
-  WIN32 "cep/gen/dlg/main.cpp"
-        "cep/gen/dlg/stdafx.h"      "cep/gen/dlg/stdafx.cpp"
-        "cep/gen/dlg/resource.h"    "cep/gen/dlg/resource.rc"
-        "cep/gen/dlg/Application.h" "cep/gen/dlg/Application.cpp"
-        "cep/gen/dlg/MainDialog.h"  "cep/gen/dlg/MainDialog.cpp")
+  WIN32 "gen/dlgapp/main.cpp"
+        "gen/dlgapp/stdafx.h"      "gen/dlgapp/stdafx.cpp"
+        "gen/dlgapp/resource.h"    "gen/dlgapp/resource.rc"
+        "gen/dlgapp/Application.h" "gen/dlgapp/Application.cpp"
+        "gen/dlgapp/MainDialog.h"  "gen/dlgapp/MainDialog.cpp")
 
-facile_add_executable(SUBNAME "Timer"
-  WIN32 "cep/msg/timer/main.cpp"
-        "cep/msg/timer/stdafx.h"      "cep/msg/timer/stdafx.cpp"
-        "cep/msg/timer/resource.h"    "cep/msg/timer/resource.rc"
-        "cep/msg/timer/Application.h" "cep/msg/timer/Application.cpp"
-        "cep/msg/timer/MainDialog.h"  "cep/msg/timer/MainDialog.cpp")
+facile_add_executable(SUBNAME "CustomMessage"
+  WIN32 "msg/custom/main.h"         "msg/custom/main.cpp"
+        "msg/custom/stdafx.h"       "msg/custom/stdafx.cpp"
+        "msg/custom/Application.h"  "msg/custom/Application.cpp"
+        "msg/custom/HiddenWindow.h" "msg/custom/HiddenWindow.cpp")
+
+facile_add_executable(SUBNAME "TimerMessage"
+  WIN32 "msg/timer/main.cpp"
+        "msg/timer/stdafx.h"      "msg/timer/stdafx.cpp"
+        "msg/timer/resource.h"    "msg/timer/resource.rc"
+        "msg/timer/Application.h" "msg/timer/Application.cpp"
+        "msg/timer/MainDialog.h"  "msg/timer/MainDialog.cpp")
 
 facile_add_executable(SUBNAME "ListControl"
-  WIN32 "cep/uielem/ctrl/list/main.cpp"
-        "cep/uielem/ctrl/list/stdafx.h"      "cep/uielem/ctrl/list/stdafx.cpp"
-        "cep/uielem/ctrl/list/resource.h"    "cep/uielem/ctrl/list/resource.rc"
-        "cep/uielem/ctrl/list/Application.h" "cep/uielem/ctrl/list/Application.cpp"
-        "cep/uielem/ctrl/list/MainDialog.h"  "cep/uielem/ctrl/list/MainDialog.cpp")
+  WIN32 "uielem/ctrl/list/main.cpp"
+        "uielem/ctrl/list/stdafx.h"      "uielem/ctrl/list/stdafx.cpp"
+        "uielem/ctrl/list/resource.h"    "uielem/ctrl/list/resource.rc"
+        "uielem/ctrl/list/Application.h" "uielem/ctrl/list/Application.cpp"
+        "uielem/ctrl/list/MainDialog.h"  "uielem/ctrl/list/MainDialog.cpp")
 
 facile_add_executable(SUBNAME "TabControl"
-  WIN32 "cep/uielem/ctrl/tab/main.cpp"
-        "cep/uielem/ctrl/tab/stdafx.h"      "cep/uielem/ctrl/tab/stdafx.cpp"
-        "cep/uielem/ctrl/tab/resource.h"    "cep/uielem/ctrl/tab/resource.rc"
-        "cep/uielem/ctrl/tab/Application.h" "cep/uielem/ctrl/tab/Application.cpp"
-        "cep/uielem/ctrl/tab/MainDialog.h"  "cep/uielem/ctrl/tab/MainDialog.cpp"
-        "cep/uielem/ctrl/tab/PageDialog.h"  "cep/uielem/ctrl/tab/PageDialog.cpp")
+  WIN32 "uielem/ctrl/tab/main.cpp"
+        "uielem/ctrl/tab/stdafx.h"      "uielem/ctrl/tab/stdafx.cpp"
+        "uielem/ctrl/tab/resource.h"    "uielem/ctrl/tab/resource.rc"
+        "uielem/ctrl/tab/Application.h" "uielem/ctrl/tab/Application.cpp"
+        "uielem/ctrl/tab/MainDialog.h"  "uielem/ctrl/tab/MainDialog.cpp"
+        "uielem/ctrl/tab/PageDialog.h"  "uielem/ctrl/tab/PageDialog.cpp")

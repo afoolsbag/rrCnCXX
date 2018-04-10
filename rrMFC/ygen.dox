@@ -16,6 +16,14 @@
 ///
 /// \sa ["Microsoft Foundation Class"](https://docs.microsoft.com/cpp/mfc). *Microsoft® Docs*.
 ///     + [Concepts](https://docs.microsoft.com/cpp/mfc/mfc-concepts)
+///         + [General MFC Topics](https://docs.microsoft.com/cpp/mfc/general-mfc-topics)
+///         + [Using CObject](https://docs.microsoft.com/cpp/mfc/using-cobject)
+///         + [Collections](https://docs.microsoft.com/cpp/mfc/collections)
+///         + [Date and Time](https://docs.microsoft.com/cpp/atl-mfc-shared/date-and-time)
+///         + [Files](https://docs.microsoft.com/cpp/mfc/files-in-mfc)
+///         + [Memory Management (MFC)](https://docs.microsoft.com/cpp/mfc/memory-management)
+///         + [Message Handling and Mapping](https://docs.microsoft.com/cpp/mfc/message-handling-and-mapping)
+///         + [Serialization](https://docs.microsoft.com/cpp/mfc/serialization-in-mfc)
 ///     + [Hierarchy Chart](https://docs.microsoft.com/cpp/mfc/hierarchy-chart)
 ///     + [Class Overview](https://docs.microsoft.com/cpp/mfc/class-library-overview)
 ///     + [Walkthroughs](https://docs.microsoft.com/cpp/mfc/walkthroughs-mfc)
@@ -28,7 +36,7 @@
 ///     + [MFC Wizards and Dialog Boxes](https://docs.microsoft.com/cpp/mfc/reference/mfc-wizards-and-dialog-boxes)
 ///     + [Working with Resource Files](https://docs.microsoft.com/cpp/windows/working-with-resource-files)
 ///
-/// \version 2018-04-08
+/// \version 2018-04-10
 /// \since 2018-04-08
 /// \authors zhengrr
 /// \copyright CC BY 4.0

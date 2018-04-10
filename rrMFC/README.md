@@ -39,8 +39,8 @@ Default as CXX Programming Styles.
 | `IDM`  | `001 xx–285 xx` | menus            |    `0x1–0x6FFF` |     `1–28671` |
 | `IDS`  | `001 xx–285 xx` | strings          |    `0x1–0x7FFF` |     `1–32767` |
 | `IDP`  | `001 xx–285 xx` | prompts          |    `0x1–0x7FFF` |     `1–32767` |
-| `ID`   |   `40001–49999` | commands         | `0x8000–0xDFFF` | `32768–57343` |
-| `IDC`  |   `50001–57343` | controls         |    `0x8–0xDFFF` |     `8–57343` |
+| `ID`   |   `40000–49999` | commands         | `0x8000–0xDFFF` | `32768–57343` |
+| `IDC`  |   `50000–57343` | controls         |    `0x8–0xDFFF` |     `8–57343` |
 
 e.g.:
 ```c++
@@ -58,6 +58,17 @@ e.g.:
 #define IDC_OK_BUTTON                   50001
 #define IDC_CANCEL_BUTTON               50002
 ```
+
+### Message
+
+| brief           | Range                  |                 |               |
+|:--------------- | ----------------------:| ---------------:| -------------:|
+| system reserved |        `0~(WM_USER-1)` |     `0x0-0x3FF` |      `0-1023` |
+| window private  | `(WM_USER)~(WM_APP-1)` |  `0x400-0x7FFF` |  `1024-32767` |
+| application     |      `(WM_APP)~0xBFFF` | `0x8000-0xBFFF` | `32768-49151` |
+| string message  |        `0xC000-0xFFFF` |                 | `49152-65535` |
+| system reserved |              `0xFFFF<` |                 |               |
+
 
 ["ID Naming and Numbering Conventions"](https://docs.microsoft.com/cpp/mfc/tn020-id-naming-and-numbering-conventions). *Microsoft® Docs*.
 
