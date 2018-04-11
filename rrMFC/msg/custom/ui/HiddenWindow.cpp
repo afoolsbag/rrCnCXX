@@ -51,4 +51,3 @@ LRESULT HiddenWindow::OnCustomRegisterMessage(WPARAM wParam, LPARAM lParam)
     TRACE(TEXT("RM_CUSTOM_REGISTER_MESSAGE"));
     return 0;
 }
-

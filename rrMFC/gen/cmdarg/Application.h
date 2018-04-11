@@ -18,9 +18,11 @@ class Application: public CWinApp {
 
 #// Constructors
 public:
+    Application();
 
 #// Attributes
 public:
+    HWND MessageHwnd;
 
 #// Operations
 public:

@@ -16,8 +16,5 @@
 #// Register Messages
 extern UINT RM_CUSTOM_REGISTER_MESSAGE;
 
-#// Application Messages
-#define AM_CUSTOM_APPLICATION_MESSAGE (WM_APP + 1)
-
 /// \brief Global Application
 extern Application GlobalApplication;

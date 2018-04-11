@@ -12,6 +12,9 @@
 
 #pragma once
 
+#// Application Messages
+#define AM_CUSTOM_APPLICATION_MESSAGE (WM_APP + 1)
+
 /// \brief 应用（类）。
 class Application: public CWinApp {
     DECLARE_DYNCREATE(Application)
