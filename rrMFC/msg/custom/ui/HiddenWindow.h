@@ -3,7 +3,7 @@
 /// \file
 /// \brief 隐藏的窗口（类）。
 ///
-/// \verison 2018-04-10
+/// \verison 2018-04-11
 /// \since 2018-04-10
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -16,23 +16,23 @@
 class HiddenWindow: public CFrameWnd {
     DECLARE_DYNCREATE(HiddenWindow)
 
-// Constructors
+#// Constructors
 public:
     HiddenWindow();
 
-// Attributes
+#// Attributes
 public:
 
-// Operations
+#// Operations
 public:
 
-// Overridables
+#// Overridables
 protected:
 
-// Implementation
+#// Implementation
 protected:
 
-// Message Handlers
+#// Message Handlers
 protected:
     afx_msg INT OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg LRESULT OnCustomPrivateMessage(WPARAM wParam, LPARAM lParam);

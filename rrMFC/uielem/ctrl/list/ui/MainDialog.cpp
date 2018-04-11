@@ -1,9 +1,8 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainDialog.h"
-
 #include "resource.h"
+#include "MainDialog.h"
 
 IMPLEMENT_DYNCREATE(MainDialog, CDialog)
 
@@ -18,7 +17,7 @@ BEGIN_MESSAGE_MAP(MainDialog, CDialog)
 END_MESSAGE_MAP()
 
 MainDialog::MainDialog(CWnd *pParent /*=NULL*/)
-    : CDialog(IDD_MAIN_DIALOG, pParent)
+    : CDialog(IDD, pParent)
 {}
 
 VOID MainDialog::DoDataExchange(CDataExchange *pDX)

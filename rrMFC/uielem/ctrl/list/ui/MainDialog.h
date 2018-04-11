@@ -25,6 +25,7 @@ public:
 
 // Attributes
 public:
+    enum { IDD = IDD_MAIN_DIALOG };
     enum ListColumn { Id = 0, Name, Alias };
 
 // Operations
@@ -59,7 +60,7 @@ protected:
     /// \brief NM_DBLCLK
     /// \sa https://msdn.microsoft.com/library/bb774867
     afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
-    
+
     /// \brief NM_RCLICK
     /// \sa https://msdn.microsoft.com/library/bb774873
     afx_msg void OnNMRClickList(NMHDR *pNMHDR, LRESULT *pResult);

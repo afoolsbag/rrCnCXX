@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
-#include "stdafx.h"
-#include "resource.h"
+#include "../stdafx.h"
+#include "../resource.h"
 #include "MainDialog.h"
 
 IMPLEMENT_DYNCREATE(MainDialog, CDialog)

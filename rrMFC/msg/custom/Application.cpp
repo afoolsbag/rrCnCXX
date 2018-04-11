@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "HiddenWindow.h"
+#include "ui/HiddenWindow.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
