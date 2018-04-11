@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 04-03
+# 2018-02-02 – 04-11
 # The MIT License
 
 #.rst:
@@ -19,7 +19,7 @@
 #    Check_ROOT_DIR
 #    ENV CHECKROOT
 #
-# 结果：
+# 影响：
 # ::
 #
 #    Check_FOUND

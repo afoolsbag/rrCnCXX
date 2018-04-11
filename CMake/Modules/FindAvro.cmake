@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| |/ ___ \ V /| | | (_) |
 # |_|   |_|_| |_|\__,_/_/   \_\_/ |_|  \___/
 # zhengrr                  FindAvro by FIGlet
-# 2018-04-02 – 03
+# 2018-04-02 – 11
 # The MIT License
 
 #.rst:
@@ -19,7 +19,7 @@
 #    Avro_ROOT_DIR
 #    ENV AVROROOT
 #
-# 结果：
+# 影响：
 # ::
 #
 #    Avro_FOUND

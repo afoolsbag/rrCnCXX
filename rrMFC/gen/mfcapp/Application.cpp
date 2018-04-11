@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "MainWindow.h"
+#include "ui/MainWindow.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 

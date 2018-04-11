@@ -1,8 +1,10 @@
 # zhengrr
-# 2018-03-21 – 21
+# 2018-03-21 – 04-11
 # The MIT License
 
-include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
+if(NOT COMMAND facile_add_executable)
+  include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
+endif()
 
 # .rst
 # .. command:: facile_add_ice_executable

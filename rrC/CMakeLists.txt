@@ -4,12 +4,12 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-03-30
+# 2016-08-01 – 2018-04-11
 # The MIT License
 
 project("rrC" VERSION 2018.3.30 LANGUAGES C)
-project_variables()
-highest_warning_level()
+project_extra()
+highest_warning_level(AS_ERROR)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 

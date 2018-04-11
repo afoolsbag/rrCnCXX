@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-04-02
+# 2016-10-21 – 2018-04-11
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -22,7 +22,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #    Qt5_ROOT_DIR
 #    ENV QTDIR[32|64]
 #
-# 结果：
+# 影响：
 # ::
 #
 #    Qt5Package_FOUND

@@ -4,12 +4,12 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-03-31
+# 2016-08-01 – 2018-04-11
 # The MIT License
 
-project("rrCXX" VERSION 2018.3.31 LANGUAGES CXX)
-project_variables()
-highest_warning_level()
+project("rrCXX" VERSION 2018.4.11 LANGUAGES CXX)
+project_extra()
+highest_warning_level(AS_ERROR)
 
 facile_add_doxygen()
 

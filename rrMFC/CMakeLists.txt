@@ -4,30 +4,24 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-08 – 2018-04-09
+# 2017-12-08 – 2018-04-11
 # The MIT License
 
-project("rrMFC" VERSION 2018.2.24 LANGUAGES CXX)
-project_variables()
+project("rrMFC" VERSION 2018.4.11 LANGUAGES CXX)
+project_extra()
 highest_warning_level()
 
 facile_add_doxygen()
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
+
+aux_add_subdirectories()
 
 facile_add_executable(SUBNAME "DateTime"
   WIN32 "dt/main.cpp"
         "dt/stdafx.h"      "dt/stdafx.cpp"
         "dt/Application.h" "dt/Application.cpp")
-
-facile_add_executable(SUBNAME "MfcApplication"
-  WIN32 "gen/mfcapp/main.cpp"
-        "gen/mfcapp/stdafx.h"      "gen/mfcapp/stdafx.cpp"
-        "gen/mfcapp/Application.h" "gen/mfcapp/Application.cpp"
-        "gen/mfcapp/MainWindow.h"  "gen/mfcapp/MainWindow.cpp")
 
 facile_add_executable(SUBNAME "DialogApplication"
   WIN32 "gen/dlgapp/main.cpp"
