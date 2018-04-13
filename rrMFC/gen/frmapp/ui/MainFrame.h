@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主框架（类）。
 ///
-/// \verison 2018-04-12
+/// \verison 2018-04-13
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -33,6 +33,7 @@ public:
 public:
     virtual ~MainFrame();
 protected:
+    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
     virtual BOOL PreCreateWindow(CREATESTRUCT &cs);
     virtual BOOL OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo);
 
@@ -46,5 +47,4 @@ protected:
     afx_msg VOID OnSetFocus(CWnd *pOldWnd);
 
     DECLARE_MESSAGE_MAP()
-public:
 };

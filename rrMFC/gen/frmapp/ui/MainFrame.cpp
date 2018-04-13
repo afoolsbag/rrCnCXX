@@ -3,7 +3,9 @@
 #include "stdafx.h"
 #include "MainFrame.h"
 
-#include "conio.h"
+#include <conio.h>
+
+#include "../sysmsgstr.inl"
 
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWnd)
 
@@ -20,6 +22,12 @@ MainFrame::MainFrame()
 MainFrame::~MainFrame()
 {
     _cputts(TEXT("MainFrame::Destructor\n"));
+}
+
+BOOL MainFrame::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+{
+    _tcprintf_s(TEXT("MainFrame::OnWndMsg 0x%04X(%s), with %u, %ld, 0x%p\n"), message, SysMsgStr(message), wParam, lParam, pResult);
+    return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 BOOL MainFrame::PreCreateWindow(CREATESTRUCT &cs)
@@ -56,3 +64,5 @@ void MainFrame::OnSetFocus(CWnd *pOldWnd)
     CFrameWnd::OnSetFocus(pOldWnd);
 #endif
 }
+
+

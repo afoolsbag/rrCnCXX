@@ -16,25 +16,25 @@
 class Application: public CWinApp {
     DECLARE_DYNCREATE(Application)
 
-// Constructors
+#// Constructors
 public:
 
-// Attributes
+#// Attributes
 public:
 
-// Operations
+#// Operations
 public:
 
-// Overridables
+#// Overridables
 public:
     virtual ~Application();
 protected:
     virtual BOOL InitInstance();
     virtual INT ExitInstance();
 
-// Implementation
+#// Implementation
 protected:
 
-// Message Handlers
+#// Message Handlers
 protected:
 };
