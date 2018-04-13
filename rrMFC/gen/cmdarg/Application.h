@@ -28,6 +28,8 @@ public:
 public:
 
 #// Overridables
+public:
+    virtual ~Application();
 protected:
     /// \brief Initialize Instance
     virtual BOOL InitInstance();

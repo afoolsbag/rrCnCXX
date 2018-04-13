@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-04-09
+/// \version 2018-04-12
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -19,6 +19,7 @@ class Application: public CWinApp {
 
 #// Constructors
 public:
+    Application();
 
 #// Attributes
 public:
@@ -27,6 +28,9 @@ public:
 public:
 
 #// Overridables
+public:
+    virtual ~Application();
+
 protected:
     /// \brief Initialize Instance
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#initinstance

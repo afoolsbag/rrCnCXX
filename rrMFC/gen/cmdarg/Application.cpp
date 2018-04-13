@@ -10,6 +10,9 @@ Application::Application()
     MessageHwnd = NULL;
 }
 
+Application::~Application()
+{}
+
 BOOL Application::InitInstance()
 {
     CWinApp::InitInstance();

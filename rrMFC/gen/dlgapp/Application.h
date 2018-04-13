@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \verison 2018-04-09
+/// \verison 2018-04-12
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -26,8 +26,11 @@ public:
 public:
 
 // Overridables
+public:
+    virtual ~Application();
 protected:
     virtual BOOL InitInstance();
+    virtual INT ExitInstance();
 
 // Implementation
 protected:

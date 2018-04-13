@@ -34,13 +34,13 @@ Default as CXX Programming Styles.
 | `IDB`  | `001 xx–285 xx` | bitmaps          |    `0x1–0x6FFF` |     `1–28671` |
 | `IDC`  | `001 xx–285 xx` | cursors          |    `0x1–0x6FFF` |     `1–28671` |
 | `IDD`  | `001 00–285 00` | dialog templates |    `0x1–0x6FFF` |     `1–28671` |
-| `IDF`  | `001 xx-285 xx` | frames           |    `0x1-0x6FFF` |     `1-28671` |
+| `IDF`  | `001 00-285 00` | frames           |    `0x1-0x6FFF` |     `1-28671` |
 | `IDI`  | `001 xx–285 xx` | icons            |    `0x1–0x6FFF` |     `1–28671` |
 | `IDM`  | `001 xx–285 xx` | menus            |    `0x1–0x6FFF` |     `1–28671` |
 | `IDS`  | `001 xx–285 xx` | strings          |    `0x1–0x7FFF` |     `1–32767` |
 | `IDP`  | `001 xx–285 xx` | prompts          |    `0x1–0x7FFF` |     `1–32767` |
-| `ID`   |   `40000–49999` | commands         | `0x8000–0xDFFF` | `32768–57343` |
-| `IDC`  |   `50000–57343` | controls         |    `0x8–0xDFFF` |     `8–57343` |
+| `IDC`  |   `40001–49999` | controls         |    `0x8–0xDFFF` |     `8–57343` |
+| `ID`   |   `50001–57343` | commands         | `0x8000–0xDFFF` | `32768–57343` |
 
 e.g.:
 ```c++
