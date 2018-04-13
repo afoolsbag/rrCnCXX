@@ -1,0 +1,14 @@
+//===-- Collections ---------------------------------------------*- C++ -*-===//
+///
+/// \defgroup g_coll 集合
+/// \ingroup g_mfc
+///
+/// \sa ["Why STL containers are preferred over MFC containers?"](https://stackoverflow.com/questions/1348078). *Stack Overflow*.
+/// \sa ["Collections"](https://docs.microsoft.com/cpp/mfc/collections). *Microsoft® Docs*.
+///
+/// \version 2018-04-13
+/// \since 2018-04-13
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//

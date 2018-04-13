@@ -43,7 +43,16 @@ protected:
 
 #// Message Handlers
 protected:
+    afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg VOID OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp);
     afx_msg INT OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg VOID OnParentNotify(UINT message, LPARAM lParam);
+    afx_msg VOID OnShowWindow(BOOL bShow, UINT nStatus);
+    
+    afx_msg VOID OnClose();
+    afx_msg VOID OnDestroy();
+    afx_msg VOID OnNcDestroy();
+
     afx_msg VOID OnSetFocus(CWnd *pOldWnd);
 
     DECLARE_MESSAGE_MAP()
