@@ -3,12 +3,14 @@
 /// \file
 /// \brief 系统消息字串。
 ///
-/// \version 2018-04-13
+/// \version 2018-04-14
 /// \since 2018-04-13
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
+
+#pragma once
 
 static CString SysMsgStr(CONST UINT msgNum)
 {

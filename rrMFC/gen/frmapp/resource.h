@@ -7,14 +7,19 @@
 #define IDS_MAIN_FRAME                  200
 #define IDM_MAIN_FRAME                  200
 #define IDA_MAIN_FRAME                  200
-#define ID_ACCELERATOR50002             50002
+#define IDM_MAIN_VIEW_CONTEXT           303
+#define ID_UNDEFINED                    50000
+#define ID_COMMAND_5                    50005
+#define ID_COMMAND_6                    50006
+#define ID_COMMAND_7                    50007
+#define ID_RANGELAST                    59999
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        303
-#define _APS_NEXT_COMMAND_VALUE         50004
+#define _APS_NEXT_RESOURCE_VALUE        304
+#define _APS_NEXT_COMMAND_VALUE         50008
 #define _APS_NEXT_CONTROL_VALUE         40001
 #define _APS_NEXT_SYMED_VALUE           301
 #endif

@@ -5,6 +5,8 @@
 
 #include <conio.h>
 
+#include "../concol.inl"
+
 #include "resource.h"
 #include "ui/MainDialog.h"
 
@@ -16,11 +18,13 @@ Application::Application()
     if (!AllocConsole())
         AfxMessageBox("Allocate console failed!", MB_ICONEXCLAMATION);
 #endif//DEBUG
+    SetConsoleForeFroundColor(LightRed);
     _cputts(TEXT("Application::Constructor\n"));
 }
 
 Application::~Application()
 {
+    SetConsoleForeFroundColor(LightRed);
     _cputts(TEXT("Application::Destructor\n"));
 #ifdef DEBUG
     AfxDebugBreak();
@@ -31,6 +35,7 @@ Application::~Application()
 
 BOOL Application::InitApplication()
 {
+    SetConsoleForeFroundColor(LightRed);
     _cputts(TEXT("Application::InitApplication\n"));
     return CWinApp::InitApplication();
 }
@@ -38,6 +43,7 @@ BOOL Application::InitApplication()
 BOOL Application::InitInstance()
 {
     CWinApp::InitInstance();
+    SetConsoleForeFroundColor(LightRed);
     _cputts(TEXT("Application::InitInstance\n"));
 
     MainDialog mainDlg;
@@ -53,6 +59,7 @@ BOOL Application::InitInstance()
 
 INT Application::ExitInstance()
 {
+    SetConsoleForeFroundColor(LightRed);
     _cputts(TEXT("Application::ExitInstance\n"));
     return CWinApp::ExitInstance();
 }

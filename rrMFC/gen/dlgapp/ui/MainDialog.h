@@ -34,9 +34,10 @@ public:
     virtual ~MainDialog();
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
+    virtual VOID PreInitDialog();
     virtual VOID DoDataExchange(CDataExchange *pDX);
     virtual BOOL OnInitDialog();
-
+    virtual VOID PostNcDestroy();
 #// Implementation
 protected:
 
