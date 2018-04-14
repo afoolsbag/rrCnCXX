@@ -64,6 +64,9 @@ protected:
     afx_msg VOID OnDestroy();
     afx_msg VOID OnNcDestroy();
 
+    // OTHER
+    afx_msg VOID OnContextMenu(CWnd *pWnd, CPoint point);
+
     // COMMAND
     afx_msg VOID OnCommand5();
     afx_msg VOID OnUpdateCommand5(CCmdUI *pCmdUI);

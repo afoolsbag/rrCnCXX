@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(MainView, CWnd)
     ON_UPDATE_COMMAND_UI(ID_COMMAND_7, &MainView::OnUpdateCommand7)
     ON_COMMAND_RANGE(ID_UNDEFINED, ID_RANGELAST, &MainView::OnUndefined)
     ON_UPDATE_COMMAND_UI_RANGE(ID_UNDEFINED, ID_RANGELAST, &MainView::OnUpdateUndefined)
+    ON_WM_CONTEXTMENU()
 END_MESSAGE_MAP()
 
 MainView::MainView()
@@ -212,4 +213,15 @@ VOID MainView::OnUpdateUndefined(CCmdUI *pCmdUI)
 {
     SetConsoleForeFroundColor(LightGreen);
     _cputts(TEXT("MainView::OnUpdateUndefined\n"));
+}
+
+VOID MainView::OnContextMenu(CWnd *pWnd, CPoint point)
+{
+    SetConsoleForeFroundColor(LightGreen);
+    _cputts(TEXT("MainView::OnContextMenu\n"));
+
+    CMenu menu;
+    menu.LoadMenu(IDM_MAIN_FRAME);
+    CMenu* pContextMenu = menu.GetSubMenu(3);
+    pContextMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN, point.x, point.y, pWnd->GetParent());
 }

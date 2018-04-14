@@ -27,7 +27,7 @@ Application::~Application()
     SetConsoleForeFroundColor(LightRed);
     _cputts(TEXT("Application::Destructor\n"));
 #ifdef DEBUG
-    AfxDebugBreak();
+    //AfxDebugBreak();
     if (!FreeConsole())
         AfxMessageBox("Free console failed!", MB_ICONEXCLAMATION);
 #endif//DEBUG

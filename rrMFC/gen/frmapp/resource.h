@@ -7,12 +7,13 @@
 #define IDS_MAIN_FRAME                  200
 #define IDM_MAIN_FRAME                  200
 #define IDA_MAIN_FRAME                  200
-#define IDM_MAIN_VIEW_CONTEXT           303
+#define IDC_UNDEFINED                   40000
+#define IDC_RANGELAST                   49999
 #define ID_UNDEFINED                    50000
 #define ID_COMMAND_5                    50005
 #define ID_COMMAND_6                    50006
 #define ID_COMMAND_7                    50007
-#define ID_RANGELAST                    59999
+#define ID_RANGELAST                    57343
 
 // Next default values for new objects
 // 

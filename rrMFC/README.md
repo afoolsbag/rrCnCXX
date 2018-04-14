@@ -44,19 +44,27 @@ Default as CXX Programming Styles.
 
 e.g.:
 ```c++
-#define IDR_MAIN_WINDOW                 100  // multiple resources
-#define IDF_MAIN_WINDOW                 100  // frame
-#define IDI_MAIN_WINDOW                 100  // icon
-#define IDS_MAIN_WINDOW                 100  // title
-#define IDM_MAIN_WINDOW                 100  // menu
-#define IDA_MAIN_WINDOW                 100  // accelerator
+#define IDD_ABOUT_DIALOG                101
 
-#define IDD_MAIN_DIALOG                 200  // dialog templates
-#define IDI_MAIN_DIALOG                 200  // icon
-#define IDS_MAIN_DIALOG                 200  // tiele
+#define IDR_MAIN_WINDOW                 200  // multiple resources
+#define IDF_MAIN_WINDOW                 200  // frame
+#define IDI_MAIN_WINDOW                 200  // icon
+#define IDS_MAIN_WINDOW                 200  // title
+#define IDM_MAIN_WINDOW                 200  // menu
+#define IDA_MAIN_WINDOW                 200  // accelerator
 
-#define IDC_OK_BUTTON                   50001
-#define IDC_CANCEL_BUTTON               50002
+#define IDD_MAIN_DIALOG                 300  // dialog templates
+#define IDI_MAIN_DIALOG                 300  // icon
+#define IDS_MAIN_DIALOG                 300  // tiele
+
+#define IDC_UNDEFINED                   40000
+// ...
+#define IDC_RANGELAST                   49999
+
+#define ID_UNDEFINED                    50000
+// ...
+#define ID_RANGELAST                    57343
+
 ```
 
 ### Message
