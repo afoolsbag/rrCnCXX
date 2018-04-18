@@ -1,18 +1,18 @@
-/**
+/*===-- Library ------------------------------------------------*- C -*-===*//**
+ *
  * \file
- * \brief “掷骰子”库
+ * \brief “掷骰子”库。
+ *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
- * \author zhengrr
- * \date 2017-1-6 – 2018-1-15
+ *
+ * \version 2018-04-16
+ * \since 2017-01-06
+ * \authors zhengrr
  * \copyright The MIT License
- */
+ *
+**//*===-------------------------------------------------------------------===*/
 
-#ifndef RRWINDOWS_LIB_H_
-#define RRWINDOWS_LIB_H_
-
-#ifndef WINAPI
-#define WINAPI __stdcall
-#endif
+#pragma once
 
 #ifdef RRWINDOWS_EXPORTS
 # define RRWINDOWS_API  __declspec(dllexport)
@@ -23,8 +23,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-typedef int INT;
 
 /** \brief 掷骰子·美国国家标准学会适配 */
 RRWINDOWS_API INT WINAPI DiceA();
@@ -41,5 +39,3 @@ RRWINDOWS_API INT WINAPI DiceW();
 #ifdef __cplusplus
 }
 #endif
-
-#endif/* RRWINDOWS_LIB_H_*/

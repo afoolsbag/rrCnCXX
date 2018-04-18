@@ -27,42 +27,35 @@
 
 ### Naming
 
-| Entity Kinds                     | Preview       | Sample                       |
-|:-------------------------------- |:------------- |:---------------------------- |
-| folder                           | `all_lower`   | `flr`                        |
-| file                             | `all_lower`   | `main.c`                     |
-| macro                            | `ALL_UPPER`   | `COMPILE_FLAG`               |
-| typedef                          | `all_lower_t` | `special_id_t`               |
-| struct                           | `all_lower_t` | `custom_data_t`              |
-| struct field                     | `all_lower`   | `.id` `.name`                |
-| enum                             | `all_lower_t` | `transport_layer_protocol_t` |
-| enumerator                       | `ALL_UPPER`   | `.TCP` `.UDP`                |
-| union                            | `all_lower_t` |                              |
-| union member                     | `all_lower`   |                              |
-| function                         | `all_lower`   | `count_online_user()`        |
-| parameter                        | `all_lower`   |                              |
+| Entity Kinds | Preview       |
+|:------------ |:------------- |
+| folder       | `all_lower`   |
+| file         | `all_lower`   |
+| macro        | `ALL_UPPER`   |
+| typedef      | `all_lower_t` |
+| struct       | `all_lower_t` |
+| struct field | `all_lower`   |
+| enum         | `all_lower_t` |
+| enumerator   | `ALL_UPPER`   |
+| union        | `all_lower_t` |
+| union member | `all_lower`   |
+| function     | `all_lower`   |
 
-总则：1. 变量小写； 2. 编译时常量大写； 3. 除“缺省”限定符外，指明作用域、生存期和CV。
-
-| l/g      | a/r/t/s/e  | cv           | Preview         | Sample                   |
-|:-------- |:---------- |:------------ |:--------------- |:------------------------ |
-| (local)  | (`auto`)   | ([`const`])  | `all_lower`     |                          |
-| (local)  | (`auto`)   | `volatile`   | `v_all_lower`   | `v_device_ready_flag`    |
-| (local)  | (`auto`)   | cv           | `cv_all_lower`  |                          |
-| (local)  | `register` |              | `r_all_lower`   |                          |
-| (local)  | thread     |              | `t_all_lower`   | `t_thread_startup_time`  |
-| (local)  | `static`   |              | `s_all_lower`   | `s_function_usage_count` |
-| (local)  | <`static`> | <`const`>    | `ALL_UPPER`     | `XXX_FACTOR`             |
-| (local)  | `static`   | `volatile`   | `sv_all_lower`  |                          |
-| (local)  | `static`   | cv           | `scv_all_lower` |                          |
-| (global) | `static`   |              | `s_all_lower`   | `s_module_usage_count`   |
-| (global) | <`static`> | <`const`>    | `ALL_UPPER`     | `MODULE_NAME`            |
-| (global) | `static`   | `volatile`   | `sv_all_lower`  |                          |
-| (global) | `static`   | cv           | `scv_all_lower` |                          |
-| global   | (`extern`) |              | `g_all_lower`   | `g_thread_pool`          |
-| (global) | <`extern`> | <`const`>    | `ALL_UPPER`     | `PRODUCT_NAME`           |
-| global   | (`extern`) | `volatile`   | `gv_all_lower`  |                          |
-| global   | (`extern`) | cv           | `gcv_all_lower` |                          |
+| l/g          | a/r/t/s/e      | cv               | Preview         |
+|:------------ |:-------------- |:---------------- | ---------------:|
+| local        | [`auto`]       | [`const`]        |     `all_lower` |
+| local        | [`auto`]       | `volatile`       |   `v_all_lower` |
+| local        | [`auto`]       | `const volatile` |  `cv_all_lower` |
+| local        | `register`     |                  |   `r_all_lower` |
+| local        | `thread_local` |                  |   `t_all_lower` |
+| local/global | `static`       | `const`          |     `ALL_UPPER` |
+| local/global | `static`       |                  |   `s_all_lower` |
+| local/global | `static`       | `volatile`       |  `sv_all_lower` |
+| local/global | `static`       | `const volatile` | `scv_all_lower` |
+| global       | [`extern`]     | `const`          |     `ALL_UPPER` |
+| global       | [`extern`]     |                  |   `g_all_lower` |
+| global       | [`extern`]     | `volatile`       |  `gv_all_lower` |
+| global       | [`extern`]     | `const volatile` | `gcv_all_lower` |
 
 ### Formatting
 

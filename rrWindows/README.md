@@ -7,13 +7,32 @@
 
 ## References
 
-["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft® Developer Network*.
++ ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft® Developer Network*.
 
 ## Programming Styles
 
-["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
++ ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
++ ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft® Docs*.
 
-["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft® Docs*.
+Inherited from C Programming Styles.
+
+### Naming
+
+| Entity Kinds   | Preview       |
+|:-------------- |:------------- |
+| folder         | `all_lower`   |
+| file           | `all_lower`   |
+| macro          | `ALL_UPPER`   |
+| local variable | `camelCase`   |
+| other          | `PascalCase`  |
+
+### Formatting
+
++ Visual Studio Default
++ `.h` `.c`
++ UTF-8
++ Spaces
++ K&R (functions are special)
 
 ## Guides
 

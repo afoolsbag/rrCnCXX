@@ -4,63 +4,21 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-04-10
+# 2016-10-12 – 2018-04-16
 # The MIT License
 
-project("rrWindows" VERSION 2018.4.10 LANGUAGES C)
-project_variables()
+project("rrWindows" VERSION 2018.4.16 LANGUAGES C)
+project_extra()
 highest_warning_level()
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
+aux_add_subdirectories()
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-facile_add_executable(SUBNAME "WinConApp"
+facile_add_executable(SUBNAME "WindowsConsoleApplication"
   "win_con_app.c")
 
-facile_add_executable(SUBNAME "WinDtpApp"
+facile_add_executable(SUBNAME "WindowsDesktopApplication"
   WIN32 "win_dtp_app.c")
-
-facile_add_executable(SUBNAME "FileAttrs"
-  "data/lfsys/fmgmt/attrs.c")
-facile_add_executable(SUBNAME "FileExists"
-  "data/lfsys/fmgmt/exists.c")
-facile_add_executable(SUBNAME "FileFild"
-  "data/lfsys/fmgmt/find.c")
-
-facile_add_executable(SUBNAME "ErrHandling"
-  "diag/debug/err_handling.c")
-
-facile_add_executable(SUBNAME "GenUuid"
-  "net/rpc/gen_uuid.c")
-
-facile_add_executable(SUBNAME "TcpClient"
-  "net/winsock/tcp_client.c")
-facile_add_executable(SUBNAME "TcpServer"
-  "net/winsock/tcp_server.c")
-facile_add_executable(SUBNAME "UdpClient"
-  "net/winsock/udp_client.c")
-facile_add_executable(SUBNAME "UdpServer"
-  "net/winsock/udp_server.c")
-
-facile_add_executable(SUBNAME "AcsShrFlr"
-  "net/wnet/acs_shr_flr.c")
-
-facile_add_executable(SUBNAME "Thread"
-  "sys/procthrd/thread.c")
-
-facile_add_executable(SUBNAME "SglInstApp"
-  "sys/sync/sgl_inst_app.c")
-
-facile_add_executable(SUBNAME "IniFile"
-  "sys/info/reg/ini_file.c")
-
-facile_add_executable(SUBNAME "Gb2312Utf8"
-  "ui/i18n/unicode/gb2312_utf8.c")
-
-facile_add_executable(SUBNAME "CnvUpr"
-  "ui/res/str/cnv_upr.c")
-
-add_library(${PROJECT_NAME_LOWER}_dll_shared SHARED "sys/dll/lib.h" "sys/dll/lib.c")
-add_executable(${PROJECT_NAME_LOWER}_dll_exe "sys/dll/exe.c")
-target_link_libraries(${PROJECT_NAME_LOWER}_dll_exe ${PROJECT_NAME_LOWER}_dll_shared)

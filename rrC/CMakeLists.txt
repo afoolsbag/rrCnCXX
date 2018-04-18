@@ -4,10 +4,10 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-04-11
+# 2016-08-01 – 2018-04-17
 # The MIT License
 
-project("rrC" VERSION 2018.3.30 LANGUAGES C)
+project("rrC" VERSION 2018.4.17 LANGUAGES C)
 project_extra()
 highest_warning_level(AS_ERROR)
 
@@ -17,6 +17,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 configure_file("cfg.h.in" "cfg.h" @ONLY)
 
 facile_add_check_executable(SUBNAME "Test"
+  "algo/algo.c"
+  "algo/tsuite_algo.h" "algo/tsuite_algo.c"
   "lang/main.c"
   "mem/mem.c"
   "mem/tsuite_mem.h" "mem/tsuite_mem.c"

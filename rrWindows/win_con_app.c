@@ -3,9 +3,9 @@
  * \defgroup g_win_con_app Windows®控制台应用程序
  * \ingroup g_dvlp
  *
- * \author zhengrr
- * \version 2018-2-23
+ * \version 2018-02-23
  * \since 2016-10-12
+ * \authors zhengrr
  * \copyright The MIT License
  *
  * @{

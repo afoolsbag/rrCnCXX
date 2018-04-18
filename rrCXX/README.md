@@ -30,24 +30,27 @@
 + [*High Integrity C++ Coding Standard*](http://codingstandard.com/)
 + [*C++ Coding Standard*](http://possibility.com/Cpp/CppCodingStandard.html)
 
-Default as C Programming Styles.
+Inherited from C Programming Styles.
 
 ### Naming
 
-| Entity Kinds                     | Preview           | Sample                |
-|:-------------------------------- |:----------------- |:--------------------- |
-| file for class definition        | `UpperCamelCase`  | `CustomClass.hxx`     |
-| namespace                        | `all_lower`       | `rrcxx`               |
-| typedef                          | `UpperCamelCase`  | `CustomType`          |
-| struct/class                     | `UpperCamelCase`  | `CustomClass`         |
-| public struct/class field        | `all_lower`       | `.name`               |
-| non-public struct/class field    | `all_lower_`      | `.uuid_`              |
-| enum                             | `UpperCamelCase`  | `Color`               |
-| enumerator                       | `kUpperCamelCase` | `.kRed`               |
-| union                            | `UpperCamelCase`  |                       |
-| global function                  | `UpperCamelCase`  | `GenerateUuid()`      |
-| static member function           | `UpperCamelCase`  | `::ClassUsageCount()` |
-| non-static member function       | `lowerCamelCase`  | `.ObjectUsageCount()` |
+| Entity Kinds        | Preview                         |
+|:------------------- |:------------------------------- |
+| folder              | `all_lower`                     |
+| file                | `all_lower` or `PascalCase`     |
+| macro               | `ALL_UPPER`                     |
+| namespace           | `all_lower`                     |
+| typedef             | `PascalCase`                    |
+| struct/class        | `PascalCase`                    |
+| struct/class field  | `camelCase`                     |
+| struct/class method | `camelCase`                     |
+| enum                | `PascalCase`                    |
+| enumerator          | `ALL_UPPER`                     |
+| union               | `PascalCase`                    |
+| union member        | `camelCase`                     |
+| global function     | `PascalCase`                    |
+| static method       | `PascalCase`                    |
+| variable            | `camelCase` specifier inherited |
 
 ### Formatting
 

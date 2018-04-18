@@ -30,6 +30,7 @@ quickref
     + 字符匹配`%`
     + 窗口　顶行`H`ome　中行`M`iddle　底行`L`ast
 + [motion: Using tags](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ta)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ta)</sub>
+    + 标签跳出`<C-T>`　标签跳入`<C-]>`
 + [Scrolling](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_sc)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_sc)</sub>
     + 上滚一页`<C-B>`ackwards　上滚半页`<C-U>`pwards　上滚一行`<C-Y>`
     + 下滚一行`<C-E>`xtra　下滚半页`<C-D>`ownwards　下滚一页`<C-F>`orwards
@@ -74,7 +75,7 @@ quickref
 + [Abbreviations](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ab)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ab)</sub>
 + [Options](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_op)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_op)</sub>
 + [Undo/Redo commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ur)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ur)</sub>
-    + 撤销改动`u`ndo　恢复改动`<CTRL-R>`edo　恢复整行改动`U`
+    + 撤销改动`u`ndo　恢复改动`<C-R>`edo　恢复整行改动`U`
 + [External commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_et)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_et)</sub>
     + 关键字查询`K`eyword
 + [Quickfix commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_qf)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_qf)</sub>

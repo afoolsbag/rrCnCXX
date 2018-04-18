@@ -1,6 +1,5 @@
 # [Microsoft Foundation Class (Library)](https://docs.microsoft.com/cpp/mfc)
 
-
 ## References
 
 + [MFC Debugging Techniques](https://docs.microsoft.com/visualstudio/debugger/mfc-debugging-techniques). *Microsoft® Docs*.
@@ -10,19 +9,24 @@
 + ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
 + ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines). *Microsoft® Docs*.
 
-Default as CXX Programming Styles.
+Inherited from CXX Programming Styles.
 
 ### Naming
 
-+ 宏适用`ALL_UPPER`
-+ 局部变量适用`camelCase`
-+ 其它适用`PascalCase`
+| Entity Kinds   | Preview       |
+|:-------------- |:------------- |
+| folder         | `all_lower`   |
+| file           | `all_lower`   |
+| macro          | `ALL_UPPER`   |
+| local variable | `camelCase`   |
+| other          | `PascalCase`  |
 
 ### Formatting
 
 + Visual Studio Default
++ `.h` `.cpp`
 + UTF-8
-+ 4 Spaces
++ Spaces
 + K&R (functions are special)
 
 ### `resource.h`
@@ -69,13 +73,13 @@ e.g.:
 
 ### Message
 
-| brief           | Range                  |                 |               |
-|:--------------- | ----------------------:| ---------------:| -------------:|
-| system reserved |        `0~(WM_USER-1)` |     `0x0-0x3FF` |      `0-1023` |
-| window private  | `(WM_USER)~(WM_APP-1)` |  `0x400-0x7FFF` |  `1024-32767` |
-| application     |      `(WM_APP)~0xBFFF` | `0x8000-0xBFFF` | `32768-49151` |
-| string message  |        `0xC000-0xFFFF` |                 | `49152-65535` |
-| system reserved |              `0xFFFF<` |                 |               |
+| prefix | brief       | Range         |                 |               |
+|:------ |:----------- |:------------- | ---------------:| -------------:|
+|        | system      |               |     `0x0-0x3FF` |      `0-1023` |
+| `PM`   | private     | `WM_USER + ?` |  `0x400-0x7FFF` |  `1024-32767` |
+| `AM`   | application | `WM_APP + ?`  | `0x8000-0xBFFF` | `32768-49151` |
+| `RM`   | registered  |               | `0xC000-0xFFFF` | `49152-65535` |
+|        | system      |               | `0xFFFF<`       | `65535<`      |
 
 
 ["ID Naming and Numbering Conventions"](https://docs.microsoft.com/cpp/mfc/tn020-id-naming-and-numbering-conventions). *Microsoft® Docs*.

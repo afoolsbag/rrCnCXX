@@ -4,10 +4,10 @@
 # | |  | |  | |___ /  \ /  \
 # |_|  |_|   \____/_/\_/_/\_\ rrCxx by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-04-11
+# 2016-08-01 – 2018-04-17
 # The MIT License
 
-project("rrCXX" VERSION 2018.4.11 LANGUAGES CXX)
+project("rrCXX" VERSION 2018.4.17 LANGUAGES CXX)
 project_extra()
 highest_warning_level(AS_ERROR)
 
@@ -31,8 +31,8 @@ facile_add_gtest_executable(SUBNAME "Test"
   "thrd/thrd.cxx"
   "dzn/singleton.cxx")
 
-facile_add_library(SUBNAME "dl" TGTNAMEVAR sRrcxxDlLibTgt
+facile_add_library(SUBNAME "dl" TARGET_NAME_VARIABLE sRrcxxDlLibTgt
   SHARED "api.h" "lib.h" "lib.cxx")
 
 facile_add_executable(SUBNAME "dl"
-  "api.h" "lib.h" "exe.cxx" LINKS ${sRrcxxDlLibTgt})
+  "api.h" "lib.h" "exe.cxx" LINK_LIBRARIES ${sRrcxxDlLibTgt})
