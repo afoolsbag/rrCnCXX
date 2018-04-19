@@ -1,13 +1,13 @@
 /*===-- Windows Networking -------------------------------------*- C -*-===*//**
  *
- * \defgroup g_wnet Windows©网络
- * \ingroup g_net
+ * \defgroup gWnet Windows©网络
+ * \ingroup gNet
  *
  * \sa ["Windows Networking"](https://msdn.microsoft.com/library/aa385406). *Microsoft® Developer Network*.
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-2-23
+ * \version 2018-04-16
+ * \since 2018-02-23
+ * \authors zhengrr
  * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

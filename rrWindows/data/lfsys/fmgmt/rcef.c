@@ -17,20 +17,17 @@
 /**
  * \brief 计算当日等价的秒数。
  */
-INT DayToSeconds(CONST SYSTEMTIME day)
+INT DayToSeconds(CONST SYSTEMTIME *CONST day)
 {
-    return
-        day.wHour * 60 * 60 +
-        day.wMinute * 60 +
-        day.wSecond;
+    return (day->wHour * 60 + day->wMinute) * 60 + day->wSecond;
 }
 
 /**
  * \brief 计算多日等价的100ns数。
  */
-ULONGLONG DaysTo100ns(CONST SYSTEMTIME days)
+ULONGLONG DaysTo100ns(CONST SYSTEMTIME *CONST days)
 {
-    return (((days.wDay * 24LL + days.wHour) * 60LL + days.wMinute) * 60LL + days.wSecond) * 1000LL * 1000LL * 10LL;
+    return (((days->wDay * 24LL + days->wHour) * 60LL + days->wMinute) * 60LL + days->wSecond) * 1000LL * 1000LL * 10LL;
 }
 
 /**
@@ -157,7 +154,7 @@ static VOID ReadIniFromFile(struct IniStruct *CONST ini)
 /**
  * \brief 写入配置文件。
  */
-static VOID WriteIniToFile(CONST struct IniStruct ini)
+static VOID WriteIniToFile(CONST struct IniStruct *CONST ini)
 {
     TCHAR iniPath[MAX_PATH];
     TCHAR tmpBuf[256];
@@ -166,43 +163,43 @@ static VOID WriteIniToFile(CONST struct IniStruct ini)
 
     GetIniPath(iniPath, _countof(iniPath));
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%ud %uh %um %us"), ini.ClearupCycle.wDay, ini.ClearupCycle.wHour, ini.ClearupCycle.wMinute, ini.ClearupCycle.wSecond);
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%ud %uh %um %us"), ini->ClearupCycle.wDay, ini->ClearupCycle.wHour, ini->ClearupCycle.wMinute, ini->ClearupCycle.wSecond);
     WritePrivateProfileString(_T("RCEF"), _T("ClearupCycle"), tmpBuf, iniPath);
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%lums"), ini.IdleWakeCycle);
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%lums"), ini->IdleWakeCycle);
     WritePrivateProfileString(_T("RCEF"), _T("IdleWakeCycle"), tmpBuf, iniPath);
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%02u:%02u:%02u"), ini.NoConsumeClockStart.wHour, ini.NoConsumeClockStart.wMinute, ini.NoConsumeClockStart.wSecond);
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%02u:%02u:%02u"), ini->NoConsumeClockStart.wHour, ini->NoConsumeClockStart.wMinute, ini->NoConsumeClockStart.wSecond);
     WritePrivateProfileString(_T("RCEF"), _T("NoConsumeClockStart"), tmpBuf, iniPath);
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%02u:%02u:%02u"), ini.NoConsumeClockEnd.wHour, ini.NoConsumeClockEnd.wMinute, ini.NoConsumeClockEnd.wSecond);
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%02u:%02u:%02u"), ini->NoConsumeClockEnd.wHour, ini->NoConsumeClockEnd.wMinute, ini->NoConsumeClockEnd.wSecond);
     WritePrivateProfileString(_T("RCEF"), _T("NoConsumeClockEnd"), tmpBuf, iniPath);
 
-    WritePrivateProfileString(_T("RCEF"), _T("TargetFolderPath"), ini.TargetFolderPath, iniPath);
+    WritePrivateProfileString(_T("RCEF"), _T("TargetFolderPath"), ini->TargetFolderPath, iniPath);
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%s"), ini.Recurse ? _T("ON") : _T("OFF"));
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%s"), ini->Recurse ? _T("ON") : _T("OFF"));
     WritePrivateProfileString(_T("RCEF"), _T("Recurse"), tmpBuf, iniPath);
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%ud %uh %um %us"), ini.ShelfLife.wDay, ini.ShelfLife.wHour, ini.ShelfLife.wMinute, ini.ShelfLife.wSecond);
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%ud %uh %um %us"), ini->ShelfLife.wDay, ini->ShelfLife.wHour, ini->ShelfLife.wMinute, ini->ShelfLife.wSecond);
     WritePrivateProfileString(_T("RCEF"), _T("ShelfLife"), tmpBuf, iniPath);
 
-    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%lums"), ini.DeletePostDelay);
+    _stprintf_s(tmpBuf, _countof(tmpBuf), _T("%lums"), ini->DeletePostDelay);
     WritePrivateProfileString(_T("RCEF"), _T("DeletePostDelay"), tmpBuf, iniPath);
 }
 
 /**
  * \brief 打印配置文件。
  */
-static VOID PrintIni(CONST struct IniStruct ini)
+static VOID PrintIni(CONST struct IniStruct *CONST ini)
 {
-    _tprintf_s(_T(" ClearupCycle:        %ud %uh %um %us\n"), ini.ClearupCycle.wDay, ini.ClearupCycle.wHour, ini.ClearupCycle.wMinute, ini.ClearupCycle.wSecond);
-    _tprintf_s(_T(" IdleWakeCycle:       %lums\n"), ini.IdleWakeCycle);
-    _tprintf_s(_T(" NoConsumeClockStart: %02u:%02u:%02u\n"), ini.NoConsumeClockStart.wHour, ini.NoConsumeClockStart.wMinute, ini.NoConsumeClockStart.wSecond);
-    _tprintf_s(_T(" NoConsumeClockEnd:   %02u:%02u:%02u\n"), ini.NoConsumeClockEnd.wHour, ini.NoConsumeClockEnd.wMinute, ini.NoConsumeClockEnd.wSecond);
-    _tprintf_s(_T(" TargetFolderPath:    %s\n"), ini.TargetFolderPath);
-    _tprintf_s(_T(" Recurse:             %s\n"), ini.Recurse ? _T("ON") : _T("OFF"));
-    _tprintf_s(_T(" ShelfLift:           %ud %uh %um %us\n"), ini.ShelfLife.wDay, ini.ShelfLife.wHour, ini.ShelfLife.wMinute, ini.ShelfLife.wSecond);
-    _tprintf_s(_T(" DeletePostDelay:     %lums\n"), ini.DeletePostDelay);
+    _tprintf_s(_T(" ClearupCycle:        %ud %uh %um %us\n"), ini->ClearupCycle.wDay, ini->ClearupCycle.wHour, ini->ClearupCycle.wMinute, ini->ClearupCycle.wSecond);
+    _tprintf_s(_T(" IdleWakeCycle:       %lums\n"), ini->IdleWakeCycle);
+    _tprintf_s(_T(" NoConsumeClockStart: %02u:%02u:%02u\n"), ini->NoConsumeClockStart.wHour, ini->NoConsumeClockStart.wMinute, ini->NoConsumeClockStart.wSecond);
+    _tprintf_s(_T(" NoConsumeClockEnd:   %02u:%02u:%02u\n"), ini->NoConsumeClockEnd.wHour, ini->NoConsumeClockEnd.wMinute, ini->NoConsumeClockEnd.wSecond);
+    _tprintf_s(_T(" TargetFolderPath:    %s\n"), ini->TargetFolderPath);
+    _tprintf_s(_T(" Recurse:             %s\n"), ini->Recurse ? _T("ON") : _T("OFF"));
+    _tprintf_s(_T(" ShelfLift:           %ud %uh %um %us\n"), ini->ShelfLife.wDay, ini->ShelfLife.wHour, ini->ShelfLife.wMinute, ini->ShelfLife.wSecond);
+    _tprintf_s(_T(" DeletePostDelay:     %lums\n"), ini->DeletePostDelay);
 }
 
 #// 当前时刻相关
@@ -241,7 +238,7 @@ struct ArgStruct {
 /**
  * \brief 清理过期文件。
  */
-static VOID ClearupExpiredFiles(CONST TCHAR *CONST flrPath, CONST struct ArgStruct CONST* arg)
+static VOID ClearupExpiredFiles(CONST TCHAR *CONST flrPath, CONST struct ArgStruct *CONST arg)
 {
     TCHAR flrPathWildcard[MAX_PATH];
     TCHAR itemPath[MAX_PATH];
@@ -261,14 +258,14 @@ static VOID ClearupExpiredFiles(CONST TCHAR *CONST flrPath, CONST struct ArgStru
     SecureZeroMemory(&fileClk100ns, sizeof fileClk100ns);
 
     RefreshCurrentClock();
-    if (DayToSeconds(arg->NoConsumeClockStart) < DayToSeconds(arg->NoConsumeClockEnd)) {
-        if (DayToSeconds(arg->NoConsumeClockStart) < DayToSeconds(CurClkSys) && DayToSeconds(CurClkSys) < DayToSeconds(arg->NoConsumeClockEnd)) {
+    if (DayToSeconds(&arg->NoConsumeClockStart) < DayToSeconds(&arg->NoConsumeClockEnd)) {
+        if (DayToSeconds(&arg->NoConsumeClockStart) < DayToSeconds(&CurClkSys) && DayToSeconds(&CurClkSys) < DayToSeconds(&arg->NoConsumeClockEnd)) {
             _tprintf_s(_T("%s At no consume clock, skip this.\n"), CurClkStr);
             return;
         }
     }
-    if (DayToSeconds(arg->NoConsumeClockStart) > DayToSeconds(arg->NoConsumeClockEnd)) {
-        if (DayToSeconds(arg->NoConsumeClockStart) < DayToSeconds(CurClkSys) || DayToSeconds(CurClkSys) < DayToSeconds(arg->NoConsumeClockEnd)) {
+    if (DayToSeconds(&arg->NoConsumeClockStart) > DayToSeconds(&arg->NoConsumeClockEnd)) {
+        if (DayToSeconds(&arg->NoConsumeClockStart) < DayToSeconds(&CurClkSys) || DayToSeconds(&CurClkSys) < DayToSeconds(&arg->NoConsumeClockEnd)) {
             _tprintf_s(_T("%s At no consume clock, skip this.\n"), CurClkStr);
             return;
         }
@@ -355,26 +352,26 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
         return EXIT_SUCCESS;
 
     ReadIniFromFile(&ini);
-    WriteIniToFile(ini);
+    WriteIniToFile(&ini);
     memcpy_s(&arg.NoConsumeClockStart, sizeof arg.NoConsumeClockStart, &ini.NoConsumeClockStart, sizeof ini.NoConsumeClockStart);
     memcpy_s(&arg.NoConsumeClockEnd, sizeof arg.NoConsumeClockEnd, &ini.NoConsumeClockEnd, sizeof ini.NoConsumeClockEnd);
     arg.Recurse = ini.Recurse;
-    arg.ShelfLift100ns.QuadPart = DaysTo100ns(ini.ShelfLife);
+    arg.ShelfLift100ns.QuadPart = DaysTo100ns(&ini.ShelfLife);
     arg.DeletePostDelay = ini.DeletePostDelay;
 
     for (;;) {
 
         RefreshCurrentClock();
 
-        if (CurClk100ns.QuadPart - lastClk100ns.QuadPart < DaysTo100ns(ini.ClearupCycle)) {
-            _tprintf_s(_T("%s The next clearup at %.2lf hour(s) later.\n"), CurClkStr, Ns100ToHours(DaysTo100ns(ini.ClearupCycle) - (CurClk100ns.QuadPart - lastClk100ns.QuadPart)));
+        if (CurClk100ns.QuadPart - lastClk100ns.QuadPart < DaysTo100ns(&ini.ClearupCycle)) {
+            _tprintf_s(_T("%s The next clearup at %.2lf hour(s) later.\n"), CurClkStr, Ns100ToHours(DaysTo100ns(&ini.ClearupCycle) - (CurClk100ns.QuadPart - lastClk100ns.QuadPart)));
             _tprintf_s(_T("\n"));
             Sleep(ini.IdleWakeCycle);
             continue;
         }
 
         _tprintf_s(_T("%s Start clearup:\n"), CurClkStr);
-        PrintIni(ini);
+        PrintIni(&ini);
 
         ThisTimePassCount = 0;
         ThisTimeDeleteCount = 0;

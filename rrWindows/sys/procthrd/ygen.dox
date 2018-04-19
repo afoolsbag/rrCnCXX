@@ -1,12 +1,13 @@
 /*===-- Processes and Threads ----------------------------------*- C -*-===*//**
  *
- * \defgroup g_procthrd 进程和线程
- * \ingroup g_sys
+ * \defgroup gProcThrd 进程和线程
+ * \ingroup gSys
  *
  * \sa ["Processes and Threads"](https://msdn.microsoft.com/library/ms684841). *Microsoft® Developer Network*.
  *
- * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-04-19
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

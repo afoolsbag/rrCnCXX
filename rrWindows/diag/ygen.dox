@@ -1,7 +1,7 @@
 /*===-- Diagnostics --------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_diag 诊断
- * \ingroup g_dvlp
+ * \defgroup gDiag 诊断
+ * \ingroup gDvlp
  *
  * \sa ["Diagnostics"](https://msdn.microsoft.com/library/ee663269). *Microsoft® Developer Network*.
  *     + [Assessment Execution Engine](https://msdn.microsoft.com/library/hh437709)
@@ -22,8 +22,9 @@
  *     + [Windows Performance Toolkit (WPT)](https://msdn.microsoft.com/library/hh162945)
  *     + [Windows Troubleshooting Platform](https://msdn.microsoft.com/library/dd323778)
  *
- * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-04-19
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

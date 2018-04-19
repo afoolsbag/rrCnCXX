@@ -1,4 +1,4 @@
-# [Windows® desktop applications](https://developer.microsoft.com/windows/desktop)
+# [Windows desktop applications](https://developer.microsoft.com/windows/desktop)
 
 [Desktop technologies](https://msdn.microsoft.com/library/windows/desktop/bg126469)
 [Server and system technologies](https://msdn.microsoft.com/library/windows/desktop/mt842907)
@@ -7,12 +7,14 @@
 
 ## References
 
-+ ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft® Developer Network*.
++ ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft Developer Network*.
++ ["Using the C++ Core Guidelines checkers"](https://docs.microsoft.com/visualstudio/code-quality/using-the-cpp-core-guidelines-checkers). *Microsoft Docs*.
++ ["Using SAL Annotations to Reduce C/C++ Code Defects"](https://docs.microsoft.com/visualstudio/code-quality/using-sal-annotations-to-reduce-c-cpp-code-defects). *Microsoft Docs*.
 
 ## Programming Styles
 
 + ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
-+ ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft® Docs*.
++ ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft Docs*.
 
 Inherited from C Programming Styles.
 

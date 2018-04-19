@@ -1,7 +1,7 @@
 /*===-- C Language ---------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_lang C语言
- * \ingroup g_ref
+ * \defgroup gLang C语言
+ * \ingroup gRef
  *
  * \sa ["C language"](http://en.cppreference.com/w/c/language). *cppreference.com*.
  *     + [Basic concepts](http://en.cppreference.com/w/c/language/basic_concepts)
@@ -14,8 +14,9 @@
  *     + [Functions](http://en.cppreference.com/w/c/language/functions)
  *     + Miscellaneous
  *
- * \author zhengrr
- * \date 2018-1-23 – 2-2
- * \copyright The MIT License
+ * \version 2018-04-19
+ * \since 2018-01-23
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

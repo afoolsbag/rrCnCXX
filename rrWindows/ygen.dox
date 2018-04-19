@@ -12,7 +12,7 @@
 
 /*===-- Develop Desktop Applications ---------------------------*- C -*-===*//**
  *
- * \defgroup g_dvlp 开发桌面应用程序
+ * \defgroup gDvlp 开发桌面应用程序
  *
  * \sa ["Develop desktop applications"](https://developer.microsoft.com/windows/desktop/develop). *Microsoft® Docs*.
  *     + [Desktop technologies](https://msdn.microsoft.com/library/bg126469)
@@ -32,7 +32,7 @@
  *     + [Graphics and game technologies](https://msdn.microsoft.com/library/ee663279)
  *     + [API index](https://msdn.microsoft.com/library/hh920508)
  *
- * \version 2018-04-08
+ * \version 2018-04-19
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC BY 4.0
@@ -41,11 +41,11 @@
 
 /*===-- Develop Desktop Applications Topics --------------------*- C -*-===*//**
  *
- * \page p_dvlp 开发桌面应用程序议题
+ * \page pDvlp 开发桌面应用程序议题
  * \tableofcontents
  *
- * _____________________________
- * \section s_hungarian_notation 匈牙利命名法
+ * ___________________________
+ * \section sHungarianNotation 匈牙利命名法
  *
  * > 匈牙利命名法由 Simonyi Károly 发明，其名称源自对 Simonyi 祖籍的一种讽刺：
  * > 匈牙利人的姓名习惯，与多数其它欧洲人的姓名习惯是互反的，即姓在前而名在后。
@@ -65,7 +65,7 @@
  * \sa ["Hungarian notation"](https://wikipedia.org/wiki/Hungarian_notation). *Wikipedia*.
  * \sa ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
  *
- * \version 2018-04-08
+ * \version 2018-04-19
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0

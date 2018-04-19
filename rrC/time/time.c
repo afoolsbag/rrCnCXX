@@ -5,7 +5,7 @@
  *
  * \sa ["Date and time utilities"](http://en.cppreference.com/w/c/chrono). *cppreference.com*.
  *
- * \version 2018-04-17
+ * \version 2018-04-18
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright The MIT License
@@ -21,26 +21,51 @@
 #include "time/tsuite_time.h"
 
 /**
+ * \brief Initialize calendar-time.
+ */
+static
+struct tm *
+init_caltm(struct tm *const caltmptr,
+	   const int years, const int months, const int days,
+	   const int hours, const int minutes, const int seconds)
+{
+	memset(caltmptr, 0x00, sizeof(*caltmptr));
+	caltmptr->tm_sec = seconds;
+	caltmptr->tm_min = minutes;
+	caltmptr->tm_hour = hours;
+	caltmptr->tm_mday = days;
+	caltmptr->tm_mon = months - 1;
+	caltmptr->tm_year = years - 1900;
+	mktime(caltmptr);
+	return caltmptr;
+}
+
+/**
+ * \brief Initialize calendar-time date.
+ */
+static
+struct tm *
+init_caltm_date(struct tm *const caltmptr,
+		const int years, const int months, const int days)
+{
+	return init_caltm(caltmptr, years, months, days, 0, 0, 0);
+}
+
+/**
  * \brief 日历时间。
  * \sa ["tm"](http://en.cppreference.com/w/c/chrono/tm). *cppreference.com*.
  * \sa ["mktime"](http://en.cppreference.com/w/c/chrono/mktime). *cppreference.com*.
  */
 START_TEST(test_calendar_time)
-	struct tm beijing2008 = {
-		.tm_year = 2008 - 1900, .tm_mon = 8 - 1, .tm_mday = 8,
-		.tm_hour = 0, .tm_min = 0, .tm_sec = 0,
-		.tm_isdst = -1};
+	struct tm beijing2008;
+	init_caltm_date(&beijing2008, 2008, 8, 8);
+	ck_assert_str_eq(asctime(&beijing2008), "Fri Aug 08 00:00:00 2008\n");
 
-	ck_assert_int_eq(1900 + beijing2008.tm_year, 2008);
-	ck_assert_int_eq(1 + beijing2008.tm_mon, 8);
-	ck_assert_int_eq(beijing2008.tm_mday, 8);
-
-	beijing2008.tm_mday += 16;
-	mktime(&beijing2008);
-
-	ck_assert_int_eq(1900 + beijing2008.tm_year, 2008);
-	ck_assert_int_eq(1 + beijing2008.tm_mon, 8);
-	ck_assert_int_eq(beijing2008.tm_mday, 24);
+	time_t epochtm = time(NULL);  /* epoch tm */
+	struct tm utctm;  /* utc time */
+	memcpy(&utctm, gmtime(&epochtm), sizeof(struct tm));
+	struct tm lcltm;  /* local time */
+	memcpy(&lcltm, localtime(&epochtm), sizeof(struct tm));
 END_TEST
 
 /**

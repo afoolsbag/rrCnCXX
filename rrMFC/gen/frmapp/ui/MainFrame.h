@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主框架（类）。
 ///
-/// \verison 2018-04-14
+/// \verison 2018-04-19
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License

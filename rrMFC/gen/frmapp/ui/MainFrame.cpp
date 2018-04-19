@@ -3,10 +3,7 @@
 #include "stdafx.h"
 #include "MainFrame.h"
 
-#include <conio.h>
-
-#include "../concol.inl"
-#include "../sysmsgstr.inl"
+#include "utils/dbgcon.inl"
 
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWnd)
 
@@ -35,40 +32,40 @@ END_MESSAGE_MAP()
 
 #// Constructors
 
-MainFrame::MainFrame()
+MainFrame::
+MainFrame()
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::Constructor\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::Constructor\n"));
 }
 
 #// Overridables
 
-MainFrame::~MainFrame()
+MainFrame::
+~MainFrame()
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::Destructor\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::Destructor\n"));
 }
 
-BOOL MainFrame::OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
+BOOL MainFrame::
+OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _tcprintf_s(TEXT("MainFrame::OnCmdMsg %u with %d, 0x%p, 0x%p\n"), nID, nCode, pExtra, pHandlerInfo);
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnCmdMsg %u with %d, 0x%p, 0x%p\n"), nID, nCode, pExtra, pHandlerInfo);
     if (View.OnCmdMsg(nID, nCode, pExtra, pHandlerInfo))
         return TRUE;
     return CFrameWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
-BOOL MainFrame::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+BOOL MainFrame::
+OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    SetConsoleForeFroundColor(Yellow);
-    _tcprintf_s(TEXT("MainFrame::OnWndMsg 0x%04X(%s), with %u, %ld, 0x%p\n"), message, SysMsgStr(message), wParam, lParam, pResult);
+    DbgConPrtWndMsg(Yellow, TEXT("MainFrame::OnWndMsg"), message, wParam, lParam, pResult);
     return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-BOOL MainFrame::PreCreateWindow(CREATESTRUCT &cs)
+BOOL MainFrame::
+PreCreateWindow(CREATESTRUCT &cs)
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::PreCreateWindow\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::PreCreateWindow\n"));
     cs.cx = 400;
     cs.cy = 300;
     return CFrameWnd::PreCreateWindow(cs);
@@ -76,33 +73,33 @@ BOOL MainFrame::PreCreateWindow(CREATESTRUCT &cs)
 
 #// Message Handlers
 
-VOID MainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+VOID MainFrame::
+OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
     CFrameWnd::OnActivate(nState, pWndOther, bMinimized);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnActivate\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnActivate\n"));
 }
 
-VOID MainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
+VOID MainFrame::
+OnActivateApp(BOOL bActive, DWORD dwThreadID)
 {
     CFrameWnd::OnActivateApp(bActive, dwThreadID);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnActivateApp\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnActivateApp\n"));
 }
 
-VOID MainFrame::OnClose()
+VOID MainFrame::
+OnClose()
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnClose\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnClose\n"));
     CFrameWnd::OnClose();
 }
 
-INT MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+INT MainFrame::
+OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnCreate\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnCreate\n"));
     if (!View.Create(NULL, NULL,
                      AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0),
                      this, AFX_IDW_PANE_FIRST, NULL))
@@ -110,89 +107,89 @@ INT MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 
-VOID MainFrame::OnDestroy()
+VOID MainFrame::
+OnDestroy()
 {
     CFrameWnd::OnDestroy();
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnDestroy\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnDestroy\n"));
 }
 
-VOID MainFrame::OnNcRenderingChanged(BOOL bIsRendering)
+BOOL MainFrame::
+OnEraseBkgnd(CDC *pDC)
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnNcRenderingChanged\n"));
-    CFrameWnd::OnNcRenderingChanged(bIsRendering);
-}
-
-BOOL MainFrame::OnEraseBkgnd(CDC *pDC)
-{
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnEraseBkgnd\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnEraseBkgnd\n"));
     return CFrameWnd::OnEraseBkgnd(pDC);
 }
 
-VOID MainFrame::OnMove(INT x, INT y)
+VOID MainFrame::
+OnMove(INT x, INT y)
 {
     CFrameWnd::OnMove(x, y);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnMove\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnMove\n"));
 }
 
-BOOL MainFrame::OnNcActivate(BOOL bActive)
+BOOL MainFrame::
+OnNcActivate(BOOL bActive)
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnNcActivate\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcActivate\n"));
     return CFrameWnd::OnNcActivate(bActive);
 }
 
-VOID MainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
+VOID MainFrame::
+OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnNcCalcSize\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcCalcSize\n"));
     CFrameWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
 }
 
-BOOL MainFrame::OnNcCreate(LPCREATESTRUCT lpCreateStruct)
+BOOL MainFrame::
+OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (!CFrameWnd::OnNcCreate(lpCreateStruct))
         return FALSE;
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnNcCreate\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcCreate\n"));
     return TRUE;
 }
 
-VOID MainFrame::OnNcDestroy()
+VOID MainFrame::
+OnNcDestroy()
 {
     CFrameWnd::OnNcDestroy();
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnNcDestroy\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcDestroy\n"));
 }
 
-VOID MainFrame::OnNcPaint()
+VOID MainFrame::
+OnNcPaint()
 {
     CFrameWnd::OnNcPaint();
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnNcPaint\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcPaint\n"));
 }
 
-VOID MainFrame::OnPaint()
+VOID MainFrame::
+OnNcRenderingChanged(BOOL bIsRendering)
+{
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcRenderingChanged\n"));
+    CFrameWnd::OnNcRenderingChanged(bIsRendering);
+}
+
+VOID MainFrame::
+OnPaint()
 {
     CFrameWnd::OnPaint();
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnPaint\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnPaint\n"));
 }
 
-VOID MainFrame::OnParentNotify(UINT message, LPARAM lParam)
+VOID MainFrame::
+OnParentNotify(UINT message, LPARAM lParam)
 {
     CFrameWnd::OnParentNotify(message, lParam);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnParentNotify\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnParentNotify\n"));
 }
 
-VOID MainFrame::OnSetFocus(CWnd *pOldWnd)
+VOID MainFrame::
+OnSetFocus(CWnd *pOldWnd)
 {
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnSetFocus\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnSetFocus\n"));
 #if TRUE
     View.SetFocus();
 #else
@@ -200,30 +197,30 @@ VOID MainFrame::OnSetFocus(CWnd *pOldWnd)
 #endif
 }
 
-VOID MainFrame::OnShowWindow(BOOL bShow, UINT nStatus)
+VOID MainFrame::
+OnShowWindow(BOOL bShow, UINT nStatus)
 {
     CFrameWnd::OnShowWindow(bShow, nStatus);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnShowWindow\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnShowWindow\n"));
 }
 
-VOID MainFrame::OnSize(UINT nType, INT cx, INT cy)
+VOID MainFrame::
+OnSize(UINT nType, INT cx, INT cy)
 {
     CFrameWnd::OnSize(nType, cx, cy);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnSize\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnSize\n"));
 }
 
-VOID MainFrame::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+VOID MainFrame::
+OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
     CFrameWnd::OnWindowPosChanged(lpwndpos);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnWindowPosChanged\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnWindowPosChanged\n"));
 }
 
-VOID MainFrame::OnWindowPosChanging(WINDOWPOS *lpwndpos)
+VOID MainFrame::
+OnWindowPosChanging(WINDOWPOS *lpwndpos)
 {
     CFrameWnd::OnWindowPosChanging(lpwndpos);
-    SetConsoleForeFroundColor(LightYellow);
-    _cputts(TEXT("MainFrame::OnWindowPosChanging\n"));
+    DbgConPrt(LightYellow, TEXT("MainFrame::OnWindowPosChanging\n"));
 }

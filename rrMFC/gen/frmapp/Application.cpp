@@ -3,9 +3,7 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include <conio.h>
-
-#include "../concol.inl"
+#include "utils/dbgcon.inl"
 
 #include "resource.h"
 #include "ui/MainFrame.h"
@@ -14,30 +12,18 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 
 Application::Application()
 {
-#ifdef DEBUG
-    if (!AllocConsole())
-        AfxMessageBox("Allocate console failed!", MB_ICONEXCLAMATION);
-#endif//DEBUG
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::Constructor\n"));
+    NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
 }
 
 Application::~Application()
 {
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::Destructor\n"));
-#ifdef DEBUG
-    //AfxDebugBreak();
-    if (!FreeConsole())
-        AfxMessageBox("Free console failed!", MB_ICONEXCLAMATION);
-#endif//DEBUG
+    DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
 }
 
 BOOL Application::InitInstance()
 {
     CWinApp::InitInstance();
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::InitApplication\n"));
+    DbgConPrt(LightRed, TEXT("Application::InitApplication\n"));
 
     m_pMainWnd = DEBUG_NEW MainFrame;
     dynamic_cast<MainFrame *>(m_pMainWnd)->LoadFrame(IDR_MAIN_FRAME);
@@ -49,7 +35,6 @@ BOOL Application::InitInstance()
 
 INT Application::ExitInstance()
 {
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::ExitInstance\n"));
+    DbgConPrt(LightRed, TEXT("Application::ExitInstance\n"));
     return CWinApp::ExitInstance();
 }

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 控制台颜色。
 ///
-/// \version 2018-04-14
+/// \version 2018-04-18
 /// \since 2018-04-14
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -19,22 +19,30 @@ enum ConsoleColor: WORD {
     Gray = 0x8, LightBlue = 0x9, LightGreen = 0xA, LightAqua = 0xB,
     LightRed = 0xC, LightPurple = 0xD, LightYellow = 0xE, BrightWhite = 0xF
 };
+/// \brief 控制台颜色（缩写）。
+typedef enum ConsoleColor ConCol;
 
-static WORD GetConsoleForeGroundColor()
+#define GetConFgCol GetConsoleForeGroundColor
+static WORD
+GetConsoleForeGroundColor()
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     return csbi.wAttributes & 0x000F;
 }
 
-static WORD GetConsoleBackGroundColor()
+#define GetConBgCol GetConsoleBackGroundColor
+static WORD
+GetConsoleBackGroundColor()
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
     return csbi.wAttributes & 0x00F0;
 }
 
-static VOID SetConsoleColor(CONST ConsoleColor backGroundColor, CONST ConsoleColor foreGroundColor)
+#define SetConCol SetConsoleColor
+static VOID
+SetConsoleColor(CONST ConCol backGroundColor, CONST ConCol foreGroundColor)
 {
     CONST HANDLE stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -45,7 +53,9 @@ static VOID SetConsoleColor(CONST ConsoleColor backGroundColor, CONST ConsoleCol
     SetConsoleTextAttribute(stdOutput, csbi.wAttributes);
 }
 
-static VOID SetConsoleBackFroundColor(CONST ConsoleColor backGroundColor)
+#define SetConBgCol SetConsoleBackGroundColor
+static VOID
+SetConsoleBackGroundColor(CONST ConCol backGroundColor)
 {
     CONST HANDLE stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -55,7 +65,9 @@ static VOID SetConsoleBackFroundColor(CONST ConsoleColor backGroundColor)
     SetConsoleTextAttribute(stdOutput, csbi.wAttributes);
 }
 
-static VOID SetConsoleForeFroundColor(CONST ConsoleColor foreGroundColor)
+#define SetConFgCol SetConsoleForeGroundColor
+static VOID
+SetConsoleForeGroundColor(CONST ConCol foreGroundColor)
 {
     CONST HANDLE stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO csbi;

@@ -3,63 +3,63 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include <conio.h>
-
-#include "../concol.inl"
+#include "utils/dbgcon.inl"
 
 #include "resource.h"
 #include "ui/MainDialog.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
-Application::Application()
+Application::
+Application()
 {
-#ifdef DEBUG
-    if (!AllocConsole())
-        AfxMessageBox("Allocate console failed!", MB_ICONEXCLAMATION);
-#endif//DEBUG
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::Constructor\n"));
+    NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
 }
 
-Application::~Application()
+Application::
+~Application()
 {
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::Destructor\n"));
-#ifdef DEBUG
-    AfxDebugBreak();
-    if (!FreeConsole())
-        AfxMessageBox("Free console failed!", MB_ICONEXCLAMATION);
-#endif//DEBUG
+    DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
 }
 
-BOOL Application::InitApplication()
+BOOL Application::
+InitApplication()
 {
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::InitApplication\n"));
+    DbgConPrt(LightRed, TEXT("Application::InitApplication"));
+    DbgConPrt(Red, TEXT(" without doc, for hooks\n"));
     return CWinApp::InitApplication();
 }
 
-BOOL Application::InitInstance()
+BOOL Application::
+InitInstance()
 {
     CWinApp::InitInstance();
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::InitInstance\n"));
+    DbgConPrt(LightRed, TEXT("Application::InitInstance\n"));
 
     MainDialog mainDlg;
     m_pMainWnd = &mainDlg;
     switch (mainDlg.DoModal()) {
     case IDOK: break;
     case IDCANCEL: break;
+    case IDABORT: break;
+    case IDRETRY: break;
+    case IDIGNORE: break;
+    case IDYES: break;
+    case IDNO: break;
+    case IDCLOSE: break;
+    case IDHELP: break;
+    case IDTRYAGAIN: break;
+    case IDCONTINUE: break;
+    case IDTIMEOUT: break;
     default: ASSERT(FALSE); break;
     }
 
     return FALSE;
 }
 
-INT Application::ExitInstance()
+INT Application::
+ExitInstance()
 {
-    SetConsoleForeFroundColor(LightRed);
-    _cputts(TEXT("Application::ExitInstance\n"));
+    DbgConPrt(LightRed, TEXT("Application::ExitInstance\n"));
     return CWinApp::ExitInstance();
 }

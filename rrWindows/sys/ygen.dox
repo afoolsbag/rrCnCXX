@@ -1,7 +1,7 @@
 /*===-- System Services ----------------------------------------*- C -*-===*//**
  *
- * \defgroup g_sys 系统服务
- * \ingroup g_dvlp
+ * \defgroup gSys 系统服务
+ * \ingroup gDvlp
  *
  * \sa ["System Services"](https://msdn.microsoft.com/library/ee663297). *Microsoft® Developer Network*.
  *     + [COM](https://msdn.microsoft.com/library/ee663262)
@@ -27,8 +27,9 @@
  *     + [Windows Subsystem for Linux](https://msdn.microsoft.com/library/mt811415)
  *     + [Windows System Information](https://msdn.microsoft.com/library/ms725495)
  *
- * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-04-19
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

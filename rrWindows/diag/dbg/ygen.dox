@@ -1,0 +1,20 @@
+/*===-- Debugging and Error Handling ---------------------------*- C -*-===*//**
+ *
+ * \defgroup gDbg 调试和错误处理
+ * \ingroup gDiag
+ *
+ * \sa ["Debugging and Error Handling"](https://msdn.microsoft.com/library/ee663265). *Microsoft® Developer Network*.
+ *     + [Application Recovery and Restart](https://msdn.microsoft.com/library/cc948909)
+ *     + [Error Handling](https://msdn.microsoft.com/library/ms679320)
+ *     + [Basic Debugging](https://msdn.microsoft.com/library/ms679276)
+ *     + [Debug Help Library](https://msdn.microsoft.com/library/ms679309)
+ *     + [Structured Exception Handling](https://msdn.microsoft.com/library/ms680657)
+ *     + [Wait Chain Traversal](https://msdn.microsoft.com/library/ms681622)
+ *     + [Intel AVX](https://msdn.microsoft.com/library/hh134233)
+ *
+ * \version 2018-04-19
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

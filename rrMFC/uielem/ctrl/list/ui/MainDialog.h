@@ -6,7 +6,7 @@
 /// \sa https://docs.microsoft.com/cpp/mfc/using-clistctrl
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/clistctrl-class
 ///
-/// \verison 2018-04-10
+/// \verison 2018-04-19
 /// \since 2017-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -19,25 +19,25 @@
 class MainDialog: public CDialog {
     DECLARE_DYNCREATE(MainDialog)
 
-// Constructors
+#// Constructors
 public:
     MainDialog(CWnd *pParent = NULL);
 
-// Attributes
+#// Attributes
 public:
     enum { IDD = IDD_MAIN_DIALOG };
     enum ListColumn { Id = 0, Name, Alias };
 
-// Operations
+#// Operations
 public:
 
-// Overridables
+#// Overridables
 protected:
+    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
     virtual VOID DoDataExchange(CDataExchange *pDX);
-
     virtual BOOL OnInitDialog();
 
-// Implementation
+#// Implementation
 protected:
     CListCtrl ListControl;
 
@@ -47,30 +47,30 @@ protected:
     VOID ClearListSelected();
     VOID SelectListItem(CONST INT itemIndex);
 
-// Generated message map functions
+#// Message Handlers
 protected:
     /// \brief LVN_ITEMCHANGED
     /// \sa https://msdn.microsoft.com/library/bb774845
-    afx_msg void OnLvnItemchangedList(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg VOID OnLvnItemchangedList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_CLICK
     /// \sa https://msdn.microsoft.com/library/bb774863
-    afx_msg void OnNMClickList(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg VOID OnNMClickList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_DBLCLK
     /// \sa https://msdn.microsoft.com/library/bb774867
-    afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg VOID OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_RCLICK
     /// \sa https://msdn.microsoft.com/library/bb774873
-    afx_msg void OnNMRClickList(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg VOID OnNMRClickList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_RDBLCLK
     /// \sa https://msdn.microsoft.com/library/bb774875
-    afx_msg void OnNMRDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg VOID OnNMRDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 
-    afx_msg void OnBnClickedAppendLastButton();
-    afx_msg void OnBnClickedDeleteFirstButton();
+    afx_msg VOID OnBnClickedAppendLastButton();
+    afx_msg VOID OnBnClickedDeleteFirstButton();
 
     DECLARE_MESSAGE_MAP()
 };

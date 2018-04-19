@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主视图（类）。
 ///
-/// \verison 2018-04-14
+/// \verison 2018-04-19
 /// \since 2018-04-11
 /// \authors zhengrr
 /// \copyright The MIT License

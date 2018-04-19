@@ -12,7 +12,7 @@
 
 /*===-- C Reference --------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_ref C参考手册
+ * \defgroup gRef C参考手册
  *
  * \sa ["C reference"](http://en.cppreference.com/w/c). *cppreference.com*.
  *     + [Language](http://en.cppreference.com/w/c/language)
@@ -31,7 +31,7 @@
  *     + [Atomic operations library](http://en.cppreference.com/w/c/atomic)
  *     + [Thread support library](http://en.cppreference.com/w/c/thread)
  *
- * \version 2018-04-08
+ * \version 2018-04-19
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0
