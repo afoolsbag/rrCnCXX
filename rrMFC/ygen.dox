@@ -12,7 +12,7 @@
 
 //===-- Microsoft Foundation Class (Library) --------------------*- C++ -*-===//
 ///
-/// \defgroup g_mfc 微软基础类（库）
+/// \defgroup gMfc 微软基础类（库）
 ///
 /// \sa ["Microsoft Foundation Class"](https://docs.microsoft.com/cpp/mfc). *Microsoft® Docs*.
 ///     + [Concepts](https://docs.microsoft.com/cpp/mfc/mfc-concepts)
@@ -36,7 +36,7 @@
 ///     + [MFC Wizards and Dialog Boxes](https://docs.microsoft.com/cpp/mfc/reference/mfc-wizards-and-dialog-boxes)
 ///     + [Working with Resource Files](https://docs.microsoft.com/cpp/windows/working-with-resource-files)
 ///
-/// \version 2018-04-10
+/// \version 2018-04-20
 /// \since 2018-04-08
 /// \authors zhengrr
 /// \copyright CC BY 4.0

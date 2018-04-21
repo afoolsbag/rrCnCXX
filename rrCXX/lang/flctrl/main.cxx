@@ -1,10 +1,11 @@
 //===-- Main Function -------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_main 主函数
-/// \ingroup g_flctrl
+/// \defgroup gMain 主函数
+/// \ingroup gFlCtrl
 ///
-/// \author zhengrr
-/// \date 2016-10-12 – 2018-2-2
+/// \version 2018-04-21
+/// \since 2016-10-12
+/// \authors zhengrr
 /// \copyright The MIT License
 ///
 /// @{

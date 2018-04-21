@@ -13,16 +13,6 @@
 
 ## Programming Styles
 
-1. 规则应当有用
-2. 易读先于易写
-3. 避免危险
-4. 避免复杂
-5. 留意规模
-6. 在且仅在必要时做优化
-7. 可选择时，与组内风格保持一致
-8. 可选择时，与社区风格保持一致
-9. 在任何应当违背规则的地方，违背它
-
 + [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
 + [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
 + [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)

@@ -12,7 +12,7 @@
 
 //===-- C++ Reference -------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_ref C++参考手册
+/// \defgroup gRef C++参考手册
 ///
 /// \sa ["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
 ///     + [Language](http://en.cppreference.com/w/cpp)
@@ -33,7 +33,7 @@
 ///     + [Thread support library](http://en.cppreference.com/w/cpp/thread)
 ///     + [Filesystem library](http://en.cppreference.com/w/cpp/filesystem)
 ///
-/// \version 2018-04-08
+/// \version 2018-04-21
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC BY 4.0

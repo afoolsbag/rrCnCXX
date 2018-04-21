@@ -4,12 +4,12 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-04-16
+# 2016-10-12 – 2018-04-20
 # The MIT License
 
-project("rrWindows" VERSION 2018.4.16 LANGUAGES C)
+project("rrWindows" VERSION 2018.4.20 LANGUAGES C)
 project_extra()
-highest_warning_level()
+highest_warning_level(ANALYZE)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 

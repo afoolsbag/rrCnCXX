@@ -3,18 +3,22 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "utils/dbgcon.inl"
+#include "utils/dbgcon.h"
 
 #include "resource.h"
 #include "ui/MainDialog.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
+#// Constructors
+
 Application::
 Application()
 {
     NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
 }
+
+#// Overridables
 
 Application::
 ~Application()
@@ -25,8 +29,7 @@ Application::
 BOOL Application::
 InitApplication()
 {
-    DbgConPrt(LightRed, TEXT("Application::InitApplication"));
-    DbgConPrt(Red, TEXT(" without doc, for hooks\n"));
+    DbgConPrt(LightRed, TEXT("Application::InitApplication\n"));
     return CWinApp::InitApplication();
 }
 
@@ -39,18 +42,18 @@ InitInstance()
     MainDialog mainDlg;
     m_pMainWnd = &mainDlg;
     switch (mainDlg.DoModal()) {
-    case IDOK: break;
-    case IDCANCEL: break;
-    case IDABORT: break;
-    case IDRETRY: break;
-    case IDIGNORE: break;
-    case IDYES: break;
-    case IDNO: break;
-    case IDCLOSE: break;
-    case IDHELP: break;
-    case IDTRYAGAIN: break;
-    case IDCONTINUE: break;
-    case IDTIMEOUT: break;
+    case IDOK: DbgConPrt(LightRed, TEXT("IDOK\n")); break;
+    case IDCANCEL:DbgConPrt(LightRed, TEXT("IDCANCEL\n")); break;
+    case IDABORT: DbgConPrt(LightRed, TEXT("IDABORT\n")); break;
+    case IDRETRY: DbgConPrt(LightRed, TEXT("IDRETRY\n")); break;
+    case IDIGNORE: DbgConPrt(LightRed, TEXT("IDIGNORE\n")); break;
+    case IDYES: DbgConPrt(LightRed, TEXT("IDYES\n")); break;
+    case IDNO: DbgConPrt(LightRed, TEXT("IDNO\n")); break;
+    case IDCLOSE: DbgConPrt(LightRed, TEXT("IDCLOSE\n")); break;
+    case IDHELP: DbgConPrt(LightRed, TEXT("IDHELP\n")); break;
+    case IDTRYAGAIN: DbgConPrt(LightRed, TEXT("IDTRYAGAIN\n")); break;
+    case IDCONTINUE: DbgConPrt(LightRed, TEXT("IDCONTINUE\n")); break;
+    case IDTIMEOUT: DbgConPrt(LightRed, TEXT("IDTIMEOUT\n")); break;
     default: ASSERT(FALSE); break;
     }
 

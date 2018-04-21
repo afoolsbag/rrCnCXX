@@ -1,16 +1,16 @@
-//===-- System Message ------------------------------------------*- C++ -*-===//
-///
-/// \file
-/// \brief 系统消息。
-///
-/// \sa http://blog.airesoft.co.uk/2009/11/wm_messages/
-///
-/// \version 2018-04-19
-/// \since 2018-04-19
-/// \authors zhengrr
-/// \copyright The MIT License
-///
-//===----------------------------------------------------------------------===//
+/*===-- System Message -----------------------------------------*- C -*-===*//**
+ *
+ * \file
+ * \brief 系统消息。
+ *
+ * \sa http://blog.airesoft.co.uk/2009/11/wm_messages/
+ *
+ * \version 2018-04-20
+ * \since 2018-04-19
+ * \authors zhengrr
+ * \copyright The MIT License
+ *
+**//*===-------------------------------------------------------------------===*/
 
 #pragma once
 
@@ -22,6 +22,9 @@
 #endif
 #ifndef WM_SYSTEMERROR
 #define WM_SYSTEMERROR                  0x0017
+#endif
+#ifndef WM_CTLCOLOR
+#define WM_CTLCOLOR                     0x0019
 #endif
 #ifndef WM_LOGOFF
 #define WM_LOGOFF                       0x0025

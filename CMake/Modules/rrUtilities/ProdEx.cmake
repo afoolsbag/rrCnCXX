@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-11
+# 2016-10-08 – 2018-04-21
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
@@ -67,12 +67,11 @@ function(product_extra)
 
   check_name_with_cmake_recommend_variable_rules("${PROJECT_NAME}" sCkPassed)
   if(NOT sCkPassed)
-    message(WARNING "PRODUCT_NAME not meet CMake recommend variable rules: ${PROJECT_NAME}.")
+    message(WARNING "PRODUCT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
   endif()
 
   check_name_with_c_identifier_rules("${PROJECT_NAME}" sCkPassed)
   if(NOT sCkPassed)
-    message(WARNING "PRODUCT_NAME not meet C identifier rules: ${PROJECT_NAME}.")
+    message(WARNING "PRODUCT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
   endif()
-
 endfunction()

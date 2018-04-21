@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-04-13
+/// \version 2018-04-20
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -32,11 +32,11 @@ public:
     virtual ~Application();
 
 protected:
-    /// \brief Initialize Instance
+    /// \brief Override to perform Windows instance initialization, such as creating your window objects.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#initinstance
     virtual BOOL InitInstance();
 
-    /// \brief Exit Instance
+    /// \brief Override to clean up when your application terminates.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#exitinstance
     virtual INT ExitInstance();
 

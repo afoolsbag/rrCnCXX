@@ -23,7 +23,7 @@
 #include <stdlib.h>
 
 #include <check/check.h>
-#include "std.h"
+#include "cstdver.h"
 #include "str/tsuite_str.h"
 
 /**

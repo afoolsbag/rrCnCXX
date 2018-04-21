@@ -1,7 +1,7 @@
 //===-- General MFC Topics --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_gen 常规MFC主题
-/// \ingroup g_mfc
+/// \defgroup gGen 常规MFC主题
+/// \ingroup gMfc
 ///
 /// \sa ["General MFC Topics"](https://docs.microsoft.com/cpp/mfc/general-mfc-topics). *Microsoft® Docs*.
 ///     + [Using the MFC Source Files](https://docs.microsoft.com/cpp/mfc/using-the-mfc-source-files)
@@ -18,7 +18,7 @@
 ///     + [How to: Add Restart Manager Support](https://docs.microsoft.com/cpp/mfc/how-to-add-restart-manager-support)
 ///     + [Dynamic Layout](https://docs.microsoft.com/cpp/mfc/dynamic-layout)
 ///
-/// \version 2018-04-10
+/// \version 2018-04-20
 /// \since 2018-04-08
 /// \authors zhengrr
 /// \copyright CC BY 4.0

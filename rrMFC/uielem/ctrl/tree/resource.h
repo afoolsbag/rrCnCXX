@@ -1,13 +1,10 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ ï¿½ï¿½ï¿½ÉµÄ°ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
-// ï¿½ï¿½ resource.rc Ê¹ï¿½ï¿½
+// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼þ¡£
+// ¹© resource.rc Ê¹ÓÃ
 //
 #define IDD_MAIN_DIALOG                 200
 #define IDC_UNDEFINED                   40000
-#define IDC_HAND_BUTTON                 40001
-#define IDC_QUESTION_BUTTON             40002
-#define IDC_EXCLAMATION_BUTTON          40003
-#define IDC_ASTERISK_BUTTON             40004
+#define IDC_TREE                        40001
 #define IDC_RANGELAST                   49999
 #define ID_UNDEFINED                    50000
 #define ID_RANGELAST                    57343
@@ -18,7 +15,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        102
 #define _APS_NEXT_COMMAND_VALUE         50001
-#define _APS_NEXT_CONTROL_VALUE         40005
-#define _APS_NEXT_SYMED_VALUE           102
+#define _APS_NEXT_CONTROL_VALUE         40002
+#define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

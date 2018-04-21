@@ -89,15 +89,15 @@ quickref
 + [Writing and quitting](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_wq)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_wq)</sub>
 + [Automatic commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ac)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ac)</sub>
 + [Multi-window commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_wi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_wi)</sub>
-    + window　纵向分割窗口`<C-W><C-S>`plit　横向分割窗口`<C-W><C-V>`ertical
+    + window　纵向分割窗口`<C-W>s`plit　横向分割窗口`<C-W>v`ertical
     + 窗口尺寸　重置高宽`<C-W>=`
     + 窗口尺寸　减少高度`<C-W>-`　增加高度`<C-W>+`　设置高度`<C-W>_`
     + 窗口尺寸　减少宽度`<C-W><`　增加宽度`<C-W>>`  设置宽度`<C-W>|`
-    + 窗口跳转　上一`<C-W><C-P>`revious　下一`<C-W><C-W>`rap
-    + 窗口跳转　左侧`<C-W><C-H>`　右侧`<C-W><C-L>`
-    + 窗口跳转　顶部`<C-W><C-T>`op　上侧`<C-W><C-K>`　下侧`<C-W><C-J>`　底部`<C-W><C-B>`otton
+    + 窗口跳转　上一`<C-W>p`revious　下一`<C-W>w`rap
+    + 窗口跳转　左侧`<C-W>h`　右侧`<C-W>l`
+    + 窗口跳转　顶部`<C-W>t`op　上侧`<C-W>k`　下侧`<C-W>j`　底部`<C-W>b`otton
     + 窗口调整　顺时针`<C-W><C-R>`otate　逆时针`<C-W>R`　对调e`<C-W><C-X>`change
-    + 关闭当前窗口`<C-W>c`lose　仅保留当前窗口`<C-W><C-O>`nly
+    + 关闭当前窗口`<C-W>c`lose　仅保留当前窗口`<C-W>o`nly
 + [Buffer list commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_bu)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_bu)</sub>
 + [Syntax highlighting](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_sy)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_sy)</sub>
 + [GUI commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_gu)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_gu)</sub>

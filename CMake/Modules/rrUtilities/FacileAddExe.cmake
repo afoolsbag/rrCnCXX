@@ -1,6 +1,10 @@
 # zhengrr
-# 2017-12-18 – 2018-04-04
+# 2017-12-18 – 2018-04-21
 # The MIT License
+
+if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
+  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
+endif()
 
 # .rst
 # .. command:: facile_add_executable
@@ -133,6 +137,10 @@ function(facile_add_executable)
   # add_executable
   set(sTgtName "${sNameLwr}_executable")
   if(DEFINED _TARGET_NAME_VARIABLE)
+    check_name_with_cmake_recommend_variable_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
+    if(NOT sCkPassed)
+      message(WARNING "The variable name not meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
+    endif()
     set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
   endif()
 

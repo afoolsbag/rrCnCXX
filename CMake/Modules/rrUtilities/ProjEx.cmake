@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-11
+# 2016-10-08 – 2018-04-21
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
@@ -35,7 +35,7 @@ function(project_extra)
   set(zMutValKws "AUTHORS")
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
-    message(SEND_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
+    message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
     return()
   endif()
 
@@ -61,11 +61,11 @@ function(project_extra)
 
   check_name_with_cmake_recommend_variable_rules("${PROJECT_NAME}" sCkPassed)
   if(NOT sCkPassed)
-    message(WARNING "PROJECT_NAME not meet CMake recommend variable rules: ${PROJECT_NAME}.")
+    message(WARNING "PROJECT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
   endif()
 
   check_name_with_c_identifier_rules("${PROJECT_NAME}" sCkPassed)
   if(NOT sCkPassed)
-    message(WARNING "PROJECT_NAME not meet C identifier rules: ${PROJECT_NAME}.")
+    message(WARNING "PROJECT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
   endif()
 endfunction()

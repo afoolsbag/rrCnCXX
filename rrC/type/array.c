@@ -15,7 +15,7 @@
 **//*===-------------------------------------------------------------------===*/
 
 #include <check/check.h>
-#include "std.h"
+#include "cstdver.h"
 #include "type/tsuite_type.h"
 
 /** \brief 复合字面量、匿名数组

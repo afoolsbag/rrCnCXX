@@ -1,22 +1,23 @@
 //===-- Flow Control --------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_flctrl 流控制
-/// \ingroup g_lang
+/// \defgroup gFlCtrl 流控制
+/// \ingroup gLang
 ///
-/// \author zhengrr
-/// \date 2018-2-2
-/// \copyright The MIT License
+/// \version 2018-04-21
+/// \since 2018-02-02
+/// \authors zhengrr
+/// \copyright CC BY 4.0
 ///
 //===----------------------------------------------------------------------===//
 
 
 //===-- Flow Control Topics -------------------------------------*- C++ -*-===//
 ///
-/// \page p_flctrl 流控制议题
+/// \page pFlCtrl 流控制议题
 /// \tableofcontents
 ///
-/// __________________________________
-/// \section s_return_vs_exit_vs_abort 主函数中 `return`、`exit` 和 `abort` 的差异
+/// _____________________________
+/// \section sReturnVsExitVsAbort 主函数中 `return`、`exit` 和 `abort` 的差异
 ///
 /// `exit` 不会触发函数中局部对象的析构, 但静态对象与全局对象不受影响；
 ///
@@ -24,8 +25,9 @@
 ///
 /// \sa ["return statement vs exit() in main()"](http://stackoverflow.com/questions/461449). *Stack Overflow*.
 ///
-/// \author zhengrr
-/// \date 2018-1-23 – 2-7
-/// \copyright The MIT License
+/// \version 2018-04-21
+/// \since 2018-01-23
+/// \authors zhengrr
+/// \copyright CC BY 4.0
 ///
 //===----------------------------------------------------------------------===//

@@ -1,5 +1,4 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 facile_add_executable(SUBNAME "FrameApplication"
   WIN32 "main.cpp"
         "stdafx.h"       "stdafx.cpp"

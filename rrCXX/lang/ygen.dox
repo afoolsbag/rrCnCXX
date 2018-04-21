@@ -1,7 +1,7 @@
 //===-- C++ Language --------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_lang C++语言
-/// \ingroup g_ref
+/// \defgroup gLang C++语言
+/// \ingroup gRef
 ///
 /// \sa ["C++ language"](http://en.cppreference.com/w/cpp/language). *cppreference.com*.
 ///     + [Basic concepts](http://en.cppreference.com/w/cpp/language/basic_concepts)
@@ -32,8 +32,9 @@
 ///     + [Exceptions](http://en.cppreference.com/w/cpp/language/exceptions)
 ///     + Miscellaneous
 ///
+/// \version 2018-04-21
+/// \since 2018-01-23
 /// \author zhengrr
-/// \date 2018-1-23 – 2-2
-/// \copyright The MIT License
+/// \copyright CC BY 4.0
 ///
 //===----------------------------------------------------------------------===//

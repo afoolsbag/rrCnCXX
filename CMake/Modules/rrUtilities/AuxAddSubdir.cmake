@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-04-11
+# 2017-12-18 – 2018-04-21
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -12,7 +12,7 @@ endif()
 # .rst
 # .. command:: aux_add_subdirectories
 #
-#    搜寻并加入子目录：
+#    搜寻并加入子目录到构建：
 #    ::
 #
 #       aux_add_subdirectories(

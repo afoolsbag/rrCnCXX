@@ -10,28 +10,36 @@
 IMPLEMENT_DYNCREATE(MainView, CWnd)
 
 BEGIN_MESSAGE_MAP(MainView, CWnd)
-    ON_COMMAND(ID_COMMAND_5, &MainView::OnCommand5)
-    ON_COMMAND(ID_COMMAND_6, &MainView::OnCommand6)
-    ON_COMMAND(ID_COMMAND_7, &MainView::OnCommand7)
-    ON_COMMAND_RANGE(ID_UNDEFINED, ID_RANGELAST, &MainView::OnUndefined)
-    ON_UPDATE_COMMAND_UI(ID_COMMAND_5, &MainView::OnUpdateCommand5)
-    ON_UPDATE_COMMAND_UI(ID_COMMAND_6, &MainView::OnUpdateCommand6)
-    ON_UPDATE_COMMAND_UI(ID_COMMAND_7, &MainView::OnUpdateCommand7)
-    ON_UPDATE_COMMAND_UI_RANGE(ID_UNDEFINED, ID_RANGELAST, &MainView::OnUpdateUndefined)
-    ON_WM_CONTEXTMENU()
+    ON_WM_NCCREATE()
     ON_WM_CREATE()
     ON_WM_DESTROY()
-    ON_WM_ERASEBKGND()
-    ON_WM_MOVE()
-    ON_WM_NCCALCSIZE()
-    ON_WM_NCCREATE()
     ON_WM_NCDESTROY()
-    ON_WM_NCPAINT()
-    ON_WM_PAINT()
+
+    ON_WM_CHANGEUISTATE()
+    ON_WM_UPDATEUISTATE()
+    ON_WM_DWMNCRENDERINGCHANGED()
     ON_WM_SHOWWINDOW()
-    ON_WM_SIZE()
-    ON_WM_WINDOWPOSCHANGED()
+
     ON_WM_WINDOWPOSCHANGING()
+    ON_WM_NCCALCSIZE()
+    ON_WM_SIZE()
+    ON_WM_MOVE()
+    ON_WM_WINDOWPOSCHANGED()
+
+    ON_WM_NCPAINT()
+    ON_WM_ERASEBKGND()
+    ON_WM_PAINT()
+
+    ON_WM_CONTEXTMENU()
+
+    ON_COMMAND(ID_COMMAND_5, &MainView::OnCommand5)
+    ON_UPDATE_COMMAND_UI(ID_COMMAND_5, &MainView::OnUpdateCommand5)
+    ON_COMMAND(ID_COMMAND_6, &MainView::OnCommand6)
+    ON_UPDATE_COMMAND_UI(ID_COMMAND_6, &MainView::OnUpdateCommand6)
+    ON_COMMAND(ID_COMMAND_7, &MainView::OnCommand7)
+    ON_UPDATE_COMMAND_UI(ID_COMMAND_7, &MainView::OnUpdateCommand7)
+    ON_COMMAND_RANGE(ID_UNDEFINED, ID_RANGELAST, &MainView::OnUndefined)
+    ON_UPDATE_COMMAND_UI_RANGE(ID_UNDEFINED, ID_RANGELAST, &MainView::OnUpdateUndefined)
 END_MESSAGE_MAP()
 
 #// Constructors
@@ -51,6 +59,13 @@ MainView::
 }
 
 BOOL MainView::
+PreCreateWindow(CREATESTRUCT &cs)
+{
+    DbgConPrt(LightGreen, TEXT("MainView::PreCreateWindow\n"));
+    return CWnd::PreCreateWindow(cs);
+}
+
+BOOL MainView::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
     DbgConPrtWndMsg(Green, TEXT("MainView::OnWndMsg"), message, wParam, lParam, pResult);
@@ -64,14 +79,16 @@ PostNcDestroy()
     CWnd::PostNcDestroy();
 }
 
-BOOL MainView::
-PreCreateWindow(CREATESTRUCT &cs)
-{
-    DbgConPrt(LightGreen, TEXT("MainView::PreCreateWindow\n"));
-    return CWnd::PreCreateWindow(cs);
-}
-
 #// Message Handlers
+
+BOOL MainView::
+OnNcCreate(LPCREATESTRUCT lpCreateStruct)
+{
+    if (!CWnd::OnNcCreate(lpCreateStruct))
+        return FALSE;
+    DbgConPrt(LightGreen, TEXT("MainView::OnNcCreate\n"));
+    return TRUE;
+}
 
 INT MainView::
 OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -83,46 +100,66 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 VOID MainView::
-OnCommand5()
-{
-    DbgConPrt(LightGreen, TEXT("MainView::OnCommand5\n"));
-}
-
-VOID MainView::
-OnCommand6()
-{
-    DbgConPrt(LightGreen, TEXT("MainView::OnCommand6\n"));
-}
-
-VOID MainView::
-OnCommand7()
-{
-    DbgConPrt(LightGreen, TEXT("MainView::OnCommand7\n"));
-}
-
-VOID MainView::
-OnContextMenu(CWnd *pWnd, CPoint point)
-{
-    DbgConPrt(LightGreen, TEXT("MainView::OnContextMenu\n"));
-
-    CMenu menu;
-    menu.LoadMenu(IDM_MAIN_FRAME);
-    CMenu* pContextMenu = menu.GetSubMenu(3);
-    pContextMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN, point.x, point.y, pWnd->GetParent());
-}
-
-VOID MainView::
 OnDestroy()
 {
     CWnd::OnDestroy();
     DbgConPrt(LightGreen, TEXT("MainView::OnDestroy\n"));
 }
 
-BOOL MainView::
-OnEraseBkgnd(CDC *pDC)
+VOID MainView::
+OnNcDestroy()
 {
-    DbgConPrt(LightGreen, TEXT("MainView::OnEraseBkgnd\n"));
-    return CWnd::OnEraseBkgnd(pDC);
+    CWnd::OnNcDestroy();
+    DbgConPrt(LightGreen, TEXT("MainView::OnNcDestroy\n"));
+}
+
+VOID MainView::
+OnChangeUIState(UINT nAction, UINT nUIElement)
+{
+    CWnd::OnChangeUIState(nAction, nUIElement);
+    DbgConPrt(LightGreen, TEXT("MainView::OnChangeUIState\n"));
+}
+
+VOID MainView::
+OnUpdateUIState(UINT nAction, UINT nUIElement)
+{
+    CWnd::OnUpdateUIState(nAction, nUIElement);
+    DbgConPrt(LightGreen, TEXT("MainView::OnUpdateUIState\n"));
+}
+
+VOID MainView::
+OnNcRenderingChanged(BOOL bIsRendering)
+{
+    DbgConPrt(LightGreen, TEXT("MainView::OnNcRenderingChanged\n"));
+    CWnd::OnNcRenderingChanged(bIsRendering);
+}
+
+VOID MainView::
+OnShowWindow(BOOL bShow, UINT nStatus)
+{
+    CWnd::OnShowWindow(bShow, nStatus);
+    DbgConPrt(LightGreen, TEXT("MainView::OnShowWindow\n"));
+}
+
+VOID MainView::
+OnWindowPosChanging(WINDOWPOS *lpwndpos)
+{
+    CWnd::OnWindowPosChanging(lpwndpos);
+    DbgConPrt(LightGreen, TEXT("MainView::OnWindowPosChanging\n"));
+}
+
+VOID MainView::
+OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp)
+{
+    DbgConPrt(LightGreen, TEXT("MainView::OnNcCalcSize\n"));
+    CWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
+}
+
+VOID MainView::
+OnSize(UINT nType, INT cx, INT cy)
+{
+    CWnd::OnSize(nType, cx, cy);
+    DbgConPrt(LightGreen, TEXT("MainView::OnSize\n"));
 }
 
 VOID MainView::
@@ -133,26 +170,10 @@ OnMove(INT x, INT y)
 }
 
 VOID MainView::
-OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp)
+OnWindowPosChanged(WINDOWPOS *lpwndpos)
 {
-    DbgConPrt(LightGreen, TEXT("MainView::OnNcCalcSize\n"));
-    CWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
-}
-
-BOOL MainView::
-OnNcCreate(LPCREATESTRUCT lpCreateStruct)
-{
-    if (!CWnd::OnNcCreate(lpCreateStruct))
-        return FALSE;
-    DbgConPrt(LightGreen, TEXT("MainView::OnNcCreate\n"));
-    return TRUE;
-}
-
-VOID MainView::
-OnNcDestroy()
-{
-    CWnd::OnNcDestroy();
-    DbgConPrt(LightGreen, TEXT("MainView::OnNcDestroy\n"));
+    CWnd::OnWindowPosChanged(lpwndpos);
+    DbgConPrt(LightGreen, TEXT("MainView::OnWindowPosChanged\n"));
 }
 
 VOID MainView::
@@ -169,24 +190,28 @@ OnPaint()
     DbgConPrt(LightGreen, TEXT("MainView::OnPaint\n"));
 }
 
-VOID MainView::
-OnSize(UINT nType, INT cx, INT cy)
+BOOL MainView::
+OnEraseBkgnd(CDC *pDC)
 {
-    CWnd::OnSize(nType, cx, cy);
-    DbgConPrt(LightGreen, TEXT("MainView::OnSize\n"));
+    DbgConPrt(LightGreen, TEXT("MainView::OnEraseBkgnd\n"));
+    return CWnd::OnEraseBkgnd(pDC);
 }
 
 VOID MainView::
-OnShowWindow(BOOL bShow, UINT nStatus)
+OnContextMenu(CWnd *pWnd, CPoint point)
 {
-    CWnd::OnShowWindow(bShow, nStatus);
-    DbgConPrt(LightGreen, TEXT("MainView::OnShowWindow\n"));
+    DbgConPrt(LightGreen, TEXT("MainView::OnContextMenu\n"));
+
+    CMenu menu;
+    menu.LoadMenu(IDM_MAIN_FRAME);
+    CMenu* pContextMenu = menu.GetSubMenu(3);
+    pContextMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN, point.x, point.y, pWnd->GetParent());
 }
 
 VOID MainView::
-OnUndefined(UINT nID)
+OnCommand5()
 {
-    DbgConPrt(LightGreen, TEXT("MainView::OnUndefined %u\n"), nID);
+    DbgConPrt(LightGreen, TEXT("MainView::OnCommand5\n"));
 }
 
 VOID MainView::
@@ -196,9 +221,21 @@ OnUpdateCommand5(CCmdUI *pCmdUI)
 }
 
 VOID MainView::
+OnCommand6()
+{
+    DbgConPrt(LightGreen, TEXT("MainView::OnCommand6\n"));
+}
+
+VOID MainView::
 OnUpdateCommand6(CCmdUI *pCmdUI)
 {
     DbgConPrt(LightGreen, TEXT("MainView::OnUpdateCommand6\n"));
+}
+
+VOID MainView::
+OnCommand7()
+{
+    DbgConPrt(LightGreen, TEXT("MainView::OnCommand7\n"));
 }
 
 VOID MainView::
@@ -208,21 +245,13 @@ OnUpdateCommand7(CCmdUI *pCmdUI)
 }
 
 VOID MainView::
+OnUndefined(UINT nID)
+{
+    DbgConPrt(LightGreen, TEXT("MainView::OnUndefined %u\n"), nID);
+}
+
+VOID MainView::
 OnUpdateUndefined(CCmdUI *pCmdUI)
 {
     DbgConPrt(LightGreen, TEXT("MainView::OnUpdateUndefined\n"));
-}
-
-VOID MainView::
-OnWindowPosChanged(WINDOWPOS *lpwndpos)
-{
-    CWnd::OnWindowPosChanged(lpwndpos);
-    DbgConPrt(LightGreen, TEXT("MainView::OnWindowPosChanged\n"));
-}
-
-VOID MainView::
-OnWindowPosChanging(WINDOWPOS *lpwndpos)
-{
-    CWnd::OnWindowPosChanging(lpwndpos);
-    DbgConPrt(LightGreen, TEXT("MainView::OnWindowPosChanging\n"));
 }

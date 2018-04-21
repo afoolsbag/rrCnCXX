@@ -10,30 +10,38 @@
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
-Application::Application()
+#// Constructors
+
+Application::
+Application()
 {
     NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
 }
 
-Application::~Application()
+#// Overridables
+
+Application::
+~Application()
 {
     DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
 }
 
-BOOL Application::InitInstance()
+BOOL Application::
+InitInstance()
 {
     CWinApp::InitInstance();
     DbgConPrt(LightRed, TEXT("Application::InitApplication\n"));
 
     m_pMainWnd = DEBUG_NEW MainFrame;
-    dynamic_cast<MainFrame *>(m_pMainWnd)->LoadFrame(IDR_MAIN_FRAME);
+    dynamic_cast<MainFrame *>(m_pMainWnd)->LoadFrame(MainFrame::IDR);
     m_pMainWnd->ShowWindow(m_nCmdShow);
     m_pMainWnd->UpdateWindow();
 
     return TRUE;
 }
 
-INT Application::ExitInstance()
+INT Application::
+ExitInstance()
 {
     DbgConPrt(LightRed, TEXT("Application::ExitInstance\n"));
     return CWinApp::ExitInstance();
