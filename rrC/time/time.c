@@ -1,7 +1,7 @@
 /*===-- Date and Time Utilities --------------------------------*- C -*-===*//**
  *
- * \defgroup g_time 日期和时间工具
- * \ingroup g_ref
+ * \defgroup gTime 日期和时间工具
+ * \ingroup gRef
  *
  * \sa ["Date and time utilities"](http://en.cppreference.com/w/c/chrono). *cppreference.com*.
  *

@@ -4,8 +4,8 @@
 
 #include <check/check.h>
 
-TCase *tcase_mem(void);
-
 Suite *tsuite_mem(void);
+
+TCase *tcase_mem(void);
 
 #endif/*MEM_TSUITEMEM_H_*/

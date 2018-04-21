@@ -1,7 +1,7 @@
 /*===-- C Memory Management Library ----------------------------*- C -*-===*//**
  *
- * \defgroup g_mem C内存管理库
- * \ingroup g_ref
+ * \defgroup gMem C内存管理库
+ * \ingroup gRef
  *
  * \sa ["C memory management library"](http://en.cppreference.com/w/c/memory). *cppreference.com*.
  *
@@ -15,12 +15,14 @@
 
 #include <stdlib.h>
 
-#include <check/check.h>
 #include "mem/tsuite_mem.h"
 
-/** \brief Memory Allocation
- *  \sa ["malloc"](http://en.cppreference.com/w/c/memory/malloc). *cppreference.com*.
- *  \sa ["free"](http://en.cppreference.com/w/c/memory/free). *cppreference.com*. */
+/**
+ * \brief 内存分配（Memory Allocation）。
+ *        分配内存。
+ * \sa http://en.cppreference.com/w/c/memory/malloc
+ * \sa http://en.cppreference.com/w/c/memory/free
+ */
 START_TEST(test_malloc)
 	uint8_t *int_ptr = malloc(sizeof(uint8_t));
 	if (NULL == int_ptr) {
@@ -37,8 +39,11 @@ START_TEST(test_malloc)
 	(void) int_ptr;
 END_TEST
 
-/** \brief Clear Allocation
- *  \sa ["calloc"](http://en.cppreference.com/w/c/memory/calloc). *cppreference.com*. */
+/**
+ * \brief 清零内存（Clear Allocation）。
+ *        分配并清零内存。
+ * \sa http://en.cppreference.com/w/c/memory/calloc
+ */
 START_TEST(test_calloc)
 	int *int_ptr = calloc(1, sizeof(int));
 	if (NULL == int_ptr) {

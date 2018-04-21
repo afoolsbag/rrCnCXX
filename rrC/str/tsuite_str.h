@@ -4,10 +4,10 @@
 
 #include <check/check.h>
 
+Suite *tsuite_str(void);
+
 TCase *tcase_bstr_cnv(void);
 TCase *tcase_bstr_exam(void);
 TCase *tcase_bstr_man(void);
-
-Suite *tsuite_str(void);
 
 #endif/*STR_TSUITESTR_H_*/

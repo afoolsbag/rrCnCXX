@@ -1,7 +1,7 @@
 /*===-- Array --------------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_array 数组
- * \ingroup g_type
+ * \defgroup gArray 数组
+ * \ingroup gType
  *
  * \sa ["Array declaration"](http://en.cppreference.com/w/c/language/array). *cppreference.com*.
  * \sa ["Array initialization"](http://en.cppreference.com/w/c/language/array_initialization). *cppreference.com*.

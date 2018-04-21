@@ -4,10 +4,10 @@
 
 #include <check/check.h>
 
+Suite *tsuite_type(void);
+
 TCase *tcase_array(void);
 TCase *tcase_char(void);
 TCase *tcase_struct(void);
-
-Suite *tsuite_type(void);
 
 #endif/*STR_TSUITETYPE_H_*/

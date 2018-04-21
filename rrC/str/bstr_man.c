@@ -1,11 +1,11 @@
 /*===-- Byte String Manipulation -------------------------------*- C -*-===*//**
  *
- * \defgroup g_bstr_man 单字节字符串操作
- * \ingroup g_str
+ * \defgroup gBStrMan 单字节字符串操作
+ * \ingroup gStr
  *
  * \sa ["String manipulation"](http://en.cppreference.com/w/c/string/byte#String_manipulation). *cppreference.com*.
  *
- * \version 2018-03-29
+ * \version 2018-04-21
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright The MIT License

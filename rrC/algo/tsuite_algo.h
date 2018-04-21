@@ -4,8 +4,8 @@
 
 #include <check/check.h>
 
-TCase *tcase_algo(void);
-
 Suite *tsuite_algo(void);
+
+TCase *tcase_algo(void);
 
 #endif/*ALGO_TSUITEALGO_H_*/

@@ -4,8 +4,8 @@
 
 #include <check/check.h>
 
-TCase *tcase_time(void);
-
 Suite *tsuite_time(void);
+
+TCase *tcase_time(void);
 
 #endif/*TIME_TSUITETIME_H_*/

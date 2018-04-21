@@ -5,7 +5,7 @@
  *
  * \sa ["Algorithms"](http://en.cppreference.com/w/c/algorithm). *cppreference.com*.
  *
- * \version 2018-04-19
+ * \version 2018-04-21
  * \date 2018-01-17
  * \authors zhengrr
  * \copyright The MIT License
@@ -22,51 +22,44 @@
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
 
-/**
- * \param lhs left hand side.
- * \param rhs right hand side.
- */
-static int int_cmp(const void *lhs, const void *rhs)
+static int cmp(const void *lhs, const void *rhs)
 {
 	const int l = *(const int *) lhs;
 	const int r = *(const int *) rhs;
 	return (l > r) - (l < r);
 }
 
+/**
+ * \brief 更快排序（Quicker Sort）。
+ *        对一个范围内的拥有一定未指定类型的元素排序。
+ * \remarks 虽然名字是更快排序，但实际上C标准并未限定其实现方式。
+ * \sa http://en.cppreference.com/w/c/algorithm/qsort
+ */
 START_TEST(test_qsort)
-	int ints[] = {3, 0, 2, 1};
-	qsort(ints, countof(ints), sizeof(ints[0]), int_cmp);
-	ck_assert_int_eq(ints[0], 0);
-	ck_assert_int_eq(ints[1], 1);
-	ck_assert_int_eq(ints[2], 2);
-	ck_assert_int_eq(ints[3], 3);
+	int data[] = {3, 0, 2, 1};
+	qsort(data, countof(data), sizeof(data[0]), cmp);
+	ck_assert_int_eq(data[0], 0);
+	ck_assert_int_eq(data[1], 1);
+	ck_assert_int_eq(data[2], 2);
+	ck_assert_int_eq(data[3], 3);
 END_TEST
 
-struct data_t {
-	int id;
-	void *ptr;
-};
-
-static int data_cmp(const void *lhs, const void *rhs)
-{
-	const struct data_t *const l = lhs;
-	const struct data_t *const r = rhs;
-	return (l->id > r->id) - (l->id < r->id);
-}
-
+/**
+ * \brief 二分搜索（Binary Search）。
+ *        在未指定类型的数组中搜索一个元素。
+ * \note 待搜索数组必须是有序的。
+ * \sa http://en.cppreference.com/w/c/algorithm/bsearch
+ */
 START_TEST(test_bsearch)
-	struct data_t data[] = {{.id = 3},
-				{.id = 0},
-				{.id = 2},
-				{.id = 1}};
-	const struct data_t key = {.id = 2};
+	int data[] = {3, 0, 2, 1};
+	const int key = 2;
 
-	qsort(data, countof(data), sizeof(data[0]), data_cmp);
-	const struct data_t *const rst
-		= bsearch(&key, data, countof(data), sizeof(data[0]), data_cmp);
+	qsort(data, countof(data), sizeof(data[0]), cmp);
+	const int *const rst = bsearch(
+		&key, data, countof(data), sizeof(data[0]), cmp);
 
 	if (rst)
-		ck_assert_int_eq(rst->id, 2);
+		ck_assert_int_eq(*rst, 2);
 	else
 		ck_assert(false);
 END_TEST

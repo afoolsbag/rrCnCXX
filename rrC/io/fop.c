@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "test.h"
+#include "tsuite_io.h"
 
 /**
  * \brief 打开文件

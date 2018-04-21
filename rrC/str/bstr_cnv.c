@@ -1,11 +1,11 @@
 /*===-- Byte String Conversions to Numeric Formats -------------*- C -*-===*//**
  *
- * \defgroup g_bstr_cnv 单字节字符串转换成数值格式
- * \ingroup g_str
+ * \defgroup gBStrCnv 空终止字节字符串：转换成数值格式
+ * \ingroup gStr
  *
  * \sa ["Conversions to numeric formats"](http://en.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
  *
- * \version 2018-03-29
+ * \version 2018-04-21
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright The MIT License
@@ -22,7 +22,6 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include <check/check.h>
 #include "cstdver.h"
 #include "str/tsuite_str.h"
 

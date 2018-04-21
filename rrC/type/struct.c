@@ -1,13 +1,13 @@
 /*===-- Structure ----------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_struct 结构体
- * \ingroup g_type
+ * \defgroup gStruct 结构体
+ * \ingroup gType
  *
  * \sa ["Struct declaration"](http://en.cppreference.com/w/c/language/struct). *cppreference.com*.
  * \sa ["Struct and union initialization"](http://en.cppreference.com/w/c/language/struct_initialization). *cppreference.com*.
  * \sa ["compound literals"](http://en.cppreference.com/w/c/language/compound_literal). *cppreference.com*.
  *
- * \version 2018-03-29
+ * \version 2018-04-21
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright The MIT License

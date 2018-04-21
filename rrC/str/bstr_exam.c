@@ -1,11 +1,11 @@
 /*===-- Byte String Examination --------------------------------*- C -*-===*//**
  *
- * \defgroup g_bstr_exam 单字节字符串检验
- * \ingroup g_str
+ * \defgroup gBStrExam 单字节字符串检验
+ * \ingroup gStr
  *
  * \sa ["String examination"](http://en.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.
  *
- * \version 2018-03-29
+ * \version 2018-04-21
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright The MIT License

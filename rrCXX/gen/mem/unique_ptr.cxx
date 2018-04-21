@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include "std.hxx"
+#include "cxxstdver.hxx"
 
 /// unique_ptr preliminary
 TEST(unique_ptr, preliminary) {

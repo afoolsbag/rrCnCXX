@@ -1,11 +1,11 @@
 /*===-- C Standard Version -------------------------------------*- C -*-===*//**
  *
  * \file
- * \brief C标准版本
+ * \brief C标准版本。
  *
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
  *
- * \version 2018-03-27
+ * \version 2018-04-21
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,10 +13,11 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_STD_H_
-#define RRC_STD_H_
+#ifndef RRC_CSTDVER_H_
+#define RRC_CSTDVER_H_
 
 /* Language Standards */
+
 #ifndef __STDC__
 # error A C compiler is required.
 #endif
@@ -29,17 +30,17 @@
  *  \sa https://iso.org/standard/29237.html */
 #define C99 (199901L <= __STDC_VERSION__)
 
-/** \brief ISO/IEC 9899/AMD1:1995
- *  \sa https://iso.org/standard/23909.html */
-#define C95 (199409L <= __STDC_VERSION__)
+/** \brief ISO/IEC 9899:1990/Cor 1:1994
+ *  \sa https://iso.org/standard/24271.html */
+#define C94 (199409L <= __STDC_VERSION__)
 
 /** \brief ISO/IEC 9899:1990
  *  \sa https://iso.org/standard/17782.html */
-#define C90 (!0)
+# define C90 (defined __STDC__)
 
 /** \brief ANSI X3.159-1989
  */
-#define C89 (!0)
+# define C89 (defined __STDC__)
 
 /* Language Features */
 
@@ -103,4 +104,4 @@
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1040 */
 #define N1040 (0)
 
-#endif/* RRC_STD_H_*/
+#endif/* RRC_CSTDVER_H_*/

@@ -1,7 +1,7 @@
 /*===-- Strings Library ----------------------------------------*- C -*-===*//**
  *
- * \defgroup g_str 字符串库
- * \ingroup g_ref
+ * \defgroup gStr 字符串库
+ * \ingroup gRef
  *
  * \sa ["Strings library"](http://en.cppreference.com/w/c/string). *cppreference.com*.
  *     + [Null-terminated byte string management](http://en.cppreference.com/w/c/string/byte)
@@ -22,7 +22,7 @@
  *         + [String examination](http://en.cppreference.com/w/c/string/wide#String_examination)
  *         + [Wide character array manipulation](http://en.cppreference.com/w/c/string/wide#Character_array_manipulation)
  *
- * \version 2018-03-29
+ * \version 2018-04-21
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright The MIT License

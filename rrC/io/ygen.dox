@@ -1,6 +1,6 @@
 /*===-- File Input/Output --------------------------------------*- C -*-===*//**
  *
- * \defgroup gIo 文件输入/输出
+ * \defgroup gIo 文件输入、输出
  * \ingroup gRef
  *
  * \sa ["File input/output"](http://en.cppreference.com/w/c/io). *cppreference.com*.
@@ -12,7 +12,7 @@
  *     + [Error handling](http://en.cppreference.com/w/c/io#Error_handling)
  *     + [Operations on files](http://en.cppreference.com/w/c/io#Operations_on_files)
  *
- * \version 2018-04-19
+ * \version 2018-04-21
  * \since 2016-11-14
  * \authors zhengrr
  * \copyright CC BY 4.0
