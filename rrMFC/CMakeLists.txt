@@ -4,22 +4,19 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-08 – 2018-04-20
+# 2017-12-08 – 2018-04-23
 # The MIT License
 
-project("rrMFC" VERSION 2018.4.20 LANGUAGES C CXX)
+project("rrMFC" VERSION 2018.4.23 LANGUAGES C CXX)
 project_extra()
-highest_warning_level(ANALYZE)
 
 facile_add_doxygen()
 
-facile_add_library(SUBNAME "Utilities" TARGET_NAME_VARIABLE sUtilsLib
-  STATIC "utils/api.h"
-         "utils/concol.h"    "utils/concol.c"
-         "utils/dbgcon.h"    "utils/dbgcon.c"
-         "utils/sysmsg.h"
-         "utils/sysmsgstr.h" "utils/sysmsgstr.c"
-  PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}")
+aux_source_directory_enhanced(zSrc RECURSE C SOURCE_DIRECTORY "utils")
+facile_add_library(SUBNAME "Utilities"
+      TARGET_NAME_VARIABLE  sUtilsLib
+                    STATIC  ${zSrc}
+                PROPERTIES  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}")
 
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-04-13
+/// \version 2018-04-23
 /// \since 2018-04-13
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -27,7 +27,6 @@ public:
 
 #// Overridables
 protected:
-    /// \brief Initialize Instance
     virtual BOOL InitInstance();
 
 #// Implementation

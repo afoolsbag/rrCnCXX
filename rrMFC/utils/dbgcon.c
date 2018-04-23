@@ -23,7 +23,7 @@ _NewDebugConsole(
     SetConFgCol(textColor);
     va_list va;
     va_start(va, format);
-    _tcprintf_s(format, va);
+    _vtcprintf_s(format, va);
     va_end(va);
 }
 
@@ -36,7 +36,7 @@ _DeleteDebugConsole(
     SetConFgCol(textColor);
     va_list va;
     va_start(va, format);
-    _tcprintf_s(format, va);
+    _vtcprintf_s(format, va);
     va_end(va);
     FreeConsole();
 }
@@ -50,7 +50,7 @@ _DebugConsolePrint(
     SetConFgCol(textColor);
     va_list va;
     va_start(va, format);
-    _tcprintf_s(format, va);
+    _vtcprintf_s(format, va);
     va_end(va);
 }
 

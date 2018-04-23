@@ -1,5 +1,5 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 aux_source_directory_enhanced(zSrc RECURSE MFC)
-facile_add_executable(SUBNAME "DateTime"
+facile_add_executable(SUBNAME "ProcessDialogCallee"
                         WIN32  ${zSrc}
                LINK_LIBRARIES "${sUtilsLib}")
