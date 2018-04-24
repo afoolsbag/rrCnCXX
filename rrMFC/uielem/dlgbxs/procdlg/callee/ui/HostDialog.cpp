@@ -27,13 +27,7 @@ HostDialog::
 HostDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(LightGreen, TEXT("HostDialog::Constructor\n"));
-}
-
-VOID HostDialog::
-SetExePath(CONST LPCTSTR exePath)
-{
-    ExePath = exePath;
+    DbgConPrt(LightYellow, TEXT("HostDialog::Constructor\n"));
 }
 
 #// Overridables
@@ -41,13 +35,13 @@ SetExePath(CONST LPCTSTR exePath)
 HostDialog::
 ~HostDialog()
 {
-    DbgConPrt(LightGreen, TEXT("HostDialog::Destructor\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::Destructor\n"));
 }
 
 BOOL HostDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrtWndMsg(Green, TEXT("HostDialog::OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtWndMsg(Yellow, TEXT("HostDialog::OnWndMsg"), message, wParam, lParam, pResult);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -55,30 +49,14 @@ VOID HostDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrt(LightGreen, TEXT("HostDialog::DoDataExchange\n"));
-}
-
-BOOL HostDialog::
-OnInitDialog()
-{
-    CDialog::OnInitDialog();
-    DbgConPrt(LightYellow, TEXT("HostDialog::OnInitDialog\n"));
-
-    CRect dlgRect;
-    GetWindowRect(&dlgRect);
-
-    CRect dskRect;
-    ::GetWindowRect(::GetDesktopWindow(), &dskRect);
-
-    MoveWindow(dskRect.right / 2, dskRect.bottom / 3, dlgRect.Width(), dlgRect.Height(), FALSE);
-
-    return TRUE;
+    DbgConPrt(LightYellow, TEXT("HostDialog::DoDataExchange\n"));
 }
 
 VOID HostDialog::
 OnCancel()
 {
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnCancel\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnCancel\n"));
+    PostQuitMessage(EXIT_SUCCESS);
     CDialog::OnCancel();
 }
 
@@ -89,21 +67,7 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnCreate\n"));
-
-    TCHAR args[16];
-    _stprintf_s(args, _countof(args), TEXT(" /host %08p"), GetSafeHwnd());
-    STARTUPINFO suInfo = {};
-    suInfo.cb = sizeof(suInfo);
-    PROCESS_INFORMATION procInfo = {};
-
-    if (!CreateProcess(ExePath, args, NULL, NULL, FALSE, 0, NULL, NULL, &suInfo, &procInfo)) {
-        DbgConPrt(White, TEXT("CreateProcess failed: %lu\n"), GetLastError());
-        return -1;
-    }
-    CloseHandle(procInfo.hProcess);
-    CloseHandle(procInfo.hThread);
-
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnCreate\n"));
     return 0;
 }
 
@@ -111,14 +75,14 @@ VOID HostDialog::
 OnDestroy()
 {
     CDialog::OnDestroy();
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnDestroy\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnDestroy\n"));
 }
 
 VOID HostDialog::
 OnMove(INT x, INT y)
 {
     CDialog::OnMove(x, y);
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnMove\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnMove\n"));
     if (GuestHwnd) {
         DbgConPrt(White, TEXT("RM_RRMFC_HOST_MOVING: %d, %d\n"), x, y);
         ::PostMessage(GuestHwnd, RM_RRMFC_HOST_MOVING, x, y);
@@ -129,7 +93,7 @@ LRESULT HostDialog::
 OnRrmfcGuestCreating(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnRrmfcGuestCreating\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnRrmfcGuestCreating\n"));
     GuestHwnd = reinterpret_cast<HWND>(lParam);
     return NULL;
 }
@@ -137,7 +101,7 @@ OnRrmfcGuestCreating(WPARAM wParam, LPARAM lParam)
 LRESULT HostDialog::
 OnRrmfcGuestSizing(WPARAM wParam, LPARAM lParam)
 {
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnRrmfcGuestSizing\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnRrmfcGuestSizing\n"));
     CRect rect;
     GetClientRect(&rect);
     rect.right = rect.left + wParam + 20;
@@ -151,6 +115,6 @@ LRESULT HostDialog::
 OnRrmfcGuestDestroying(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnRrmfcGuestDestroying\n"));
+    DbgConPrt(LightYellow, TEXT("HostDialog::OnRrmfcGuestDestroying\n"));
     return NULL;
 }

@@ -32,6 +32,9 @@
 #ifndef WM_ALTTABACTIVE
 #define WM_ALTTABACTIVE                 0x0029
 #endif
+#ifndef WM_UAHDESTROYWINDOW
+#define WM_UAHDESTROYWINDOW             0x0090
+#endif
 #ifndef WM_UAHDRAWMENU
 #define WM_UAHDRAWMENU                  0x0091
 #endif
@@ -47,6 +50,9 @@
 #ifndef WM_NCUAHDRAWCAPTION
 #define WM_NCUAHDRAWCAPTION             0x00AE
 #endif
+#ifndef WM_AFX_reserved_361
+#define WM_AFX_reserved_361             0x0361
+#endif
 #ifndef WM_AFX_reserved_362
 #define WM_AFX_reserved_362             0x0362
 #endif
@@ -58,6 +64,12 @@
 #endif
 #ifndef WM_AFX_reserved_36a
 #define WM_AFX_reserved_36a             0x036A
+#endif
+#ifndef WM_AFX_reserved_36b
+#define WM_AFX_reserved_36b             0x036B
+#endif
+#ifndef WM_AFX_reserved_36c
+#define WM_AFX_reserved_36c             0x036C
 #endif
 #ifndef WM_AFX_reserved_36d
 #define WM_AFX_reserved_36d             0x036D

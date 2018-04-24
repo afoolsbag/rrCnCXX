@@ -21,7 +21,7 @@ SideDialog::
 SideDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(LightGreen, TEXT("SideDialog::Constructor\n"));
+    DbgConPrt(LightBlue, TEXT("SideDialog::Constructor\n"));
 }
 
 #// Overridables
@@ -29,14 +29,21 @@ SideDialog(CWnd *pParent /*=NULL*/)
 SideDialog::
 ~SideDialog()
 {
-    DbgConPrt(LightGreen, TEXT("SideDialog::Destructor\n"));
+    DbgConPrt(LightBlue, TEXT("SideDialog::Destructor\n"));
+}
+
+BOOL SideDialog::
+OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
+{
+    DbgConPrtWndMsg(Blue, TEXT("SideDialog::OnWndMsg"), message, wParam, lParam, pResult);
+    return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 VOID SideDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrt(LightGreen, TEXT("SideDialog::DoDataExchange\n"));
+    DbgConPrt(LightBlue, TEXT("SideDialog::DoDataExchange\n"));
 }
 
 #// Message Handlers
@@ -46,7 +53,7 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrt(LightGreen, TEXT("SideDialog::OnCreate\n"));
+    DbgConPrt(LightBlue, TEXT("SideDialog::OnCreate\n"));
     return 0;
 }
 
@@ -54,14 +61,14 @@ VOID SideDialog::
 OnDestroy()
 {
     CDialog::OnDestroy();
-    DbgConPrt(LightGreen, TEXT("SideDialog::OnDestroy\n"));
+    DbgConPrt(LightBlue, TEXT("SideDialog::OnDestroy\n"));
 }
 
 VOID SideDialog::
 OnMove(INT x, INT y)
 {
     CDialog::OnMove(x, y);
-    DbgConPrt(LightGreen, TEXT("SideDialog::OnMove\n"));
+    DbgConPrt(LightBlue, TEXT("SideDialog::OnMove\n"));
 
     if (CWnd *par = GetParent()) {
         CRect sideDlgRect;

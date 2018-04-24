@@ -32,6 +32,7 @@ public:
     virtual ~MainDialog();
 
 protected:
+    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
     virtual VOID DoDataExchange(CDataExchange *pDX);
     virtual VOID OnOK();
     virtual VOID OnCancel();
@@ -43,9 +44,6 @@ protected:
 #// Message Handlers
 protected:
     afx_msg VOID OnBnClickedBrowseButton();
-
-    afx_msg LRESULT OnRrmfcProcessDialogCalleeCreating(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnRrmfcProcessDialogCalleeDestroying(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP()
 };

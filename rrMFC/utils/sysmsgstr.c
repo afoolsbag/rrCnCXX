@@ -113,6 +113,7 @@ SystemMessageString(
         M(WM_GETDLGCODE);            /*   0x87 */
         M(WM_SYNCPAINT);             /*   0x88 */
 
+        M(WM_UAHDESTROYWINDOW);      /*   0x90 */
         M(WM_UAHDRAWMENU);           /*   0x91 */
         M(WM_UAHDRAWMENUITEM);       /*   0x92 */
         M(WM_UAHINITMENU);           /*   0x93 */
@@ -314,10 +315,13 @@ SystemMessageString(
         M(WM_HANDHELDLAST);          /*  0x35F */
 
         M(WM_AFXFIRST);              /*  0x360 */
+        M(WM_AFX_reserved_361);      /*  0x361 */
         M(WM_AFX_reserved_362);      /*  0x362 */
         M(WM_AFX_reserved_363);      /*  0x363 */
         M(WM_AFX_reserved_364);      /*  0x364 */
         M(WM_AFX_reserved_36a);      /*  0x36A */
+        M(WM_AFX_reserved_36b);      /*  0x36B */
+        M(WM_AFX_reserved_36c);      /*  0x36C */
         M(WM_AFX_reserved_36d);      /*  0x36D */
         M(WM_AFX_reserved_36e);      /*  0x36E */
         M(WM_AFXLAST);               /*  0x37F */
@@ -329,6 +333,18 @@ SystemMessageString(
 
         M(WM_APP);                   /* 0x8000 */
 #undef M
-    default: { static CONST TCHAR str[] = _T("UNKNOWN"); return str; } break;
-    }
+    default: {
+        if (messageNumber < WM_USER) {
+            static CONST TCHAR str[] = _T("UNKNOWN_SYSTEM_MESSAGE"); return str;
+        } else if (messageNumber < WM_APP) {
+            static CONST TCHAR str[] = _T("UNKNOWN_PRIVATE_MESSAGE"); return str;
+        } else if (messageNumber < 0xC000) {
+            static CONST TCHAR str[] = _T("UNKNOWN_APPLICATION_MESSAGE"); return str;
+        } else if (messageNumber < 0xFFFF) {
+            static CONST TCHAR str[] = _T("UNKNOWN_REGISTERED_MESSAGE"); return str;
+        } else {
+            static CONST TCHAR str[] = _T("UNKNOWN_SYSTEM_MESSAGE"); return str;
+        }
+    } break;
+    }/*switch*/
 }

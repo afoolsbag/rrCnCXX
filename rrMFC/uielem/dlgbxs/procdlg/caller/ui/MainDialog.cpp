@@ -13,8 +13,6 @@ IMPLEMENT_DYNCREATE(MainDialog, CDialog)
 
 BEGIN_MESSAGE_MAP(MainDialog, CDialog)
     ON_BN_CLICKED(IDC_BROWSE_BUTTON, &MainDialog::OnBnClickedBrowseButton)
-    ON_REGISTERED_MESSAGE(RM_RRMFC_PROCESS_DIALOG_CALLEE_CREATING, &MainDialog::OnRrmfcProcessDialogCalleeCreating)
-    ON_REGISTERED_MESSAGE(RM_RRMFC_PROCESS_DIALOG_CALLEE_DESTROYING, &MainDialog::OnRrmfcProcessDialogCalleeDestroying)
 END_MESSAGE_MAP()
 
 #// Constructors
@@ -34,6 +32,13 @@ MainDialog::
     DbgConPrt(LightYellow, TEXT("MainDialog::Destructor\n"));
 }
 
+BOOL MainDialog::
+OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
+{
+    DbgConPrtWndMsg(Yellow, TEXT("MainDialog::OnWndMsg"), message, wParam, lParam, pResult);
+    return CDialog::OnWndMsg(message, wParam, lParam, pResult);
+}
+
 VOID MainDialog::
 DoDataExchange(CDataExchange *pDX)
 {
@@ -49,19 +54,10 @@ OnOK()
 
     CString path;
     PathEdit.GetWindowText(path);
-    TCHAR args[10];
-    _stprintf_s(args, _countof(args), TEXT(" %08p"), GetSafeHwnd());
-    STARTUPINFO suInfo = {};
-    suInfo.cb = sizeof(suInfo);
-    PROCESS_INFORMATION procInfo = {};
 
-    if (!CreateProcess(path, args, NULL, NULL, FALSE, 0, NULL, NULL, &suInfo, &procInfo)) {
-        DbgConPrt(White, TEXT("CreateProcess failed: %lu.\n"), GetLastError());
-        return;
-    }
-
-    CloseHandle(procInfo.hProcess);
-    CloseHandle(procInfo.hThread);
+    HostDialog hostDlg;
+    hostDlg.SetExePath(path);
+    hostDlg.DoModal();
 }
 
 VOID MainDialog::
@@ -85,27 +81,5 @@ OnBnClickedBrowseButton()
     if (fileDlg.DoModal() != IDOK)
         return;
     PathEdit.SetWindowText(fileDlg.GetPathName());
-}
-
-LRESULT MainDialog::
-OnRrmfcProcessDialogCalleeCreating(WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(wParam);
-    DbgConPrt(LightYellow, TEXT("MainDialog::OnRrmfcProcessDialogCalleeCreating\n"));
-
-    HWND hwnd = reinterpret_cast<HWND>(lParam);
-    DbgConPrt(White, TEXT("Receive message paramater: %p\n"), hwnd);
-    HostDialog hostDlg(hwnd, this);
-    hostDlg.DoModal();
-
-    return NULL;
-}
-
-LRESULT MainDialog::
-OnRrmfcProcessDialogCalleeDestroying(WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(wParam);
-    DbgConPrt(LightYellow, TEXT("MainDialog::OnRrmfcProcessDialogCalleeDestroying\n"));
-    DbgConPrt(White, TEXT("Receive message paramater: %p\n"), reinterpret_cast<HWND>(lParam));
-    return NULL;
+    OnOK();
 }
