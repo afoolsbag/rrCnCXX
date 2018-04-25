@@ -5,8 +5,8 @@
  *
  * \sa ["Algorithms"](http://en.cppreference.com/w/c/algorithm). *cppreference.com*.
  *
- * \version 2018-04-21
- * \date 2018-01-17
+ * \version 2018-04-25
+ * \since 2018-01-17
  * \authors zhengrr
  * \copyright The MIT License
  *
@@ -18,9 +18,8 @@
 
 #include <check/check.h>
 
+#include "cdef.h"
 #include "algo/tsuite_algo.h"
-
-#define countof(array) (sizeof(array) / sizeof((array)[0]))
 
 static int cmp(const void *lhs, const void *rhs)
 {
@@ -29,12 +28,10 @@ static int cmp(const void *lhs, const void *rhs)
 	return (l > r) - (l < r);
 }
 
-/**
- * \brief 更快排序（Quicker Sort）。
- *        对一个范围内的拥有一定未指定类型的元素排序。
- * \remarks 虽然名字是更快排序，但实际上C标准并未限定其实现方式。
- * \sa http://en.cppreference.com/w/c/algorithm/qsort
- */
+/** \brief 更快排序（Quicker Sort）。
+ *         对一个范围内的拥有一定未指定类型的元素排序。
+ *  \remarks 虽然名字是更快排序，但实际上C标准并未限定其实现方式。
+ *  \sa http://en.cppreference.com/w/c/algorithm/qsort */
 START_TEST(test_qsort)
 	int data[] = {3, 0, 2, 1};
 	qsort(data, countof(data), sizeof(data[0]), cmp);
@@ -44,12 +41,10 @@ START_TEST(test_qsort)
 	ck_assert_int_eq(data[3], 3);
 END_TEST
 
-/**
- * \brief 二分搜索（Binary Search）。
- *        在未指定类型的数组中搜索一个元素。
- * \note 待搜索数组必须是有序的。
- * \sa http://en.cppreference.com/w/c/algorithm/bsearch
- */
+/** \brief 二分搜索（Binary Search）。
+ *         在未指定类型的数组中搜索一个元素。
+ *  \note 待搜索数组必须是有序的。
+ *  \sa http://en.cppreference.com/w/c/algorithm/bsearch */
 START_TEST(test_bsearch)
 	int data[] = {3, 0, 2, 1};
 	const int key = 2;

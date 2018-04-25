@@ -16,7 +16,7 @@
 **//*===-------------------------------------------------------------------===*/
 
 #include <check/check.h>
-#include "cstdver.h"
+#include "cver.h"
 #include "type/tsuite_type.h"
 
 struct point_t {

@@ -5,7 +5,7 @@
  *
  * \sa ["Conversions to numeric formats"](http://en.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
  *
- * \version 2018-04-21
+ * \version 2018-04-25
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright The MIT License
@@ -14,41 +14,37 @@
 **//*===-------------------------------------------------------------------===*/
 
 #include <assert.h>
-#ifndef static_assert
-#define static_assert _Static_assert
-#endif/*static_assert*/
 
 #include <float.h>
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include "cstdver.h"
+#include <check/check.h>
+
+#include "cver.h"
+#include "cdef.h"
 #include "str/tsuite_str.h"
 
-/**
- * \brief ASCII to Integer
- * \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*.
- */
+/** \brief ASCII to Integer.
+ *         将字节字符串转换成整数值。
+ *  \sa http://en.cppreference.com/w/c/string/byte/atoi */
 START_TEST(test_atoi)
 	static_assert(sizeof(int) == sizeof(int32_t), "int isn't 32bits.");
 	const int i = atoi("2147483647");
 	ck_assert_int_eq(i, INT32_MAX);
 END_TEST
 
-/**
- * \brief ASCII to Long
- * \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*.
- */
+/** \brief ASCII to Integer.
+ *         将字节字符串转换成整数值。
+ *  \sa http://en.cppreference.com/w/c/string/byte/atoi */
 START_TEST(test_atol)
 	static_assert(sizeof(long) == sizeof(int32_t), "long isn't 32bits.");
 	const long l = atol("2147483647");
 	ck_assert_int_eq(l, INT32_MAX);
 END_TEST
 
-/**
- * \brief ASCII to Long-Long
- * \sa ["atoi, atol, atoll"](http://en.cppreference.com/w/c/string/byte/atoi). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成整数值（ascii to long-long）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/atoi */
 START_TEST(test_atoll)
 #if C99
 	static_assert(sizeof(long long) == sizeof(int64_t),
@@ -58,30 +54,24 @@ START_TEST(test_atoll)
 #endif/*C99*/
 END_TEST
 
-/**
- * \brief ASCII to Float
- * \sa ["atof"](http://en.cppreference.com/w/c/string/byte/atof). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成浮点值（ascii to float）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/atof */
 START_TEST(test_atof)
 	static_assert(15 <= DBL_DIG, "double's decimal digits less 15.");
 	const double d = atof("0.123456789012345");
 	ck_assert_double_eq(d, 0.123456789012345);
 END_TEST
 
-/**
- * \brief (Byte) String to Long
- * \sa ["strtol, strtoll"](http://en.cppreference.com/w/c/string/byte/strtol). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成整数值（string to long）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtol */
 START_TEST(test_strtol)
 	static_assert(sizeof(long) == sizeof(int32_t), "long isn't 32bits.");
 	const long i = strtol("2147483647", NULL, 0);
 	ck_assert_int_eq(i, INT32_MAX);
 END_TEST
 
-/**
- * \brief (Byte) String to Unsigned-Long
- * \sa ["strtoul, strtoull"](http://en.cppreference.com/w/c/string/byte/strtoul). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成无符号整数值（string to unsigned-long）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtoul */
 START_TEST(test_strtoul)
 	static_assert(sizeof(unsigned long) == sizeof(uint32_t),
 		      "unsigned long isn't 32bits.");
@@ -89,10 +79,8 @@ START_TEST(test_strtoul)
 	ck_assert_uint_eq(l, UINT32_MAX);
 END_TEST
 
-/**
- * \brief (Byte) String to Long-Long
- * \sa ["strtol, strtoll"](http://en.cppreference.com/w/c/string/byte/strtol). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成整数值（string to long-long）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtol */
 START_TEST(test_strtoll)
 #if C99
 	static_assert(sizeof(long long) == sizeof(int64_t),
@@ -102,10 +90,8 @@ START_TEST(test_strtoll)
 #endif/*C99*/
 END_TEST
 
-/**
- * \brief (Byte) String to Unsigned-Long-Long
- * \sa ["strtoul, strtoull"](http://en.cppreference.com/w/c/string/byte/strtoul). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成无符号整数值（string to unsigned-long-long）
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtoul */
 START_TEST(test_strtoull)
 #if C99
 	static_assert(sizeof(unsigned long long) == sizeof(uint64_t),
@@ -115,32 +101,30 @@ START_TEST(test_strtoull)
 #endif/* C99*/
 END_TEST
 
-/**
- * \brief (Byte) String to Integer-Max
- * \sa ["strtoimax, strtoumax"](http://en.cppreference.com/w/c/string/byte/strtoimax). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成`intmax_t`（string to integer-max）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtoimax */
 START_TEST(test_strtoimax)
 #if C99
+	static_assert(sizeof(intmax_t) == sizeof(int64_t),
+		      "intmax_t isn't 64bits.");
 	const intmax_t imax = strtoimax("9223372036854775807", NULL, 0);
 	ck_assert_int_eq(imax, INTMAX_MAX);
 #endif/*C99*/
 END_TEST
 
-/**
- * \brief (Byte) String to Unsigned-Max
- * \sa ["strtoimax, strtoumax"](http://en.cppreference.com/w/c/string/byte/strtoimax). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成`uintmax_t`（string to unsigned-max）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtoimax */
 START_TEST(test_strtoumax)
 #if C99
+	static_assert(sizeof(uintmax_t) == sizeof(int64_t),
+		      "uintmax_t isn't 64bits.");
 	const uintmax_t umax = strtoumax("0xFFFFFFFFFFFFFFFF", NULL, 0);
 	ck_assert_int_eq(umax, UINTMAX_MAX);
 #endif/*C99*/
 END_TEST
 
-/**
- * \brief (Byte) String to Float
- * \sa ["strtof, strtod, strtold"](http://en.cppreference.com/w/c/string/byte/strtof). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成浮点值（string to float）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtof */
 START_TEST(test_strtof)
 #if C99
 	static_assert(6 <= FLT_DIG, "float's decimal digits less 6.");
@@ -148,20 +132,16 @@ START_TEST(test_strtof)
 #endif/*C99*/
 END_TEST
 
-/**
- * \brief (Byte) String to Double
- * \sa ["strtof, strtod, strtold"](http://en.cppreference.com/w/c/string/byte/strtof). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成浮点值（string to double）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtof */
 START_TEST(test_strtod)
 	static_assert(15 <= DBL_DIG, "double's decimal digits less 15.");
 	ck_assert_double_eq(strtod("0.123456789012345", NULL),
 			    0.123456789012345);
 END_TEST
 
-/**
- * \brief (Byte) String to Long-Double
- * \sa ["strtof, strtod, strtold"](http://en.cppreference.com/w/c/string/byte/strtof). *cppreference.com*.
- */
+/** \brief 将字节字符串转换成浮点值（string to long-double）。
+ *  \sa http://en.cppreference.com/w/c/string/byte/strtof */
 START_TEST(test_strtold)
 #if C99
 	static_assert(18 <= LDBL_DIG, "long double's decimal digits less 18.");

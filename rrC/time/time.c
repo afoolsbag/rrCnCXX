@@ -17,7 +17,7 @@
 
 #include <check/check.h>
 
-#include "cstdver.h"
+#include "cver.h"
 #include "time/tsuite_time.h"
 
 /**

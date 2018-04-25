@@ -1,6 +1,6 @@
 #pragma once
-#ifndef STR_TSUITESTR_H_
-#define STR_TSUITESTR_H_
+#ifndef RRC_STR_TSUITESTR_H_
+#define RRC_STR_TSUITESTR_H_
 
 #include <check/check.h>
 
@@ -10,4 +10,4 @@ TCase *tcase_bstr_cnv(void);
 TCase *tcase_bstr_exam(void);
 TCase *tcase_bstr_man(void);
 
-#endif/*STR_TSUITESTR_H_*/
+#endif/*RRC_STR_TSUITESTR_H_*/

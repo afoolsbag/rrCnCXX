@@ -1,13 +1,13 @@
 /*===-- Character ----------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_char 字符
- * \ingroup g_type
+ * \defgroup gChar 字符
+ * \ingroup gType
  *
  * \sa ["Character types"](http://en.cppreference.com/w/c/language/arithmetic_types#Character_types). *cppreference.com*.
  * \sa ["character constant"](http://en.cppreference.com/w/c/language/character_constant). *cppreference.com*.
  * \sa ["Escape sequences"](http://en.cppreference.com/w/c/language/escape). *cppreference.com*.
  *
- * \version 2018-03-29
+ * \version 2018-04-25
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License
@@ -15,7 +15,7 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include "cstdver.h"
+#include "cver.h"
 
 #if N1040
 # include <uchar.h>

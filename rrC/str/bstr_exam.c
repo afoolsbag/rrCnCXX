@@ -1,6 +1,6 @@
 /*===-- Byte String Examination --------------------------------*- C -*-===*//**
  *
- * \defgroup gBStrExam 单字节字符串检验
+ * \defgroup gBStrExam 空终止字节字符串：字符串检验
  * \ingroup gStr
  *
  * \sa ["String examination"](http://en.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.

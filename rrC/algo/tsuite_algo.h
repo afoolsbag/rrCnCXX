@@ -1,6 +1,6 @@
 #pragma once
-#ifndef ALGO_TSUITEALGO_H_
-#define ALGO_TSUITEALGO_H_
+#ifndef RRC_ALGO_TSUITEALGO_H_
+#define RRC_ALGO_TSUITEALGO_H_
 
 #include <check/check.h>
 
@@ -8,4 +8,4 @@ Suite *tsuite_algo(void);
 
 TCase *tcase_algo(void);
 
-#endif/*ALGO_TSUITEALGO_H_*/
+#endif/*RRC_ALGO_TSUITEALGO_H_*/

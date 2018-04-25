@@ -3,7 +3,7 @@
  * \mainpage
  * \tableofcontents
  *
- * \version 2018-04-08
+ * \version 2018-04-25
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0
@@ -31,7 +31,7 @@
  *     + [Atomic operations library](http://en.cppreference.com/w/c/atomic)
  *     + [Thread support library](http://en.cppreference.com/w/c/thread)
  *
- * \version 2018-04-19
+ * \version 2018-04-25
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0

@@ -1,7 +1,7 @@
 /*===-- Numerics -----------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_numr 数值
- * \ingroup g_ref
+ * \defgroup gNumr 数值
+ * \ingroup gRef
  *
  * \sa ["Numerics"](http://en.cppreference.com/w/c/numeric). *cppreference.com*.
  *     + [Common mathematical functions](http://en.cppreference.com/w/c/numeric/math)
@@ -10,8 +10,9 @@
  *     + [Complex number arithmetic](http://en.cppreference.com/w/c/numeric/complex)
  *     + [Type-generic math](http://en.cppreference.com/w/c/numeric/tgmath)
  *
- * \author zhengrr
- * \date 2018-1-23 – 2-7
- * \copyright The MIT License
+ * \version 2018-04-25
+ * \since 2018-01-23
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/
