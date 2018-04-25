@@ -17,12 +17,10 @@
 
 #include "mem/tsuite_mem.h"
 
-/**
- * \brief 内存分配（Memory Allocation）。
- *        分配内存。
- * \sa http://en.cppreference.com/w/c/memory/malloc
- * \sa http://en.cppreference.com/w/c/memory/free
- */
+/** \brief 内存分配（Memory Allocation）。
+ *         分配内存。
+ *  \sa http://en.cppreference.com/w/c/memory/malloc
+ *  \sa http://en.cppreference.com/w/c/memory/free */
 START_TEST(test_malloc)
 	uint8_t *int_ptr = malloc(sizeof(uint8_t));
 	if (NULL == int_ptr) {
@@ -39,11 +37,9 @@ START_TEST(test_malloc)
 	(void) int_ptr;
 END_TEST
 
-/**
- * \brief 清零内存（Clear Allocation）。
- *        分配并清零内存。
- * \sa http://en.cppreference.com/w/c/memory/calloc
- */
+/** \brief 清零内存（Clear Allocation）。
+ *         分配并清零内存。
+ *  \sa http://en.cppreference.com/w/c/memory/calloc */
 START_TEST(test_calloc)
 	int *int_ptr = calloc(1, sizeof(int));
 	if (NULL == int_ptr) {
@@ -60,7 +56,7 @@ START_TEST(test_calloc)
 END_TEST
 
 /** \brief Re-Allocation
- * \sa ["realloc"](http://en.cppreference.com/w/c/memory/realloc). *cppreference.com*. */
+ *  \sa ["realloc"](http://en.cppreference.com/w/c/memory/realloc). *cppreference.com*. */
 START_TEST(test_realloc)
 	uint8_t *int_ptr = realloc(NULL, 1 * sizeof(uint8_t));
 	if (NULL == int_ptr) {

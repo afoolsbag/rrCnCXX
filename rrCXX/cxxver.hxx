@@ -1,7 +1,7 @@
-//===-- C++ Standard Version ------------------------------------*- C++ -*-===//
+//===-- C++ Version ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief C++标准版本
+/// \brief C++版本。
 ///
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ compiler support"](http://en.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
@@ -9,15 +9,15 @@
 /// \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
 /// \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
 ///
-/// \version 2018-03-31
+/// \version 2018-04-25
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
-#ifndef RRCXX_STD_HXX_
-#define RRCXX_STD_HXX_
+#ifndef RRCXX_CXXVER_HXX_
+#define RRCXX_CXXVER_HXX_
 
 // Language Standards
 #ifndef __cplusplus
@@ -635,4 +635,4 @@
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1653
 #define N1653 (CXX11)
 
-#endif// RRCXX_STD_HXX_
+#endif//RRCXX_CXXVER_HXX_

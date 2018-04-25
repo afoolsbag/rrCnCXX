@@ -14,7 +14,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxxstdver.hxx"
+#include "cxxver.hxx"
 
 namespace {
 

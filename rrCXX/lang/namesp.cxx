@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxxstdver.hxx"
+#include "cxxver.hxx"
 
 #if N2535
 namespace {

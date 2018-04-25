@@ -5,7 +5,7 @@
  *
  * \sa http://blog.airesoft.co.uk/2009/11/wm_messages/
  *
- * \version 2018-04-20
+ * \version 2018-04-24
  * \since 2018-04-19
  * \authors zhengrr
  * \copyright The MIT License

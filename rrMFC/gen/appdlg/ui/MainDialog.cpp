@@ -50,19 +50,12 @@ BEGIN_MESSAGE_MAP(MainDialog, CDialog)
 
 END_MESSAGE_MAP()
 
-
-#ifdef PREFUNCTION
-# error Macro name conflicts.
-#endif/*PREFUNCTION*/
-#define PREFUNCTION do{DbgConPrt(White, TEXT("%p "), GetSafeHwnd());}while(FALSE)
-
 #// Constructors
 
 MainDialog::
 MainDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::Constructor\n"));
 }
 
@@ -71,14 +64,47 @@ MainDialog(CWnd *pParent /*=NULL*/)
 MainDialog::
 ~MainDialog()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::Destructor\n"));
+}
+
+BOOL MainDialog::
+Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd /*=NULL*/)
+{
+    DbgConPrt(LightYellow, TEXT("MainDialog::Create\n"));
+    return CDialog::Create(lpszTemplateName, pParentWnd);
+}
+
+BOOL MainDialog::
+Create(UINT nIDTemplate, CWnd *pParentWnd /*=NULL*/)
+{
+    DbgConPrt(LightYellow, TEXT("MainDialog::Create\n"));
+    return CDialog::Create(nIDTemplate, pParentWnd);
+}
+
+BOOL MainDialog::
+CreateIndirect(LPCDLGTEMPLATE lpDialogTemplate, CWnd *pParentWnd /*=NULL*/, VOID *lpDialogInit /*=NULL*/)
+{
+    DbgConPrt(LightYellow, TEXT("MainDialog::CreateIndirect\n"));
+    return CDialog::CreateIndirect(lpDialogTemplate, pParentWnd, lpDialogInit);
+}
+
+BOOL MainDialog::
+CreateIndirect(HGLOBAL hDialogTemplate, CWnd *pParentWnd /*=NULL*/)
+{
+    DbgConPrt(LightYellow, TEXT("MainDialog::CreateIndirect\n"));
+    return CDialog::CreateIndirect(hDialogTemplate, pParentWnd);
+}
+
+INT_PTR MainDialog::
+DoModal()
+{
+    DbgConPrt(LightYellow, TEXT("MainDialog::DoModal\n"));
+    return CDialog::DoModal();
 }
 
 BOOL MainDialog::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::PreCreateWindow\n"));
     return CDialog::PreCreateWindow(cs);
 }
@@ -86,7 +112,6 @@ PreCreateWindow(CREATESTRUCT &cs)
 BOOL MainDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    PREFUNCTION;
     DbgConPrtWndMsg(Yellow, TEXT("MainDialog::OnWndMsg"), message, wParam, lParam, pResult);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
@@ -94,7 +119,6 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 VOID MainDialog::
 PreInitDialog()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::PreInitDialog\n"));
     CDialog::PreInitDialog();
 }
@@ -102,7 +126,6 @@ PreInitDialog()
 VOID MainDialog::
 DoDataExchange(CDataExchange *pDX)
 {
-    PREFUNCTION;
     CDialog::DoDataExchange(pDX);
     DbgConPrt(LightYellow, TEXT("MainDialog::DoDataExchange\n"));
 }
@@ -110,7 +133,6 @@ DoDataExchange(CDataExchange *pDX)
 BOOL MainDialog::
 OnInitDialog()
 {
-    PREFUNCTION;
     CDialog::OnInitDialog();
     DbgConPrt(LightYellow, TEXT("MainDialog::OnInitDialog\n"));
     return TRUE;
@@ -119,7 +141,6 @@ OnInitDialog()
 VOID MainDialog::
 OnOK()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnOK\n"));
     CDialog::OnOK();
 }
@@ -127,7 +148,6 @@ OnOK()
 VOID MainDialog::
 OnCancel()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnCancel\n"));
     CDialog::OnCancel();
 }
@@ -135,7 +155,6 @@ OnCancel()
 VOID MainDialog::
 PostNcDestroy()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::PostNcDestroy\n"));
     CDialog::PostNcDestroy();
 }
@@ -145,7 +164,6 @@ PostNcDestroy()
 BOOL MainDialog::
 OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    PREFUNCTION;
     if (!CDialog::OnNcCreate(lpCreateStruct))
         return FALSE;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnNcCreate\n"));
@@ -155,7 +173,6 @@ OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 INT MainDialog::
 OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-    PREFUNCTION;
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnCreate\n"));
@@ -165,7 +182,6 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 VOID MainDialog::
 OnDestroy()
 {
-    PREFUNCTION;
     CDialog::OnDestroy();
     DbgConPrt(LightYellow, TEXT("MainDialog::OnDestroy\n"));
 }
@@ -173,7 +189,6 @@ OnDestroy()
 VOID MainDialog::
 OnNcDestroy()
 {
-    PREFUNCTION;
     CDialog::OnNcDestroy();
     DbgConPrt(LightYellow, TEXT("MainDialog::OnNcDestroy\n"));
 }
@@ -181,7 +196,6 @@ OnNcDestroy()
 VOID MainDialog::
 OnChangeUIState(UINT nAction, UINT nUIElement)
 {
-    PREFUNCTION;
     CDialog::OnChangeUIState(nAction, nUIElement);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnChangeUIState\n"));
 }
@@ -189,7 +203,6 @@ OnChangeUIState(UINT nAction, UINT nUIElement)
 VOID MainDialog::
 OnUpdateUIState(UINT nAction, UINT nUIElement)
 {
-    PREFUNCTION;
     CDialog::OnUpdateUIState(nAction, nUIElement);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnUpdateUIState\n"));
 }
@@ -197,7 +210,6 @@ OnUpdateUIState(UINT nAction, UINT nUIElement)
 VOID MainDialog::
 OnNcRenderingChanged(BOOL bIsRendering)
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnNcRenderingChanged\n"));
     CDialog::OnNcRenderingChanged(bIsRendering);
 }
@@ -205,7 +217,6 @@ OnNcRenderingChanged(BOOL bIsRendering)
 VOID MainDialog::
 OnShowWindow(BOOL bShow, UINT nStatus)
 {
-    PREFUNCTION;
     CDialog::OnShowWindow(bShow, nStatus);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnShowWindow\n"));
 }
@@ -213,7 +224,6 @@ OnShowWindow(BOOL bShow, UINT nStatus)
 VOID MainDialog::
 OnActivateApp(BOOL bActive, DWORD dwThreadID)
 {
-    PREFUNCTION;
     CDialog::OnActivateApp(bActive, dwThreadID);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnActivateApp\n"));
 }
@@ -221,7 +231,6 @@ OnActivateApp(BOOL bActive, DWORD dwThreadID)
 BOOL MainDialog::
 OnNcActivate(BOOL bActive)
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnNcActivate\n"));
     return CDialog::OnNcActivate(bActive);
 }
@@ -229,7 +238,6 @@ OnNcActivate(BOOL bActive)
 VOID MainDialog::
 OnActivate(UINT nState, CWnd *pWndOther, BOOL bMinimized)
 {
-    PREFUNCTION;
     CDialog::OnActivate(nState, pWndOther, bMinimized);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnActivate\n"));
 }
@@ -237,7 +245,6 @@ OnActivate(UINT nState, CWnd *pWndOther, BOOL bMinimized)
 VOID MainDialog::
 OnWindowPosChanging(WINDOWPOS *lpwndpos)
 {
-    PREFUNCTION;
     CDialog::OnWindowPosChanging(lpwndpos);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnWindowPosChanging\n"));
 }
@@ -245,7 +252,6 @@ OnWindowPosChanging(WINDOWPOS *lpwndpos)
 VOID MainDialog::
 OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnNcCalcSize\n"));
     CDialog::OnNcCalcSize(bCalcValidRects, lpncsp);
 }
@@ -253,7 +259,6 @@ OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 VOID MainDialog::
 OnSize(UINT nType, INT cx, INT cy)
 {
-    PREFUNCTION;
     CDialog::OnSize(nType, cx, cy);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnSize\n"));
 }
@@ -261,7 +266,6 @@ OnSize(UINT nType, INT cx, INT cy)
 VOID MainDialog::
 OnMove(INT x, INT y)
 {
-    PREFUNCTION;
     CDialog::OnMove(x, y);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnMove\n"));
 }
@@ -269,7 +273,6 @@ OnMove(INT x, INT y)
 VOID MainDialog::
 OnWindowPosChanged(WINDOWPOS *lpwndpos)
 {
-    PREFUNCTION;
     CDialog::OnWindowPosChanged(lpwndpos);
     DbgConPrt(LightYellow, TEXT("MainDialog::OnWindowPosChanged\n"));
 }
@@ -277,7 +280,6 @@ OnWindowPosChanged(WINDOWPOS *lpwndpos)
 VOID MainDialog::
 OnNcPaint()
 {
-    PREFUNCTION;
     CDialog::OnNcPaint();
     DbgConPrt(LightYellow, TEXT("MainDialog::OnNcPaint\n"));
 }
@@ -285,7 +287,6 @@ OnNcPaint()
 BOOL MainDialog::
 OnEraseBkgnd(CDC *pDC)
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnEraseBkgnd\n"));
     return CDialog::OnEraseBkgnd(pDC);
 }
@@ -293,7 +294,6 @@ OnEraseBkgnd(CDC *pDC)
 VOID MainDialog::
 OnPaint()
 {
-    PREFUNCTION;
     CDialog::OnPaint();
     DbgConPrt(LightYellow, TEXT("MainDialog::OnPaint\n"));
 }
@@ -301,7 +301,6 @@ OnPaint()
 VOID MainDialog::
 OnClose()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnClose\n"));
     CDialog::OnClose();
 }
@@ -309,7 +308,6 @@ OnClose()
 VOID MainDialog::
 OnBnClickedOk()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedOk\n"));
     CDialog::OnOK();
 }
@@ -317,7 +315,6 @@ OnBnClickedOk()
 VOID MainDialog::
 OnBnClickedCancel()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedCancel\n"));
     CDialog::OnCancel();
 }
@@ -325,7 +322,6 @@ OnBnClickedCancel()
 VOID MainDialog::
 OnBnClickedAbort()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedAbort\n"));
     EndDialog(IDABORT);
 }
@@ -333,7 +329,6 @@ OnBnClickedAbort()
 VOID MainDialog::
 OnBnClickedRetry()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedRetry\n"));
     EndDialog(IDRETRY);
 }
@@ -341,7 +336,6 @@ OnBnClickedRetry()
 VOID MainDialog::
 OnBnClickedIgnore()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedIgnore\n"));
     EndDialog(IDIGNORE);
 }
@@ -349,7 +343,6 @@ OnBnClickedIgnore()
 VOID MainDialog::
 OnBnClickedYes()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedYes\n"));
     EndDialog(IDYES);
 }
@@ -357,7 +350,6 @@ OnBnClickedYes()
 VOID MainDialog::
 OnBnClickedNo()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedNo\n"));
     EndDialog(IDNO);
 }
@@ -365,7 +357,6 @@ OnBnClickedNo()
 VOID MainDialog::
 OnBnClickedClose()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedClose\n"));
     EndDialog(IDCLOSE);
 }
@@ -373,9 +364,9 @@ OnBnClickedClose()
 VOID MainDialog::
 OnBnClickedHelp()
 {
-    PREFUNCTION;
     DbgConPrt(LightYellow, TEXT("MainDialog::OnBnClickedHelp\n"));
     EndDialog(IDHELP);
 }
 
-#undef PREFUNCTION
+
+

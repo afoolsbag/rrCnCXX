@@ -9,7 +9,7 @@
  * @{
  */
 
-#include "cxxstdver.hxx"
+#include "cxxver.hxx"
 
 #if !N2660
 #include <mutex>

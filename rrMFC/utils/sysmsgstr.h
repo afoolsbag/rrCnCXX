@@ -3,7 +3,7 @@
  * \file
  * \brief 系统消息字串。
  *
- * \version 2018-04-20
+ * \version 2018-04-24
  * \since 2018-04-13
  * \authors zhengrr
  * \copyright The MIT License

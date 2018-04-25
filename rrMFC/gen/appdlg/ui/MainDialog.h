@@ -32,40 +32,60 @@ public:
 public:
     virtual ~MainDialog();
 
+    /// \brief Initializes the `CDialog` object. Creates a modeless dialog box and attaches it to the `CDialog` object.
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#create
+    virtual BOOL Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd = NULL) override;
+
+    /// \brief Initializes the `CDialog` object. Creates a modeless dialog box and attaches it to the `CDialog` object.
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#create
+    virtual BOOL Create(UINT nIDTemplate, CWnd *pParentWnd = NULL) override;
+
+    /// \brief Creates a modeless dialog box from a dialog-box template in memory (not resource-based).
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#createindirect
+    virtual BOOL CreateIndirect(LPCDLGTEMPLATE lpDialogTemplate, CWnd *pParentWnd = NULL, VOID *lpDialogInit = NULL) override;
+
+    /// \brief Creates a modeless dialog box from a dialog-box template in memory (not resource-based).
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#createindirect
+    virtual BOOL CreateIndirect(HGLOBAL hDialogTemplate, CWnd *pParentWnd = NULL) override;
+
+    /// \brief Calls a modal dialog box and returns when done.
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#domodal
+    virtual INT_PTR DoModal() override;
+
 protected:
     /// \brief Called before the creation of the Windows window attached to this `CWnd` object.
     /// \deprecated `Dialog`中无效的。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#precreatewindow
-    virtual BOOL PreCreateWindow(CREATESTRUCT &cs);
+    virtual BOOL PreCreateWindow(CREATESTRUCT &cs) override;
 
     /// \brief Indicates if a windows message was handled.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwndmsg
-    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
+    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
 
     /// \brief PreInitDialog.
     /// \remark 隐藏的。
-    virtual VOID PreInitDialog();
+    virtual VOID PreInitDialog() override;
 
     /// \brief For dialog data exchange and validation. Called by `UpdateData`.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#dodataexchange
-    virtual VOID DoDataExchange(CDataExchange *pDX);
+    virtual VOID DoDataExchange(CDataExchange *pDX) override;
 
     /// \brief Override to augment dialog-box initialization.
     ///        For initialize UI.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#oninitdialog
-    virtual BOOL OnInitDialog();
+    virtual BOOL OnInitDialog() override;
 
     /// \brief Override to perform the OK button action in a modal dialog box. The default closes the dialog box and `DoModal` returns `IDOK`.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#onok
-    virtual VOID OnOK();
+    virtual VOID OnOK() override;
 
     /// \brief Override to perform the Cancel button or ESC key action. The default closes the dialog box and `DoModal` returns `IDCANCEL`.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#oncancel
-    virtual VOID OnCancel();
+    virtual VOID OnCancel() override;
 
     /// \brief This virtual function is called by the default `OnNcDestroy` function after the window has been destroyed.
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#postncdestroy
-    virtual VOID PostNcDestroy();
+    virtual VOID PostNcDestroy() override;
 
 #// Implementation
 protected:
@@ -180,4 +200,5 @@ protected:
     afx_msg VOID OnBnClickedHelp();
 
     DECLARE_MESSAGE_MAP()
+public:
 };

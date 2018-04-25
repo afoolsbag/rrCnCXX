@@ -17,7 +17,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxxstdver.hxx"
+#include "cxxver.hxx"
 
 /// \brief all_of, any_of, none_of
 /// \sa ["all_of, any_of, none_of"](http://en.cppreference.com/w/cpp/algorithm/all_any_none_of). *cppreference.com*.

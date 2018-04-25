@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include "cxxstdver.hxx"
+#include "cxxver.hxx"
 
 /// \brief 向量的遍历
 TEST(vector, traverse) {

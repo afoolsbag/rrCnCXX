@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台颜色。
  *
- * \version 2018-04-20
+ * \version 2018-04-25
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
