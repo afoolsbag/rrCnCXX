@@ -1,8 +1,5 @@
 /** \copyright The MIT License */
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
 #define DEBUG
 #define RRMFC_UTILITIES_EXPORTS
 #include "dbgcon.h"
@@ -10,6 +7,8 @@
 #include <stdarg.h>
 #include <conio.h>
 #include <tchar.h>
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
 #include "sysmsgstr.h"
 

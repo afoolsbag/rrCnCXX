@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-04-25
+ * \version 2018-04-26
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,6 +13,9 @@
 #pragma once
 
 #ifdef DEBUG
+# define WIN32_LEAN_AND_MEAN
+# include <Windows.h>
+#
 # include "api.h"
 # include "concol.h"
 

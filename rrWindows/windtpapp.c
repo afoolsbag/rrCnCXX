@@ -1,11 +1,11 @@
 /*===-- Windows Desktop Application ----------------------------*- C -*-===*//**
  *
- * \defgroup g_win_dtp_app Windows®桌面应用程序
- * \ingroup g_dvlp
+ * \defgroup gWinDtpApp Windows®桌面应用程序
+ * \ingroup gDvlp
  *
  * \sa *Programming Windows®* §1.3.2 & §2.2.4
  *
- * \version 2018-04-16
+ * \version 2018-04-26
  * \since 2016-10-12
  * \authors zhengrr
  * \copyright The MIT License
@@ -15,8 +15,8 @@
 
 #include <stdlib.h>
 
-#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 /**

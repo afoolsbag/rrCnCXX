@@ -1,9 +1,9 @@
 /*===-- Windows Console Application ----------------------------*- C -*-===*//**
  *
- * \defgroup g_win_con_app Windows®控制台应用程序
- * \ingroup g_dvlp
+ * \defgroup gWinConApp Windows®控制台应用程序
+ * \ingroup gDvlp
  *
- * \version 2018-02-23
+ * \version 2018-04-26
  * \since 2016-10-12
  * \authors zhengrr
  * \copyright The MIT License
@@ -14,8 +14,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 /**
@@ -26,8 +26,8 @@
  * \param envp 环境变量（environment pointer）
  * \return 退出代码（exit code）
  *
- * \sa \ref s_hungarian_notation
- * \sa ["main: Program Startup"](https://docs.microsoft.com/cpp/cpp/main-program-startup). *Microsoft® Docs*.
+ * \sa \ref sHungarianNotation
+ * \sa https://docs.microsoft.com/cpp/cpp/main-program-startup
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {

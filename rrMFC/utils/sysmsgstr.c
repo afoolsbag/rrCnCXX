@@ -1,12 +1,11 @@
 /** \copyright The MIT License */
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
 #define RRMFC_UTILITIES_EXPORTS
 #include "sysmsgstr.h"
 
 #include <tchar.h>
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
 #include "sysmsg.h"
 

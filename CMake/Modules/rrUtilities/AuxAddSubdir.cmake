@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-04-21
+# 2017-12-18 – 2018-04-26
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -24,6 +24,10 @@ function(aux_add_subdirectories)
   set(zOneValKws)
   set(zMutValKws)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
+  if(DEFINED _UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
+    return()
+  endif()
 
   if(_WITH_OPTION)
     set(sOpt)

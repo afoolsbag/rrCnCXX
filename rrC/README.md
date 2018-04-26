@@ -57,8 +57,8 @@
 | global       | [`extern`]     | `volatile`       |  `gv_all_lower` |
 | global       | [`extern`]     | `const volatile` | `gcv_all_lower` |
 
-+ 对于数据，倾向于紧凑的命名，`name` `getname(id_t id)`
-+ 对于过程，倾向于明确的命名，`cut_off_power_of(device_t device)`
++ 对于数据，倾向于紧凑的命名：`name` `name_t nameof(id_t id);`
++ 对于指令，倾向于明确的命名：`errno_t cut_off_power_of(device_t device);`
 
 ### Formatting
 

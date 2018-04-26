@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台颜色。
  *
- * \version 2018-04-25
+ * \version 2018-04-26
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -11,6 +11,9 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
+
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
 #include "api.h"
 
