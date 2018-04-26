@@ -1,16 +1,21 @@
-/**
+/*===-- Executable ---------------------------------------------*- C -*-===*//**
+ *
  * \file
- * \brief “掷骰子”（Windows®动态链接库简单示例）。
- * \author zhengrr
- * \date 2018-1-3 – 22
+ * \brief “掷骰子”库。
+ *
+ * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
+ *
+ * \version 2018-04-26
+ * \since 2017-01-03
+ * \authors zhengrr
  * \copyright The MIT License
- */
+ *
+**//*===-------------------------------------------------------------------===*/
 
 #include <stdio.h>
 #include <stdlib.h>
-
-#define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 #include "lib.h"

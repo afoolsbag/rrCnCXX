@@ -21,10 +21,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #ifdef RRWINDOWS_ERRHDL_SHARED
 # ifdef RRWINDOWS_ERRHDL_EXPORTS
 #  define RRWINDOWS_ERRHDL_API __declspec(dllexport)
@@ -35,8 +31,12 @@ extern "C" {
 #  define RRWINDOWS_ERRHDL_API
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
- * \brief 获取错误码对应的描述字串（ANSI版本）。
+ * \brief 获取错误码对应的描述字串（ANSI适配）。
  * \warning 该字串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *
@@ -48,7 +48,7 @@ ErrorTextOfA(
     _In_ CONST DWORD errorCode);
 
 /**
- * \brief 获取错误码对应的描述字串（UNICODE版本）。
+ * \brief 获取错误码对应的描述字串（UNICODE适配）。
  * \warning 该字串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *

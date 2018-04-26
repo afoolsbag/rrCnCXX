@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 /**
- * \brief 连接共享文件夹（ANSI版本）。
+ * \brief 连接共享文件夹（ANSI适配）。
  *        开启访问权限。
  *
  * \param sharedFolderPath 共享文件夹路径。
@@ -49,7 +49,7 @@ ConnectSharedFolderA(
     _In_opt_ LPCSTR CONST password);
 
 /**
- * \brief 连接共享文件夹（UNICODE版本）。
+ * \brief 连接共享文件夹（UNICODE适配）。
  *        开启访问权限。
  *
  * \param sharedFolderPath 共享文件夹路径。
@@ -70,7 +70,7 @@ ConnectSharedFolderW(
 #endif
 
 /**
- * \brief 断开共享文件夹（ANSI版本）。
+ * \brief 断开共享文件夹（ANSI适配）。
  *        关闭访问权限。
  * \warning 该操作将强制关闭连接，不论连接是否正在被使用。
  *
@@ -84,7 +84,7 @@ DisconnectSharedFolderA(
     _In_z_ CONST LPCSTR sharedFolderPath);
 
 /**
- * \brief 断开共享文件夹（UNICODE版本）。
+ * \brief 断开共享文件夹（UNICODE适配）。
  *        关闭访问权限。
  * \warning 该操作将强制关闭连接，不论连接是否正在被使用。
  *
