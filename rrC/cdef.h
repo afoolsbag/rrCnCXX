@@ -16,6 +16,10 @@
 
 #include <stddef.h>
 
+#ifndef UNUSED
+#define UNUSED(x) ((void)(x))
+#endif/*UNUSED*/
+
 #ifndef bool
 #define bool _Bool
 #endif

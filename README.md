@@ -8,6 +8,21 @@
 >
 > [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
+## WWW
+
+/ [*36氪*](https://36kr.com/)
+/ [*CodeProject*](https://codeproject.com/)
+/ [*DevDocs*](https://devdocs.io/)
+/ [*Hacker News*](https://news.ycombinator.com/)
+/ [*InfoQ*](https://infoq.com/)
+/ [*ITeye*](http://iteye.com/)
+/ [*OverAPI.com*](http://overapi.com/)
+/ [*SegmentFault*](https://segmentfault.com/)
+/ [*Stack Overflow*](https://stackoverflow.com/)
+/ [*V2EX*](https://v2ex.com/)
+/ [*开源中国*](https://oschina.net/)
+/ [*前端乱炖*](http://html-js.com/)
+
 ## Symbols
 
 ### Directories
@@ -39,50 +54,25 @@
 
 ## Groceries
 
-[*CodeProject*](https://codeproject.com)
-[*SegmentFault*](https://segmentfault.com)
-[*V2EX*](https://v2ex.com)
-[*开源中国*](http://oschina.net)
-[*前端乱炖*](http://html-js.com)
-[*3D Visualization of a Convolutional Neural Network*](http://scs.ryerson.ca/~aharley/vis/conv)
-[*DevDocs*](https://devdocs.io)
-[*developerWorks*](https://ibm.com/developerworks)
-[*Font Awesome*](http://fontawesome.io)
-[*free-programming-books*](https://github.com/EbookFoundation/free-programming-books)
-[*Free Programming Ebooks*](http://oreilly.com/programming/free)
-[*“Hello World”大全*](http://netsmell.com/apps/helloworldcollection)
-[*IT eBooks*](http://it-ebooks.info)
-[*OverAPI.com*](http://overapi.com)
-[*Regexper*](https://regexper.com)
-[*tutorialspoint.com*](https://tutorialspoint.com)
-[*动画展示各种路径搜索算法*](http://webhek.com/post/pathfinding.html)
-[*实验楼*](https://shiyanlou.com)
-
-["新手关于如何看编程经典书的一些疑惑？"](https://zhihu.com/question/26157282). *知乎*.
-
-["什么才算是真正的编程能力？"](https://zhihu.com/question/31034164). *知乎*.
-
 ### Books
 
 ["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/).  *计算机书籍控*.
 + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
 + *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
+[free-programming-books](https://github.com/EbookFoundation/free-programming-books)
+
 ### Environments
 
-[*Cygwin*](http://cygwin.com)
-
-[*MinGW (Minimalist GNU for Windows)*](http://mingw.org)
+/ [*Cygwin*](http://cygwin.com)
+/ [*MinGW (Minimalist GNU for Windows)*](http://mingw.org)
 
 ### Editors
 
-[*Emacs (Editor Macros)*](https://gnu.org/software/emacs/)
-
-[*Vim (Visual Editor Improved)*](http://vim.org/)
-
-[*Notepad++*](https://notepad-plus-plus.org)
-
-[*Visual Studio Code*](https://code.visualstudio.com)
+/ [*Emacs (Editor Macros)*](https://gnu.org/software/emacs/)
+/ [*Vim (Visual Editor Improved)*](http://vim.org/)
+/ [*Notepad++*](https://notepad-plus-plus.org)
+/ [*Visual Studio Code*](https://code.visualstudio.com)
 
 ### Integrated Development Environments
 

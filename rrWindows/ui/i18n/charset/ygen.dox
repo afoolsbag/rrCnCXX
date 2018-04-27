@@ -1,6 +1,6 @@
 /*===-- Unicode and Character Sets -----------------------------*- C -*-===*//**
  *
- * \defgroup gUnicode 统一码和字符集
+ * \defgroup gCharSet 统一码和字符集
  * \ingroup gI18n
  *
  * \sa ["Unicode and Character Sets"](https://msdn.microsoft.com/library/dd374083). *Microsoft® Developer Network*.

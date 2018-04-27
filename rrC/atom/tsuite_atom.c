@@ -1,4 +1,4 @@
-#include "atom/tsuite_atom.h"
+#include "tsuite_atom.h"
 
 Suite *tsuite_atom(void)
 {

@@ -1,0 +1,19 @@
+/*===-- Desktop Environment ------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gEnv 桌面环境
+ * \ingroup gDvlp
+ *
+ * \sa ["Desktop Environment"](https://msdn.microsoft.com/library/ee663298). *Microsoft® Developer Network*.
+ *     + [Windows Shell](https://msdn.microsoft.com/library/bb773177)
+ *     + [Windows Property System](https://msdn.microsoft.com/library/ff728898)
+ *     + [Windows Search](https://msdn.microsoft.com/library/ff628790)
+ *     + [Window Stations and Desktops](https://msdn.microsoft.com/library/ms687098)
+ *     + [Windows Help](https://msdn.microsoft.com/library/ee663302)
+ *     + [Consoles](https://docs.microsoft.com/windows/console/)
+ *
+ * \version 2018-04-27
+ * \since 2018-04-27
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

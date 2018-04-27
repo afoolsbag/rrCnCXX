@@ -1,13 +1,13 @@
 /*===-- Remote Procedure Call ----------------------------------*- C -*-===*//**
  *
- * \defgroup g_rpc 远程过程调用
- * \ingroup g_net
+ * \defgroup gRPC 远程过程调用
+ * \ingroup gNet
  *
  * \sa ["Remote Procedure Call"](https://msdn.microsoft.com/library/aa378651). *Microsoft® Developer Network*.
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-2-23
+ * \version 2018-04-27
+ * \since 2018-02-23
+ * \authors zhengrr
  * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

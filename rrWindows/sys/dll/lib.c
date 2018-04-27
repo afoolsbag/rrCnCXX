@@ -9,7 +9,8 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-INT APIENTRY DllMain(HINSTANCE handleDll, DWORD reason, PVOID reserved)
+INT APIENTRY 
+DllMain(HINSTANCE handleDll, DWORD reason, PVOID reserved)
 {
     return TRUE;
 }

@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-23
+# 2016-10-08 – 2018-04-27
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -18,7 +18,9 @@ endif()
 #       aux_source_directory_enhanced(
 #         <results-variable>
 #         [RECURES] [C] [CXX] [MFC] [QT] [EXPLICIT]
-#         [SOURCE_DIRECTORY]
+#         [SOURCE_DIRECTORY <directory>]
+#         [SOURCE_PREFIXS <prefix>...]
+#         [SOURCE_SUFFIXS <suffix>...]
 #         [SOURCE_EXTENSIONS <extension>...]
 #         [SOURCE_PROPERTIES <property-key property-value>...]
 #         [SOURCE_GROUP <group-folder>]
@@ -28,8 +30,12 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   set(zOptKws    "RECURSE"
                  "C" "CXX" "MFC" "QT"
                  "EXPLICIT")
-  set(zOneValKws "SOURCE_DIRECTORY" "SOURCE_GROUP")
-  set(zMutValKws "SOURCE_EXTENSIONS" "SOURCE_PROPERTIES")
+  set(zOneValKws "SOURCE_DIRECTORY"
+                 "SOURCE_GROUP")
+  set(zMutValKws "SOURCE_PREFIXS"
+                 "SOURCE_SUFFIXS"
+                 "SOURCE_EXTENSIONS"
+                 "SOURCE_PROPERTIES")
   cmake_parse_arguments(PARSE_ARGV 1 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
@@ -57,6 +63,20 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   else()
     set(sRecurse "GLOB")
   endif()
+
+  if(DEFINED _SOURCE_PREFIXS)
+    set(zSrcPres ${_SOURCE_PREFIXS})
+  else()
+    set(zSrcPres "*")
+  endif()
+  list(REMOVE_DUPLICATES zSrcPres)
+
+  if(DEFINED _SOURCE_SUFFIXS)
+    set(zSrcSufs ${_SOURCE_SUFFIXS})
+  else()
+    set(zSrcSufs "*")
+  endif()
+  list(REMOVE_DUPLICATES zSrcSufs)
 
   if(_EXPLICIT)
     set(zLangs)
@@ -96,14 +116,18 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   endif()
 
   set(zRsts)
-  foreach(sSrcExt ${zSrcExts})
-    file(${sRecurse} zSrcFilePaths "${sSrcDir}/*${sSrcExt}")
-    foreach(sSrcFilePath ${zSrcFilePaths})
-      get_filename_component(sSrcFileDir "${sSrcFilePath}" DIRECTORY)
-      file(RELATIVE_PATH sSrcFileRelDir "${sSrcDir}" "${sSrcFileDir}")
-      string(REPLACE "/" "\\\\" sSrcFileGrp "${sSrcGrp}${sSrcFileRelDir}")
-      list(APPEND zRsts "${sSrcFilePath}")
-      source_group("${sSrcFileGrp}" FILES "${sSrcFilePath}")
+  foreach(sSrcPre ${zSrcPres})
+    foreach(sSrcSuf ${zSrcSufs})
+      foreach(sSrcExt ${zSrcExts})
+        file(${sRecurse} zSrcFilePaths "${sSrcDir}/${sSrcPre}*${sSrcSuf}${sSrcExt}")
+        foreach(sSrcFilePath ${zSrcFilePaths})
+          get_filename_component(sSrcFileDir "${sSrcFilePath}" DIRECTORY)
+          file(RELATIVE_PATH sSrcFileRelDir "${sSrcDir}" "${sSrcFileDir}")
+          string(REPLACE "/" "\\\\" sSrcFileGrp "${sSrcGrp}${sSrcFileRelDir}")
+          list(APPEND zRsts "${sSrcFilePath}")
+          source_group("${sSrcFileGrp}" FILES "${sSrcFilePath}")
+        endforeach()
+      endforeach()
     endforeach()
   endforeach()
   if(DEFINED _SOURCE_PROPERTIES)

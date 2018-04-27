@@ -1,9 +1,9 @@
 /*===-- Main Function ------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_main 主函数
- * \ingroup g_lang
+ * \defgroup gMain 主函数
+ * \ingroup gLang
  *
- * \version 2018-04-17
+ * \version 2018-04-27
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,10 +18,7 @@
 #include "str/tsuite_str.h"
 #include "time/tsuite_time.h"
 #include "type/tsuite_type.h"
-
-#ifndef UNUSED
-#define UNUSED(x) (void)(x)
-#endif/*UNUSED*/
+#include "cdef.h
 
 /**
  * \brief 主函数。
@@ -46,10 +43,10 @@ int main(int argc, char *argv[])
 	srunner_add_suite(runner, tsuite_type());
 
 	srunner_run_all(runner, CK_NORMAL);
-	int failed = srunner_ntests_failed(runner);
+	const int errco = srunner_ntests_failed(runner);
 	srunner_free(runner);
 
-	return failed;
+	return errco;
 }
 
 /** @} */

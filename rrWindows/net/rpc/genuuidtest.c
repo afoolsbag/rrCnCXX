@@ -1,11 +1,11 @@
 /*===-- Generate UUID ------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_gen_uuid 生成通用唯一标识符
- * \ingroup g_rpc
+ * \defgroup gGenUuid 生成通用唯一标识符
+ * \ingroup gRpc
  *
- * \author zhengrr
- * \version 2018-2-23
- * \since 2018-2-23
+ * \version 2018-04-27
+ * \since 2018-02-23
+ * \authors zhengrr
  * \copyright The MIT License
  *
  * @{

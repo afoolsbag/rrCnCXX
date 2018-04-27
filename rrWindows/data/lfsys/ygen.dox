@@ -1,7 +1,7 @@
 /*===-- Local File Systems -------------------------------------*- C -*-===*//**
  *
- * \defgroup g_lfsys 本地文件系统
- * \ingroup g_data
+ * \defgroup gLFSys 本地文件系统
+ * \ingroup gData
  *
  * \sa ["Local File Systems"](https://msdn.microsoft.com/library/aa364407). *Microsoft® Developer Network*.
  *     + [Directory Management](https://msdn.microsoft.com/library/aa363946)
@@ -10,8 +10,9 @@
  *     + [Transactional NTFS (TxF)](https://msdn.microsoft.com/library/bb968806)
  *     + [Volume Management](https://msdn.microsoft.com/library/aa365728)
  *
- * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-04-27
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

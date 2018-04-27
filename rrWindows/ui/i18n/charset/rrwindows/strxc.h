@@ -1,12 +1,12 @@
 /*===-- String Transcode ---------------------------------------*- C -*-===*//**
  *
- * \defgroup gStrxc 字串转码
- * \ingroup gUnicode
+ * \defgroup gStrXc 字串转码
+ * \ingroup gCharSet
  *
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *
- * \version 2018-04-26
+ * \version 2018-04-27
  * \since 2018-01-11
  * \authors zhengrr
  * \copyright The MIT License

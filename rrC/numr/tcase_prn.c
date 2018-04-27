@@ -1,6 +1,6 @@
-/*===-- Pseudo-Random Number Generation ------------------------*- C -*-===*//**
+/*===-- Pseudo-Random Number -----------------------------------*- C -*-===*//**
  *
- * \defgroup gPRNG 伪随机数生成
+ * \defgroup gPRN 伪随机数
  * \ingroup gNumr
  *
  * \sa ["Pseudo-random number generation"](http://en.cppreference.com/w/c/numeric/random). *cppreference.com*.
@@ -35,9 +35,9 @@ END_TEST
 
 /** @} */
 
-TCase *tcase_prng(void)
+TCase *tcase_prn(void)
 {
-	TCase *tcase = tcase_create("prng");
+	TCase *tcase = tcase_create("prn");
 	tcase_add_test(tcase, test_genpr);
 	return tcase;
 }

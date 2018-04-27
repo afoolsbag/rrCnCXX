@@ -1,7 +1,7 @@
 /*===-- Data Access and Storage --------------------------------*- C -*-===*//**
  *
- * \defgroup g_data 数据访问和存储
- * \ingroup g_dvlp
+ * \defgroup gData 数据访问和存储
+ * \ingroup gDvlp
  *
  * \sa ["Data Access and Storage"](https://msdn.microsoft.com/library/ee663264). *Microsoft® Developer Network*.
  *     + [Background Intelligent Transfer Service](https://msdn.microsoft.com/library/bb968799)
@@ -31,8 +31,9 @@
  *     + [WMI Provider for NFS](https://msdn.microsoft.com/library/ff706658)
  *     + [XmlLite](https://msdn.microsoft.com/library/ms752872)
  *
- * \author zhengrr
- * \date 2018-2-5
- * \copyright The MIT License
+ * \version 2018-04-27
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

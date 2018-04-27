@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-02-02 – 04-04
+# 2018-02-02 – 04-27
 # The MIT License
 
 # .rst
@@ -49,11 +49,10 @@ function(facile_add_check_executable)
 
   # facile_add_executable
   enable_testing()
-  facile_add_executable(
-    OPTION_DESCRIPTION     "${sOptDesc}"
-    TARGET_NAME_VARIABLE    sTgtName
-    ${_UNPARSED_ARGUMENTS}
-    LINK_LIBRARIES          ${zLinkLibs})
+  facile_add_executable(OPTION_DESCRIPTION "${sOptDesc}"
+                      TARGET_NAME_VARIABLE  sTgtName
+                                            ${_UNPARSED_ARGUMENTS}
+                            LINK_LIBRARIES  ${zLinkLibs})
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

@@ -5,7 +5,7 @@
  *
  * \sa ["Algorithms"](http://en.cppreference.com/w/c/algorithm). *cppreference.com*.
  *
- * \version 2018-04-25
+ * \version 2018-04-27
  * \since 2018-01-17
  * \authors zhengrr
  * \copyright The MIT License
