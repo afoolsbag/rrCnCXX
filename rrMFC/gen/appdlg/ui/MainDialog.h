@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include "resource.h"
+
 /// \brief 主对话框（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class
 class MainDialog: public CDialog {

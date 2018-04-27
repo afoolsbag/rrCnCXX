@@ -1,7 +1,6 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "resource.h"
 #include "MainDialog.h"
 
 #include "utils/dbgcon.h"

@@ -5,7 +5,6 @@
 
 #include "utils/dbgcon.h"
 
-#include "resource.h"
 #include "ui/HostDialog.h"
 #include "ui/GuestDialog.h"
 

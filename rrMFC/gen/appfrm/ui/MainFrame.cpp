@@ -1,7 +1,6 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "resource.h"
 #include "MainFrame.h"
 
 #include "utils/dbgcon.h"
@@ -9,10 +8,7 @@
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(MainFrame, CFrameWnd)
-    ON_WM_NCCREATE()
     ON_WM_CREATE()
-    ON_WM_DESTROY()
-    ON_WM_NCDESTROY()
 
     ON_WM_CHANGEUISTATE()
     ON_WM_UPDATEUISTATE()
@@ -82,15 +78,6 @@ OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 
 #// Message Handlers
 
-BOOL MainFrame::
-OnNcCreate(LPCREATESTRUCT lpCreateStruct)
-{
-    if (!CFrameWnd::OnNcCreate(lpCreateStruct))
-        return FALSE;
-    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcCreate\n"));
-    return TRUE;
-}
-
 INT MainFrame::
 OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
@@ -102,20 +89,6 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
                      this, AFX_IDW_PANE_FIRST, NULL))
         return -1;
     return 0;
-}
-
-VOID MainFrame::
-OnDestroy()
-{
-    CFrameWnd::OnDestroy();
-    DbgConPrt(LightYellow, TEXT("MainFrame::OnDestroy\n"));
-}
-
-VOID MainFrame::
-OnNcDestroy()
-{
-    CFrameWnd::OnNcDestroy();
-    DbgConPrt(LightYellow, TEXT("MainFrame::OnNcDestroy\n"));
 }
 
 VOID MainFrame::

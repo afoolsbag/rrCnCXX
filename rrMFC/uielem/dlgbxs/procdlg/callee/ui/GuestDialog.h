@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include "resource.h"
 #include "ui/SideDialog.h"
 
 /// \brief 宾对话框（类）。

@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include "resource.h"
+
 /// \brief 宿主对话框（类）。
 class HostDialog: public CDialog {
     DECLARE_DYNCREATE(HostDialog)

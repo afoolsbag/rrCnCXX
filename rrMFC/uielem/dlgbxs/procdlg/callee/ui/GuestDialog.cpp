@@ -63,7 +63,6 @@ OnInitDialog()
 {
     CDialog::OnInitDialog();
     DbgConPrt(LightGreen, TEXT("GuestDialog::OnInitDialog\n"));
-    UpdateWindow();
     return TRUE;
 }
 
@@ -117,18 +116,6 @@ OnSize(UINT nType, INT cx, INT cy)
     ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SIZING, cx, cy);
 }
 
-VOID GuestDialog::
-OnBnClickedToggleSideDialogButton()
-{
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnBnClickedToggleSideDialogButton\n"));
-    if (SideDialog.IsWindowVisible())
-        SideDialog.ShowWindow(SW_HIDE);
-    else
-        SideDialog.ShowWindow(SW_NORMAL);
-
-    FromHandle(HostHwnd)->SetFocus();
-}
-
 LRESULT GuestDialog::
 OnRrmfcHostMoving(WPARAM wParam, LPARAM lParam)
 {
@@ -147,4 +134,16 @@ OnRrmfcHostMoving(WPARAM wParam, LPARAM lParam)
                               sideDlgRect.Width(), sideDlgRect.Height(), FALSE);
 
     return NULL;
+}
+
+VOID GuestDialog::
+OnBnClickedToggleSideDialogButton()
+{
+    DbgConPrt(LightGreen, TEXT("GuestDialog::OnBnClickedToggleSideDialogButton\n"));
+    if (SideDialog.IsWindowVisible())
+        SideDialog.ShowWindow(SW_HIDE);
+    else
+        SideDialog.ShowWindow(SW_NORMAL);
+
+    FromHandle(HostHwnd)->SetFocus();
 }

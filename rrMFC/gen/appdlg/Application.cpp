@@ -5,7 +5,6 @@
 
 #include "utils/dbgcon.h"
 
-#include "resource.h"
 #include "ui/MainDialog.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)

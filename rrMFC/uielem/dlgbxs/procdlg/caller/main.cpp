@@ -5,14 +5,10 @@
 
 #include "Application.h"
 
-UINT RM_RRMFC_GUEST_CREATING = RegisterWindowMessage(
-    TEXT("RM_RRMFC_GUEST_CREATING"));
-UINT RM_RRMFC_GUEST_SIZING = RegisterWindowMessage(
-    TEXT("RM_RRMFC_GUEST_SIZING"));
-UINT RM_RRMFC_GUEST_DESTROYING = RegisterWindowMessage(
-    TEXT("RM_RRMFC_GUEST_DESTROYING"));
+UINT RM_RRMFC_GUEST_CREATE = RegisterWindowMessage(TEXT("RM_RRMFC_GUEST_CREATE"));
+UINT RM_RRMFC_GUEST_SIZE = RegisterWindowMessage(TEXT("RM_RRMFC_GUEST_SIZE"));
+UINT RM_RRMFC_GUEST_DESTROY = RegisterWindowMessage(TEXT("RM_RRMFC_GUEST_DESTROY"));
 
-UINT RM_RRMFC_HOST_MOVING = RegisterWindowMessage(
-    TEXT("RM_RRMFC_HOST_MOVING"));
+UINT RM_RRMFC_HOST_MOVE = RegisterWindowMessage(TEXT("RM_RRMFC_HOST_MOVE"));
 
 Application GlobalApplication;

@@ -16,9 +16,9 @@ BEGIN_MESSAGE_MAP(HostDialog, CDialog)
 
     ON_WM_MOVE()
 
-    ON_REGISTERED_MESSAGE(RM_RRMFC_GUEST_CREATING, &HostDialog::OnRrmfcGuestCreating)
-    ON_REGISTERED_MESSAGE(RM_RRMFC_GUEST_SIZING, &HostDialog::OnRrmfcGuestSizing)
-    ON_REGISTERED_MESSAGE(RM_RRMFC_GUEST_DESTROYING, &HostDialog::OnRrmfcGuestDestroying)
+    ON_REGISTERED_MESSAGE(RM_RRMFC_GUEST_CREATE, &HostDialog::OnGuestCreate)
+    ON_REGISTERED_MESSAGE(RM_RRMFC_GUEST_SIZE, &HostDialog::OnGuestSize)
+    ON_REGISTERED_MESSAGE(RM_RRMFC_GUEST_DESTROY, &HostDialog::OnGuestDestroy)
 END_MESSAGE_MAP()
 
 #// Constructors
@@ -31,18 +31,18 @@ HostDialog(CWnd *pParent /*=NULL*/)
 }
 
 VOID HostDialog::
-SetExePath(CONST LPCTSTR exePath)
+SetExePath(LPCTSTR CONST exePath)
 {
     ExePath = exePath;
 }
-
-#// Overridables
 
 HostDialog::
 ~HostDialog()
 {
     DbgConPrt(LightGreen, TEXT("HostDialog::Destructor\n"));
 }
+
+#// Overridables
 
 BOOL HostDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
@@ -121,23 +121,23 @@ OnMove(INT x, INT y)
     DbgConPrt(LightGreen, TEXT("HostDialog::OnMove\n"));
     if (GuestHwnd) {
         DbgConPrt(White, TEXT("RM_RRMFC_HOST_MOVING: %d, %d\n"), x, y);
-        ::PostMessage(GuestHwnd, RM_RRMFC_HOST_MOVING, x, y);
+        ::PostMessage(GuestHwnd, RM_RRMFC_HOST_MOVE, x, y);
     }
 }
 
 LRESULT HostDialog::
-OnRrmfcGuestCreating(WPARAM wParam, LPARAM lParam)
+OnGuestCreate(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnRrmfcGuestCreating\n"));
+    DbgConPrt(LightGreen, TEXT("HostDialog::OnGuestCreate\n"));
     GuestHwnd = reinterpret_cast<HWND>(lParam);
     return NULL;
 }
 
 LRESULT HostDialog::
-OnRrmfcGuestSizing(WPARAM wParam, LPARAM lParam)
+OnGuestSize(WPARAM wParam, LPARAM lParam)
 {
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnRrmfcGuestSizing\n"));
+    DbgConPrt(LightGreen, TEXT("HostDialog::OnGuestSize\n"));
     CRect rect;
     GetClientRect(&rect);
     rect.right = rect.left + wParam + 20;
@@ -148,9 +148,12 @@ OnRrmfcGuestSizing(WPARAM wParam, LPARAM lParam)
 }
 
 LRESULT HostDialog::
-OnRrmfcGuestDestroying(WPARAM wParam, LPARAM lParam)
+OnGuestDestroy(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);
-    DbgConPrt(LightGreen, TEXT("HostDialog::OnRrmfcGuestDestroying\n"));
+    DbgConPrt(LightGreen, TEXT("HostDialog::OnGuestDestroy\n"));
+    GuestHwnd = NULL;
+    ShowWindow(SW_HIDE);
+    DestroyWindow();
     return NULL;
 }

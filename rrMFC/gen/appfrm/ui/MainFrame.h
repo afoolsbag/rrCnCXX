@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include "resource.h"
 #include "MainView.h"
 
 /// \brief 主框架（类）。
@@ -35,16 +36,8 @@ public:
     virtual ~MainFrame();
 
 protected:
-    /// \brief Called before the creation of the Windows window attached to this `CWnd` object.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#precreatewindow
     virtual BOOL PreCreateWindow(CREATESTRUCT &cs);
-
-    /// \brief Indicates if a windows message was handled.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwndmsg
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
-
-    /// \brief Routes and dispatches command messages.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/ccmdtarget-class#oncmdmsg
     virtual BOOL OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo);
 
 #// Implementation
@@ -53,24 +46,7 @@ protected:
 
 #// Message Handlers
 protected:
-    // CREATE & DESTROY
-
-    /// \brief Called prior to `OnCreate` when the non-client area is being created.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onnccreate
-    afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-
-    /// \brief Called as a part of window creation.
-    ///        For initialize resoueces and sub-windows.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#oncreate
     afx_msg INT OnCreate(LPCREATESTRUCT lpCreateStruct);
-
-    /// \brief Called when `CWnd` is being destroyed.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#ondestroy
-    afx_msg VOID OnDestroy();
-
-    /// \brief Called when the non-client area is being destroyed.
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onncdestroy
-    afx_msg VOID OnNcDestroy();
 
     // STATE & STATUS
 

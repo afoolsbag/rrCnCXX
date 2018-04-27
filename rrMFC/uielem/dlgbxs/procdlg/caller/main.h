@@ -14,11 +14,11 @@
 #include "Application.h"
 
 #// Register Messages
-extern UINT RM_RRMFC_GUEST_CREATING;
-extern UINT RM_RRMFC_GUEST_SIZING;
-extern UINT RM_RRMFC_GUEST_DESTROYING;
+extern UINT RM_RRMFC_GUEST_CREATE;
+extern UINT RM_RRMFC_GUEST_SIZE;
+extern UINT RM_RRMFC_GUEST_DESTROY;
 
-extern UINT RM_RRMFC_HOST_MOVING;
+extern UINT RM_RRMFC_HOST_MOVE;
 
 /// \brief Global Application
 extern Application GlobalApplication;

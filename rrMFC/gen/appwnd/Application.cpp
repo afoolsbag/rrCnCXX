@@ -5,6 +5,8 @@
 
 #include "utils/dbgcon.h"
 
+#include "ui/MainWindow.h"
+
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
 #// Constructors
@@ -24,23 +26,12 @@ Application::
 #// Overridables
 
 BOOL Application::
-InitApplication()
-{
-    DbgConPrt(LightRed, TEXT("Application::InitApplication\n"));
-    return CWinApp::InitApplication();
-}
-
-BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
     DbgConPrt(LightRed, TEXT("Application::InitInstance\n"));
-    return FALSE;
-}
-
-INT Application::
-ExitInstance()
-{
-    DbgConPrt(LightRed, TEXT("Application::ExitInstance\n"));
-    return CWinApp::ExitInstance();
+    m_pMainWnd = DEBUG_NEW MainWindow;
+    m_pMainWnd->ShowWindow(m_nCmdShow);
+    m_pMainWnd->UpdateWindow();
+    return TRUE;
 }

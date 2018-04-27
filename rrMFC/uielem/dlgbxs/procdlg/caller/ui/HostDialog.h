@@ -1,9 +1,9 @@
-//===-- Main Dialog ---------------------------------------------*- C++ -*-===//
+//===-- Host Dialog ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
 /// \brief 宿主对话框（类）。
 ///
-/// \verison 2018-04-24
+/// \verison 2018-04-27
 /// \since 2018-04-23
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -19,6 +19,8 @@ class HostDialog: public CDialog {
 #// Constructors
 public:
     HostDialog(CWnd *pParent = NULL);
+    VOID SetExePath(LPCTSTR CONST exePath);
+    virtual ~HostDialog();
 
 #// Attributes
 public:
@@ -29,8 +31,6 @@ public:
 
 #// Overridables
 public:
-    virtual ~HostDialog();
-    VOID SetExePath(CONST LPCTSTR exePath);
 
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
@@ -50,9 +50,9 @@ protected:
 
     afx_msg VOID OnMove(INT x, INT y);
 
-    afx_msg LRESULT OnRrmfcGuestCreating(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnRrmfcGuestSizing(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnRrmfcGuestDestroying(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnGuestCreate(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnGuestSize(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnGuestDestroy(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP()
 };
