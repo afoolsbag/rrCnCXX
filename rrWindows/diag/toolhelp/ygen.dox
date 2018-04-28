@@ -1,0 +1,13 @@
+/*===-- Tool Help Library --------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gToolHelp 工具帮助库
+ * \ingroup gDiag
+ *
+ * \sa ["Tool Help Library"](https://msdn.microsoft.com/library/ms686837). *Microsoft® Developer Network*.
+ *
+ * \version 2018-04-28
+ * \since 2018-04-28
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

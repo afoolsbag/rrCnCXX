@@ -5,7 +5,6 @@
 
 #include "utils/dbgcon.h"
 
-#include "ui/HostDialog.h"
 #include "ui/GuestDialog.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
@@ -15,22 +14,25 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 Application::
 Application()
 {
-    NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
+    NewDbgCon(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("Constructor\n"));
 }
-
-#// Overridables
 
 Application::
 ~Application()
 {
-    DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DelDbgCon(LightRed, TEXT("Destructor\n"));
 }
+
+#// Overridables
 
 BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrt(LightRed, TEXT("Application::InitInstance\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("InitInstance\n"));
 
     HWND hostHwnd = NULL;
 
@@ -53,56 +55,23 @@ InitInstance()
             hostHwnd = reinterpret_cast<HWND>(_tcstol(token, NULL, 16));
             if (!hostHwnd || errno) {
                 errno = 0;
-                DbgConPrt(White, TEXT("Invalid value for /host in command line arguments: %s\n"), token);
+                DbgConPrt(White, TEXT("Invalid value for /host in command line arguments: %s\n"), static_cast<LPCTSTR>(token));
                 return FALSE;
             }
         }
     }
 
-    HostDialog *hostDlg = NULL;
     if (!hostHwnd) {
-        hostDlg = DEBUG_NEW HostDialog;
-        HostDlgDecay = hostDlg;
-        m_pMainWnd = m_pMainWnd ? m_pMainWnd : hostDlg;
-        hostDlg->Create(HostDialog::IDD);
-
-        hostHwnd = hostDlg->GetSafeHwnd();
+        DbgConPrt(White, TEXT("Missing command line arguments: /host <HostHwnd>\n"));
+        return FALSE;
     }
 
-    GuestDialog *guestDlg = DEBUG_NEW GuestDialog;
-    guestDlg->SetHostHwnd(hostHwnd);
-    GuestDlgDecay = guestDlg;
-    m_pMainWnd = m_pMainWnd ? m_pMainWnd : guestDlg;
-    guestDlg->Create(GuestDialog::IDD, CWnd::FromHandle(hostHwnd));
-    guestDlg->ShowWindow(m_nCmdShow);
-    guestDlg->UpdateWindow();
-
-    if (hostDlg) {
-        hostDlg->ShowWindow(m_nCmdShow);
-        hostDlg->UpdateWindow();
-    }
+    auto const dlg = DEBUG_NEW GuestDialog;
+    dlg->SetHostHwnd(hostHwnd);
+    m_pMainWnd = dlg;
+    dlg->Create(GuestDialog::IDD, CWnd::FromHandle(hostHwnd));
+    dlg->ShowWindow(m_nCmdShow);
+    dlg->UpdateWindow();
 
     return TRUE;
-}
-
-INT Application::
-ExitInstance()
-{
-    DbgConPrt(LightRed, TEXT("Application::ExitInstance\n"));
-
-    HostDialog *hostDlg = dynamic_cast<HostDialog *>(HostDlgDecay);
-    if (hostDlg) {
-        hostDlg->DestroyWindow();
-        delete hostDlg;
-        HostDlgDecay = hostDlg = NULL;
-    }
-
-    GuestDialog *guestDlg = dynamic_cast<GuestDialog *>(GuestDlgDecay);
-    if (guestDlg) {
-        guestDlg->DestroyWindow();
-        delete guestDlg;
-        GuestDlgDecay = guestDlg = NULL;
-    }
-
-    return CWinApp::ExitInstance();
 }

@@ -9,7 +9,7 @@
 
 project("rrMFC" VERSION 2018.4.27 LANGUAGES C CXX)
 project_extra()
-highest_warning_level(ANALYZE UTF-8)
+compiler_warning_level(AS_ERROR UTF-8 ANALYZE)
 
 facile_add_doxygen()
 

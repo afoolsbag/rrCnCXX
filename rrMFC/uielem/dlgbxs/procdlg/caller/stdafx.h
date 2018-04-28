@@ -3,7 +3,7 @@
 /// \file
 /// \brief 预编译头文件
 ///
-/// \version 2018-04-23
+/// \version 2018-04-28
 /// \since 2018-04-23
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -31,6 +31,9 @@
 #ifndef VC_EXTRALEAN
 # define VC_EXTRALEAN
 #endif
+
+#include <winsdkver.h>
+#define _WIN32_WINNT _WIN32_WINNT_MAXVER
 
 #include <afxwin.h>
 #include <afxcmn.h>

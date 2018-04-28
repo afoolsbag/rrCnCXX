@@ -12,7 +12,8 @@ OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (!CWnd::OnNcCreate(lpCreateStruct))
         return FALSE;
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnNcCreate\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnNcCreate\n"));
     return TRUE;
 }
 
@@ -21,7 +22,8 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnCreate\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnCreate\n"));
     return 0;
 }
 
@@ -29,12 +31,14 @@ VOID MainWindow::
 OnDestroy()
 {
     CWnd::OnDestroy();
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnDestroy\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnDestroy\n"));
 }
 
 VOID MainWindow::
 OnNcDestroy()
 {
     CWnd::OnNcDestroy();
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnNcDestroy\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnNcDestroy\n"));
 }

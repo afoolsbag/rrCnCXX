@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-04-27
+/// \version 2018-04-28
 /// \since 2018-04-11
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -23,7 +23,7 @@ public:
     Application();
 
     /// \brief 析构函数。
-    virtual ~Application();
+    virtual ~Application() override;
 
 #// Attributes
 public:

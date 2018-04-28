@@ -15,26 +15,29 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 Application::
 Application()
 {
-    NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
+    NewDbgCon(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("Constructor\n"));
 }
-
-#// Overridables
 
 Application::
 ~Application()
 {
-    DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DelDbgCon(LightRed, TEXT("Destructor\n"));
 }
+
+#// Overridables
 
 BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrt(LightRed, TEXT("Application::InitInstance\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("InitInstance\n"));
 
-    MainDialog mainDlg;
-    m_pMainWnd = &mainDlg;
-    mainDlg.DoModal();
+    MainDialog mainDialog;
+    m_pMainWnd = &mainDialog;
+    mainDialog.DoModal();
 
     return FALSE;
 }

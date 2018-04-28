@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主对话框（类）。
 ///
-/// \verison 2018-04-23
+/// \verison 2018-04-28
 /// \since 2018-04-23
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include "resource.h"
+
 /// \brief 主对话框（类）。
 class MainDialog: public CDialog {
     DECLARE_DYNCREATE(MainDialog)
@@ -19,6 +21,7 @@ class MainDialog: public CDialog {
 #// Constructors
 public:
     MainDialog(CWnd *pParent = NULL);
+    virtual ~MainDialog() override;
 
 #// Attributes
 public:
@@ -28,9 +31,6 @@ public:
 public:
 
 #// Overridables
-public:
-    virtual ~MainDialog();
-
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult);
     virtual VOID DoDataExchange(CDataExchange *pDX);
@@ -40,6 +40,9 @@ protected:
 #// Implementation
 protected:
     CEdit PathEdit;
+    CButton BrowseButton;
+    CButton OKButton;
+    CButton CancelButton;
 
 #// Message Handlers
 protected:

@@ -1,8 +1,7 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "resource.h"
-#include "ui/GuestDialog.h"
+#include "GuestDialog.h"
 
 #include "utils/dbgcon.h"
 
@@ -13,10 +12,10 @@ IMPLEMENT_DYNCREATE(GuestDialog, CDialog)
 BEGIN_MESSAGE_MAP(GuestDialog, CDialog)
     ON_WM_CREATE()
     ON_WM_DESTROY()
-
     ON_WM_SIZE()
+    ON_WM_SHOWWINDOW()
 
-    ON_REGISTERED_MESSAGE(RM_RRMFC_HOST_MOVING, &GuestDialog::OnRrmfcHostMoving)
+    ON_REGISTERED_MESSAGE(RM_RRMFC_HOST_MOVE, &GuestDialog::OnHostMove)
 
     ON_BN_CLICKED(IDC_TOGGLE_SIDE_DIALOG_BUTTON, &GuestDialog::OnBnClickedToggleSideDialogButton)
 END_MESSAGE_MAP()
@@ -27,7 +26,8 @@ GuestDialog::
 GuestDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(LightGreen, TEXT("GuestDialog::Constructor\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("Constructor\n"));
 }
 
 VOID GuestDialog::
@@ -36,18 +36,20 @@ SetHostHwnd(CONST HWND hostHwnd)
     HostHwnd = hostHwnd;
 }
 
-#// Overridables
-
 GuestDialog::
 ~GuestDialog()
 {
-    DbgConPrt(LightGreen, TEXT("GuestDialog::Destructor\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("Destructor\n"));
 }
+
+#// Overridables
 
 BOOL GuestDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrtWndMsg(Green, TEXT("GuestDialog::OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -55,22 +57,31 @@ VOID GuestDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrt(LightGreen, TEXT("GuestDialog::DoDataExchange\n"));
-}
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("DoDataExchange\n"));
 
-BOOL GuestDialog::
-OnInitDialog()
-{
-    CDialog::OnInitDialog();
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnInitDialog\n"));
-    return TRUE;
+    DDX_Control(pDX, IDC_TOGGLE_SIDE_DIALOG_BUTTON, ToggleSideDialogButton);
 }
 
 VOID GuestDialog::
 OnCancel()
 {
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnCancel\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnCancel\n"));
+
+    DestroyWindow();
+
     CDialog::OnCancel();
+}
+
+VOID GuestDialog::
+PostNcDestroy()
+{
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("PostNcDestroy\n"));
+    CWnd::PostNcDestroy();
+
+    delete this;
 }
 
 #// Message Handlers
@@ -80,7 +91,8 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnCreate\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnCreate\n"));
 
     if (!HostHwnd)
         return -1;
@@ -90,8 +102,8 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
     SideDialog.Create(SideDialog::IDD, this);
 
     HWND hwnd = GetSafeHwnd();
-    DbgConPrt(White, TEXT("RM_RRMFC_GUEST_CREATING: %p\n"), hwnd);
-    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_CREATING, NULL, reinterpret_cast<LPARAM>(hwnd));
+    DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_CREATE with %p\n"), hwnd);
+    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_CREATE, NULL, reinterpret_cast<LPARAM>(hwnd));
 
     return 0;
 }
@@ -100,38 +112,54 @@ VOID GuestDialog::
 OnDestroy()
 {
     CDialog::OnDestroy();
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnDestroy\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnDestroy\n"));
+
     HWND hwnd = GetSafeHwnd();
-    DbgConPrt(White, TEXT("RM_RRMFC_GUEST_DESTROYING: %p\n"), hwnd);
-    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_DESTROYING, NULL, reinterpret_cast<LPARAM>(hwnd));
+    DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_DESTROY with %p\n"), hwnd);
+    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_DESTROY, NULL, reinterpret_cast<LPARAM>(hwnd));
 }
 
 VOID GuestDialog::
 OnSize(UINT nType, INT cx, INT cy)
 {
     CDialog::OnSize(nType, cx, cy);
-    DbgConPrt(LightGreen, TEXT("MainDialog::OnSize\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnSize\n"));
 
-    DbgConPrt(White, TEXT("RM_RRMFC_GUEST_SIZING: %d, %d\n"), cx, cy);
-    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SIZING, cx, cy);
+    DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_SIZE with %d, %d\n"), cx, cy);
+    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SIZE, cx, cy);
+}
+
+VOID GuestDialog::
+OnShowWindow(BOOL bShow, UINT nStatus)
+{
+    CDialog::OnShowWindow(bShow, nStatus);
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnShowWindow\n"));
+
+    DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_SHOWWINDOW with %u, %d\n"), nStatus, bShow);
+    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SHOWWINDOW, nStatus, bShow);  // 注意参数变换了位置
 }
 
 LRESULT GuestDialog::
-OnRrmfcHostMoving(WPARAM wParam, LPARAM lParam)
+OnHostMove(WPARAM wParam, LPARAM lParam)
 {
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnRrmfcHostMoving\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnHostMove\n"));
 
-    CRect hostDlgRect;
-    ::GetWindowRect(HostHwnd, &hostDlgRect);
-    CRect sideDlgRect;
-    SideDialog.GetWindowRect(sideDlgRect);
+    DbgConPrt(White, TEXT("Receive RM_RRMFC_HOST_MOVE with %u, %ld\n"), wParam, lParam);
 
-    CONST CPoint curPos(sideDlgRect.left, sideDlgRect.top);
-    CONST CPoint tgtPos(hostDlgRect.right - 13, hostDlgRect.top);
+    if (GetFocus() != &SideDialog) {
+        CRect hostDialogRect;
+        ::GetWindowRect(HostHwnd, &hostDialogRect);
+        CRect sideDialogRect;
+        SideDialog.GetWindowRect(sideDialogRect);
 
-    if (tgtPos != curPos)
-        SideDialog.MoveWindow(tgtPos.x, tgtPos.y,
-                              sideDlgRect.Width(), sideDlgRect.Height(), FALSE);
+        SideDialog.MoveWindow(
+            hostDialogRect.right - 13, hostDialogRect.top,
+            sideDialogRect.Width(), sideDialogRect.Height(), FALSE);
+    }
 
     return NULL;
 }
@@ -139,11 +167,11 @@ OnRrmfcHostMoving(WPARAM wParam, LPARAM lParam)
 VOID GuestDialog::
 OnBnClickedToggleSideDialogButton()
 {
-    DbgConPrt(LightGreen, TEXT("GuestDialog::OnBnClickedToggleSideDialogButton\n"));
+    DbgConPrt(Yellow, TEXT("GuestDialog::"));
+    DbgConPrt(LightYellow, TEXT("OnBnClickedToggleSideDialogButton\n"));
+
     if (SideDialog.IsWindowVisible())
         SideDialog.ShowWindow(SW_HIDE);
     else
-        SideDialog.ShowWindow(SW_NORMAL);
-
-    FromHandle(HostHwnd)->SetFocus();
+        SideDialog.ShowWindow(SW_SHOW);
 }

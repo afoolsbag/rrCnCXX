@@ -1,9 +1,9 @@
 //===-- Main Window ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Ö÷´°¿Ú£¨Àà£©¡£
+/// \brief ä¸»çª—å£ï¼ˆç±»ï¼‰ã€‚
 ///
-/// \verison 2018-04-27
+/// \verison 2018-04-28
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,7 +12,7 @@
 
 #pragma once
 
-/// \brief Ö÷´°¿Ú£¨Àà£©¡£
+/// \brief ä¸»çª—å£ï¼ˆç±»ï¼‰ã€‚
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class
 class MainWindow: public CWnd {
     DECLARE_DYNCREATE(MainWindow)
@@ -21,19 +21,19 @@ class MainWindow: public CWnd {
 public:
     MainWindow();
 
-    /// \brief ´´½¨²¢³õÊ¼»¯Óë `CWnd` ¶ÔÏó¹ØÁªµÄ×Ó´°¿Ú¡£
+    /// \brief åˆ›å»ºå¹¶åˆå§‹åŒ–ä¸ `CWnd` å¯¹è±¡å…³è”çš„å­çª—å£ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#create
     virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext = NULL) override;
 
-    /// \brief ´´½¨ Windows ÖØµş¡¢µ¯³ö»ò×Ó´°¿Ú£¬²¢½«Ëü¸½¼Óµ½ `CWnd` ¶ÔÏó¡£
+    /// \brief åˆ›å»º Windows é‡å ã€å¼¹å‡ºæˆ–å­çª—å£ï¼Œå¹¶å°†å®ƒé™„åŠ åˆ° `CWnd` å¯¹è±¡ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#createex
     virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, INT x, INT y, INT nWidth, INT nHeight, HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam = NULL) override;
 
-    /// \brief ´´½¨ Windows ÖØµş¡¢µ¯³ö»ò×Ó´°¿Ú£¬²¢½«Ëü¸½¼Óµ½ `CWnd` ¶ÔÏó¡£
+    /// \brief åˆ›å»º Windows é‡å ã€å¼¹å‡ºæˆ–å­çª—å£ï¼Œå¹¶å°†å®ƒé™„åŠ åˆ° `CWnd` å¯¹è±¡ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#createex
     virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam = NULL) override;
 
-    virtual ~MainWindow();
+    virtual ~MainWindow() override;
 
 #// Attributes
 public:
@@ -43,18 +43,26 @@ public:
 
 #// Overridables
 public:
-    /// \brief ÔÚ´´½¨¸½¼Óµ½´Ë `CWnd` ¶ÔÏóµÄ Windows ´°¿ÚÖ®Ç°µ÷ÓÃ¡£
+    /// \brief åœ¨åˆ›å»ºé™„åŠ åˆ°æ­¤ `CWnd` å¯¹è±¡çš„ Windows çª—å£ä¹‹å‰è°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#precreatewindow
     virtual BOOL PreCreateWindow(CREATESTRUCT &cs) override;
 
-    /// \brief Â·ÓÉºÍµ÷¶ÈÃüÁîÏûÏ¢¡£
+    /// \brief è·¯ç”±å’Œè°ƒåº¦å‘½ä»¤æ¶ˆæ¯ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/ccmdtarget-class#oncmdmsg
     virtual BOOL OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo) override;
 
 protected:
-    /// \brief Ö¸Ê¾ÊÇ·ñ´¦ÀíÁË Windows ÏûÏ¢¡£
+    /// \brief æŒ‡ç¤ºæ˜¯å¦å¤„ç†äº† Windows æ¶ˆæ¯ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwndmsg
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
+
+    /// \brief ç”¨äºå¯¹è¯æ¡†æ•°æ®äº¤æ¢å’ŒéªŒè¯ã€‚ ç”± `UpdateData` è°ƒç”¨ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class
+    virtual VOID DoDataExchange(CDataExchange *pDX) override;
+
+    /// \brief é»˜è®¤æƒ…å†µä¸‹è°ƒç”¨æ­¤è™šæ‹Ÿå‡½æ•°`OnNcDestroy`å‡½æ•°åœ¨çª—å£å·²é”€æ¯ä¹‹åã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#postncdestroy
+    virtual VOID PostNcDestroy() override;
 
 #// Implementation
 protected:
@@ -64,69 +72,91 @@ protected:
 
     // CREATE & DESTROY
 
-    /// \brief Ö®Ç°µ÷ÓÃOnCreateµÄ·Ç¹¤×÷ÇøÔÚ´´½¨Ê±¡£
+    /// \brief ä¹‹å‰è°ƒç”¨OnCreateçš„éå·¥ä½œåŒºåœ¨åˆ›å»ºæ—¶ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onnccreate
     afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
 
-    /// \brief ÔÚ´°¿Ú´´½¨¹ı³ÌÖĞµ÷ÓÃ¡£
+    /// \brief åœ¨çª—å£åˆ›å»ºè¿‡ç¨‹ä¸­è°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#oncreate
     afx_msg INT OnCreate(LPCREATESTRUCT lpCreateStruct);
 
-    /// \brief µ±Ïú»Ù `CWnd` Ê±µ÷ÓÃ¡£
+    /// \brief å½“é”€æ¯ `CWnd` æ—¶è°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#ondestroy
     afx_msg VOID OnDestroy();
 
-    /// \brief µ±Ïú»Ù·Ç¹¤×÷ÇøÊ±µ÷ÓÃ¡£
+    /// \brief å½“é”€æ¯éå·¥ä½œåŒºæ—¶è°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onncdestroy
     afx_msg VOID OnNcDestroy();
 
     // MOVE & SIZE
 
-    /// \brief Ã¿µ± Windows ĞèÒªÖªµÀ×î´ó»¯Î»ÖÃ»ò³ß´ç»òÊÇ×îĞ¡»ò×î´ó¸ú×Ù´óĞ¡Ê±µ÷ÓÃ¡£
+    /// \brief æ¯å½“ Windows éœ€è¦çŸ¥é“æœ€å¤§åŒ–ä½ç½®æˆ–å°ºå¯¸æˆ–æ˜¯æœ€å°æˆ–æœ€å¤§è·Ÿè¸ªå¤§å°æ—¶è°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#ongetminmaxinfo
     afx_msg VOID OnGetMinMaxInfo(MINMAXINFO *lpMMI);
 
-    /// \brief ÔÚÊÜÓ°ÏìµÄ´°¿Ú½øÈëÒÆ¶¯»ò´óĞ¡µ÷ÕûÄ£Ê½Ñ­»·Ö®ºóµ÷ÓÃ¡£
+    /// \brief åœ¨å—å½±å“çš„çª—å£è¿›å…¥ç§»åŠ¨æˆ–å¤§å°è°ƒæ•´æ¨¡å¼å¾ªç¯ä¹‹åè°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onentersizemove
     afx_msg VOID OnEnterSizeMove();
 
-    /// \brief Ö¸Ê¾ÓÃ»§ÕıÔÚÒÆ¶¯ `CWnd` ¶ÔÏó¡£
+    /// \brief æŒ‡ç¤ºç”¨æˆ·æ­£åœ¨ç§»åŠ¨ `CWnd` å¯¹è±¡ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onmoving
     afx_msg VOID OnMoving(UINT fwSide, LPRECT pRect);
 
-    /// \brief Ö¸Ê¾ÓÃ»§ÕıÔÚµ÷Õû¾ØĞÎ´óĞ¡¡£
+    /// \brief æŒ‡ç¤ºç”¨æˆ·æ­£åœ¨è°ƒæ•´çŸ©å½¢å¤§å°ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onsizing
     afx_msg VOID OnSizing(UINT fwSide, LPRECT pRect);
 
-    /// \brief µ±´óĞ¡¡¢Î»ÖÃ»ò Z Ë³Ğò¼´½«»áÒòµ÷ÓÃ¶ø¸ü¸ÄÊ±µ÷ÓÃ`SetWindowPos`»òÁíÒ»¸ö´°¿Ú¹ÜÀíº¯Êı¡£
+    /// \brief å½“å¤§å°ã€ä½ç½®æˆ– Z é¡ºåºå³å°†ä¼šå› è°ƒç”¨è€Œæ›´æ”¹æ—¶è°ƒç”¨`SetWindowPos`æˆ–å¦ä¸€ä¸ªçª—å£ç®¡ç†å‡½æ•°ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwindowposchanging
     afx_msg VOID OnWindowPosChanging(WINDOWPOS *lpwndpos);
 
-    /// \brief ÔÚÊÜÓ°ÏìµÄ´°¿ÚÍË³öÒÆ¶¯»ò´óĞ¡µ÷ÕûÄ£Ê½Ñ­»·Ö®ºóµ÷ÓÃ¡£
+    /// \brief åœ¨å—å½±å“çš„çª—å£é€€å‡ºç§»åŠ¨æˆ–å¤§å°è°ƒæ•´æ¨¡å¼å¾ªç¯ä¹‹åè°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onexitsizemove
     afx_msg VOID OnExitSizeMove();
 
-    /// \brief ÔÚ `CWnd` µÄÎ»ÖÃÒÑ¸ü¸ÄÖ®ºóµ÷ÓÃ¡£
+    /// \brief åœ¨ `CWnd` çš„ä½ç½®å·²æ›´æ”¹ä¹‹åè°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onmove
     afx_msg VOID OnMove(INT x, INT y);
 
-    /// \brief µ±ĞèÒª¼ÆËã¹¤×÷ÇøµÄ´óĞ¡ºÍÎ»ÖÃÊ±µ÷ÓÃ¡£
+    /// \brief å½“éœ€è¦è®¡ç®—å·¥ä½œåŒºçš„å¤§å°å’Œä½ç½®æ—¶è°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onnccalcsize
     afx_msg VOID OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp);
 
-    /// \brief ÔÚ `CWnd` µÄ´óĞ¡ÒÑ¸ü¸ÄÖ®ºóµ÷ÓÃ¡£
+    /// \brief åœ¨ `CWnd` çš„å¤§å°å·²æ›´æ”¹ä¹‹åè°ƒç”¨ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onsize
     afx_msg VOID OnSize(UINT nType, INT cx, INT cy);
 
-    /// \brief µ±´óĞ¡¡¢Î»ÖÃ»ò Z Ë³ĞòÒÑÒòµ÷ÓÃ¶ø¸ü¸ÄÊ±µ÷ÓÃ`SetWindowPos`»òÁíÒ»¸ö´°¿Ú¹ÜÀíº¯Êı¡£
+    /// \brief å½“å¤§å°ã€ä½ç½®æˆ– Z é¡ºåºå·²å› è°ƒç”¨è€Œæ›´æ”¹æ—¶è°ƒç”¨`SetWindowPos`æˆ–å¦ä¸€ä¸ªçª—å£ç®¡ç†å‡½æ•°ã€‚
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwindowposchanged
     afx_msg VOID OnWindowPosChanged(WINDOWPOS *lpwndpos);
-    
+
     // STATE & STATUS
 
-    DECLARE_MESSAGE_MAP()
-public:
-    afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
+    /// \brief è¦æ¿€æ´»æˆ–åœç”¨åº”ç”¨ç¨‹åºæ—¶è°ƒç”¨ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onactivateapp
+    afx_msg VOID OnActivateApp(BOOL bActive, DWORD dwThreadID);
+
+    /// \brief å½“éœ€è¦æ›´æ”¹éå·¥ä½œåŒºä»¥æŒ‡ç¤ºæ´»åŠ¨æˆ–éæ´»åŠ¨çŠ¶æ€æ—¶è°ƒç”¨ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onncactivate
     afx_msg BOOL OnNcActivate(BOOL bActive);
-    afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+
+    /// \brief å½“æ­£åœ¨æ¿€æ´»æˆ–åœç”¨ `CWnd` æ—¶è°ƒç”¨ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onactivate
+    afx_msg VOID OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+
+    // PAINT
+
+    /// \brief å½“éœ€è¦ç»˜åˆ¶éå·¥ä½œåŒºæ—¶è°ƒç”¨ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onncpaint
+    afx_msg VOID OnNcPaint();
+
+    /// \brief å½“çª—å£èƒŒæ™¯éœ€è¦æ“¦é™¤æ—¶è°ƒç”¨ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onerasebkgnd
+    afx_msg BOOL OnEraseBkgnd(CDC *pDC);
+
+    /// \brief è°ƒç”¨ä»¥é‡æ–°ç»˜åˆ¶çª—å£çš„ä¸€éƒ¨åˆ†ã€‚
+    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onpaint
+    afx_msg VOID OnPaint();
+
+    DECLARE_MESSAGE_MAP()
 };

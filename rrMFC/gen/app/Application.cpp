@@ -12,13 +12,15 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 Application::
 Application()
 {
-    NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
+    NewDbgCon(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("Constructor\n"));
 }
 
 Application::
 ~Application()
 {
-    DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DelDbgCon(LightRed, TEXT("Destructor\n"));
 }
 
 #// Overridables
@@ -26,7 +28,8 @@ Application::
 BOOL Application::
 InitApplication()
 {
-    DbgConPrt(LightRed, TEXT("Application::InitApplication\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("InitApplication\n"));
     return CWinApp::InitApplication();
 }
 
@@ -34,13 +37,15 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrt(LightRed, TEXT("Application::InitInstance\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("InitInstance\n"));
     return FALSE;
 }
 
 INT Application::
 ExitInstance()
 {
-    DbgConPrt(LightRed, TEXT("Application::ExitInstance\n"));
+    DbgConPrt(Red, TEXT("Application::"));
+    DbgConPrt(LightRed, TEXT("ExitInstance\n"));
     return CWinApp::ExitInstance();
 }

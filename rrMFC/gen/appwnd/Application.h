@@ -1,9 +1,9 @@
 //===-- Application ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Ó¦ÓÃ£¨Àà£©¡£
+/// \brief åº”ç”¨ï¼ˆç±»ï¼‰ã€‚
 ///
-/// \version 2018-04-27
+/// \version 2018-04-28
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,15 +12,14 @@
 
 #pragma once
 
-/// \brief Ó¦ÓÃ£¨Àà£©¡£
+/// \brief åº”ç”¨ï¼ˆç±»ï¼‰ã€‚
 class Application: public CWinApp {
     DECLARE_DYNCREATE(Application)
 
 #// Constructors
 public:
     Application();
-
-    virtual ~Application();
+    virtual ~Application() override;
 
 #// Attributes
 public:
@@ -30,7 +29,7 @@ public:
 
 #// Overridables
 public:
-    virtual BOOL InitInstance();
+    virtual BOOL InitInstance() override;
 
 #// Implementation
 protected:

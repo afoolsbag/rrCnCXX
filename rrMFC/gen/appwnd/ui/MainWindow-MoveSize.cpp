@@ -10,14 +10,16 @@
 VOID MainWindow::
 OnGetMinMaxInfo(MINMAXINFO *lpMMI)
 {
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnGetMinMaxInfo\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnGetMinMaxInfo\n"));
     CWnd::OnGetMinMaxInfo(lpMMI);
 }
 
 VOID MainWindow::
 OnEnterSizeMove()
 {
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnEnterSizeMove\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnEnterSizeMove\n"));
     CWnd::OnEnterSizeMove();
 }
 
@@ -25,27 +27,31 @@ VOID MainWindow::
 OnMoving(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnMoving(fwSide, pRect);
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnMoving\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnMoving\n"));
 }
 
 VOID MainWindow::
 OnSizing(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnSizing(fwSide, pRect);
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnSizing\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnSizing\n"));
 }
 
 VOID MainWindow::
 OnWindowPosChanging(WINDOWPOS *lpwndpos)
 {
     CWnd::OnWindowPosChanging(lpwndpos);
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnWindowPosChanging\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnWindowPosChanging\n"));
 }
 
 VOID MainWindow::
 OnExitSizeMove()
 {
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnExitSizeMove\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnExitSizeMove\n"));
     CWnd::OnExitSizeMove();
 }
 
@@ -53,13 +59,15 @@ VOID MainWindow::
 OnMove(INT x, INT y)
 {
     CWnd::OnMove(x, y);
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnMove\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnMove\n"));
 }
 
 VOID MainWindow::
 OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 {
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnNcCalcSize\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnNcCalcSize\n"));
     CWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
 }
 
@@ -67,12 +75,14 @@ VOID MainWindow::
 OnSize(UINT nType, INT cx, INT cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnSize\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnSize\n"));
 }
 
 VOID MainWindow::
 OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
     CWnd::OnWindowPosChanged(lpwndpos);
-    DbgConPrt(LightYellow, TEXT("MainWindow::OnWindowPosChanged\n"));
+    DbgConPrt(Yellow, TEXT("MainWindow::"));
+    DbgConPrt(LightYellow, TEXT("OnWindowPosChanged\n"));
 }

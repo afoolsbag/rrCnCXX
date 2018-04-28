@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \verison 2018-04-23
+/// \verison 2018-04-28
 /// \since 2018-04-23
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -19,6 +19,7 @@ class Application: public CWinApp {
 #// Constructors
 public:
     Application();
+    virtual ~Application() override;
 
 #// Attributes
 public:
@@ -28,10 +29,7 @@ public:
 
 #// Overridables
 public:
-    virtual ~Application();
-
-protected:
-    virtual BOOL InitInstance();
+    virtual BOOL InitInstance() override;
 
 #// Implementation
 protected:

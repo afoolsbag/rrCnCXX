@@ -1,10 +1,9 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼ş¡£
-// ¹© resource.rc Ê¹ÓÃ
+// Microsoft Visual C++ ç”Ÿæˆçš„åŒ…å«æ–‡ä»¶ã€‚
+// ä¾› resource.rc ä½¿ç”¨
 //
-#define IDD_HOST_DIALOG                 200
-#define IDD_GUEST_DIALOG                300
-#define IDD_SIDE_DIALOG                 400
+#define IDD_GUEST_DIALOG                200
+#define IDD_SIDE_DIALOG                 300
 #define IDC_UNDEFINED                   40000
 #define IDC_TOGGLE_SIDE_DIALOG_BUTTON   40001
 #define IDC_RANGELAST                   49999
