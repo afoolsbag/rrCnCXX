@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-28
+# 2016-10-08 – 2018-05-02
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -37,7 +37,8 @@ function(compiler_warning_level)
 
   if(_HIGHEST)
     if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-      add_compile_options("-Wall -Wextra")
+      add_compile_options("-Wall")
+      add_compile_options("-Wextra")
     elseif(MSVC)
       add_compile_options("/Wall")
     endif()

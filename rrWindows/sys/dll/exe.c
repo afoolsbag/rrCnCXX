@@ -5,7 +5,7 @@
  *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2018-04-26
+ * \version 2018-05-02
  * \since 2017-01-03
  * \authors zhengrr
  * \copyright The MIT License
@@ -22,6 +22,10 @@
 
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
+    UNREFERENCED_PARAMETER(argc);
+    UNREFERENCED_PARAMETER(argv);
+    UNREFERENCED_PARAMETER(envp);
+
 	_tprintf(_T("Dicing... %d!\n"), Dice());
     _tsystem(_T("pause"));
 	return EXIT_SUCCESS;

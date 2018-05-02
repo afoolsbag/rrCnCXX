@@ -17,14 +17,14 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef RRWINDOWS_SHARED
-# ifdef RRWINDOWS_EXPORTS
-#  define RRWINDOWS_API __declspec(dllexport)
+#ifdef RRWINDOWS_DL_SHARED
+# ifdef RRWINDOWS_DL_EXPORTS
+#  define RRWINDOWS_DL_API __declspec(dllexport)
 # else
-#  define RRWINDOWS_API __declspec(dllimport)
+#  define RRWINDOWS_DL_API __declspec(dllimport)
 # endif
 #else
-#  define RRWINDOWS_API
+#  define RRWINDOWS_DL_API
 #endif
 
 #ifdef __cplusplus
@@ -32,11 +32,11 @@ extern "C" {
 #endif
 
 /** \brief 掷骰子（ANSI适配）。 */
-RRWINDOWS_API INT WINAPI
+RRWINDOWS_DL_API INT WINAPI
 DiceA(VOID);
 
 /** \brief 掷骰子（UNICODE适配）。 */
-RRWINDOWS_API INT WINAPI
+RRWINDOWS_DL_API INT WINAPI
 DiceW(VOID);
 
 #ifdef UNICODE

@@ -15,14 +15,14 @@ DllMain(HINSTANCE handleDll, DWORD reason, PVOID reserved)
     return TRUE;
 }
 
-RRWINDOWS_API INT WINAPI
+RRWINDOWS_DL_API INT WINAPI
 DiceA()
 {
     srand((unsigned)time(NULL));
     return rand() % 6 + 1;
 }
 
-RRWINDOWS_API INT WINAPI
+RRWINDOWS_DL_API INT WINAPI
 DiceW()
 {
     srand((unsigned)time(NULL));

@@ -136,7 +136,7 @@ OnGuestShowWindow(WPARAM wParam, LPARAM lParam)
     DbgConPrt(White, TEXT("Receive RM_RRMFC_GUEST_SHOWWINDOW with %u, %ld\n"), wParam, lParam);
 
     if (static_cast<BOOL>(lParam))
-        ShowWindow(TRUE);
+        ShowWindow(SW_);
     return NULL;
 }
 

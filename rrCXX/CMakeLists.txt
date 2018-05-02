@@ -9,7 +9,7 @@
 
 project("rrCXX" VERSION 2018.4.21 LANGUAGES CXX)
 project_extra()
-highest_warning_level(AS_ERROR)
+compiler_warning_level(HIGHEST AS_ERROR)
 
 facile_add_doxygen()
 
