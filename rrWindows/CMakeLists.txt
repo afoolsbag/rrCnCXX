@@ -13,19 +13,19 @@ compiler_warning_level(HIGHEST UTF-8 ANALYZE)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+facile_add_library(TARGET_NAME_VARIABLE  sRrwindowsLib
+                                 STATIC "api.h"
+                    INCLUDE_DIRECTORIES  PRIVATE ".")
+
+aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "tmain" "tsuite" "tcase")
+facile_add_check_executable(SUBNAME "Test"
+                                     ${zSrc}
+                INCLUDE_DIRECTORIES  PRIVATE "."
+                     LINK_LIBRARIES "${sRrwindowsLib}")
+
 facile_add_executable(SUBNAME "ConsoleApplication"
                               "conapp.c")
 facile_add_executable(SUBNAME "DesktopApplication"
                         WIN32 "dtpapp.c")
-
-aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "tsuite_" "tcase_")
-facile_add_check_executable(SUBNAME "Test"
-                                    "tmain.c" ${zSrc}
-                     LINK_LIBRARIES  rrwindows_dbg_static_library
-                                     rrwindows_toolhelp_static_library
-                                     rrwindows_rpc_static_library
-                                     rrwindows_wnet_static_library
-                                     rrwindows_charset_static_library)
 
 aux_add_subdirectories()

@@ -1,3 +1,3 @@
-facile_add_library(SUBNAME "CharSet"
-                    STATIC "rrwindows/strxc.h" "rrwindows/strxc.c"
-                PROPERTIES  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}")
+aux_source_directory_enhanced(zSrc RECURSE SOURCE_DIRECTORY "rrwindows")
+target_sources("${sRrwindowsLib}" PRIVATE ${zSrc})
+target_include_directories("${sRrwindowsLib}" INTERFACE ".")

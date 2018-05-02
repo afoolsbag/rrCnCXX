@@ -19,15 +19,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef RRWINDOWS_STRXC_SHARED
-# ifdef RRWINDOWS_STRXC_EXPORTS
-#  define RRWINDOWS_STRXC_API __declspec(dllexport)
-# else
-#  define RRWINDOWS_STRXC_API __declspec(dllimport)
-# endif
-#else
-#  define RRWINDOWS_STRXC_API
-#endif
+#include "api.h"
 
 #ifndef CP_GB2312
 #define CP_GB2312                   936
@@ -68,7 +60,7 @@ extern "C" {
  * \since 2018-04-26
  * \authors zhengrr
  */
-RRWINDOWS_STRXC_API
+RRWINDOWS_API
 _Success_(return != 0)
     _When_(inputBytesCount==-1 && outputBytesCount!=0, _Post_equal_to_(_String_length_(outputString)+1))
 INT WINAPI

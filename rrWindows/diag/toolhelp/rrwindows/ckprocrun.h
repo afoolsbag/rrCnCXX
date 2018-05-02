@@ -3,7 +3,7 @@
  * \defgroup gCkProcRun 检查进程正在运行否
  * \ingroup gToolHelp
  *
- * \version 2018-04-28
+ * \version 2018-05-02
  * \since 2018-04-28
  * \authors zhengrr
  * \copyright The MIT License
@@ -16,15 +16,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef RRWINDOWS_CKPROCRUN_SHARED
-# ifdef RRWINDOWS_CKPROCRUN_EXPORTS
-#  define RRWINDOWS_CKPROCRUN_API __declspec(dllexport)
-# else
-#  define RRWINDOWS_CKPROCRUN_API __declspec(dllimport)
-# endif
-#else
-#  define RRWINDOWS_CKPROCRUN_API
-#endif
+#include "api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,7 +29,7 @@ extern "C" {
  * \returns 若正在运行，返回其一实例进程标识号；
  *          若没有运行，返回`FALSE`。
  */
-RRWINDOWS_CKPROCRUN_API
+RRWINDOWS_API
 _Success_(return != 0)
 DWORD WINAPI
 CheckProcessRunningA(
@@ -50,7 +42,7 @@ CheckProcessRunningA(
  * \returns 若正在运行，返回其一实例进程标识号；
  *          若没有运行，返回`FALSE`。
  */
-RRWINDOWS_CKPROCRUN_API
+RRWINDOWS_API
 _Success_(return != 0)
 DWORD WINAPI
 CheckProcessRunningW(

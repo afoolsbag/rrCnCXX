@@ -16,15 +16,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef RRWINDOWS_RPC_SHARED
-# ifdef RRWINDOWS_RPC_EXPORTS
-#  define RRWINDOWS_RPC_API __declspec(dllexport)
-# else
-#  define RRWINDOWS_RPC_API __declspec(dllimport)
-# endif
-#else
-#  define RRWINDOWS_RPC_API
-#endif
+#include "api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,7 +33,7 @@ extern "C" {
  * \sa ["UuidToString function"](https://msdn.microsoft.com/library/aa379352). *Microsoft® Developer Network*.
  * \sa ["RpcStringFree function"](https://msdn.microsoft.com/library/aa378483). *Microsoft® Developer Network*.
  */
-RRWINDOWS_RPC_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
 GenerateUuidA(VOID);
 
 /**
@@ -51,7 +43,7 @@ GenerateUuidA(VOID);
  * \returns 若成功，返回指向缓存的指针；
  *          若失败，返回空指针（`NULL`）。
  */
-RRWINDOWS_RPC_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 GenerateUuidW(VOID);
 
 #ifdef UNICODE

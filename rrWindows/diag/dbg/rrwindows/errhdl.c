@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#define RRWINDOWS_ERRHDL_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "errhdl.h"
 
 #include <strsafe.h>
@@ -10,7 +10,7 @@
 #define BUFFER_SIZE 350
 #define BUFFER_OFFSET 2  /* for \r\n when empty string */
 
-RRWINDOWS_ERRHDL_API
+RRWINDOWS_API
 _Success_(return != NULL)
 LPCSTR WINAPI
 ErrorTextOfA(
@@ -30,7 +30,7 @@ ErrorTextOfA(
     return bfr;
 }
 
-RRWINDOWS_ERRHDL_API
+RRWINDOWS_API
 _Success_(return != NULL)
 LPCWSTR WINAPI
 ErrorTextOfW(

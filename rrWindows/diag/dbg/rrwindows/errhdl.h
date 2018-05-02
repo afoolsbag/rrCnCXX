@@ -21,15 +21,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef RRWINDOWS_ERRHDL_SHARED
-# ifdef RRWINDOWS_ERRHDL_EXPORTS
-#  define RRWINDOWS_ERRHDL_API __declspec(dllexport)
-# else
-#  define RRWINDOWS_ERRHDL_API __declspec(dllimport)
-# endif
-#else
-#  define RRWINDOWS_ERRHDL_API
-#endif
+#include "api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,7 +35,7 @@ extern "C" {
  * \returns 若成功，返回指向缓存的指针；
  *          若失败，返回空指针（`NULL`）。
  */
-RRWINDOWS_ERRHDL_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
 ErrorTextOfA(
     _In_ CONST DWORD errorCode);
 
@@ -55,7 +47,7 @@ ErrorTextOfA(
  * \returns 若成功，返回指向缓存的指针；
  *          若失败，返回空指针（`NULL`）。
  */
-RRWINDOWS_ERRHDL_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 ErrorTextOfW(
     _In_ CONST DWORD errorCode);
 

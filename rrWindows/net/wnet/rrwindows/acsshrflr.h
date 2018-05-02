@@ -16,15 +16,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#ifdef RRWINDOWS_ACSSHRFLR_SHARED
-# ifdef RRWINDOWS_ACSSHRFLR_EXPORTS
-#  define RRWINDOWS_ACSSHRFLR_API __declspec(dllexport)
-# else
-#  define RRWINDOWS_ACSSHRFLR_API __declspec(dllimport)
-# endif
-#else
-#  define RRWINDOWS_ACSSHRFLR_API
-#endif
+#include "api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -42,7 +34,7 @@ extern "C" {
  * \sa ["NETRESOURCE structure"](https://msdn.microsoft.com/library/aa385353). *Microsoft® Developer Network*.
  * \sa ["WNetAddConnection2 function"](https://msdn.microsoft.com/library/aa385413). *Microsoft® Developer Network*.
  */
-RRWINDOWS_ACSSHRFLR_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
 ConnectSharedFolderA(
     _In_z_   LPCSTR CONST sharedFolderPath,
     _In_opt_ LPCSTR CONST username,
@@ -57,7 +49,7 @@ ConnectSharedFolderA(
  * \param password         密码。
  * \returns 错误码（`ERROR_SUCCESS`值为`0`）。
  */
-RRWINDOWS_ACSSHRFLR_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
 ConnectSharedFolderW(
     _In_z_   LPCWSTR CONST sharedFolderPath,
     _In_opt_ LPCWSTR CONST username,
@@ -79,7 +71,7 @@ ConnectSharedFolderW(
  *
  * \sa ["WNetCancelConnection2 function"](https://msdn.microsoft.com/library/aa385427). *Microsoft® Developer Network*.
  */
-RRWINDOWS_ACSSHRFLR_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
 DisconnectSharedFolderA(
     _In_z_ CONST LPCSTR sharedFolderPath);
 
@@ -91,7 +83,7 @@ DisconnectSharedFolderA(
  * \param sharedFolderPath 共享文件夹路径。
  * \returns 错误码（`ERROR_SUCCESS`值为`0`）。
  */
-RRWINDOWS_ACSSHRFLR_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
 DisconnectSharedFolderW(
     _In_z_ CONST LPCWSTR sharedFolderPath);
 

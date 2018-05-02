@@ -1,13 +1,13 @@
 /** \copyright The MIT License */
 
-#define RRWINDOWS_STRXC_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "strxc.h"
 
 #include <stdlib.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-RRWINDOWS_STRXC_API
+RRWINDOWS_API
 _Success_(return != 0)
     _When_(inputBytesCount==-1 && outputBytesCount!=0,
            _Post_equal_to_(_String_length_(outputString)+1))

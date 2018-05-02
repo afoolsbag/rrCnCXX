@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#define RRWINDOWS_CKPROCRUN_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "ckprocrun.h"
 
 #include <tchar.h>
@@ -9,7 +9,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-RRWINDOWS_CKPROCRUN_API
+RRWINDOWS_API
 _Success_(return != 0)
 DWORD WINAPI
 CheckProcessRunningA(
@@ -33,7 +33,7 @@ CheckProcessRunningA(
     return FALSE;
 }
 
-RRWINDOWS_CKPROCRUN_API
+RRWINDOWS_API
 _Success_(return != 0)
 DWORD WINAPI
 CheckProcessRunningW(

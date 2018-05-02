@@ -1,3 +1,3 @@
-facile_add_library(SUBNAME "WNet"
-                    STATIC "rrwindows/acsshrflr.h" "rrwindows/acsshrflr.c"
-                PROPERTIES  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}")
+aux_source_directory_enhanced(zSrc RECURSE SOURCE_DIRECTORY "rrwindows")
+target_sources("${sRrwindowsLib}" PRIVATE ${zSrc})
+target_include_directories("${sRrwindowsLib}" INTERFACE ".")

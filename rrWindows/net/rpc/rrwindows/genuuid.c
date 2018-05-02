@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#define RRWINDOWS_RPC_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "genuuid.h"
 
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 
 #define BUFFER_SIZE 37
 
-RRWINDOWS_RPC_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
 GenerateUuidA(VOID)
 {
     __declspec(thread) static CHAR StaticBuffer[BUFFER_SIZE];
@@ -28,7 +28,7 @@ GenerateUuidA(VOID)
     return StaticBuffer;
 }
 
-RRWINDOWS_RPC_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 GenerateUuidW(VOID)
 {
     __declspec(thread) static WCHAR StaticBuffer[BUFFER_SIZE];
