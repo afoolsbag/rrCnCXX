@@ -1,7 +1,9 @@
 /** \copyright The MIT License */
 
+#define RRWINDOWS_ERRHDL_EXPORTS
 #include "errhdl.h"
 
+#include <strsafe.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -22,7 +24,9 @@ ErrorTextOfA(
         errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL),
         bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
         return NULL;
-    bfr[strlen(bfr) - 2] = '\0';
+    size_t len = 0;
+    StringCchLengthA(bfr, STRSAFE_MAX_CCH, &len);
+    bfr[len - 2] = '\0';
     return bfr;
 }
 
@@ -40,6 +44,8 @@ ErrorTextOfW(
         errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL),
         bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
         return NULL;
-    bfr[wcslen(bfr) - 2] = L'\0';
+    size_t len = 0;
+    StringCchLengthW(bfr, STRSAFE_MAX_CCH, &len);
+    bfr[len - 2] = L'\0';
     return bfr;
 }

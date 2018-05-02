@@ -1,9 +1,9 @@
 /*===-- Access Shared Folder -----------------------------------*- C -*-===*//**
  *
  * \defgroup gAcsShrFlr 访问共享文件夹
- * \ingroup gWnet
+ * \ingroup gWNet
  *
- * \version 2018-04-26
+ * \version 2018-05-02
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License

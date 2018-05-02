@@ -9,6 +9,8 @@
 
 #include "diag/dbg/tsuite_dbg.h"
 #include "diag/toolhelp/tsuite_toolhelp.h"
+#include "net/rpc/tsuite_rpc.h"
+#include "net/wnet/tsuite_wnet.h"
 #include "ui/i18n/charset/tsuite_charset.h"
 #include "ui/res/str/tsuite_str.h"
 
@@ -22,6 +24,8 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 
     srunner_add_suite(runner, TSuiteDbg());
     srunner_add_suite(runner, TSuiteToolHelp());
+    srunner_add_suite(runner, TSuiteRPC());
+    srunner_add_suite(runner, TSuiteWNet());
     srunner_add_suite(runner, TSuiteCharSet());
     srunner_add_suite(runner, TSuiteStr());
 

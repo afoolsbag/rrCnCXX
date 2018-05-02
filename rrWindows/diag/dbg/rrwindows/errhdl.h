@@ -8,7 +8,7 @@
  * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.
  * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *Microsoft® Developer Network*.
  *
- * \version 2018-04-26
+ * \version 2018-05-02
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License

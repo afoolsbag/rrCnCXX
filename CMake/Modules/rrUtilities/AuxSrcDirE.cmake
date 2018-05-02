@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-27
+# 2016-10-08 – 2018-05-02
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -88,14 +88,16 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
     list(APPEND zSrcExts ".h" ".c" ".inl")
   endif()
   if(CXX IN_LIST zLangs OR _CXX)
-    list(APPEND zSrcExts ".hpp" ".cpp" ".hh" ".cc" ".hxx" ".cxx" ".hp" ".cp"
-                         ".HPP" ".CPP" ".H"  ".C"  ".h++" ".c++" ".h"  ".inl")
+    list(APPEND zSrcExts ".hpp" ".cpp" ".hh"  ".cc"  ".hxx" ".cxx" ".hp"  ".cp"
+                         ".HPP" ".CPP" ".H"   ".C"   ".h++" ".c++" ".h"   ".inl")
   endif()
   if(_MFC)
-    list(APPEND zSrcExts ".h"   ".cpp" ".rc")
+    list(APPEND zSrcExts ".h"   ".cpp"
+                         ".rc"  ".bmp" ".cur" ".ico")
   endif()
   if(_QT)
-    list(APPEND zSrcExts ".h"   ".cpp" ".ui")
+    list(APPEND zSrcExts ".h"   ".cpp"
+                         ".ui")
   endif()
   if(DEFINED _SOURCE_EXTENSIONS)
     foreach(sSrcExt ${_SOURCE_EXTENSIONS})

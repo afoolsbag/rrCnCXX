@@ -1,7 +1,7 @@
 //===-- User Interface Elements (MFC) ---------------------------*- C++ -*-===//
 ///
 /// \defgroup gUiElem 用户界面元素（MFC）
-/// \ingroup gMfc
+/// \ingroup gMFC
 ///
 /// \sa ["User Interface Elements (MFC)"](https://docs.microsoft.com/cpp/mfc/user-interface-elements-mfc). *Microsoft® Docs*.
 ///     + [ActiveX Controls](https://docs.microsoft.com/cpp/mfc/activex-controls)

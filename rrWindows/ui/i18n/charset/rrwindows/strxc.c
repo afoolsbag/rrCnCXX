@@ -10,7 +10,7 @@
 RRWINDOWS_STRXC_API
 _Success_(return != 0)
     _When_(inputBytesCount==-1 && outputBytesCount!=0,
-           _Post_equal_to_(_String_length_(outputString+1)))
+           _Post_equal_to_(_String_length_(outputString)+1))
 INT WINAPI
 StringTranscode(
     _In_                                           CONST UINT  inputCodePage,

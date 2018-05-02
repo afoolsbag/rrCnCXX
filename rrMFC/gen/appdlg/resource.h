@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ ç”Ÿæˆçš„åŒ…å«æ–‡ä»¶ã€‚
-// ä¾› resource.rc ä½¿ç”¨
+// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼ş¡£
+// ¹© resource.rc Ê¹ÓÃ
 //
 #define IDD_MAIN_DIALOG                 200
 #define IDC_UNDEFINED                   40000
@@ -15,9 +15,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        102
+#define _APS_NEXT_RESOURCE_VALUE        10001
 #define _APS_NEXT_COMMAND_VALUE         50001
 #define _APS_NEXT_CONTROL_VALUE         40001
-#define _APS_NEXT_SYMED_VALUE           102
+#define _APS_NEXT_SYMED_VALUE           300
 #endif
 #endif

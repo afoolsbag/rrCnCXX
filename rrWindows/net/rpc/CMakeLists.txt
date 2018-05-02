@@ -1,4 +1,3 @@
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-facile_add_executable(SUBNAME "GenerateUuid"
-                              "genuuidtest.c")
+facile_add_library(SUBNAME "RPC"
+                    STATIC "rrwindows/genuuid.h" "rrwindows/genuuid.c"
+                PROPERTIES  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}")

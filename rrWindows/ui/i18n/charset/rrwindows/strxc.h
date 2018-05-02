@@ -6,7 +6,7 @@
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *
- * \version 2018-04-27
+ * \version 2018-05-02
  * \since 2018-01-11
  * \authors zhengrr
  * \copyright The MIT License
@@ -64,13 +64,13 @@ extern "C" {
  * \sa ["WideCharToMultiByte function"](https://msdn.microsoft.com/library/dd374130). *Microsoft® Developer Network*.
  * \sa ["Code Page Identifiers"](https://msdn.microsoft.com/library/dd317756). *Microsoft® Developer Network*.
  *
- * \version 2018-04-26
+ * \version 2018-05-02
  * \since 2018-04-26
  * \authors zhengrr
  */
 RRWINDOWS_STRXC_API
 _Success_(return != 0)
-    _When_(inputBytesCount==-1 && outputBytesCount!=0, _Post_equal_to_(_String_length_(outputString+1)))
+    _When_(inputBytesCount==-1 && outputBytesCount!=0, _Post_equal_to_(_String_length_(outputString)+1))
 INT WINAPI
 StringTranscode(
     _In_                                           CONST UINT  inputCodePage,

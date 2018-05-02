@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-04-28
+# 2016-10-12 – 2018-05-02
 # The MIT License
 
-project("rrWindows" VERSION 2018.4.28 LANGUAGES C)
+project("rrWindows" VERSION 2018.5.2 LANGUAGES C)
 project_extra()
 compiler_warning_level(HIGHEST UTF-8 ANALYZE)
 
@@ -22,8 +22,10 @@ facile_add_executable(SUBNAME "DesktopApplication"
 aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "tsuite_" "tcase_")
 facile_add_check_executable(SUBNAME "Test"
                                     "tmain.c" ${zSrc}
-                     LINK_LIBRARIES  rrwindows_errorhandling_static_library
-                                     rrwindows_checkprocessrunning_static_library
-                                     rrwindows_stringtranscode_static_library)
+                     LINK_LIBRARIES  rrwindows_dbg_static_library
+                                     rrwindows_toolhelp_static_library
+                                     rrwindows_rpc_static_library
+                                     rrwindows_wnet_static_library
+                                     rrwindows_charset_static_library)
 
 aux_add_subdirectories()

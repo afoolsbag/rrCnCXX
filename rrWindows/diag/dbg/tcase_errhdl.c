@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#include <tchar.h>
+#include <strsafe.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -11,7 +11,9 @@
 START_TEST(TestErrHdl)
 {
     GetProcessId(NULL);
-    ck_assert(_tcslen(GetLastErrorText()));
+    size_t len = 0;
+    StringCchLength(GetLastErrorText(), STRSAFE_MAX_CCH, &len);
+    ck_assert(len);
 }
 END_TEST
 
