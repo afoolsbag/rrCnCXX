@@ -1,7 +1,7 @@
 /*===-- Menus and Other Resources ------------------------------*- C -*-===*//**
  *
  * \defgroup gRes 菜单和其它资源
- * \ingroup gUi
+ * \ingroup gUI
  *
  * \sa ["Menus and Other Resources"](https://msdn.microsoft.com/library/ms632583). *Microsoft® Developer Network*.
  *     + [Introduction to Resources](https://msdn.microsoft.com/library/ff468900)
@@ -14,7 +14,7 @@
  *     + [Version Information](https://msdn.microsoft.com/library/ms646981)
  *     + [Resource Compiler](https://msdn.microsoft.com/library/aa381042)
  *
- * \version 2018-04-27
+ * \version 2018-05-03
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright CC BY 4.0

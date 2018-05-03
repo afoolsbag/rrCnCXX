@@ -1,6 +1,6 @@
 /*===-- Desktop App User Interface -----------------------------*- C -*-===*//**
  *
- * \defgroup gUi 桌面应用用户界面
+ * \defgroup gUI 桌面应用用户界面
  * \ingroup gDvlp
  *
  * \sa ["Desktop App User Interface"](https://msdn.microsoft.com/library/ff657751). *Microsoft® Developer Network*.
@@ -21,7 +21,7 @@
  *     + [Tiles, badges, and notifications for Classic desktop applications](https://msdn.microsoft.com/library/mt643716)
  *     + [Title Callable UI](https://msdn.microsoft.com/library/mt421177)
  *
- * \version 2018-04-26
+ * \version 2018-05-03
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

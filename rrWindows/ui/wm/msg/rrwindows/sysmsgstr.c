@@ -1,18 +1,16 @@
 /** \copyright The MIT License */
 
-#define RRMFC_UTILITIES_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "sysmsgstr.h"
 
 #include <tchar.h>
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 
 #include "sysmsg.h"
 
 /**
  * \brief System Message (Number) to String.
  */
-RRMFC_UTILITIES_API LPCTSTR WINAPI
+RRWINDOWS_API LPCTSTR WINAPI
 SystemMessageString(
     _In_ CONST UINT messageNumber)
 {

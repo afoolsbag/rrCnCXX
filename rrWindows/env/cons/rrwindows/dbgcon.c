@@ -1,18 +1,16 @@
 /** \copyright The MIT License */
 
 #define DEBUG
-#define RRMFC_UTILITIES_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "dbgcon.h"
 
 #include <stdarg.h>
 #include <conio.h>
 #include <tchar.h>
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 
-#include "sysmsgstr.h"
+#include "rrwindows/sysmsgstr.h"
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _NewDebugConsole(
     _In_                          CONST ConCol  textColor,
     _In_z_ _Printf_format_string_ CONST LPCTSTR format,
@@ -26,7 +24,7 @@ _NewDebugConsole(
     va_end(va);
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DeleteDebugConsole(
     _In_                          CONST ConCol  textColor,
     _In_z_ _Printf_format_string_ CONST LPCTSTR format,
@@ -40,7 +38,7 @@ _DeleteDebugConsole(
     FreeConsole();
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DebugConsolePrint(
     _In_                          CONST ConCol  textColor,
     _In_z_ _Printf_format_string_ CONST LPCTSTR format,
@@ -53,7 +51,7 @@ _DebugConsolePrint(
     va_end(va);
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DebugConsolePrintWindowMessage(
     _In_   CONST ConCol  textColor,
     _In_z_ CONST LPCTSTR prefix,
@@ -66,7 +64,7 @@ _DebugConsolePrintWindowMessage(
     _tcprintf_s(_T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), prefix, message, SysMsgStr(message), wParam, lParam, pResult);
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DebugConsolePrintCommandMessage(
     _In_   CONST ConCol  textColor,
     _In_z_ CONST LPCTSTR prefix,

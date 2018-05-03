@@ -1,0 +1,13 @@
+/*===-- Consoles -----------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gCons ┐пок╠е
+ * \ingroup gEnv
+ *
+ * \sa <https://docs.microsoft.com/windows/console/>
+ *
+ * \version 2018-05-03
+ * \since 2018-05-03
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

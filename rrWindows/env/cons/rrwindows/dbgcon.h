@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-04-26
+ * \version 2018-05-03
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -23,25 +23,25 @@
 extern "C" {
 # endif
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _NewDebugConsole(
     _In_                          CONST ConCol  textColor,
     _In_z_ _Printf_format_string_ CONST LPCTSTR format,
     ...);
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DeleteDebugConsole(
     _In_                          CONST ConCol  textColor,
     _In_z_ _Printf_format_string_ CONST LPCTSTR format,
     ...);
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DebugConsolePrint(
     _In_                          CONST ConCol  textColor,
     _In_z_ _Printf_format_string_ CONST LPCTSTR format,
     ...);
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DebugConsolePrintWindowMessage(
     _In_   CONST ConCol  textColor,
     _In_z_ CONST LPCTSTR prefix,
@@ -50,7 +50,7 @@ _DebugConsolePrintWindowMessage(
     _In_   CONST LPARAM  lParam,
     _In_   CONST PVOID   pResult);
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 _DebugConsolePrintCommandMessage(
     _In_   CONST ConCol  textColor,
     _In_z_ CONST LPCTSTR prefix,

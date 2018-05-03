@@ -4,8 +4,6 @@
 #include "errhdl.h"
 
 #include <strsafe.h>
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 
 #define BUFFER_SIZE 350
 #define BUFFER_OFFSET 2  /* for \r\n when empty string */

@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台颜色。
  *
- * \version 2018-04-26
+ * \version 2018-05-03
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -32,19 +32,19 @@ extern "C" {
 # endif
 
 /** \brief 获取控制台背景色。 */
-RRMFC_UTILITIES_API ConCol WINAPI
+RRWINDOWS_API ConCol WINAPI
 GetConsoleBackGroundColor(VOID);
 /** \brief 获取控制台背景色（缩写）。 */
 #define GetConBgCol GetConsoleBackGroundColor
 
 /** \brief 获取控制台前景色。 */
-RRMFC_UTILITIES_API ConCol WINAPI
+RRWINDOWS_API ConCol WINAPI
 GetConsoleForeGroundColor(VOID);
 /** \brief 获取控制台前景色（缩写）。 */
 #define GetConFgCol GetConsoleForeGroundColor
 
 /** \brief 设定控制台颜色。 */
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 SetConsoleColor(
     _In_ CONST ConCol backGroundColor,
     _In_ CONST ConCol foreGroundColor);
@@ -52,14 +52,14 @@ SetConsoleColor(
 #define SetConCol SetConsoleColor
 
 /** \brief 设定控制台背景色。 */
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 SetConsoleBackGroundColor(
     _In_ CONST ConCol backGroundColor);
 /** \brief 设定控制台背景色（缩写）。 */
 #define SetConBgCol SetConsoleBackGroundColor
 
 /** \brief 设定控制台前景色。 */
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 SetConsoleForeGroundColor(
     _In_ CONST ConCol foreGroundColor);
 /** \brief 设定控制台前景色（缩写）。 */

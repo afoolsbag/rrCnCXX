@@ -1,12 +1,9 @@
 /** \copyright The MIT License */
 
-#define RRMFC_UTILITIES_EXPORTS
+#define RRWINDOWS_EXPORTS
 #include "concol.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-RRMFC_UTILITIES_API ConCol WINAPI
+RRWINDOWS_API ConCol WINAPI
 GetConsoleBackGroundColor(VOID)
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -14,7 +11,7 @@ GetConsoleBackGroundColor(VOID)
     return (csbi.wAttributes & 0x00F0) >> 4;
 }
 
-RRMFC_UTILITIES_API ConCol WINAPI
+RRWINDOWS_API ConCol WINAPI
 GetConsoleForeGroundColor(VOID)
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -22,7 +19,7 @@ GetConsoleForeGroundColor(VOID)
     return csbi.wAttributes & 0x000F;
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 SetConsoleColor(
     _In_ CONST ConCol backGroundColor,
     _In_ CONST ConCol foreGroundColor)
@@ -36,7 +33,7 @@ SetConsoleColor(
     SetConsoleTextAttribute(stdOutput, csbi.wAttributes);
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 SetConsoleBackGroundColor(
     _In_ CONST ConCol backGroundColor)
 {
@@ -48,7 +45,7 @@ SetConsoleBackGroundColor(
     SetConsoleTextAttribute(stdOutput, csbi.wAttributes);
 }
 
-RRMFC_UTILITIES_API VOID WINAPI
+RRWINDOWS_API VOID WINAPI
 SetConsoleForeGroundColor(
     _In_ CONST ConCol foreGroundColor)
 {

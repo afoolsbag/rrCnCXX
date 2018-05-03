@@ -3,7 +3,7 @@
  * \file
  * \brief 系统消息字串。
  *
- * \version 2018-04-26
+ * \version 2018-05-03
  * \since 2018-04-13
  * \authors zhengrr
  * \copyright The MIT License
@@ -22,7 +22,7 @@ extern "C" {
 #endif
 
 /** \brief 系统消息号转（文本）字串。 */
-RRMFC_UTILITIES_API LPCTSTR WINAPI
+RRWINDOWS_API LPCTSTR WINAPI
 SystemMessageString(
     _In_ CONST UINT messageNumber);
 /** \brief 系统消息号转（文本）字串（缩写）。 */
