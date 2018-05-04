@@ -1,0 +1,13 @@
+/*===-- Audio and Video ----------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gAV 音频和视频
+ * \ingroup gDvlp
+ *
+ * \sa ["Audio and Video"](https://msdn.microsoft.com/library/ee663260). *Microsoft® Developer Network*.
+ *
+ * \version 2018-05-04
+ * \since 2018-05-04
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

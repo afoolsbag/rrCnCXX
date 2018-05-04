@@ -6,7 +6,7 @@
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *
- * \version 2018-05-02
+ * \version 2018-05-04
  * \since 2018-01-11
  * \authors zhengrr
  * \copyright The MIT License
@@ -19,7 +19,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "api.h"
+#include "rrwindows/rrwindowsapi.h"
 
 #ifndef CP_GB2312
 #define CP_GB2312                   936

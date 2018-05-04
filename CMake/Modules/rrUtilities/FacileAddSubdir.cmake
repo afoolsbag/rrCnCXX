@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-04-11
+# 2017-12-18 – 2018-05-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -17,7 +17,7 @@ endif()
 #         [binary-directory]
 #         [EXCLUDE_FROM_ALL]
 #         [WITHOUT_OPTION]
-#         [OPTION_INITIAL_VALUE <ON|OFF>]
+#         [OPTION_INITIAL_ON]
 #       )
 #
 function(facile_add_subdirectory _SOURCE_DIRECTORY)
@@ -36,22 +36,34 @@ function(facile_add_subdirectory _SOURCE_DIRECTORY)
   endif()
 
   if(_EXCLUDE_FROM_ALL)
-    set(sExcludeFromAll "EXCLUDE_FROM_ALL")
+    set(sExcludeFromAll EXCLUDE_FROM_ALL)
   else()
     set(sExcludeFromAll)
   endif()
 
   if(_WITHOUT_OPTION)
+    # opt var
     set(vOptName sOptName)
+    # opt val
     set(sOptName ON)
+
   else()
+    # opt var
     check_name_with_cmake_recommend_variable_rules("${_SOURCE_DIRECTORY}" sCkPassed)
     if(NOT sCkPassed)
       message(WARNING "The directory name not meet CMake recommend variable rules: ${_SOURCE_DIRECTORY}.")
     endif()
     string(TOUPPER "${_SOURCE_DIRECTORY}" vOptName)
-    option(${vOptName} "Subdirectory ${_SOURCE_DIRECTORY}." ${_OPTION_INITIAL_VALUE})
+    # opt init val
+    if(_OPTION_INITIAL_ON)
+      set(sOptInit ON)
+    else()
+      set(sOptInit)
+    endif()
+    # opt val
+    option(${vOptName} "Subdirectory ${_SOURCE_DIRECTORY}." ${sOptInit})
   endif()
+
   if(${vOptName})
     add_subdirectory("${_SOURCE_DIRECTORY}" ${_BINARY_DIRECTORY} ${sExcludeFromAll})
   endif()

@@ -8,7 +8,7 @@
  * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.
  * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *Microsoft® Developer Network*.
  *
- * \version 2018-05-02
+ * \version 2018-05-04
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -21,7 +21,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "api.h"
+#include "rrwindows/rrwindowsapi.h"
 
 #ifdef __cplusplus
 extern "C" {

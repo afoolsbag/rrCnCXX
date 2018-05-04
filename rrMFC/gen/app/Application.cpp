@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
@@ -12,15 +12,15 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 Application::
 Application()
 {
-    NewDbgCon(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("Constructor\n"));
+    NewDbgCon();
+    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("Constructor\n"));
 }
 
 Application::
 ~Application()
 {
-    DbgConPrt(Red, TEXT("Application::"));
-    DelDbgCon(LightRed, TEXT("Destructor\n"));
+    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("Destructor\n"));
+    DelDbgCon();
 }
 
 #// Overridables
@@ -28,8 +28,7 @@ Application::
 BOOL Application::
 InitApplication()
 {
-    DbgConPrt(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("InitApplication\n"));
+    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("InitApplication\n"));
     return CWinApp::InitApplication();
 }
 
@@ -37,15 +36,13 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrt(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("InitInstance\n"));
+    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("InitInstance\n"));
     return FALSE;
 }
 
 INT Application::
 ExitInstance()
 {
-    DbgConPrt(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("ExitInstance\n"));
+    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("ExitInstance\n"));
     return CWinApp::ExitInstance();
 }

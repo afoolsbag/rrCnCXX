@@ -3,7 +3,7 @@
  * \defgroup gGenUuid 生成通用唯一标识符
  * \ingroup gRPC
  *
- * \version 2018-05-02
+ * \version 2018-05-04
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -16,7 +16,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "api.h"
+#include "rrwindows/rrwindowsapi.h"
 
 #ifdef __cplusplus
 extern "C" {

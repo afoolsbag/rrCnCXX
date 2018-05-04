@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-04-23
+# 2017-12-18 – 2018-05-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -15,6 +15,7 @@ endif()
 #       facile_add_executable(
 #         [NAME <full-name> | SUBNAME <sub-name>]
 #         [OPTION_DESCRIPTION <option-description>]
+#         [OPTION_INITIAL_ON]
 #         [TARGET_NAME_VARIABLE <target-name-variable>]
 #         [NO_DEFAULT_GROUP]
 #         [WIN32]
@@ -58,7 +59,8 @@ endif()
 #       + `CXX_STANDARD <https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD>`_
 #
 function(facile_add_executable)
-  set(zOptKws    "WIN32"
+  set(zOptKws    "OPTION_INITIAL_ON"
+                 "WIN32"
                  "C90" "C99" "C11"
                  "CXX98" "CXX11" "CXX14" "CXX17"
                  "NO_DEFAULT_GROUP")
@@ -87,13 +89,19 @@ function(facile_add_executable)
   # option
   set(vOptName "${sNameUpr}_COMPILE_EXECUTABLE")
 
+  if(_OPTION_INITIAL_ON)
+    set(sOptInit ON)
+  else()
+    set(sOptInit)
+  endif()
+
   if(DEFINED _OPTION_DESCRIPTION)
     set(sOptDesc "${_OPTION_DESCRIPTION}")
   else()
     set(sOptDesc "Build executable.")
   endif()
 
-  option(${vOptName} "${sOptDesc}" ON)
+  option(${vOptName} "${sOptDesc}" ${sOptInit})
   if(NOT ${vOptName})
     return()
   endif()

@@ -3,7 +3,8 @@
 #include "stdafx.h"
 #include "MainDialog.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
+#include "rrwindows/sysmsgstr.h"
 
 IMPLEMENT_DYNCREATE(MainDialog, CDialog)
 
@@ -30,55 +31,48 @@ MainDialog::
 MainDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("Constructor\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("Constructor\n"));
 }
 
 BOOL MainDialog::
 Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("Create\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("Create\n"));
     return CDialog::Create(lpszTemplateName, pParentWnd);
 }
 
 BOOL MainDialog::
 Create(UINT nIDTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("Create\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("Create\n"));
     return CDialog::Create(nIDTemplate, pParentWnd);
 }
 
 BOOL MainDialog::
 CreateIndirect(LPCDLGTEMPLATE lpDialogTemplate, CWnd *pParentWnd /*=NULL*/, VOID *lpDialogInit /*=NULL*/)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("CreateIndirect\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("CreateIndirect\n"));
     return CDialog::CreateIndirect(lpDialogTemplate, pParentWnd, lpDialogInit);
 }
 
 BOOL MainDialog::
 CreateIndirect(HGLOBAL hDialogTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("CreateIndirect\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("CreateIndirect\n"));
     return CDialog::CreateIndirect(hDialogTemplate, pParentWnd);
 }
 
 INT_PTR MainDialog::
 DoModal()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("DoModal\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("DoModal\n"));
     return CDialog::DoModal();
 }
 
 MainDialog::
 ~MainDialog()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("Destructor\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("Destructor\n"));
 }
 
 #// Overridables
@@ -87,32 +81,28 @@ BOOL MainDialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnInitDialog\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnInitDialog\n"));
     return TRUE;
 }
 
 BOOL MainDialog::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrtCmdMsg(LightYellow, TEXT("OnCmdMsg"), nID, nCode, pExtra, pHandlerInfo);
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnCmdMsg %u with %d, 0x%p, 0x%p\n"), nID, nCode, pExtra, pHandlerInfo);
     return CDialog::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL MainDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrt(Yellow, TEXT("MainDialog::OnWndMsg 0x%04X(%s), with %u, %ld, 0x%p\n"), message, SysMsgStr(message), wParam, lParam, pResult);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 VOID MainDialog::
 PreInitDialog()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("PreInitDialog\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("PreInitDialog\n"));
     CDialog::PreInitDialog();
 }
 
@@ -120,23 +110,20 @@ VOID MainDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("DoDataExchange\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("DoDataExchange\n"));
 }
 
 VOID MainDialog::
 OnOK()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnOK\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnOK\n"));
     CDialog::OnOK();
 }
 
 VOID MainDialog::
 OnCancel()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnCancel\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnCancel\n"));
     CDialog::OnCancel();
 }
 
@@ -145,79 +132,69 @@ OnCancel()
 VOID MainDialog::
 OnClose()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnClose\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnClose\n"));
     CDialog::OnClose();
 }
 
 VOID MainDialog::
 OnBnClickedOk()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedOk\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedOk\n"));
     CDialog::OnOK();
 }
 
 VOID MainDialog::
 OnBnClickedCancel()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedCancel\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedCancel\n"));
     CDialog::OnCancel();
 }
 
 VOID MainDialog::
 OnBnClickedAbort()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedAbort\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedAbort\n"));
     EndDialog(IDABORT);
 }
 
 VOID MainDialog::
 OnBnClickedRetry()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedRetry\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedRetry\n"));
     EndDialog(IDRETRY);
 }
 
 VOID MainDialog::
 OnBnClickedIgnore()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedIgnore\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedIgnore\n"));
     EndDialog(IDIGNORE);
 }
 
 VOID MainDialog::
 OnBnClickedYes()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedYes\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedYes\n"));
     EndDialog(IDYES);
 }
 
 VOID MainDialog::
 OnBnClickedNo()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedNo\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedNo\n"));
     EndDialog(IDNO);
 }
 
 VOID MainDialog::
 OnBnClickedClose()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedClose\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedClose\n"));
     EndDialog(IDCLOSE);
 }
 
 VOID MainDialog::
 OnBnClickedHelp()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedHelp\n"));
+    DbgConPrtDbl(Yellow, TEXT("MainDialog::"), LightYellow, TEXT("OnBnClickedHelp\n"));
     EndDialog(IDHELP);
 }

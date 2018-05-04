@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-23
+# 2016-10-08 – 2018-05-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -15,6 +15,7 @@ endif()
 #       facile_add_library(
 #         [NAME <full-name> | SUBNAME <sub-name>]
 #         [OPTION_DESCRIPTION <option-description>]
+#         [OPTION_INITIAL_ON]
 #         [TARGET_NAME_VARIABLE <target-name-variable>]
 #         [NO_DEFAULT_GROUP]
 #         [STATIC | SHARED | MODULE]
@@ -39,7 +40,8 @@ endif()
 #    :install:      to ``lib``
 #
 function(facile_add_library)
-  set(zOptKws    "STATIC" "SHARED" "MODULE"
+  set(zOptKws    "OPTION_INITIAL_ON"
+                 "STATIC" "SHARED" "MODULE"
                  "C90" "C99" "C11"
                  "CXX98" "CXX11" "CXX14" "CXX17"
                  "NO_DEFAULT_GROUP")
@@ -82,13 +84,19 @@ function(facile_add_library)
   # option
   set(vOptName "${sNameUpr}_COMPILE_${sTypeUpr}_LIBRARY")
 
+  if(_OPTION_INITIAL_ON)
+    set(sOptInit ON)
+  else()
+    set(sOptInit)
+  endif()
+
   if(DEFINED _OPTION_DESCRIPTION)
     set(sOptDesc ${_OPTION_DESCRIPTION})
   else()
     set(sOptDesc "Build ${sTypeLwr} library.")
   endif()
 
-  option(${vOptName} "${sOptDesc}" ON)
+  option(${vOptName} "${sOptDesc}" ${sOptInit})
   if(NOT ${vOptName})
     return()
   endif()
