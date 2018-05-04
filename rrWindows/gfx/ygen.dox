@@ -1,0 +1,13 @@
+/*===-- Graphics and Gaming ------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gGfx 图形和游戏
+ * \ingroup gDvlp
+ *
+ * \sa ["Graphics and Gaming"](https://msdn.microsoft.com/library/ee663279). *Microsoft® Developer Network*.
+ *
+ * \version 2018-05-04
+ * \since 2018-05-04
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

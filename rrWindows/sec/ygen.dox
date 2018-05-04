@@ -1,0 +1,13 @@
+/*===-- Security and Identity ----------------------------------*- C -*-===*//**
+ *
+ * \defgroup gSec 安全和身份
+ * \ingroup gDvlp
+ *
+ * \sa ["Security and Identity"](https://msdn.microsoft.com/library/ee663293). *Microsoft® Developer Network*.
+ *
+ * \version 2018-05-04
+ * \since 2018-05-04
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

@@ -1,0 +1,13 @@
+/*===-- Application Installation and Servicing -----------------*- C -*-===*//**
+ *
+ * \defgroup gSvc 应用程序安装和维护
+ * \ingroup gDvlp
+ *
+ * \sa ["Application Installation and Servicing"](https://msdn.microsoft.com/library/ee663259). *Microsoft Developer Network*.
+ *
+ * \version 2018-05-04
+ * \since 2018-05-04
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/
