@@ -13,13 +13,13 @@ Application::
 Application()
 {
     NewDbgCon();
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("Constructor\n"));
+    DbgConPrtMeth(Red);
 }
 
 Application::
 ~Application()
 {
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("Destructor\n"));
+    DbgConPrtMeth(Red);
     DelDbgCon();
 }
 
@@ -28,7 +28,7 @@ Application::
 BOOL Application::
 InitApplication()
 {
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("InitApplication\n"));
+    DbgConPrtMeth(Red);
     return CWinApp::InitApplication();
 }
 
@@ -36,13 +36,13 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("InitInstance\n"));
+    DbgConPrtMeth(Red);
     return FALSE;
 }
 
 INT Application::
 ExitInstance()
 {
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("ExitInstance\n"));
+    DbgConPrtMeth(Red);
     return CWinApp::ExitInstance();
 }

@@ -41,9 +41,7 @@ SystemMessageStringW(
 # define SystemMessageString SystemMessageStringA
 #endif
 
-/**
- * \brief 系统消息号转字串（缩写）。
- */
+/** \brief 系统消息号转字串（缩写）。 */
 #define SysMsgStr SystemMessageString
 
 #ifdef __cplusplus

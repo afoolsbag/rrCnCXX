@@ -42,9 +42,7 @@ extern "C" {
 RRWINDOWS_API ConCol WINAPI
 GetConsoleBackGroundColor(VOID);
 
-/**
- * \brief 获取控制台背景色（缩写）。
- */
+/** \brief 获取控制台背景色（缩写）。 */
 #define GetConBgCol GetConsoleBackGroundColor
 
 /**
@@ -53,9 +51,7 @@ GetConsoleBackGroundColor(VOID);
 RRWINDOWS_API ConCol WINAPI
 GetConsoleForeGroundColor(VOID);
 
-/**
- * \brief 获取控制台前景色（缩写）。
- */
+/** \brief 获取控制台前景色（缩写）。 */
 #define GetConFgCol GetConsoleForeGroundColor
 
 /**
@@ -69,9 +65,7 @@ SetConsoleColor(
     _In_ CONST ConCol backGroundColor,
     _In_ CONST ConCol foreGroundColor);
 
-/**
- * \brief 设定控制台颜色（缩写）。
- */
+/** \brief 设定控制台颜色（缩写）。 */
 #define SetConCol SetConsoleColor
 
 /**
@@ -81,11 +75,7 @@ RRWINDOWS_API VOID WINAPI
 SetConsoleBackGroundColor(
     _In_ CONST ConCol backGroundColor);
 
-/**
- * \brief 设定控制台背景色（缩写）。
- *
- * \param backGroundColor 背景色。
- */
+/** \brief 设定控制台背景色（缩写）。 */
 #define SetConBgCol SetConsoleBackGroundColor
 
 /**
@@ -97,9 +87,7 @@ RRWINDOWS_API VOID WINAPI
 SetConsoleForeGroundColor(
     _In_ CONST ConCol foreGroundColor);
 
-/**
- * \brief 设定控制台前景色（缩写）。
- */
+/** \brief 设定控制台前景色（缩写）。 */
 #define SetConFgCol SetConsoleForeGroundColor
 
 #ifdef __cplusplus

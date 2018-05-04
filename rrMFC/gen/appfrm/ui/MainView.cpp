@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "MainView.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 #include "resource.h"
 
@@ -27,15 +27,13 @@ END_MESSAGE_MAP()
 MainView::
 MainView()
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("Constructor\n"));
+    DbgConPrtMeth(Green);
 }
 
 MainView::
 ~MainView()
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("Destructor\n"));
+    DbgConPrtMeth(Green);
 }
 
 #// Overridables
@@ -43,16 +41,14 @@ MainView::
 BOOL MainView::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrtCmdMsg(LightGreen, TEXT("OnCmdMsg"), nID, nCode, pExtra, pHandlerInfo);
+    DbgConPrtMethCmdMsg(Green);
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL MainView::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrtWndMsg(Green, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Green);
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -61,9 +57,7 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 VOID MainView::
 OnContextMenu(CWnd *pWnd, CPoint point)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnContextMenu\n"));
-
+    DbgConPrtMeth(Green);
     CMenu menu;
     menu.LoadMenu(IDM_MAIN_FRAME);
     CMenu* pContextMenu = menu.GetSubMenu(3);
@@ -73,55 +67,47 @@ OnContextMenu(CWnd *pWnd, CPoint point)
 VOID MainView::
 OnCommand5()
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnCommand5\n"));
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnUpdateCommand5(CCmdUI *pCmdUI)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnUpdateCommand5\n"));
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnCommand6()
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnCommand6\n"));
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnUpdateCommand6(CCmdUI *pCmdUI)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnUpdateCommand6\n"));
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnCommand7()
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnCommand7\n"));
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnUpdateCommand7(CCmdUI *pCmdUI)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnUpdateCommand7\n"));
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnUndefined(UINT nID)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnUndefined %u\n"), nID);
+    DbgConPrtMeth(Green);
 }
 
 VOID MainView::
 OnUpdateUndefined(CCmdUI *pCmdUI)
 {
-    DbgConPrt(Green, TEXT("MainView::"));
-    DbgConPrt(LightGreen, TEXT("OnUpdateUndefined\n"));
+    DbgConPrtMeth(Green);
 }

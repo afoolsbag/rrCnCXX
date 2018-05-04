@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "MainDialog.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 #include "resource.h"
 
@@ -18,15 +18,13 @@ MainDialog::
 MainDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("Constructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 MainDialog::
 ~MainDialog()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("Destructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
@@ -35,8 +33,7 @@ BOOL MainDialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnInitDialog\n"));
+    DbgConPrtMeth(Yellow);
 
     CONST COLORREF buttonColor = GetSysColor(COLOR_BTNFACE) + RGB(30, 30, 30);
 
@@ -96,6 +93,7 @@ VOID MainDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
+    DbgConPrtMeth(Yellow);
     DDX_Control(pDX, IDC_STANDARD_BUTTON, StandardButton);
     DDX_Control(pDX, IDC_SEARCH_BUTTON, SearchButton);
     DDX_Control(pDX, IDC_KEY_MANAGER_BUTTON, KeysButton);
@@ -109,8 +107,7 @@ DoDataExchange(CDataExchange *pDX)
 BOOL MainDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog::"));
-    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Yellow);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 

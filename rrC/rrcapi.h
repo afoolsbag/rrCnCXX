@@ -5,7 +5,7 @@
  * \details ELF（Executable and Linkable Format）缺省导出、导出符号；
  *          PE（Portable Executable）缺省隐藏符号。
  *
- * \version 2018-05-02
+ * \version 2018-05-04
  * \since 2016-08-01
  * \authors zhengrr
  * \copyright The MIT License

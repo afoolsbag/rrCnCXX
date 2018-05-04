@@ -13,9 +13,10 @@
 ## References
 
 + ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
-+ ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft® Docs*.
++ ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft Docs*.
 + [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
 + ["C and C++ Language Syntax Reference"](https://cprogramming.com/reference). *Cprogramming.com*.
++ [*comp.lang.c Frequently Asked Questions*](http://c-faq.com/)
 
 ## Programming Styles
 

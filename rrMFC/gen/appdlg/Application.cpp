@@ -15,13 +15,13 @@ Application::
 Application()
 {
     NewDbgCon();
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("Constructor\n"));
+    DbgConPrtMeth(Red);
 }
 
 Application::
 ~Application()
 {
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("Destructor\n"));
+    DbgConPrtMeth(Red);
     DelDbgCon();
 }
 
@@ -31,35 +31,38 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrtDbl(Red, TEXT("Application::"), LightRed, TEXT("InitInstance\n"));
+    DbgConPrtMeth(Red);
 
     MainDialog mainDlg;
     m_pMainWnd = &mainDlg;
-    switch (mainDlg.DoModal()) {
+    CONST INT_PTR result = mainDlg.DoModal();
+
+    DbgConPrt(Red, TEXT("Application::InitInstance"));
+    switch (result) {
     case IDOK:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDOK\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDOK\n")); break;
     case IDCANCEL:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDCANCEL\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDCANCEL\n")); break;
     case IDABORT:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDABORT\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDABORT\n")); break;
     case IDRETRY:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDRETRY\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDRETRY\n")); break;
     case IDIGNORE:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDIGNORE\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDIGNORE\n")); break;
     case IDYES:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDYES\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDYES\n")); break;
     case IDNO:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDNO\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDNO\n")); break;
     case IDCLOSE:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDCLOSE\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDCLOSE\n")); break;
     case IDHELP:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDHELP\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDHELP\n")); break;
     case IDTRYAGAIN:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDTRYAGAIN\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDTRYAGAIN\n")); break;
     case IDCONTINUE:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDCONTINUE\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDCONTINUE\n")); break;
     case IDTIMEOUT:
-        DbgConPrtDbl(Red, TEXT("Application::InitInstance"), LightRed, TEXT(" DoModal -> IDTIMEOUT\n")); break;
+        DbgConPrt(LightRed, TEXT(" DoModal -> IDTIMEOUT\n")); break;
     default:
         ASSERT(FALSE); break;
     }

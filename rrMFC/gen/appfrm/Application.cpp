@@ -3,9 +3,8 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
-#include "resource.h"
 #include "ui/MainFrame.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
@@ -15,15 +14,15 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 Application::
 Application()
 {
-    NewDbgCon(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("Constructor\n"));
+    NewDbgCon();
+    DbgConPrtMeth(Red);
 }
 
 Application::
 ~Application()
 {
-    DbgConPrt(Red, TEXT("Application::"));
-    DelDbgCon(LightRed, TEXT("Destructor\n"));
+    DbgConPrtMeth(Red);
+    DelDbgCon();
 }
 
 #// Overridables
@@ -32,8 +31,7 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrt(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("InitInstance\n"));
+    DbgConPrtMeth(Red);
 
     m_pMainWnd = DEBUG_NEW MainFrame;
     dynamic_cast<MainFrame *>(m_pMainWnd)->LoadFrame(MainFrame::IDR);

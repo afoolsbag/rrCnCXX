@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "MainWindow.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 IMPLEMENT_DYNCREATE(MainWindow, CWnd)
 
@@ -43,8 +43,7 @@ END_MESSAGE_MAP()
 MainWindow::
 MainWindow()
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("Constructor\n"));
+    DbgConPrtMeth(Yellow);
 
     CString strWndClass = AfxRegisterWndClass(
         CS_DBLCLKS,
@@ -62,32 +61,28 @@ MainWindow()
 BOOL MainWindow::
 Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext /*=NULL*/)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(White, TEXT("Create\n"));
+    DbgConPrtMeth(Yellow);
     return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
 BOOL MainWindow::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, INT x, INT y, INT nWidth, INT nHeight, HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam /*=NULL*/)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(White, TEXT("CreateEx\n"));
+    DbgConPrtMeth(Yellow);
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, nIDorHMenu, lpParam);
 }
 
 BOOL MainWindow::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(White, TEXT("CreateEx\n"));
+    DbgConPrtMeth(Yellow);
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, lpParam);
 }
 
 MainWindow::
 ~MainWindow()
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("Destructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
@@ -95,8 +90,7 @@ MainWindow::
 BOOL MainWindow::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("PreCreateWindow\n"));
+    DbgConPrtMeth(Yellow);
     cs.cx = 400;
     cs.cy = 300;
     return CWnd::PreCreateWindow(cs);
@@ -105,16 +99,14 @@ PreCreateWindow(CREATESTRUCT &cs)
 BOOL MainWindow::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrtCmdMsg(LightYellow, TEXT("OnCmdMsg"), nID, nCode, pExtra, pHandlerInfo);
+    DbgConPrtMethCmdMsg(Yellow);
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL MainWindow::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Yellow);
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -122,15 +114,13 @@ VOID MainWindow::
 DoDataExchange(CDataExchange *pDX)
 {
     CWnd::DoDataExchange(pDX);
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("DoDataExchange\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 VOID MainWindow::
 PostNcDestroy()
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("PostNcDestroy\n"));
+    DbgConPrtMeth(Yellow);
     CWnd::PostNcDestroy();
 }
 

@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "MainFrame.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 IMPLEMENT_DYNCREATE(MainFrame, CFrameWnd)
 
@@ -17,15 +17,13 @@ END_MESSAGE_MAP()
 MainFrame::
 MainFrame()
 {
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrt(LightYellow, TEXT("Constructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 MainFrame::
 ~MainFrame()
 {
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrt(LightYellow, TEXT("MainFrame::Destructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
@@ -33,8 +31,7 @@ MainFrame::
 BOOL MainFrame::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrt(LightYellow, TEXT("PreCreateWindow\n"));
+    DbgConPrtMeth(Yellow);
     cs.cx = 400;
     cs.cy = 300;
     return CFrameWnd::PreCreateWindow(cs);
@@ -43,8 +40,7 @@ PreCreateWindow(CREATESTRUCT &cs)
 BOOL MainFrame::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrtCmdMsg(LightYellow, TEXT("OnCmdMsg"), nID, nCode, pExtra, pHandlerInfo);
+    DbgConPrtMethCmdMsg(Yellow);
     if (View.OnCmdMsg(nID, nCode, pExtra, pHandlerInfo))
         return TRUE;
     return CFrameWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
@@ -53,8 +49,7 @@ OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 BOOL MainFrame::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Yellow);
     return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -65,8 +60,7 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrt(LightYellow, TEXT("OnCreate\n"));
+    DbgConPrtMeth(Yellow);
     if (!View.Create(NULL, NULL,
                      AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0),
                      this, AFX_IDW_PANE_FIRST, NULL))
@@ -77,7 +71,6 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 VOID MainFrame::
 OnSetFocus(CWnd *pOldWnd)
 {
-    DbgConPrt(Yellow, TEXT("MainFrame::"));
-    DbgConPrt(LightYellow, TEXT("OnSetFocus\n"));
+    DbgConPrtMeth(Yellow);
     View.SetFocus();
 }

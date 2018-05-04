@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "MainWindow.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 #// Message Handlers
 
@@ -11,15 +11,13 @@ VOID MainWindow::
 OnNcPaint()
 {
     CWnd::OnNcPaint();
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("OnNcPaint\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 BOOL MainWindow::
 OnEraseBkgnd(CDC *pDC)
 {
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("OnEraseBkgnd\n"));
+    DbgConPrtMeth(Yellow);
     return CWnd::OnEraseBkgnd(pDC);
 }
 
@@ -27,6 +25,5 @@ VOID MainWindow::
 OnPaint()
 {
     CWnd::OnPaint();
-    DbgConPrt(Yellow, TEXT("MainWindow::"));
-    DbgConPrt(LightYellow, TEXT("OnPaint\n"));
+    DbgConPrtMeth(Yellow);
 }

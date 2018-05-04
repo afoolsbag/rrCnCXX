@@ -12,18 +12,22 @@
 
 #pragma once
 
+#include <assert.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 #include "rrwindows/rrwindowsapi.h"
 #include "concol.h"
 
-# ifdef __cplusplus
+#ifdef __cplusplus
+# include <typeinfo>
+# include "rrwindows/sysmsgstr.h"
+
 extern "C" {
-# endif
+#endif
 
 /**
- * \brief 输出指定颜色字串到控制台（ANSI适配）。
+ * \brief 调试控制台打印有色字串（ANSI适配）。
  */
 RRWINDOWS_API VOID WINAPIV
 DebugConsolePrintA(
@@ -32,7 +36,7 @@ DebugConsolePrintA(
     ...);
 
 /**
- * \brief 输出指定颜色字串到控制台（UNICODE适配）。
+ * \brief 调试控制台打印有色字串（UNICODE适配）。
  */
 RRWINDOWS_API VOID WINAPIV
 DebugConsolePrintW(
@@ -47,32 +51,15 @@ DebugConsolePrintW(
 #else
 # define DebugConsolePrint DebugConsolePrintA
 #endif
-
-/**
- * \brief 输出指定颜色字串到控制台（缩写）。
- */
+/** \brief 调试控制台打印有色字串（缩写）。 */
 #define DbgConPrt DebugConsolePrint
-
-/**
- * \brief 合并两行的、输出指定颜色字串到控制台。
- */
-#define DebugConsolePrintDouble(preColor, preString, ctxColor, ...)\
-    do{DbgConPrt(preColor, preString);DbgConPrt(ctxColor, __VA_ARGS__);}while(0)
-
-/**
- * \brief 合并两行的、输出指定颜色字串到控制台（缩写）。
- */
-#define DbgConPrtDbl DebugConsolePrintDouble
 
 #ifdef DEBUG
 # define NewDebugConsole() do{AllocConsole();}while(0)
 #else
 # define NewDebugConsole() ((void)0)
 #endif
-
-/**
- * \brief 创建调试控制台（缩写）。
- */
+/** \brief 新建调试控制台（缩写）。 */
 #define NewDbgCon NewDebugConsole
 
 #ifdef DEBUG
@@ -80,12 +67,31 @@ DebugConsolePrintW(
 #else
 # define DeleteDebugConsole() ((void)0)
 #endif
-
-/**
- * \brief 删除调试控制台（缩写）。
- */
+/** \brief 删除调试控制台（缩写）。 */
 #define DelDbgCon DeleteDebugConsole
 
-# ifdef __cplusplus
+// 便利宏
+#ifdef __cplusplus
+# define DbgConPrtMeth(color) \
+    do{\
+        DbgConPrt(color, TEXT("%s::"), typeid(*this).name()+6);\
+        DbgConPrt(static_cast<ConsoleColor>(color+0x8), TEXT("%s\n"), TEXT(__func__));\
+    }while(0)
+# define DbgConPrtMethCmdMsg(color) \
+    do{\
+        DbgConPrt(color, TEXT("%s::"), typeid(*this).name()+6);\
+        DbgConPrt(static_cast<ConsoleColor>(color+0x8), TEXT("%s %u with %d, 0x%p, 0x%p\n"), TEXT(__func__), nID, nCode, pExtra, pHandlerInfo);\
+    }while(0)
+# define DbgConPrtMethWndMsg(color) \
+    do{\
+        DbgConPrt(color, TEXT("%s::%s 0x%04X(%s), with %u, %ld, 0x%p\n"), typeid(*this).name()+6, TEXT(__func__), message, SysMsgStr(message), wParam, lParam, pResult);\
+    }while(0)
+#else
+# define DbgConPrtMeth(x)       ((void)0)
+# define DbgConPrtMethCmdMsg(x) ((void)0)
+# define DbgConPrtMethWndMsg(x) ((void)0)
+#endif
+
+#ifdef __cplusplus
 }
-# endif
+#endif
