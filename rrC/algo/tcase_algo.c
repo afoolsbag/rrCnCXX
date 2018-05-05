@@ -19,7 +19,7 @@
 #include <check/check.h>
 
 #include "cdef.h"
-#include "algo/tsuite_algo.h"
+#include "tsuite_algo.h"
 
 static int cmp(const void *lhs, const void *rhs)
 {
@@ -30,8 +30,8 @@ static int cmp(const void *lhs, const void *rhs)
 
 /** \brief 更快排序（Quicker Sort）。
  *         对一个范围内的拥有一定未指定类型的元素排序。
- *  \remarks 虽然名字是更快排序，但实际上C标准并未限定其实现方式。
- *  \sa http://en.cppreference.com/w/c/algorithm/qsort */
+ *  \remark 虽然名字是更快排序，但实际上C标准并未限定其实现方式。
+ *  \sa <http://en.cppreference.com/w/c/algorithm/qsort> */
 START_TEST(test_qsort)
 	int data[] = {3, 0, 2, 1};
 	qsort(data, countof(data), sizeof(data[0]), cmp);
@@ -44,7 +44,7 @@ END_TEST
 /** \brief 二分搜索（Binary Search）。
  *         在未指定类型的数组中搜索一个元素。
  *  \note 待搜索数组必须是有序的。
- *  \sa http://en.cppreference.com/w/c/algorithm/bsearch */
+ *  \sa <http://en.cppreference.com/w/c/algorithm/bsearch> */
 START_TEST(test_bsearch)
 	int data[] = {3, 0, 2, 1};
 	const int key = 2;
