@@ -19,7 +19,7 @@ ErrorTextOfA(
 
     if (!FormatMessageA(
         FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
-        errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL),
+        errorCode, LANG_USER_DEFAULT,
         bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
         return NULL;
     size_t len = 0;

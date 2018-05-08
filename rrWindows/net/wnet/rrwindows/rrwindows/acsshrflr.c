@@ -5,7 +5,6 @@
 
 #include <stdlib.h>
 #include <shellapi.h>
-#include <tchar.h>
 
 #pragma comment(lib, "Mpr.Lib")
 

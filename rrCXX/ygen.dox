@@ -15,7 +15,7 @@
 /// \defgroup gRef C++参考手册
 ///
 /// \sa ["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
-///     + [Language](http://en.cppreference.com/w/cpp)
+///     + [Language](http://en.cppreference.com/w/cpp/language)
 ///     + [Headers](http://en.cppreference.com/w/cpp/header)
 ///         + [Library concepts](http://en.cppreference.com/w/cpp/concept)
 ///     + [Language support library](http://en.cppreference.com/w/cpp/utility#Language_support)

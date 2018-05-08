@@ -25,7 +25,7 @@ extern "C" {
 /**
  * \brief 检查进程正在运行否（ANSI适配）。
  *
- * \param exeFileFullName 应用程序文件全名，如`foobar.exe`。
+ * \param exeName 应用程序文件全名，如`foobar.exe`。
  * \returns 若正在运行，返回其一实例进程标识号；
  *          若没有运行，返回`FALSE`。
  */
@@ -33,12 +33,12 @@ RRWINDOWS_API
 _Success_(return != 0)
 DWORD WINAPI
 CheckProcessRunningA(
-    _In_z_ LPCSTR CONST exeFileFullName);
+    _In_z_ LPCSTR CONST exeName);
 
 /**
  * \brief 检查进程正在运行否（UNICODE适配）。
  *
- * \param exeFileFullName 应用程序文件全名，如`foobar.exe`。
+ * \param exeName 应用程序文件全名，如`foobar.exe`。
  * \returns 若正在运行，返回其一实例进程标识号；
  *          若没有运行，返回`FALSE`。
  */
@@ -46,7 +46,7 @@ RRWINDOWS_API
 _Success_(return != 0)
 DWORD WINAPI
 CheckProcessRunningW(
-    _In_z_ LPCWSTR CONST exeFileFullName);
+    _In_z_ LPCWSTR CONST exeName);
 
 #ifdef UNICODE
 # define CheckProcessRunning CheckProcessRunningW
