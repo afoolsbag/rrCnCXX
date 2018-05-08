@@ -1,14 +1,12 @@
-/*===-- Error Handling -----------------------------------------*- C -*-===*//**
+/*===-- Error Text ---------------------------------------------*- C -*-===*//**
  *
- * \defgroup gErrHdl 错误处理
- * \ingroup gDiag
- *
- * \sa ["Error Handling"](https://msdn.microsoft.com/library/ms679320). *Microsoft® Developer Network*.
+ * \defgroup gErrTxt 错误文本
+ * \ingroup gErrHdl
  *
  * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.
  * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *Microsoft® Developer Network*.
  *
- * \version 2018-05-04
+ * \version 2018-05-08
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License

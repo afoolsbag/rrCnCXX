@@ -1,0 +1,13 @@
+/*===-- Error Handling -----------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gErrHdl 错误处理
+ * \ingroup gDbg
+ *
+ * \sa ["Error Handling"](https://msdn.microsoft.com/library/ms679320). *Microsoft® Developer Network*.
+ *
+ * \version 2018-05-08
+ * \since 2018-01-15
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

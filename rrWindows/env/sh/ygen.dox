@@ -1,0 +1,13 @@
+/*===-- Windows Shell ------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gSh Windows壳
+ * \ingroup gEnv
+ *
+ * \sa ["Windows Shell"](https://msdn.microsoft.com/library/bb773177). *Microsoft Developer Network*.
+ *
+ * \version 2018-05-08
+ * \since 2018-05-08
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

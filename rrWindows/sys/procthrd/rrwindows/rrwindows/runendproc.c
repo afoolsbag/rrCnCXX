@@ -17,6 +17,8 @@ RunProcessA(
 {
     CONST size_t paramBufCnt = StrLenA(exeParameters) + 2;
     LPSTR CONST paramBuf = HeapAlloc(GetProcessHeap(), 0, paramBufCnt * sizeof(CHAR));
+    if (!paramBuf)
+        return FALSE;
     paramBuf[0] = ' ';
     StringCchCopyA(paramBuf + 1, paramBufCnt - 1, exeParameters);
     STARTUPINFOA startupInfo;
@@ -25,7 +27,7 @@ RunProcessA(
     PROCESS_INFORMATION procInfo;
     SecureZeroMemory(&procInfo, sizeof(procInfo));
 
-    CONST BOOL succ = CreateProcessA(exePath, paramBuf, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &procInfo);
+    CONST BOOL succ = CreateProcessA(exePath, paramBuf, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &startupInfo, &procInfo);
 
     HeapFree(GetProcessHeap(), 0, paramBuf);
     if (succ) {
@@ -42,6 +44,8 @@ RunProcessW(
 {
     CONST size_t paramBufCnt = StrLenW(exeParameters) + 2;
     LPWSTR CONST paramBuf = HeapAlloc(GetProcessHeap(), 0, paramBufCnt * sizeof(WCHAR));
+    if (!paramBuf)
+        return FALSE;
     paramBuf[0] = L' ';
     StringCchCopyW(paramBuf + 1, paramBufCnt - 1, exeParameters);
     STARTUPINFOW startupInfo;
@@ -50,7 +54,7 @@ RunProcessW(
     PROCESS_INFORMATION procInfo;
     SecureZeroMemory(&procInfo, sizeof(procInfo));
 
-    CONST BOOL succ = CreateProcessW(exePath, paramBuf, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &procInfo);
+    CONST BOOL succ = CreateProcessW(exePath, paramBuf, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &startupInfo, &procInfo);
 
     HeapFree(GetProcessHeap(), 0, paramBuf);
     if (succ) {

@@ -1,6 +1,6 @@
 /*===-- Consoles -----------------------------------------------*- C -*-===*//**
  *
- * \defgroup gCons ┐пок╠е
+ * \defgroup gCons 控制台
  * \ingroup gEnv
  *
  * \sa <https://docs.microsoft.com/windows/console/>

@@ -3,7 +3,7 @@
  * \defgroup gEnv 桌面环境
  * \ingroup gDvlp
  *
- * \sa ["Desktop Environment"](https://msdn.microsoft.com/library/ee663298). *Microsoft® Developer Network*.
+ * \sa ["Desktop Environment"](https://msdn.microsoft.com/library/ee663298). *Microsoft Developer Network*.
  *     + [Windows Shell](https://msdn.microsoft.com/library/bb773177)
  *     + [Windows Property System](https://msdn.microsoft.com/library/ff728898)
  *     + [Windows Search](https://msdn.microsoft.com/library/ff628790)

@@ -3,7 +3,7 @@
  * \defgroup gRunEndProc 运行、终止进程 
  * \ingroup gProcThrd
  *
- * \version 2018-05-07
+ * \version 2018-05-08
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License

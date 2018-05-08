@@ -1,6 +1,6 @@
 /*===-- Dynamic-Link Libraries ---------------------------------*- C -*-===*//**
  *
- * \defgroup gDll 动态链接库
+ * \defgroup gDLL 动态链接库
  * \ingroup gSys
  *
  * \sa ["Dynamic-Link Libraries"](https://msdn.microsoft.com/library/ms682589). *Microsoft® Developer Network*.

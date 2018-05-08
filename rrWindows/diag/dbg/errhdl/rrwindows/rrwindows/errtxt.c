@@ -1,12 +1,14 @@
 /** \copyright The MIT License */
 
 #define RRWINDOWS_EXPORTS
-#include "errhdl.h"
+#include "errtxt.h"
 
 #include <strsafe.h>
 
-#define BUFFER_SIZE 300
-#define BUFFER_OFFSET 2  /* for \r\n when empty string */
+#include "rrwindows/winstr.h"
+
+#define BUFFER_SIZE 100
+#define BUFFER_OFFSET 2  /* for "\r\n" */
 
 RRWINDOWS_API
 _Success_(return != NULL)
@@ -15,16 +17,14 @@ ErrorTextOfA(
     _In_ CONST DWORD errorCode)
 {
     __declspec(thread) static CHAR StaticBuffer[BUFFER_SIZE];
-    LPSTR CONST bfr = StaticBuffer + BUFFER_OFFSET;
 
+    LPSTR CONST bfr = StaticBuffer + BUFFER_OFFSET;
     if (!FormatMessageA(
         FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
         errorCode, LANG_USER_DEFAULT,
         bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
         return NULL;
-    size_t len = 0;
-    StringCchLengthA(bfr, STRSAFE_MAX_CCH, &len);
-    bfr[len - 2] = '\0';
+    bfr[StrLenA(bfr) - BUFFER_OFFSET] = '\0';
     return bfr;
 }
 
@@ -35,15 +35,13 @@ ErrorTextOfW(
     _In_ CONST DWORD errorCode)
 {
     __declspec(thread) static WCHAR StaticBuffer[BUFFER_SIZE];
-    LPWSTR CONST bfr = StaticBuffer + BUFFER_OFFSET;
 
+    LPWSTR CONST bfr = StaticBuffer + BUFFER_OFFSET;
     if (!FormatMessageW(
         FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
         errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL),
         bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
         return NULL;
-    size_t len = 0;
-    StringCchLengthW(bfr, STRSAFE_MAX_CCH, &len);
-    bfr[len - 2] = L'\0';
+    bfr[StrLenW(bfr) - BUFFER_OFFSET] = L'\0';
     return bfr;
 }

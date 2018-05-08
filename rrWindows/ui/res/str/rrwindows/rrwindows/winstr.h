@@ -13,8 +13,11 @@
 
 #pragma once
 
+#include <strsafe.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+
+#// C
 
 #ifndef CmpStrA
 #define CmpStrA(str1, str2) CompareStringA(LOCALE_USER_DEFAULT, NORM_IGNORECASE, str1, -1, str2, -1)
@@ -29,17 +32,19 @@
 # define CmpStr CmpStrA
 #endif
 
+#// L
+
 inline size_t StrLenA(LPCSTR CONST string)
 {
     size_t len = 0;
-    StringCchLengthA(string, STRSAFE_MAX_CCH, &len);
+    (VOID)SUCCEEDED(StringCchLengthA(string, STRSAFE_MAX_CCH, &len));
     return len;
 }
 
 inline size_t StrLenW(LPCWSTR CONST string)
 {
     size_t len = 0;
-    StringCchLengthW(string, STRSAFE_MAX_CCH, &len);
+    (VOID)SUCCEEDED(StringCchLengthW(string, STRSAFE_MAX_CCH, &len));
     return len;
 }
 
