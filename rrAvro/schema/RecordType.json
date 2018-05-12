@@ -1,0 +1,19 @@
+{
+  "namespace": "rravro",
+  "name": "RecordType",
+  "type": "record",
+  "fields": [
+    {"name": "nullValue", "type": ["null", "RecordType"]},
+    {"name": "booleanValue", "type": "boolean"},
+    {"name": "intValue", "type": "int"},
+    {"name": "longValue", "type": "long"},
+    {"name": "floatValue", "type": "float"},
+    {"name": "doubleValue", "type": "double"},
+    {"name": "bytesValue", "type": "bytes"},
+    {"name": "stringValue", "type": "string"},
+    {"name": "enumValue", "type": {"name": "EnumType", "type": "enum", "symbols": ["RED", "GREEN", "BLUE"]}},
+    {"name": "arrayValue", "type": {"type": "array", "items": "string"}},
+    {"name": "mapValue", "type": {"type": "map", "values": "string"}},
+    {"name": "fixedValue", "type": {"name": "FixedType", "type": "fixed", "size": 1}}
+  ]
+}

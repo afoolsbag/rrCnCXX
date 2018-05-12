@@ -4,12 +4,12 @@
 # | |  | | / ___ \ V /| | | (_) |
 # |_|  |_|/_/   \_\_/ |_|  \___/
 # zhengrr        rrAvro by FIGlet
-# 2018-04-02 – 2018-04-02
+# 2018-04-02 – 2018-05-12
 # The MIT License
 
-project("rrAvro" VERSION 2018.4.2 LANGUAGES CXX)
-project_variables()
-highest_warning_level()
+project("rrAvro" VERSION 2018.5.12 LANGUAGES CXX)
+project_extra()
+compiler_warning_level(HIGHEST UTF-8)
 
 if(NOT Boost_FOUND)
   find_package(Boost)
@@ -27,5 +27,15 @@ endif()
 
 facile_add_doxygen()
 
-facile_add_executable(SUBNAME "Abc"
-  "abc.cxx" LINKS Avro::Avro)
+facile_add_executable(SUBNAME "ObjectAndFile"
+            OPTION_INITIAL_ON
+                              "objf.cxx"
+                              "schema/RecordType.hxx"
+               LINK_LIBRARIES  Avro::Avro)
+
+facile_add_executable(SUBNAME "ObjectAndStream"
+            OPTION_INITIAL_ON
+                              "objs.cxx"
+                              "avro/DataStream.hxx" "avro/DataStream.cxx"
+                              "schema/RecordType.hxx"
+               LINK_LIBRARIES  Avro::Avro)
