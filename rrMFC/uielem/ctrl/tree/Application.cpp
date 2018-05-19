@@ -3,30 +3,35 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
-#include "resource.h"
 #include "ui/MainDialog.h"
 
 IMPLEMENT_DYNCREATE(Application, CWinApp)
 
 #// Constructors
 
-Application::Application()
+Application::
+Application()
 {
-    NewDbgCon(LightRed, TEXT("Application::Constructor\n"));
+    NewDbgCon();
+    DbgConPrtMeth(Red);
+}
+
+Application::
+~Application()
+{
+    DbgConPrtMeth(Red);
+    DelDbgCon();
 }
 
 #// Overridables
 
-Application::~Application()
-{
-    DelDbgCon(LightRed, TEXT("Application::Destructor\n"));
-}
-
-BOOL Application::InitInstance()
+BOOL Application::
+InitInstance()
 {
     CWinApp::InitInstance();
+    DbgConPrtMeth(Red);
 
     MainDialog mainDlg;
     m_pMainWnd = &mainDlg;
