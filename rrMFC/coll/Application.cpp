@@ -7,7 +7,8 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 
 #// Overridables
 
-BOOL Application::InitInstance()
+BOOL Application::
+InitInstance()
 {
     CWinApp::InitInstance();
 

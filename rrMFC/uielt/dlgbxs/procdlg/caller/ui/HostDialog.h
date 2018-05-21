@@ -3,7 +3,7 @@
 /// \file
 /// \brief 宿主对话框（类）。
 ///
-/// \verison 2018-04-28
+/// \verison 2018-05-21
 /// \since 2018-04-23
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -41,7 +41,10 @@ protected:
 
 #// Implementation
 protected:
+    enum TIMERID {CHECK_GUEST_ALIVE};
+
     CString ExePath;
+    CString ExeParameters;
     HWND GuestHwnd = NULL;
 
 #// Message Handlers
@@ -53,6 +56,8 @@ protected:
     afx_msg LRESULT OnGuestSize(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnGuestShowWindow(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnGuestDestroy(WPARAM wParam, LPARAM lParam);
+
+    afx_msg VOID OnTimer(UINT_PTR nIDEvent);
 
     DECLARE_MESSAGE_MAP()
 };

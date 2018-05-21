@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 #include "ui/GuestDialog.h"
 
@@ -14,15 +14,15 @@ IMPLEMENT_DYNCREATE(Application, CWinApp)
 Application::
 Application()
 {
-    NewDbgCon(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("Constructor\n"));
+    NewDbgCon();
+    DbgConPrtMeth(Red);
 }
 
 Application::
 ~Application()
 {
-    DbgConPrt(Red, TEXT("Application::"));
-    DelDbgCon(LightRed, TEXT("Destructor\n"));
+    DbgConPrtMeth(Red);
+    DelDbgCon();
 }
 
 #// Overridables
@@ -31,8 +31,7 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrt(Red, TEXT("Application::"));
-    DbgConPrt(LightRed, TEXT("InitInstance\n"));
+    DbgConPrtMeth(Red);
 
     HWND hostHwnd = NULL;
 
@@ -66,7 +65,7 @@ InitInstance()
         return FALSE;
     }
 
-    auto const dlg = DEBUG_NEW GuestDialog;
+    GuestDialog *CONST dlg = DEBUG_NEW GuestDialog;
     dlg->SetHostHwnd(hostHwnd);
     m_pMainWnd = dlg;
     dlg->Create(GuestDialog::IDD, CWnd::FromHandle(hostHwnd));

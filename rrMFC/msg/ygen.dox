@@ -1,11 +1,11 @@
 //===-- Message Handling and Mapping ----------------------------*- C++ -*-===//
 ///
-/// \defgroup g_msg 消息处理和映射
-/// \ingroup g_mfc
+/// \defgroup gMsg 消息处理和映射
+/// \ingroup gMFC
 ///
 /// \sa ["Message Handling and Mapping"](https://docs.microsoft.com/cpp/mfc/message-handling-and-mapping). *Microsoft® Docs*.
 ///
-/// \version 2018-04-10
+/// \version 2018-05-21
 /// \since 2018-04-09
 /// \authors zhengrr
 /// \copyright CC BY 4.0

@@ -39,7 +39,7 @@ ErrorTextOfW(
     LPWSTR CONST bfr = StaticBuffer + BUFFER_OFFSET;
     if (!FormatMessageW(
         FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
-        errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL),
+        errorCode, LANG_USER_DEFAULT,
         bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
         return NULL;
     bfr[StrLenW(bfr) - BUFFER_OFFSET] = L'\0';

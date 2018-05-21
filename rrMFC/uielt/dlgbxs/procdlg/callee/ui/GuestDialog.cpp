@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "GuestDialog.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 #include "main.h"
 
@@ -26,21 +26,13 @@ GuestDialog::
 GuestDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("Constructor\n"));
-}
-
-VOID GuestDialog::
-SetHostHwnd(CONST HWND hostHwnd)
-{
-    HostHwnd = hostHwnd;
+    DbgConPrtMeth(Yellow);
 }
 
 GuestDialog::
 ~GuestDialog()
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("Destructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
@@ -48,8 +40,7 @@ GuestDialog::
 BOOL GuestDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Yellow);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -57,8 +48,7 @@ VOID GuestDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("DoDataExchange\n"));
+    DbgConPrtMeth(Yellow);
 
     DDX_Control(pDX, IDC_TOGGLE_SIDE_DIALOG_BUTTON, ToggleSideDialogButton);
 }
@@ -66,21 +56,16 @@ DoDataExchange(CDataExchange *pDX)
 VOID GuestDialog::
 OnCancel()
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnCancel\n"));
-
+    DbgConPrtMeth(Yellow);
     DestroyWindow();
-
     CDialog::OnCancel();
 }
 
 VOID GuestDialog::
 PostNcDestroy()
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("PostNcDestroy\n"));
+    DbgConPrtMeth(Yellow);
     CWnd::PostNcDestroy();
-
     delete this;
 }
 
@@ -91,10 +76,9 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CDialog::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnCreate\n"));
+    DbgConPrtMeth(Yellow);
 
-    if (!HostHwnd)
+    if (NULL == HostHwnd || !IsWindow(HostHwnd))
         return -1;
 
     ::SetParent(GetSafeHwnd(), HostHwnd);
@@ -112,8 +96,7 @@ VOID GuestDialog::
 OnDestroy()
 {
     CDialog::OnDestroy();
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnDestroy\n"));
+    DbgConPrtMeth(Yellow);
 
     HWND hwnd = GetSafeHwnd();
     DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_DESTROY with %p\n"), hwnd);
@@ -124,9 +107,7 @@ VOID GuestDialog::
 OnSize(UINT nType, INT cx, INT cy)
 {
     CDialog::OnSize(nType, cx, cy);
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnSize\n"));
-
+    DbgConPrtMeth(Yellow);
     DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_SIZE with %d, %d\n"), cx, cy);
     ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SIZE, cx, cy);
 }
@@ -135,19 +116,15 @@ VOID GuestDialog::
 OnShowWindow(BOOL bShow, UINT nStatus)
 {
     CDialog::OnShowWindow(bShow, nStatus);
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnShowWindow\n"));
-
+    DbgConPrtMeth(Yellow);
     DbgConPrt(White, TEXT("Post RM_RRMFC_GUEST_SHOWWINDOW with %u, %d\n"), nStatus, bShow);
-    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SHOWWINDOW, nStatus, bShow);  // 注意参数变换了位置
+    ::PostMessage(HostHwnd, RM_RRMFC_GUEST_SHOWWINDOW, nStatus, bShow);
 }
 
 LRESULT GuestDialog::
 OnHostMove(WPARAM wParam, LPARAM lParam)
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnHostMove\n"));
-
+    DbgConPrtMeth(Yellow);
     DbgConPrt(White, TEXT("Receive RM_RRMFC_HOST_MOVE with %u, %ld\n"), wParam, lParam);
 
     if (GetFocus() != &SideDialog) {
@@ -167,8 +144,7 @@ OnHostMove(WPARAM wParam, LPARAM lParam)
 VOID GuestDialog::
 OnBnClickedToggleSideDialogButton()
 {
-    DbgConPrt(Yellow, TEXT("GuestDialog::"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedToggleSideDialogButton\n"));
+    DbgConPrtMeth(Yellow);
 
     if (SideDialog.IsWindowVisible())
         SideDialog.ShowWindow(SW_HIDE);

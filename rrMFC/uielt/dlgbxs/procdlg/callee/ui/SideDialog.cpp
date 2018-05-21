@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "SideDialog.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 IMPLEMENT_DYNCREATE(SideDialog, CDialog)
 
@@ -20,15 +20,13 @@ SideDialog::
 SideDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(Green, TEXT("SideDialog::"));
-    DbgConPrt(LightGreen, TEXT("Constructor\n"));
+    DbgConPrtMeth(Green);
 }
 
 SideDialog::
 ~SideDialog()
 {
-    DbgConPrt(Green, TEXT("SideDialog::"));
-    DbgConPrt(LightGreen, TEXT("Destructor\n"));
+    DbgConPrtMeth(Green);
 }
 
 #// Overridables
@@ -36,8 +34,7 @@ SideDialog::
 BOOL SideDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrt(Green, TEXT("SideDialog::"));
-    DbgConPrtWndMsg(Green, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Green);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -47,8 +44,7 @@ VOID SideDialog::
 OnMove(INT x, INT y)
 {
     CDialog::OnMove(x, y);
-    DbgConPrt(Green, TEXT("SideDialog::"));
-    DbgConPrt(LightGreen, TEXT("OnMove\n"));
+    DbgConPrtMeth(Green);
 
     if (GetFocus() == this)
         if (CWnd *par = GetParent()) {

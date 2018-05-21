@@ -1,9 +1,9 @@
 //===-- User Interface Elements (MFC) ---------------------------*- C++ -*-===//
 ///
-/// \defgroup gUiElem 用户界面元素（MFC）
+/// \defgroup gUiElt 用户界面元素（MFC）
 /// \ingroup gMFC
 ///
-/// \sa ["User Interface Elements (MFC)"](https://docs.microsoft.com/cpp/mfc/user-interface-elements-mfc). *Microsoft® Docs*.
+/// \sa ["User Interface Elements (MFC)"](https://docs.microsoft.com/cpp/mfc/user-interface-elements-mfc). *Microsoft Docs*.
 ///     + [ActiveX Controls](https://docs.microsoft.com/cpp/mfc/activex-controls)
 ///     + [Clipboard](https://docs.microsoft.com/cpp/mfc/clipboard)
 ///     + [Controls](https://docs.microsoft.com/cpp/mfc/controls-mfc)
@@ -25,7 +25,7 @@
 ///     + [Visualization Manager](https://docs.microsoft.com/cpp/mfc/visualization-manager)
 ///     + [Windows](https://docs.microsoft.com/cpp/mfc/windows)
 ///
-/// \version 2018-04-20
+/// \version 2018-05-21
 /// \since 2018-04-08
 /// \authors zhengrr
 /// \copyright CC BY 4.0

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 宾对话框（类）。
 ///
-/// \verison 2018-04-28
+/// \verison 2018-05-21
 /// \since 2018-04-23
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,8 +12,8 @@
 
 #pragma once
 
+#include "ui/SideDialog.h"
 #include "resource.h"
-#include "SideDialog.h"
 
 /// \brief 宾对话框（类）。
 class GuestDialog: public CDialog {
@@ -22,7 +22,7 @@ class GuestDialog: public CDialog {
 #// Constructors
 public:
     GuestDialog(CWnd *pParent = NULL);
-    VOID SetHostHwnd(CONST HWND hostHwnd);
+    VOID SetHostHwnd(CONST HWND hostHwnd) { HostHwnd = hostHwnd; }
 
     virtual ~GuestDialog() override;
 

@@ -3,9 +3,10 @@
 #include "stdafx.h"
 #include "MainDialog.h"
 
-#include "utils/dbgcon.h"
+#include "rrwindows/dbgcon.h"
 
 #include "HostDialog.h"
+#include <conio.h>
 
 IMPLEMENT_DYNCREATE(MainDialog, CDialog)
 
@@ -19,15 +20,13 @@ MainDialog::
 MainDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrt(LightYellow, TEXT("Constructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 MainDialog::
 ~MainDialog()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrt(LightYellow, TEXT("Destructor\n"));
+    DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
@@ -35,8 +34,7 @@ MainDialog::
 BOOL MainDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrtWndMsg(Yellow, TEXT("OnWndMsg"), message, wParam, lParam, pResult);
+    DbgConPrtMethWndMsg(Yellow);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -44,9 +42,7 @@ VOID MainDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrt(LightYellow, TEXT("DoDataExchange\n"));
-
+    DbgConPrtMeth(Yellow);
     DDX_Control(pDX, IDC_PATH_EDIT, PathEdit);
     DDX_Control(pDX, IDC_BROWSE_BUTTON, BrowseButton);
     DDX_Control(pDX, IDOK, OKButton);
@@ -56,8 +52,7 @@ DoDataExchange(CDataExchange *pDX)
 VOID MainDialog::
 OnOK()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrt(LightYellow, TEXT("OnOK\n"));
+    DbgConPrtMeth(Yellow);
 
     CString path;
     PathEdit.GetWindowText(path);
@@ -70,9 +65,7 @@ OnOK()
 VOID MainDialog::
 OnCancel()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrt(LightYellow, TEXT("OnCancel\n"));
-
+    DbgConPrtMeth(Yellow);
     CDialog::OnCancel();
 }
 
@@ -81,15 +74,13 @@ OnCancel()
 VOID MainDialog::
 OnBnClickedBrowseButton()
 {
-    DbgConPrt(Yellow, TEXT("MainDialog"));
-    DbgConPrt(LightYellow, TEXT("OnBnClickedBrowseButton\n"));
+    DbgConPrtMeth(Yellow);
 
     CFileDialog fileDlg(
         TRUE, NULL, TEXT("*.exe"), OFN_READONLY | OFN_FILEMUSTEXIST,
         TEXT("Executable File (*.exe)|*.exe|")
         TEXT("All Files (*.*)|*.*||"),
         this);
-
     if (fileDlg.DoModal() != IDOK)
         return;
 

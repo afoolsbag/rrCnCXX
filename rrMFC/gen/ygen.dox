@@ -1,7 +1,7 @@
 //===-- General MFC Topics --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gGen 常规MFC主题
-/// \ingroup gMfc
+/// \defgroup gGen 普通MFC主题
+/// \ingroup gMFC
 ///
 /// \sa ["General MFC Topics"](https://docs.microsoft.com/cpp/mfc/general-mfc-topics). *Microsoft® Docs*.
 ///     + [Using the MFC Source Files](https://docs.microsoft.com/cpp/mfc/using-the-mfc-source-files)

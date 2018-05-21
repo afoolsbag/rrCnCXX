@@ -14,7 +14,7 @@
  *
  * \defgroup gDvlp 开发桌面应用程序
  *
- * \sa <https://developer.microsoft.com/windows/desktop/develop>
+ * \sa ["Develop desktop applications"](https://developer.microsoft.com/windows/desktop/develop). *Windows Dev Center*.
  *     + [Desktop technologies](https://msdn.microsoft.com/library/bg126469)
  *         + [Desktop app UI](https://msdn.microsoft.com/library/ff657751)
  *         + [Desktop environment](https://msdn.microsoft.com/library/ee663298)
@@ -32,7 +32,7 @@
  *     + [Graphics and game technologies](https://msdn.microsoft.com/library/ee663279)
  *     + [API index](https://msdn.microsoft.com/library/hh920508)
  *
- * \version 2018-05-04
+ * \version 2018-05-21
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC BY 4.0
@@ -59,13 +59,13 @@
  * 应用匈牙利命名法（Apps Hungarian Notation）可以适时地使用：
  * + 最常见的，区分类似语义的多个变量，譬如`strWidth`, `intWidth`, `dblWidth`。
  *   在类型转换和遍历迭代时很有用；
- * + 在不提供模块、包、命名空间等相似功能的语言里，使用前缀以区分不同模块；
+ * + 在不提供模块、包、命名空间等类似功能的语言里，使用前缀以区分不同模块；
  * + 在任何更有助于理解的情况下使用。
  *
  * \sa ["Hungarian notation"](https://wikipedia.org/wiki/Hungarian_notation). *Wikipedia*.
  * \sa ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
  *
- * \version 2018-04-19
+ * \version 2018-05-21
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0
