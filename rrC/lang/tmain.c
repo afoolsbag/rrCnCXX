@@ -18,7 +18,7 @@
 #include "str/tsuite_str.h"
 #include "time/tsuite_time.h"
 #include "type/tsuite_type.h"
-#include "cdef.h
+#include "cdef.h"
 
 /**
  * \brief 主函数。

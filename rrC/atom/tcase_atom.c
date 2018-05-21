@@ -22,9 +22,12 @@
 # include <stdatomic.h>
 #endif
 
+#include "cdef.h"
+
 START_TEST(test_atom)
 #if ATOMICS
 	atomic_int aint;
+	UNUSED(aint);
 #endif/*ATOMICS*/
 END_TEST
 
@@ -33,6 +36,8 @@ END_TEST
 TCase *tcase_atom(void)
 {
 	TCase *tcase = tcase_create("atom");
+
+	tcase_add_test(tcase, test_atom);
 
 	return tcase;
 }

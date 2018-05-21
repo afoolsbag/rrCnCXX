@@ -17,5 +17,5 @@ rrc_get_version(struct rrc_version_t *const version_ptr)
 RRC_API time_t
 rrc_sigh(void)
 {
-	return (time_t)709444800;
+	return (time_t)709444800L;
 }

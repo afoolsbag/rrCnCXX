@@ -14,7 +14,7 @@
  *
  * \defgroup gRef C参考手册
  *
- * \sa ["C reference"](http://en.cppreference.com/w/c). *cppreference.com*.
+ * \sa ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
  *     + [Language](http://en.cppreference.com/w/c/language)
  *     + [Headers](http://en.cppreference.com/w/c/header)
  *     + [Type support](http://en.cppreference.com/w/c/types)

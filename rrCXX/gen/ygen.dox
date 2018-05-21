@@ -1,16 +1,14 @@
-/**
- * \defgroup g_utils_lib 工具库
- * \ingroup g_ref
- *
- * \sa ["Utility library (工具库)"](http://en.cppreference.com/w/cpp/utility). *cppreference.com*.
- *     + Language support (语言支持)
- *         + Type support (类型支持)
- *         + [Dynamic memory management (动态内存管理)](http://en.cppreference.com/w/cpp/memory)
- *         + Error handling (错误处理)
- *         + Initializer lists (初始化器列表)
- *         + Variadic functions (变参数函数)
- *     + General-purpose utilities (通用工具)
- * \author zhengrr
- * \date 2018-1-23 – 25
- * \copyright The MIT License
- */
+//===-- General-Purpose Utilities -------------------------------*- C++ -*-===//
+///
+/// \defgroup gGen 通用工具库
+/// \ingroup gRef
+///
+/// \sa ["General-purpose utilities"](http://en.cppreference.com/w/cpp/utility#General-purpose_utilities). *cppreference.com*.
+///     + [Date and time](http://en.cppreference.com/w/cpp/chrono)
+///
+/// \version 2018-05-21
+/// \since 2018-01-23
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//
