@@ -19,7 +19,7 @@
 /* Language Standards */
 
 #ifndef __STDC__
-# error A C compiler is required.
+#error A C compiler is required.
 #endif
 
 /** \brief ISO/IEC 9899:2011
@@ -30,18 +30,16 @@
  *  \sa https://iso.org/standard/29237.html */
 #define C99 (199901L <= __STDC_VERSION__)
 
-/** \brief ISO/IEC 9899:1990/Cor 1:1994
- *  \sa https://iso.org/standard/24271.html */
+/** \brief ISO/IEC 9899:1990/Amd 1:1995
+ *  \sa https://iso.org/standard/23909.html */
 #define C95 C94
 #define C94 (199409L <= __STDC_VERSION__)
 
 /** \brief ISO/IEC 9899:1990
  *  \sa https://iso.org/standard/17782.html */
-# define C90 (defined(__STDC__))
-
-/** \brief ANSI X3.159-1989
- */
-# define C89 (defined(__STDC__))
+#define C90 C89
+/** \brief ANSI X3.159-1989 */
+#define C89 (defined(__STDC__))
 
 /* Language Features */
 
