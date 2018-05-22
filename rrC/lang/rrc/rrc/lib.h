@@ -5,7 +5,7 @@
  *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2018-05-05
+ * \version 2018-05-22
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright The MIT License
@@ -25,7 +25,9 @@
 extern "C" {
 #endif
 
-/** \brief 库版本结构体。 */
+/**
+ * \brief 库版本结构体。
+ */
 struct rrc_version_t {
 	uint16_t major;  /**< 库主版本号。 */
 	uint16_t minor;  /**< 库次版本号。 */
@@ -35,10 +37,10 @@ struct rrc_version_t {
 
 /**
  * \brief 获取库版本。
- * \param[out] version_ptr 指向库版本结构体的指针。
+ * \return 库版本结构体。
  */
-RRC_API void
-rrc_get_version(struct rrc_version_t *const version_ptr);
+RRC_API struct rrc_version_t
+rrc_version(void);
 
 /**
  * \brief 叹。

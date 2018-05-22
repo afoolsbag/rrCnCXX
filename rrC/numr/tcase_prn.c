@@ -18,7 +18,7 @@
 
 #include <check/check.h>
 
-#include "numr/tsuite_numr.h"
+#include "tsuite_numr.h"
 
 /** \brief Generate Pseudo-Random Number (By Current Time).
  *         依据当前时间生成伪随机数。

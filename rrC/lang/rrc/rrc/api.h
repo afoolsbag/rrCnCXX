@@ -2,10 +2,10 @@
  *
  * \file
  * \brief 应用程序接口导入、导出宏定义。
- * \details ELF（Executable and Linkable Format）缺省导出、导出符号；
+ * \details ELF（Executable and Linkable Format）缺省导出符号；
  *          PE（Portable Executable）缺省隐藏符号。
  *
- * \version 2018-05-05
+ * \version 2018-05-22
  * \since 2016-08-01
  * \authors zhengrr
  * \copyright The MIT License
@@ -42,14 +42,14 @@
 #  define RRC_EXPORT
 #  define RRC_IMPORT
 #  define RRC_LOCAL
-#a
+#
 #endif
 
 #ifdef RRC_SHARED
 # ifdef RRC_EXPORTS
-#  define RRC_API   RRC_EXPORT
+#  define RRC_API RRC_EXPORT
 # else
-#  define RRC_API   RRC_IMPORT
+#  define RRC_API RRC_IMPORT
 # endif
 #else
 #  define RRC_API

@@ -21,7 +21,8 @@
 #include "time/tsuite_time.h"
 
 /**
- * \brief Initialize calendar-time.
+ * \brief 初始化日历时间。
+ *        Initialize calendar-time.
  */
 static
 struct tm *
