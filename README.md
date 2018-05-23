@@ -10,18 +10,18 @@
 
 ## WWW
 
-/ [*36氪*](https://36kr.com/)
-/ [*CodeProject*](https://codeproject.com/)
-/ [*DevDocs*](https://devdocs.io/)
-/ [*Hacker News*](https://news.ycombinator.com/)
-/ [*InfoQ*](https://infoq.com/)
-/ [*ITeye*](http://iteye.com/)
-/ [*OverAPI.com*](http://overapi.com/)
-/ [*SegmentFault*](https://segmentfault.com/)
-/ [*Stack Overflow*](https://stackoverflow.com/)
-/ [*V2EX*](https://v2ex.com/)
-/ [*开源中国*](https://oschina.net/)
-/ [*前端乱炖*](http://html-js.com/)
+[*36氪*](https://36kr.com/)
+[*CodeProject*](https://codeproject.com/)
+[*DevDocs*](https://devdocs.io/)
+[*Hacker News*](https://news.ycombinator.com/)
+[*InfoQ*](https://infoq.com/)
+[*ITeye*](http://iteye.com/)
+[*OverAPI.com*](http://overapi.com/)
+[*SegmentFault*](https://segmentfault.com/)
+[*Stack Overflow*](https://stackoverflow.com/)
+[*V2EX*](https://v2ex.com/)
+[*开源中国*](https://oschina.net/)
+[*前端乱炖*](http://html-js.com/)
 
 ## Symbols
 
