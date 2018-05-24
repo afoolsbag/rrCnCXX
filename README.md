@@ -218,7 +218,7 @@ quickref
 	+ 格式化整行<kbd>=</kbd><kbd>=</kbd>
 + [Visual mode](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_vi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_vi)</sub>
 + [Text objects](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_to)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_to)</sub>
-    + 单词`v_[ai]w`ord　字串`v_[ai]W`　句子`v_[ai]s`entence　段落`v_[ai]p`aragraph　a/inner
+    + 单词`v_[`<kbd>a</kbd><kbd>i</kbd>`]`<kbd>w</kbd>　字串`v_[ai]W`　句子`v_[ai]s`entence　段落`v_[ai]p`aragraph　a/inner
     + 圆括号块`v_[ai](`　方括号块`v[ai][`　花括号块`v_[ai]{`　尖括号块`v_[ai]<`　标签块`v_[ai]t`
     + 单引号字符串`v_[ai]'`　双引号字符串`v_[ai]"`　反引号字符串`` v_[ai]` ``
 + [Repeating commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_re)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_re)</sub>
@@ -241,24 +241,24 @@ quickref
 + [Writing and quitting](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_wq)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_wq)</sub>
 + [Automatic commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ac)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ac)</sub>
 + [Multi-window commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_wi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_wi)</sub>
-    + 窗口　纵向分割窗口<kbd>Ctrl-W</kbd><kbd>s</kbd>　横向分割窗口<kbd>CTRL-W</kbd><kbd>v</kbd>
-    + 窗口尺寸　重置高宽<kbd>Ctrl-W</kbd><kbd>=</kbd>
-    + 窗口尺寸　减少高度<kbd>CTRL-W</kbd><kbd>-</kbd>　增加高度<kbd>CTRL-W</kbd><kbd>+</kbd>　设置高度<kbd>CTRL-W</kbd><kbd>_</kbd>
-    + 窗口尺寸　减少宽度<kbd>CTRL-W</kbd><kbd><</kbd>　增加宽度<kbd>CTRL-W</kbd><kbd>></kbd>  设置宽度<kbd>CTRL-W</kbd><kbd>|</kbd>
-    + 窗口跳转　上一<kbd>CTRL-W</kbd><kbd>p</kbd>　下一<kbd>CTRL-W</kbd><kbd>w</kbd>
-    + 窗口跳转　左侧<kbd>CTRL-W</kbd><kbd>h</kbd>　右侧<kbd>CTRL-W</kbd><kbd>l</kbd>
-    + 窗口跳转　顶部`<C-W>t`op　上侧`<C-W>k`　下侧`<C-W>j`　底部`<C-W>b`otton
-    + 窗口调整　顺时针`<C-W><C-R>`otate　逆时针`<C-W>R`　对调e`<C-W><C-X>`change
-    + 关闭当前窗口`<C-W>c`lose　仅保留当前窗口`<C-W>o`nly
+    + 纵向分割窗口<kbd>Ctrl-W</kbd><kbd>s</kbd>　横向分割窗口<kbd>CTRL-W</kbd><kbd>v</kbd>
+    + 重置窗口尺寸<kbd>Ctrl-W</kbd><kbd>=</kbd>
+    + 减少窗口高度<kbd>CTRL-W</kbd><kbd>-</kbd>　增加窗口高度<kbd>CTRL-W</kbd><kbd>+</kbd>　设置窗口高度<kbd>CTRL-W</kbd><kbd>_</kbd>
+    + 减少窗口宽度<kbd>CTRL-W</kbd><kbd><</kbd>　增加窗口宽度<kbd>CTRL-W</kbd><kbd>></kbd>　设置窗口宽度<kbd>CTRL-W</kbd><kbd>|</kbd>
+    + 活动到上一窗口<kbd>CTRL-W</kbd><kbd>p</kbd>　活动到下一窗口<kbd>CTRL-W</kbd><kbd>w</kbd>
+    + 活动到左侧窗口<kbd>CTRL-W</kbd><kbd>h</kbd>　活动到右侧窗口<kbd>CTRL-W</kbd><kbd>l</kbd>
+    + 活动到顶部窗口<kbd>CTRL-W</kbd><kbd>t</kbd>　活动到上侧窗口<kbd>CTRL-W</kbd><kbd>k</kbd>　活动到下侧窗口<kbd>CTRL-W</kbd><kbd>j</kbd>　活动到底部窗口<kbd>CTRL-W</kbd><kbd>b</kbd>
+    + 顺时针调整窗口<kbd>CTRL-W</kbd><kbd>r</kbd>　逆时针调整窗口<kbd>CTRL-W</kbd><kbd>R</kbd>　窗口对调<kbd>CTRL-W</kbd><kbd>x</kbd>
+    + 关闭当前窗口<kbd>CTRL-W</kbd><kbd>c</kbd>　仅保留当前窗口<kbd>CTRL-W</kbd><kbd>o</kbd>
 + [Buffer list commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_bu)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_bu)</sub>
 + [Syntax highlighting](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_sy)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_sy)</sub>
 + [GUI commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_gu)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_gu)</sub>
 + [Folding](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_fo)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_fo)</sub>
-    + fold　关闭折叠至顶`zC`　关闭折叠`zc`lose　打开折叠`zo`pen　打开折叠至底`zO`
-    + 关闭所有折叠至顶`zM`　关闭所有折叠`zm`ore　打开所有折叠`zr`educe　打开所有折叠至底`zR`
-    + 禁用折叠`zn`one　启用折叠`zN`ormal　开关折叠`zi`nvert
+    + 关闭折叠至顶<kbd>z</kbd><kbd>C</kbd>　关闭折叠<kbd>z</kbd><kbd>c</kbd>　打开折叠<kbd>z</kbd><kbd>o</kbd>　打开折叠至底<kbd>z</kbd><kbd>O</kbd>
+    + 关闭所有折叠至顶<kbd>z</kbd><kbd>M</kbd>　关闭所有折叠<kbd>z</kbd><kbd>m</kbd>　打开所有折叠<kbd>z</kbd><kbd>r</kbd>　打开所有折叠至底<kbd>z</kbd><kbd>R</kbd>
+    + 禁用折叠<kbd>z</kbd><kbd>n</kbd>　启用折叠<kbd>z</kbd><kbd>N</kbd>　开关折叠<kbd>z</kbd><kbd>i</kbd>
 + More
-    + 左一标签页<kbd>g</kbd><kbd>T</kbd>　右一标签页<kbd>g</kbd><kbd>t</kbd>`gt`　某标签页<kbd>Number</kbd><kbd>g</kbd><kbd>t</kbd>
+    + 左一标签页<kbd>g</kbd><kbd>T</kbd>　右一标签页<kbd>g</kbd><kbd>t</kbd>　某标签页<kbd>Number</kbd><kbd>g</kbd><kbd>t</kbd>
 
 ### Environments
 
