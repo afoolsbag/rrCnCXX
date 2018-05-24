@@ -149,47 +149,59 @@
 
 quickref
 + [motion: Left-right](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_lr)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_lr)</sub>
-    + 左移`h`　右移`l`　某列`<num>|`
-    + 行内　左向搜索`F<char>`　左向搜索到`T<char>`　右向搜索到`t<char>`ill　右向搜索`f<char>`ind
-    + 行内　重复搜索`;`　反向重复搜索`,`
-    + 顶格`0`　行首`^`　行中`gm`　行尾`g_`　底格`$`
+    + 左移<kbd>h</kbd>　某列<kbd>Num</kbd><kbd>|</kbd>　右移<kbd>l</kbd>
+    + 顶格<kbd>0</kbd>　行首<kbd>^</kbd>　行中<kbd>g</kbd><kbd>m</kbd>　行尾<kbd>g</kbd><kbd>_</kbd>　底格<kbd>$</kbd>
+    + 行内　反向重复搜索<kbd>,</kbd>
+    + 行内　逆向搜索<kbd>F</kbd><kbd>Char</kbd>　逆向搜索到<kbd>T</kbd><kbd>Char</kbd>　顺向搜索到<kbd>t</kbd><kbd>Char</kbd>　顺向搜索<kbd>f</kbd><kbd>Char</kbd>
+    + 行内　重复搜索<kbd>;</kbd>　反向重复搜索<kbd>,</kbd>
 + [motion: Up-down](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ud)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ud)</sub>
-    + 上移`k`且到行首`-`　下移`j`且到行首`+`
-    + 顶行`gg`　底行`G`　某行`<num>gg` `<num>G`
+    + 顶行<kbd>g</kbd><kbd>g</kbd>
+    + 上移<kbd>k</kbd>　且到行首<kbd>-</kbd>
+    + 某行<kbd>Num</kbd><kbd>g</kbd><kbd>g</kbd>　或<kbd>Num</kbd><kbd>G</kbd>
+    + 下移<kbd>j</kbd>　且到行首<kbd>=</kbd>
+    + 底行<kbd>G</kbd>
 + [motion: Text object](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_tm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_tm)</sub>
-    + 前词头`b`　前词尾`ge`　后词头`w`　后词尾`e`
-    + 前串头`B`　前串尾`gE`　后串头`W`　后串尾`E`
+    + 前词头<kbd>b</kbd>　前词尾<kbd>g</kbd><kbd>e</kbd>　后词头<kbd>w</kbd>　后词尾<kbd>e</kbd>
+    + 前串头<kbd>B</kbd>　前串尾<kbd>g</kbd><kbd>E</kbd>　后串头<kbd>W</kbd>　后串尾<kbd>E</kbd>
 + [motion: Pattern searches](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_pa)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_pa)</sub>
-    + 前文查找`?<pattern>`　后文查找`/<pattern>`
-    + 前文重复查找`?<CR>`　逆向重复查找`N`　顺向重复查找`n`ext　后文重复查找`/<CR>`
-    + 前文查找光标下标识符`#`　后文查找光标下标识符`*`
+    + 前文查找<kbd>?</kbd>`Pattern`<kbd>Enter</kbd>　后文查找<kbd>/</kbd>`Pattern`<kbd>Enter</kbd>
+    + 前文重复查找<kbd>?</kbd><kbd>Enter</kbd>　反向重复查找<kbd>N</kbd>　顺向重复查找<kbd>n</kbd>　后文重复查找<kbd>/</kbd><kbd>Enter</kbd>
+    + 前文查找光标下标识符<kbd>#</kbd>　后文查找光标下标识符<kbd>*</kbd>
 + [motion: Marks](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ma)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ma)</sub>
-    + 标记局部位置`m{a-z}`ark　标记全局位置`m{A-Z}`　跳转到标记位置`` `{A-Za-z} ``　标记表`:marks`
-    + 旧向跳转`<C-O>`lder　新向跳转`<C-I>`　回跳``` `` ```　跳转到最后编辑处`` `" ``　跳转表`:ju`
+    + 标记局部位置<kbd>m</kbd><kbd>a-z</kbd>　标记全局位置<kbd>m</kbd><kbd>A-Z</kbd>　跳转到标记位置<kbd>\`</kbd><kbd>A-Za-z</kbd>　标记表<kbd>:</kbd>`marks`<kbd>Enter</kbd>
+    + 旧向跳转<kbd>Ctrl-O</kbd>　新向跳转<kbd>Ctrl-I</kbd>　回跳<kbd>\`</kbd><kbd>\`</kbd>　跳转到最后编辑处<kbd>\`</kbd><kbd>"</kbd>　跳转表<kbd>:</kbd>`ju`<kbd>Enter</kbd>
 + [motion: Various](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_vm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_vm)</sub>
-    + 字符匹配`%`
-    + 窗口　顶行`H`ome　中行`M`iddle　底行`L`ast
+    + 字符匹配<kbd>%</kbd>
+    + 窗口　顶行<kbd>H</kbd>　中行<kbd>M</kbd>　底行<kbd>L</kbd>
 + [motion: Using tags](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ta)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ta)</sub>
-    + 标签跳出`<C-T>`　标签跳入`<C-]>`
+    + 标签跳出<kbd>Ctrl-T</kbd>　标签跳入<kbd>Ctrl-]</kbd>
 + [Scrolling](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_sc)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_sc)</sub>
-    + 上滚一页`<C-B>`ackwards　上滚半页`<C-U>`pwards　上滚一行`<C-Y>`
-    + 下滚一行`<C-E>`xtra　下滚半页`<C-D>`ownwards　下滚一页`<C-F>`orwards
-    + 此行置顶`zt`op且到行首`z<CR>`　此行置中`zz`且到行首`z.`　此行置底`zb`ottom且到行首`z-`
+    + 上滚一页<kbd>Ctrl-B</kbd>
+    + 上滚半页<kbd>Ctrl-U</kbd>
+    + 上滚一行<kbd>Ctrl-Y</kbd>
+    + 此行置顶<kbd>z</kbd><kbd>t</kbd>　且到行首<kbd>z</kbd><kbd>Enter</kbd>
+    + 此行置中<kbd>z</kbd><kbd>z</kbd>　且到行首<kbd>z</kbd><kbd>.</kbd>
+    + 此行置底<kbd>z</kbd><kbd>b</kbd>　且到行首<kbd>z</kbd><kbd>-</kbd>
+    + 下滚一行<kbd>Ctrl-E</kbd>
+    + 下滚半页<kbd>Ctrl-D</kbd>
+    + 下滚一页<kbd>Ctrl-F</kbd>
 + [insert: Inserting text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_in)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_in)</sub>
-    + 顶格插入`gI`　行首插入`I`　字符前插入`i`nsert　字符后插入`a`ppend　底格插入`A`
-    + 上建一行并编辑`O`　下建一行并编辑`o`pen
+    + 上建一行并编辑<kbd>O</kbd>
+    + 顶格插入<kbd>g</kbd><kbd>I</kbd>　行首插入<kbd>I</kbd>　字符前插入<kbd>i</kbd>　字符后插入<kbd>a</kbd>　底格插入<kbd>A</kbd>
+    + 下建一行并编辑<kbd>o</kbd>
 + [insert: Keys](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ai)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ai)</sub>
-    + 转回普通模式`i_<ESC>` `i_<C-C>`
+    + 离开插入模式`i_`<kbd>ESC</kbd> `i_`<kbd>Ctrl-C</kbd>
 + [insert: Special keys](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ss)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ss)</sub>
-    + 粘贴`i_<C-R><reg>`egister
-    + 清空整行`i_<C-U>`　删除前一单词`i_<C-W>`ord
-    + 减少缩进`i_<C-D>`elete　增加缩进`i_<C-T>`ab
+    + 插入光标上方字符`i_`<kbd>Ctrl-Y</kbd>　插入光标下方字符`i-`<kbd>Ctrl-E</kbd>
+    + 粘贴`i_`<kbd>Ctrl-R<kbd><kbd>Register<kbd>
+    + 清空整行`i_`<kbd>Ctrl-U</kbd>　删除前一单词`i_`<kbd>Ctrl-W</kbd>
+    + 减少缩进`i_`<C-D>`elete　增加缩进`i_`<C-T>`ab
 + [insert: Digraphs](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_di)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_di)</sub>
 + [insert: Special inserts](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_si)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_si)</sub>
 + [change: Deleting text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_de)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_de)</sub>
-    + 删除`d<motion>`elete
-    + 删除整行`dd`　删除光标前字符`X`　删除光标处字符`x`　删除至底格`D`
-    + 连接下行`J`oin
+    + 删除<kbd>d</kbd>
+    + 删除整行<kbd>d</kbd><kbd>d</kbd>　删除光标前字符<kbd>X</kbd>　删除光标处字符<kbd>x</kbd>　删除至底格<kbd>D</kbd>
+    + 连接下行<kbd>J</kbd>
 + [change: Copying and moving](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_cm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_cm)</sub>
     + 指定寄存器`"<reg>`　寄存表`:reg`
     + [registers](http://vimdoc.sourceforge.net/htmldoc/change.html#registers)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/change.html#registers)</sub>
