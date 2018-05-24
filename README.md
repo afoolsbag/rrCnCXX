@@ -199,26 +199,26 @@ quickref
 + [insert: Digraphs](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_di)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_di)</sub>
 + [insert: Special inserts](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_si)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_si)</sub>
 + [change: Deleting text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_de)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_de)</sub>
-    + 删除<kbd>d</kbd><kbd>Motion</kbd>
+    + 删除<kbd>d</kbd><kbd>Motion...</kbd>
     + 删除整行<kbd>d</kbd><kbd>d</kbd>　删除光标前字符<kbd>X</kbd>　删除光标处字符<kbd>x</kbd>　删除至底格<kbd>D</kbd>
     + 连接下行<kbd>J</kbd>
 + [change: Copying and moving](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_cm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_cm)</sub>
     + 指定寄存器<kbd>"</kbd><kbd>Register</kbd>　寄存表<kbd>:</kbd>`reg`<kbd>Enter</kbd>
     + [registers](http://vimdoc.sourceforge.net/htmldoc/change.html#registers)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/change.html#registers)</sub>
-    + 复制<kbd>y</kbd><kbd>Motion</kbd>
+    + 复制<kbd>y</kbd><kbd>Motion...</kbd>
     + 复制整行<kbd>y</kbd><kbd>y</kbd>　或<kbd>Y</kbd>
     + 光标前粘贴<kbd>P</kbd>　光标后粘贴<kbd>p</kbd>
 + [change: Changing text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ch)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ch)</sub>
-    + 修改<kbd>c</kbd><kbd>Motion</kbd>
+    + 修改<kbd>c</kbd><kbd>Motion...</kbd>
     + 修改整行<kbd>c</kbd><kbd>c</kbd>　或<kbd>S</kbd>　修改光标处字符<kbd>s</kbd>　修改至底格<kbd>C</kbd>
     + 替换光标处字符<kbd>r</kbd><kbd>Character</kbd>　替换模式<kbd>R</kbd>
     + 翻转大小写<kbd>~</kbd>　数值自减<kbd>Ctrl-X</kbd>　数值自增<kbd>Ctrl-A</kbd>
 + [change: Complex](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_co)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_co)</sub>
-    + 格式化<kbd>=</kbd><kbd>Motion</kbd>
+    + 格式化<kbd>=</kbd><kbd>Motion...</kbd>
 	+ 格式化整行<kbd>=</kbd><kbd>=</kbd>
 + [Visual mode](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_vi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_vi)</sub>
 + [Text objects](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_to)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_to)</sub>
-    + 单词`v_[`<kbd>a</kbd><kbd>i</kbd>`]`<kbd>w</kbd>　字串`v_[ai]W`　句子`v_[ai]s`entence　段落`v_[ai]p`aragraph　a/inner
+    + 单词`v_`<kbd>a/i</kbd><kbd>w</kbd>　字串`v_[ai]W`　句子`v_[ai]s`entence　段落`v_[ai]p`aragraph　a/inner
     + 圆括号块`v_[ai](`　方括号块`v[ai][`　花括号块`v_[ai]{`　尖括号块`v_[ai]<`　标签块`v_[ai]t`
     + 单引号字符串`v_[ai]'`　双引号字符串`v_[ai]"`　反引号字符串`` v_[ai]` ``
 + [Repeating commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_re)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_re)</sub>
