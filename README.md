@@ -218,9 +218,9 @@ quickref
 	+ 格式化整行<kbd>=</kbd><kbd>=</kbd>
 + [Visual mode](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_vi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_vi)</sub>
 + [Text objects](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_to)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_to)</sub>
-    + 单词`v_`<kbd>a/i</kbd><kbd>w</kbd>　字串`v_[ai]W`　句子`v_[ai]s`entence　段落`v_[ai]p`aragraph　a/inner
-    + 圆括号块`v_[ai](`　方括号块`v[ai][`　花括号块`v_[ai]{`　尖括号块`v_[ai]<`　标签块`v_[ai]t`
-    + 单引号字符串`v_[ai]'`　双引号字符串`v_[ai]"`　反引号字符串`` v_[ai]` ``
+    + 单词`v_`<kbd>a/i</kbd><kbd>w</kbd>　字串`v_`<kbd>a/i</kbd><kbd>W</kbd>　句子`v_`<kbd>a/i</kbd><kbd>s</kbd>　段落`v_`<kbd>a/i</kbd><kbd>p</kbd>
+    + 圆括号块`v_`<kbd>a/i</kbd><kbd>(</kbd>　方括号块`v_`<kbd>a/i</kbd><kbd>[</kbd>　花括号块`v_`<kbd>a/i</kbd><kbd>{</kbd>　尖括号块`v_`<kbd>a/i</kbd><kbd><</kbd>　标签块`v_`<kbd>a/i</kbd><kbd>t</kbd>
+    + 单引号字符串`v_`<kbd>a/i</kbd><kbd>'</kbd>　双引号字符串`v_`<kbd>a/i</kbd><kbd>"</kbd>　反引号字符串`v_`<kbd>a/i</kbd><kbd>\`</kbd>
 + [Repeating commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_re)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_re)</sub>
     + 重复改动<kbd>.</kbd>
 + [Key mapping](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_km)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_km)</sub>
