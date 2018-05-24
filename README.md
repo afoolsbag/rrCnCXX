@@ -149,15 +149,15 @@
 
 quickref
 + [motion: Left-right](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_lr)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_lr)</sub>
-    + 左移<kbd>h</kbd>　某列<kbd>Num</kbd><kbd>|</kbd>　右移<kbd>l</kbd>
+    + 左移<kbd>h</kbd>　某列<kbd>Number</kbd><kbd>|</kbd>　右移<kbd>l</kbd>
     + 顶格<kbd>0</kbd>　行首<kbd>^</kbd>　行中<kbd>g</kbd><kbd>m</kbd>　行尾<kbd>g</kbd><kbd>_</kbd>　底格<kbd>$</kbd>
     + 行内　反向重复搜索<kbd>,</kbd>
-    + 行内　逆向搜索<kbd>F</kbd><kbd>Char</kbd>　逆向搜索到<kbd>T</kbd><kbd>Char</kbd>　顺向搜索到<kbd>t</kbd><kbd>Char</kbd>　顺向搜索<kbd>f</kbd><kbd>Char</kbd>
+    + 行内　逆向搜索<kbd>F</kbd><kbd>Character</kbd>　逆向搜索到<kbd>T</kbd><kbd>Character</kbd>　顺向搜索到<kbd>t</kbd><kbd>Character</kbd>　顺向搜索<kbd>f</kbd><kbd>Character</kbd>
     + 行内　重复搜索<kbd>;</kbd>　反向重复搜索<kbd>,</kbd>
 + [motion: Up-down](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ud)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ud)</sub>
     + 顶行<kbd>g</kbd><kbd>g</kbd>
     + 上移<kbd>k</kbd>　且到行首<kbd>-</kbd>
-    + 某行<kbd>Num</kbd><kbd>g</kbd><kbd>g</kbd>　或<kbd>Num</kbd><kbd>G</kbd>
+    + 某行<kbd>Number</kbd><kbd>g</kbd><kbd>g</kbd>　或<kbd>Number</kbd><kbd>G</kbd>
     + 下移<kbd>j</kbd>　且到行首<kbd>=</kbd>
     + 底行<kbd>G</kbd>
 + [motion: Text object](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_tm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_tm)</sub>
@@ -190,32 +190,32 @@ quickref
     + 顶格插入<kbd>g</kbd><kbd>I</kbd>　行首插入<kbd>I</kbd>　字符前插入<kbd>i</kbd>　字符后插入<kbd>a</kbd>　底格插入<kbd>A</kbd>
     + 下建一行并编辑<kbd>o</kbd>
 + [insert: Keys](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ai)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ai)</sub>
-    + 离开插入模式`i_`<kbd>ESC</kbd> `i_`<kbd>Ctrl-C</kbd>
+    + 离开插入模式`i_`<kbd>ESC</kbd>　或`i_`<kbd>Ctrl-C</kbd>
 + [insert: Special keys](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ss)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ss)</sub>
-    + 插入光标上方字符`i_`<kbd>Ctrl-Y</kbd>　插入光标下方字符`i-`<kbd>Ctrl-E</kbd>
-    + 粘贴`i_`<kbd>Ctrl-R<kbd><kbd>Register<kbd>
+    + 插入光标上方字符`i_`<kbd>Ctrl-Y</kbd>　插入光标下方字符`i_`<kbd>Ctrl-E</kbd>
+    + 粘贴`i_`<kbd>Ctrl-R</kbd><kbd>Register</kbd>
     + 清空整行`i_`<kbd>Ctrl-U</kbd>　删除前一单词`i_`<kbd>Ctrl-W</kbd>
-    + 减少缩进`i_`<C-D>`elete　增加缩进`i_`<C-T>`ab
+    + 减少缩进`i_`<kbd>Ctrl-D</kbd>　增加缩进`i_`<kbd>Ctrl-T</kbd>
 + [insert: Digraphs](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_di)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_di)</sub>
 + [insert: Special inserts](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_si)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_si)</sub>
 + [change: Deleting text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_de)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_de)</sub>
-    + 删除<kbd>d</kbd>
+    + 删除<kbd>d</kbd><kbd>Motion</kbd>
     + 删除整行<kbd>d</kbd><kbd>d</kbd>　删除光标前字符<kbd>X</kbd>　删除光标处字符<kbd>x</kbd>　删除至底格<kbd>D</kbd>
     + 连接下行<kbd>J</kbd>
 + [change: Copying and moving](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_cm)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_cm)</sub>
-    + 指定寄存器`"<reg>`　寄存表`:reg`
+    + 指定寄存器<kbd>"</kbd><kbd>Register</kbd>　寄存表<kbd>:</kbd>`reg`<kbd>Enter</kbd>
     + [registers](http://vimdoc.sourceforge.net/htmldoc/change.html#registers)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/change.html#registers)</sub>
-    + 复制`y<motion>`ank
-    + 复制整行`yy` `Y`
-    + 光标前粘贴`P`　光标后粘贴`p`ut
+    + 复制<kbd>y</kbd><kbd>Motion</kbd>
+    + 复制整行<kbd>y</kbd><kbd>y</kbd>　或<kbd>Y</kbd>
+    + 光标前粘贴<kbd>P</kbd>　光标后粘贴<kbd>p</kbd>
 + [change: Changing text](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ch)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ch)</sub>
-    + 修改`c<cotion>`hange
-    + 修改整行`cc` `S`　修改光标处字符`s`ubstitute　修改至底格`C`
-    + 替换光标处字符`r<char>`eplace　替换模式`R`
-    + 翻转大小写`~`　数值自减`<C-X>`　数值自增`<C-A>`
+    + 修改<kbd>c</kbd><kbd>Motion</kbd>
+    + 修改整行<kbd>c</kbd><kbd>c</kbd>　或<kbd>S</kbd>　修改光标处字符<kbd>s</kbd>　修改至底格<kbd>C</kbd>
+    + 替换光标处字符<kbd>r</kbd><kbd>Character</kbd>　替换模式<kbd>R</kbd>
+    + 翻转大小写<kbd>~</kbd>　数值自减<kbd>Ctrl-X</kbd>　数值自增<kbd>Ctrl-A</kbd>
 + [change: Complex](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_co)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_co)</sub>
-    + 格式化`=<motion>`
-	+ 格式化整行`==`
+    + 格式化<kbd>=</kbd><kbd>Motion</kbd>
+	+ 格式化整行<kbd>=</kbd><kbd>=</kbd>
 + [Visual mode](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_vi)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_vi)</sub>
 + [Text objects](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_to)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_to)</sub>
     + 单词`v_[ai]w`ord　字串`v_[ai]W`　句子`v_[ai]s`entence　段落`v_[ai]p`aragraph　a/inner
