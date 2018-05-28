@@ -229,7 +229,7 @@ quickref
     + 单引号字符串`v_`<kbd>a/i</kbd><kbd>'</kbd>　双引号字符串`v_`<kbd>a/i</kbd><kbd>"</kbd>　反引号字符串`v_`<kbd>a/i</kbd><kbd>\`</kbd>
 + [Repeating commands](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_re) [重复命令](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_re)
     + 重复改动<kbd>.</kbd>
-    + 记录宏<kbd>q</kbd><kbd>Register</kbd><kbd>Macro...</kbd><kbd>q</kbd>　执行宏<kbd>@</kbd><kbd>Register</kbd>
+    + 录制宏<kbd>q</kbd><kbd>Register</kbd><kbd>Macro...</kbd><kbd>q</kbd>　执行宏<kbd>@</kbd><kbd>Register</kbd>
 + [Key mapping](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_km) [键盘映射](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_km)
 + [Abbreviations](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_ab) [缩写](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_ab)
 + [Options](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_op) [选项](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_op)

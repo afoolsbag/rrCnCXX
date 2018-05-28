@@ -17,6 +17,7 @@ BEGIN_MESSAGE_MAP(MainDialog, CDialog)
 
     ON_NOTIFY(TVN_ITEMCHANGING, IDC_TREE, &MainDialog::OnTvnItemChangingTree)
     ON_NOTIFY(TVN_ITEMCHANGED, IDC_TREE, &MainDialog::OnTvnItemChangedTree)
+    ON_EN_CHANGE(IDC_FIND_EDIT, &MainDialog::OnEnChangeFindEdit)
 END_MESSAGE_MAP()
 
 #// Constructors
@@ -42,13 +43,21 @@ OnInitDialog()
     CDialog::OnInitDialog();
     DbgConPrtMeth(Yellow);
 
+    CString text;
+
     CONST HTREEITEM rootTih = TreeControl.InsertItem(TEXT("root"));
-    CONST HTREEITEM sub1Tih = TreeControl.InsertItem(TEXT("sub1"), rootTih);
-    CONST HTREEITEM sub2Tih = TreeControl.InsertItem(TEXT("sub2"), rootTih);
-    CONST HTREEITEM sub3Tih = TreeControl.InsertItem(TEXT("sub3"), rootTih);
+    for (INT i = 1; i < 99; ++i) {
+        text.Format(TEXT("sub%d"), i);
+        TreeControl.InsertItem(text, rootTih);
+    }
+    CONST HTREEITEM sub99Tih = TreeControl.InsertItem(TEXT("sub99"), rootTih);
     TreeControl.Expand(rootTih, TVE_EXPAND);
 
-    CONST HTREEITEM sub2sub1Tih = TreeControl.InsertItem(TEXT("sub2sub1"), sub2Tih);
+    for (INT i = 1; i < 99; ++i) {
+        text.Format(TEXT("sub99sub%d"), i);
+        TreeControl.InsertItem(text, sub99Tih);
+    }
+    TreeControl.Expand(sub99Tih, TVE_EXPAND);
 
     return TRUE;
 }
@@ -65,6 +74,7 @@ DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_TREE, TreeControl);
+    DDX_Control(pDX, IDC_FIND_EDIT, FindEditControl);
 }
 
 #// Implementation
@@ -100,6 +110,31 @@ SyncParentCheck(HTREEITEM CONST item)
     }
     TreeControl.SetCheck(parent, TRUE);
     SyncParentCheck(parent);
+}
+
+HTREEITEM MainDialog::
+FindMatchedItem(CONST CString &token) CONST
+{
+    HTREEITEM CONST rootTih = TreeControl.GetRootItem();
+    if (!rootTih)
+        return NULL;
+    return FindMatchedItem(token, rootTih);
+}
+
+HTREEITEM MainDialog::
+FindMatchedItem(CONST CString &token, HTREEITEM CONST itemTih) CONST
+{
+    ASSERT(NULL != itemTih);
+    HTREEITEM child = TreeControl.GetChildItem(itemTih);
+    while (NULL != child) {
+        if (-1 != TreeControl.GetItemText(child).Find(token))
+            return child;
+        HTREEITEM CONST rv = FindMatchedItem(token, child);
+        if (rv)
+            return rv;
+        child = TreeControl.GetNextItem(child, TVGN_NEXT);
+    }
+    return NULL;
 }
 
 #// Message Handlers
@@ -176,4 +211,20 @@ OnTvnItemChangedTree(NMHDR *pNMHDR, LRESULT *pResult)
     NMTVITEMCHANGE *pNMTVItemChange = reinterpret_cast<NMTVITEMCHANGE*>(pNMHDR);
     DbgConPrtMeth(Yellow);
     *pResult = 0;
+}
+
+VOID MainDialog::
+OnEnChangeFindEdit()
+{
+    DbgConPrtMeth(Yellow);
+    CString text;
+    FindEditControl.GetWindowText(text);
+    if (text.GetLength()) {
+        HTREEITEM CONST item = FindMatchedItem(text);
+        if (item) {
+            DbgConPrt(White, TEXT("Found %s matched %s.\n"), static_cast<LPCTSTR>(TreeControl.GetItemText(item)), static_cast<LPCTSTR>(text));
+            TreeControl.EnsureVisible(item);
+            TreeControl.SelectItem(item);
+        }
+    }
 }

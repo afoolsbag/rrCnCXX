@@ -4,8 +4,7 @@
 //
 #define IDD_MAIN_DIALOG                 200
 #define IDC_UNDEFINED                   40000
-#define IDC_TREE                        40001
-#define IDC_FIND_EDIT                   40002
+#define IDC_EDIT                        40001
 #define IDC_RANGELAST                   49999
 #define ID_UNDEFINED                    50000
 #define ID_RANGELAST                    57343
@@ -16,7 +15,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        10001
 #define _APS_NEXT_COMMAND_VALUE         50001
-#define _APS_NEXT_CONTROL_VALUE         40003
+#define _APS_NEXT_CONTROL_VALUE         40002
 #define _APS_NEXT_SYMED_VALUE           300
 #endif
 #endif

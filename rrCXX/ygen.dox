@@ -1,9 +1,74 @@
 //===-- Main Page -----------------------------------------------*- C++ -*-===//
 ///
 /// \mainpage
-/// \tableofcontents
+/// [TOC]
 ///
-/// \version 2018-04-08
+/// # C++                                                                {#sCxx}
+///
+/// [Standard C++](https://isocpp.org)
+///
+/// [*C++17*](https://iso.org/standard/68564.html)
+/// [*C++14*](https://iso.org/standard/64029.html)
+/// [*C++11*](https://iso.org/standard/50372.html)
+/// [*C++03*](https://iso.org/standard/38110.html)
+/// [*C++98*](https://iso.org/standard/25845.html)
+///
+/// # References                                                  {#sReferences}
+///
+/// ["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
+/// [*cplusplus.com*](http://cplusplus.com)
+///
+/// # Programming Styles                                   {#sProgrammingStyles}
+///
+/// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
+/// [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
+/// [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
+/// [*SEI CERT C++ Coding Standard*](https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88046682)
+/// [*High Integrity C++ Coding Standard*](http://codingstandard.com/)
+/// [*C++ Coding Standard*](http://possibility.com/Cpp/CppCodingStandard.html)
+///
+/// Inherited from C Programming Styles.
+///
+/// ## Naming                                                        {#ssNaming}
+///
+/// | Entity Kinds        | Preview                         |
+/// |:------------------- |:------------------------------- |
+/// | folder              | `all_lower`                     |
+/// | file                | `all_lower` or `PascalCase`     |
+/// | macro               | `ALL_UPPER`                     |
+/// | namespace           | `all_lower`                     |
+/// | typedef             | `PascalCase`                    |
+/// | struct/class        | `PascalCase`                    |
+/// | struct/class field  | `camelCase`                     |
+/// | struct/class method | `camelCase`                     |
+/// | enum                | `PascalCase`                    |
+/// | enumerator          | `ALL_UPPER`                     |
+/// | union               | `PascalCase`                    |
+/// | union member        | `camelCase`                     |
+/// | global function     | `PascalCase`                    |
+/// | static method       | `PascalCase`                    |
+/// | variable            | `camelCase` specifier inherited |
+///
+/// ## Formatting                                                {#ssFormatting}
+///
+/// `.hxx` `.cxx`
+/// 2 Spaces
+///
+/// # Guides                                                          {#sGuides}
+///
+/// ["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.
+///
+/// [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
+/// ["C++必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
+///
+/// # Groceries                                                     {#Groceries}
+///
+/// [*Google Test*](https://github.com/google/googletest)
+///
+/// ___
+/// <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+///
+/// \version 2018-05-28
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC BY 4.0

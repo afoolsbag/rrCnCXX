@@ -6,9 +6,9 @@
 
 #include "check/check.h"
 
-#include "rrwindows/errhdl.h"
+#include "rrwindows/errtxt.h"
 
-START_TEST(TestErrHdl)
+START_TEST(TestErrTxt)
 {
     GetProcessId(NULL);
     size_t len = 0;
@@ -17,9 +17,9 @@ START_TEST(TestErrHdl)
 }
 END_TEST
 
-TCase *TCaseErrHdl(VOID)
+TCase *TCaseErrTxt(VOID)
 {
-    TCase *tcase = tcase_create("ErrHdl");
-    tcase_add_test(tcase, TestErrHdl);
+    TCase *tcase = tcase_create("ErrTxt");
+    tcase_add_test(tcase, TestErrTxt);
     return tcase;
 }

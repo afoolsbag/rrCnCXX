@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#define DEBUG
+#define _DEBUG
 #define RRWINDOWS_EXPORTS
 #include "dbgcon.h"
 
@@ -9,8 +9,8 @@
 
 RRWINDOWS_API VOID WINAPIV
 DebugConsolePrintA(
-    _In_                          CONST ConCol textColor,
-    _In_z_ _Printf_format_string_ CONST LPCSTR format,
+    _In_                           CONST ConCol textColor,
+    _In_z_ _Printf_format_string_ LPCSTR CONST  format,
     ...)
 {
     SetConFgCol(textColor);
@@ -22,8 +22,8 @@ DebugConsolePrintA(
 
 RRWINDOWS_API VOID WINAPIV
 DebugConsolePrintW(
-    _In_                          CONST ConCol  textColor,
-    _In_z_ _Printf_format_string_ CONST LPCWSTR format,
+    _In_                            CONST ConCol textColor,
+    _In_z_ _Printf_format_string_ LPCWSTR CONST  format,
     ...)
 {
     SetConFgCol(textColor);

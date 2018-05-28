@@ -7,15 +7,15 @@
 #include "check/check.h"
 
 #include "rrwindows/acsshrflr.h"
-#include "rrwindows/errhdl.h"
+#include "rrwindows/dbgprt.h"
+#include "rrwindows/errtxt.h"
 
 START_TEST(TestAcsShrFlr)
 {
-    if (ConnectSharedFolder(
-        _T("\\\\localhost\\path\\to\\folder"),
-        _T("username"),
-        _T("password")))
-        GetLastErrorText();
+    if (ConnectSharedFolder(_T("\\\\localhost\\path\\to\\folder"),
+                            _T("username"),
+                            _T("password")))
+        DbgPrtD(_T("Connect shared folder failed: %s\n"), GetLastErrorText());
 }
 END_TEST
 

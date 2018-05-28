@@ -45,6 +45,9 @@ protected:
     CTreeCtrl TreeControl;
     VOID SyncChildCheck(HTREEITEM CONST item);
     VOID SyncParentCheck(HTREEITEM CONST item);
+    HTREEITEM FindMatchedItem(CONST CString &token) CONST;
+    HTREEITEM FindMatchedItem(CONST CString &token, HTREEITEM CONST itemTih) CONST;
+    CEdit FindEditControl;
 
 #// Message Handlers
 protected:
@@ -66,6 +69,8 @@ protected:
     afx_msg VOID OnTvnItemChangingTree(NMHDR *pNMHDR, LRESULT *pResult);
     /// \sa https://msdn.microsoft.com/library/bb773526
     afx_msg VOID OnTvnItemChangedTree(NMHDR *pNMHDR, LRESULT *pResult);
+
+    afx_msg VOID OnEnChangeFindEdit();
 
     DECLARE_MESSAGE_MAP()
 };

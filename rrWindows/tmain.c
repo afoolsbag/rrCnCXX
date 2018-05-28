@@ -7,7 +7,8 @@
 
 #include <check/check.h>
 
-#include "diag/dbg/tsuite_dbg.h"
+#include "diag/dbg/errhdl/tsuite_errhdl.h"
+#include "diag/dbg/basdbg/tsuite_basdbg.h"
 #include "diag/toolhelp/tsuite_toolhelp.h"
 #include "net/rpc/tsuite_rpc.h"
 #include "net/wnet/tsuite_wnet.h"
@@ -22,7 +23,8 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 
     SRunner *runner = srunner_create(NULL);
 
-    srunner_add_suite(runner, TSuiteDbg());
+    srunner_add_suite(runner, TSuiteErrHdl());
+    srunner_add_suite(runner, TSuiteBasDbg());
     srunner_add_suite(runner, TSuiteToolHelp());
     srunner_add_suite(runner, TSuiteRPC());
     srunner_add_suite(runner, TSuiteWNet());
@@ -33,7 +35,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     CONST INT errco = srunner_ntests_failed(runner);
     srunner_free(runner);
 
-    _tsystem(_T("pause"));
+    _tsystem(_T("TIMEOUT /T 3"));
 
     return errco;
 }

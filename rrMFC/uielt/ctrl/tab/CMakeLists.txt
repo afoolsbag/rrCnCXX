@@ -1,9 +1,5 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-facile_add_executable(SUBNAME "TabControl"
-  WIN32 "main.cpp"
-        "stdafx.h"        "stdafx.cpp"
-        "resource.h"      "resource.rc"
-        "Application.h"   "Application.cpp"
-        "ui/MainDialog.h" "ui/MainDialog.cpp"
-        "ui/PageDialog.h" "ui/PageDialog.cpp")
+aux_source_directory_enhanced(zSrc RECURSE MFC)
+facile_add_executable(SUBNAME "ControlTab"
+                        WIN32 ${zSrc}
+               LINK_LIBRARIES rrwindows_static_library)
