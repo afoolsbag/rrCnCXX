@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-05-02
+# 2016-10-08 – 2018-05-29
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -93,7 +93,7 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   endif()
   if(_MFC)
     list(APPEND zSrcExts ".h"   ".cpp"
-                         ".rc"  ".bmp" ".cur" ".ico")
+                         ".rc"  ".rc2" ".bmp" ".cur" ".ico")
   endif()
   if(_QT)
     list(APPEND zSrcExts ".h"   ".cpp"

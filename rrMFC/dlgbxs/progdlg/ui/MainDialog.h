@@ -4,13 +4,17 @@
 /// \brief 主对话框（类）。
 ///
 /// \verison 2018-05-29
-/// \since 2018-04-09
+/// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
+
+#include "progdlg/ProgressDialog.h"
+
+#include "resource.h"
 
 /// \brief 主对话框（类）。
 class MainDialog: public CDialog {
@@ -19,6 +23,7 @@ class MainDialog: public CDialog {
 #// Constructors
 public:
     MainDialog(CWnd *pParent = NULL);
+    virtual ~MainDialog() override;
 
 #// Attributes
 public:
@@ -28,22 +33,20 @@ public:
 public:
 
 #// Overridables
+public:
+    virtual BOOL OnInitDialog() override;
 protected:
-    virtual VOID DoDataExchange(CDataExchange *pDX);
-
-    /// \brief On Initialize Dialog
-    /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#oninitdialog
-    virtual BOOL OnInitDialog();
+    virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
+    virtual VOID DoDataExchange(CDataExchange *pDX) override;
 
 #// Implementation
 protected:
-    enum TimerId { ZERO = 0, Increase };
-
-    CStatic ContextControl;
+    UINT ThreadFunction(ProgressDialog *CONST pProgressDialog);
+    BOOL ThreadLoopFlag = FALSE;
 
 #// Message Handlers
 protected:
-    afx_msg VOID OnTimer(UINT_PTR nIDEvent);
+    afx_msg VOID OnBnClickedButton();
 
     DECLARE_MESSAGE_MAP()
 };

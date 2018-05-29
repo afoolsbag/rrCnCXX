@@ -1,6 +1,6 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-facile_add_executable(SUBNAME "TimerMessage"
+facile_add_executable(SUBNAME "Timer"
   WIN32 "main.cpp"
         "stdafx.h"       "stdafx.cpp"
         "resource.h"     "resource.rc"
