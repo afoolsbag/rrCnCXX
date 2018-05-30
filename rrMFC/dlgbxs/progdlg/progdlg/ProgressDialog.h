@@ -4,7 +4,7 @@
 /// \brief 进度对话框（类）。
 ///
 /// \verison 2018-05-29
-/// \since 2018-05-29
+/// \since 2018-05-30
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
@@ -44,13 +44,32 @@ public:
 
     inline VOID SetTotalProgressRange(CONST SHORT min, CONST SHORT max)
     {
+        ASSERT(0 <= min);
+        ASSERT(min <= max);
         TotalProgressRangeMin = min;
         TotalProgressRangeMax = max;
     }
 
     inline VOID SetTotalProgressPosition(CONST INT position)
     {
+        ASSERT(TotalProgressRangeMin <= position);
+        ASSERT(position <= TotalProgressRangeMax);
         TotalProgressPosition = position;
+    }
+
+    inline VOID SetTotal(LPCTSTR CONST text)
+    {
+        SetTotalDescription(text);
+    }
+
+    inline VOID SetTotal(CONST SHORT min, CONST SHORT max)
+    {
+        SetTotalProgressRange(min, max);
+    }
+
+    inline VOID SetTotal(CONST INT position)
+    {
+        SetTotalProgressPosition(position);
     }
 
     inline VOID SetCurrentDescription(LPCTSTR CONST text)
@@ -67,6 +86,21 @@ public:
     inline VOID SetCurrentProgressPosition(CONST INT position)
     {
         CurrentProgressPosition = position;
+    }
+
+    inline VOID SetCurrent(LPCTSTR CONST text)
+    {
+        SetCurrentDescription(text);
+    }
+
+    inline VOID SetCurrent(CONST SHORT min, CONST SHORT max)
+    {
+        SetCurrentProgressRange(min, max);
+    }
+
+    inline VOID SetCurrent(CONST INT position)
+    {
+        SetCurrentProgressPosition(position);
     }
 
 #// Overridables
@@ -88,12 +122,12 @@ protected:
 
     CString TotalDescription = TEXT("Total");
     SHORT TotalProgressRangeMin = 0;
-    SHORT TotalProgressRangeMax = 100;
-    INT TotalProgressPosition = 1;
+    SHORT TotalProgressRangeMax = 1;
+    INT TotalProgressPosition = 0;
     CString CurrentDescription = TEXT("Current");
     SHORT CurrentProgressRangeMin = 0;
-    SHORT CurrentProgressRangeMax = 100;
-    INT CurrentProgressPosition = 1;
+    SHORT CurrentProgressRangeMax = 1;
+    INT CurrentProgressPosition = 0;
 
     std::function<UINT(ProgressDialog *CONST)> ThreadFunction = NULL;
     static UINT ThreadWrapper(LPVOID pParam);

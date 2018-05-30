@@ -47,20 +47,8 @@ BOOL ProgressDialog::
 PreTranslateMessage(MSG *pMsg)
 {
     DbgConPrtMeth(Green);
-    switch (pMsg->message) {
-    case WM_KEYDOWN: {
-        switch (pMsg->wParam) {
-        case VK_RETURN:  //fallthrough
-        case VK_ESCAPE:
-            return TRUE;
-            break;
-        default:
-            break;
-        }
-    } break;
-    default:
-        break;
-    }
+    if (WM_KEYDOWN == pMsg->message && (VK_RETURN == pMsg->wParam || VK_ESCAPE == pMsg->wParam))
+        return TRUE;
     return CDialog::PreTranslateMessage(pMsg);
 }
 
@@ -87,9 +75,7 @@ ThreadWrapper(LPVOID pParam)
 {
     ProgressDialog *CONST self = reinterpret_cast<ProgressDialog *>(pParam);
     ASSERT(self->ThreadFunction);
-    if (!self->ThreadFunction)
-        return EXIT_FAILURE;
-    CONST UINT rv = self->ThreadFunction(self);
+    CONST UINT rv = self->ThreadFunction ? self->ThreadFunction(self) : EXIT_FAILURE;
     self->PostMessage(PM_CLOSE);
     return rv;
 }
@@ -112,8 +98,8 @@ OnTimer(UINT_PTR nIDEvent)
         break;
     default:
         ASSERT(FALSE);
-        DbgConPrt(White, TEXT("Unknown TimerId(%u) in MainDialog::OnTimer switch-case-default.\n"), nIDEvent);
-        DbgPrtD(TEXT("Unknown TimerId(%u) in MainDialog::OnTimer switch-case-default.\n"), nIDEvent);
+        DbgConPrt(White, TEXT("Unknown TimerId(%u) in ProgressDialog::OnTimer switch-case-default.\n"), nIDEvent);
+        DbgPrtD(TEXT("Unknown TimerId(%u) in ProgressDialog::OnTimer switch-case-default.\n"), nIDEvent);
         break;
     }
 }
