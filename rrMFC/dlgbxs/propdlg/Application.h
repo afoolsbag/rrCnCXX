@@ -3,8 +3,8 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-05-04
-/// \since 2018-04-13
+/// \verison 2018-05-31
+/// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
@@ -18,6 +18,8 @@ class Application: public CWinApp {
 
 #// Constructors
 public:
+    Application();
+    virtual ~Application() override;
 
 #// Attributes
 public:

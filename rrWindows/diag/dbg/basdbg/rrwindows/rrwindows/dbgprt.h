@@ -3,7 +3,7 @@
  * \defgroup gDbgPrt 调试打印
  * \ingroup gBasDbg
  *
- * \version 2018-05-26
+ * \version 2018-05-31
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License

@@ -4,7 +4,6 @@
 #include "ProgressDialog.h"
 
 #include "rrwindows/dbgcon.h"
-#include "rrwindows/dbgprt.h"
 
 #// Private Message
 #define PM_CLOSE (WM_USER + 1)
@@ -41,15 +40,6 @@ OnInitDialog()
     AfxBeginThread(ProgressDialog::ThreadWrapper, this);
     SetTimer(REFRESH_UI, 40, NULL);
     return TRUE;
-}
-
-BOOL ProgressDialog::
-PreTranslateMessage(MSG *pMsg)
-{
-    DbgConPrtMeth(Green);
-    if (WM_KEYDOWN == pMsg->message && (VK_RETURN == pMsg->wParam || VK_ESCAPE == pMsg->wParam))
-        return TRUE;
-    return CDialog::PreTranslateMessage(pMsg);
 }
 
 BOOL ProgressDialog::
@@ -93,14 +83,10 @@ OnTimer(UINT_PTR nIDEvent)
         CurrentText.Format(TEXT("%s (%i/%hd)"), static_cast<LPCTSTR>(CurrentDescription), CurrentProgressPosition, CurrentProgressRangeMax);
         CurrentProgressControl.SetRange(CurrentProgressRangeMin, CurrentProgressRangeMax);
         CurrentProgressControl.SetPos(CurrentProgressPosition);
-        SetWindowText(TotalText);
         UpdateData(FALSE);
         break;
     default:
-        ASSERT(FALSE);
-        DbgConPrt(White, TEXT("Unknown TimerId(%u) in ProgressDialog::OnTimer switch-case-default.\n"), nIDEvent);
-        DbgPrtD(TEXT("Unknown TimerId(%u) in ProgressDialog::OnTimer switch-case-default.\n"), nIDEvent);
-        break;
+        TRACE1("Unknown switch-case-route with condition %d.", nIDEvent); ASSERT(FALSE); break;
     }
 }
 

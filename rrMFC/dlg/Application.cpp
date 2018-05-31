@@ -33,6 +33,8 @@ InitInstance()
     CWinApp::InitInstance();
     DbgConPrtMeth(Red);
 
+    TRACE(traceAppMsg, 0, TEXT("dd\n"));
+
     MainDialog mainDlg;
     m_pMainWnd = &mainDlg;
     CONST INT_PTR result = mainDlg.DoModal();
@@ -64,7 +66,7 @@ InitInstance()
     case IDTIMEOUT:
         DbgConPrt(LightRed, TEXT(" DoModal -> IDTIMEOUT\n")); break;
     default:
-        ASSERT(FALSE); break;
+        TRACE1("Unknown switch-case-route with condition %d.", result); ASSERT(FALSE); break;
     }
 
     return FALSE;

@@ -37,6 +37,11 @@ public:
 
 #// Operations
 public:
+    inline VOID SetTitle(LPCTSTR CONST text)
+    {
+        SetWindowText(text);
+    }
+
     inline VOID SetTotalDescription(LPCTSTR CONST text)
     {
         TotalDescription = text;
@@ -106,10 +111,11 @@ public:
 #// Overridables
 public:
     virtual BOOL OnInitDialog() override;
-    virtual BOOL PreTranslateMessage(MSG *pMsg) override;
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
     virtual VOID DoDataExchange(CDataExchange *pDX) override;
+    virtual VOID OnOK() override {/*for hide CDialog::OnOK*/}
+    virtual VOID OnCancel() override {/*for hide CDialog::OnCancle*/}
 
 #// Implementation
 protected:

@@ -55,10 +55,10 @@ DoDataExchange(CDataExchange *pDX)
 UINT MainDialog::
 ThreadFunction(ProgressDialog *CONST pProgressDialog)
 {
-    pProgressDialog->SetTotalDescription(TEXT("Total progress"));
-    pProgressDialog->SetTotalProgressRange(0, 100);
-    pProgressDialog->SetCurrentDescription(TEXT("Current progress"));
-    pProgressDialog->SetCurrentProgressRange(0, 100);
+    pProgressDialog->SetTotal(TEXT("Total progress"));
+    pProgressDialog->SetTotal(0, 100);
+    pProgressDialog->SetCurrent(TEXT("Current progress"));
+    pProgressDialog->SetCurrent(0, 100);
     INT total = 0;
     INT current = 0;
     while (ThreadLoopFlag) {
@@ -67,8 +67,8 @@ ThreadFunction(ProgressDialog *CONST pProgressDialog)
             current -= 100;
             ++total;
         }
-        pProgressDialog->SetCurrentProgressPosition(current);
-        pProgressDialog->SetTotalProgressPosition(total);
+        pProgressDialog->SetCurrent(current);
+        pProgressDialog->SetTotal(total);
         if (100 == total && 100 == current)
             break;
         Sleep(1);

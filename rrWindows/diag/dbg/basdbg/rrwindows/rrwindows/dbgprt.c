@@ -16,8 +16,7 @@ DebugPrintA(
 {
     __declspec(thread) static CHAR StaticBuffer[BUFFER_SIZE];
 
-    va_list va;
-    va_start(va, format);
+    va_list va; va_start(va, format);
     vsprintf_s(StaticBuffer, BUFFER_SIZE, format, va);
     va_end(va);
     OutputDebugStringA(StaticBuffer);
@@ -30,8 +29,7 @@ DebugPrintW(
 {
     __declspec(thread) static WCHAR StaticBuffer[BUFFER_SIZE];
 
-    va_list va;
-    va_start(va, format);
+    va_list va; va_start(va, format);
     vswprintf_s(StaticBuffer, BUFFER_SIZE, format, va);
     va_end(va);
     OutputDebugStringW(StaticBuffer);

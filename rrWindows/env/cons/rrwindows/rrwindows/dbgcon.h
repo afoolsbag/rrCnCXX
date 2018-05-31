@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-05-26
+ * \version 2018-05-31
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License

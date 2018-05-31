@@ -4,7 +4,7 @@
 /// \brief 应用（类）。
 ///
 /// \verison 2018-05-30
-/// \since 2018-05-29
+/// \since 2018-04-30
 /// \authors zhengrr
 /// \copyright The MIT License
 ///

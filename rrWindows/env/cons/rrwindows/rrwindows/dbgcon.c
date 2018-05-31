@@ -1,6 +1,8 @@
 /** \copyright The MIT License */
 
+#ifndef _DEBUG
 #define _DEBUG
+#endif
 #define RRWINDOWS_EXPORTS
 #include "dbgcon.h"
 
@@ -14,8 +16,7 @@ DebugConsolePrintA(
     ...)
 {
     SetConFgCol(textColor);
-    va_list va;
-    va_start(va, format);
+    va_list va; va_start(va, format);
     _vcprintf_s(format, va);
     va_end(va);
 }
@@ -27,8 +28,7 @@ DebugConsolePrintW(
     ...)
 {
     SetConFgCol(textColor);
-    va_list va;
-    va_start(va, format);
+    va_list va; va_start(va, format);
     _vcwprintf_s(format, va);
     va_end(va);
 }
