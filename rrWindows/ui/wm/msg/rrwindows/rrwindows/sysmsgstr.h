@@ -3,7 +3,7 @@
  * \file
  * \brief 系统消息字串。
  *
- * \version 2018-05-04
+ * \version 2018-06-01
  * \since 2018-04-13
  * \authors zhengrr
  * \copyright The MIT License
@@ -35,7 +35,7 @@ RRWINDOWS_API LPCWSTR WINAPI
 SystemMessageStringW(
     _In_ CONST UINT messageNumber);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define SystemMessageString SystemMessageStringW
 #else
 # define SystemMessageString SystemMessageStringA

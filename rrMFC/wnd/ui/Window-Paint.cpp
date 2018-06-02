@@ -1,27 +1,27 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainWindow.h"
+#include "Window.h"
 
 #include "rrwindows/dbgcon.h"
 
 #// Message Handlers
 
-VOID MainWindow::
+VOID Window::
 OnNcPaint()
 {
     CWnd::OnNcPaint();
     DbgConPrtMeth(Yellow);
 }
 
-BOOL MainWindow::
+BOOL Window::
 OnEraseBkgnd(CDC *pDC)
 {
     DbgConPrtMeth(Yellow);
     return CWnd::OnEraseBkgnd(pDC);
 }
 
-VOID MainWindow::
+VOID Window::
 OnPaint()
 {
     CWnd::OnPaint();

@@ -1,13 +1,13 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainWindow.h"
+#include "Window.h"
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNCREATE(MainWindow, CWnd)
+IMPLEMENT_DYNAMIC(Window, CWnd)
 
-BEGIN_MESSAGE_MAP(MainWindow, CWnd)
+BEGIN_MESSAGE_MAP(Window, CWnd)
     // CREATE & DESTROY
     ON_WM_NCCREATE()
     ON_WM_CREATE()
@@ -40,54 +40,54 @@ END_MESSAGE_MAP()
 
 #// Constructors
 
-MainWindow::
-MainWindow()
+Window::
+Window()
 {
     DbgConPrtMeth(Yellow);
 
     CString strWndClass = AfxRegisterWndClass(
         CS_DBLCLKS,
         AfxGetApp()->LoadStandardCursor(IDC_ARROW),
-        (HBRUSH)(COLOR_3DFACE + 1),
+        reinterpret_cast<HBRUSH>(COLOR_3DFACE + 1),
         AfxGetApp()->LoadStandardIcon(IDI_WINLOGO)
     );
 
-    CreateEx(0, strWndClass, TEXT("Main Window"),
+    CreateEx(0, strWndClass, TEXT("Window"),
              WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME,
              CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
              NULL, NULL);
 }
 
-BOOL MainWindow::
+BOOL Window::
 Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext /*=NULL*/)
 {
     DbgConPrtMeth(Yellow);
     return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
-BOOL MainWindow::
+BOOL Window::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, INT x, INT y, INT nWidth, INT nHeight, HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam /*=NULL*/)
 {
     DbgConPrtMeth(Yellow);
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, nIDorHMenu, lpParam);
 }
 
-BOOL MainWindow::
+BOOL Window::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam)
 {
     DbgConPrtMeth(Yellow);
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, lpParam);
 }
 
-MainWindow::
-~MainWindow()
+Window::
+~Window()
 {
     DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
 
-BOOL MainWindow::
+BOOL Window::
 PreCreateWindow(CREATESTRUCT &cs)
 {
     DbgConPrtMeth(Yellow);
@@ -96,28 +96,28 @@ PreCreateWindow(CREATESTRUCT &cs)
     return CWnd::PreCreateWindow(cs);
 }
 
-BOOL MainWindow::
+BOOL Window::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
     DbgConPrtMethCmdMsg(Yellow);
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
-BOOL MainWindow::
+BOOL Window::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
     DbgConPrtMethWndMsg(Yellow);
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID MainWindow::
+VOID Window::
 DoDataExchange(CDataExchange *pDX)
 {
     CWnd::DoDataExchange(pDX);
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 PostNcDestroy()
 {
     DbgConPrtMeth(Yellow);

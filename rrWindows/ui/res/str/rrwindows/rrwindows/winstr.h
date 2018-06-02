@@ -3,7 +3,7 @@
  * \defgroup gWinStr Windows字符串操作
  * \ingroup gStr
  *
- * \version 2018-05-07
+ * \version 2018-06-01
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -26,7 +26,7 @@
 #define CmpStrW(str1, str2) CompareStringW(LOCALE_USER_DEFAULT, NORM_IGNORECASE, str1, -1, str2, -1)
 #endif/*CmpStrW*/
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define CmpStr CmpStrW
 #else
 # define CmpStr CmpStrA
@@ -48,7 +48,7 @@ inline size_t StrLenW(LPCWSTR CONST string)
     return len;
 }
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define StrLen StrLenW
 #else
 # define StrLen StrLenA

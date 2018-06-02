@@ -5,7 +5,7 @@
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNCREATE(Application, CWinApp)
+IMPLEMENT_DYNAMIC(Application, CWinApp)
 
 #// Constructors
 

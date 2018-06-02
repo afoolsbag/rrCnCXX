@@ -1,10 +1,10 @@
-/*===-- toupper in Windows® API --------------------------------*- C -*-===*//**
+/*===-- toupper in Windows API ---------------------------------*- C -*-===*//**
  *
- * \defgroup gToUpper Windows® API中的`toupper`
+ * \defgroup gToUpper WindowsAPI中的`toupper`
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-04-27
+ * \version 2018-06-02
  * \since 2018-02-23
  * \copyright The MIT License
  *
@@ -22,7 +22,7 @@
 /**
  * \brief Converts a character or string to uppercase.
  *
- * \sa ["CharUpper function"](https://msdn.microsoft.com/library/ms647474). *Microsoft® Developer Network*.
+ * \sa ["CharUpper function"](https://msdn.microsoft.com/library/ms647474). *Microsoft Developer Network*.
  */
 START_TEST(TestCharUpper)
 {

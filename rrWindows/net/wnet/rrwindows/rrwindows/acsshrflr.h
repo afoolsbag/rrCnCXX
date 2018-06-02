@@ -3,7 +3,7 @@
  * \defgroup gAcsShrFlr 访问共享文件夹
  * \ingroup gWNet
  *
- * \version 2018-05-04
+ * \version 2018-06-01
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -29,12 +29,12 @@ extern "C" {
  * \param sharedFolderPath 共享文件夹路径。
  * \param username         用户名。
  * \param password         密码。
- * \returns 错误码（`ERROR_SUCCESS`值为`0`）。
+ * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  *
  * \sa ["NETRESOURCE structure"](https://msdn.microsoft.com/library/aa385353). *Microsoft® Developer Network*.
  * \sa ["WNetAddConnection2 function"](https://msdn.microsoft.com/library/aa385413). *Microsoft® Developer Network*.
  */
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
 ConnectSharedFolderA(
     _In_z_   LPCSTR CONST sharedFolderPath,
     _In_opt_ LPCSTR CONST username,
@@ -47,15 +47,15 @@ ConnectSharedFolderA(
  * \param sharedFolderPath 共享文件夹路径。
  * \param username         用户名。
  * \param password         密码。
- * \returns 错误码（`ERROR_SUCCESS`值为`0`）。
+ * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
 ConnectSharedFolderW(
     _In_z_   LPCWSTR CONST sharedFolderPath,
     _In_opt_ LPCWSTR CONST username,
     _In_opt_ LPCWSTR CONST password);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define ConnectSharedFolder ConnectSharedFolderW
 #else
 # define ConnectSharedFolder ConnectSharedFolderA
@@ -67,7 +67,7 @@ ConnectSharedFolderW(
  * \warning 该操作将强制关闭连接，不论连接是否正在被使用。
  *
  * \param sharedFolderPath 共享文件夹路径。
- * \returns 错误码（`ERROR_SUCCESS`值为`0`）。
+ * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  *
  * \sa ["WNetCancelConnection2 function"](https://msdn.microsoft.com/library/aa385427). *Microsoft® Developer Network*.
  */
@@ -81,13 +81,13 @@ DisconnectSharedFolderA(
  * \warning 该操作将强制关闭连接，不论连接是否正在被使用。
  *
  * \param sharedFolderPath 共享文件夹路径。
- * \returns 错误码（`ERROR_SUCCESS`值为`0`）。
+ * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
 RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
 DisconnectSharedFolderW(
     _In_z_ CONST LPCWSTR sharedFolderPath);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define ConnectSharedFolder ConnectSharedFolderW
 #else
 # define ConnectSharedFolder ConnectSharedFolderA

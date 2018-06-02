@@ -8,7 +8,7 @@
 
 #pragma comment(lib, "Mpr.Lib")
 
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
 ConnectSharedFolderA(
     _In_z_   LPCSTR CONST sharedFolderPath,
     _In_opt_ LPCSTR CONST username,
@@ -36,7 +36,7 @@ out:
     return rv;
 }
 
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
 ConnectSharedFolderW(
     _In_z_   LPCWSTR CONST sharedFolderPath,
     _In_opt_ LPCWSTR CONST username,

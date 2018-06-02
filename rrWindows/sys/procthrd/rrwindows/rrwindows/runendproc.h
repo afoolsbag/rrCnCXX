@@ -3,7 +3,7 @@
  * \defgroup gRunEndProc 运行、终止进程 
  * \ingroup gProcThrd
  *
- * \version 2018-05-08
+ * \version 2018-06-01
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -46,7 +46,7 @@ RunProcessW(
     _In_z_ LPCWSTR CONST exePath,
     _In_z_ LPCWSTR CONST exeParameters);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define RunProcess RunProcessW
 #else
 # define RunProcess RunProcessA
@@ -79,7 +79,7 @@ RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
 EndProcessW(
     _In_z_ CONST LPCWSTR exeName);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define EndProcess EndProcessW
 #else
 # define EndProcess EndProcessA

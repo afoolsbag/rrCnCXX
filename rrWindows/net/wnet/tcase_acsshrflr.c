@@ -4,18 +4,20 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "check/check.h"
+#include <check/check.h>
 
 #include "rrwindows/acsshrflr.h"
 #include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
+#include "tsuite_wnet.h"
 
 START_TEST(TestAcsShrFlr)
 {
-    if (ConnectSharedFolder(_T("\\\\localhost\\path\\to\\folder"),
-                            _T("username"),
-                            _T("password")))
-        DbgPrtD(_T("Connect shared folder failed: %s\n"), GetLastErrorText());
+    CONST DWORD ec = ConnectSharedFolder(_T("\\\\localhost\\path\\to\\folder"),
+                                         _T("username"),
+                                         _T("password"));
+    if (ERROR_SUCCESS != ec)
+        DbgPrtD(_T("ConnectSharedFolder failed: %lu, %s\n"), ec, ErrorTextOf(ec));
 }
 END_TEST
 

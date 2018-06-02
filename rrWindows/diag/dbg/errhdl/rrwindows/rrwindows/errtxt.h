@@ -6,7 +6,7 @@
  * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.
  * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *Microsoft® Developer Network*.
  *
- * \version 2018-05-08
+ * \version 2018-06-01
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -49,7 +49,7 @@ RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 ErrorTextOfW(
     _In_ CONST DWORD errorCode);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define ErrorTextOf ErrorTextOfW
 #else
 # define ErrorTextOf ErrorTextOfA

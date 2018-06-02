@@ -3,7 +3,7 @@
  * \defgroup gExePath 当前进程的可执行文件路径
  * \ingroup gDLL
  *
- * \version 2018-05-08
+ * \version 2018-06-02
  * \since 2018-05-08
  * \authors zhengrr
  * \copyright The MIT License
@@ -24,38 +24,114 @@ extern "C" {
 
 /**
  * \brief 当前进程的可执行文件路径（ANSI适配）。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
-ExecuteblePathA(VOID);
+ExecutablePathA(VOID);
 
 /**
  * \brief 当前进程的可执行文件路径（UNICODE适配）。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
-ExecuteblePathW(VOID);
+ExecutablePathW(VOID);
 
-#ifdef UNICODE
-# define ExecuteblePath ExecuteblePathW
+#ifdef _UNICODE
+# define ExecutablePath ExecutablePathW
 #else
-# define ExecuteblePath ExecuteblePathA
+# define ExecutablePath ExecutablePathA
 #endif
 
 /**
  * \brief 当前进程的可执行文件所在目录的路径（ANSI适配）。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
-ExecutebleDirectoryPathA(VOID);
+ExecutableDirectoryPathA(VOID);
 
 /**
  * \brief 当前进程的可执行文件所在目录的路径（UNICODE适配）。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
-ExecutebleDirectoryPathW(VOID);
+ExecutableDirectoryPathW(VOID);
 
-#ifdef UNICODE
-# define ExecutebleDirectoryPath ExecutebleDirectoryPathW
+#ifdef _UNICODE
+# define ExecutableDirectoryPath ExecutableDirectoryPathW
 #else
-# define ExecutebleDirectoryPath ExecutebleDirectoryPathA
+# define ExecutableDirectoryPath ExecutableDirectoryPathA
+#endif
+
+/**
+ * \brief 当前进程的可执行文件名（ANSI适配）。
+ * \details 形如`thefile.exe`。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+ExecutableNameA(VOID);
+
+/**
+ * \brief 当前进程的可执行文件名（UNICODE适配）。
+ * \details 形如`thefile.exe`。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+ExecutableNameW(VOID);
+
+#ifdef _UNICODE
+# define ExecutableName ExecutableNameW
+#else
+# define ExecutableName ExecutableNameA
+#endif
+
+/**
+ * \brief 当前进程的可执行文件的基础名（ANSI适配）。
+ * \details 形如`thefile`。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+ExecutableBaseNameA(VOID);
+
+/**
+ * \brief 当前进程的可执行文件的基础名（UNICODE适配）。
+ * \details 形如`thefile`。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+ExecutableBaseNameW(VOID);
+
+#ifdef _UNICODE
+# define ExecutableBaseName ExecutableBaseNameW
+#else
+# define ExecutableBaseName ExecutableBaseNameA
+#endif
+
+/**
+ * \brief 当前进程的可执行文件的扩展名（ANSI适配）。
+ * \details 形如`exe`。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+ExecutableExtensionNameA(VOID);
+
+/**
+ * \brief 当前进程的可执行文件的扩展名（UNICODE适配）。
+ * \details 形如`exe`。
+ * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+ExecutableExtensionNameW(VOID);
+
+#ifdef _UNICODE
+# define ExecutableExtensionName ExecutableExtensionNameW
+#else
+# define ExecutableExtensionName ExecutableExtensionNameA
 #endif
 
 #ifdef __cplusplus

@@ -5,7 +5,7 @@
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNCREATE(MainDialog, CDialog)
+IMPLEMENT_DYNAMIC(MainDialog, CDialog)
 
 BEGIN_MESSAGE_MAP(MainDialog, CDialog)
     ON_WM_CLOSE()

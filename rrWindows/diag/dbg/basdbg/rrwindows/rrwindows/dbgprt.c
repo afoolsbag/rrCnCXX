@@ -3,6 +3,7 @@
 #define RRWINDOWS_EXPORTS
 #include "dbgprt.h"
 
+#include <stdlib.h>
 #include <strsafe.h>
 
 #include "rrwindows/winstr.h"
@@ -17,7 +18,7 @@ DebugPrintA(
     __declspec(thread) static CHAR StaticBuffer[BUFFER_SIZE];
 
     va_list va; va_start(va, format);
-    vsprintf_s(StaticBuffer, BUFFER_SIZE, format, va);
+    vsprintf_s(StaticBuffer, _countof(StaticBuffer), format, va);
     va_end(va);
     OutputDebugStringA(StaticBuffer);
 }
@@ -30,7 +31,7 @@ DebugPrintW(
     __declspec(thread) static WCHAR StaticBuffer[BUFFER_SIZE];
 
     va_list va; va_start(va, format);
-    vswprintf_s(StaticBuffer, BUFFER_SIZE, format, va);
+    vswprintf_s(StaticBuffer, _countof(StaticBuffer), format, va);
     va_end(va);
     OutputDebugStringW(StaticBuffer);
 }

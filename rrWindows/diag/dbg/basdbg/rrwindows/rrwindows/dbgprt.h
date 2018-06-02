@@ -3,7 +3,7 @@
  * \defgroup gDbgPrt 调试打印
  * \ingroup gBasDbg
  *
- * \version 2018-05-31
+ * \version 2018-06-02
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -40,7 +40,7 @@ DebugPrintW(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     ...);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define DebugPrint DebugPrintW
 #else
 # define DebugPrint DebugPrintA
@@ -55,7 +55,7 @@ DebugPrintW(
 #ifdef _DEBUG
  /**
   * \brief 调试打印字串（调试适配）。
-  * \details 形如`path/to/file.c(1337): @Func: ...`
+  * \details 形如`path/to/file.c(1337): @Function: ...`
   */
 # define DbgPrtD(format, ...) DbgPrt(TEXT("%s(%d): @%s: ") format, TEXT(__FILE__), __LINE__, TEXT(__func__), __VA_ARGS__)
  /**

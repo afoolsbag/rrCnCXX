@@ -1,9 +1,9 @@
-//===-- Application ---------------------------------------------*- C++ -*-===//
+//===-- Window Application --------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 应用（类）。
+/// \brief 窗口应用（类）。
 ///
-/// \version 2018-04-28
+/// \version 2018-06-01
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,14 +12,14 @@
 
 #pragma once
 
-/// \brief 应用（类）。
-class Application: public CWinApp {
-    DECLARE_DYNCREATE(Application)
+/// \brief 窗口应用（类）。
+class WindowApplication: public CWinApp {
+    DECLARE_DYNAMIC(WindowApplication)
 
 #// Constructors
 public:
-    Application();
-    virtual ~Application() override;
+    WindowApplication();
+    virtual ~WindowApplication() override;
 
 #// Attributes
 public:

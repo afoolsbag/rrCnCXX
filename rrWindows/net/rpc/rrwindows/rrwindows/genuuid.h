@@ -3,7 +3,7 @@
  * \defgroup gGenUuid 生成通用唯一标识符
  * \ingroup gRPC
  *
- * \version 2018-05-04
+ * \version 2018-06-02
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -24,7 +24,7 @@ extern "C" {
 
 /**
  * \brief 生成通用唯一标识符（ANSI适配）。
- * \warning 该字串缓存在公用静态变量中，请即取即用。
+ * \warning 该字串缓存在共用静态变量中，请即取即用。
  *
  * \returns 若成功，返回指向缓存的指针；
  *          若失败，返回空指针（`NULL`）。
@@ -38,7 +38,7 @@ GenerateUuidA(VOID);
 
 /**
  * \brief 生成通用唯一标识符（UNICODE适配）。
- * \warning 该字串缓存在公用静态变量中，请即取即用。
+ * \warning 该字串缓存在共用静态变量中，请即取即用。
  *
  * \returns 若成功，返回指向缓存的指针；
  *          若失败，返回空指针（`NULL`）。
@@ -46,7 +46,7 @@ GenerateUuidA(VOID);
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 GenerateUuidW(VOID);
 
-#ifdef UNICODE
+#ifdef _UNICODE
 # define GenerateUuid GenerateUuidW
 #else
 # define GenerateUuid GenerateUuidA

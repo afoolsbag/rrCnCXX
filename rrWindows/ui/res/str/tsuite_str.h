@@ -4,4 +4,5 @@
 
 Suite *TSuiteStr(void);
 
+TCase *TCaseStrCpy(void);
 TCase *TCaseToUpper(void);

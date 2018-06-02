@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主对话框（类）。
 ///
-/// \verison 2018-05-29
+/// \verison 2018-06-01
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -17,7 +17,7 @@
 /// \brief 主对话框（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class
 class MainDialog: public CDialog {
-    DECLARE_DYNCREATE(MainDialog)
+    DECLARE_DYNAMIC(MainDialog)
 
 #// Constructors
 public:

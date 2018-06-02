@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-04-28
+/// \version 2018-06-01
 /// \since 2018-04-11
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -15,7 +15,7 @@
 /// \brief 应用（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class
 class Application: public CWinApp {
-    DECLARE_DYNCREATE(Application)
+    DECLARE_DYNAMIC(Application)
 
 #// Constructors
 public:
@@ -33,14 +33,15 @@ public:
 
 #// Overridables
 public:
-    /// \remark 没有说明的。
+    /// \brief 调用以执行应用程序的一次性初始化。
+    /// \deprecated 过时的。
     virtual BOOL InitApplication() override;
 
-    /// \brief 重写以执行 Windows 实例初始化，如创建窗口对象。
+    /// \brief 调用以初始化应用程序或线程的新实例。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#initinstance
     virtual BOOL InitInstance() override;
 
-    /// \brief 重写以清理，当你的应用程序终止时。
+    /// \brief 调用以退出应用程序或线程的该实例。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#exitinstance
     virtual INT ExitInstance() override;
 

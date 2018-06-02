@@ -1,13 +1,13 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainWindow.h"
+#include "Window.h"
 
 #include "rrwindows/dbgcon.h"
 
 #// Message Handlers
 
-BOOL MainWindow::
+BOOL Window::
 OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (!CWnd::OnNcCreate(lpCreateStruct))
@@ -16,7 +16,7 @@ OnNcCreate(LPCREATESTRUCT lpCreateStruct)
     return TRUE;
 }
 
-INT MainWindow::
+INT Window::
 OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CWnd::OnCreate(lpCreateStruct) == -1)
@@ -25,14 +25,14 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 
-VOID MainWindow::
+VOID Window::
 OnDestroy()
 {
     CWnd::OnDestroy();
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 OnNcDestroy()
 {
     CWnd::OnNcDestroy();

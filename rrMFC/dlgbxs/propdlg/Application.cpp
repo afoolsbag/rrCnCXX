@@ -9,7 +9,7 @@
 #include "ui/PropertyPage2.h"
 #include "ui/PropertyPage3.h"
 
-IMPLEMENT_DYNCREATE(Application, CWinApp)
+IMPLEMENT_DYNAMIC(Application, CWinApp)
 
 #// Constructors
 
@@ -35,7 +35,7 @@ InitInstance()
     CWinApp::InitInstance();
     DbgConPrtMeth(Red);
 
-    CPropertySheet propertySheetDialog;
+    CPropertySheet propertySheetDialog(TEXT("Sheet"));
     m_pMainWnd = &propertySheetDialog;
 
     PropertyPage1 propertyPage1;

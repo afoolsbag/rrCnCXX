@@ -1,25 +1,25 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Application.h"
+#include "WindowApplication.h"
 
 #include "rrwindows/dbgcon.h"
 
-#include "ui/MainWindow.h"
+#include "ui/Window.h"
 
-IMPLEMENT_DYNCREATE(Application, CWinApp)
+IMPLEMENT_DYNAMIC(WindowApplication, CWinApp)
 
 #// Constructors
 
-Application::
-Application()
+WindowApplication::
+WindowApplication()
 {
     NewDbgCon();
     DbgConPrtMeth(Red);
 }
 
-Application::
-~Application()
+WindowApplication::
+~WindowApplication()
 {
     DbgConPrtMeth(Red);
     DelDbgCon();
@@ -27,13 +27,13 @@ Application::
 
 #// Overridables
 
-BOOL Application::
+BOOL WindowApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
     DbgConPrtMeth(Red);
 
-    m_pMainWnd = DEBUG_NEW MainWindow;
+    m_pMainWnd = DEBUG_NEW Window;
     m_pMainWnd->ShowWindow(m_nCmdShow);
     m_pMainWnd->UpdateWindow();
 

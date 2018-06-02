@@ -7,7 +7,7 @@
 
 #include "ui/MainDialog.h"
 
-IMPLEMENT_DYNCREATE(Application, CWinApp)
+IMPLEMENT_DYNAMIC(Application, CWinApp)
 
 #// Constructors
 
@@ -32,8 +32,6 @@ InitInstance()
 {
     CWinApp::InitInstance();
     DbgConPrtMeth(Red);
-
-    TRACE(traceAppMsg, 0, TEXT("dd\n"));
 
     MainDialog mainDlg;
     m_pMainWnd = &mainDlg;

@@ -1,9 +1,9 @@
-//===-- Main Window ---------------------------------------------*- C++ -*-===//
+//===-- Window --------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主窗口（类）。
+/// \brief 窗口（类）。
 ///
-/// \verison 2018-04-28
+/// \verison 2018-06-01
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,28 +12,28 @@
 
 #pragma once
 
-/// \brief 主窗口（类）。
+/// \brief 窗口（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class
-class MainWindow: public CWnd {
-    DECLARE_DYNCREATE(MainWindow)
+class Window: public CWnd {
+    DECLARE_DYNAMIC(Window)
 
 #// Constructors
 public:
-    MainWindow();
+    Window();
 
-    /// \brief 创建并初始化与 `CWnd` 对象关联的子窗口。
+    /// \brief 创建Windows子窗口。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#create
     virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext = NULL) override;
 
-    /// \brief 创建 Windows 重叠、弹出或子窗口，并将它附加到 `CWnd` 对象。
+    /// \brief 创建Windows子窗口。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#createex
     virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, INT x, INT y, INT nWidth, INT nHeight, HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam = NULL) override;
 
-    /// \brief 创建 Windows 重叠、弹出或子窗口，并将它附加到 `CWnd` 对象。
+    /// \brief 创建Windows子窗口。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#createex
     virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam = NULL) override;
 
-    virtual ~MainWindow() override;
+    virtual ~Window() override;
 
 #// Attributes
 public:
@@ -43,24 +43,24 @@ public:
 
 #// Overridables
 public:
-    /// \brief 在创建附加到此 `CWnd` 对象的 Windows 窗口之前调用。
+    /// \brief 在创建Windows窗口之前调用。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#precreatewindow
     virtual BOOL PreCreateWindow(CREATESTRUCT &cs) override;
 
-    /// \brief 路由和调度命令消息。
+    /// \brief 调用以路由和调度命令消息。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/ccmdtarget-class#oncmdmsg
     virtual BOOL OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo) override;
 
 protected:
-    /// \brief 指示是否处理了 Windows 消息。
+    /// \brief 调用以调度窗口消息。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwndmsg
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
 
-    /// \brief 用于对话框数据交换和验证。 由 `UpdateData` 调用。
+    /// \brief 调用以交换和验证对话框数据。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class
     virtual VOID DoDataExchange(CDataExchange *pDX) override;
 
-    /// \brief 默认情况下调用此虚拟函数`OnNcDestroy`函数在窗口已销毁之后。
+    /// \brief 在销毁窗口后调用。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#postncdestroy
     virtual VOID PostNcDestroy() override;
 
@@ -72,29 +72,29 @@ protected:
 
     // CREATE & DESTROY
 
-    /// \brief 之前调用OnCreate的非工作区在创建时。
+    /// \brief 指示正在创建非工作区。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onnccreate
     afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
 
-    /// \brief 在窗口创建过程中调用。
+    /// \brief 指示正在创建窗口。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#oncreate
     afx_msg INT OnCreate(LPCREATESTRUCT lpCreateStruct);
 
-    /// \brief 当销毁 `CWnd` 时调用。
+    /// \brief 指示窗口即将销毁。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#ondestroy
     afx_msg VOID OnDestroy();
 
-    /// \brief 当销毁非工作区时调用。
+    /// \brief 指示正在销毁非工作区。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onncdestroy
     afx_msg VOID OnNcDestroy();
 
     // MOVE & SIZE
 
-    /// \brief 每当 Windows 需要知道最大化位置或尺寸或是最小或最大跟踪大小时调用。
+    /// \brief 检索尺寸调整最小和最大的信息。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#ongetminmaxinfo
     afx_msg VOID OnGetMinMaxInfo(MINMAXINFO *lpMMI);
 
-    /// \brief 在受影响的窗口进入移动或大小调整模式循环之后调用。
+    /// \brief 指示窗口进入移动或尺寸调整循环。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onentersizemove
     afx_msg VOID OnEnterSizeMove();
 
@@ -110,7 +110,7 @@ protected:
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onwindowposchanging
     afx_msg VOID OnWindowPosChanging(WINDOWPOS *lpwndpos);
 
-    /// \brief 在受影响的窗口退出移动或大小调整模式循环之后调用。
+    /// \brief 指示窗口退出移动或尺寸调整循环。。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onexitsizemove
     afx_msg VOID OnExitSizeMove();
 

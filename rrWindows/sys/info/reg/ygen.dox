@@ -1,7 +1,7 @@
 /*===-- Registry -----------------------------------------------*- C -*-===*//**
  *
- * \defgroup g_reg 注册表
- * \ingroup g_info
+ * \defgroup gReg 注册表
+ * \ingroup gInfo
  *
  * \sa ["Registry"](https://msdn.microsoft.com/library/ms724871). *Microsoft® Developer Network*.
  *

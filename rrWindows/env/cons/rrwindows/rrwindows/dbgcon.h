@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-05-31
+ * \version 2018-06-01
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -45,7 +45,7 @@ DebugConsolePrintW(
 
 #if ! defined _DEBUG
 # define DebugConsolePrint(x) ((void)0)
-#elif defined UNICODE
+#elif defined _UNICODE
 # define DebugConsolePrint DebugConsolePrintW
 #else
 # define DebugConsolePrint DebugConsolePrintA

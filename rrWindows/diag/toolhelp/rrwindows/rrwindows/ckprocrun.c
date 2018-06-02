@@ -9,7 +9,7 @@
 #include "rrwindows/winstr.h"
 
 RRWINDOWS_API
-_Success_(return != 0)
+_Success_(return != 0uL)
 DWORD WINAPI
 CheckProcessRunningA(
     _In_z_ LPCSTR CONST exeName)
@@ -33,7 +33,7 @@ CheckProcessRunningA(
 }
 
 RRWINDOWS_API
-_Success_(return != 0)
+_Success_(return != 0uL)
 DWORD WINAPI
 CheckProcessRunningW(
     _In_z_ LPCWSTR CONST exeName)

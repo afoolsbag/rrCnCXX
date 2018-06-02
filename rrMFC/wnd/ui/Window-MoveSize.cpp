@@ -1,76 +1,76 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainWindow.h"
+#include "Window.h"
 
 #include "rrwindows/dbgcon.h"
 
 #// Message Handlers
 
-VOID MainWindow::
+VOID Window::
 OnGetMinMaxInfo(MINMAXINFO *lpMMI)
 {
     DbgConPrtMeth(Yellow);
     CWnd::OnGetMinMaxInfo(lpMMI);
 }
 
-VOID MainWindow::
+VOID Window::
 OnEnterSizeMove()
 {
     DbgConPrtMeth(Yellow);
     CWnd::OnEnterSizeMove();
 }
 
-VOID MainWindow::
+VOID Window::
 OnMoving(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnMoving(fwSide, pRect);
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 OnSizing(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnSizing(fwSide, pRect);
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 OnWindowPosChanging(WINDOWPOS *lpwndpos)
 {
     CWnd::OnWindowPosChanging(lpwndpos);
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 OnExitSizeMove()
 {
     DbgConPrtMeth(Yellow);
     CWnd::OnExitSizeMove();
 }
 
-VOID MainWindow::
+VOID Window::
 OnMove(INT x, INT y)
 {
     CWnd::OnMove(x, y);
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 {
     DbgConPrtMeth(Yellow);
     CWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
 }
 
-VOID MainWindow::
+VOID Window::
 OnSize(UINT nType, INT cx, INT cy)
 {
     CWnd::OnSize(nType, cx, cy);
     DbgConPrtMeth(Yellow);
 }
 
-VOID MainWindow::
+VOID Window::
 OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
     CWnd::OnWindowPosChanged(lpwndpos);

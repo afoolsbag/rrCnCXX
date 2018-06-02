@@ -3,9 +3,9 @@
  * \defgroup gFMgmt 文件管理
  * \ingroup gLFSys
  *
- * \sa ["File Management"](https://msdn.microsoft.com/library/aa364229). *Microsoft® Developer Network*.
+ * \sa ["File Management"](https://msdn.microsoft.com/library/aa364229). *Microsoft Developer Network*.
  *
- * \version 2018-04-27
+ * \version 2018-06-01
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

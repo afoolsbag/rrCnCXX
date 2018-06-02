@@ -3,12 +3,13 @@
 #define RRWINDOWS_EXPORTS
 #include "errtxt.h"
 
+#include <stdlib.h>
 #include <strsafe.h>
 
 #include "rrwindows/winstr.h"
 
 #define BUFFER_SIZE 100
-#define BUFFER_OFFSET 2  /* for "\r\n" */
+#define BUFFER_OFFSET (_countof("\r\n") - 1)
 
 RRWINDOWS_API
 _Success_(return != NULL)
@@ -22,7 +23,7 @@ ErrorTextOfA(
     if (!FormatMessageA(
         FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
         errorCode, LANG_USER_DEFAULT,
-        bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
+        bfr, _countof(StaticBuffer) - BUFFER_OFFSET, NULL))
         return NULL;
     bfr[StrLenA(bfr) - BUFFER_OFFSET] = '\0';
     return bfr;
@@ -40,7 +41,7 @@ ErrorTextOfW(
     if (!FormatMessageW(
         FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
         errorCode, LANG_USER_DEFAULT,
-        bfr, BUFFER_SIZE - BUFFER_OFFSET, NULL))
+        bfr, _countof(StaticBuffer) - BUFFER_OFFSET, NULL))
         return NULL;
     bfr[StrLenW(bfr) - BUFFER_OFFSET] = L'\0';
     return bfr;
