@@ -16,5 +16,5 @@
 
 #include <gtest/gtest.h>
 
-TEST(dt, system_clock) {
+TEST(DT, SystemClock) {
 }
