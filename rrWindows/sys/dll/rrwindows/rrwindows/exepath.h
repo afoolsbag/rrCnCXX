@@ -24,14 +24,16 @@ extern "C" {
 
 /**
  * \brief 当前进程的可执行文件路径（ANSI适配）。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`path\\to\\folder\\file.exe`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
 ExecutablePathA(VOID);
 
 /**
  * \brief 当前进程的可执行文件路径（UNICODE适配）。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`path\\to\\folder\\file.exe`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 ExecutablePathW(VOID);
@@ -44,14 +46,16 @@ ExecutablePathW(VOID);
 
 /**
  * \brief 当前进程的可执行文件所在目录的路径（ANSI适配）。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`path\\to\\folder`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
 ExecutableDirectoryPathA(VOID);
 
 /**
  * \brief 当前进程的可执行文件所在目录的路径（UNICODE适配）。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`path\\to\\folder`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 ExecutableDirectoryPathW(VOID);
@@ -64,8 +68,8 @@ ExecutableDirectoryPathW(VOID);
 
 /**
  * \brief 当前进程的可执行文件名（ANSI适配）。
- * \details 形如`thefile.exe`。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`file.exe`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
@@ -73,8 +77,8 @@ ExecutableNameA(VOID);
 
 /**
  * \brief 当前进程的可执行文件名（UNICODE适配）。
- * \details 形如`thefile.exe`。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`file.exe`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
@@ -88,8 +92,8 @@ ExecutableNameW(VOID);
 
 /**
  * \brief 当前进程的可执行文件的基础名（ANSI适配）。
- * \details 形如`thefile`。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`file`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
@@ -97,8 +101,8 @@ ExecutableBaseNameA(VOID);
 
 /**
  * \brief 当前进程的可执行文件的基础名（UNICODE适配）。
- * \details 形如`thefile`。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \details 形如`file`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
@@ -113,7 +117,7 @@ ExecutableBaseNameW(VOID);
 /**
  * \brief 当前进程的可执行文件的扩展名（ANSI适配）。
  * \details 形如`exe`。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
@@ -122,7 +126,7 @@ ExecutableExtensionNameA(VOID);
 /**
  * \brief 当前进程的可执行文件的扩展名（UNICODE适配）。
  * \details 形如`exe`。
- * \warning 该文件内所有函数，共用同一字串缓存，请依次调用、切勿同时使用。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
@@ -132,6 +136,30 @@ ExecutableExtensionNameW(VOID);
 # define ExecutableExtensionName ExecutableExtensionNameW
 #else
 # define ExecutableExtensionName ExecutableExtensionNameA
+#endif
+
+/**
+ * \brief 当前进程的初始化文件路径（ANSI适配）。
+ * \details 形如`path\\to\\folder\\file.ini`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+InitializationPathA(VOID);
+
+/**
+ * \brief 当前进程的初始化文件路径（UNICODE适配）。
+ * \details 形如`path\\to\\folder\\file.ini`。
+ * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
+ * \since 2018-06-02
+ */
+RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+InitializationPathW(VOID);
+
+#ifdef _UNICODE
+# define InitializationPath InitializationPathW
+#else
+# define InitializationPath InitializationPathA
 #endif
 
 #ifdef __cplusplus

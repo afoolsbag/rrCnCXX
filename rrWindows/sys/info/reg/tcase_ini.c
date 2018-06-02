@@ -32,13 +32,7 @@
 START_TEST(TestIni)
 {
     TCHAR iniPath[MAX_PATH];
-    if (FAILED(StringCchCopy(iniPath, _countof(iniPath), ExecutableDirectoryPath())))
-        goto out_abort;
-    if (FAILED(StringCchCat(iniPath, _countof(iniPath), _T("\\"))))
-        goto out_abort;
-    if (FAILED(StringCchCat(iniPath, _countof(iniPath), ExecutableBaseName())))
-        goto out_abort;
-    if (FAILED(StringCchCat(iniPath, _countof(iniPath), _T(".ini"))))
+    if (FAILED(StringCchCopy(iniPath, _countof(iniPath), InitializationPath())))
         goto out_abort;
 
     if (!WritePrivateProfileString(_T("app"), _T("str"), _T("wow"), iniPath))
