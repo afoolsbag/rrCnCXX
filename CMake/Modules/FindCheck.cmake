@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 05-23
+# 2018-02-02 – 06-04
 # The MIT License
 
 #.rst:
@@ -47,52 +47,62 @@
 #            check.lib
 #            compat.lib
 #
-set(zHints "${Check_ROOT_DIR}" "$ENV{CHECKROOT}")
+if(Check_FOUND)
+  return()
+endif()
 
 if(MSVC)
   if(MSVC_VERSION GREATER_EQUAL 1910)
-    set(sCompiler "vc141")
+    set(sRte "vc141")
   elseif(MSVC14)
-    set(sCompiler "vc140")
+    set(sRte "vc140")
   elseif(MSVC12)
-    set(sCompiler "vc120")
+    set(sRte "vc120")
   elseif(MSVC11)
-    set(sCompiler "vc110")
+    set(sRte "vc110")
   elseif(MSVC10)
-    set(sCompiler "vc100")
+    set(sRte "vc100")
   elseif(MSVC90)
-    set(sCompiler "vc90")
+    set(sRte "vc90")
   elseif(MSVC80)
-    set(sCompiler "vc80")
+    set(sRte "vc80")
   elseif(MSVC71)
-    set(sCompiler "vc71")
+    set(sRte "vc71")
   elseif(MSVC70)
-    set(sCompiler "vc7")
+    set(sRte "vc7")
   elseif(MSVC60)
-    set(sCompiler "vc6")
+    set(sRte "vc6")
   else()
     message(FATAL_ERROR "Unsupported MSVC_VERSION: ${MSVC_VERSION}.")
   endif()
 else()
-  set(sCompiler)
+  set(sRte)
 endif()
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-  set(sArchitecture "x32")
+  set(sArch "x32")
 elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-  set(sArchitecture "x64")
+  set(sArch "x64")
 else()
   message(FATAL_ERROR "Unsupported CMAKE_SIZEOF_VOID_P: ${CMAKE_SIZEOF_VOID_P}.")
 endif()
 
-set(zReleasePathSuffixes "lib/${sCompiler}${sArchitecture}"
-                         "lib/${sArchitecture}"
-                         "lib")
-set(zDebugPathSuffixes "lib/${sCompiler}${sArchitecture}d"
-                       "lib/${sArchitecture}d"
-                       "lib/${sCompiler}${sArchitecture}"
-                       "lib/${sArchitecture}"
-                       "lib")
+set(zHints "${Check_ROOT_DIR}" "$ENV{CHECKROOT}")
+
+set(zRelPathSufs "lib/${sRte}${sArch}"
+                 "lib/${sArch}"
+                 "lib")
+set(zDbgPathSufs "lib/${sRte}${sArch}d"
+                 "lib/${sArch}d"
+                 "lib/${sRte}${sArch}"
+                 "lib/${sArch}"
+                 "lib")
+
+find_path(Check_ROOT_DIR
+          NAMES "include/check/check.h"
+          HINTS ${zHints}
+                NO_DEFAULT_PATH)
+mark_as_advanced(Check_ROOT_DIR)
 
 find_path(Check_INCLUDE_DIRS
           NAMES "check/check.h"
@@ -104,28 +114,28 @@ mark_as_advanced(Check_INCLUDE_DIRS)
 find_library(Check_check_LIBRARY_RELEASE
           NAMES "check"
           HINTS ${zHints}
-  PATH_SUFFIXES ${zReleasePathSuffixes}
+  PATH_SUFFIXES ${zRelPathSufs}
                 NO_DEFAULT_PATH)
 mark_as_advanced(Check_check_LIBRARY_RELEASE)
 
 find_library(Check_check_LIBRARY_DEBUG
           NAMES "check"
           HINTS ${zHints}
-  PATH_SUFFIXES ${zDebugPathSuffixes}
+  PATH_SUFFIXES ${zDbgPathSufs}
                 NO_DEFAULT_PATH)
 mark_as_advanced(Check_check_LIBRARY_DEBUG)
 
 find_library(Check_compat_LIBRARY_RELEASE
           NAMES "compat"
           HINTS ${zHints}
-  PATH_SUFFIXES ${zReleasePathSuffixes}
+  PATH_SUFFIXES ${zRelPathSufs}
                 NO_DEFAULT_PATH)
 mark_as_advanced(Check_compat_LIBRARY_RELEASE)
 
 find_library(Check_compat_LIBRARY_DEBUG
           NAMES "compat"
           HINTS ${zHints}
-  PATH_SUFFIXES ${zDebugPathSuffixes}
+  PATH_SUFFIXES ${zDbgPathSufs}
                 NO_DEFAULT_PATH)
 mark_as_advanced(Check_compat_LIBRARY_DEBUG)
 
@@ -136,7 +146,8 @@ set(Check_LIBRARIES_DEBUG
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Check
-                      DEFAULT_MSG Check_INCLUDE_DIRS
+                      DEFAULT_MSG Check_ROOT_DIR
+                                  Check_INCLUDE_DIRS
                                   Check_check_LIBRARY_RELEASE
                                   Check_check_LIBRARY_DEBUG
                                   Check_compat_LIBRARY_RELEASE
@@ -158,5 +169,8 @@ if(Check_FOUND)
                IMPORTED_LOCATION_DEBUG "${Check_check_LIBRARY_DEBUG}"
          INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
   endif()
+
+else()
+  set(Check_ROOT_DIR "${Check_ROOT_DIR}" CACHE PATH "The root directory of the Check installation.")
 
 endif()

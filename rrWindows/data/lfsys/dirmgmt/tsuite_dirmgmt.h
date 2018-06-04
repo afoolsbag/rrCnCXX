@@ -4,4 +4,5 @@
 
 Suite *TSuiteDirMgmt(void);
 
+TCase *TCaseCr8Flr(void);
 TCase *TCaseRmFlr(void);

@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-05-04
+# 2017-12-18 – 2018-06-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -61,7 +61,7 @@ function(facile_add_subdirectory _SOURCE_DIRECTORY)
       set(sOptInit)
     endif()
     # opt val
-    option(${vOptName} "Subdirectory ${_SOURCE_DIRECTORY}." ${sOptInit})
+    option(${vOptName} "Sub-directory ${_SOURCE_DIRECTORY}." ${sOptInit})
   endif()
 
   if(${vOptName})

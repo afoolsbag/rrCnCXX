@@ -131,36 +131,24 @@ ExecutableExtensionNameW(VOID)
     return ext;
 }
 
-/**
- * \brief 当前进程的初始化文件路径（ANSI适配）。
- * \details 形如`path\\to\\folder\\file.ini`。
- * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
- */
 RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
 InitializationPathA(VOID)
 {
     LPSTR CONST path = ExePathA();
     if (NULL == path)
         return NULL;
-    PathRemoveExtensionA(path);
-    if (FAILED(StringCchCatA(path, MAX_PATH, ".ini")))
+    if (!PathRenameExtensionA(path, "ini"))
         return NULL;
     return path;
 }
 
-/**
- * \brief 当前进程的初始化文件路径（UNICODE适配）。
- * \details 形如`path\\to\\folder\\file.ini`。
- * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
- */
 RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
 InitializationPathW(VOID)
 {
     LPWSTR CONST path = ExePathW();
     if (NULL == path)
         return NULL;
-    PathRemoveExtensionW(path);
-    if (FAILED(StringCchCatW(path, MAX_PATH, L".ini")))
+    if (!PathRenameExtensionW(path, L"ini"))
         return NULL;
     return path;
 

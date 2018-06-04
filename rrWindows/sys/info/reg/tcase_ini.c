@@ -3,9 +3,9 @@
  * \defgroup gIni 初始化文件
  * \ingroup gReg
  *
- * \author zhengrr
- * \version 2018-06-02
+ * \version 2018-06-04
  * \since 2018-01-15
+ * \authors zhengrr
  * \copyright The MIT License
  *
  * @{

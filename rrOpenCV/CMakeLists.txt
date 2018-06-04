@@ -4,27 +4,33 @@
 # | |  | |  | |_| | |_) |  __| | | | |___  \ V /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____|  \_/
 # zhengrr         |_|           rrOpenCV by FIGlet
-# 2018-01-22 – 03-21
+# 2018-01-22 – 06-04
 # The MIT License
 
-project("rrOpenCV" VERSION 2018.3.17 LANGUAGES CXX)
-project_variables()
-highest_warning_level()
-
-if(NOT OpenCV_FOUND)
-  find_package(OpenCV)
-endif()
+project("rrOpenCV" VERSION 2018.6.4 LANGUAGES CXX)
+project_extra()
+compiler_warning_level(HIGHEST AS_ERROR)
 
 facile_add_doxygen()
 
-facile_add_opencv_executable(SUBNAME "Scan"
-  "tut/core/scan.cpp")
+find_package(OpenCVPackage)
+if(NOT OpenCVPackage_FOUND)
+  set(OpenCV_ROOT_DIR "${OpenCV_ROOT_DIR}" CACHE PATH "The root directory of the OpenCV installation.")
+endif()
+find_package(OpenCV)
 
-facile_add_opencv_executable(SUBNAME "Mask"
-  "tut/core/mask.cpp")
+facile_add_executable(SUBNAME "Scan"
+                              "tut/core/scan.cpp"
+               LINK_LIBRARIES ${OpenCV_LIBS})
 
-facile_add_opencv_executable(SUBNAME "Blending"
-  "tut/core/blending.cpp")
+facile_add_executable(SUBNAME "Mask"
+                              "tut/core/mask.cpp"
+               LINK_LIBRARIES ${OpenCV_LIBS})
 
-facile_add_opencv_executable(SUBNAME "Trackbar"
-  "tut/highgui/trackbar.cpp")
+facile_add_executable(SUBNAME "Blending"
+                              "tut/core/blending.cpp"
+               LINK_LIBRARIES ${OpenCV_LIBS})
+
+facile_add_executable(SUBNAME "Trackbar"
+                              "tut/highgui/trackbar.cpp"
+               LINK_LIBRARIES ${OpenCV_LIBS})
