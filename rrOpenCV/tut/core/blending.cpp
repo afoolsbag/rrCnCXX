@@ -7,8 +7,8 @@
 /// \sa https://docs.opencv.org/3.4.1/d5/dc4/tutorial_adding_images.html
 ///
 /// \author zhengrr
-/// \version 2018-3-1
-/// \since 2018-3-1
+/// \version 2018-06-04
+/// \since 2018-03-01
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//

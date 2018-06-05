@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-04-26
+# 2017-12-18 – 2018-06-04
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -20,7 +20,7 @@ endif()
 #       )
 #
 function(aux_add_subdirectories)
-  set(zOptKws "WITH_OPTION")
+  set(zOptKws    WITH_OPTION)
   set(zOneValKws)
   set(zMutValKws)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")

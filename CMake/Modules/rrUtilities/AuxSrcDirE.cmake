@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-05-29
+# 2016-10-08 – 2018-06-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -27,15 +27,15 @@ endif()
 #       )
 #
 function(aux_source_directory_enhanced _RESULTS_VARIABLE)
-  set(zOptKws    "RECURSE"
-                 "C" "CXX" "MFC" "QT"
-                 "EXPLICIT")
-  set(zOneValKws "SOURCE_DIRECTORY"
-                 "SOURCE_GROUP")
-  set(zMutValKws "SOURCE_PREFIXS"
-                 "SOURCE_SUFFIXS"
-                 "SOURCE_EXTENSIONS"
-                 "SOURCE_PROPERTIES")
+  set(zOptKws    RECURSE
+                 C CXX MFC QT
+                 EXPLICIT)
+  set(zOneValKws SOURCE_DIRECTORY
+                 SOURCE_GROUP)
+  set(zMutValKws SOURCE_PREFIXS
+                 SOURCE_SUFFIXS
+                 SOURCE_EXTENSIONS
+                 SOURCE_PROPERTIES)
   cmake_parse_arguments(PARSE_ARGV 1 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")

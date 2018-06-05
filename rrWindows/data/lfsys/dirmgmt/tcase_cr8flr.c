@@ -1,15 +1,4 @@
-/*===-- Create Folder ------------------------------------------*- C -*-===*//**
- *
- * \defgroup gCr8Flr 创建文件夹
- * \ingroup gDirMgnt
- *
- * \version 2018-06-04
- * \since 2018-06-04
- * \author zhengrr
- * \copyright The MIT License
- *
- * @{
-**//*===-------------------------------------------------------------------===*/
+/** \copyright The MIT License */
 
 #include <stdlib.h>
 #include <Shlwapi.h>
@@ -21,6 +10,7 @@
 
 #include <check/check.h>
 
+#include "rrwindows/cr8flr.h"
 #include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
@@ -28,21 +18,21 @@
 
 START_TEST(TestCr8Flr)
 {
+    DWORD ec = ERROR_SUCCESS;
+
     TCHAR flrPath[MAX_PATH];
     if (FAILED(StringCchCopy(flrPath, _countof(flrPath), ExecutableDirectoryPath()))) {
         ck_abort(); return;
     }
-    if (!PathAppend(flrPath, _T("tmpflr"))) {
+    if (!PathAppend(flrPath, _T("tmpflr\\subflr\\subsubflr"))) {
         ck_abort(); return;
     }
-    if (!CreateDirectory(flrPath, NULL)) {
-        DbgPrtD(_T("CreateDirectory failed, %lu, %s\n"), GetLastError(), GetLastErrorText());
+    if (ERROR_SUCCESS != (ec = CreateFolder(flrPath))) {
+        DbgPrtD(_T("CreateFolder failed, %lu, %s\n"), ec, ErrorTextOf(ec));
         ck_abort(); return;
     }
 }
 END_TEST
-
-/** @} */
 
 TCase *TCaseCr8Flr(void)
 {

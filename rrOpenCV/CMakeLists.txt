@@ -9,14 +9,11 @@
 
 project("rrOpenCV" VERSION 2018.6.4 LANGUAGES CXX)
 project_extra()
-compiler_warning_level(HIGHEST AS_ERROR)
+compiler_warning_level(HIGHEST)
 
 facile_add_doxygen()
 
 find_package(OpenCVPackage)
-if(NOT OpenCVPackage_FOUND)
-  set(OpenCV_ROOT_DIR "${OpenCV_ROOT_DIR}" CACHE PATH "The root directory of the OpenCV installation.")
-endif()
 find_package(OpenCV)
 
 facile_add_executable(SUBNAME "Scan"

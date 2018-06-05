@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-05-04
+# 2016-10-08 – 2018-06-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -40,20 +40,20 @@ endif()
 #    :install:      to ``lib``
 #
 function(facile_add_library)
-  set(zOptKws    "OPTION_INITIAL_ON"
-                 "STATIC" "SHARED" "MODULE"
-                 "C90" "C99" "C11"
-                 "CXX98" "CXX11" "CXX14" "CXX17"
-                 "NO_DEFAULT_GROUP")
-  set(zOneValKws "NAME" "SUBNAME"
-                 "OPTION_DESCRIPTION"
-                 "TARGET_NAME_VARIABLE")
-  set(zMutValKws "PROPERTIES"
-                 "COMPILE_DEFINITIONS"
-                 "INCLUDE_DIRECTORIES"
-                 "LINK_LIBRARIES"
-                 "COMPILE_FEATURES"
-                 "COMPILE_OPTIONS")
+  set(zOptKws    OPTION_INITIAL_ON
+                 STATIC SHARED MODULE
+                 C90 C99 C11
+                 CXX98 CXX11 CXX14 CXX17
+                 NO_DEFAULT_GROUP)
+  set(zOneValKws NAME SUBNAME
+                 OPTION_DESCRIPTION
+                 TARGET_NAME_VARIABLE)
+  set(zMutValKws PROPERTIES
+                 COMPILE_DEFINITIONS
+                 INCLUDE_DIRECTORIES
+                 LINK_LIBRARIES
+                 COMPILE_FEATURES
+                 COMPILE_OPTIONS)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
   # name

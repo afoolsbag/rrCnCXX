@@ -3,7 +3,7 @@
 /// \file
 /// \brief 主对话框（类）。
 ///
-/// \verison 2018-05-29
+/// \verison 2018-06-04
 /// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License

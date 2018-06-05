@@ -55,6 +55,7 @@ DoDataExchange(CDataExchange *pDX)
 UINT MainDialog::
 ThreadFunction(ProgressDialog *CONST pProgressDialog)
 {
+    pProgressDialog->SetTitle(TEXT("Target"));
     pProgressDialog->SetTotal(TEXT("Total progress"));
     pProgressDialog->SetTotal(0, 100);
     pProgressDialog->SetCurrent(TEXT("Current progress"));

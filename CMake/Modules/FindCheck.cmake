@@ -172,5 +172,6 @@ if(Check_FOUND)
 
 else()
   set(Check_ROOT_DIR "${Check_ROOT_DIR}" CACHE PATH "The root directory of the Check installation.")
+  mark_as_advanced(CLEAR Check_ROOT_DIR)
 
 endif()

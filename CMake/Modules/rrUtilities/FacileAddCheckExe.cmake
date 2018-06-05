@@ -1,6 +1,10 @@
 # zhengrr
-# 2018-02-02 – 04-27
+# 2018-02-02 – 06-04
 # The MIT License
+
+if(NOT COMMAND facile_add_executable)
+  include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
+endif()
 
 # .rst
 # .. command:: facile_add_check_executable
@@ -28,13 +32,8 @@ function(facile_add_check_executable)
   # LINK_LIBRARIES
   set(zLinkLibs ${_LINK_LIBRARIES})
 
+  find_package(Check)
   if(NOT Check_FOUND)
-    find_package(Check)
-    if(NOT Check_FOUND)
-      set(Check_ROOT_DIR "${CHECK_ROOT_DIR}" CACHE PATH "The root directory of the Check installation.")
-    endif()
-  endif()
-  if(NOT CHECK_FOUND)
     message(WARNING "Check is needed to build executable with Check.")
   endif()
 
@@ -50,9 +49,9 @@ function(facile_add_check_executable)
   # facile_add_executable
   enable_testing()
   facile_add_executable(OPTION_DESCRIPTION "${sOptDesc}"
-                      TARGET_NAME_VARIABLE  sTgtName
-                                            ${_UNPARSED_ARGUMENTS}
-                            LINK_LIBRARIES  ${zLinkLibs})
+                      TARGET_NAME_VARIABLE sTgtName
+                                           ${_UNPARSED_ARGUMENTS}
+                            LINK_LIBRARIES ${zLinkLibs})
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

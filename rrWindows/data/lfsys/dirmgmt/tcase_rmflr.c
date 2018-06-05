@@ -1,5 +1,6 @@
 /** \copyright The MIT License */
 
+#include <stdlib.h>
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 #include <strsafe.h>

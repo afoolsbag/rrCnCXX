@@ -4,10 +4,10 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-05-22
+# 2016-08-01 – 2018-06-04
 # The MIT License
 
-project(rrC VERSION 2018.5.22 LANGUAGES C)
+project(rrC VERSION 2018.6.4 LANGUAGES C)
 project_extra()
 compiler_warning_level(HIGHEST AS_ERROR)
 
@@ -21,7 +21,7 @@ aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "tmain" "tsuite" "tcas
 facile_add_check_executable(SUBNAME "Test"
                   OPTION_INITIAL_ON
                                     "cver.h" "cdef.h" ${zSrc}
-                INCLUDE_DIRECTORIES  PRIVATE "."
+                INCLUDE_DIRECTORIES PRIVATE "."
                      LINK_LIBRARIES "${sRrcLib}")
 
 aux_add_subdirectories()

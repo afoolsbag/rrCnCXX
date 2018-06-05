@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-05-02
+# 2016-10-08 – 2018-06-04
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -26,7 +26,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #    + `<https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis>`_
 #
 function(compiler_warning_level)
-  set(zOptKws "HIGHEST" "AS_ERROR" "UTF-8" "ANALYZE")
+  set(zOptKws    HIGHEST AS_ERROR UTF-8 ANALYZE)
   set(zOneValKws)
   set(zMutValKws)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")

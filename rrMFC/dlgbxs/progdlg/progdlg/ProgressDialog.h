@@ -18,7 +18,7 @@
 
 /// \brief 进度对话框（类）。
 class ProgressDialog: public CDialog {
-    DECLARE_DYNCREATE(ProgressDialog)
+    DECLARE_DYNAMIC(ProgressDialog)
 
 #// Constructors
 public:

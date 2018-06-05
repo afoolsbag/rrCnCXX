@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-08
+# 2016-10-08 – 2018-06-04
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -38,8 +38,8 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #    + `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
 #
 function(facile_add_doxygen)
-  set(zOptKws "JAVADOC_AUTOBRIEF"
-              "OPTIMIZE_OUTPUT_FOR_C")
+  set(zOptKws    JAVADOC_AUTOBRIEF
+                 OPTIMIZE_OUTPUT_FOR_C)
   set(zOneValKws)
   set(zMutValKws)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")

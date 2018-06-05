@@ -8,7 +8,7 @@
 #// Private Message
 #define PM_CLOSE (WM_USER + 1)
 
-IMPLEMENT_DYNCREATE(ProgressDialog, CDialog)
+IMPLEMENT_DYNAMIC(ProgressDialog, CDialog)
 
 BEGIN_MESSAGE_MAP(ProgressDialog, CDialog)
     ON_WM_TIMER()

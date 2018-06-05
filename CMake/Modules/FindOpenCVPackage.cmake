@@ -34,15 +34,22 @@ endif()
 
 set(zHints "${OpenCV_ROOT_DIR}" "$ENV{OPENCVDIR}")
 
+find_path(OpenCV_ROOT_DIR
+  NAMES "OpenCVConfig.cmake"
+  HINTS ${zHints}
+        NO_DEFAULT_PATH)
+mark_as_advanced(OpenCV_ROOT_DIR)
+
 find_path(OpenCVPackage_PREFIX_PATH
-          NAMES "OpenCVConfig.cmake" "OpenCVConfig-version.cmake"
-          HINTS ${zHints}
-                NO_DEFAULT_PATH)
+  NAMES "OpenCVConfig.cmake"
+  HINTS ${zHints}
+        NO_DEFAULT_PATH)
 mark_as_advanced(OpenCVPackage_PREFIX_PATH)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(OpenCVPackage
-                      DEFAULT_MSG OpenCVPackage_PREFIX_PATH)
+                      DEFAULT_MSG OpenCV_ROOT_DIR
+                                  OpenCVPackage_PREFIX_PATH)
 
 if(OpenCVPackage_FOUND)
   if(NOT OpenCVPackage_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
@@ -50,4 +57,5 @@ if(OpenCVPackage_FOUND)
   endif()
 else()
   set(OpenCV_ROOT_DIR "${OpenCV_ROOT_DIR}" CACHE PATH "The root directory of the OpenCV installation.")
+  mark_as_advanced(CLEAR OpenCV_ROOT_DIR)
 endif()

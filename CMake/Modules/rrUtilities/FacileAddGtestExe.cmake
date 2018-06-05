@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-17 – 2018-04-11
+# 2017-12-17 – 2018-06-04
 # The MIT License
 
 if(NOT COMMAND facile_add_executable)
@@ -18,8 +18,8 @@ endif()
 #
 function(facile_add_gtest_executable)
   set(zOptKws)
-  set(zOneValKws "OPTION_DESCRIPTION" "TARGET_NAME_VARIABLE")
-  set(zMutValKws "LINK_LIBRARIES")
+  set(zOneValKws OPTION_DESCRIPTION TARGET_NAME_VARIABLE)
+  set(zMutValKws LINK_LIBRARIES)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
   # OPTION_DESCRIPTION

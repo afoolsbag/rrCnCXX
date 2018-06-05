@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-04-21
+# 2016-10-08 – 2018-06-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
@@ -31,8 +31,8 @@ endif()
 #
 function(project_extra)
   set(zOptKws)
-  set(zOneValKws "LICENSE")
-  set(zMutValKws "AUTHORS")
+  set(zOneValKws LICENSE)
+  set(zMutValKws AUTHORS)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")

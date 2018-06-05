@@ -58,6 +58,12 @@ endif()
 
 set(zHints "${Qt5_ROOT_DIR}" "$ENV{QTDIR${sArch}}" "$ENV{QTDIR}")
 
+find_path(Qt5_ROOT_DIR
+  NAMES "lib/cmake/Qt5/Qt5Config.cmake"
+  HINTS ${zHints}
+        NO_DEFAULT_PATH)
+mark_as_advanced(Qt_ROOT_DIR)
+
 find_path(Qt5Package_PREFIX_PATH
           NAMES "Qt5/Qt5Config.cmake"
           HINTS ${zHints}
@@ -65,9 +71,10 @@ find_path(Qt5Package_PREFIX_PATH
                 NO_DEFAULT_PATH)
 mark_as_advanced(Qt5Package_PREFIX_PATH)
 
-include("FindPackageHandleStandardArgs")
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Qt5Package
-                      DEFAULT_MSG Qt5Package_PREFIX_PATH)
+                      DEFAULT_MSG Qt5_ROOT_DIR
+                                  Qt5Package_PREFIX_PATH)
 
 if(Qt5Package_FOUND)
   if(NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
@@ -75,4 +82,5 @@ if(Qt5Package_FOUND)
   endif()
 else()
   set(Qt5_ROOT_DIR "${Qt5_ROOT_DIR}" CACHE PATH "The root directory of the Qt5 installation.")
+  mark_as_advanced(CLEAR Qt5_ROOT_DIR)
 endif()
