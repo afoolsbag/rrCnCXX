@@ -18,10 +18,29 @@
 extern "C" {
 #endif
 
-/** \brief 刻度类型。 */
-typedef double grad_t;
-/** \brief 长度类型。 */
-typedef double len_t;
+/**
+ * \brief 刻度类型。
+ *        Graduation.
+ */
+typedef double graduation_t;
+
+/**
+ * \brief 长度类型。
+ *        Length.
+ */
+typedef double length_t;
+
+/**
+ * \brief 面积类型。
+ *        Area.
+ */
+typedef double area_t;
+
+/**
+ * \brief 体积类型。
+ *        Volume.
+ */
+typedef double volume_t;
 
 #ifdef __cplusplus
 }

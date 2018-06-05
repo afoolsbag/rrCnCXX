@@ -6,7 +6,7 @@
 #include "rrc/cfg.h"
 
 RRC_API struct rrc_version_t
-rrc_get_version(void)
+rrc_version(void)
 {
 	return (struct rrc_version_t) {
 		.major = RRC_VERSION_MAJOR,
@@ -17,7 +17,7 @@ rrc_get_version(void)
 }
 
 RRC_API time_t
-rrc_sigh(void)
+sigh(void)
 {
 	return (time_t) 709444800L;
 }
