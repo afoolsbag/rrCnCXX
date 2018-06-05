@@ -15,6 +15,7 @@
 
 #include "algo/tsuite_algo.h"
 #include "mem/tsuite_mem.h"
+#include "numr/tsuite_numr.h"
 #include "str/tsuite_str.h"
 #include "time/tsuite_time.h"
 #include "type/tsuite_type.h"
@@ -38,6 +39,7 @@ int main(int argc, char *argv[])
 
 	srunner_add_suite(runner, tsuite_algo());
 	srunner_add_suite(runner, tsuite_mem());
+	srunner_add_suite(runner, tsuite_numr());
 	srunner_add_suite(runner, tsuite_str());
 	srunner_add_suite(runner, tsuite_time());
 	srunner_add_suite(runner, tsuite_type());

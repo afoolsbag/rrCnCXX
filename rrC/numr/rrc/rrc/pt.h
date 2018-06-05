@@ -14,8 +14,6 @@
 #ifndef RRC_PT_H_
 #define RRC_PT_H_
 
-#include "rrc/api.h"
-
 #include "pt1d.h"
 #include "pt2dc.h"
 #include "pt3dc.h"
