@@ -4,8 +4,9 @@
  * \ingroup gEnv
  *
  * \sa <https://docs.microsoft.com/windows/console/>
+ * \sa <https://docs.microsoft.com/cpp/c-runtime-library/console-and-port-i-o>
  *
- * \version 2018-05-03
+ * \version 2018-06-07
  * \since 2018-05-03
  * \authors zhengrr
  * \copyright CC BY 4.0

@@ -3,7 +3,7 @@
  * \defgroup gWinStr Windows字符串操作
  * \ingroup gStr
  *
- * \version 2018-06-01
+ * \version 2018-06-07
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -37,14 +37,14 @@
 inline size_t StrLenA(LPCSTR CONST string)
 {
     size_t len = 0;
-    (VOID)SUCCEEDED(StringCchLengthA(string, STRSAFE_MAX_CCH, &len));
+    if (FAILED(StringCchLengthA(string, STRSAFE_MAX_CCH, &len))) return 0;
     return len;
 }
 
 inline size_t StrLenW(LPCWSTR CONST string)
 {
     size_t len = 0;
-    (VOID)SUCCEEDED(StringCchLengthW(string, STRSAFE_MAX_CCH, &len));
+    if (FAILED(StringCchLengthW(string, STRSAFE_MAX_CCH, &len))) return 0;
     return len;
 }
 

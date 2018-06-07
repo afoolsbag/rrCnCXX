@@ -3,7 +3,7 @@
  * \defgroup gDbgPrt 调试打印
  * \ingroup gBasDbg
  *
- * \version 2018-06-02
+ * \version 2018-06-07
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -45,6 +45,7 @@ DebugPrintW(
 #else
 # define DebugPrint DebugPrintA
 #endif
+
 /** \brief 调试打印字串（缩写）。 */
 #define DbgPrt DebugPrint
 
@@ -64,7 +65,7 @@ DebugPrintW(
   */
 # define DbgPrtF() DbgPrtD(TEXT("Function \"%s\", decorated \"%s\", signature \"%s\".\n"), TEXT(__FUNCTION__), TEXT(__FUNCDNAME__), TEXT(__FUNCSIG__))
 #else
-# define DbgPrtD DbgPrt
+# define DbgPrtD(format, ...) DbgPrt(TEXT("@%s: ") format, TEXT(__FUNCDNAME__), __VA_ARGS__)
 # define DbgPrtF() ((void)0)
 #endif
 

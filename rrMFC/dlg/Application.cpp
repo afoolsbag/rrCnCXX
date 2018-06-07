@@ -64,7 +64,7 @@ InitInstance()
     case IDTIMEOUT:
         DbgConPrt(LightRed, TEXT(" DoModal -> IDTIMEOUT\n")); break;
     default:
-        TRACE1("Unknown switch-case-route with condition %d.", result); ASSERT(FALSE); break;
+        TRACE1("Unknown switch-case-route with condition: result=%d.", result); ASSERT(FALSE); break;
     }
 
     return FALSE;

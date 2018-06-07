@@ -4,5 +4,5 @@
 
 #include "Application.h"
 
-/// \brief Global Application
+/// \brief 全局应用（对象）。
 Application GlobalApplication;

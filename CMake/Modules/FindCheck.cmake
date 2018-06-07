@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 06-04
+# 2018-02-02 – 06-06
 # The MIT License
 
 #.rst:
@@ -51,52 +51,20 @@ if(Check_FOUND)
   return()
 endif()
 
-if(MSVC)
-  if(MSVC_VERSION GREATER_EQUAL 1910)
-    set(sRte "vc141")
-  elseif(MSVC14)
-    set(sRte "vc140")
-  elseif(MSVC12)
-    set(sRte "vc120")
-  elseif(MSVC11)
-    set(sRte "vc110")
-  elseif(MSVC10)
-    set(sRte "vc100")
-  elseif(MSVC90)
-    set(sRte "vc90")
-  elseif(MSVC80)
-    set(sRte "vc80")
-  elseif(MSVC71)
-    set(sRte "vc71")
-  elseif(MSVC70)
-    set(sRte "vc7")
-  elseif(MSVC60)
-    set(sRte "vc6")
-  else()
-    message(FATAL_ERROR "Unsupported MSVC_VERSION: ${MSVC_VERSION}.")
-  endif()
-else()
-  set(sRte)
+if(NOT COMMAND get_toolset_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
 endif()
-
-if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-  set(sArch "x32")
-elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-  set(sArch "x64")
-else()
-  message(FATAL_ERROR "Unsupported CMAKE_SIZEOF_VOID_P: ${CMAKE_SIZEOF_VOID_P}.")
-endif()
+get_toolset_tag(sTool)
+get_architecture_address_model_tag(sArAd)
 
 set(zHints "${Check_ROOT_DIR}" "$ENV{CHECKROOT}")
 
-set(zRelPathSufs "lib/${sRte}${sArch}"
-                 "lib/${sArch}"
+set(zRelPathSufs "lib/${sTool}${sArAd}"
+                 "lib/${sArAd}"
                  "lib")
-set(zDbgPathSufs "lib/${sRte}${sArch}d"
-                 "lib/${sArch}d"
-                 "lib/${sRte}${sArch}"
-                 "lib/${sArch}"
-                 "lib")
+set(zDbgPathSufs "lib/${sTool}${sArAd}d"
+                 "lib/${sArAd}"
+                 ${zRelPathSufs})
 
 find_path(Check_ROOT_DIR
           NAMES "include/check/check.h"

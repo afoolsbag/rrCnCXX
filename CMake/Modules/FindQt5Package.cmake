@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-06-04
+# 2016-10-21 – 2018-06-06
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -50,13 +50,12 @@ if(Qt5Package_FOUND)
   return()
 endif()
 
-if(DEFINED CMAKE_SIZEOF_VOID_P)
-  math(EXPR sArch "${CMAKE_SIZEOF_VOID_P} * 8")
-else()
-  set(sArch)
+if(NOT COMMAND get_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
 endif()
+get_address_model_tag(sAddr)
 
-set(zHints "${Qt5_ROOT_DIR}" "$ENV{QTDIR${sArch}}" "$ENV{QTDIR}")
+set(zHints "${Qt5_ROOT_DIR}" "$ENV{QTDIR${sAddr}}" "$ENV{QTDIR}")
 
 find_path(Qt5_ROOT_DIR
   NAMES "lib/cmake/Qt5/Qt5Config.cmake"

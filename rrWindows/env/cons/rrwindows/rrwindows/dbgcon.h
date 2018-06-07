@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-01
+ * \version 2018-06-06
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -16,7 +16,7 @@
 #include <Windows.h>
 
 #include "rrwindows/rrwindowsapi.h"
-#include "concol.h"
+#include "conutil.h"
 
 #ifdef __cplusplus
 # include <typeinfo>
@@ -25,30 +25,12 @@
 extern "C" {
 #endif
 
-/**
- * \brief 调试控制台打印有色字串（ANSI适配）。
- */
-RRWINDOWS_API VOID WINAPIV
-DebugConsolePrintA(
-    _In_                           CONST ConCol textColor,
-    _In_z_ _Printf_format_string_ LPCSTR CONST  format,
-    ...);
-
-/**
- * \brief 调试控制台打印有色字串（UNICODE适配）。
- */
-RRWINDOWS_API VOID WINAPIV
-DebugConsolePrintW(
-    _In_                            CONST ConCol textColor,
-    _In_z_ _Printf_format_string_ LPCWSTR CONST  format,
-    ...);
-
 #if ! defined _DEBUG
 # define DebugConsolePrint(x) ((void)0)
 #elif defined _UNICODE
-# define DebugConsolePrint DebugConsolePrintW
+# define DebugConsolePrint ConsoleColorPrintW
 #else
-# define DebugConsolePrint DebugConsolePrintA
+# define DebugConsolePrint ConsoleColorPrintA
 #endif
 /** \brief 调试控制台打印有色字串（缩写）。 */
 #define DbgConPrt DebugConsolePrint
