@@ -1,8 +1,9 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ ç”Ÿæˆçš„åŒ…å«æ–‡ä»¶ã€‚
-// ä¾› resource.rc ä½¿ç”¨
+// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼ş¡£
+// ¹© resource.rc Ê¹ÓÃ
 //
 #define IDD_MAIN_DIALOG                 200
+#define IDD_BUTTON_DIALOG               200
 #define IDC_UNDEFINED                   40000
 #define IDC_BUTTON                      40001
 #define IDC_MFC_BUTTON                  40002

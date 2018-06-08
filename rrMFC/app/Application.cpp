@@ -4,12 +4,26 @@
 #include "Application.h"
 
 #include <conio.h>
+#include <vector>
 
 #include "rrwindows/conutil.h"
 #include "rrwindows/dbgcon.h"
 
-#include <string>
-#include "rrwindows/errtxt.h"
+namespace {
+
+static std::vector<CString> SpliteCommand(const CString &command)
+{
+    std::vector<CString> tokens;
+    INT pos = 0;
+    while (TRUE) {
+        CONST CString token = command.Tokenize(TEXT("\t\n\r "), pos);
+        if (token.IsEmpty()) break;
+        tokens.push_back(token);
+    }
+    return tokens;
+}
+
+}//namespace
 
 IMPLEMENT_DYNAMIC(Application, CWinApp)
 
@@ -50,21 +64,22 @@ InitInstance()
     TCHAR buf[512] = TEXT("");
     size_t len = 0;
     while (TRUE) {
-        ConPut(TEXT("\n"));
-        ConColPrt(White, TEXT("Enter a command: ")); _cgetts_s(buf, &len);
-        CString command(buf);
-        command.Trim();
-        if (!command.CompareNoCase(TEXT("clearscreen")) || !command.CompareNoCase(TEXT("cls")))
+        ConColPrt(White, TEXT("\nEnter a command: ")); _cgetts_s(buf, &len);
+        std::vector<CString> tokens = SpliteCommand(buf);
+        if (tokens.empty()) continue;
+        if (!tokens[0].CompareNoCase(TEXT("clearscreen")) || !tokens[0].CompareNoCase(TEXT("cls")))
             ShowHello();
-        else if (!command.CompareNoCase(TEXT("?")) || !command.CompareNoCase(TEXT("help")))
-            ShowHelp();
-        else if (!command.CompareNoCase(TEXT("status")))
+        else if (!tokens[0].CompareNoCase(TEXT("?")) || !tokens[0].CompareNoCase(TEXT("help")))
+            ShowHelp(tokens.size() < 2 ? TEXT("") : tokens[1]);
+        else if (!tokens[0].CompareNoCase(TEXT("status")))
             ShowStatus();
-        else if (!command.CompareNoCase(TEXT("quit")) || !command.CompareNoCase(TEXT("exit")))
+        else if (!tokens[0].CompareNoCase(TEXT("quit")) || !tokens[0].CompareNoCase(TEXT("exit")))
             break;
         else
-            ShowUnknown(command);
+            ShowUnknown(tokens[0]);
+#ifndef _UNICODE
         _cgetts_s(buf, &len);
+#endif
     }
 
     return FALSE;
@@ -98,23 +113,29 @@ ShowHello()
               TEXT("_/    _/  _/_/_/    _/_/_/    _/  _/    _/_/_/    _/_/_/      _/_/  _/    _/_/    _/    _/     \n")
               TEXT("         _/        _/                                                                          \n")
               TEXT("        _/        _/                                                                           \n")
-              TEXT("\n")
+              TEXT("\n"));
+    ConColPut(White,
               TEXT("Command line interface is ")); ConColPut(Green, TEXT("enabled")); ConColPut(White, TEXT(".\n"));
 }
 
 VOID Application::
-ShowHelp()
+ShowHelp(CONST CString &param)
 {
-    ConColPut(White,
-              TEXT("Commands(case insensitivity):\n"));
-    ConColPut(Aqua,
-              TEXT("   ?\n")
-              TEXT("   clearscreen\n")
-              TEXT("   cls\n")
-              TEXT("   exit\n")
-              TEXT("   help\n")
-              TEXT("   quit\n")
-              TEXT("   status\n"));
+    if (!param.CompareNoCase(TEXT("console"))) {
+        ConColPrt(White,
+                  TEXT("Codepage: input %u, output %u.\n"), GetConsoleCP(), GetConsoleOutputCP());
+    } else {
+        ConColPut(White,
+                  TEXT("Commands(case insensitivity):\n"));
+        ConColPut(Aqua,
+                  TEXT("   ?\n")
+                  TEXT("   clearscreen\n")
+                  TEXT("   cls\n")
+                  TEXT("   exit\n")
+                  TEXT("   help [console]\n")
+                  TEXT("   quit\n")
+                  TEXT("   status\n"));
+    }
 }
 
 VOID Application::

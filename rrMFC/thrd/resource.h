@@ -2,7 +2,7 @@
 // Microsoft Visual C++ 生成的包含文件。
 // 供 resource.rc 使用
 //
-#define IDD_MAIN_DIALOG                 200
+#define IDD_THREAD_DIALOG               200
 #define IDC_UNDEFINED                   40000
 #define IDC_START_BUTTON                40001
 #define IDC_STOP_BUTTON                 40002

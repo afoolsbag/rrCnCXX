@@ -1,9 +1,9 @@
-//===-- Main Dialog ---------------------------------------------*- C++ -*-===//
+//===-- Thread Dialog -------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主对话框（类）。
+/// \brief 线程对话框（类）。
 ///
-/// \verison 2018-05-28
+/// \verison 2018-06-08
 /// \since 2018-05-28
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -14,18 +14,18 @@
 
 #include "resource.h"
 
-/// \brief 主对话框（类）。
-class MainDialog: public CDialog {
-    DECLARE_DYNCREATE(MainDialog)
+/// \brief 线程对话框（类）。
+class ThreadDialog: public CDialog {
+    DECLARE_DYNAMIC(ThreadDialog)
 
 #// Constructors
 public:
-    MainDialog(CWnd *pParent = NULL);
-    virtual ~MainDialog() override;
+    ThreadDialog(CWnd *pParent = NULL);
+    virtual ~ThreadDialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_MAIN_DIALOG };
+    enum { IDD = IDD_THREAD_DIALOG };
 
 #// Operations
 public:
@@ -40,12 +40,11 @@ protected:
 #// Implementation
 public:
 protected:
-    enum TimerId { ZERO = 0, REFRESH_UI, UPDATE_NUMBER_REFRESH_UI };
+    enum TimerId { ZERO = 0, REFRESH_UI };
 
     CStatic NumberStaticControl;
     INT Number = 0;
 
-    INT Count = 0;
     UINT CountThreadFunction(LPVOID pParam);
     BOOL CountThreadLoopFlag = FALSE;
     static UINT CountThreadWrapper(LPVOID pObject);

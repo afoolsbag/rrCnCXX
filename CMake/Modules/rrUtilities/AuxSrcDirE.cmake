@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-04
+# 2016-10-08 – 2018-06-08
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -132,6 +132,30 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
       endforeach()
     endforeach()
   endforeach()
+  list(REMOVE_DUPLICATES zRsts)
+
+  if(_MFC)
+    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/mfc.pch")
+    foreach(sSrcFilePath ${zRsts})
+      get_filename_component(sFileExt ${sSrcFilePath} NAME)
+      string(TOLOWER ${sFileExt} sFileExtLwr)
+      if(NOT sFileExtLwr MATCHES ".*\.cpp$")
+        continue()
+      endif()
+      get_filename_component(sFileName ${sSrcFilePath} NAME)
+      string(TOLOWER ${sFileName} sFileNameLwr)
+      if(sFileNameLwr STREQUAL "stdafx.cpp")
+        set_source_files_properties(${sSrcFilePath}
+                         PROPERTIES COMPILE_FLAGS  "/Yc\"stdafx.h\" /Fp\"${sPch}\""
+                                    OBJECT_OUTPUTS "${sPch}")
+      else()
+        set_source_files_properties(${sSrcFilePath}
+                         PROPERTIES COMPILE_FLAGS  "/Yu\"stdafx.h\" /FI\"stdafx.h\" /Fp\"${sPch}\""
+                                    OBJECT_DEPENDS "${sPch}")
+      endif()
+    endforeach()
+  endif()
+
   if(DEFINED _SOURCE_PROPERTIES)
     list(LENGTH _SOURCE_PROPERTIES sLen)
     if(sLen EQUAL 0)

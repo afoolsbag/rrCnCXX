@@ -14,7 +14,7 @@ IMPLEMENT_DYNAMIC(WindowApplication, CWinApp)
 WindowApplication::
 WindowApplication()
 {
-    NewDbgCon();
+    NewDebugConsole();
     DbgConPrtMeth(Red);
 }
 
@@ -22,7 +22,7 @@ WindowApplication::
 ~WindowApplication()
 {
     DbgConPrtMeth(Red);
-    DelDbgCon();
+    DeleteDebugConsole();
 }
 
 #// Overridables

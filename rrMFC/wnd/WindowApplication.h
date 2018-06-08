@@ -3,7 +3,7 @@
 /// \file
 /// \brief 窗口应用（类）。
 ///
-/// \version 2018-06-01
+/// \version 2018-06-08
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The MIT License

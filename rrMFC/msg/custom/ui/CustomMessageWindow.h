@@ -1,9 +1,9 @@
-//===-- Main Window ---------------------------------------------*- C++ -*-===//
+//===-- Custom Message Window -----------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 隐藏的窗口（类）。
+/// \brief 自定义消息窗口（类）。
 ///
-/// \verison 2018-04-11
+/// \verison 2018-06-08
 /// \since 2018-04-10
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,13 +12,14 @@
 
 #pragma once
 
-/// \brief 隐藏的窗口（类）。
-class HiddenWindow: public CFrameWnd {
-    DECLARE_DYNCREATE(HiddenWindow)
+/// \brief 自定义消息窗口（类）。
+class CustomMessageWindow: public CWnd {
+    DECLARE_DYNAMIC(CustomMessageWindow)
 
 #// Constructors
 public:
-    HiddenWindow();
+    CustomMessageWindow();
+    virtual ~CustomMessageWindow() override;
 
 #// Attributes
 public:
@@ -35,10 +36,10 @@ protected:
 #// Message Handlers
 protected:
     afx_msg INT OnCreate(LPCREATESTRUCT lpCreateStruct);
+
     afx_msg LRESULT OnCustomPrivateMessage(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnCustomApplicationMessage(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnCustomRegisterMessage(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP()
-public:
 };

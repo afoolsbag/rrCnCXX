@@ -66,6 +66,10 @@ DebugPrintW(
   */
 # define DbgPrtF() DbgPrtD(_T("Function \"%s\", decorated \"%s\", signature \"%s\".\n"), _T(__FUNCTION__), _T(__FUNCDNAME__), _T(__FUNCSIG__))
 #else
+ /**
+  * \brief 调试打印字串（发布适配）。
+  * \details 形如`@Function: ...`
+  */
 # define DbgPrtD(format, ...) DbgPrt(_T("@%s: ") format, _T(__FUNCTION__), __VA_ARGS__)
 # define DbgPrtF() ((void)0)
 #endif

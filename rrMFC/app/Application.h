@@ -3,7 +3,7 @@
 /// \file
 /// \brief 应用（类）。
 ///
-/// \version 2018-06-07
+/// \version 2018-06-08
 /// \since 2018-04-11
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -48,7 +48,7 @@ public:
 #// Implementation
 protected:
     static VOID ShowHello();
-    static VOID ShowHelp();
+    static VOID ShowHelp(CONST CString &param);
     static VOID ShowStatus();
     static VOID ShowUnknown(CONST CString &command);
 

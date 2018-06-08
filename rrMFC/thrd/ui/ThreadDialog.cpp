@@ -1,37 +1,37 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainDialog.h"
+#include "ThreadDialog.h"
 
 #include "rrwindows/dbgcon.h"
 #include "rrwindows/dbgprt.h"
 
-IMPLEMENT_DYNCREATE(MainDialog, CDialog)
+IMPLEMENT_DYNAMIC(ThreadDialog, CDialog)
 
-BEGIN_MESSAGE_MAP(MainDialog, CDialog)
-    ON_BN_CLICKED(IDC_START_BUTTON, &MainDialog::OnBnClickedStartButton)
-    ON_BN_CLICKED(IDC_STOP_BUTTON, &MainDialog::OnBnClickedStopButton)
+BEGIN_MESSAGE_MAP(ThreadDialog, CDialog)
+    ON_BN_CLICKED(IDC_START_BUTTON, &ThreadDialog::OnBnClickedStartButton)
+    ON_BN_CLICKED(IDC_STOP_BUTTON, &ThreadDialog::OnBnClickedStopButton)
     ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 #// Constructors
 
-MainDialog::
-MainDialog(CWnd *pParent /*=NULL*/)
+ThreadDialog::
+ThreadDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
     DbgConPrtMeth(Yellow);
 }
 
-MainDialog::
-~MainDialog()
+ThreadDialog::
+~ThreadDialog()
 {
     DbgConPrtMeth(Yellow);
 }
 
 #// Overridables
 
-BOOL MainDialog::
+BOOL ThreadDialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
@@ -39,14 +39,14 @@ OnInitDialog()
     return TRUE;
 }
 
-BOOL MainDialog::
+BOOL ThreadDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
     DbgConPrtMethWndMsg(Yellow);
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID MainDialog::
+VOID ThreadDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -55,64 +55,63 @@ DoDataExchange(CDataExchange *pDX)
     DDX_Text(pDX, IDC_NUMBER_STATIC, Number);
 }
 
-UINT MainDialog::
+UINT ThreadDialog::
 CountThreadFunction(LPVOID pParam)
 {
     UNUSED_ALWAYS(pParam);
     while (CountThreadLoopFlag) {
-        ++Count;
+        ++Number;
         Sleep(1);
     }
     return EXIT_SUCCESS;
 }
 
-UINT MainDialog::
+UINT ThreadDialog::
 CountThreadWrapper(LPVOID pObject)
 {
-    MainDialog *CONST self = reinterpret_cast<MainDialog*>(pObject);
-    ASSERT(self);
+    ThreadDialog *CONST self = reinterpret_cast<ThreadDialog*>(pObject);
+    if (!self || !self->IsKindOf(RUNTIME_CLASS(ThreadDialog))) {
+        ASSERT(FALSE);
+        DbgPrtD(TEXT("Failed with invalid self pointer.\n"));
+        return EXIT_FAILURE;
+    }
     return self->CountThreadFunction(NULL);
 }
 
-VOID MainDialog::
+VOID ThreadDialog::
 OnTimer(UINT_PTR nIDEvent)
 {
     switch (nIDEvent) {
     case REFRESH_UI:
         UpdateData(FALSE);
         break;
-    case UPDATE_NUMBER_REFRESH_UI:
-        Number = Count;
-        UpdateData(FALSE);
-        break;
     default:
         ASSERT(FALSE);
-        DbgConPrt(White, TEXT("Unknown TimerId(%u) in MainDialog::OnTimer switch-case-default.\n"), nIDEvent);
-        DbgPrtD(TEXT("Unknown TimerId(%u) in MainDialog::OnTimer switch-case-default.\n"), nIDEvent);
+        DbgPrtD(TEXT("Failed with unknown switch-case-route: nIDEvent=%u.\n"), nIDEvent);
         break;
     }
 
     CDialog::OnTimer(nIDEvent);
 }
 
-VOID MainDialog::
+VOID ThreadDialog::
 OnBnClickedStartButton()
 {
     DbgConPrtMeth(Yellow);
-    if (!CountThreadLoopFlag) {
+    if (!CountThread) {
         CountThreadLoopFlag = TRUE;
         CountThread = AfxBeginThread(CountThreadWrapper, this);
-        SetTimer(UPDATE_NUMBER_REFRESH_UI, 40, NULL);
+        SetTimer(REFRESH_UI, 40, NULL);
     }
 }
 
-VOID MainDialog::
+VOID ThreadDialog::
 OnBnClickedStopButton()
 {
     DbgConPrtMeth(Yellow);
-    if (CountThreadLoopFlag) {
+    if (CountThread) {
         CountThreadLoopFlag = FALSE;
         CountThread = NULL;
-        KillTimer(UPDATE_NUMBER_REFRESH_UI);
+        KillTimer(REFRESH_UI);
     }
 }

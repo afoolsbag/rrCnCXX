@@ -1,9 +1,9 @@
-//===-- Application ---------------------------------------------*- C++ -*-===//
+//===-- Thread Application --------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 应用（类）。
+/// \brief 线程应用（类）。
 ///
-/// \verison 2018-05-28
+/// \verison 2018-06-08
 /// \since 2018-04-28
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,14 +12,14 @@
 
 #pragma once
 
-/// \brief 应用（类）。
-class Application: public CWinApp {
-    DECLARE_DYNCREATE(Application)
+/// \brief 线程应用（类）。
+class ThreadApplication: public CWinApp {
+    DECLARE_DYNAMIC(ThreadApplication)
 
 #// Constructors
 public:
-    Application();
-    virtual ~Application() override;
+    ThreadApplication();
+    virtual ~ThreadApplication() override;
 
 #// Attributes
 public:
