@@ -9,6 +9,7 @@
 #include "rrwindows/dbgcon.h"
 
 #include <string>
+#include "rrwindows/errtxt.h"
 
 IMPLEMENT_DYNAMIC(Application, CWinApp)
 
@@ -49,7 +50,7 @@ InitInstance()
     TCHAR buf[512] = TEXT("");
     size_t len = 0;
     while (TRUE) {
-        _cputts(TEXT("\n"));
+        ConPut(TEXT("\n"));
         ConColPrt(White, TEXT("Enter a command: ")); _cgetts_s(buf, &len);
         CString command(buf);
         command.Trim();
@@ -82,7 +83,7 @@ VOID Application::
 ShowHello()
 {
     ClearConsoleScreen();
-    ConColPrt(White,
+    ConColPut(White,
               TEXT("\n")
               TEXT("                        _/      _/  _/_/_/_/    _/_/_/   \n")
               TEXT("   _/  _/_/  _/  _/_/  _/_/  _/_/  _/        _/          \n")
@@ -98,15 +99,15 @@ ShowHello()
               TEXT("         _/        _/                                                                          \n")
               TEXT("        _/        _/                                                                           \n")
               TEXT("\n")
-              TEXT("Command line interface is ")); ConColPrt(Green, TEXT("enabled")); ConColPrt(White, TEXT(".\n"));
+              TEXT("Command line interface is ")); ConColPut(Green, TEXT("enabled")); ConColPut(White, TEXT(".\n"));
 }
 
 VOID Application::
 ShowHelp()
 {
-    ConColPrt(White,
+    ConColPut(White,
               TEXT("Commands(case insensitivity):\n"));
-    ConColPrt(Aqua,
+    ConColPut(Aqua,
               TEXT("   ?\n")
               TEXT("   clearscreen\n")
               TEXT("   cls\n")
@@ -119,15 +120,15 @@ ShowHelp()
 VOID Application::
 ShowStatus()
 {
-    ConColPrt(White,
+    ConColPut(White,
               TEXT("Status:\n"));
-    ConColPrt(LightRed,
+    ConColPut(LightRed,
               TEXT("   Resource A: 97%%\n"));
-    ConColPrt(Green,
+    ConColPut(Green,
               TEXT("   Resource B: 42%%\n"));
-    ConColPrt(Yellow,
+    ConColPut(Yellow,
               TEXT("   Resource C: 66%%\n"));
-    ConColPrt(White,
+    ConColPut(White,
               TEXT("   Progress 0: [## 74%% ###################################################################..........................]\n")
               TEXT("   Progress 1: [## 53%% ##############################################...............................................]\n")
               TEXT("   Progress 2: [## 88%% #################################################################################............]\n")
@@ -141,6 +142,9 @@ ShowStatus()
 VOID Application::
 ShowUnknown(CONST CString &command)
 {
-    ConColPrt(White, TEXT("The command ")); ConColPrt(Aqua, static_cast<LPCTSTR>(command)); ConColPrt(White, TEXT(" is unknown."));
-    ConColPrt(White, TEXT(" Enter ")); ConColPrt(Aqua, TEXT("help")); ConColPrt(White, TEXT(" to list valid commands.\n"));
+    ConColPut(White, TEXT("The command "));
+    ConColPut(Aqua, static_cast<LPCTSTR>(command));
+    ConColPut(White, TEXT(" is unknown. Enter "));
+    ConColPut(Aqua, TEXT("help"));
+    ConColPut(White, TEXT(" to list valid commands.\n"));
 }

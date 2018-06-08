@@ -21,20 +21,17 @@ StringTranscode(
     INT rv = 0;
     
     rv = MultiByteToWideChar(inputCodePage, 0, inputString, inputBytesCount, NULL, 0);
-    if (!rv)
-        goto out;
+    if (!rv) goto out;
 
     CONST SIZE_T ucnt = rv;
     WCHAR *ustr = (WCHAR *)calloc(ucnt, sizeof(WCHAR));
     if (!ustr) {
         SetLastError(ERROR_OUTOFMEMORY);
-        rv = 0;
-        goto out;
+        rv = 0; goto out;
     }
 
     rv = MultiByteToWideChar(inputCodePage, 0, inputString, inputBytesCount, ustr, ucnt);
-    if (!rv)
-        goto out_free_ustr;
+    if (!rv) goto out_free_ustr;
     
     rv = WideCharToMultiByte(outputCodePage, 0, ustr, ucnt, outputString, outputBytesCount, NULL, NULL);
 

@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台工具。
  *
- * \version 2018-06-07
+ * \version 2018-06-08
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -20,12 +20,12 @@
 /**
  * \brief 控制台颜色。
  */
-enum ConsoleColor {
+typedef enum ConsoleColor {
     Black = 0x0, Blue = 0x1, Green = 0x2, Aqua = 0x3,
     Red = 0x4, Purple = 0x5, Yellow = 0x6, White = 0x7,
     Gray = 0x8, LightBlue = 0x9, LightGreen = 0xA, LightAqua = 0xB,
     LightRed = 0xC, LightPurple = 0xD, LightYellow = 0xE, BrightWhite = 0xF
-};
+} ConsoleColor;
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,28 +34,14 @@ extern "C" {
 /**
  * \brief 获取控制台背景色。
  */
-RRWINDOWS_API FORCEINLINE enum ConsoleColor WINAPI_INLINE
-GetConsoleBackGroundColor(VOID)
-{
-    HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return Black;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return Black;
-    return (enum ConsoleColor)((csbi.wAttributes & 0x00F0) >> 4);
-}
+RRWINDOWS_API ConsoleColor WINAPI
+GetConsoleBackGroundColor(VOID);
 
 /**
  * \brief 获取控制台前景色。
  */
-RRWINDOWS_API FORCEINLINE enum ConsoleColor WINAPI_INLINE
-GetConsoleForeGroundColor(VOID)
-{
-    HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return White;
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return White;
-    return (enum ConsoleColor)(csbi.wAttributes & 0x000F);
-}
+RRWINDOWS_API ConsoleColor WINAPI
+GetConsoleForeGroundColor(VOID);
 
 /**
  * \brief 设定控制台颜色。
@@ -65,15 +51,17 @@ GetConsoleForeGroundColor(VOID)
  */
 RRWINDOWS_API VOID WINAPI
 SetConsoleColor(
-    _In_ CONST enum ConsoleColor backGroundColor,
-    _In_ CONST enum ConsoleColor foreGroundColor);
+    _In_ CONST ConsoleColor backGroundColor,
+    _In_ CONST ConsoleColor foreGroundColor);
 
 /**
  * \brief 设定控制台背景色。
+ *
+ * \param backGroundColor 背景色。
  */
 RRWINDOWS_API VOID WINAPI
 SetConsoleBackGroundColor(
-    _In_ CONST enum ConsoleColor backGroundColor);
+    _In_ CONST ConsoleColor backGroundColor);
 
 /**
  * \brief 设定控制台前景色。
@@ -82,24 +70,72 @@ SetConsoleBackGroundColor(
  */
 RRWINDOWS_API VOID WINAPI
 SetConsoleForeGroundColor(
-    _In_ CONST enum ConsoleColor foreGroundColor);
+    _In_ CONST ConsoleColor foreGroundColor);
+
+/**
+ * \brief 控制台放置有色字串（ANSI适配）。
+ *
+ * \param color 颜色。
+ * \param text  字串。
+ */
+RRWINDOWS_API VOID WINAPI
+ConsoleColorPutA(
+    _In_    CONST ConsoleColor color,
+    _In_z_ LPCSTR CONST        text);
+
+/**
+ * \brief 控制台放置有色字串（UNICODE适配）。
+ *
+ * \param color 颜色。
+ * \param text  字串。
+ */
+RRWINDOWS_API VOID WINAPI
+ConsoleColorPutW(
+    _In_     CONST ConsoleColor color,
+    _In_z_ LPCWSTR CONST        text);
+
+#ifdef _UNICODE
+# define ConsoleColorPut ConsoleColorPutW
+#else
+# define ConsoleColorPut ConsoleColorPutA
+#endif
+
+/** \brief 控制台放置有色字串（缩写）。 */
+#define ConColPut ConsoleColorPut
+
+#ifdef _UNICODE
+# define ConsolePut _cputws
+#else
+# define ConsolePut _cputs
+#endif
+
+/** \brief 控制台放置字串（缩写）。 */
+#define ConPut ConsolePut
 
 /**
  * \brief 控制台打印有色字串（ANSI适配）。
+ *
+ * \param color  颜色。
+ * \param format 格式。
+ * \param ...    参数。
  */
 RRWINDOWS_API VOID WINAPIV
 ConsoleColorPrintA(
-    _In_                           CONST enum ConsoleColor textColor,
-    _In_z_ _Printf_format_string_ LPCSTR CONST             format,
+    _In_                           CONST ConsoleColor color,
+    _In_z_ _Printf_format_string_ LPCSTR CONST        format,
     ...);
 
 /**
  * \brief 控制台打印有色字串（UNICODE适配）。
+ *
+ * \param color  颜色。
+ * \param format 格式。
+ * \param ...    参数。
  */
 RRWINDOWS_API VOID WINAPIV
 ConsoleColorPrintW(
-    _In_                            CONST enum ConsoleColor textColor,
-    _In_z_ _Printf_format_string_ LPCWSTR CONST             format,
+    _In_                            CONST ConsoleColor color,
+    _In_z_ _Printf_format_string_ LPCWSTR CONST        format,
     ...);
 
 #ifdef _UNICODE
@@ -110,6 +146,15 @@ ConsoleColorPrintW(
 
 /** \brief 控制台打印有色字串（缩写）。 */
 #define ConColPrt ConsoleColorPrint
+
+#ifdef _UNICODE
+# define ConsolePrint _cwprintf_s
+#else
+# define ConsolePrint _cprintf_s
+#endif
+
+/** \brief 控制台打印字串（缩写）。 */
+#define ConPrt ConsolePrint
 
 /**
  * \brief 清空控制台屏幕（ANSI适配）。

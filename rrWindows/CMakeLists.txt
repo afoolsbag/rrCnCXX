@@ -4,12 +4,15 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-05-23
+# 2016-10-12 – 2018-06-08
 # The MIT License
 
-project(rrWindows VERSION 2018.5.5 LANGUAGES C)
+project(rrWindows VERSION 2018.6.8 LANGUAGES C)
 project_extra()
 compiler_warning_level(HIGHEST UTF-8)
+
+add_definitions(-D_UNICODE -DUNICODE)
+remove_definitions(-D_MBCS)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 

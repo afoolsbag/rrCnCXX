@@ -7,13 +7,12 @@
 #include "check/check.h"
 
 #include "rrwindows/errtxt.h"
+#include "rrwindows/winstr.h"
 
 START_TEST(TestErrTxt)
 {
     GetProcessId(NULL);
-    size_t len = 0;
-    StringCchLength(GetLastErrorText(), STRSAFE_MAX_CCH, &len);
-    ck_assert(len);
+    ck_assert(StrLen(GetLastErrorText()));
 }
 END_TEST
 

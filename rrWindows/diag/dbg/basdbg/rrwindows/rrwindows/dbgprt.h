@@ -3,7 +3,7 @@
  * \defgroup gDbgPrt 调试打印
  * \ingroup gBasDbg
  *
- * \version 2018-06-07
+ * \version 2018-06-08
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,6 +13,7 @@
 
 #pragma once
 
+#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -58,14 +59,14 @@ DebugPrintW(
   * \brief 调试打印字串（调试适配）。
   * \details 形如`path/to/file.c(1337): @Function: ...`
   */
-# define DbgPrtD(format, ...) DbgPrt(TEXT("%s(%d): @%s: ") format, TEXT(__FILE__), __LINE__, TEXT(__func__), __VA_ARGS__)
+# define DbgPrtD(format, ...) DbgPrt(_T("%s(%d): @%s: ") format, _T(__FILE__), __LINE__, _T(__FUNCTION__), __VA_ARGS__)
  /**
   * \brief 函数名、函数修饰名和函数签名（调试适配）。
   * \details 形如`...: Function "F", decorated "_F", signature "void __cdecl F(void)".\\n`
   */
-# define DbgPrtF() DbgPrtD(TEXT("Function \"%s\", decorated \"%s\", signature \"%s\".\n"), TEXT(__FUNCTION__), TEXT(__FUNCDNAME__), TEXT(__FUNCSIG__))
+# define DbgPrtF() DbgPrtD(_T("Function \"%s\", decorated \"%s\", signature \"%s\".\n"), _T(__FUNCTION__), _T(__FUNCDNAME__), _T(__FUNCSIG__))
 #else
-# define DbgPrtD(format, ...) DbgPrt(TEXT("@%s: ") format, TEXT(__FUNCDNAME__), __VA_ARGS__)
+# define DbgPrtD(format, ...) DbgPrt(_T("@%s: ") format, _T(__FUNCTION__), __VA_ARGS__)
 # define DbgPrtF() ((void)0)
 #endif
 
