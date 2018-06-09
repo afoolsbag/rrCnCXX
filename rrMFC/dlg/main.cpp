@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-#include "Application.h"
+#include "DialogApplication.h"
 
 /// \brief Global Application
-Application GlobalApplication;
+DialogApplication GlobalApplication;

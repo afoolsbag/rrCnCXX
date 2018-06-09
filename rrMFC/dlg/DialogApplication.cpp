@@ -1,25 +1,25 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Application.h"
+#include "DialogApplication.h"
 
 #include "rrwindows/dbgcon.h"
 
-#include "ui/MainDialog.h"
+#include "ui/Dialog.h"
 
-IMPLEMENT_DYNAMIC(Application, CWinApp)
+IMPLEMENT_DYNAMIC(DialogApplication, CWinApp)
 
 #// Constructors
 
-Application::
-Application()
+DialogApplication::
+DialogApplication()
 {
     NewDebugConsole();
     DbgConPrtMeth(Red);
 }
 
-Application::
-~Application()
+DialogApplication::
+~DialogApplication()
 {
     DbgConPrtMeth(Red);
     DeleteDebugConsole();
@@ -27,15 +27,15 @@ Application::
 
 #// Overridables
 
-BOOL Application::
+BOOL DialogApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
     DbgConPrtMeth(Red);
 
-    MainDialog mainDlg;
-    m_pMainWnd = &mainDlg;
-    CONST INT_PTR result = mainDlg.DoModal();
+    Dialog mainWnd;
+    m_pMainWnd = &mainWnd;
+    CONST INT_PTR result = mainWnd.DoModal();
 
     DbgConPrtMeth(Red);
     switch (result) {

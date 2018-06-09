@@ -11,9 +11,9 @@
 #include <check/check.h>
 
 #include "rrwindows/cr8flr.h"
-#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
+#include "rrwindows/prtdbg.h"
 #include "tsuite_dirmgmt.h"
 
 START_TEST(TestCr8Flr)
@@ -28,7 +28,7 @@ START_TEST(TestCr8Flr)
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != (ec = CreateFolder(flrPath))) {
-        DbgPrtD(_T("CreateFolder failed, %lu, %s\n"), ec, ErrorTextOf(ec));
+        DpInfo(_T("CreateFolder failed, %lu, %s"), ec, ErrorTextOf(ec));
         ck_abort(); return;
     }
 }

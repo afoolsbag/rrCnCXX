@@ -8,7 +8,7 @@
 #pragma comment(lib, "ShLwApi.lib")
 #include <check/check.h>
 
-#include "rrwindows/dbgprt.h"
+#include "rrwindows/prtdbg.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "tsuite_sh.h"
@@ -16,7 +16,7 @@
 START_TEST(TestFExists)
 {
     if (!PathFileExists(ExecutablePath())) {
-        DbgPrtD(_T("TraverseFolder failed: %s, %lu, %s\n"), ExecutablePath(), GetLastError(), GetLastErrorText());
+        DpError(_T("TraverseFolder failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
         ck_abort();
     }
 }

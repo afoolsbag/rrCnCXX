@@ -10,10 +10,10 @@
 
 #include <check/check.h>
 
-#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "rrwindows/rmflr.h"
+#include "rrwindows/prtdbg.h"
 #include "tsuite_dirmgmt.h"
 
 START_TEST(TestRmFlr)
@@ -28,7 +28,7 @@ START_TEST(TestRmFlr)
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != (ec = RemoveFolder(flrPath))) {
-        DbgPrtD(_T("RemoveFolder failed: %lu, %s\n"), ec, ErrorTextOf(ec));
+        DpInfo(_T("RemoveFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
         ck_abort(); return;
     }
 }

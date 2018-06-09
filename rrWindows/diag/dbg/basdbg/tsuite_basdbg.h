@@ -4,4 +4,4 @@
 
 Suite *TSuiteBasDbg(void);
 
-TCase *TCaseDbgPrt(void);
+TCase *TCasePrtDbg(void);

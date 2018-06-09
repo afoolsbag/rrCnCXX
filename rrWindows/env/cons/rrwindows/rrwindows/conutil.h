@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台工具。
  *
- * \version 2018-06-08
+ * \version 2018-06-09
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -102,6 +102,22 @@ ConsoleColorPutW(
 
 /** \brief 控制台放置有色字串（缩写）。 */
 #define ConColPut ConsoleColorPut
+
+/** \brief 控制台放置有色字串便利宏（单色）。 */
+#define ConColPut1(color, text) \
+    ConsoleColorPut(color, text)
+/** \brief 控制台放置有色字串便利宏（双色）。 */
+#define ConColPut2(color, text, color2, text2) \
+    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2);}while(0)
+/** \brief 控制台放置有色字串便利宏（三色）。 */
+#define ConColPut3(color, text, color2, text2, color3, text3) \
+    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3);}while(0)
+/** \brief 控制台放置有色字串便利宏（四色）。 */
+#define ConColPut4(color, text, color2, text2, color3, text3, color4, text4) \
+    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3); ConsoleColorPut(color4, text4);}while(0)
+/** \brief 控制台放置有色字串便利宏（五色）。 */
+#define ConColPut5(color, text, color2, text2, color3, text3, color4, text4, color5, text5) \
+    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3); ConsoleColorPut(color4, text4); ConsoleColorPut(color5, text5);}while(0)
 
 #ifdef _UNICODE
 # define ConsolePut _cputws

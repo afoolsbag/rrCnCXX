@@ -19,7 +19,7 @@
 
 #include <check/check.h>
 
-#include "rrwindows/dbgprt.h"
+#include "rrwindows/prtdbg.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "rrwindows/winstr.h"
@@ -54,7 +54,7 @@ START_TEST(TestIni)
     return;
 
 out_dbgprt:
-    DbgPrtD(_T("*PrivateProfile* failed, %lu, %s\n"), GetLastError(), GetLastErrorText());
+    DpInfo(_T("*PrivateProfile* failed, %lu, %s"), GetLastError(), GetLastErrorText());
 out_abort:
     ck_abort();
     return;

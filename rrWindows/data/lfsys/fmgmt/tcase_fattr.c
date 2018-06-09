@@ -6,9 +6,9 @@
 
 #include <check/check.h>
 
-#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
+#include "rrwindows/prtdbg.h"
 #include "tsuite_fmgmt.h"
 
 /**
@@ -20,7 +20,7 @@ START_TEST(TestFAttr)
 {
     WIN32_FILE_ATTRIBUTE_DATA attr;
     if (!GetFileAttributesEx(ExecutablePath(), GetFileExInfoStandard, &attr)) {
-        DbgPrtD(_T("GetFileAttributesEx failed: %s, %lu, %s\n"), ExecutablePath(), GetLastError(), GetLastErrorText());
+        DpError(_T("GetFileAttributesEx failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
         ck_abort();
         return;
     }
@@ -29,7 +29,7 @@ START_TEST(TestFAttr)
     FileTimeToLocalFileTime(&attr.ftCreationTime, &ftLocal);
     SYSTEMTIME stLocal;
     FileTimeToSystemTime(&ftLocal, &stLocal);
-    DbgPrtD(_T("%s creation time: %hu:%hu:%hu.\n"), ExecutableName(), stLocal.wHour, stLocal.wMinute, stLocal.wSecond);
+    DpInfo(_T("%s creation time: %hu:%hu:%hu."), ExecutableName(), stLocal.wHour, stLocal.wMinute, stLocal.wSecond);
 }
 END_TEST
 

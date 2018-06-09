@@ -1,9 +1,9 @@
-//===-- Main Dialog ---------------------------------------------*- C++ -*-===//
+//===-- Dialog --------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主对话框（类）。
+/// \brief 对话框（类）。
 ///
-/// \verison 2018-06-01
+/// \verison 2018-06-09
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -14,14 +14,14 @@
 
 #include "resource.h"
 
-/// \brief 主对话框（类）。
+/// \brief 对话框（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class
-class MainDialog: public CDialog {
-    DECLARE_DYNAMIC(MainDialog)
+class Dialog: public CDialog {
+    DECLARE_DYNAMIC(Dialog)
 
 #// Constructors
 public:
-    MainDialog(CWnd *pParent = NULL);
+    Dialog(CWnd *pParent = NULL);
 
     /// \brief 初始化 `CDialog` 对象。 创建无模式对话框，并将其附加到`CDialog`对象。
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#create
@@ -43,11 +43,11 @@ public:
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#domodal
     virtual INT_PTR DoModal() override;
 
-    virtual ~MainDialog() override;
+    virtual ~Dialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_MAIN_DIALOG };
+    enum { IDD = IDD_DIALOG };
 
 #// Operations
 public:

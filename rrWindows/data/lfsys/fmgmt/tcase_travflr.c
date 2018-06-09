@@ -6,7 +6,7 @@
 
 #include <check/check.h>
 
-#include "rrwindows/dbgprt.h"
+#include "rrwindows/prtdbg.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/travflr.h"
 #include "tsuite_fmgmt.h"
@@ -23,7 +23,7 @@ START_TEST(TestTravFlr)
     DWORD ec = ERROR_SUCCESS;
 
     if (ERROR_SUCCESS != (ec = TraverseFolder(ExecutableDirectoryPath(), OnFileFound, FALSE))) {
-        DbgPrtD(_T("TraverseFolder failed: %lu, %s\n"), ec, ErrorTextOf(ec));
+        DpInfo(_T("TraverseFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
         ck_abort(); return;
     }
 }

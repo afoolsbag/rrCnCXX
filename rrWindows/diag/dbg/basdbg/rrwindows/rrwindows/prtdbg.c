@@ -1,7 +1,7 @@
 /** \copyright The MIT License */
 
 #define RRWINDOWS_EXPORTS
-#include "dbgprt.h"
+#include "prtdbg.h"
 
 #include <stdlib.h>
 #include <strsafe.h>
@@ -11,7 +11,7 @@
 #define BUFFER_SIZE 1024
 
 RRWINDOWS_API VOID WINAPIV
-DebugPrintA(
+PrintDebugStringA(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
     ...)
 {
@@ -24,7 +24,7 @@ DebugPrintA(
 }
 
 RRWINDOWS_API VOID WINAPIV
-DebugPrintW(
+PrintDebugStringW(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     ...)
 {

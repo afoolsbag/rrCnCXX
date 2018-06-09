@@ -116,17 +116,15 @@ ShowHello()
               TEXT("         _/        _/                                                                          \n")
               TEXT("        _/        _/                                                                           \n")
               TEXT("\n"));
-    ConColPut(White,
-              TEXT("Command line interface is ")); ConColPut(Green, TEXT("enabled")); ConColPut(White, TEXT(".\n"));
+    ConColPut3(White, TEXT("Command line interface is "), Green, TEXT("enabled"), White, TEXT(".\n"));
 }
 
 VOID Application::
 ShowUnknown(CONST std::vector<CString> &tokens)
 {
-    if (!tokens.empty()) {
-        ConColPut(White, TEXT("The command ")); ConColPut(Aqua, static_cast<LPCTSTR>(tokens[0])); ConColPut(White, TEXT(" is unknown. "));
-    }
-    ConColPut(White, TEXT("Enter ")); ConColPut(Aqua, TEXT("help")); ConColPut(White, TEXT(" to list valid commands.\n"));
+    if (!tokens.empty())
+        ConColPut3(White, TEXT("The command "), Aqua, static_cast<LPCTSTR>(tokens[0]), White, TEXT(" is unknown. "));
+    ConColPut3(White, TEXT("Enter "), Aqua, TEXT("help"), White, TEXT(" to list valid commands.\n"));
 }
 
 VOID Application::
