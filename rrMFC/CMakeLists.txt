@@ -11,11 +11,10 @@ project(rrMFC VERSION 2018.6.8 LANGUAGES CXX)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8 ANALYZE)
 
-add_definitions(-D_UNICODE -DUNICODE)
-remove_definitions(-D_MBCS)
-
 facile_add_doxygen()
 
+add_definitions(-D_UNICODE -DUNICODE)
+remove_definitions(-D_MBCS)
 add_definitions(-D_AFXDLL)
 set(CMAKE_MFC_FLAG 2)
 aux_add_subdirectories()

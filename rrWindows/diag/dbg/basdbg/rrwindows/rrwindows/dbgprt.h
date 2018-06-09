@@ -3,7 +3,7 @@
  * \defgroup gDbgPrt 调试打印
  * \ingroup gBasDbg
  *
- * \version 2018-06-08
+ * \version 2018-06-09
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -47,9 +47,6 @@ DebugPrintW(
 # define DebugPrint DebugPrintA
 #endif
 
-/** \brief 调试打印字串（缩写）。 */
-#define DbgPrt DebugPrint
-
 #ifdef __cplusplus
 }
 #endif
@@ -59,7 +56,7 @@ DebugPrintW(
   * \brief 调试打印字串（调试适配）。
   * \details 形如`path/to/file.c(1337): @Function: ...`
   */
-# define DbgPrtD(format, ...) DbgPrt(_T("%s(%d): @%s: ") format, _T(__FILE__), __LINE__, _T(__FUNCTION__), __VA_ARGS__)
+# define DbgPrtD(format, ...) DebugPrint(_T("%s(%d): @%s: ") format, _T(__FILE__), __LINE__, _T(__FUNCTION__), __VA_ARGS__)
  /**
   * \brief 函数名、函数修饰名和函数签名（调试适配）。
   * \details 形如`...: Function "F", decorated "_F", signature "void __cdecl F(void)".\\n`
@@ -70,7 +67,7 @@ DebugPrintW(
   * \brief 调试打印字串（发布适配）。
   * \details 形如`@Function: ...`
   */
-# define DbgPrtD(format, ...) DbgPrt(_T("@%s: ") format, _T(__FUNCTION__), __VA_ARGS__)
+# define DbgPrtD(format, ...) DebugPrint(_T("@%s: ") format, _T(__FUNCTION__), __VA_ARGS__)
 # define DbgPrtF() ((void)0)
 #endif
 

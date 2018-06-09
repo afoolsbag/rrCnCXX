@@ -19,6 +19,7 @@
 
 #include <check/check.h>
 
+#include "rrwindows/winstr.h"
 #include "tsuite_str.h"
 
 /**
@@ -31,7 +32,7 @@ START_TEST(TestStringCchCopy)
         ck_abort();
         return;
     }
-    ck_assert_str_eq(txt, _T("love"));
+    ck_assert(CSTR_EQUAL == CmpStr(txt, _T("love")));
 }
 END_TEST
 

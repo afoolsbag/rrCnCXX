@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-08
+ * \version 2018-06-09
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -64,11 +64,11 @@ extern "C" {
 
 #ifdef __cplusplus
 /** \brief 调试控制台打印（当前）方法。 */
-# define DbgConPrtMeth(color)       DbgConPrt(color, _T("%s\n"), _T(__FUNCTION__))
+# define DbgConPrtMeth(color)       DebugConsolePut(color, _T(__FUNCTION__) _T("\n"))
 /** \brief 调试控制台打印（当前）`CmdMsg`方法。 */
-# define DbgConPrtMethCmdMsg(color) DbgConPrt(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
+# define DbgConPrtMethCmdMsg(color) DebugConsolePrint(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
 /** \brief 调试控制台打印（当前）`WndMsg`方法。 */
-# define DbgConPrtMethWndMsg(color) DbgConPrt(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
+# define DbgConPrtMethWndMsg(color) DebugConsolePrint(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
 #else
 # define DbgConPrtMeth(color)       ((void)0)
 # define DbgConPrtMethCmdMsg(color) ((void)0)

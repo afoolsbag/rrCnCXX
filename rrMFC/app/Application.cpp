@@ -9,22 +9,6 @@
 #include "rrwindows/conutil.h"
 #include "rrwindows/dbgcon.h"
 
-namespace {
-
-static std::vector<CString> SpliteCommand(const CString &command)
-{
-    std::vector<CString> tokens;
-    INT pos = 0;
-    while (TRUE) {
-        CONST CString token = command.Tokenize(TEXT("\t\n\r "), pos);
-        if (token.IsEmpty()) break;
-        tokens.push_back(token);
-    }
-    return tokens;
-}
-
-}//namespace
-
 IMPLEMENT_DYNAMIC(Application, CWinApp)
 
 #// Constructors
@@ -32,7 +16,7 @@ IMPLEMENT_DYNAMIC(Application, CWinApp)
 Application::
 Application()
 {
-    AllocConsole();
+    NewDebugConsole();
     DbgConPrtMeth(Red);
 }
 
@@ -40,7 +24,7 @@ Application::
 ~Application()
 {
     DbgConPrtMeth(Red);
-    FreeConsole();
+    DeleteDebugConsole();
 }
 
 #// Overridables
@@ -58,25 +42,29 @@ InitInstance()
     CWinApp::InitInstance();
     DbgConPrtMeth(Red);
 
+    if (SW_HIDE != m_nCmdShow)
+        AllocConsole();
+
     // Command Line UI Loop
     SetConsoleForeGroundColor(LightAqua);
     ShowHello();
     TCHAR buf[512] = TEXT("");
     size_t len = 0;
     while (TRUE) {
-        ConColPrt(White, TEXT("\nEnter a command: ")); _cgetts_s(buf, &len);
-        std::vector<CString> tokens = SpliteCommand(buf);
-        if (tokens.empty()) continue;
-        if (!tokens[0].CompareNoCase(TEXT("clearscreen")) || !tokens[0].CompareNoCase(TEXT("cls")))
+        ConColPut(White, TEXT("\nEnter a command: ")); _cgetts_s(buf, &len);
+        std::vector<CString> tokens = TokenizeCommandLine(buf);
+        if (tokens.empty())
+            ShowUnknown(tokens);
+        else if (CommandMatches(tokens[0], TEXT("clearscreen"), TEXT("cls")))
             ShowHello();
-        else if (!tokens[0].CompareNoCase(TEXT("?")) || !tokens[0].CompareNoCase(TEXT("help")))
-            ShowHelp(tokens.size() < 2 ? TEXT("") : tokens[1]);
-        else if (!tokens[0].CompareNoCase(TEXT("status")))
-            ShowStatus();
-        else if (!tokens[0].CompareNoCase(TEXT("quit")) || !tokens[0].CompareNoCase(TEXT("exit")))
+        else if (CommandMatches(tokens[0], TEXT("help"), TEXT("?")))
+            ShowHelp(tokens);
+        else if (CommandMatches(tokens[0], TEXT("status")))
+            ShowStatus(tokens);
+        else if (CommandMatches(tokens[0], TEXT("quit"), TEXT("exit")))
             break;
         else
-            ShowUnknown(tokens[0]);
+            ShowUnknown(tokens);
 #ifndef _UNICODE
         _cgetts_s(buf, &len);
 #endif
@@ -88,11 +76,25 @@ InitInstance()
 INT Application::
 ExitInstance()
 {
+    FreeConsole();
     DbgConPrtMeth(Red);
     return CWinApp::ExitInstance();
 }
 
 #// Implementation
+
+std::vector<CString> Application::
+TokenizeCommandLine(CONST CString& commandLine)
+{
+    std::vector<CString> tokens;
+    INT pos = 0;
+    while (TRUE) {
+        CONST CString token = commandLine.Tokenize(TEXT("\t\n\v\r "), pos);
+        if (token.IsEmpty()) break;
+        tokens.push_back(token);
+    }
+    return tokens;
+}
 
 VOID Application::
 ShowHello()
@@ -119,53 +121,36 @@ ShowHello()
 }
 
 VOID Application::
-ShowHelp(CONST CString &param)
+ShowUnknown(CONST std::vector<CString> &tokens)
 {
-    if (!param.CompareNoCase(TEXT("console"))) {
-        ConColPrt(White,
-                  TEXT("Codepage: input %u, output %u.\n"), GetConsoleCP(), GetConsoleOutputCP());
-    } else {
-        ConColPut(White,
-                  TEXT("Commands(case insensitivity):\n"));
-        ConColPut(Aqua,
-                  TEXT("   ?\n")
-                  TEXT("   clearscreen\n")
-                  TEXT("   cls\n")
-                  TEXT("   exit\n")
-                  TEXT("   help [console]\n")
-                  TEXT("   quit\n")
-                  TEXT("   status\n"));
+    if (!tokens.empty()) {
+        ConColPut(White, TEXT("The command ")); ConColPut(Aqua, static_cast<LPCTSTR>(tokens[0])); ConColPut(White, TEXT(" is unknown. "));
     }
+    ConColPut(White, TEXT("Enter ")); ConColPut(Aqua, TEXT("help")); ConColPut(White, TEXT(" to list valid commands.\n"));
 }
 
 VOID Application::
-ShowStatus()
+ShowHelp(CONST std::vector<CString> &tokens)
 {
+    if (tokens.empty()) return;
+    ConColPut(White,
+              TEXT("Commands(case insensitivity):\n"));
+    ConColPut(Aqua,
+              TEXT("   ?\n")
+              TEXT("   clearscreen\n")
+              TEXT("   cls\n")
+              TEXT("   exit\n")
+              TEXT("   help\n")
+              TEXT("   quit\n")
+              TEXT("   status\n"));
+}
+
+VOID Application::
+ShowStatus(CONST std::vector<CString> &tokens)
+{
+    if (tokens.empty()) return;
     ConColPut(White,
               TEXT("Status:\n"));
-    ConColPut(LightRed,
-              TEXT("   Resource A: 97%%\n"));
-    ConColPut(Green,
-              TEXT("   Resource B: 42%%\n"));
-    ConColPut(Yellow,
-              TEXT("   Resource C: 66%%\n"));
-    ConColPut(White,
-              TEXT("   Progress 0: [## 74%% ###################################################################..........................]\n")
-              TEXT("   Progress 1: [## 53%% ##############################################...............................................]\n")
-              TEXT("   Progress 2: [## 88%% #################################################################################............]\n")
-              TEXT("   Progress 3: [## 46%% #######################################......................................................]\n")
-              TEXT("   Progress 4: [## 24%% #################............................................................................]\n")
-              TEXT("   Progress 5: [##  5%% .............................................................................................]\n")
-              TEXT("   Progress 6: [## 92%% #####################################################################################........]\n")
-              TEXT("   Progress 7: [## 13%% ######.......................................................................................]\n"));
-}
-
-VOID Application::
-ShowUnknown(CONST CString &command)
-{
-    ConColPut(White, TEXT("The command "));
-    ConColPut(Aqua, static_cast<LPCTSTR>(command));
-    ConColPut(White, TEXT(" is unknown. Enter "));
-    ConColPut(Aqua, TEXT("help"));
-    ConColPut(White, TEXT(" to list valid commands.\n"));
+    ConColPrt(White,
+              TEXT("   Codepage input %u, output %u.\n"), GetConsoleCP(), GetConsoleOutputCP());
 }

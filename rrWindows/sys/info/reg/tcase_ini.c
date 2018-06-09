@@ -22,6 +22,7 @@
 #include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
+#include "rrwindows/winstr.h"
 #include "tsuite_reg.h"
 
 /**
@@ -45,7 +46,7 @@ START_TEST(TestIni)
     SetLastError(ERROR_SUCCESS);
     if (!GetPrivateProfileString(_T("app"), _T("str"), NULL, txt, _countof(txt), iniPath))
         goto out_dbgprt;
-    ck_assert_str_eq(txt, _T("wow"));
+    ck_assert(CSTR_EQUAL == CmpStr(txt, _T("wow")));
 
     INT num = GetPrivateProfileInt(_T("app"), _T("int"), 0, iniPath);
     ck_assert_int_eq(num, 666);

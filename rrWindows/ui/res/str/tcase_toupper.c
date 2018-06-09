@@ -4,7 +4,7 @@
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-06-02
+ * \version 2018-06-09
  * \since 2018-02-23
  * \copyright The MIT License
  *
@@ -17,6 +17,7 @@
 
 #include <check/check.h>
 
+#include "rrwindows/winstr.h"
 #include "tsuite_str.h"
 
 /**
@@ -28,7 +29,7 @@ START_TEST(TestCharUpper)
 {
     TCHAR txt[] = _T("love");
     CharUpper(txt);
-    ck_assert_str_eq(txt, _T("LOVE"));
+    ck_assert(CSTR_EQUAL == CmpStr(txt, _T("LOVE")));
 }
 END_TEST
 
