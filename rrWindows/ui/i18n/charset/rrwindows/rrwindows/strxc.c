@@ -18,25 +18,15 @@ StringTranscode(
     _Out_writes_to_opt_(outputBytesCount, return)  LPSTR CONST outputString,
     _In_                                           CONST INT   outputBytesCount)
 {
-    INT rv = 0;
-    
-    rv = MultiByteToWideChar(inputCodePage, 0, inputString, inputBytesCount, NULL, 0);
-    if (!rv) goto out;
+    CONST size_t uRqdCnt = MultiByteToWideChar(inputCodePage, 0, inputString, inputBytesCount, NULL, 0);
+    if (0 == uRqdCnt) return 0;
 
-    CONST SIZE_T ucnt = rv;
-    WCHAR *ustr = (WCHAR *)calloc(ucnt, sizeof(WCHAR));
-    if (!ustr) {
-        SetLastError(ERROR_OUTOFMEMORY);
-        rv = 0; goto out;
-    }
+    WCHAR *CONST uStr = (WCHAR *)calloc(uRqdCnt, sizeof(WCHAR));
+    if (NULL == uStr) { SetLastError(ERROR_OUTOFMEMORY); return 0; }
 
-    rv = MultiByteToWideChar(inputCodePage, 0, inputString, inputBytesCount, ustr, ucnt);
-    if (!rv) goto out_free_ustr;
-    
-    rv = WideCharToMultiByte(outputCodePage, 0, ustr, ucnt, outputString, outputBytesCount, NULL, NULL);
+    CONST size_t uCnt = MultiByteToWideChar(inputCodePage, 0, inputString, inputBytesCount, uStr, uRqdCnt);
+    if (0 == uCnt) { free(uStr); return 0; }
 
-out_free_ustr:
-    free(ustr);
-out:
-    return rv;
+    CONST size_t bCnt = WideCharToMultiByte(outputCodePage, 0, uStr, uCnt, outputString, outputBytesCount, NULL, NULL);
+    free(uStr); return bCnt;
 }

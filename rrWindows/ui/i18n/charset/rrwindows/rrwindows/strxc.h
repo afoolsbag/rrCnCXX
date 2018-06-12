@@ -6,7 +6,7 @@
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *
- * \version 2018-05-04
+ * \version 2018-06-11
  * \since 2018-01-11
  * \authors zhengrr
  * \copyright The MIT License
@@ -56,7 +56,7 @@ extern "C" {
  * \sa ["WideCharToMultiByte function"](https://msdn.microsoft.com/library/dd374130). *Microsoft® Developer Network*.
  * \sa ["Code Page Identifiers"](https://msdn.microsoft.com/library/dd317756). *Microsoft® Developer Network*.
  *
- * \version 2018-05-02
+ * \version 2018-06-11
  * \since 2018-04-26
  * \authors zhengrr
  */
@@ -73,6 +73,47 @@ StringTranscode(
     _In_                                           CONST INT   outputBytesCount);
 
 #ifdef __cplusplus
+}
+#endif
+
+#ifdef __cplusplus
+# include <memory>
+# include <string>
+
+template <std::size_t isz, std::size_t osz>
+inline INT StringTranscode(
+    CONST UINT inputCodePage,
+    CONST CHAR(&inputString)[isz],
+    CONST UINT outputCodePage,
+    CHAR(&outputString)[osz])
+{
+    return StringTranscode(inputCodePage, inputString, isz, outputCodePage, outputString, osz);
+}
+
+inline std::string StringTranscode(
+    CONST UINT inputCodePage,
+    CONST std::string &inputString,
+    CONST UINT outputCodePage)
+{
+    CONST INT uRqdCnt = MultiByteToWideChar(inputCodePage, 0, inputString.c_str(), inputString.length(), NULL, 0);
+    if (0 == uRqdCnt) return std::string();
+
+    std::unique_ptr<WCHAR[]> CONST uStr(new WCHAR[uRqdCnt]);
+    if (NULL == uStr) { SetLastError(ERROR_OUTOFMEMORY); return std::string(); }
+
+    CONST INT uCnt = MultiByteToWideChar(inputCodePage, 0, inputString.c_str(), inputString.length(), uStr.get(), uRqdCnt);
+    if (0 == uCnt) return std::string();
+
+    CONST INT bRqdCnt = WideCharToMultiByte(outputCodePage, 0, uStr.get(), uCnt, NULL, 0, NULL, NULL);
+    if (0 == bRqdCnt) return std::string();
+
+    std::unique_ptr<CHAR[]> CONST bStr(new CHAR[bRqdCnt]);
+    if (NULL == bStr) { SetLastError(ERROR_OUTOFMEMORY); return std::string(); }
+
+    CONST INT bCnt = WideCharToMultiByte(outputCodePage, 0, uStr.get(), uCnt, bStr.get(), bRqdCnt, NULL, NULL);
+    if (0 == bCnt) return std::string();
+
+    return std::string(bStr.get(), bCnt);
 }
 #endif
 

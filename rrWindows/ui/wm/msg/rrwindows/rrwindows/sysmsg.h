@@ -5,7 +5,7 @@
  *
  * \sa http://blog.airesoft.co.uk/2009/11/wm_messages/
  *
- * \version 2018-04-24
+ * \version 2018-06-11
  * \since 2018-04-19
  * \authors zhengrr
  * \copyright The MIT License
@@ -49,6 +49,30 @@
 #endif
 #ifndef WM_NCUAHDRAWCAPTION
 #define WM_NCUAHDRAWCAPTION             0x00AE
+#endif
+#ifndef DM_POINTERHITTEST
+#define DM_POINTERHITTEST               0x0250
+#endif
+#ifndef WM_POINTERROUTEDTO
+#define WM_POINTERROUTEDTO              0x0251
+#endif
+#ifndef WM_POINTERROUTEDAWAY
+#define WM_POINTERROUTEDAWAY            0x0252
+#endif
+#ifndef WM_POINTERROUTEDRELEASED
+#define WM_POINTERROUTEDRELEASED        0x0253
+#endif
+#ifndef WM_DPICHANGED
+#define WM_DPICHANGED                   0x02E0
+#endif
+#ifndef WM_DPICHANGED_BEFOREPARENT
+#define WM_DPICHANGED_BEFOREPARENT      0x02E2
+#endif
+#ifndef WM_DPICHANGED_AFTERPARENT
+#define WM_DPICHANGED_AFTERPARENT       0x02E3
+#endif
+#ifndef WM_GETDPISCALEDSIZE
+#define WM_GETDPISCALEDSIZE             0x02E4
 #endif
 #ifndef WM_AFX_reserved_361
 #define WM_AFX_reserved_361             0x0361

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 窗口（类）。
 ///
-/// \verison 2018-06-01
+/// \verison 2018-06-12
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,13 +12,15 @@
 
 #pragma once
 
+///
 /// \brief 窗口（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class
+///
 class Window: public CWnd {
-    DECLARE_DYNAMIC(Window)
 
 #// Constructors
 public:
+    /// \brief 构造函数。
     Window();
 
     /// \brief 创建Windows子窗口。
@@ -33,6 +35,7 @@ public:
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#createex
     virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam = NULL) override;
 
+    /// \brief 析构函数。
     virtual ~Window() override;
 
 #// Attributes
@@ -66,6 +69,8 @@ protected:
 
 #// Implementation
 protected:
+
+    enum TimerId { ZERO = 0, ALPHA, BETA, GAMMA };
 
 #// Message Handlers
 protected:
@@ -158,5 +163,28 @@ protected:
     /// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#onpaint
     afx_msg VOID OnPaint();
 
+    // TIMER
+
+    /// \brief 指示计时器的超时间隔已过。
+    /// \details `SetTimer(TimerId::ALPHA, 1000, NULL);`\n
+    ///          `KillTimer(TimerId::ALPHA);`
+    /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cwnd-class#ontimer>
+    afx_msg VOID OnTimer(UINT_PTR nIDEvent);
+
+    // CUSTOM
+
+    /// \brief 当收到`PM_CUSTOM_PRIVATE_MESSAGE`消息时调用。
+    /// \details `PostMessage(PM_CUSTOM_PRIVATE_MESSAGE);`。
+    afx_msg LRESULT OnCustomPrivateMessage(WPARAM wParam, LPARAM lParam);
+    
+    /// \brief 当收到`AM_CUSTOM_APPLICATION_MESSAGE`。
+    /// \details `PostMessage(AM_CUSTOM_APPLICATION_MESSAGE);`。
+    afx_msg LRESULT OnCustomApplicationMessage(WPARAM wParam, LPARAM lParam);
+
+    /// \brief 当收到`RM_CUSTOM_REGISTER_MESSAGE`消息时调用。
+    /// \details `::PostMessage(HWND_BROADCAST, RM_CUSTOM_REGISTER_MESSAGE, NULL, NULL);`。
+    afx_msg LRESULT OnCustomRegisterMessage(WPARAM wParam, LPARAM lParam);
+
     DECLARE_MESSAGE_MAP()
+public:
 };

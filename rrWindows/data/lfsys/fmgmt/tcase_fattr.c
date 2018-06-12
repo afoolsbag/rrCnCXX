@@ -20,7 +20,7 @@ START_TEST(TestFAttr)
 {
     WIN32_FILE_ATTRIBUTE_DATA attr;
     if (!GetFileAttributesEx(ExecutablePath(), GetFileExInfoStandard, &attr)) {
-        DpError(_T("GetFileAttributesEx failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
+        DpWarn(_T("GetFileAttributesEx failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
         ck_abort();
         return;
     }

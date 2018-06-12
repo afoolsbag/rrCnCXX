@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Window.h"
+#include "Wnd.h"
 
 #include "rrwindows/dbgcon.h"
 
@@ -11,13 +11,13 @@ VOID Window::
 OnNcPaint()
 {
     CWnd::OnNcPaint();
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 BOOL Window::
 OnEraseBkgnd(CDC *pDC)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CWnd::OnEraseBkgnd(pDC);
 }
 
@@ -25,5 +25,5 @@ VOID Window::
 OnPaint()
 {
     CWnd::OnPaint();
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }

@@ -1,11 +1,16 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Window.h"
+#include "Wnd.h"
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNAMIC(Window, CWnd)
+#include "WndApp.h"
+
+#// Private Message
+
+/// \brief 定制私有消息。
+#define PM_CUSTOM_PRIVATE_MESSAGE (WM_USER + 1)
 
 BEGIN_MESSAGE_MAP(Window, CWnd)
     // CREATE & DESTROY
@@ -36,6 +41,14 @@ BEGIN_MESSAGE_MAP(Window, CWnd)
     ON_WM_NCPAINT()
     ON_WM_ERASEBKGND()
     ON_WM_PAINT()
+
+    // TIMER
+    ON_WM_TIMER()
+
+    // CUSTOM
+    ON_MESSAGE(PM_CUSTOM_PRIVATE_MESSAGE, &Window::OnCustomPrivateMessage)
+    ON_MESSAGE(AM_CUSTOM_APPLICATION_MESSAGE, &Window::OnCustomApplicationMessage)
+    ON_REGISTERED_MESSAGE(RM_CUSTOM_REGISTER_MESSAGE, &Window::OnCustomRegisterMessage)
 END_MESSAGE_MAP()
 
 #// Constructors
@@ -43,46 +56,46 @@ END_MESSAGE_MAP()
 Window::
 Window()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 
-    CString strWndClass = AfxRegisterWndClass(
+    CString wndClassName = AfxRegisterWndClass(
         CS_DBLCLKS,
         AfxGetApp()->LoadStandardCursor(IDC_ARROW),
         reinterpret_cast<HBRUSH>(COLOR_3DFACE + 1),
         AfxGetApp()->LoadStandardIcon(IDI_WINLOGO)
     );
 
-    CreateEx(0, strWndClass, TEXT("Window"),
+    CreateEx(0, wndClassName, TEXT("Window"),
              WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME,
-             CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+             CW_USEDEFAULT, CW_USEDEFAULT, 400, 300,
              NULL, NULL);
 }
 
 BOOL Window::
 Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext /*=NULL*/)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
 BOOL Window::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, INT x, INT y, INT nWidth, INT nHeight, HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam /*=NULL*/)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, nIDorHMenu, lpParam);
 }
 
 BOOL Window::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, lpParam);
 }
 
 Window::
 ~Window()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 #// Overridables
@@ -90,23 +103,21 @@ Window::
 BOOL Window::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    DbgConPrtMeth(Yellow);
-    cs.cx = 400;
-    cs.cy = 300;
+    DbgConMeth();
     return CWnd::PreCreateWindow(cs);
 }
 
 BOOL Window::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrtMethCmdMsg(Yellow);
+    DbgConCmdMsg();
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL Window::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConPrtMethWndMsg(Yellow);
+    DbgConWndMsg();
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -114,13 +125,13 @@ VOID Window::
 DoDataExchange(CDataExchange *pDX)
 {
     CWnd::DoDataExchange(pDX);
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 VOID Window::
 PostNcDestroy()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CWnd::PostNcDestroy();
 }
 

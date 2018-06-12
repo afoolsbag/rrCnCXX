@@ -16,7 +16,7 @@
 START_TEST(TestFExists)
 {
     if (!PathFileExists(ExecutablePath())) {
-        DpError(_T("TraverseFolder failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
+        DpWarn(_T("TraverseFolder failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
         ck_abort();
     }
 }

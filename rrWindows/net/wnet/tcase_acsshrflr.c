@@ -17,7 +17,7 @@ START_TEST(TestAcsShrFlr)
                                          _T("username"),
                                          _T("password"));
     if (ERROR_SUCCESS != ec)
-        DpInfo(_T("ConnectSharedFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
+        DpWarn(_T("ConnectSharedFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
 }
 END_TEST
 

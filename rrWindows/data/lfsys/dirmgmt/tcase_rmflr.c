@@ -28,7 +28,7 @@ START_TEST(TestRmFlr)
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != (ec = RemoveFolder(flrPath))) {
-        DpInfo(_T("RemoveFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
+        DpWarn(_T("RemoveFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
         ck_abort(); return;
     }
 }

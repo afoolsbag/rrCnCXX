@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-#include "Application.h"
+#include "App.h"
 
 /// \brief 全局应用（对象）。
 Application GlobalApplication;

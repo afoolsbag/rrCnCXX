@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Window.h"
+#include "Wnd.h"
 
 #include "rrwindows/dbgcon.h"
 
@@ -11,13 +11,13 @@ VOID Window::
 OnActivateApp(BOOL bActive, DWORD dwThreadID)
 {
     CWnd::OnActivateApp(bActive, dwThreadID);
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 BOOL Window::
 OnNcActivate(BOOL bActive)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CWnd::OnNcActivate(bActive);
 }
 
@@ -25,5 +25,5 @@ VOID Window::
 OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
     CWnd::OnActivate(nState, pWndOther, bMinimized);
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }

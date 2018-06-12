@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-09
+ * \version 2018-06-11
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -20,9 +20,6 @@
 #include "conutil.h"
 
 #ifdef __cplusplus
-# include <typeinfo>
-# include "rrwindows/sysmsgstr.h"
-
 extern "C" {
 #endif
 
@@ -63,14 +60,17 @@ extern "C" {
 #endif
 
 #ifdef __cplusplus
-/** \brief 调试控制台打印（当前）方法。 */
-# define DbgConPrtMeth(color)       DebugConsolePut(color, _T(__FUNCTION__) _T("\n"))
-/** \brief 调试控制台打印（当前）`CmdMsg`方法。 */
-# define DbgConPrtMethCmdMsg(color) DebugConsolePrint(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
-/** \brief 调试控制台打印（当前）`WndMsg`方法。 */
-# define DbgConPrtMethWndMsg(color) DebugConsolePrint(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
-#else
-# define DbgConPrtMeth(color)       ((void)0)
-# define DbgConPrtMethCmdMsg(color) ((void)0)
-# define DbgConPrtMethWndMsg(color) ((void)0)
+# include "rrwindows/sysmsgstr.h"
+/** \brief 调试控制台打印当前方法。 */
+# define DbgConMeth()           DebugConsolePut(Gray, _T(__FUNCTION__) _T("\n"))
+/** \brief 调试控制台打印当前方法（指定颜色）。 */
+# define DbgConMethCol(color)   DebugConsolePut(color, _T(__FUNCTION__) _T("\n"))
+/** \brief 调试控制台打印当前`CmdMsg`方法。 */
+# define DbgConCmdMsg()         DebugConsolePrint(Gray, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
+/** \brief 调试控制台打印当前`CmdMsg`方法（指定颜色）。 */
+# define DbgConCmdMsgCol(color) DebugConsolePrint(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
+/** \brief 调试控制台打印当前`WndMsg`方法。 */
+# define DbgConWndMsg()         DebugConsolePrint(Gray, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
+/** \brief 调试控制台打印当前`WndMsg`方法（指定颜色）。 */
+# define DbgConWndMsgCol(color) DebugConsolePrint(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
 #endif

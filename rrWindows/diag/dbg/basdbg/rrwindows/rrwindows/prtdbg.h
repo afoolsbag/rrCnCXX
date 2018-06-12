@@ -3,7 +3,7 @@
  * \defgroup gPrtDbg 打印调试
  * \ingroup gBasDbg
  *
- * \version 2018-06-09
+ * \version 2018-06-11
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -65,51 +65,59 @@ PrintDebugStringW(
 # define DebugPrint(format, ...) PrintDebugString(format _T(" @%s.\n"), __VA_ARGS__, _T(__FUNCTION__))
 #endif
 
+#ifdef _DEBUG
+# define DEBUG_PRINT_LEVEL DEBUG_PRINT_ALL
+#endif
+
 #define DEBUG_PRINT_OFF     0  /* 禁用调试输出。 */
-#define DEBUG_PRINT_FATAL   1  /* 致命错误，程序随时可能终止。应尽快保存数据、整理日志、警告报告、重启自检、尝试修复。 */
-#define DEBUG_PRINT_ERROR   2  /* 逻辑错误，不应路由至此，设计无此状态。虽无崩溃之虞，但程序已脱离掌控，应引导用户恰当处理。 */
-#define DEBUG_PRINT_WARN    3  /* 危险警告，该操作可能损害用户数据、或造成其它不可恢复的后果。 */
-#define DEBUG_PRINT_INFO    4  /* 有用信息，如数据统计（以评估需求）、用户行为（以改进交互）、处理消耗（以优化性能）等。 */
-#define DEBUG_PRINT_DEBUG   5  /* 调试信息，以追踪流程。 */
-#define DEBUG_PRINT_TRACE   6  /* 跟踪信息，以追踪细节。 */
+#define DEBUG_PRINT_FATAL   1  /* 致命，程序随时可能终止。应尽快保存数据，整理日志，通知用户，并重启、自检、尝试修复。 */
+#define DEBUG_PRINT_ERROR   2  /* 错误，不应路由至此状态。虽无崩溃之虞，但程序已脱离掌控，应引导用户积极处理。 */
+#define DEBUG_PRINT_WARN    3  /* 警告，损害功能或性能，如操作失败、资源缺乏、连接失败、权限不足等。 */
+#define DEBUG_PRINT_INFO    4  /* 信息，有助于更新程序，如操作记录（评估需求）、行为记录（改进交互）、性能记录（优化性能）等。 */
+#define DEBUG_PRINT_DEBUG   5  /* 调试，以追踪流程。 */
+#define DEBUG_PRINT_TRACE   6  /* 跟踪，以追踪细节。 */
 #define DEBUG_PRINT_ALL     7  /* 启用所有级别调试输出。 */
 #define DEBUG_PRINT_DEFAULT DEBUG_PRINT_INFO  /* 默认调试输出级别。 */
 #ifndef DEBUG_PRINT_LEVEL
 #define DEBUG_PRINT_LEVEL DEBUG_PRINT_DEFAULT  /* 调试输出级别。 */
 #endif
 
-#if DEBUG_PRINT_FATAL <= DEBUG_PRINT_LEVEL
-# define DpFatal(format, ...) DebugPrint(_T("Fatal: ") format, __VA_ARGS__)
-#else
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_FATAL
 # define DpFatal(...) ((void)0)
-#endif
-#if DEBUG_PRINT_ERROR <= DEBUG_PRINT_LEVEL
-# define DpError(format, ...) DebugPrint(_T("Error: ") format, __VA_ARGS__)
+#elif defined _DEBUG
+# define DpFatal(format, ...) do{DebugPrint(_T("Fatal: ") format, __VA_ARGS__); __debugbreak();}while(0)
 #else
-# define DpError(...) ((void)0)
+# define DpFatal(format, ...) DebugPrint(_T("Fatal: ") format, __VA_ARGS__)
+#endif
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_ERROR
+# define DpError(...)         ((void)0)
+#elif defined _DEBUG
+# define DpError(format, ...) do{DebugPrint(_T("Error: ") format, __VA_ARGS__); __debugbreak();}while(0)
+#else
+# define DpError(format, ...) DebugPrint(_T("Error: ") format, __VA_ARGS__)
 #endif
 #if DEBUG_PRINT_WARN <= DEBUG_PRINT_LEVEL
-# define DpWarn(format, ...) DebugPrint(_T("Warn: ") format, __VA_ARGS__)
+# define DpWarn(format, ...)  DebugPrint(_T("Warn: ") format, __VA_ARGS__)
 #else
-# define DpWarn(...) ((void)0)
+# define DpWarn(...)          ((void)0)
 #endif
 #if DEBUG_PRINT_INFO <= DEBUG_PRINT_LEVEL
-# define DpInfo(format, ...) DebugPrint(_T("Info: ") format, __VA_ARGS__)
+# define DpInfo(format, ...)  DebugPrint(_T("Info: ") format, __VA_ARGS__)
 #else
-# define DpInfo(...) ((void)0)
+# define DpInfo(...)          ((void)0)
 #endif
 #if DEBUG_PRINT_DEBUG <= DEBUG_PRINT_LEVEL
 # define DpDebug(format, ...) DebugPrint(_T("Debug: ") format, __VA_ARGS__)
 #else
-# define DpDebug(...) ((void)0)
+# define DpDebug(...)         ((void)0)
 #endif
 #if DEBUG_PRINT_TRACE <= DEBUG_PRINT_LEVEL
 # define DpTrace(format, ...) DebugPrint(_T("Trace: ") format, __VA_ARGS__)
 #else
-# define DpTrace(...) ((void)0)
+# define DpTrace(...)         ((void)0)
 #endif
 
 /** \brief 调试打印函数名、函数修饰名和函数签名。 */
-#define DpFunc() DpTrace(_T("Function name \"%s\", decorated name \"%s\", signature \"%s\"."), _T(__FUNCTION__), _T(__FUNCDNAME__), _T(__FUNCSIG__))
+#define DpTraceFunc() DpTrace(_T("Function name \"%s\", decorated name \"%s\", signature \"%s\"."), _T(__FUNCTION__), _T(__FUNCDNAME__), _T(__FUNCSIG__))
 
 /** @} */

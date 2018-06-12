@@ -1,13 +1,15 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "WindowApplication.h"
+#include "WndApp.h"
 
 #include "rrwindows/dbgcon.h"
 
-#include "ui/Window.h"
+#include "ui/Wnd.h"
 
-IMPLEMENT_DYNAMIC(WindowApplication, CWinApp)
+#// Register Messages
+
+UINT RM_CUSTOM_REGISTER_MESSAGE = RegisterWindowMessage(TEXT("RM_CUSTOM_REGISTER_MESSAGE"));
 
 #// Constructors
 
@@ -15,13 +17,13 @@ WindowApplication::
 WindowApplication()
 {
     NewDebugConsole();
-    DbgConPrtMeth(Red);
+    DbgConMeth();
 }
 
 WindowApplication::
 ~WindowApplication()
 {
-    DbgConPrtMeth(Red);
+    DbgConMeth();
     DeleteDebugConsole();
 }
 
@@ -31,7 +33,7 @@ BOOL WindowApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrtMeth(Red);
+    DbgConMeth();
 
     m_pMainWnd = DEBUG_NEW Window;
     m_pMainWnd->ShowWindow(m_nCmdShow);

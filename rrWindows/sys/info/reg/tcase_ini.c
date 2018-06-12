@@ -54,7 +54,7 @@ START_TEST(TestIni)
     return;
 
 out_dbgprt:
-    DpInfo(_T("*PrivateProfile* failed, %lu, %s"), GetLastError(), GetLastErrorText());
+    DpWarn(_T("*PrivateProfile* failed, %lu, %s"), GetLastError(), GetLastErrorText());
 out_abort:
     ck_abort();
     return;

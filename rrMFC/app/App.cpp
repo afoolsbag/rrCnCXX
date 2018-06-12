@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Application.h"
+#include "App.h"
 
 #include <conio.h>
 #include <vector>
@@ -9,21 +9,19 @@
 #include "rrwindows/conutil.h"
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNAMIC(Application, CWinApp)
-
 #// Constructors
 
 Application::
 Application()
 {
     NewDebugConsole();
-    DbgConPrtMeth(Red);
+    DbgConMeth();
 }
 
 Application::
 ~Application()
 {
-    DbgConPrtMeth(Red);
+    DbgConMeth();
     DeleteDebugConsole();
 }
 
@@ -32,7 +30,7 @@ Application::
 BOOL Application::
 InitApplication()
 {
-    DbgConPrtMeth(Red);
+    DbgConMeth();
     return CWinApp::InitApplication();
 }
 
@@ -40,8 +38,7 @@ BOOL Application::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConPrtMeth(Red);
-
+    DbgConMeth();
     if (SW_HIDE != m_nCmdShow)
         AllocConsole();
 
@@ -51,7 +48,7 @@ InitInstance()
     TCHAR buf[512] = TEXT("");
     size_t len = 0;
     while (TRUE) {
-        ConColPut(White, TEXT("\nEnter a command: ")); _cgetts_s(buf, &len);
+        ConColPut(TEXT("\nEnter a command: ")); _cgetts_s(buf, &len);
         std::vector<CString> tokens = TokenizeCommandLine(buf);
         if (tokens.empty())
             ShowUnknown(tokens);
@@ -61,7 +58,7 @@ InitInstance()
             ShowHelp(tokens);
         else if (CommandMatches(tokens[0], TEXT("status")))
             ShowStatus(tokens);
-        else if (CommandMatches(tokens[0], TEXT("quit"), TEXT("exit")))
+        else if (CommandMatches(tokens[0], TEXT("exit"), TEXT("close"), TEXT("quit")))
             break;
         else
             ShowUnknown(tokens);
@@ -76,8 +73,9 @@ InitInstance()
 INT Application::
 ExitInstance()
 {
-    FreeConsole();
-    DbgConPrtMeth(Red);
+    if (SW_HIDE != m_nCmdShow)
+        FreeConsole();
+    DbgConMeth();
     return CWinApp::ExitInstance();
 }
 
@@ -100,8 +98,7 @@ VOID Application::
 ShowHello()
 {
     ClearConsoleScreen();
-    ConColPut(White,
-              TEXT("\n")
+    ConColPut(TEXT("\n")
               TEXT("                        _/      _/  _/_/_/_/    _/_/_/   \n")
               TEXT("   _/  _/_/  _/  _/_/  _/_/  _/_/  _/        _/          \n")
               TEXT("  _/_/      _/_/      _/  _/  _/  _/_/_/    _/           \n")
@@ -116,26 +113,26 @@ ShowHello()
               TEXT("         _/        _/                                                                          \n")
               TEXT("        _/        _/                                                                           \n")
               TEXT("\n"));
-    ConColPut3(White, TEXT("Command line interface is "), Green, TEXT("enabled"), White, TEXT(".\n"));
+    ConColPut(White, TEXT("Command line interface is "), Green, TEXT("enabled"), White, TEXT(".\n"));
 }
 
 VOID Application::
 ShowUnknown(CONST std::vector<CString> &tokens)
 {
     if (!tokens.empty())
-        ConColPut3(White, TEXT("The command "), Aqua, static_cast<LPCTSTR>(tokens[0]), White, TEXT(" is unknown. "));
-    ConColPut3(White, TEXT("Enter "), Aqua, TEXT("help"), White, TEXT(" to list valid commands.\n"));
+        ConColPut(White, TEXT("The command "), Aqua, static_cast<LPCTSTR>(tokens[0]), White, TEXT(" is unknown. "));
+    ConColPut(White, TEXT("Enter "), Aqua, TEXT("help"), White, TEXT(" to list valid commands.\n"));
 }
 
 VOID Application::
 ShowHelp(CONST std::vector<CString> &tokens)
 {
     if (tokens.empty()) return;
-    ConColPut(White,
-              TEXT("Commands(case insensitivity):\n"));
+    ConColPut(TEXT("Commands(case insensitivity):\n"));
     ConColPut(Aqua,
               TEXT("   ?\n")
               TEXT("   clearscreen\n")
+              TEXT("   close\n")
               TEXT("   cls\n")
               TEXT("   exit\n")
               TEXT("   help\n")
@@ -147,8 +144,7 @@ VOID Application::
 ShowStatus(CONST std::vector<CString> &tokens)
 {
     if (tokens.empty()) return;
-    ConColPut(White,
-              TEXT("Status:\n"));
+    ConColPut(TEXT("Status:\n"));
     ConColPrt(White,
               TEXT("   Codepage input %u, output %u.\n"), GetConsoleCP(), GetConsoleOutputCP());
 }

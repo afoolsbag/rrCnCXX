@@ -10,7 +10,7 @@
 
 START_TEST(TestPrtDbg)
 {
-    DpFunc();
+    DpTraceFunc();
     DpInfo(_T("Lovely little fool."));
 }
 END_TEST

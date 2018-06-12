@@ -28,7 +28,7 @@ START_TEST(TestCr8Flr)
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != (ec = CreateFolder(flrPath))) {
-        DpInfo(_T("CreateFolder failed, %lu, %s"), ec, ErrorTextOf(ec));
+        DpWarn(_T("CreateFolder failed, %lu, %s"), ec, ErrorTextOf(ec));
         ck_abort(); return;
     }
 }

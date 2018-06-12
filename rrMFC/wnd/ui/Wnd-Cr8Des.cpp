@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Window.h"
+#include "Wnd.h"
 
 #include "rrwindows/dbgcon.h"
 
@@ -12,7 +12,7 @@ OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (!CWnd::OnNcCreate(lpCreateStruct))
         return FALSE;
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return TRUE;
 }
 
@@ -21,7 +21,7 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return 0;
 }
 
@@ -29,12 +29,12 @@ VOID Window::
 OnDestroy()
 {
     CWnd::OnDestroy();
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 VOID Window::
 OnNcDestroy()
 {
     CWnd::OnNcDestroy();
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }

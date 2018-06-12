@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台工具。
  *
- * \version 2018-06-09
+ * \version 2018-06-12
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -15,6 +15,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
+#include "rrwindows/macro.h"
 #include "rrwindows/rrwindowsapi.h"
 
 /**
@@ -100,24 +101,27 @@ ConsoleColorPutW(
 # define ConsoleColorPut ConsoleColorPutA
 #endif
 
-/** \brief 控制台放置有色字串（缩写）。 */
-#define ConColPut ConsoleColorPut
-
-/** \brief 控制台放置有色字串便利宏（单色）。 */
-#define ConColPut1(color, text) \
+/** \brief 控制台放置有色字串（默认）。 */
+#define ConColPut1(text) \
+    ConsoleColorPut(White, text)
+/** \brief 控制台放置有色字串（单色）。 */
+#define ConColPut2(color, text) \
     ConsoleColorPut(color, text)
-/** \brief 控制台放置有色字串便利宏（双色）。 */
-#define ConColPut2(color, text, color2, text2) \
+/** \brief 控制台放置有色字串（双色）。 */
+#define ConColPut4(color, text, color2, text2) \
     do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2);}while(0)
-/** \brief 控制台放置有色字串便利宏（三色）。 */
-#define ConColPut3(color, text, color2, text2, color3, text3) \
+/** \brief 控制台放置有色字串（三色）。 */
+#define ConColPut6(color, text, color2, text2, color3, text3) \
     do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3);}while(0)
-/** \brief 控制台放置有色字串便利宏（四色）。 */
-#define ConColPut4(color, text, color2, text2, color3, text3, color4, text4) \
+/** \brief 控制台放置有色字串（四色）。 */
+#define ConColPut8(color, text, color2, text2, color3, text3, color4, text4) \
     do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3); ConsoleColorPut(color4, text4);}while(0)
-/** \brief 控制台放置有色字串便利宏（五色）。 */
-#define ConColPut5(color, text, color2, text2, color3, text3, color4, text4, color5, text5) \
+/** \brief 控制台放置有色字串（五色）。 */
+#define ConColPut10(color, text, color2, text2, color3, text3, color4, text4, color5, text5) \
     do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3); ConsoleColorPut(color4, text4); ConsoleColorPut(color5, text5);}while(0)
+
+/** \brief 控制台放置有色字串（便利宏）。 */
+#define ConColPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConColPut10, VABAN, ConColPut8, VABAN, ConColPut6, VABAN, ConColPut4, VABAN, ConColPut2, ConColPut1)(__VA_ARGS__))
 
 #ifdef _UNICODE
 # define ConsolePut _cputws
