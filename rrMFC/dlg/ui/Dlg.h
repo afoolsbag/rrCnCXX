@@ -17,7 +17,6 @@
 /// \brief 对话框（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class
 class Dialog: public CDialog {
-    DECLARE_DYNAMIC(Dialog)
 
 #// Constructors
 public:

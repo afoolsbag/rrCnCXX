@@ -1,9 +1,9 @@
-//===-- Main View -----------------------------------------------*- C++ -*-===//
+//===-- View ----------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主视图（类）。
+/// \brief 视图（类）。
 ///
-/// \verison 2018-04-28
+/// \verison 2018-06-12
 /// \since 2018-04-11
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,14 +12,13 @@
 
 #pragma once
 
-/// \brief 主视图（类）。
-class MainView: public CWnd {
-    DECLARE_DYNCREATE(MainView)
+/// \brief 视图（类）。
+class View: public CWnd {
 
 #// Constructors
 public:
-    MainView();
-    virtual ~MainView() override;
+    View();
+    virtual ~View() override;
 
 #// Attributes
 public:

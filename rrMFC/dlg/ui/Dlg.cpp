@@ -1,11 +1,9 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "Dialog.h"
+#include "Dlg.h"
 
 #include "rrwindows/dbgcon.h"
-
-IMPLEMENT_DYNAMIC(Dialog, CDialog)
 
 BEGIN_MESSAGE_MAP(Dialog, CDialog)
     ON_WM_CLOSE()
@@ -30,48 +28,48 @@ Dialog::
 Dialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 BOOL Dialog::
 Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CDialog::Create(lpszTemplateName, pParentWnd);
 }
 
 BOOL Dialog::
 Create(UINT nIDTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CDialog::Create(nIDTemplate, pParentWnd);
 }
 
 BOOL Dialog::
 CreateIndirect(LPCDLGTEMPLATE lpDialogTemplate, CWnd *pParentWnd /*=NULL*/, VOID *lpDialogInit /*=NULL*/)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CDialog::CreateIndirect(lpDialogTemplate, pParentWnd, lpDialogInit);
 }
 
 BOOL Dialog::
 CreateIndirect(HGLOBAL hDialogTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CDialog::CreateIndirect(hDialogTemplate, pParentWnd);
 }
 
 INT_PTR Dialog::
 DoModal()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return CDialog::DoModal();
 }
 
 Dialog::
 ~Dialog()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 #// Overridables
@@ -80,28 +78,28 @@ BOOL Dialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return TRUE;
 }
 
 BOOL Dialog::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrtMethCmdMsg(Yellow);
+    DbgConCmdMsg();
     return CDialog::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL Dialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrtMethWndMsg(Yellow);
+    DbgConWndMsg();
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 VOID Dialog::
 PreInitDialog()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CDialog::PreInitDialog();
 }
 
@@ -109,20 +107,20 @@ VOID Dialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 VOID Dialog::
 OnOK()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CDialog::OnOK();
 }
 
 VOID Dialog::
 OnCancel()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CDialog::OnCancel();
 }
 
@@ -131,69 +129,69 @@ OnCancel()
 VOID Dialog::
 OnClose()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CDialog::OnClose();
 }
 
 VOID Dialog::
 OnBnClickedOk()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CDialog::OnOK();
 }
 
 VOID Dialog::
 OnBnClickedCancel()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     CDialog::OnCancel();
 }
 
 VOID Dialog::
 OnBnClickedAbort()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDABORT);
 }
 
 VOID Dialog::
 OnBnClickedRetry()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDRETRY);
 }
 
 VOID Dialog::
 OnBnClickedIgnore()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDIGNORE);
 }
 
 VOID Dialog::
 OnBnClickedYes()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDYES);
 }
 
 VOID Dialog::
 OnBnClickedNo()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDNO);
 }
 
 VOID Dialog::
 OnBnClickedClose()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDCLOSE);
 }
 
 VOID Dialog::
 OnBnClickedHelp()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     EndDialog(IDHELP);
 }

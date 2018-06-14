@@ -1,10 +1,10 @@
-//===-- Dialog Application --------------------------------------*- C++ -*-===//
+//===-- Frame Application ---------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 对话框应用（类）。
+/// \brief 框架应用（类）。
 ///
-/// \verison 2018-06-09
-/// \since 2018-04-04
+/// \version 2018-06-12
+/// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
@@ -12,14 +12,15 @@
 
 #pragma once
 
-/// \brief 对话框应用（类）。
-class DialogApplication: public CWinApp {
-    DECLARE_DYNAMIC(DialogApplication)
+///
+/// \brief 框架应用（类）。
+///
+class FrameApplication: public CWinApp {
 
 #// Constructors
 public:
-    DialogApplication();
-    virtual ~DialogApplication() override;
+    FrameApplication();
+    virtual ~FrameApplication() override;
 
 #// Attributes
 public:

@@ -1,9 +1,9 @@
-//===-- Main Frame ----------------------------------------------*- C++ -*-===//
+//===-- Frame ---------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主框架（类）。
+/// \brief 框架（类）。
 ///
-/// \verison 2018-04-28
+/// \verison 2018-06-12
 /// \since 2017-12-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -13,21 +13,20 @@
 #pragma once
 
 #include "resource.h"
-#include "MainView.h"
+#include "Vw.h"
 
-/// \brief 主框架（类）。
+/// \brief 框架（类）。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cframewnd-class
-class MainFrame: public CFrameWnd {
-    DECLARE_DYNCREATE(MainFrame)
+class Frame: public CFrameWnd {
 
 #// Constructors
 public:
-    MainFrame();
-    virtual ~MainFrame() override;
+    Frame();
+    virtual ~Frame() override;
 
 #// Attributes
 public:
-    enum { IDR = IDR_MAIN_FRAME };
+    enum { IDR = IDR_FRAME };
 
 #// Operations
 public:
@@ -42,7 +41,7 @@ protected:
 
 #// Implementation
 protected:
-    MainView View;
+    View View;
 
 #// Message Handlers
 protected:

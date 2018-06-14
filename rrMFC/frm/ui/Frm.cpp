@@ -1,66 +1,64 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainFrame.h"
+#include "Frm.h"
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNCREATE(MainFrame, CFrameWnd)
-
-BEGIN_MESSAGE_MAP(MainFrame, CFrameWnd)
+BEGIN_MESSAGE_MAP(Frame, CFrameWnd)
     ON_WM_CREATE()
     ON_WM_SETFOCUS()
 END_MESSAGE_MAP()
 
 #// Constructors
 
-MainFrame::
-MainFrame()
+Frame::
+Frame()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
-MainFrame::
-~MainFrame()
+Frame::
+~Frame()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 #// Overridables
 
-BOOL MainFrame::
+BOOL Frame::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     cs.cx = 400;
     cs.cy = 300;
     return CFrameWnd::PreCreateWindow(cs);
 }
 
-BOOL MainFrame::
+BOOL Frame::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConPrtMethCmdMsg(Yellow);
+    DbgConCmdMsg();
     if (View.OnCmdMsg(nID, nCode, pExtra, pHandlerInfo))
         return TRUE;
     return CFrameWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
-BOOL MainFrame::
+BOOL Frame::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConPrtMethWndMsg(Yellow);
+    DbgConWndMsg();
     return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 #// Message Handlers
 
-INT MainFrame::
+INT Frame::
 OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     if (!View.Create(NULL, NULL,
                      AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0),
                      this, AFX_IDW_PANE_FIRST, NULL))
@@ -68,9 +66,9 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 
-VOID MainFrame::
+VOID Frame::
 OnSetFocus(CWnd *pOldWnd)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     View.SetFocus();
 }

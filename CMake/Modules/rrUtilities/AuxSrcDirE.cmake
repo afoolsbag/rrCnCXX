@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-08
+# 2016-10-08 – 2018-06-14
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -132,7 +132,9 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
       endforeach()
     endforeach()
   endforeach()
-  list(REMOVE_DUPLICATES zRsts)
+  if(zRsts)
+    list(REMOVE_DUPLICATES zRsts)
+  endif()
 
   if(_MFC)
     set(sPch "${CMAKE_CURRENT_BINARY_DIR}/mfc.pch")

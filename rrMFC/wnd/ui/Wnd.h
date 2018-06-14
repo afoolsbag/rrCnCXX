@@ -186,5 +186,4 @@ protected:
     afx_msg LRESULT OnCustomRegisterMessage(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP()
-public:
 };
