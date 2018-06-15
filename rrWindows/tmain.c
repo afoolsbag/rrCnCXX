@@ -8,6 +8,7 @@
 #include <check/check.h>
 
 #include "data/lfsys/dirmgmt/tsuite_dirmgmt.h"
+#include "data/lfsys/dskmgmt/tsuite_dskmgmt.h"
 #include "data/lfsys/fmgmt/tsuite_fmgmt.h"
 #include "diag/dbg/errhdl/tsuite_errhdl.h"
 #include "diag/dbg/basdbg/tsuite_basdbg.h"
@@ -28,6 +29,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     SRunner *runner = srunner_create(NULL);
 
     srunner_add_suite(runner, TSuiteDirMgmt());
+    srunner_add_suite(runner, TSuiteDskMgmt());
     srunner_add_suite(runner, TSuiteFMgmt());
     srunner_add_suite(runner, TSuiteErrHdl());
     srunner_add_suite(runner, TSuiteBasDbg());

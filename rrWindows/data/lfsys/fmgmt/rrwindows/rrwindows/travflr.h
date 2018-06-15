@@ -3,7 +3,7 @@
  * \defgroup gTravFlr 遍历文件夹
  * \ingroup gFMgmt
  *
- * \version 2018-06-02
+ * \version 2018-06-15
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -25,9 +25,9 @@ extern "C" {
 typedef DWORD(CALLBACK *OnFileFoundCallbackTypeA)(LPCSTR CONST path, LPWIN32_FIND_DATAA CONST pData);
 typedef DWORD(CALLBACK *OnFileFoundCallbackTypeW)(LPCWSTR CONST path, LPWIN32_FIND_DATAW CONST pData);
 #ifdef _UNICODE
-# define OnFileFoundCbt OnFileFoundCbtW
+# define OnFileFoundCallbackType OnFileFoundCallbackTypeW
 #else
-# define OnFileFoundCbt OnFileFoundCbtA
+# define OnFileFoundCallbackType OnFileFoundCallbackTypeA
 #endif
 
 /**
