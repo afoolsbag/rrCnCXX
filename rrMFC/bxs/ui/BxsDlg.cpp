@@ -1,58 +1,56 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "MainDialog.h"
+#include "BxsDlg.h"
 
 #include <functional>
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNCREATE(MainDialog, CDialog)
-
-BEGIN_MESSAGE_MAP(MainDialog, CDialog)
-    ON_BN_CLICKED(IDC_BUTTON, &MainDialog::OnBnClickedButton)
+BEGIN_MESSAGE_MAP(BoxesDialog, CDialog)
+    ON_BN_CLICKED(IDC_PROGRESS_BUTTON, &BoxesDialog::OnBnClickedButton)
 END_MESSAGE_MAP()
 
 #// Constructors
 
-MainDialog::
-MainDialog(CWnd *pParent /*=NULL*/)
+BoxesDialog::
+BoxesDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
-MainDialog::
-~MainDialog()
+BoxesDialog::
+~BoxesDialog()
 {
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
 #// Overridables
 
-BOOL MainDialog::
+BOOL BoxesDialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
     return TRUE;
 }
 
-BOOL MainDialog::
+BOOL BoxesDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrtMethWndMsg(Yellow);
+    DbgConWndMsg();
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID MainDialog::
+VOID BoxesDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrtMeth(Yellow);
+    DbgConMeth();
 }
 
-UINT MainDialog::
+UINT BoxesDialog::
 ThreadFunction(ProgressDialog *CONST pProgressDialog)
 {
     pProgressDialog->SetTitle(TEXT("Target"));
@@ -77,12 +75,12 @@ ThreadFunction(ProgressDialog *CONST pProgressDialog)
     return EXIT_SUCCESS;
 }
 
-VOID MainDialog::
+VOID BoxesDialog::
 OnBnClickedButton()
 {
-    DbgConPrtMeth(Yellow);
-    ProgressDialog Dlg;
+    DbgConMeth();
+    ProgressDialog dlg;
     ThreadLoopFlag = TRUE;
-    Dlg.SetThreadFunction(std::bind(&MainDialog::ThreadFunction, this, std::placeholders::_1));
-    Dlg.DoModal();
+    dlg.SetThreadFunction(std::bind(&BoxesDialog::ThreadFunction, this, std::placeholders::_1));
+    dlg.DoModal();
 }

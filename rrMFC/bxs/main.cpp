@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-#include "Application.h"
+#include "BxsApp.h"
 
 /// \brief Global Application
-Application GlobalApplication;
+BoxesApplication GlobalApplication;

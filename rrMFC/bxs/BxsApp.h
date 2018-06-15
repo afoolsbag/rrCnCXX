@@ -1,10 +1,10 @@
-//===-- Thread Application --------------------------------------*- C++ -*-===//
+//===-- Boxes Application ---------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 线程应用（类）。
+/// \brief 盒子应用（类）。
 ///
-/// \verison 2018-06-08
-/// \since 2018-04-28
+/// \verison 2018-06-15
+/// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
@@ -12,14 +12,13 @@
 
 #pragma once
 
-/// \brief 线程应用（类）。
-class ThreadApplication: public CWinApp {
-    DECLARE_DYNAMIC(ThreadApplication)
+/// \brief 盒子应用（类）。
+class BoxesApplication: public CWinApp {
 
 #// Constructors
 public:
-    ThreadApplication();
-    virtual ~ThreadApplication() override;
+    BoxesApplication();
+    virtual ~BoxesApplication() override;
 
 #// Attributes
 public:

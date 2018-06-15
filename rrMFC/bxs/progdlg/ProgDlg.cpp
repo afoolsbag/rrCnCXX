@@ -1,9 +1,10 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "ProgressDialog.h"
+#include "ProgDlg.h"
 
 #include "rrwindows/dbgcon.h"
+#include "rrwindows/prtdbg.h"
 
 #// Private Message
 #define PM_CLOSE (WM_USER + 1)
@@ -21,13 +22,13 @@ ProgressDialog::
 ProgressDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConPrtMeth(Green);
+    DbgConMeth();
 }
 
 ProgressDialog::
 ~ProgressDialog()
 {
-    DbgConPrtMeth(Green);
+    DbgConMeth();
 }
 
 #// Overridables
@@ -36,7 +37,7 @@ BOOL ProgressDialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConPrtMeth(Green);
+    DbgConMeth();
     AfxBeginThread(ProgressDialog::ThreadWrapper, this);
     SetTimer(REFRESH_UI, 40, NULL);
     return TRUE;
@@ -45,7 +46,7 @@ OnInitDialog()
 BOOL ProgressDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrtMethWndMsg(Green);
+    DbgConWndMsg();
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -53,21 +54,26 @@ VOID ProgressDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConPrtMeth(Green);
+    DbgConMeth();
     DDX_Text(pDX, IDC_TOTAL_TEXT, TotalText);
     DDX_Control(pDX, IDC_TOTAL_PROGRESS, TotalProgressControl);
     DDX_Text(pDX, IDC_CURRENT_TEXT, CurrentText);
     DDX_Control(pDX, IDC_CURRENT_PROGRESS, CurrentProgressControl);
 }
 
-UINT ProgressDialog::
+UINT AFX_CDECL ProgressDialog::
 ThreadWrapper(LPVOID pParam)
 {
     ProgressDialog *CONST self = reinterpret_cast<ProgressDialog *>(pParam);
-    ASSERT(self->ThreadFunction);
-    CONST UINT rv = self->ThreadFunction ? self->ThreadFunction(self) : EXIT_FAILURE;
-    self->PostMessage(PM_CLOSE);
-    return rv;
+    if (NULL != self && self->IsKindOf(RUNTIME_CLASS(ProgressDialog))) {
+        CONST UINT rv = NULL != self->ThreadFunction ? self->ThreadFunction(self) : EXIT_FAILURE;
+        self->PostMessage(PM_CLOSE);
+        return rv;
+    } else {
+        DpError(TEXT("The self isn't kind of ProgressDialog."));
+        self->PostMessage(PM_CLOSE);
+        return EXIT_FAILURE;
+    }
 }
 
 #// Message Handlers
@@ -77,16 +83,16 @@ OnTimer(UINT_PTR nIDEvent)
 {
     switch (nIDEvent) {
     case REFRESH_UI:
-        TotalText.Format(TEXT("%s (%i/%hd) ..."), static_cast<LPCTSTR>(TotalDescription), TotalProgressPosition, TotalProgressRangeMax);
-        TotalProgressControl.SetRange(TotalProgressRangeMin, TotalProgressRangeMax);
-        TotalProgressControl.SetPos(TotalProgressPosition);
-        CurrentText.Format(TEXT("%s (%i/%hd)"), static_cast<LPCTSTR>(CurrentDescription), CurrentProgressPosition, CurrentProgressRangeMax);
-        CurrentProgressControl.SetRange(CurrentProgressRangeMin, CurrentProgressRangeMax);
-        CurrentProgressControl.SetPos(CurrentProgressPosition);
+        TotalText.Format(TEXT("%s (%i/%hd) ..."), static_cast<LPCTSTR>(TotDesc), TotProgPos, TotProgRngMax);
+        TotalProgressControl.SetRange(TotProgRngMin, TotProgRngMax);
+        TotalProgressControl.SetPos(TotProgPos);
+        CurrentText.Format(TEXT("%s (%i/%hd)"), static_cast<LPCTSTR>(CurDesc), CurProgPos, CurProgRngMax);
+        CurrentProgressControl.SetRange(CurProgRngMin, CurProgRngMax);
+        CurrentProgressControl.SetPos(CurProgPos);
         UpdateData(FALSE);
         break;
     default:
-        TRACE1("Unknown switch-case-route with condition %d.", nIDEvent); ASSERT(FALSE); break;
+        DpError(TEXT("Unknown switch-case-route with condition: nIDEvent=%u."), nIDEvent); ASSERT(FALSE); break;
     }
 }
 

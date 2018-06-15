@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
-// 供 progdlg.rc 使用
+// 供 progdlg.resource.rc2 使用
 //
 #define IDD_PROGRESS_DIALOG             39900
 #define IDC_TOTAL_TEXT                  49901

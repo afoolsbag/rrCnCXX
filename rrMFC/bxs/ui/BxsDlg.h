@@ -1,7 +1,7 @@
-//===-- Main Dialog ---------------------------------------------*- C++ -*-===//
+//===-- Boxes Dialog --------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主对话框（类）。
+/// \brief 盒子对话框（类）。
 ///
 /// \verison 2018-06-04
 /// \since 2018-05-29
@@ -12,22 +12,21 @@
 
 #pragma once
 
-#include "progdlg/ProgressDialog.h"
+#include "progdlg/ProgDlg.h"
 
 #include "resource.h"
 
-/// \brief 主对话框（类）。
-class MainDialog: public CDialog {
-    DECLARE_DYNCREATE(MainDialog)
+/// \brief 盒子对话框（类）。
+class BoxesDialog: public CDialog {
 
 #// Constructors
 public:
-    MainDialog(CWnd *pParent = NULL);
-    virtual ~MainDialog() override;
+    BoxesDialog(CWnd *pParent = NULL);
+    virtual ~BoxesDialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_MAIN_DIALOG };
+    enum { IDD = IDD_BOXES_DIALOG };
 
 #// Operations
 public:

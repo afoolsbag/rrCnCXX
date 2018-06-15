@@ -49,7 +49,7 @@ InitInstance()
     case IDTRYAGAIN: break;
     case IDCONTINUE: break;
     case IDTIMEOUT: break;
-    default: DpError("Unknown switch-case-route with condition: result=%d.", result); break;
+    default: DpError(TEXT("Unknown switch-case-route with condition: result=%d."), result); break;
     }
 
     return FALSE;

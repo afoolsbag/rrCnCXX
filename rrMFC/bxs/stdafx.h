@@ -3,8 +3,8 @@
 /// \file
 /// \brief 预编译头文件。
 ///
-/// \version 2018-06-08
-/// \since 2018-04-28
+/// \version 2018-06-15
+/// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
@@ -45,3 +45,4 @@
 #endif
 
 #include <afxwin.h>
+#include <afxcmn.h>
