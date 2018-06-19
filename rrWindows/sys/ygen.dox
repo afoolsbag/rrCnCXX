@@ -3,7 +3,7 @@
  * \defgroup gSys 系统服务
  * \ingroup gDvlp
  *
- * \sa ["System Services"](https://msdn.microsoft.com/library/ee663297). *Microsoft® Developer Network*.
+ * \sa ["System Services"](https://msdn.microsoft.com/library/ee663297). *Microsoft Developer Network*.
  *     + [COM](https://msdn.microsoft.com/library/ee663262)
  *     + [COM+](https://msdn.microsoft.com/library/ms685978)
  *     + [Compression API](https://msdn.microsoft.com/library/hh437596)
@@ -27,7 +27,7 @@
  *     + [Windows Subsystem for Linux](https://msdn.microsoft.com/library/mt811415)
  *     + [Windows System Information](https://msdn.microsoft.com/library/ms725495)
  *
- * \version 2018-04-19
+ * \version 2018-06-19
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

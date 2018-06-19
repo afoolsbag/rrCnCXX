@@ -5,7 +5,7 @@
  *
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
  *
- * \version 2018-04-25
+ * \version 2018-06-19
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright The MIT License
@@ -19,7 +19,7 @@
 /* Language Standards */
 
 #ifndef __STDC__
-#error A C compiler is required.
+# error A C compiler is required.
 #endif
 
 /** \brief ISO/IEC 9899:2011
@@ -63,7 +63,7 @@
  *  \sa http://open-std.org/JTC1/SC22/WG14/www/docs/n1950 */
 #define IEC_60559_FUNCS (201506<=__STDC_IEC_60559_FUNCS__)
 
-#define LIB_EXT1 (C11 && defined(__STDC_LIB_EXT1__))
+#define LIB_EXT1 (C11 && defined(__STDC_LIB_EXT1__) && defined(__STDC_WANT_LIB_EXT1__))
 
 #define THREADS (C11 && !defined(__STDC_NO_THREADS__))
 

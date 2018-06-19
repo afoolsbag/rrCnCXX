@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLang
  *
- * \version 2018-04-27
+ * \version 2018-06-19
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,13 +13,8 @@
 
 #include <check/check.h>
 
-#include "algo/tsuite_algo.h"
-#include "mem/tsuite_mem.h"
-#include "numr/tsuite_numr.h"
-#include "str/tsuite_str.h"
-#include "time/tsuite_time.h"
-#include "type/tsuite_type.h"
 #include "cdef.h"
+#include "time/tsuite_time.h"
 
 /**
  * \brief 主函数。
@@ -34,21 +29,12 @@ int main(int argc, char *argv[])
 {
 	UNUSED(argc);
 	UNUSED(argv);
-
 	SRunner *runner = srunner_create(NULL);
-
-	srunner_add_suite(runner, tsuite_algo());
-	srunner_add_suite(runner, tsuite_mem());
-	srunner_add_suite(runner, tsuite_numr());
-	srunner_add_suite(runner, tsuite_str());
 	srunner_add_suite(runner, tsuite_time());
-	srunner_add_suite(runner, tsuite_type());
-
 	srunner_run_all(runner, CK_NORMAL);
-	const int errco = srunner_ntests_failed(runner);
+	const int ec = srunner_ntests_failed(runner);
 	srunner_free(runner);
-
-	return errco;
+	return ec;
 }
 
 /** @} */
