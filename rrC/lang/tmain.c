@@ -14,6 +14,7 @@
 #include <check/check.h>
 
 #include "cdef.h"
+#include "algo/tsuite_algo.h"
 #include "time/tsuite_time.h"
 
 /**
@@ -30,9 +31,13 @@ int main(int argc, char *argv[])
 	UNUSED(argc);
 	UNUSED(argv);
 	SRunner *runner = srunner_create(NULL);
+
+	srunner_add_suite(runner, tsuite_algo());
 	srunner_add_suite(runner, tsuite_time());
+
 	srunner_run_all(runner, CK_NORMAL);
 	const int ec = srunner_ntests_failed(runner);
+
 	srunner_free(runner);
 	return ec;
 }

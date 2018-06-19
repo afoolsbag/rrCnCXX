@@ -2,7 +2,7 @@
 
 Suite *tsuite_algo(void)
 {
-	Suite *tsuite = suite_create("algo");
+	Suite *tsuite = suite_create("algorithms");
 	suite_add_tcase(tsuite, tcase_algo());
 	return tsuite;
 }
