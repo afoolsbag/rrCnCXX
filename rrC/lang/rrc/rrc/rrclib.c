@@ -1,9 +1,9 @@
 /** \copyright The MIT License */
 
 #define RRC_EXPORTS
-#include "lib.h"
+#include "rrclib.h"
 
-#include "rrc/cfg.h"
+#include "rrc/rrccfg.h"
 
 RRC_API struct rrc_version_t
 rrc_version(void)

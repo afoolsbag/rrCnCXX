@@ -5,7 +5,7 @@
  *
  * \sa ["Atomic operations library"](http://en.cppreference.com/w/c/atomic). *cppreference.com*.
  *
- * \version 2018-04-25
+ * \version 2018-06-19
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -35,7 +35,7 @@ END_TEST
 
 TCase *tcase_atom(void)
 {
-	TCase *tcase = tcase_create("atom");
+	TCase *tcase = tcase_create("atomic");
 
 	tcase_add_test(tcase, test_atom);
 

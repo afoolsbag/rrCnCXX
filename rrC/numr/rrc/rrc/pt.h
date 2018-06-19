@@ -16,7 +16,7 @@
 
 #include <stddef.h>
 
-#include "rrc/api.h"
+#include "rrc/rrcapi.h"
 #include "unit.h"
 
 #ifdef __cplusplus

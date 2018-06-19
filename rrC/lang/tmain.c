@@ -15,6 +15,7 @@
 
 #include "cdef.h"
 #include "algo/tsuite_algo.h"
+#include "atom/tsuite_atom.h"
 #include "time/tsuite_time.h"
 
 /**
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
 	SRunner *runner = srunner_create(NULL);
 
 	srunner_add_suite(runner, tsuite_algo());
+	srunner_add_suite(runner, tsuite_atom());
 	srunner_add_suite(runner, tsuite_time());
 
 	srunner_run_all(runner, CK_NORMAL);

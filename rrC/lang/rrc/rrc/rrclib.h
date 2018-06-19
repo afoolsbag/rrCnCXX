@@ -13,13 +13,13 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_LIB_H_
-#define RRC_LIB_H_
+#ifndef RRC_RRCLIB_H_
+#define RRC_RRCLIB_H_
 
 #include <stdint.h>
 #include <time.h>
 
-#include "api.h"
+#include "rrcapi.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -52,4 +52,4 @@ sigh(void);
 }
 #endif
 
-#endif/*RRC_LIB_H_*/
+#endif/*RRC_RRCLIB_H_*/

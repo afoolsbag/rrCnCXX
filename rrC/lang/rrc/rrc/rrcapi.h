@@ -5,7 +5,7 @@
  * \details ELF（Executable and Linkable Format）缺省导出符号；
  *          PE（Portable Executable）缺省隐藏符号。
  *
- * \version 2018-05-22
+ * \version 2018-06-19
  * \since 2016-08-01
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,8 +13,8 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_API_H_
-#define RRC_API_H_
+#ifndef RRC_RRCAPI_H_
+#define RRC_RRCAPI_H_
 
 #if defined _WIN32 || defined __CYGWIN__
 # if defined _MSC_VER
@@ -55,4 +55,4 @@
 #  define RRC_API
 #endif
 
-#endif/*RRC_API_H_*/
+#endif/*RRC_RRCAPI_H_*/
