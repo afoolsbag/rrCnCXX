@@ -38,7 +38,7 @@ END_TEST
 
 TCase *tcase_spectm(void)
 {
-	TCase *tcase = tcase_create("specifying time");
+	TCase *tcase = tcase_create("spectm");
 	tcase_add_test(tcase, test_spectm);
 	return tcase;
 }

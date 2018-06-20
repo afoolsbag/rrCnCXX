@@ -9,7 +9,7 @@
 /// \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
 /// \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
 ///
-/// \version 2018-04-25
+/// \version 2018-06-20
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -20,6 +20,7 @@
 #define RRCXX_CXXVER_HXX_
 
 // Language Standards
+
 #ifndef __cplusplus
 # error A C++ compiler is required.
 #endif
@@ -44,21 +45,18 @@
 /// \sa https://iso.org/standard/25845.html
 #define CXX98 (199711L <= __cplusplus)
 
-// Clang
 #ifdef __clang__
-# define CLANG (__clang_major__*10000 + __clang_minor__*100 + __clang_patchlevel__)
+# define CLANG (__clang_major__*10000+__clang_minor__*100+__clang_patchlevel__)
 #else
 # undef CLANG
 #endif
 
-// GCC C/C++
 #ifdef __GNUC__
-# define GNUC (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__)
+# define GNUC (__GNUC__*10000+__GNUC_MINOR__*100+__GNUC_PATCHLEVEL__)
 #else
 # undef GNUC
 #endif
 
-// Microsoft Visual C++
 #ifdef _MSC_VER
 # define MSC _MSC_VER
 #else

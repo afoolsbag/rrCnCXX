@@ -66,7 +66,7 @@ END_TEST
 
 TCase *tcase_caltm(void)
 {
-	TCase *tcase = tcase_create("calendar time");
+	TCase *tcase = tcase_create("caltm");
 	tcase_add_test(tcase, test_caltm);
 	tcase_add_test(tcase, test_caltm_from_epochtm);
 	return tcase;

@@ -1,0 +1,13 @@
+/*===-- Algorithms ---------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gAlgo 算法
+ * \ingroup gRef
+ *
+ * \sa ["Algorithms"](http://en.cppreference.com/w/c/algorithm). *cppreference.com*.
+ *
+ * \version 2018-06-20
+ * \since 2018-01-17
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

@@ -43,7 +43,7 @@ END_TEST
 
 TCase *tcase_epotm(void)
 {
-	TCase *tcase = tcase_create("epoch time");
+	TCase *tcase = tcase_create("epotm");
 	tcase_add_test(tcase, test_epotm);
 	return tcase;
 }

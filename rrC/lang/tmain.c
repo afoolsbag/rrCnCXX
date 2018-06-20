@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	srunner_add_suite(runner, tsuite_atom());
 	srunner_add_suite(runner, tsuite_time());
 
-	srunner_run_all(runner, CK_NORMAL);
+	srunner_run_all(runner, CK_VERBOSE);
 	const int ec = srunner_ntests_failed(runner);
 
 	srunner_free(runner);

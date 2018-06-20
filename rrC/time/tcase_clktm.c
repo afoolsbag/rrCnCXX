@@ -39,7 +39,7 @@ END_TEST
 
 TCase *tcase_clktm(void)
 {
-	TCase *tcase = tcase_create("clock time");
+	TCase *tcase = tcase_create("clktm");
 	tcase_add_test(tcase, test_clktm);
 	return tcase;
 }

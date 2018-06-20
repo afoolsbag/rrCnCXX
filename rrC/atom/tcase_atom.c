@@ -35,9 +35,7 @@ END_TEST
 
 TCase *tcase_atom(void)
 {
-	TCase *tcase = tcase_create("atomic");
-
+	TCase *tcase = tcase_create("atom");
 	tcase_add_test(tcase, test_atom);
-
 	return tcase;
 }
