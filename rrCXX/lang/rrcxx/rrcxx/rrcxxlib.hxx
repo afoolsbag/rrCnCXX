@@ -3,7 +3,7 @@
 /// \file
 /// \brief 库。
 ///
-/// \version 2018-05-05
+/// \version 2018-06-20
 /// \since 2018-01-09
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -11,25 +11,25 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_LIB_HXX_
-#define RRCXX_LIB_HXX_
+#ifndef RRCXX_RRCXXLIB_HXX_
+#define RRCXX_RRCXXLIB_HXX_
 
 #include <cstdint>
-#include <ctime>
+#include <chrono>
 
-#include "api.hxx"
+#include "rrcxxapi.hxx"
 
 namespace rrcxx {
 namespace lib {
 
 ///
-/// \brief 库版本结构体。
+/// \brief 库版本类型（结构体）。
 ///
 struct Version {
-  std::uint16_t major;  ///< 库主版本号。
-  std::uint16_t minor;  ///< 库次版本号。
-  std::uint16_t patch;  ///< 库补丁版本号。
-  std::uint16_t tweak;  ///< 库微调版本号。
+  std::uint16_t major;  ///< 主版本号。
+  std::uint16_t minor;  ///< 次版本号。
+  std::uint16_t patch;  ///< 补丁版本号。
+  std::uint16_t tweak;  ///< 微调版本号。
 };
 
 ///
@@ -41,10 +41,10 @@ GetVersion();
 ///
 /// \brief 叹。
 ///
-RRCXX_API std::time_t
+RRCXX_API std::chrono::system_clock::time_point
 Sigh();
 
 }//namespace lib
 }//namespace rrcxx
 
-#endif//RRCXX_LIB_HXX_
+#endif//RRCXX_RRCXXLIB_HXX_

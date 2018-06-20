@@ -5,7 +5,7 @@
  * \details ELF（Executable and Linkable Format）缺省导出符号；
  *          PE（Portable Executable）缺省隐藏符号。
  *
- * \version 2018-06-19
+ * \version 2018-06-20
  * \since 2016-08-01
  * \authors zhengrr
  * \copyright The MIT License
@@ -16,18 +16,40 @@
 #ifndef RRC_RRCAPI_H_
 #define RRC_RRCAPI_H_
 
-#if defined _WIN32 || defined __CYGWIN__
-# if defined _MSC_VER
+#ifdef __cplusplus
+# ifndef EXTERN_C
+# define EXTERN_C       extern "C"
+# endif
+# ifndef EXTERN_C_START
+# define EXTERN_C_START extern "C" {
+# endif
+# ifndef EXTERN_C_END
+# define EXTERN_C_END   }
+# endif
+#else
+# ifndef EXTERN_C
+# define EXTERN_C       extern
+# endif
+# ifndef EXTERN_C_START
+# define EXTERN_C_START
+# endif
+# ifndef EXTERN_C_END
+# define EXTERN_C_END
+# endif
+#endif
+
+#if defined(_WIN32) || defined(__CYGWIN__)
+# if defined(_MSC_VER)
 #  define RRC_EXPORT __declspec(dllexport)
 #  define RRC_IMPORT __declspec(dllimport)
 #  define RRC_LOCAL
-# elif defined __GNUC__
+# elif defined(__GNUC__)
 #  define RRC_EXPORT __attribute__ ((dllexport))
 #  define RRC_IMPORT __attribute__ ((dllimport))
 #  define RRC_LOCAL
 # endif
 #
-#elif defined __unix__ || defined __linux__
+#elif defined(__unix__) || defined(__linux__)
 # if 4 <= __GNUC__
 #  define RRC_EXPORT __attribute__ ((visibility ("default")))
 #  define RRC_IMPORT __attribute__ ((visibility ("default")))

@@ -1,9 +1,9 @@
 /// \copyright The MIT License
 
 #define RRCXX_EXPORTS
-#include "lib.hxx"
+#include "rrcxxlib.hxx"
 
-#include "cfg.hxx"
+#include "rrcxx/rrcxxcfg.hxx"
 
 namespace rrcxx {
 namespace lib {
@@ -14,12 +14,13 @@ GetVersion() {
       .major = static_cast<std::uint16_t>(cfg::VERSION_MAJOR),
       .minor = static_cast<std::uint16_t>(cfg::VERSION_MINOR),
       .patch = static_cast<std::uint16_t>(cfg::VERSION_PATCH),
-      .tweak = static_cast<std::uint16_t>(cfg::VERSION_TWEAK)};
+      .tweak = static_cast<std::uint16_t>(cfg::VERSION_TWEAK)
+  };
 }
 
-RRCXX_API std::time_t
+RRCXX_API std::chrono::system_clock::time_point
 Sigh() {
-  return static_cast<std::time_t>(709444800);
+  return std::chrono::system_clock::from_time_t(static_cast<std::time_t>(709444800));
 }
 
 }//namespace lib

@@ -4,7 +4,7 @@
  * \brief 项目信息。
  * \details 名称、代号、版本、版权等构建时生成信息。
  *
- * \version 2018-05-05
+ * \version 2018-06-20
  * \since 2016-08-03
  * \authors zhengrr
  * \copyright The MIT License
@@ -12,8 +12,8 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_CFG_H_
-#define RRC_CFG_H_
+#ifndef RRC_RRCCFG_H_
+#define RRC_RRCCFG_H_
 
 #include <stdint.h>
 
@@ -24,4 +24,4 @@ static const intmax_t RRC_VERSION_MINOR = @PROJECT_VERSION_MINOR@+0;  /**< 项�
 static const intmax_t RRC_VERSION_PATCH = @PROJECT_VERSION_PATCH@+0;  /**< 项目补丁版本号。 */
 static const intmax_t RRC_VERSION_TWEAK = @PROJECT_VERSION_TWEAK@+0;  /**< 项目微调版本号。 */
 
-#endif/*RRC_CFG_H_*/
+#endif/*RRC_RRCCFG_H_*/

@@ -4,7 +4,7 @@
 /// \brief 项目信息。
 /// \details 名称、代号、版本、版权等构建时生成信息。
 ///
-/// \version 2018-05-05
+/// \version 2018-06-20
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_CFG_HXX_
-#define RRCXX_CFG_HXX_
+#ifndef RRCXX_RRCXXCFG_HXX_
+#define RRCXX_RRCXXCFG_HXX_
 
 #include <cstdint>
 #include <string>
@@ -31,4 +31,4 @@ constexpr std::intmax_t VERSION_TWEAK {@PROJECT_VERSION_TWEAK@+0};  ///< 项目�
 }//namespace cfg
 }//namespace rrcxx
 
-#endif//RRCXX_CFG_HXX_
+#endif//RRCXX_RRCXXCFG_HXX_
