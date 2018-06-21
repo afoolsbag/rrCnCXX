@@ -1,49 +1,33 @@
 //===-- Containers Library --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup g_cont 容器库
-/// \ingroup g_ref
-///
-/// 顺序容器
-/// + `array` 数组，静态相接数组
-/// + `vector` 向量，动态相接数组
-/// + `deque` 双端队列
-/// + `forward_list` 单链表
-/// + `list` （双）链表
-///
-/// （有序）关联容器
-/// + `set` 集合，唯一键有序集合
-/// + `map` 映射，键唯一的键值对有序集合
-/// + `multiset`
-/// + `multimap`
-///
-/// 无序关联容器
-///
-/// 容器适配器
+/// \defgroup gCont 容器库
+/// \ingroup gRef
 ///
 /// \sa ["Containers library"](http://en.cppreference.com/w/cpp/container). *cppreference.com*.
-///   + [Sequence containers](http://en.cppreference.com/w/cpp/container#Sequence_containers)
-///       + [array](http://en.cppreference.com/w/cpp/container/array)
-///       + [vector](http://en.cppreference.com/w/cpp/container/vector)
-///       + [deque](http://en.cppreference.com/w/cpp/container/deque)
-///       + [forward_list](http://en.cppreference.com/w/cpp/container/forward_list)
-///       + [list](http://en.cppreference.com/w/cpp/container/list)
-///   + [Associative containers](http://en.cppreference.com/w/cpp/container#Associative_containers)
-///       + [set](http://en.cppreference.com/w/cpp/container/set)
-///       + [map](http://en.cppreference.com/w/cpp/container/map)
-///       + [multiset](http://en.cppreference.com/w/cpp/container/multiset)
-///       + [multimap](http://en.cppreference.com/w/cpp/container/multimap)
-///   + [Unordered associative containers](http://en.cppreference.com/w/cpp/container#Unordered_associative_containers)
-///       + [unordered_set](http://en.cppreference.com/w/cpp/container/unordered_set)
-///       + [unordered_map](http://en.cppreference.com/w/cpp/container/unordered_map)
-///       + [unordered_multiset](http://en.cppreference.com/w/cpp/container/unordered_multiset)
-///       + [unordered_multimap](http://en.cppreference.com/w/cpp/container/unordered_multimap)
-///   + [Container adaptors](http://en.cppreference.com/w/cpp/container#Container_adaptors)
-///       + [stack](http://en.cppreference.com/w/cpp/container/stack)
-///       + [queue](http://en.cppreference.com/w/cpp/container/queue)
-///       + [priority_queue](http://en.cppreference.com/w/cpp/container/priority_queue)
+///     + [Sequence containers](http://en.cppreference.com/w/cpp/container#Sequence_containers)
+///         + [array](http://en.cppreference.com/w/cpp/container/array)
+///         + [vector](http://en.cppreference.com/w/cpp/container/vector)
+///         + [deque](http://en.cppreference.com/w/cpp/container/deque)
+///         + [forward_list](http://en.cppreference.com/w/cpp/container/forward_list)
+///         + [list](http://en.cppreference.com/w/cpp/container/list)
+///     + [Associative containers](http://en.cppreference.com/w/cpp/container#Associative_containers)
+///         + [set](http://en.cppreference.com/w/cpp/container/set)
+///         + [map](http://en.cppreference.com/w/cpp/container/map)
+///         + [multiset](http://en.cppreference.com/w/cpp/container/multiset)
+///         + [multimap](http://en.cppreference.com/w/cpp/container/multimap)
+///     + [Unordered associative containers](http://en.cppreference.com/w/cpp/container#Unordered_associative_containers)
+///         + [unordered_set](http://en.cppreference.com/w/cpp/container/unordered_set)
+///         + [unordered_map](http://en.cppreference.com/w/cpp/container/unordered_map)
+///         + [unordered_multiset](http://en.cppreference.com/w/cpp/container/unordered_multiset)
+///         + [unordered_multimap](http://en.cppreference.com/w/cpp/container/unordered_multimap)
+///     + [Container adaptors](http://en.cppreference.com/w/cpp/container#Container_adaptors)
+///         + [stack](http://en.cppreference.com/w/cpp/container/stack)
+///         + [queue](http://en.cppreference.com/w/cpp/container/queue)
+///         + [priority_queue](http://en.cppreference.com/w/cpp/container/priority_queue)
 ///
-/// \author zhengrr
-/// \date 2018-1-22 – 2-7
-/// \copyright The MIT License
+/// \version 2018-06-21
+/// \since 2018-01-22
+/// \authors zhengrr
+/// \copyright CC BY 4.0
 ///
 //===----------------------------------------------------------------------===//
