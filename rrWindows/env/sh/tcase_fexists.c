@@ -1,11 +1,23 @@
-/** \copyright The MIT License */
+/*===-- File Exists --------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gFExists 文件存在判定
+ * \ingroup gSh
+ *
+ * \author zhengrr
+ * \version 2018-06-22
+ * \since 2018-05-08
+ * \copyright The MIT License
+ *
+ * @{
+**//*===-------------------------------------------------------------------===*/
 
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
+#include <tchar.h>
+
 #include <check/check.h>
 
 #include "rrwindows/prtdbg.h"
@@ -21,6 +33,8 @@ START_TEST(TestFExists)
     }
 }
 END_TEST
+
+/** @} */
 
 TCase *TCaseFExists(void)
 {

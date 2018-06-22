@@ -3,7 +3,7 @@
  * \defgroup gCkProcRun 检查进程正在运行否
  * \ingroup gToolHelp
  *
- * \version 2018-06-01
+ * \version 2018-06-22
  * \since 2018-04-28
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,9 +18,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 检查进程正在运行否（ANSI适配）。
@@ -54,8 +52,6 @@ CheckProcessRunningW(
 # define CheckProcessRunning CheckProcessRunningA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 /** @} */

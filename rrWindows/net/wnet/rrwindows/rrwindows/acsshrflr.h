@@ -3,7 +3,7 @@
  * \defgroup gAcsShrFlr 访问共享文件夹
  * \ingroup gWNet
  *
- * \version 2018-06-01
+ * \version 2018-06-22
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,9 +18,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 连接共享文件夹（ANSI适配）。
@@ -93,8 +91,6 @@ DisconnectSharedFolderW(
 # define ConnectSharedFolder ConnectSharedFolderA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 /** @} */

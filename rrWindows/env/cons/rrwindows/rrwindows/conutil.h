@@ -28,9 +28,7 @@ typedef enum ConsoleColor {
     LightRed = 0xC, LightPurple = 0xD, LightYellow = 0xE, BrightWhite = 0xF
 } ConsoleColor;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 获取控制台背景色。
@@ -123,15 +121,6 @@ ConsoleColorPutW(
 /** \brief 控制台放置有色字串（便利宏）。 */
 #define ConColPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConColPut10, VABAN, ConColPut8, VABAN, ConColPut6, VABAN, ConColPut4, VABAN, ConColPut2, ConColPut1)(__VA_ARGS__))
 
-#ifdef _UNICODE
-# define ConsolePut _cputws
-#else
-# define ConsolePut _cputs
-#endif
-
-/** \brief 控制台放置字串（缩写）。 */
-#define ConPut ConsolePut
-
 /**
  * \brief 控制台打印有色字串（ANSI适配）。
  *
@@ -167,15 +156,6 @@ ConsoleColorPrintW(
 /** \brief 控制台打印有色字串（缩写）。 */
 #define ConColPrt ConsoleColorPrint
 
-#ifdef _UNICODE
-# define ConsolePrint _cwprintf_s
-#else
-# define ConsolePrint _cprintf_s
-#endif
-
-/** \brief 控制台打印字串（缩写）。 */
-#define ConPrt ConsolePrint
-
 /**
  * \brief 清空控制台屏幕（ANSI适配）。
  */
@@ -194,6 +174,4 @@ ClearConsoleScreenW(VOID);
 # define ClearConsoleScreen ClearConsoleScreenA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END

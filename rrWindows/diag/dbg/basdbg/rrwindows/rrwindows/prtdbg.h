@@ -3,7 +3,7 @@
  * \defgroup gPrtDbg 打印调试
  * \ingroup gBasDbg
  *
- * \version 2018-06-11
+ * \version 2018-06-22
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -19,9 +19,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 打印调试字串（ANSI适配）。
@@ -47,9 +45,7 @@ PrintDebugStringW(
 # define PrintDebugString PrintDebugStringA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 #ifdef _DEBUG
  /**
@@ -65,10 +61,6 @@ PrintDebugStringW(
 # define DebugPrint(format, ...) PrintDebugString(format _T(" @%s.\n"), __VA_ARGS__, _T(__FUNCTION__))
 #endif
 
-#ifdef _DEBUG
-# define DEBUG_PRINT_LEVEL DEBUG_PRINT_ALL
-#endif
-
 #define DEBUG_PRINT_OFF     0  /* 禁用调试输出。 */
 #define DEBUG_PRINT_FATAL   1  /* 致命，程序随时可能终止。应尽快保存数据，整理日志，通知用户，并重启、自检、尝试修复。 */
 #define DEBUG_PRINT_ERROR   2  /* 错误，不应路由至此状态。虽无崩溃之虞，但程序已脱离掌控，应引导用户积极处理。 */
@@ -77,21 +69,27 @@ PrintDebugStringW(
 #define DEBUG_PRINT_DEBUG   5  /* 调试，以追踪流程。 */
 #define DEBUG_PRINT_TRACE   6  /* 跟踪，以追踪细节。 */
 #define DEBUG_PRINT_ALL     7  /* 启用所有级别调试输出。 */
-#define DEBUG_PRINT_DEFAULT DEBUG_PRINT_INFO  /* 默认调试输出级别。 */
+
+#ifdef _DEBUG
+# define DEBUG_PRINT_DEFAULT DEBUG_PRINT_ALL
+#else
+# define DEBUG_PRINT_DEFAULT DEBUG_PRINT_INFO
+#endif
+
 #ifndef DEBUG_PRINT_LEVEL
 #define DEBUG_PRINT_LEVEL DEBUG_PRINT_DEFAULT  /* 调试输出级别。 */
 #endif
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_FATAL
-# define DpFatal(...) ((void)0)
-#elif defined _DEBUG
+# define DpFatal(...)         ((void)0)
+#elif defined(_DEBUG)
 # define DpFatal(format, ...) do{DebugPrint(_T("Fatal: ") format, __VA_ARGS__); __debugbreak();}while(0)
 #else
 # define DpFatal(format, ...) DebugPrint(_T("Fatal: ") format, __VA_ARGS__)
 #endif
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_ERROR
 # define DpError(...)         ((void)0)
-#elif defined _DEBUG
+#elif defined(_DEBUG)
 # define DpError(format, ...) do{DebugPrint(_T("Error: ") format, __VA_ARGS__); __debugbreak();}while(0)
 #else
 # define DpError(format, ...) DebugPrint(_T("Error: ") format, __VA_ARGS__)

@@ -42,13 +42,14 @@ InitInstance()
     if (SW_HIDE != m_nCmdShow)
         AllocConsole();
 
-    // Command Line UI Loop
+    // Command Line Interface Loop
     SetConsoleForeGroundColor(LightAqua);
     ShowHello();
     TCHAR buf[512] = TEXT("");
     size_t len = 0;
     while (TRUE) {
-        ConColPut(TEXT("\nEnter a command: ")); _cgetts_s(buf, &len);
+        ConColPut(TEXT("\nEnter a command: "));
+        _cgetts_s(buf, &len);
         std::vector<CString> tokens = TokenizeCommandLine(buf);
         if (tokens.empty())
             ShowUnknown(tokens);
