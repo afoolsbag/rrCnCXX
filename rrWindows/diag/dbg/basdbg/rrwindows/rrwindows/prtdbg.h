@@ -3,7 +3,7 @@
  * \defgroup gPrtDbg 打印调试
  * \ingroup gBasDbg
  *
- * \version 2018-06-22
+ * \version 2018-06-23
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -113,6 +113,23 @@ EXTERN_C_END
 # define DpTrace(format, ...) DebugPrint(_T("Trace: ") format, __VA_ARGS__)
 #else
 # define DpTrace(...)         ((void)0)
+#endif
+
+#if DEBUG_PRINT_WARN <= DEBUG_PRINT_LEVEL
+ /**
+  * \brief 期望返回`!FALSE`。
+  * \details 若没有返回`!FALSE`，调用`DpWarn`展示`ErrorCode`和`ErrorText`。
+  * \since 2018-06-23
+  */
+# define DPWARN_EXPECT_TRUE(proc) \
+         do { \
+             if (FALSE == proc) { \
+                 CONST DWORD ec = GetLastError(); \
+                 DpWarn(TEXT(#proc) TEXT(" failed with %lu, %s"), ec, ErrorTextOf(ec)); \
+             } \
+         } while(0)
+#else
+# define DPWARN_EXPECT_TRUE(proc) proc
 #endif
 
 /** \brief 调试打印函数名、函数修饰名和函数签名。 */

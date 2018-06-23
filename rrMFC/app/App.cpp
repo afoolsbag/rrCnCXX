@@ -8,6 +8,8 @@
 
 #include "rrwindows/conutil.h"
 #include "rrwindows/dbgcon.h"
+#include "rrwindows/errtxt.h"
+#include "rrwindows/prtdbg.h"
 
 #// Constructors
 
@@ -40,7 +42,8 @@ InitInstance()
     CWinApp::InitInstance();
     DbgConMeth();
     if (SW_HIDE != m_nCmdShow)
-        AllocConsole();
+        DPWARN_EXPECT_TRUE(AllocConsole());
+    AFXMB_EXPECT_TRUE(SetConsoleCtrlHandler(&Application::HandlerRoutine, TRUE));
 
     // Command Line Interface Loop
     SetConsoleForeGroundColor(LightAqua);
@@ -75,22 +78,44 @@ INT Application::
 ExitInstance()
 {
     if (SW_HIDE != m_nCmdShow)
-        FreeConsole();
+        DPWARN_EXPECT_TRUE(FreeConsole());
     DbgConMeth();
     return CWinApp::ExitInstance();
 }
 
 #// Implementation
 
+BOOL WINAPI Application::
+HandlerRoutine(DWORD dwCtrlType)
+{
+    switch (dwCtrlType) {
+    case CTRL_C_EVENT://fall-through
+    case CTRL_BREAK_EVENT:
+        break;
+    case CTRL_CLOSE_EVENT://fall-through
+    case CTRL_LOGOFF_EVENT://fall-through
+    case CTRL_SHUTDOWN_EVENT: {
+        Application * pApp = dynamic_cast<Application *>(AfxGetApp());
+        if (pApp && pApp->IsKindOf(RUNTIME_CLASS(Application)))
+            pApp->ExitInstance();
+        break;
+    }
+    default:
+        break;
+    }
+    return TRUE;
+}
+
 std::vector<CString> Application::
-TokenizeCommandLine(CONST CString& commandLine)
+TokenizeCommandLine(CONST CString &commandLine)
 {
     std::vector<CString> tokens;
-    INT pos = 0;
-    while (TRUE) {
+    for (INT pos = 0;;) {
         CONST CString token = commandLine.Tokenize(TEXT("\t\n\v\r "), pos);
-        if (token.IsEmpty()) break;
-        tokens.push_back(token);
+        if (token.IsEmpty())
+            break;
+        else
+            tokens.push_back(token);
     }
     return tokens;
 }
