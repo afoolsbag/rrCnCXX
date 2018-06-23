@@ -3,7 +3,7 @@
  * \defgroup gExePath 当前进程的可执行文件路径
  * \ingroup gDLL
  *
- * \version 2018-06-02
+ * \version 2018-06-23
  * \since 2018-05-08
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,9 +18,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 当前进程的可执行文件路径（ANSI适配）。
@@ -162,8 +160,6 @@ InitializationPathW(VOID);
 # define InitializationPath InitializationPathA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 /** @} */

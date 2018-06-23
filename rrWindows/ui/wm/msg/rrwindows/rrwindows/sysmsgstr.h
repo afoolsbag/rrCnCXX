@@ -17,9 +17,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 系统消息号转字串（ANSI适配）。
@@ -44,6 +42,4 @@ SystemMessageStringW(
 /** \brief 系统消息号转字串（缩写）。 */
 #define SysMsgStr SystemMessageString
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END

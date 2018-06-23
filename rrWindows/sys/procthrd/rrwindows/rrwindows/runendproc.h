@@ -3,7 +3,7 @@
  * \defgroup gRunEndProc 运行、终止进程 
  * \ingroup gProcThrd
  *
- * \version 2018-06-01
+ * \version 2018-06-23
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,9 +18,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 运行进程（ANSI适配）。
@@ -85,8 +83,6 @@ EndProcessW(
 # define EndProcess EndProcessA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 /** @} */

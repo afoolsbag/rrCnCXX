@@ -5,9 +5,8 @@
 
 #include <stdlib.h>
 #include <rpc.h>
-#include <strsafe.h>
-
 #pragma comment(lib, "RpcRT4.Lib")
+#include <strsafe.h>
 
 #define BUFFER_SIZE 37
 

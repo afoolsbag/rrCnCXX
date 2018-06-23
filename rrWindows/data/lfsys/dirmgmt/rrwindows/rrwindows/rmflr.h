@@ -3,7 +3,7 @@
  * \defgroup gRmFlr 删除文件夹
  * \ingroup gDirMgmt
  *
- * \version 2018-06-05
+ * \version 2018-06-23
  * \since 2018-06-01
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,9 +18,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 删除文件夹（ANSI适配）。
@@ -46,8 +44,6 @@ RemoveFolderW(
 # define RemoveFolder RemoveFolderA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 /** @} */

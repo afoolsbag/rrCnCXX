@@ -60,11 +60,11 @@ EXTERN_C_END
 #define GetLastErrorText() ErrorTextOf(GetLastError())
 
 #ifdef __cplusplus
-/**
- * \brief 期望返回`!FALSE`。
- * \details 若没有返回`!FALSE`，调用`AfxMessageBox`展示`ErrorCode`和`ErrorText`。
- * \since 2018-06-23
- */
+ /**
+  * \brief 期望返回`!FALSE`。
+  * \details 若没有返回`!FALSE`，调用`AfxMessageBox`展示`ErrorCode`和`ErrorText`。
+  * \since 2018-06-23
+  */
 # define AFXMB_EXPECT_TRUE(proc) \
          do { \
              if (FALSE == proc) { \

@@ -6,7 +6,7 @@
  * \sa [*字符集编码与 C/C++ 源文件字符编译乱弹*](http://jimmee.iteye.com/blog/2165685)
  * \sa [*UTF8 中文编码处理探究*](http://cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html)
  *
- * \version 2018-06-11
+ * \version 2018-06-23
  * \since 2018-01-11
  * \authors zhengrr
  * \copyright The MIT License
@@ -34,9 +34,7 @@
 #define CP_UTF8                   65001
 #endif/*CP_UTF8*/
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 字串转码。
@@ -72,9 +70,7 @@ StringTranscode(
     _Out_writes_to_opt_(outputBytesCount, return)  LPSTR CONST outputString,
     _In_                                           CONST INT   outputBytesCount);
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 #ifdef __cplusplus
 # include <memory>

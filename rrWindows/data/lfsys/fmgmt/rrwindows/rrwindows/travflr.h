@@ -3,7 +3,7 @@
  * \defgroup gTravFlr 遍历文件夹
  * \ingroup gFMgmt
  *
- * \version 2018-06-15
+ * \version 2018-06-23
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,10 +18,6 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 typedef DWORD(CALLBACK *OnFileFoundCallbackTypeA)(LPCSTR CONST path, LPWIN32_FIND_DATAA CONST pData);
 typedef DWORD(CALLBACK *OnFileFoundCallbackTypeW)(LPCWSTR CONST path, LPWIN32_FIND_DATAW CONST pData);
 #ifdef _UNICODE
@@ -29,6 +25,8 @@ typedef DWORD(CALLBACK *OnFileFoundCallbackTypeW)(LPCWSTR CONST path, LPWIN32_FI
 #else
 # define OnFileFoundCallbackType OnFileFoundCallbackTypeA
 #endif
+
+EXTERN_C_START
 
 /**
  * \brief 遍历文件夹（ANSI适配）。
@@ -66,8 +64,6 @@ TraverseFolderW(
 # define TraverseFolder TraverseFolderA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 /** @} */

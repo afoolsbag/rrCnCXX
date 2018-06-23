@@ -5,7 +5,6 @@
 
 #include <stdlib.h>
 #include <shellapi.h>
-
 #pragma comment(lib, "Mpr.Lib")
 
 RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI

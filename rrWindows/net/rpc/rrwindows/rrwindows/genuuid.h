@@ -3,7 +3,7 @@
  * \defgroup gGenUuid 生成通用唯一标识符
  * \ingroup gRPC
  *
- * \version 2018-06-02
+ * \version 2018-06-23
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,9 +18,7 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 /**
  * \brief 生成通用唯一标识符（ANSI适配）。
@@ -52,6 +50,4 @@ GenerateUuidW(VOID);
 # define GenerateUuid GenerateUuidA
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END

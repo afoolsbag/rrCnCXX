@@ -3,7 +3,7 @@
  * \defgroup gWinStr Windows字符串操作
  * \ingroup gStr
  *
- * \version 2018-06-09
+ * \version 2018-06-23
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,9 +13,9 @@
 
 #pragma once
 
-#include <strsafe.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <strsafe.h>
 
 #// C
 

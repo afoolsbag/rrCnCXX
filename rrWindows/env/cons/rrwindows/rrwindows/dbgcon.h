@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-11
+ * \version 2018-06-23
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -12,16 +12,14 @@
 
 #pragma once
 
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <tchar.h>
 
 #include "rrwindows/rrwindowsapi.h"
 #include "conutil.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+EXTERN_C_START
 
 #if ! defined _DEBUG
 # define DebugConsolePut(...) ((void)0)
@@ -55,9 +53,7 @@ extern "C" {
 # define DeleteDebugConsole(...) ((void)0)
 #endif
 
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C_END
 
 #ifdef __cplusplus
 # include "rrwindows/sysmsgstr.h"
