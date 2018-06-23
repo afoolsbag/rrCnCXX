@@ -4,7 +4,7 @@
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-06-02
+ * \version 2018-06-23
  * \since 2018-06-02
  * \copyright The MIT License
  *
@@ -12,10 +12,10 @@
 **//*===-------------------------------------------------------------------===*/
 
 #include <stdlib.h>
-#include <strsafe.h>
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <strsafe.h>
+#include <tchar.h>
 
 #include <check/check.h>
 

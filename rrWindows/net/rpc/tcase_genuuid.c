@@ -7,11 +7,11 @@
 #include "check/check.h"
 
 #include "rrwindows/genuuid.h"
+#include "rrwindows/winstr.h"
 
 START_TEST(TestGenUuid)
 {
-    size_t len = 0;
-    StringCchLength(GenerateUuid(), STRSAFE_MAX_CCH, &len);
+    CONST size_t len = StrLen(GenerateUuid());
     ck_assert_int_eq(len, 36);
 }
 END_TEST
