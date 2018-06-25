@@ -3,8 +3,11 @@
  * \defgroup gFOp 文件操作
  * \ingroup gSh
  *
+ * \sa ["IFileOperation function"](https://msdn.microsoft.com/library/bb775771.aspx). *MSDN*.
+ * \sa ["SHFileOperation function"](https://msdn.microsoft.com/library/bb762164.aspx). *MSDN*.
+ *
  * \author zhengrr
- * \version 2018-06-22
+ * \version 2018-06-25
  * \since 2018-06-22
  * \copyright The MIT License
  *
@@ -20,16 +23,44 @@
 
 #include <check/check.h>
 
-START_TEST(TestShCopy)
-{
+START_TEST(TestICopy)
+{}
+END_TEST
 
+/**
+ * \deprecated 过时的。
+ */
+START_TEST(TestShMove)
+{}
+END_TEST
+
+/**
+ * \deprecated 过时的。
+ */
+START_TEST(TestShCopy)
+{}
+END_TEST
+
+/**
+ * \deprecated 过时的。
+ */
+START_TEST(TestShDelete)
+{
+    return;
+    SHFILEOPSTRUCT param;
+    SecureZeroMemory(&param, sizeof(param));
+    param.wFunc = FO_DELETE;
+    param.pFrom = _T("D:\\vpt\0");
+    param.pTo = NULL;
+    SHFileOperation(&param);
 }
 END_TEST
 
-START_TEST(TestICopy)
-{
-
-}
+/**
+ * \deprecated 过时的。
+ */
+START_TEST(TestShRename)
+{}
 END_TEST
 
 /** @} */
@@ -37,7 +68,10 @@ END_TEST
 TCase *TCaseFOp(void)
 {
     TCase *tcase = tcase_create("FOp");
+    tcase_add_test(tcase, TestShMove);
     tcase_add_test(tcase, TestShCopy);
+    tcase_add_test(tcase, TestShDelete);
+    tcase_add_test(tcase, TestShRename);
     tcase_add_test(tcase, TestICopy);
     return tcase;
 }

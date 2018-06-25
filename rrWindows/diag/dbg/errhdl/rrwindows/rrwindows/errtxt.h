@@ -6,7 +6,7 @@
  * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.
  * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *Microsoft® Developer Network*.
  *
- * \version 2018-06-23
+ * \version 2018-06-25
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -61,18 +61,16 @@ EXTERN_C_END
 
 #ifdef __cplusplus
  /**
-  * \brief 期望返回`!FALSE`。
-  * \details 若没有返回`!FALSE`，调用`AfxMessageBox`展示`ErrorCode`和`ErrorText`。
-  * \since 2018-06-23
+  * \brief 消息框：失败和最后错误（Failed with Last Error）。
+  * \param op 操作描述。
+  * \since 2018-06-25
   */
-# define AFXMB_EXPECT_TRUE(proc) \
+# define AfxMessageBoxFwLE(op) \
          do { \
-             if (FALSE == proc) { \
-                 CONST DWORD ec = GetLastError(); \
-                 CString text; \
-                 text.Format(TEXT(#proc) TEXT(" failed with %lu, %s"), ec, ErrorTextOf(ec)); \
-                 AfxMessageBox(text, MB_ICONWARNING); \
-             } \
+             CONST DWORD ec = GetLastError(); \
+             CString text; \
+             text.Format(TEXT("%s failed with %lu, %s"), op, ec, ErrorTextOf(ec)); \
+             AfxMessageBox(text, MB_ICONWARNING); \
          } while(0)
 #endif
 

@@ -13,7 +13,7 @@
 #include "rrwindows/cr8flr.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "tsuite_dirmgmt.h"
 
 START_TEST(TestCr8Flr)
@@ -28,7 +28,7 @@ START_TEST(TestCr8Flr)
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != (ec = CreateFolder(flrPath))) {
-        DpWarn(_T("CreateFolder failed, %lu, %s"), ec, ErrorTextOf(ec));
+        DpWarnFailedError(_T("CreateFolder"), ec);
         ck_abort(); return;
     }
 }

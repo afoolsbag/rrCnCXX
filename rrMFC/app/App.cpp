@@ -9,7 +9,7 @@
 #include "rrwindows/conutil.h"
 #include "rrwindows/dbgcon.h"
 #include "rrwindows/errtxt.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 
 #// Constructors
 
@@ -42,8 +42,10 @@ InitInstance()
     CWinApp::InitInstance();
     DbgConMeth();
     if (SW_HIDE != m_nCmdShow)
-        DPWARN_EXPECT_TRUE(AllocConsole());
-    AFXMB_EXPECT_TRUE(SetConsoleCtrlHandler(&Application::HandlerRoutine, TRUE));
+        if (!AllocConsole())
+            DpWarnFwLE(TEXT("AllocConsole"));
+    if (!SetConsoleCtrlHandler(&Application::HandlerRoutine, TRUE))
+        AfxMessageBoxFwLE(TEXT("SetConsoleCtrlHandler"));
 
     // Command Line Interface Loop
     SetConsoleForeGroundColor(LightAqua);
@@ -78,7 +80,8 @@ INT Application::
 ExitInstance()
 {
     if (SW_HIDE != m_nCmdShow)
-        DPWARN_EXPECT_TRUE(FreeConsole());
+        if (!FreeConsole())
+            DpWarnFwLE(TEXT("FreeConsole"));
     DbgConMeth();
     return CWinApp::ExitInstance();
 }

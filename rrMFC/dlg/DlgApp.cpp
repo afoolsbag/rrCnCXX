@@ -4,7 +4,7 @@
 #include "DlgApp.h"
 
 #include "rrwindows/dbgcon.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 
 #include "ui/Dlg.h"
 
@@ -37,19 +37,22 @@ InitInstance()
     CONST INT_PTR result = mainWnd.DoModal();
 
     switch (result) {
-    case IDOK: break;
-    case IDCANCEL: break;
-    case IDABORT: break;
-    case IDRETRY: break;
-    case IDIGNORE: break;
-    case IDYES: break;
-    case IDNO: break;
-    case IDCLOSE: break;
-    case IDHELP: break;
-    case IDTRYAGAIN: break;
-    case IDCONTINUE: break;
-    case IDTIMEOUT: break;
-    default: DpError(TEXT("Unknown switch-case-route with condition: result=%d."), result); break;
+    case IDOK://fallthrough
+    case IDCANCEL://fallthrough
+    case IDABORT://fallthrough
+    case IDRETRY://fallthrough
+    case IDIGNORE://fallthrough
+    case IDYES://fallthrough
+    case IDNO://fallthrough
+    case IDCLOSE://fallthrough
+    case IDHELP://fallthrough
+    case IDTRYAGAIN://fallthrough
+    case IDCONTINUE://fallthrough
+    case IDTIMEOUT:
+        break;
+    default:
+        DpErrorSwitchUnknown(result);
+        break;
     }
 
     return FALSE;
