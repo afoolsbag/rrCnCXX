@@ -3,76 +3,107 @@
 #define RRWINDOWS_EXPORTS
 #include "acsshrflr.h"
 
-#include <stdlib.h>
 #include <shellapi.h>
 #pragma comment(lib, "Mpr.Lib")
 
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+#include "rrwindows/winstr.h"
+
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 ConnectSharedFolderA(
     _In_z_   LPCSTR CONST sharedFolderPath,
     _In_opt_ LPCSTR CONST username,
     _In_opt_ LPCSTR CONST password)
 {
-    DWORD rv = ERROR_SUCCESS;
-
-    CONST SIZE_T tmpCnt = strlen(sharedFolderPath) + 1;
-    LPSTR CONST tmp = malloc(tmpCnt * sizeof(CHAR));
-    if (!tmp) {
-        rv = ERROR_OUTOFMEMORY;
-        goto out;
+    CONST SIZE_T tmpCnt = StringCchLengthAs(sharedFolderPath) + 1;
+    LPSTR CONST tmp = HeapAlloc(GetProcessHeap(), 0, tmpCnt * sizeof(CHAR));
+    if (NULL == tmp) {
+        SetLastError(ERROR_NOT_ENOUGH_MEMORY);
+        return FALSE;
     }
-    strcpy_s(tmp, tmpCnt, sharedFolderPath);
-
+    CONST HRESULT hr = StringCchCopyA(tmp, tmpCnt, sharedFolderPath);
+    if (FAILED(hr)) {
+        HeapFree(GetProcessHeap(), 0, tmp);
+        SetLastError(HRESULT_CODE(hr));
+        return FALSE;
+    }
     NETRESOURCEA netRes;
     SecureZeroMemory(&netRes, sizeof(netRes));
     netRes.dwType = RESOURCETYPE_DISK;
     netRes.lpRemoteName = tmp;
-    rv = WNetAddConnection2A(&netRes, password, username, CONNECT_TEMPORARY);
-
-//out_free_tmp:
-    free(tmp);
-out:
-    return rv;
+    CONST DWORD ec = WNetAddConnection2A(&netRes, password, username, CONNECT_TEMPORARY);
+    if (NOERROR != ec) {
+        HeapFree(GetProcessHeap(), 0, tmp);
+        SetLastError(ec);
+        return FALSE;
+    }
+    HeapFree(GetProcessHeap(), 0, tmp);
+    return TRUE;
 }
 
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 ConnectSharedFolderW(
     _In_z_   LPCWSTR CONST sharedFolderPath,
     _In_opt_ LPCWSTR CONST username,
     _In_opt_ LPCWSTR CONST password)
 {
-    DWORD rv = ERROR_SUCCESS;
-
-    CONST SIZE_T tmpCnt = wcslen(sharedFolderPath) + 1;
-    LPWSTR CONST tmp = malloc(tmpCnt * sizeof(WCHAR));
-    if (!tmp) {
-        rv = ERROR_OUTOFMEMORY;
-        goto out;
+    CONST SIZE_T tmpCnt = StringCchLengthWs(sharedFolderPath) + 1;
+    LPWSTR CONST tmp = HeapAlloc(GetProcessHeap(), 0, tmpCnt * sizeof(WCHAR));
+    if (NULL == tmp) {
+        SetLastError(ERROR_NOT_ENOUGH_MEMORY);
+        return FALSE;
     }
-    wcscpy_s(tmp, tmpCnt, sharedFolderPath);
-
+    CONST HRESULT hr = StringCchCopyW(tmp, tmpCnt, sharedFolderPath);
+    if (FAILED(hr)) {
+        HeapFree(GetProcessHeap(), 0, tmp);
+        SetLastError(HRESULT_CODE(hr));
+        return FALSE;
+    }
     NETRESOURCEW netRes;
     SecureZeroMemory(&netRes, sizeof(netRes));
     netRes.dwType = RESOURCETYPE_DISK;
     netRes.lpRemoteName = tmp;
-    rv = WNetAddConnection2W(&netRes, password, username, CONNECT_TEMPORARY);
-
-//out_free_tmp:
-    free(tmp);
-out:
-    return rv;
+    CONST DWORD ec = WNetAddConnection2W(&netRes, password, username, CONNECT_TEMPORARY);
+    if (NOERROR != ec) {
+        HeapFree(GetProcessHeap(), 0, tmp);
+        SetLastError(ec);
+        return FALSE;
+    }
+    HeapFree(GetProcessHeap(), 0, tmp);
+    return TRUE;
 }
 
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 DisconnectSharedFolderA(
     _In_z_ CONST LPCSTR sharedFolderPath)
 {
-    return WNetCancelConnection2A(sharedFolderPath, 0, TRUE);
+    CONST DWORD ec = WNetCancelConnection2A(sharedFolderPath, 0, TRUE);
+    if (NO_ERROR != ec) {
+        SetLastError(ec);
+        return FALSE;
+    }
+    return TRUE;
 }
 
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 DisconnectSharedFolderW(
     _In_z_ CONST LPCWSTR sharedFolderPath)
 {
-    return WNetCancelConnection2W(sharedFolderPath, 0, TRUE);
+    CONST DWORD ec = WNetCancelConnection2W(sharedFolderPath, 0, TRUE);
+    if (NO_ERROR != ec) {
+        SetLastError(ec);
+        return FALSE;
+    }
+    return TRUE;
 }

@@ -3,7 +3,7 @@
  * \defgroup gAcsShrFlr 访问共享文件夹
  * \ingroup gWNet
  *
- * \version 2018-06-22
+ * \version 2018-06-26
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,7 +18,9 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
 
 /**
  * \brief 连接共享文件夹（ANSI适配）。
@@ -27,12 +29,14 @@ EXTERN_C_START
  * \param sharedFolderPath 共享文件夹路径。
  * \param username         用户名。
  * \param password         密码。
- * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
+ * \returns 成功与否。
  *
- * \sa ["NETRESOURCE structure"](https://msdn.microsoft.com/library/aa385353). *Microsoft® Developer Network*.
- * \sa ["WNetAddConnection2 function"](https://msdn.microsoft.com/library/aa385413). *Microsoft® Developer Network*.
+ * \sa ["NETRESOURCE structure"](https://msdn.microsoft.com/library/aa385353). *MSDN*.
+ * \sa ["WNetAddConnection2 function"](https://msdn.microsoft.com/library/aa385413). *MSDN*.
  */
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL WINAPI
 ConnectSharedFolderA(
     _In_z_   LPCSTR CONST sharedFolderPath,
     _In_opt_ LPCSTR CONST username,
@@ -47,7 +51,10 @@ ConnectSharedFolderA(
  * \param password         密码。
  * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 ConnectSharedFolderW(
     _In_z_   LPCWSTR CONST sharedFolderPath,
     _In_opt_ LPCWSTR CONST username,
@@ -67,9 +74,12 @@ ConnectSharedFolderW(
  * \param sharedFolderPath 共享文件夹路径。
  * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  *
- * \sa ["WNetCancelConnection2 function"](https://msdn.microsoft.com/library/aa385427). *Microsoft® Developer Network*.
+ * \sa ["WNetCancelConnection2 function"](https://msdn.microsoft.com/library/aa385427). *MSDN*.
  */
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 DisconnectSharedFolderA(
     _In_z_ CONST LPCSTR sharedFolderPath);
 
@@ -81,7 +91,10 @@ DisconnectSharedFolderA(
  * \param sharedFolderPath 共享文件夹路径。
  * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
-RRWINDOWS_API _Success_(return == NOERROR) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 DisconnectSharedFolderW(
     _In_z_ CONST LPCWSTR sharedFolderPath);
 
@@ -91,6 +104,8 @@ DisconnectSharedFolderW(
 # define ConnectSharedFolder ConnectSharedFolderA
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 /** @} */

@@ -13,11 +13,11 @@
 
 START_TEST(TestAcsShrFlr)
 {
-    CONST DWORD ec = ConnectSharedFolder(_T("\\\\localhost\\path\\to\\folder"),
-                                         _T("username"),
-                                         _T("password"));
-    if (ERROR_SUCCESS != ec)
-        DpWarnFwLE(_T("ConnectSharedFolder"));
+    CONST TCHAR path[] = _T("\\\\localhost\\path\\to\\folder");
+    CONST TCHAR usr[] = _T("username");
+    CONST TCHAR pwd[] = _T("password");
+    if (!ConnectSharedFolder(path, usr, pwd))
+        DpWarnFwLE(_T("ConnectSharedFolder(%s, %s, %s)"), path, usr, pwd);
 }
 END_TEST
 
