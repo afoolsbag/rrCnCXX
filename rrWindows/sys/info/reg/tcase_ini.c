@@ -3,7 +3,7 @@
  * \defgroup gIni 初始化文件
  * \ingroup gReg
  *
- * \version 2018-06-04
+ * \version 2018-06-26
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -19,7 +19,7 @@
 
 #include <check/check.h>
 
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "rrwindows/winstr.h"
@@ -46,9 +46,9 @@ START_TEST(TestIni)
     SetLastError(ERROR_SUCCESS);
     if (!GetPrivateProfileString(_T("app"), _T("str"), NULL, txt, _countof(txt), iniPath))
         goto out_dbgprt;
-    ck_assert(CSTR_EQUAL == CmpStr(txt, _T("wow")));
+    ck_assert(CSTR_EQUAL == CompareStringS(txt, _T("wow")));
 
-    INT num = GetPrivateProfileInt(_T("app"), _T("int"), 0, iniPath);
+    CONST INT num = GetPrivateProfileInt(_T("app"), _T("int"), 0, iniPath);
     ck_assert_int_eq(num, 666);
 
     return;

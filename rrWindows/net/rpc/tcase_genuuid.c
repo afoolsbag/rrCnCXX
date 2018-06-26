@@ -11,7 +11,7 @@
 
 START_TEST(TestGenUuid)
 {
-    CONST size_t len = StrLen(GenerateUuid());
+    CONST size_t len = StringCchLengthS(GenerateUuid());
     ck_assert_int_eq(len, 36);
 }
 END_TEST

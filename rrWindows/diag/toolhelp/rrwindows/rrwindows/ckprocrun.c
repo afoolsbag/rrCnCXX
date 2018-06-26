@@ -22,7 +22,7 @@ CheckProcessRunningA(
     info.dwSize = sizeof(info);
     Process32First(hdl, &info);
     do {
-        if (CSTR_EQUAL == CmpStrA(exeName, info.szExeFile)) {
+        if (CSTR_EQUAL == CompareStringAs(exeName, info.szExeFile)) {
             CloseHandle(hdl);
             return info.th32ProcessID;
         }
@@ -46,7 +46,7 @@ CheckProcessRunningW(
     info.dwSize = sizeof(info);
     Process32FirstW(hdl, &info);
     do {
-        if (CSTR_EQUAL == CmpStrW(exeName, info.szExeFile)) {
+        if (CSTR_EQUAL == CompareStringWs(exeName, info.szExeFile)) {
             CloseHandle(hdl);
             return info.th32ProcessID;
         }

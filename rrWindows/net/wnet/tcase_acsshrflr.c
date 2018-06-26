@@ -7,7 +7,7 @@
 #include <check/check.h>
 
 #include "rrwindows/acsshrflr.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "rrwindows/errtxt.h"
 #include "tsuite_wnet.h"
 
@@ -17,7 +17,7 @@ START_TEST(TestAcsShrFlr)
                                          _T("username"),
                                          _T("password"));
     if (ERROR_SUCCESS != ec)
-        DpWarn(_T("ConnectSharedFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
+        DpWarnFwLE(_T("ConnectSharedFolder"));
 }
 END_TEST
 

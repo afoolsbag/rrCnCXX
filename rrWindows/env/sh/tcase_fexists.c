@@ -20,15 +20,15 @@
 
 #include <check/check.h>
 
-#include "rrwindows/prtdbg.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
+#include "rrwindows/prtdbgstr.h"
 #include "tsuite_sh.h"
 
 START_TEST(TestFExists)
 {
     if (!PathFileExists(ExecutablePath())) {
-        DpWarn(_T("TraverseFolder failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
+        DpWarnFwLE(_T("TraverseFolder"));
         ck_abort();
     }
 }

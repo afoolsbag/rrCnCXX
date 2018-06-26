@@ -55,7 +55,10 @@ RecursiveCreateFolderW(
     return ERROR_SUCCESS;
 }
 
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 CreateFolderA(
     _In_z_ LPCSTR CONST folderPath)
 {
@@ -65,7 +68,10 @@ CreateFolderA(
     return RecursiveCreateFolderA(flrPath);
 }
 
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 CreateFolderW(
     _In_z_ LPCWSTR CONST folderPath)
 {

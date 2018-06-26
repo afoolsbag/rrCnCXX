@@ -3,50 +3,48 @@
 #define RRWINDOWS_EXPORTS
 #include "prtdbgstr.h"
 
-#include <stdlib.h>
-
-#include "rrwindows/winstr.h"
+#include <strsafe.h>
 
 #define BUFFER_SIZE 1024
 
-RRWINDOWS_API VOID WINAPIV
-PrintDebugStringAma(
+RRWINDOWS_API
+VOID
+WINAPI
+VPrintDebugStringAma(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
-    ...)
+    _In_                         va_list CONST va)
 {
-    va_list va;
-    va_start(va, format);
-
     CONST INT cnt = _vscprintf(format, va) + 1/*'\0'*/;
+    if (0 == cnt) {
+        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: _vscprintf failed." ATFUNCNLA);
+        return;
+    }
     CHAR *CONST buf = HeapAlloc(GetProcessHeap(), 0, cnt * sizeof(CHAR));
     if (NULL == buf) {
         OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: HeapAlloc failed." ATFUNCNLA);
-        goto out_endva;
+        return;
     }
     if (FAILED(StringCchVPrintfA(buf, cnt, format, va))) {
         OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: StringCchVPrintfA failed." ATFUNCNLA);
-        goto out_freeheap;
+        goto return_freeheap;
     }
     OutputDebugStringA(buf);
 
-out_freeheap:
+return_freeheap:
     if (FALSE == HeapFree(GetProcessHeap(), 0, buf))
         OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: HeapFree failed." ATFUNCNLA);
-out_endva:
-    va_end(va);
 }
 
-RRWINDOWS_API VOID WINAPIV
-PrintDebugStringAsb(
+RRWINDOWS_API
+VOID
+WINAPI
+VPrintDebugStringAsb(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
-    ...)
+    _In_                         va_list CONST va)
 {
     __declspec(thread) static CHAR StaticBuffer[BUFFER_SIZE];
 
-    va_list va;
-    va_start(va, format);
-
-    switch (StringCchVPrintfA(StaticBuffer, _countof(StaticBuffer), format, va)) {
+    switch (StringCchVPrintfA(StaticBuffer, countof(StaticBuffer), format, va)) {
     case S_OK:
         OutputDebugStringA(StaticBuffer);
         break;
@@ -61,48 +59,46 @@ PrintDebugStringAsb(
         OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: StringCchVPrintfA failed with Unknown HRESULT." ATFUNCNLA);
         break;
     }
-
-    va_end(va);
 }
 
-RRWINDOWS_API VOID WINAPIV
-PrintDebugStringWma(
+RRWINDOWS_API
+VOID
+WINAPI
+VPrintDebugStringWma(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
-    ...)
+    _In_                          va_list CONST va)
 {
-    va_list va;
-    va_start(va, format);
-
     CONST INT cnt = _vscwprintf(format, va) + 1/*L'\0'*/;
+    if (0 == cnt) {
+        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error: _vscwprintf failed." ATFUNCNLW);
+        return;
+    }
     WCHAR *CONST buf = HeapAlloc(GetProcessHeap(), 0, cnt * sizeof(WCHAR));
     if (NULL == buf) {
         OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error, HeapAlloc failed." ATFUNCNLW);
-        goto out_endva;
+        return;
     }
     if (FAILED(StringCchVPrintfW(buf, cnt, format, va))) {
         OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error, StringCchVPrintfW failed." ATFUNCNLW);
-        goto out_freeheap;
+        goto return_freeheap;
     }
     OutputDebugStringW(buf);
 
-out_freeheap:
+return_freeheap:
     if (FALSE == HeapFree(GetProcessHeap(), 0, buf))
         OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error, HeapFree failed." ATFUNCNLW);
-out_endva:
-    va_end(va);
 }
 
-RRWINDOWS_API VOID WINAPIV
-PrintDebugStringWsb(
+RRWINDOWS_API
+VOID
+WINAPI
+VPrintDebugStringWsb(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
-    ...)
+    _In_                          va_list CONST va)
 {
     __declspec(thread) static WCHAR StaticBuffer[BUFFER_SIZE];
 
-    va_list va;
-    va_start(va, format);
-
-    switch (StringCchVPrintfW(StaticBuffer, _countof(StaticBuffer), format, va)) {
+    switch (StringCchVPrintfW(StaticBuffer, countof(StaticBuffer), format, va)) {
     case S_OK:
         OutputDebugStringW(StaticBuffer);
         break;
@@ -117,6 +113,4 @@ PrintDebugStringWsb(
         OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error: StringCchVPrintfW failed with Unknown HRESULT." ATFUNCNLW);
         break;
     }
-
-    va_end(va);
 }

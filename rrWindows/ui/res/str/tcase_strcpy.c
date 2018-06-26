@@ -4,7 +4,7 @@
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-06-23
+ * \version 2018-06-26
  * \since 2018-06-02
  * \copyright The MIT License
  *
@@ -19,6 +19,7 @@
 
 #include <check/check.h>
 
+#include "rrwindows/def.h"
 #include "rrwindows/winstr.h"
 #include "tsuite_str.h"
 
@@ -28,11 +29,11 @@
 START_TEST(TestStringCchCopy)
 {
     TCHAR txt[5];
-    if (FAILED(StringCchCopy(txt, _countof(txt), _T("love")))) {
+    if (FAILED(StringCchCopy(txt, countof(txt), _T("love")))) {
         ck_abort();
         return;
     }
-    ck_assert(CSTR_EQUAL == CmpStr(txt, _T("love")));
+    ck_assert(CSTR_EQUAL == CompareStringS(txt, _T("love")));
 }
 END_TEST
 

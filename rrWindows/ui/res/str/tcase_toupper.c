@@ -29,7 +29,7 @@ START_TEST(TestCharUpper)
 {
     TCHAR txt[] = _T("love");
     CharUpper(txt);
-    ck_assert(CSTR_EQUAL == CmpStr(txt, _T("LOVE")));
+    ck_assert(CSTR_EQUAL == CompareStringS(txt, _T("LOVE")));
 }
 END_TEST
 

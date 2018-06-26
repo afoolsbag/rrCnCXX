@@ -1,6 +1,5 @@
 /** \copyright The MIT License */
 
-#include <stdlib.h>
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 #include <strsafe.h>
@@ -10,10 +9,11 @@
 
 #include <check/check.h>
 
+#include "rrwindows/def.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "rrwindows/rmflr.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "tsuite_dirmgmt.h"
 
 START_TEST(TestRmFlr)
@@ -21,14 +21,14 @@ START_TEST(TestRmFlr)
     DWORD ec = ERROR_SUCCESS;
 
     TCHAR flrPath[MAX_PATH];
-    if (FAILED(StringCchCopy(flrPath, _countof(flrPath), ExecutableDirectoryPath()))) {
+    if (FAILED(StringCchCopy(flrPath, countof(flrPath), ExecutableDirectoryPath()))) {
         ck_abort(); return;
     }
     if (!PathAppend(flrPath, _T("tmpflr"))) {
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != (ec = RemoveFolder(flrPath))) {
-        DpWarn(_T("RemoveFolder failed: %lu, %s"), ec, ErrorTextOf(ec));
+        DpWarnFwLE(_T("RemoveFolder"));
         ck_abort(); return;
     }
 }

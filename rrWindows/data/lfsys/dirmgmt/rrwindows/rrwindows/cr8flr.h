@@ -3,7 +3,7 @@
  * \defgroup gCr8Flr 创建文件夹
  * \ingroup gDirMgmt
  *
- * \version 2018-06-23
+ * \version 2018-06-26
  * \since 2018-06-05
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,14 +18,19 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
 
 /**
  * \brief 创建文件夹（ANSI适配）。
  * \param folderPath 文件夹路径，不以反斜杠结尾。
  * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 CreateFolderA(
     _In_z_ LPCSTR CONST folderPath);
 
@@ -34,7 +39,10 @@ CreateFolderA(
  * \param folderPath 文件夹路径，不以反斜杠结尾。
  * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 CreateFolderW(
     _In_z_ LPCWSTR CONST folderPath);
 
@@ -44,6 +52,8 @@ CreateFolderW(
 # define CreateFolder CreateFolderA
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 /** @} */

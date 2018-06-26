@@ -3,19 +3,22 @@
 #define RRWINDOWS_EXPORTS
 #include "runendproc.h"
 
-#include <stdlib.h>
 #include <strsafe.h>
 #undef UNICODE
 #include <TlHelp32.h>
 
+#include "rrwindows/def.h"
 #include "rrwindows/winstr.h"
 
-RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 RunProcessA(
     _In_z_ LPCSTR CONST exePath,
     _In_z_ LPCSTR CONST exeParameters)
 {
-    CONST size_t paramBufCnt = StrLenA(exeParameters) + 2;
+    CONST size_t paramBufCnt = StringCchLengthAs(exeParameters) + 2;
     LPSTR CONST paramBuf = HeapAlloc(GetProcessHeap(), 0, paramBufCnt * sizeof(CHAR));
     if (!paramBuf)
         return FALSE;
@@ -37,12 +40,15 @@ RunProcessA(
     return succ;
 }
 
-RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 RunProcessW(
     _In_z_ LPCWSTR CONST exePath,
     _In_z_ LPCWSTR CONST exeParameters)
 {
-    CONST size_t paramBufCnt = StrLenW(exeParameters) + 2;
+    CONST size_t paramBufCnt = StringCchLengthWs(exeParameters) + 2;
     LPWSTR CONST paramBuf = HeapAlloc(GetProcessHeap(), 0, paramBufCnt * sizeof(WCHAR));
     if (!paramBuf)
         return FALSE;
@@ -64,7 +70,10 @@ RunProcessW(
     return succ;
 }
 
-RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 EndProcessA(
     _In_z_ CONST LPCSTR exeName)
 {
@@ -77,7 +86,7 @@ EndProcessA(
     info.dwSize = sizeof(info);
     Process32First(snapHdl, &info);
     do {
-        if (CSTR_EQUAL == CmpStrA(exeName, info.szExeFile)) {
+        if (CSTR_EQUAL == CompareStringAs(exeName, info.szExeFile)) {
             HANDLE CONST hdl = OpenProcess(PROCESS_TERMINATE, FALSE, info.th32ProcessID);
             if (!TerminateProcess(hdl, EXIT_SUCCESS))
                 rv = FALSE;
@@ -89,7 +98,10 @@ EndProcessA(
     return rv;
 }
 
-RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 EndProcessW(
     _In_z_ CONST LPCWSTR exeName)
 {
@@ -102,7 +114,7 @@ EndProcessW(
     info.dwSize = sizeof(info);
     Process32FirstW(snapHdl, &info);
     do {
-        if (CSTR_EQUAL == CmpStrW(exeName, info.szExeFile)) {
+        if (CSTR_EQUAL == CompareStringWs(exeName, info.szExeFile)) {
             HANDLE CONST hdl = OpenProcess(PROCESS_TERMINATE, FALSE, info.th32ProcessID);
             if (!TerminateProcess(hdl, EXIT_SUCCESS))
                 rv = FALSE;

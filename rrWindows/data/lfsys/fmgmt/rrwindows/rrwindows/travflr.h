@@ -3,7 +3,7 @@
  * \defgroup gTravFlr 遍历文件夹
  * \ingroup gFMgmt
  *
- * \version 2018-06-23
+ * \version 2018-06-26
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,15 +18,29 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-typedef DWORD(CALLBACK *OnFileFoundCallbackTypeA)(LPCSTR CONST path, LPWIN32_FIND_DATAA CONST pData);
-typedef DWORD(CALLBACK *OnFileFoundCallbackTypeW)(LPCWSTR CONST path, LPWIN32_FIND_DATAW CONST pData);
+typedef
+_Success_(return == ERROR_SUCCESS)
+DWORD
+(CALLBACK *OnFileFoundCallbackTypeA)(
+    _In_             LPCSTR CONST path,
+    _In_ LPWIN32_FIND_DATAA CONST pData);
+
+typedef
+_Success_(return == ERROR_SUCCESS)
+DWORD
+(CALLBACK *OnFileFoundCallbackTypeW)(
+    _In_            LPCWSTR CONST path,
+    _In_ LPWIN32_FIND_DATAW CONST pData);
+
 #ifdef _UNICODE
 # define OnFileFoundCallbackType OnFileFoundCallbackTypeW
 #else
 # define OnFileFoundCallbackType OnFileFoundCallbackTypeA
 #endif
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
 
 /**
  * \brief 遍历文件夹（ANSI适配）。
@@ -39,7 +53,10 @@ EXTERN_C_START
  * \sa ["FindNextFile function"](https://msdn.microsoft.com/library/aa364428). *Microsoft® Developer Network*.
  * \sa ["FindClose function"](https://msdn.microsoft.com/library/aa364413). *Microsoft® Developer Network*.
  */
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 TraverseFolderA(
     _In_z_                   LPCSTR CONST folderPath,
     _In_   OnFileFoundCallbackTypeA CONST OnFileFound,
@@ -52,7 +69,10 @@ TraverseFolderA(
  * \param recurse     递归。
  * \returns 成功返回`ERROR_SUCCESS`，失败返回错误码。
  */
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 TraverseFolderW(
     _In_z_                  LPCWSTR CONST folderPath,
     _In_   OnFileFoundCallbackTypeW CONST OnFileFound,
@@ -64,6 +84,8 @@ TraverseFolderW(
 # define TraverseFolder TraverseFolderA
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 /** @} */

@@ -6,11 +6,11 @@
 
 #include "check/check.h"
 
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 
 START_TEST(TestPrtDbg)
 {
-    DpTraceFunc();
+    DpDebugFunc();
     DpInfo(_T("Lovely little fool."));
 }
 END_TEST

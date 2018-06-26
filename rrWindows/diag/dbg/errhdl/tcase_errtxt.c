@@ -4,7 +4,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "check/check.h"
+#include <check/check.h>
 
 #include "rrwindows/errtxt.h"
 #include "rrwindows/winstr.h"
@@ -12,7 +12,7 @@
 START_TEST(TestErrTxt)
 {
     GetProcessId(NULL);
-    ck_assert(StrLen(GetLastErrorText()));
+    ck_assert_int_lt(0, StringCchLengthS(GetLastErrorText()));
 }
 END_TEST
 

@@ -8,14 +8,14 @@
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "rrwindows/flrfs.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "tsuite_dskmgmt.h"
 
 START_TEST(TestFlrFS)
 {
     CONST ULARGE_INTEGER availableFreeBytes = GetFolderFreeSpace(ExecutableDirectoryPath());
     if (0 == availableFreeBytes.QuadPart) {
-        DpWarn(TEXT("GetFolderFreeSpace failed with %lu, %s"), GetLastError(), GetLastErrorText());
+        DpWarnFwLE(TEXT("GetFolderFreeSpace"));
         ck_abort();
         return;
     } else {

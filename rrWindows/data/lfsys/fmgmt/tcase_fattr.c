@@ -8,7 +8,7 @@
 
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "tsuite_fmgmt.h"
 
 /**
@@ -20,7 +20,7 @@ START_TEST(TestFAttr)
 {
     WIN32_FILE_ATTRIBUTE_DATA attr;
     if (!GetFileAttributesEx(ExecutablePath(), GetFileExInfoStandard, &attr)) {
-        DpWarn(_T("GetFileAttributesEx failed: %s, %lu, %s"), ExecutablePath(), GetLastError(), GetLastErrorText());
+        DpWarnFwLE(_T("GetFileAttributesEx"));
         ck_abort();
         return;
     }

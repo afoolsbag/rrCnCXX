@@ -14,7 +14,7 @@ GetFolderFreeSpaceA(
 {
     ULARGE_INTEGER rv = {.QuadPart = 0};
     HRESULT hrslt = SEC_E_OK;
-    CONST SIZE_T siz = (StrLenA(folderPath) + 1) * sizeof(CHAR);
+    CONST SIZE_T siz = (StringCchLengthAs(folderPath) + 1) * sizeof(CHAR);
     CHAR *CONST tmp = (CHAR *)HeapAlloc(GetProcessHeap(), 0, siz);
     if (NULL == tmp) {
         SetLastError(ERROR_OUTOFMEMORY);
@@ -44,7 +44,7 @@ GetFolderFreeSpaceW(
 {
     ULARGE_INTEGER rv = {.QuadPart = 0};
     HRESULT hrslt = SEC_E_OK;
-    CONST SIZE_T siz = (StrLenW(folderPath) + 1) * sizeof(WCHAR);
+    CONST SIZE_T siz = (StringCchLengthWs(folderPath) + 1) * sizeof(WCHAR);
     WCHAR *CONST tmp = (WCHAR *)HeapAlloc(GetProcessHeap(), 0, siz);
     if (NULL == tmp) {
         SetLastError(ERROR_OUTOFMEMORY);

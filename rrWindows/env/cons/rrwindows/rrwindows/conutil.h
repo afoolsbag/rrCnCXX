@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台工具。
  *
- * \version 2018-06-12
+ * \version 2018-06-26
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -28,18 +28,26 @@ typedef enum ConsoleColor {
     LightRed = 0xC, LightPurple = 0xD, LightYellow = 0xE, BrightWhite = 0xF
 } ConsoleColor;
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
+
+/*-Get/Set-Console-Color------------------------------------------------------*/
 
 /**
  * \brief 获取控制台背景色。
  */
-RRWINDOWS_API ConsoleColor WINAPI
+RRWINDOWS_API
+ConsoleColor
+WINAPI
 GetConsoleBackGroundColor(VOID);
 
 /**
  * \brief 获取控制台前景色。
  */
-RRWINDOWS_API ConsoleColor WINAPI
+RRWINDOWS_API
+ConsoleColor
+WINAPI
 GetConsoleForeGroundColor(VOID);
 
 /**
@@ -48,7 +56,9 @@ GetConsoleForeGroundColor(VOID);
  * \param backGroundColor 背景色。
  * \param foreGroundColor 前景色。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 SetConsoleColor(
     _In_ CONST ConsoleColor backGroundColor,
     _In_ CONST ConsoleColor foreGroundColor);
@@ -58,7 +68,9 @@ SetConsoleColor(
  *
  * \param backGroundColor 背景色。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 SetConsoleBackGroundColor(
     _In_ CONST ConsoleColor backGroundColor);
 
@@ -67,9 +79,13 @@ SetConsoleBackGroundColor(
  *
  * \param foreGroundColor 前景色。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 SetConsoleForeGroundColor(
     _In_ CONST ConsoleColor foreGroundColor);
+
+/*-Console-Color-Put----------------------------------------------------------*/
 
 /**
  * \brief 控制台放置有色字串（ANSI适配）。
@@ -77,7 +93,9 @@ SetConsoleForeGroundColor(
  * \param color 颜色。
  * \param text  字串。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ConsoleColorPutA(
     _In_    CONST ConsoleColor color,
     _In_z_ LPCSTR CONST        text);
@@ -88,7 +106,9 @@ ConsoleColorPutA(
  * \param color 颜色。
  * \param text  字串。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ConsoleColorPutW(
     _In_     CONST ConsoleColor color,
     _In_z_ LPCWSTR CONST        text);
@@ -99,27 +119,99 @@ ConsoleColorPutW(
 # define ConsoleColorPut ConsoleColorPutA
 #endif
 
-/** \brief 控制台放置有色字串（默认）。 */
-#define ConColPut1(text) \
-    ConsoleColorPut(White, text)
-/** \brief 控制台放置有色字串（单色）。 */
-#define ConColPut2(color, text) \
-    ConsoleColorPut(color, text)
-/** \brief 控制台放置有色字串（双色）。 */
-#define ConColPut4(color, text, color2, text2) \
-    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2);}while(0)
-/** \brief 控制台放置有色字串（三色）。 */
-#define ConColPut6(color, text, color2, text2, color3, text3) \
-    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3);}while(0)
-/** \brief 控制台放置有色字串（四色）。 */
-#define ConColPut8(color, text, color2, text2, color3, text3, color4, text4) \
-    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3); ConsoleColorPut(color4, text4);}while(0)
-/** \brief 控制台放置有色字串（五色）。 */
-#define ConColPut10(color, text, color2, text2, color3, text3, color4, text4, color5, text5) \
-    do{ConsoleColorPut(color, text); ConsoleColorPut(color2, text2); ConsoleColorPut(color3, text3); ConsoleColorPut(color4, text4); ConsoleColorPut(color5, text5);}while(0)
+FORCEINLINE
+VOID
+WINAPI_INLINE
+ConsoleColorPut1(
+    _In_z_ LPCTSTR CONST text)
+{
+    ConsoleColorPut(White, text);
+}
+
+FORCEINLINE
+VOID
+WINAPI_INLINE
+ConsoleColorPut2(
+    _In_     CONST ConsoleColor color,
+    _In_z_ LPCTSTR CONST        text)
+{
+    ConsoleColorPut(color, text);
+}
+
+FORCEINLINE
+VOID
+WINAPI_INLINE
+ConsoleColorPut4(
+    _In_     CONST ConsoleColor color,
+    _In_z_ LPCTSTR CONST        text,
+    _In_     CONST ConsoleColor color2,
+    _In_z_ LPCTSTR CONST        text2)
+{
+    ConsoleColorPut(color, text);
+    ConsoleColorPut(color2, text2);
+}
+
+FORCEINLINE
+VOID
+WINAPI_INLINE
+ConsoleColorPut6(
+    _In_     CONST ConsoleColor color,
+    _In_z_ LPCTSTR CONST        text,
+    _In_     CONST ConsoleColor color2,
+    _In_z_ LPCTSTR CONST        text2,
+    _In_     CONST ConsoleColor color3,
+    _In_z_ LPCTSTR CONST        text3)
+{
+    ConsoleColorPut(color, text);
+    ConsoleColorPut(color2, text2);
+    ConsoleColorPut(color3, text3);
+}
+
+FORCEINLINE
+VOID
+WINAPI_INLINE
+ConsoleColorPut8(
+    _In_     CONST ConsoleColor color,
+    _In_z_ LPCTSTR CONST        text,
+    _In_     CONST ConsoleColor color2,
+    _In_z_ LPCTSTR CONST        text2,
+    _In_     CONST ConsoleColor color3,
+    _In_z_ LPCTSTR CONST        text3,
+    _In_     CONST ConsoleColor color4,
+    _In_z_ LPCTSTR CONST        text4)
+{
+    ConsoleColorPut(color, text);
+    ConsoleColorPut(color2, text2);
+    ConsoleColorPut(color3, text3);
+    ConsoleColorPut(color4, text4);
+}
+
+FORCEINLINE
+VOID
+WINAPI_INLINE
+ConsoleColorPut10(
+    _In_     CONST ConsoleColor color,
+    _In_z_ LPCTSTR CONST        text,
+    _In_     CONST ConsoleColor color2,
+    _In_z_ LPCTSTR CONST        text2,
+    _In_     CONST ConsoleColor color3,
+    _In_z_ LPCTSTR CONST        text3,
+    _In_     CONST ConsoleColor color4,
+    _In_z_ LPCTSTR CONST        text4,
+    _In_     CONST ConsoleColor color5,
+    _In_z_ LPCTSTR CONST        text5)
+{
+    ConsoleColorPut(color, text);
+    ConsoleColorPut(color2, text2);
+    ConsoleColorPut(color3, text3);
+    ConsoleColorPut(color4, text4);
+    ConsoleColorPut(color5, text5);
+}
 
 /** \brief 控制台放置有色字串（便利宏）。 */
-#define ConColPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConColPut10, VABAN, ConColPut8, VABAN, ConColPut6, VABAN, ConColPut4, VABAN, ConColPut2, ConColPut1)(__VA_ARGS__))
+#define ConColPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConsoleColorPut10, VABAN, ConsoleColorPut8, VABAN, ConsoleColorPut6, VABAN, ConsoleColorPut4, VABAN, ConsoleColorPut2, ConsoleColorPut1)(__VA_ARGS__))
+
+/*-Console-Color-Print--------------------------------------------------------*/
 
 /**
  * \brief 控制台打印有色字串（ANSI适配）。
@@ -128,7 +220,9 @@ ConsoleColorPutW(
  * \param format 格式。
  * \param ...    参数。
  */
-RRWINDOWS_API VOID WINAPIV
+RRWINDOWS_API
+VOID
+WINAPIV
 ConsoleColorPrintA(
     _In_                           CONST ConsoleColor color,
     _In_z_ _Printf_format_string_ LPCSTR CONST        format,
@@ -141,7 +235,9 @@ ConsoleColorPrintA(
  * \param format 格式。
  * \param ...    参数。
  */
-RRWINDOWS_API VOID WINAPIV
+RRWINDOWS_API
+VOID
+WINAPIV
 ConsoleColorPrintW(
     _In_                            CONST ConsoleColor color,
     _In_z_ _Printf_format_string_ LPCWSTR CONST        format,
@@ -156,16 +252,22 @@ ConsoleColorPrintW(
 /** \brief 控制台打印有色字串（缩写）。 */
 #define ConColPrt ConsoleColorPrint
 
+/*-Clear-Console-Screen-------------------------------------------------------*/
+
 /**
  * \brief 清空控制台屏幕（ANSI适配）。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ClearConsoleScreenA(VOID);
 
 /**
  * \brief 清空控制台屏幕（UNICODE适配）。
  */
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ClearConsoleScreenW(VOID);
 
 #ifdef _UNICODE
@@ -174,4 +276,6 @@ ClearConsoleScreenW(VOID);
 # define ClearConsoleScreen ClearConsoleScreenA
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif

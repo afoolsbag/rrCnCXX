@@ -4,7 +4,7 @@
  * \ingroup gDskMgmt
  *
  * \author zhengrr
- * \version 2018-06-15
+ * \version 2018-06-26
  * \since 2018-06-15
  * \copyright The MIT License
  *
@@ -17,7 +17,7 @@
 #include <check/check.h>
 
 #include "rrwindows/errtxt.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/prtdbgstr.h"
 #include "tsuite_dskmgmt.h"
 
 START_TEST(TestDskFS)
@@ -25,12 +25,13 @@ START_TEST(TestDskFS)
     ULARGE_INTEGER availableFreeBytes;
     ULARGE_INTEGER totalBytes;
     ULARGE_INTEGER freeBytes;
-    if (!GetDiskFreeSpaceEx(TEXT("C:\\"), &availableFreeBytes, &totalBytes, &freeBytes)) {
-        DpWarn(TEXT("GetDiskFreeSpaceEx failed with %lu, %s"), GetLastError(), GetLastErrorText());
+    if (!GetDiskFreeSpaceEx(_T("C:\\"), &availableFreeBytes, &totalBytes, &freeBytes)) {
+        DpWarnFwLE(_T("GetDiskFreeSpaceEx"));
+        DpTrace(_T("444"));
         ck_abort();
         return;
     }
-    DpInfo(TEXT("Available free bytes %llu, total %llu, free %llu"), availableFreeBytes.QuadPart, totalBytes.QuadPart, freeBytes.QuadPart);
+    DpInfo(_T("Available free bytes %llu, total %llu, free %llu"), availableFreeBytes.QuadPart, totalBytes.QuadPart, freeBytes.QuadPart);
 }
 END_TEST
 
