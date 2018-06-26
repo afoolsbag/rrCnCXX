@@ -1,8 +1,8 @@
 /** \copyright The MIT License */
 
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <tchar.h>
 
 #include <check/check.h>
 
@@ -11,8 +11,8 @@
 
 START_TEST(TestCkProcRun)
 {
-    ck_assert(CheckProcessRunning(_T("svchost.exe")));
-    ck_assert(!CheckProcessRunning(_T("svchost-yeyeye.exe")));
+    ck_assert_int_lt(0, CheckProcessRunning(_T("svchost.exe")));
+    ck_assert_int_eq(0, CheckProcessRunning(_T("svchost-yeyeye.exe")));
 }
 END_TEST
 
