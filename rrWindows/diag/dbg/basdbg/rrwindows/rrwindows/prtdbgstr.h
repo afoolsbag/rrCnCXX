@@ -5,7 +5,7 @@
  *
  * \sa ["OutputDebugString function"](https://msdn.microsoft.com/library/aa363362). *MSDN*.
  *
- * \version 2018-06-26
+ * \version 2018-06-27
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -177,7 +177,7 @@ PrintDebugStringWsb(
 #define DEBUG_PRINT_TRACE 6  /* 追踪，以追踪流程。 */
 #define DEBUG_PRINT_ALL   7  /* 启用所有级别调试打印。 */
 #ifdef _DEBUG
-# define DEBUG_PRINT_DEFAULT DEBUG_PRINT_ALL
+# define DEBUG_PRINT_DEFAULT DEBUG_PRINT_DEBUG
 #else
 # define DEBUG_PRINT_DEFAULT DEBUG_PRINT_INFO
 #endif
@@ -186,36 +186,56 @@ PrintDebugStringWsb(
 #define DEBUG_PRINT_LEVEL DEBUG_PRINT_DEFAULT  /* 调试打印级别。 */
 #endif
 
+#ifdef _DEBUG
+# define DpFormat(apdfmt, ...) PrintDebugString(FILELINE _T("<%lu> ") apdfmt ATFUNCNL, GetCurrentThreadId(), __VA_ARGS__)
+#else
+# define DpFormat(apdfmt, ...) PrintDebugString(_T("<%lu> ") apdfmt _T("\n"), GetCurrentThreadId(), __VA_ARGS__)
+#endif
+
 /** \brief 调试打印（致命）。 */
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_FATAL
 # define DpFatal(...)         ((void)0)
 #elif defined(_DEBUG)
-# define DpFatal(format, ...) do { PrintDebugString(FILELINE _T("Fatal: ") format ATFUNCNL, __VA_ARGS__); __debugbreak(); } while(0)
+# define DpFatal(apdfmt, ...) do { DpFormat(_T("Fatal: ") apdfmt, __VA_ARGS__); __debugbreak(); } while(0)
 #else
-# define DpFatal(format, ...) PrintDebugString(_T("Fatal: ") format ATFUNCNL, __VA_ARGS__)
+# define DpFatal(apdfmt, ...) DpFormat(_T("Fatal: ") apdfmt, __VA_ARGS__)
 #endif
-
 /** \brief 调试打印（错误）。 */
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_ERROR
 # define DpError(...)         ((void)0)
 #elif defined(_DEBUG)
-# define DpError(format, ...) do { PrintDebugString(FILELINE _T("Error: ") format ATFUNCNL, __VA_ARGS__); __debugbreak(); } while(0)
+# define DpError(apdfmt, ...) do { DpFormat(_T("Error: ") apdfmt, __VA_ARGS__); __debugbreak(); } while(0)
 #else
-# define DpError(format, ...) PrintDebugString(_T("Error: ") format ATFUNCNL, __VA_ARGS__)
+# define DpError(apdfmt, ...) DpFormat(_T("Error: ") apdfmt, __VA_ARGS__)
+#endif
+/** \brief 调试打印（警告）。 */
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
+# define DpWarn(...)          ((void)0)
+#else
+# define DpWarn(apdfmt, ...)  DpFormat(_T("Warn: ") apdfmt, __VA_ARGS__)
+#endif
+/** \brief 调试打印（信息）。 */
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_INFO
+# define DpInfo(...)          ((void)0)
+#else
+# define DpInfo(apdfmt, ...)  DpFormat(_T("Info: ") apdfmt, __VA_ARGS__)
+#endif
+/** \brief 调试打印（调试）。 */
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_DEBUG
+# define DpDebug(...)         ((void)0)
+#else
+# define DpDebug(apdfmt, ...) DpFormat(_T("Debug: ") apdfmt, __VA_ARGS__)
+#endif
+/** \brief 调试打印（追踪）。 */
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_TRACE
+# define DpTrace(...)         ((void)0)
+#else
+# define DpTrace(apdfmt, ...) DpFormat(_T("Trace: ") apdfmt, __VA_ARGS__)
 #endif
 
 /** \brief 调试打印（错误）：switch未知路由。
  *  \param expr 表达式。 */
 #define DpErrorSwitchUnknown(expr) DpError(_T("Unknown switch-route with expression: ") _T(#expr) _T("=%I64d."), (INT64)(expr))
-
-/** \brief 调试打印（警告）。 */
-#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
-# define DpWarn(...)          ((void)0)
-#elif defined(_DEBUG)
-# define DpWarn(format, ...)  PrintDebugString(FILELINE _T("Warn: ") format ATFUNCNL, __VA_ARGS__)
-#else
-# define DpWarn(format, ...)  PrintDebugString(_T("Warn: ") format ATFUNCNL, __VA_ARGS__)
-#endif
 
 /** \brief 调试打印（警告）：失败和最后错误（Failed with Last Error）。
  *  \param opfmt 操作描述格式。
@@ -223,39 +243,18 @@ PrintDebugStringWsb(
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
 # define DpWarnFwLE(...)        ((void)0)
 #elif defined(_DEBUG)
-# define DpWarnFwLE(opfmt, ...) PrintDebugString(FILELINE _T("Warn: ") opfmt _T(" failed with error %lu: %s") ATFUNCNL, __VA_ARGS__, GetLastError(), GetLastErrorText())
+# define DpWarnFwLE(opfmt, ...) PrintDebugString(FILELINE _T("<%lu> ") _T("Warn: ") opfmt _T(" failed with error %lu: %s") ATFUNCNL, GetCurrentThreadId(), __VA_ARGS__, GetLastError(), GetLastErrorText())
 #else
-# define DpWarnFwLE(opfmt, ...) PrintDebugString(_T("Warn: ") opfmt _T(" failed with error %lu: %s") ATFUNCNL, __VA_ARGS__, GetLastError(), GetLastErrorText())
-#endif
-
-/** \brief 调试打印（信息）。 */
-#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_INFO
-# define DpInfo(...)          ((void)0)
-#elif defined(_DEBUG)
-# define DpInfo(format, ...)  PrintDebugString(FILELINE _T("Info: ") format ATFUNCNL, __VA_ARGS__)
-#else
-# define DpInfo(format, ...)  PrintDebugString(_T("Info: ") format ATFUNCNL, __VA_ARGS__)
-#endif
-
-/** \brief 调试打印（调试）。 */
-#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_DEBUG
-# define DpDebug(...)         ((void)0)
-#elif defined(_DEBUG)
-# define DpDebug(format, ...) PrintDebugString(FILELINE _T("Debug: ") format ATFUNCNL, __VA_ARGS__)
-#else
-# define DpDebug(format, ...) PrintDebugString(_T("Debug: ") format ATFUNCNL, __VA_ARGS__)
+# define DpWarnFwLE(opfmt, ...) PrintDebugString(_T("<%lu> ") _T("Warn: ") opfmt _T(" failed with error %lu: %s\n"), GetCurrentThreadId(), __VA_ARGS__, GetLastError(), GetLastErrorText())
 #endif
 
 /** \brief 调试打印（调试）：函数名、函数修饰名和函数签名。 */
-#define DpDebugFunc() DpDebug(_T("Function name \"") _T(__FUNCTION__) _T("\", decorated name \"") _T(__FUNCDNAME__) _T("\", signature \"") _T(__FUNCSIG__) _T("\"."))
+#define DpDebugFunc() DpDebug(_T("Function name \"%s\", decorated name \"%s\", signature \"%s\"."), _T(__FUNCTION__), _T(__FUNCDNAME__), _T(__FUNCSIG__))
 
-/** \brief 调试打印（追踪）。 */
-#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_TRACE
-# define DpTrace(...)         ((void)0)
-#elif defined(_DEBUG)
-# define DpTrace(format, ...) PrintDebugString(FILELINE _T("Trace: ") format ATFUNCNL, __VA_ARGS__)
-#else
-# define DpTrace(format, ...) PrintDebugString(_T("Trace: ") format ATFUNCNL, __VA_ARGS__)
-#endif
+/** \brief 调试打印（追踪）：进入函数。 */
+#define DpTraceEnter() DpTrace(_T("Enter ") _T(__FUNCTION__) _T("."))
+
+/** \brief 调试打印（追踪）：离开函数。 */
+#define DpTraceLeave() DpTrace(_T("Leave ") _T(__FUNCTION__) _T("."))
 
 /** @} */

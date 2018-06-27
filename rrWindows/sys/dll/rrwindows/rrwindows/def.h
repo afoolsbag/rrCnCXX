@@ -3,7 +3,7 @@
  * \file
  * \brief 定义。
  *
- * \version 2018-06-26
+ * \version 2018-06-27
  * \since 2018-06-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -14,7 +14,7 @@
 
 #include "macro.h"
 
-/* A */
+/*-A--------------------------------------------------------------------------*/
 
 #ifndef ATFUNCNLA
 #define ATFUNCNLA " @" __FUNCTION__ ".\n"
@@ -30,13 +30,13 @@
 # endif
 #endif
 
-/* C */
+/*-C--------------------------------------------------------------------------*/
 
 #ifndef countof
 #define countof(arr) (sizeof(arr) / sizeof((arr)[0]))
 #endif
 
-/* E */
+/*-E--------------------------------------------------------------------------*/
 
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
@@ -45,7 +45,7 @@
 #define EXIT_FAILURE 1
 #endif
 
-/* F */
+/*-F--------------------------------------------------------------------------*/
 
 #ifndef FILELINEA
 #define FILELINEA __FILE__ "(" EXPAND_STRING(__LINE__) "): "
