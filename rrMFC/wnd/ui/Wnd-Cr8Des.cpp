@@ -12,7 +12,7 @@ OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (!CWnd::OnNcCreate(lpCreateStruct))
         return FALSE;
-    DbgConMeth();
+    DcMeth();
     return TRUE;
 }
 
@@ -21,7 +21,7 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConMeth();
+    DcMeth();
     return 0;
 }
 
@@ -29,12 +29,12 @@ VOID Window::
 OnDestroy()
 {
     CWnd::OnDestroy();
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 OnNcDestroy()
 {
     CWnd::OnNcDestroy();
-    DbgConMeth();
+    DcMeth();
 }

@@ -4,10 +4,10 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____|
 # zhengrr       rrMFC by FIGlet
-# 2017-12-08 – 2018-06-08
+# 2017-12-08 – 2018-06-28
 # The MIT License
 
-project(rrMFC VERSION 2018.6.8 LANGUAGES CXX)
+project(rrMFC VERSION 2018.6.28 LANGUAGES CXX)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8 ANALYZE)
 

@@ -11,13 +11,13 @@ VOID Window::
 OnNcPaint()
 {
     CWnd::OnNcPaint();
-    DbgConMeth();
+    DcMeth();
 }
 
 BOOL Window::
 OnEraseBkgnd(CDC *pDC)
 {
-    DbgConMeth();
+    DcMeth();
     return CWnd::OnEraseBkgnd(pDC);
 }
 
@@ -25,5 +25,5 @@ VOID Window::
 OnPaint()
 {
     CWnd::OnPaint();
-    DbgConMeth();
+    DcMeth();
 }

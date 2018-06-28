@@ -76,6 +76,14 @@
 # define DpWarnFwLE(opfmt, ...) PrintDebugString(         _T("<%lu> ") _T("Warn: ") opfmt _T(" failed with error %lu: %s") _T("\n"), GetCurrentThreadId(), __VA_ARGS__, GetLastError(), GetLastErrorText())
 #endif
 
+#if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
+#define DpWarnExpectTrue(...)   ((void)0)
+#define DpWarnExpectFalse(...)  ((void)0)
+#else
+#define DpWarnExpectTrue(proc)  ((proc) || (DpWarnFwLE(#proc), FALSE))
+#define DpWarnExpectFalse(proc) ((proc) && (DpWarnFwLE(#proc), TRUE))
+#endif
+
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_INFO
 # define DpInfo(...)          ((void)0)
 #elif defined(_DEBUG)

@@ -11,7 +11,7 @@ LRESULT Window::
 OnCustomPrivateMessage(WPARAM wParam, LPARAM lParam)
 {
     UNUSED(wParam); UNUSED(lParam);
-    DbgConMeth();
+    DcMeth();
     return 0;
 }
 
@@ -19,7 +19,7 @@ LRESULT Window::
 OnCustomApplicationMessage(WPARAM wParam, LPARAM lParam)
 {
     UNUSED(wParam); UNUSED(lParam);
-    DbgConMeth();
+    DcMeth();
     return 0;
 }
 
@@ -27,6 +27,6 @@ LRESULT Window::
 OnCustomRegisterMessage(WPARAM wParam, LPARAM lParam)
 {
     UNUSED(wParam); UNUSED(lParam);
-    DbgConMeth();
+    DcMeth();
     return 0;
 }

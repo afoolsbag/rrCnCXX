@@ -10,7 +10,7 @@
 VOID Window::
 OnTimer(UINT_PTR nIDEvent)
 {
-    DbgConMeth();
+    DcMeth();
     switch (nIDEvent) {
     case ALPHA: break;
     case BETA: break;

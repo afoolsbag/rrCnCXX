@@ -71,6 +71,7 @@ DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
     DcMeth();
+
     DDX_Control(pDX, IDC_COMBO_BOX, ComboBox);
     DDX_CBString(pDX, IDC_COMBO_BOX, ComboText);
     DDX_CBIndex(pDX, IDC_COMBO_BOX, ComboIndex);

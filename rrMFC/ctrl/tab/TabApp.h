@@ -1,9 +1,9 @@
-//===-- Application ---------------------------------------------*- C++ -*-===//
+//===-- Tab Application -----------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 应用（类）。
+/// \brief 标签应用（类）。
 ///
-/// \verison 2018-04-09
+/// \verison 2018-06-28
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,12 +12,15 @@
 
 #pragma once
 
-/// \brief 应用（类）。
-class Application: public CWinApp {
-    DECLARE_DYNCREATE(Application)
+///
+/// \brief 标签应用（类）。
+///
+class TabApplication: public CWinApp {
 
 // Constructors
 public:
+    TabApplication();
+    virtual ~TabApplication() override;
 
 // Attributes
 public:
@@ -27,7 +30,7 @@ public:
 
 // Overridables
 protected:
-    virtual BOOL InitInstance();
+    virtual BOOL InitInstance() override;
 
 // Implementation
 protected:

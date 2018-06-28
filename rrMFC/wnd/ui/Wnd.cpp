@@ -56,7 +56,7 @@ END_MESSAGE_MAP()
 Window::
 Window()
 {
-    DbgConMeth();
+    DcMeth();
 
     CString wndClassName = AfxRegisterWndClass(
         CS_DBLCLKS,
@@ -74,28 +74,28 @@ Window()
 BOOL Window::
 Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext /*=NULL*/)
 {
-    DbgConMeth();
+    DcMeth();
     return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
 BOOL Window::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, INT x, INT y, INT nWidth, INT nHeight, HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam /*=NULL*/)
 {
-    DbgConMeth();
+    DcMeth();
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, nIDorHMenu, lpParam);
 }
 
 BOOL Window::
 CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam)
 {
-    DbgConMeth();
+    DcMeth();
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, lpParam);
 }
 
 Window::
 ~Window()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 #// Overridables
@@ -103,21 +103,21 @@ Window::
 BOOL Window::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    DbgConMeth();
+    DcMeth();
     return CWnd::PreCreateWindow(cs);
 }
 
 BOOL Window::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConCmdMsg();
+    DcCmdMsg();
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL Window::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConWndMsg();
+    DcWndMsg();
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -125,13 +125,13 @@ VOID Window::
 DoDataExchange(CDataExchange *pDX)
 {
     CWnd::DoDataExchange(pDX);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 PostNcDestroy()
 {
-    DbgConMeth();
+    DcMeth();
     CWnd::PostNcDestroy();
 }
 

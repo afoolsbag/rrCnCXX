@@ -10,14 +10,14 @@
 VOID Window::
 OnGetMinMaxInfo(MINMAXINFO *lpMMI)
 {
-    DbgConMeth();
+    DcMeth();
     CWnd::OnGetMinMaxInfo(lpMMI);
 }
 
 VOID Window::
 OnEnterSizeMove()
 {
-    DbgConMeth();
+    DcMeth();
     CWnd::OnEnterSizeMove();
 }
 
@@ -25,27 +25,27 @@ VOID Window::
 OnMoving(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnMoving(fwSide, pRect);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 OnSizing(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnSizing(fwSide, pRect);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 OnWindowPosChanging(WINDOWPOS *lpwndpos)
 {
     CWnd::OnWindowPosChanging(lpwndpos);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 OnExitSizeMove()
 {
-    DbgConMeth();
+    DcMeth();
     CWnd::OnExitSizeMove();
 }
 
@@ -53,13 +53,13 @@ VOID Window::
 OnMove(INT x, INT y)
 {
     CWnd::OnMove(x, y);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 {
-    DbgConMeth();
+    DcMeth();
     CWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
 }
 
@@ -67,12 +67,12 @@ VOID Window::
 OnSize(UINT nType, INT cx, INT cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Window::
 OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
     CWnd::OnWindowPosChanged(lpwndpos);
-    DbgConMeth();
+    DcMeth();
 }

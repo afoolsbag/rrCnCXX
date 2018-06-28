@@ -1,22 +1,25 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ …˙≥…µƒ∞¸∫¨Œƒº˛°£
-// π© resource.rc  π”√
+// Microsoft Visual C++ ÁîüÊàêÁöÑÂåÖÂê´Êñá‰ª∂„ÄÇ
+// ‰æõ resource.rc ‰ΩøÁî®
 //
-#define IDD_MAIN_DIALOG                 100
-#define IDS_TAB_PAGE_0                  101
-#define IDS_TAB_PAGE_1                  102
-#define IDS_TAB_PAGE_2                  103
-#define IDD_PAGE_DIALOG                 200
-#define IDC_TAB                         50001
-#define IDC_BUTTON1                     50002
+#define IDD_TAB_DIALOG                  200
+#define IDS_TAB_PAGE_1                  211
+#define IDS_TAB_PAGE_2                  212
+#define IDS_TAB_PAGE_3                  213
+#define IDD_PAGE_DIALOG                 300
+#define IDC_UNDEFINED                   40000
+#define IDC_TAB                         40001
+#define IDC_RANGELAST                   49999
+#define ID_UNDEFINED                    50000
+#define ID_RANGELAST                    57343
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        201
+#define _APS_NEXT_RESOURCE_VALUE        400
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         50003
-#define _APS_NEXT_SYMED_VALUE           201
+#define _APS_NEXT_SYMED_VALUE           400
 #endif
 #endif

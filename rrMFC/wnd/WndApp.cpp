@@ -16,15 +16,15 @@ UINT RM_CUSTOM_REGISTER_MESSAGE = RegisterWindowMessage(TEXT("RM_CUSTOM_REGISTER
 WindowApplication::
 WindowApplication()
 {
-    NewDebugConsole();
-    DbgConMeth();
+    AllocDebugConsole();
+    DcMeth();
 }
 
 WindowApplication::
 ~WindowApplication()
 {
-    DbgConMeth();
-    DeleteDebugConsole();
+    DcMeth();
+    FreeDebugConsole();
 }
 
 #// Overridables
@@ -33,7 +33,7 @@ BOOL WindowApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConMeth();
+    DcMeth();
 
     m_pMainWnd = DEBUG_NEW Window;
     m_pMainWnd->ShowWindow(m_nCmdShow);
