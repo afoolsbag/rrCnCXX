@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台工具。
  *
- * \version 2018-06-26
+ * \version 2018-06-28
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -21,7 +21,8 @@
 /**
  * \brief 控制台颜色。
  */
-typedef enum ConsoleColor {
+typedef
+enum ConsoleColorEnum {
     Black = 0x0, Blue = 0x1, Green = 0x2, Aqua = 0x3,
     Red = 0x4, Purple = 0x5, Yellow = 0x6, White = 0x7,
     Gray = 0x8, LightBlue = 0x9, LightGreen = 0xA, LightAqua = 0xB,
@@ -114,9 +115,9 @@ ConsoleColorPutW(
     _In_z_ LPCWSTR CONST        text);
 
 #ifdef _UNICODE
-# define ConsoleColorPut ConsoleColorPutW
+# define ConsoleColorPutT ConsoleColorPutW
 #else
-# define ConsoleColorPut ConsoleColorPutA
+# define ConsoleColorPutT ConsoleColorPutA
 #endif
 
 FORCEINLINE
@@ -125,7 +126,7 @@ WINAPI_INLINE
 ConsoleColorPut1(
     _In_z_ LPCTSTR CONST text)
 {
-    ConsoleColorPut(White, text);
+    ConsoleColorPutT(White, text);
 }
 
 FORCEINLINE
@@ -135,7 +136,7 @@ ConsoleColorPut2(
     _In_     CONST ConsoleColor color,
     _In_z_ LPCTSTR CONST        text)
 {
-    ConsoleColorPut(color, text);
+    ConsoleColorPutT(color, text);
 }
 
 FORCEINLINE
@@ -147,8 +148,8 @@ ConsoleColorPut4(
     _In_     CONST ConsoleColor color2,
     _In_z_ LPCTSTR CONST        text2)
 {
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
+    ConsoleColorPutT(color, text);
+    ConsoleColorPutT(color2, text2);
 }
 
 FORCEINLINE
@@ -162,9 +163,9 @@ ConsoleColorPut6(
     _In_     CONST ConsoleColor color3,
     _In_z_ LPCTSTR CONST        text3)
 {
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-    ConsoleColorPut(color3, text3);
+    ConsoleColorPutT(color, text);
+    ConsoleColorPutT(color2, text2);
+    ConsoleColorPutT(color3, text3);
 }
 
 FORCEINLINE
@@ -180,10 +181,10 @@ ConsoleColorPut8(
     _In_     CONST ConsoleColor color4,
     _In_z_ LPCTSTR CONST        text4)
 {
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-    ConsoleColorPut(color3, text3);
-    ConsoleColorPut(color4, text4);
+    ConsoleColorPutT(color, text);
+    ConsoleColorPutT(color2, text2);
+    ConsoleColorPutT(color3, text3);
+    ConsoleColorPutT(color4, text4);
 }
 
 FORCEINLINE
@@ -201,15 +202,15 @@ ConsoleColorPut10(
     _In_     CONST ConsoleColor color5,
     _In_z_ LPCTSTR CONST        text5)
 {
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-    ConsoleColorPut(color3, text3);
-    ConsoleColorPut(color4, text4);
-    ConsoleColorPut(color5, text5);
+    ConsoleColorPutT(color, text);
+    ConsoleColorPutT(color2, text2);
+    ConsoleColorPutT(color3, text3);
+    ConsoleColorPutT(color4, text4);
+    ConsoleColorPutT(color5, text5);
 }
 
 /** \brief 控制台放置有色字串（便利宏）。 */
-#define ConColPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConsoleColorPut10, VABAN, ConsoleColorPut8, VABAN, ConsoleColorPut6, VABAN, ConsoleColorPut4, VABAN, ConsoleColorPut2, ConsoleColorPut1)(__VA_ARGS__))
+#define ConsoleColorPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConsoleColorPut10, VABAN, ConsoleColorPut8, VABAN, ConsoleColorPut6, VABAN, ConsoleColorPut4, VABAN, ConsoleColorPut2, ConsoleColorPut1)(__VA_ARGS__))
 
 /*-Console-Color-Print--------------------------------------------------------*/
 
@@ -248,9 +249,6 @@ ConsoleColorPrintW(
 #else
 # define ConsoleColorPrint ConsoleColorPrintA
 #endif
-
-/** \brief 控制台打印有色字串（缩写）。 */
-#define ConColPrt ConsoleColorPrint
 
 /*-Clear-Console-Screen-------------------------------------------------------*/
 

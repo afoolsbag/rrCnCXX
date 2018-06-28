@@ -6,7 +6,7 @@
  * \sa <https://docs.microsoft.com/windows/console/console-virtual-terminal-sequences>
  * \sa <https://vt100.net/>
  *
- * \version 2018-06-23
+ * \version 2018-06-28
  * \since 2018-06-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -21,21 +21,31 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
 
 /**
  * \brief 启用虚拟终端模式。
  */
-RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 EnableVirtualTerminalMode(VOID);
 
 /**
  * \brife 禁用虚拟终端模式。
  */
-RRWINDOWS_API _Success_(return != FALSE) BOOL WINAPI
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
 DisableVirtualTerminalMode(VOID);
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 #define ESC _T("\0x1B")
 #define CSI ESC _T("[")  /* Control Sequence Introducer */

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 资源页3（类）。
 ///
-/// \verison 2018-05-31
+/// \verison 2018-06-28
 /// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,11 +12,10 @@
 
 #pragma once
 
-#include "resource.h"
+#include "propdlg.resource.h"
 
 /// \brief 资源页3（类）。
 class PropertyPage3: public CPropertyPage {
-    DECLARE_DYNCREATE(PropertyPage3)
 
 #// Constructors
 public:

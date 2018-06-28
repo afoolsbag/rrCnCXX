@@ -3,7 +3,7 @@
 /// \file
 /// \brief 进度对话框（类）。
 ///
-/// \verison 2018-05-29
+/// \verison 2018-06-28
 /// \since 2018-05-30
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -37,13 +37,46 @@ public:
 
 #// Operations
 public:
-    inline VOID SetTitle(LPCTSTR CONST text) { SetWindowText(text); }
-    inline VOID SetTotal(LPCTSTR CONST text) { TotDesc = text; }
-    inline VOID SetTotal(CONST SHORT min, CONST SHORT max) { ASSERT(0 <= min && min <= max); TotProgRngMin = min; TotProgRngMax = max; }
-    inline VOID SetTotal(CONST INT position) { ASSERT(TotProgRngMin <= position && position <= TotProgRngMax); TotProgPos = position; }
-    inline VOID SetCurrent(LPCTSTR CONST text) { CurDesc = text; }
-    inline VOID SetCurrent(CONST SHORT min, CONST SHORT max) { ASSERT(0 <= min && min <= max); CurProgRngMin = min; CurProgRngMax = max; }
-    inline VOID SetCurrent(CONST INT position) { ASSERT(CurProgRngMin <= position && position <= CurProgRngMax); CurProgPos = position; }
+    inline VOID SetTitle(LPCTSTR CONST text)
+    {
+        SetWindowText(text);
+    }
+
+    inline VOID SetTotal(LPCTSTR CONST text)
+    {
+        TotDesc = text;
+    }
+
+    inline VOID SetTotal(CONST SHORT min, CONST SHORT max)
+    {
+        ASSERT(0 <= min && min <= max);
+        TotProgRngMin = min;
+        TotProgRngMax = max;
+    }
+
+    inline VOID SetTotal(CONST INT position)
+    {
+        ASSERT(TotProgRngMin <= position && position <= TotProgRngMax);
+        TotProgPos = position;
+    }
+
+    inline VOID SetCurrent(LPCTSTR CONST text)
+    {
+        CurDesc = text;
+    }
+
+    inline VOID SetCurrent(CONST SHORT min, CONST SHORT max)
+    {
+        ASSERT(0 <= min && min <= max);
+        CurProgRngMin = min;
+        CurProgRngMax = max;
+    }
+
+    inline VOID SetCurrent(CONST INT position)
+    {
+        ASSERT(CurProgRngMin <= position && position <= CurProgRngMax);
+        CurProgPos = position;
+    }
 
 #// Overridables
 public:

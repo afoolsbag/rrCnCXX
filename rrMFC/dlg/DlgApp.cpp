@@ -4,7 +4,7 @@
 #include "DlgApp.h"
 
 #include "rrwindows/dbgcon.h"
-#include "rrwindows/prtdbgstr.h"
+#include "rrwindows/dbgprt.h"
 
 #include "ui/Dlg.h"
 
@@ -13,15 +13,15 @@
 DialogApplication::
 DialogApplication()
 {
-    NewDebugConsole();
-    DbgConMeth();
+    AllocDebugConsole();
+    DcMeth();
 }
 
 DialogApplication::
 ~DialogApplication()
 {
-    DbgConMeth();
-    DeleteDebugConsole();
+    DcMeth();
+    FreeDebugConsole();
 }
 
 #// Overridables
@@ -30,7 +30,7 @@ BOOL DialogApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConMeth();
+    DcMeth();
 
     Dialog mainWnd;
     m_pMainWnd = &mainWnd;

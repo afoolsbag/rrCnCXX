@@ -3,7 +3,7 @@
 /// \file
 /// \brief 对话框应用（类）。
 ///
-/// \verison 2018-06-25
+/// \verison 2018-06-28
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,7 +12,9 @@
 
 #pragma once
 
+///
 /// \brief 对话框应用（类）。
+///
 class DialogApplication: public CWinApp {
 
 #// Constructors

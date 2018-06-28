@@ -6,7 +6,9 @@
 #include <stdarg.h>
 #include <conio.h>
 
-RRWINDOWS_API ConsoleColor WINAPI
+RRWINDOWS_API
+ConsoleColor
+WINAPI
 GetConsoleBackGroundColor(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -16,7 +18,9 @@ GetConsoleBackGroundColor(VOID)
     return (ConsoleColor)((csbi.wAttributes & 0x00F0) >> 4);
 }
 
-RRWINDOWS_API ConsoleColor WINAPI
+RRWINDOWS_API
+ConsoleColor
+WINAPI
 GetConsoleForeGroundColor(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -26,7 +30,9 @@ GetConsoleForeGroundColor(VOID)
     return (ConsoleColor)(csbi.wAttributes & 0x000F);
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 SetConsoleColor(
     _In_ CONST ConsoleColor backGroundColor,
     _In_ CONST ConsoleColor foreGroundColor)
@@ -41,7 +47,9 @@ SetConsoleColor(
     if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes)) return;
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 SetConsoleBackGroundColor(
     _In_ CONST ConsoleColor backGroundColor)
 {
@@ -54,7 +62,9 @@ SetConsoleBackGroundColor(
     if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes)) return;
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 SetConsoleForeGroundColor(
     _In_ CONST ConsoleColor foreGroundColor)
 {
@@ -67,7 +77,9 @@ SetConsoleForeGroundColor(
     if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes)) return;
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ConsoleColorPutA(
     _In_    CONST ConsoleColor color,
     _In_z_ LPCSTR CONST        text)
@@ -78,7 +90,9 @@ ConsoleColorPutA(
     if (oldColor != color) SetConsoleForeGroundColor(oldColor);
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ConsoleColorPutW(
     _In_     CONST ConsoleColor color,
     _In_z_ LPCWSTR CONST        text)
@@ -89,7 +103,9 @@ ConsoleColorPutW(
     if (oldColor != color) SetConsoleForeGroundColor(oldColor);
 }
 
-RRWINDOWS_API VOID WINAPIV
+RRWINDOWS_API
+VOID
+WINAPIV
 ConsoleColorPrintA(
     _In_                           CONST ConsoleColor color,
     _In_z_ _Printf_format_string_ LPCSTR CONST        format,
@@ -103,7 +119,9 @@ ConsoleColorPrintA(
     if (oldColor != color) SetConsoleForeGroundColor(oldColor);
 }
 
-RRWINDOWS_API VOID WINAPIV
+RRWINDOWS_API
+VOID
+WINAPIV
 ConsoleColorPrintW(
     _In_                            CONST ConsoleColor color,
     _In_z_ _Printf_format_string_ LPCWSTR CONST        format,
@@ -117,7 +135,9 @@ ConsoleColorPrintW(
     if (oldColor != color) SetConsoleForeGroundColor(oldColor);
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ClearConsoleScreenA(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -133,7 +153,9 @@ ClearConsoleScreenA(VOID)
     if (!SetConsoleCursorPosition(stdOutput, coord)) return;
 }
 
-RRWINDOWS_API VOID WINAPI
+RRWINDOWS_API
+VOID
+WINAPI
 ClearConsoleScreenW(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);

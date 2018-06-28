@@ -12,15 +12,15 @@
 BoxesApplication::
 BoxesApplication()
 {
-    NewDebugConsole();
-    DbgConMeth();
+    AllocDebugConsole();
+    DcMeth();
 }
 
 BoxesApplication::
 ~BoxesApplication()
 {
-    DbgConMeth();
-    DeleteDebugConsole();
+    DcMeth();
+    FreeDebugConsole();
 }
 
 #// Overridables
@@ -29,7 +29,7 @@ BOOL BoxesApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConMeth();
+    DcMeth();
 
     BoxesDialog mainWnd;
     m_pMainWnd = &mainWnd;

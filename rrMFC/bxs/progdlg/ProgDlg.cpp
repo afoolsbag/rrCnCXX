@@ -4,7 +4,7 @@
 #include "ProgDlg.h"
 
 #include "rrwindows/dbgcon.h"
-#include "rrwindows/prtdbg.h"
+#include "rrwindows/dbgprt.h"
 
 #// Private Message
 #define PM_CLOSE (WM_USER + 1)
@@ -22,13 +22,13 @@ ProgressDialog::
 ProgressDialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 ProgressDialog::
 ~ProgressDialog()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 #// Overridables
@@ -37,7 +37,7 @@ BOOL ProgressDialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConMeth();
+    DcMeth();
     AfxBeginThread(ProgressDialog::ThreadWrapper, this);
     SetTimer(REFRESH_UI, 40, NULL);
     return TRUE;
@@ -46,7 +46,7 @@ OnInitDialog()
 BOOL ProgressDialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConWndMsg();
+    DcWndMsg();
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -54,7 +54,7 @@ VOID ProgressDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConMeth();
+    DcMeth();
     DDX_Text(pDX, IDC_TOTAL_TEXT, TotalText);
     DDX_Control(pDX, IDC_TOTAL_PROGRESS, TotalProgressControl);
     DDX_Text(pDX, IDC_CURRENT_TEXT, CurrentText);
@@ -92,7 +92,8 @@ OnTimer(UINT_PTR nIDEvent)
         UpdateData(FALSE);
         break;
     default:
-        DpError(TEXT("Unknown switch-case-route with condition: nIDEvent=%u."), nIDEvent); ASSERT(FALSE); break;
+        DpErrorSwitchUnknown(nIDEvent);
+        break;
     }
 }
 

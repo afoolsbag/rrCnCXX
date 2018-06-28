@@ -1,0 +1,13 @@
+/*===-- Structured Exception Handling --------------------------*- C -*-===*//**
+ *
+ * \defgroup gExcHdl 结构化异常处理
+ * \ingroup gDbg
+ *
+ * \sa ["Structured Exception Handling"](https://msdn.microsoft.com/library/ms680657). *MSDN*.
+ *
+ * \version 2018-06-27
+ * \since 2018-06-27
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

@@ -1,72 +1,70 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "PropertyPage2.h"
+#include "PropPg1.h"
 
 #include "rrwindows/dbgcon.h"
 
-IMPLEMENT_DYNCREATE(PropertyPage2, CPropertyPage)
-
-//BEGIN_MESSAGE_MAP(PropertyPage2, CPropertyPage)
+//BEGIN_MESSAGE_MAP(PropertyPage1, CPropertyPage)
 //END_MESSAGE_MAP()
 
 #// Constructors
 
-PropertyPage2::
-PropertyPage2()
+PropertyPage1::
+PropertyPage1()
     : CPropertyPage(IDD)
 {
-    DbgConPrtMeth(Yellow);
+    DcMeth();
 }
 
-PropertyPage2::
-~PropertyPage2()
+PropertyPage1::
+~PropertyPage1()
 {
-    DbgConPrtMeth(Yellow);
+    DcMeth();
 }
 
 #// Overridables
 
-BOOL PropertyPage2::
+BOOL PropertyPage1::
 OnInitDialog()
 {
     CPropertyPage::OnInitDialog();
-    DbgConPrtMeth(Yellow);
+    DcMeth();
     return TRUE;
 }
 
-BOOL PropertyPage2::
+BOOL PropertyPage1::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConPrtMethWndMsg(Yellow);
+    DcWndMsg();
     return CPropertyPage::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID PropertyPage2::
+VOID PropertyPage1::
 DoDataExchange(CDataExchange *pDX)
 {
     CPropertyPage::DoDataExchange(pDX);
-    DbgConPrtMeth(Yellow);
+    DcMeth();
 }
 
-VOID PropertyPage2::
+VOID PropertyPage1::
 OnOK()
 {
-    DbgConPrtMeth(Yellow);
+    DcMeth();
     CPropertyPage::OnOK();
 }
 
-VOID PropertyPage2::
+VOID PropertyPage1::
 OnCancel()
 {
-    DbgConPrtMeth(Yellow);
+    DcMeth();
     CPropertyPage::OnCancel();
 }
 
-BOOL PropertyPage2::
+BOOL PropertyPage1::
 OnApply()
 {
-    DbgConPrtMeth(Yellow);
+    DcMeth();
     return CPropertyPage::OnApply();
 }
 

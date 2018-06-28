@@ -1,9 +1,9 @@
 //===-- Main Dialog ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 主对话框（类）。
+/// \brief 数据交换对话框（类）。
 ///
-/// \verison 2018-05-31
+/// \verison 2018-06-28
 /// \since 2018-05-30
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,20 +12,19 @@
 
 #pragma once
 
-#include "resource.h"
+#include "ddxdlg.resource.h"
 
-/// \brief 主对话框（类）。
-class MainDialog: public CDialog {
-    DECLARE_DYNCREATE(MainDialog)
+/// \brief 数据交换对话框（类）。
+class DdxDialog: public CDialog {
 
 #// Constructors
 public:
-    MainDialog(CWnd *pParent = NULL);
-    virtual ~MainDialog() override;
+    DdxDialog(CWnd *pParent = NULL);
+    virtual ~DdxDialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_MAIN_DIALOG };
+    enum { IDD = IDD_DDX_DIALOG };
 
 #// Operations
 public:
@@ -39,44 +38,44 @@ protected:
 
 #// Implementation
 protected:
-    CComboBox ComboBox;
-    CString ComboText;
-    INT ComboIndex = 0;
+    CComboBox      ComboBox;
+    CString        ComboText;
+    INT            ComboIndex = 0;
 
-    CButton CheckBox;
-    BOOL Checked = FALSE;
+    CButton        CheckBox;
+    BOOL           Checked = FALSE;
 
-    CDateTimeCtrl DateTimePicker;
-    CTime DateTime = CTime::GetCurrentTime();
+    CDateTimeCtrl  DateTimePicker;
+    CTime          DateTime = CTime::GetCurrentTime();
 
     CIPAddressCtrl IpAddressEdit;
-    DWORD IpAddress = 0uL;
+    DWORD          IpAddress = 0uL;
 
-    CListBox ListBox;
-    CString ListText;
-    INT ListIndex = -1;
+    CListBox       ListBox;
+    CString        ListText;
+    INT            ListIndex = -1;
 
-    CMonthCalCtrl MonthCalendar;
-    CTime Month = CTime::GetCurrentTime();
+    CMonthCalCtrl  MonthCalendar;
+    CTime          Month = CTime::GetCurrentTime();
 
-    CButton RadioGroup1Button1;
-    CButton RadioGroup1Button2;
-    CButton RadioGroup1Button3;
-    INT RadioGroup1 = -1;
+    CButton        RadioGroup1Button1;
+    CButton        RadioGroup1Button2;
+    CButton        RadioGroup1Button3;
+    INT            RadioGroup1 = -1;
 
-    CScrollBar VerticalScrollBar;
-    INT VerticalScrollPosition = 0;
-    CScrollBar HorizontalScrollBar;
-    INT HorizontalScrollPosition = 0;
+    CScrollBar     VerticalScrollBar;
+    INT            VerticalScrollPosition = 0;
+    CScrollBar     HorizontalScrollBar;
+    INT            HorizontalScrollPosition = 0;
 
-    CSliderCtrl Slider;
-    INT SliderValue = 0;
+    CSliderCtrl    Slider;
+    INT            SliderValue = 0;
 
-    CEdit Edit;
-    CString EditText;
+    CEdit          Edit;
+    CString        EditText;
 
-    CStatic Static;
-    CString StaticText;
+    CStatic        Static;
+    CString        StaticText;
 
 #// Message Handlers
 protected:

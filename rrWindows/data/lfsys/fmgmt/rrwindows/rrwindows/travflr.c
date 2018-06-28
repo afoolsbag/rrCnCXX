@@ -8,11 +8,14 @@
 #include "rrwindows/def.h"
 #include "rrwindows/winstr.h"
 
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 TraverseFolderA(
-    _In_z_                   LPCSTR CONST folderPath,
-    _In_   OnFileFoundCallbackTypeA CONST OnFileFound,
-    _In_                      CONST BOOL  recurse)
+    _In_z_               LPCSTR CONST folderPath,
+    _In_   OnFileFoundCallbackA CONST OnFileFound,
+    _In_                  CONST BOOL  recurse)
 {
     CHAR wildcardPath[MAX_PATH];
     if (FAILED(StringCchCopyA(wildcardPath, countof(wildcardPath), folderPath)))
@@ -61,11 +64,14 @@ out:
     return rv;
 }
 
-RRWINDOWS_API _Success_(return == ERROR_SUCCESS) DWORD WINAPI
+RRWINDOWS_API
+_Success_(return == ERROR_SUCCESS)
+DWORD
+WINAPI
 TraverseFolderW(
-    _In_z_                  LPCWSTR CONST folderPath,
-    _In_   OnFileFoundCallbackTypeW CONST OnFileFound,
-    _In_                      CONST BOOL  recurse)
+    _In_z_              LPCWSTR CONST folderPath,
+    _In_   OnFileFoundCallbackW CONST OnFileFound,
+    _In_                  CONST BOOL  recurse)
 {
     WCHAR wildcardPath[MAX_PATH];
     if (FAILED(StringCchCopyW(wildcardPath, countof(wildcardPath), folderPath)))

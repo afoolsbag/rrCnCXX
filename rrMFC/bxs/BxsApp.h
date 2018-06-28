@@ -3,7 +3,7 @@
 /// \file
 /// \brief 盒子应用（类）。
 ///
-/// \verison 2018-06-15
+/// \verison 2018-06-28
 /// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License

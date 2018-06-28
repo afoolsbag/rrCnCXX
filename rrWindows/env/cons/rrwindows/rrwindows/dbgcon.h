@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-23
+ * \version 2018-06-28
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -16,57 +16,54 @@
 #include <Windows.h>
 #include <tchar.h>
 
+#include "rrwindows/conutil.h"
 #include "rrwindows/rrwindowsapi.h"
-#include "conutil.h"
 
-EXTERN_C_START
-
-#if ! defined _DEBUG
-# define DebugConsolePut(...) ((void)0)
-#elif defined _UNICODE
-# define DebugConsolePut ConsoleColorPutW
-#else
-# define DebugConsolePut ConsoleColorPutA
-#endif
-/** \brief 调试控制台放置有色字串（缩写）。 */
-#define DbgConPut DebugConsolePut
-
-#if ! defined _DEBUG
-# define DebugConsolePrint(...) ((void)0)
-#elif defined _UNICODE
-# define DebugConsolePrint ConsoleColorPrintW
-#else
-# define DebugConsolePrint ConsoleColorPrintA
-#endif
-/** \brief 调试控制台打印有色字串（缩写）。 */
-#define DbgConPrt DebugConsolePrint
-
+/**
+ * \brief 分配调试控制台。
+ */
 #ifdef _DEBUG
-# define NewDebugConsole AllocConsole
+# define AllocDebugConsole AllocConsole
 #else
-# define NewDebugConsole(...) ((void)0)
+# define AllocDebugConsole(...) ((void)0)
 #endif
 
+/**
+ * \brief 释放调试控制台。
+ */
 #ifdef _DEBUG
-# define DeleteDebugConsole FreeConsole
+# define FreeDebugConsole FreeConsole
 #else
-# define DeleteDebugConsole(...) ((void)0)
+# define FreeDebugConsole(...) ((void)0)
 #endif
 
-EXTERN_C_END
+/**
+ * \brief 调试控制台放置有色字串（Debug-Console C(K)olor Put）。
+ */
+#ifdef _DEBUG
+# define DckPut ConsoleColorPut
+#else
+# define DckPut(...) ((void)0)
+#endif
+
+/**
+ * \brief 调试控制台打印有色字串（Debug-Console C(K)olor Print）。
+ */
+#ifdef _DEBUG
+# define DckPrint ConsoleColorPrint
+#else
+# define DckPrint(...) ((void)0)
+#endif
 
 #ifdef __cplusplus
 # include "rrwindows/sysmsgstr.h"
-/** \brief 调试控制台打印当前方法。 */
-# define DbgConMeth()           DebugConsolePut(Gray, _T(__FUNCTION__) _T("\n"))
-/** \brief 调试控制台打印当前方法（指定颜色）。 */
-# define DbgConMethCol(color)   DebugConsolePut(color, _T(__FUNCTION__) _T("\n"))
-/** \brief 调试控制台打印当前`CmdMsg`方法。 */
-# define DbgConCmdMsg()         DebugConsolePrint(Gray, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
-/** \brief 调试控制台打印当前`CmdMsg`方法（指定颜色）。 */
-# define DbgConCmdMsgCol(color) DebugConsolePrint(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
-/** \brief 调试控制台打印当前`WndMsg`方法。 */
-# define DbgConWndMsg()         DebugConsolePrint(Gray, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
-/** \brief 调试控制台打印当前`WndMsg`方法（指定颜色）。 */
-# define DbgConWndMsgCol(color) DebugConsolePrint(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
+#
+# define DckMeth(color) DckPut(color, _T(__FUNCTION__) _T("\n"))
+# define DcMeth() DckMeth(Gray)
+#
+# define DckCmdMsg(color) DckPrint(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
+# define DcCmdMsg() DckCmdMsg(Gray)
+#
+# define DckWndMsg(color) DckPrint(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
+# define DcWndMsg() DckWndMsg(Gray)
 #endif

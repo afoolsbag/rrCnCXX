@@ -3,10 +3,10 @@
  * \defgroup gErrTxt 错误文本
  * \ingroup gErrHdl
  *
- * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *Microsoft® Developer Network*.
- * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *Microsoft® Developer Network*.
+ * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *MSDN*.
+ * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *MSDN*.
  *
- * \version 2018-06-26
+ * \version 2018-06-27
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License

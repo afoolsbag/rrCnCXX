@@ -3,7 +3,7 @@
 /// \file
 /// \brief 盒子对话框（类）。
 ///
-/// \verison 2018-06-04
+/// \verison 2018-06-28
 /// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -41,11 +41,12 @@ protected:
 #// Implementation
 protected:
     UINT ThreadFunction(ProgressDialog *CONST pProgressDialog);
-    BOOL ThreadLoopFlag = FALSE;
 
 #// Message Handlers
 protected:
-    afx_msg VOID OnBnClickedButton();
+    afx_msg VOID OnBnClickedDdx();
+    afx_msg VOID OnBnClickedProgress();
+    afx_msg VOID OnBnClickedProperty();
 
     DECLARE_MESSAGE_MAP()
 };

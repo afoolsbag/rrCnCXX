@@ -3,7 +3,7 @@
  * \defgroup gTravFlr 遍历文件夹
  * \ingroup gFMgmt
  *
- * \version 2018-06-26
+ * \version 2018-06-28
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -21,21 +21,21 @@
 typedef
 _Success_(return == ERROR_SUCCESS)
 DWORD
-(CALLBACK *OnFileFoundCallbackTypeA)(
+(CALLBACK *OnFileFoundCallbackA)(
     _In_             LPCSTR CONST path,
     _In_ LPWIN32_FIND_DATAA CONST pData);
 
 typedef
 _Success_(return == ERROR_SUCCESS)
 DWORD
-(CALLBACK *OnFileFoundCallbackTypeW)(
+(CALLBACK *OnFileFoundCallbackW)(
     _In_            LPCWSTR CONST path,
     _In_ LPWIN32_FIND_DATAW CONST pData);
 
 #ifdef _UNICODE
-# define OnFileFoundCallbackType OnFileFoundCallbackTypeW
+# define OnFileFoundCallback OnFileFoundCallbackW
 #else
-# define OnFileFoundCallbackType OnFileFoundCallbackTypeA
+# define OnFileFoundCallback OnFileFoundCallbackA
 #endif
 
 #ifdef __cplusplus
@@ -58,9 +58,9 @@ _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 TraverseFolderA(
-    _In_z_                   LPCSTR CONST folderPath,
-    _In_   OnFileFoundCallbackTypeA CONST OnFileFound,
-    _In_                      CONST BOOL  recurse);
+    _In_z_               LPCSTR CONST folderPath,
+    _In_   OnFileFoundCallbackA CONST OnFileFound,
+    _In_                  CONST BOOL  recurse);
 
 /**
  * \brief 遍历文件夹（UNICODE适配）。
@@ -74,9 +74,9 @@ _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 TraverseFolderW(
-    _In_z_                  LPCWSTR CONST folderPath,
-    _In_   OnFileFoundCallbackTypeW CONST OnFileFound,
-    _In_                      CONST BOOL  recurse);
+    _In_z_              LPCWSTR CONST folderPath,
+    _In_   OnFileFoundCallbackW CONST OnFileFound,
+    _In_                  CONST BOOL  recurse);
 
 #ifdef _UNICODE
 # define TraverseFolder TraverseFolderW

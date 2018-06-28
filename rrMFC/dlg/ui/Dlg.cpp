@@ -28,48 +28,48 @@ Dialog::
 Dialog(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 BOOL Dialog::
 Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConMeth();
+    DcMeth();
     return CDialog::Create(lpszTemplateName, pParentWnd);
 }
 
 BOOL Dialog::
 Create(UINT nIDTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConMeth();
+    DcMeth();
     return CDialog::Create(nIDTemplate, pParentWnd);
 }
 
 BOOL Dialog::
 CreateIndirect(LPCDLGTEMPLATE lpDialogTemplate, CWnd *pParentWnd /*=NULL*/, VOID *lpDialogInit /*=NULL*/)
 {
-    DbgConMeth();
+    DcMeth();
     return CDialog::CreateIndirect(lpDialogTemplate, pParentWnd, lpDialogInit);
 }
 
 BOOL Dialog::
 CreateIndirect(HGLOBAL hDialogTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DbgConMeth();
+    DcMeth();
     return CDialog::CreateIndirect(hDialogTemplate, pParentWnd);
 }
 
 INT_PTR Dialog::
 DoModal()
 {
-    DbgConMeth();
+    DcMeth();
     return CDialog::DoModal();
 }
 
 Dialog::
 ~Dialog()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 #// Overridables
@@ -78,28 +78,28 @@ BOOL Dialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DbgConMeth();
+    DcMeth();
     return TRUE;
 }
 
 BOOL Dialog::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConCmdMsg();
+    DcCmdMsg();
     return CDialog::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL Dialog::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
-    DbgConWndMsg();
+    DcWndMsg();
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 VOID Dialog::
 PreInitDialog()
 {
-    DbgConMeth();
+    DcMeth();
     CDialog::PreInitDialog();
 }
 
@@ -107,20 +107,20 @@ VOID Dialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID Dialog::
 OnOK()
 {
-    DbgConMeth();
+    DcMeth();
     CDialog::OnOK();
 }
 
 VOID Dialog::
 OnCancel()
 {
-    DbgConMeth();
+    DcMeth();
     CDialog::OnCancel();
 }
 
@@ -129,69 +129,69 @@ OnCancel()
 VOID Dialog::
 OnClose()
 {
-    DbgConMeth();
+    DcMeth();
     CDialog::OnClose();
 }
 
 VOID Dialog::
 OnBnClickedOk()
 {
-    DbgConMeth();
+    DcMeth();
     CDialog::OnOK();
 }
 
 VOID Dialog::
 OnBnClickedCancel()
 {
-    DbgConMeth();
+    DcMeth();
     CDialog::OnCancel();
 }
 
 VOID Dialog::
 OnBnClickedAbort()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDABORT);
 }
 
 VOID Dialog::
 OnBnClickedRetry()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDRETRY);
 }
 
 VOID Dialog::
 OnBnClickedIgnore()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDIGNORE);
 }
 
 VOID Dialog::
 OnBnClickedYes()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDYES);
 }
 
 VOID Dialog::
 OnBnClickedNo()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDNO);
 }
 
 VOID Dialog::
 OnBnClickedClose()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDCLOSE);
 }
 
 VOID Dialog::
 OnBnClickedHelp()
 {
-    DbgConMeth();
+    DcMeth();
     EndDialog(IDHELP);
 }

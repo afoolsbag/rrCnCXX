@@ -5,6 +5,8 @@
 
 #include <strsafe.h>
 
+#include "rrwindows/def.h"
+
 #define BUFFER_SIZE 1024
 
 RRWINDOWS_API
