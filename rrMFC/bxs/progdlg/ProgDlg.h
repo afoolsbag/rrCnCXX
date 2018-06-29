@@ -3,7 +3,7 @@
 /// \file
 /// \brief 进度对话框（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-06-29
 /// \since 2018-05-30
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -84,8 +84,8 @@ public:
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
     virtual VOID DoDataExchange(CDataExchange *pDX) override;
-    virtual VOID OnOK() override {/*for hide CDialog::OnOK*/ }
-    virtual VOID OnCancel() override {/*for hide CDialog::OnCancle*/ }
+    virtual VOID OnOK() override { /*DONOTHING*/ }
+    virtual VOID OnCancel() override { /*DONOTHING*/ }
 
 #// Implementation
 protected:

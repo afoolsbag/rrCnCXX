@@ -20,9 +20,9 @@
 
 #include <check/check.h>
 
+#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
-#include "rrwindows/prtdbgstr.h"
 #include "tsuite_sh.h"
 
 START_TEST(TestFExists)

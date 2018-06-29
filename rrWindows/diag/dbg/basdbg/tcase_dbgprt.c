@@ -6,8 +6,8 @@
 
 #include "check/check.h"
 
+#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
-#include "rrwindows/prtdbgstr.h"
 
 START_TEST(TestPrtDbg)
 {

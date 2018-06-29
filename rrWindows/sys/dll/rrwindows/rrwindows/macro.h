@@ -3,7 +3,7 @@
  * \file
  * \brief 宏。
  *
- * \version 2018-06-26
+ * \version 2018-06-29
  * \since 2018-06-12
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,6 +18,10 @@
 /** \brief 宏展开为字符串。 */
 #define STRING(unquoted) #unquoted
 #define EXPAND_STRING(macro) STRING(macro)
+
+/** \brief 宏展开为宽字符串。 */
+#define WIDE_STRING(unquoted) L#unquoted
+#define EXPAND_WIDE_STRING(macro) WIDE_STRING(macro)
 
 /** \brief 字符串宏展开为宽字符串。 */
 #define WIDE(string) L##string

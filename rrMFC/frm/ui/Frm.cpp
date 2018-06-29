@@ -15,13 +15,13 @@ END_MESSAGE_MAP()
 Frame::
 Frame()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 Frame::
 ~Frame()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 #// Overridables
@@ -29,7 +29,7 @@ Frame::
 BOOL Frame::
 PreCreateWindow(CREATESTRUCT &cs)
 {
-    DbgConMeth();
+    DcMeth();
     cs.cx = 400;
     cs.cy = 300;
     return CFrameWnd::PreCreateWindow(cs);
@@ -38,7 +38,7 @@ PreCreateWindow(CREATESTRUCT &cs)
 BOOL Frame::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConCmdMsg();
+    DcCmdMsg();
     if (View.OnCmdMsg(nID, nCode, pExtra, pHandlerInfo))
         return TRUE;
     return CFrameWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
@@ -47,7 +47,7 @@ OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 BOOL Frame::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConWndMsg();
+    DcWndMsg();
     return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -58,7 +58,7 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
         return -1;
-    DbgConMeth();
+    DcMeth();
     if (!View.Create(NULL, NULL,
                      AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0),
                      this, AFX_IDW_PANE_FIRST, NULL))
@@ -69,6 +69,6 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
 VOID Frame::
 OnSetFocus(CWnd *pOldWnd)
 {
-    DbgConMeth();
+    DcMeth();
     View.SetFocus();
 }

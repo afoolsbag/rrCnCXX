@@ -1,11 +1,13 @@
 /** \copyright The MIT License */
 
 #define RRWINDOWS_EXPORTS
-#include "sysmsgstr.h"
+#include "syscodestr.h"
 
-#include "sysmsg.h"
+#include "syscode.h"
 
-RRWINDOWS_API LPCSTR WINAPI
+RRWINDOWS_API
+LPCSTR
+WINAPI
 SystemMessageStringA(
     _In_ CONST UINT messageNumber)
 {
@@ -341,7 +343,9 @@ SystemMessageStringA(
     }/*switch*/
 }
 
-RRWINDOWS_API LPCWSTR WINAPI
+RRWINDOWS_API
+LPCWSTR
+WINAPI
 SystemMessageStringW(
     _In_ CONST UINT messageNumber)
 {
@@ -675,4 +679,89 @@ SystemMessageStringW(
         }
     } break;
     }/*switch*/
+}
+
+RRWINDOWS_API
+LPCSTR
+WINAPI
+SystemCommandStringA(
+    _In_ CONST UINT commandId)
+{
+    if (0x8000 <= commandId && commandId <= 0xDFFF) {
+        static CONST CHAR str[] = "CUSTOM_COMMAND"; return str;
+    } else {
+        static CONST CHAR str[] = "SYSTEM_COMMAND"; return str;
+    }
+}
+
+RRWINDOWS_API
+LPCWSTR
+WINAPI
+SystemCommandStringW(
+    _In_ CONST UINT commandId)
+{
+    if (0x8000 <= commandId && commandId <= 0xDFFF) {
+        static CONST WCHAR str[] = L"CUSTOM_COMMAND"; return str;
+    } else {
+        static CONST WCHAR str[] = L"SYSTEM_COMMAND"; return str;
+    }
+}
+
+
+RRWINDOWS_API
+LPCSTR
+WINAPI
+SystemCommandNotificationStringA(
+    _In_ CONST INT commandNotificationCode)
+{
+    switch (commandNotificationCode) {
+#ifdef M
+# error Macro name conflicts.
+#endif/*M*/
+#define M(code) case code: { static CONST CHAR str[] = #code; return str; } break
+        M(CN_COMMAND);
+        M(CN_UPDATE_COMMAND_UI);
+        M(CN_EVENT);
+        M(CN_OLECOMMAND);
+        M(CN_OLE_UNREGISTER);
+#undef M
+    default: {
+        if (commandNotificationCode < 0) {
+            static CONST CHAR str[] = "SYSTEM_COMMAND_NOTIFICATION"; return str;
+        } else if (0 < commandNotificationCode) {
+            static CONST CHAR str[] = "CONTROL_COMMAND_NOTIFICATION"; return str;
+        } else {
+            static CONST CHAR str[] = "CN_COMMAND"; return str;
+        }
+    } break;
+    }/*switch*/
+}
+
+RRWINDOWS_API
+LPCWSTR
+WINAPI
+SystemCommandNotificationStringW(
+    _In_ CONST INT commandNotificationCode)
+{
+    switch (commandNotificationCode) {
+#ifdef M
+# error Macro name conflicts.
+#endif/*M*/
+#define M(code) case code: { static CONST WCHAR str[] = L#code; return str; } break
+        M(CN_COMMAND);
+        M(CN_UPDATE_COMMAND_UI);
+        M(CN_EVENT);
+        M(CN_OLECOMMAND);
+        M(CN_OLE_UNREGISTER);
+#undef M
+    default: {
+        if (commandNotificationCode < 0) {
+            static CONST WCHAR str[] = L"SYSTEM_COMMAND_NOTIFICATION"; return str;
+        } else if (0 < commandNotificationCode) {
+            static CONST WCHAR str[] = L"CONTROL_COMMAND_NOTIFICATION"; return str;
+        } else {
+            static CONST WCHAR str[] = L"CN_COMMAND"; return str;
+        } break;
+    }/*switch*/
+    }
 }

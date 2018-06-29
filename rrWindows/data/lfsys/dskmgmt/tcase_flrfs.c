@@ -5,10 +5,10 @@
 
 #include <check/check.h>
 
+#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
 #include "rrwindows/flrfs.h"
-#include "rrwindows/prtdbgstr.h"
 #include "tsuite_dskmgmt.h"
 
 START_TEST(TestFlrFS)

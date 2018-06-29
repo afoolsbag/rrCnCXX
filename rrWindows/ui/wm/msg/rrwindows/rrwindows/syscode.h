@@ -1,11 +1,11 @@
-/*===-- System Message -----------------------------------------*- C -*-===*//**
+/*===-- System Code --------------------------------------------*- C -*-===*//**
  *
  * \file
- * \brief 系统消息。
+ * \brief 系统代码。
  *
- * \sa http://blog.airesoft.co.uk/2009/11/wm_messages/
+ * \sa <http://blog.airesoft.co.uk/2009/11/wm_messages/>
  *
- * \version 2018-06-11
+ * \version 2018-06-29
  * \since 2018-04-19
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,6 +13,8 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
+
+/*-System-Message-------------------------------------------------------------*/
 
 #ifndef WM_SIZEWAIT
 #define WM_SIZEWAIT                     0x0004
@@ -100,4 +102,22 @@
 #endif
 #ifndef WM_AFX_reserved_36e
 #define WM_AFX_reserved_36e             0x036E
+#endif
+
+/*-System-Command-Notification------------------------------------------------*/
+
+#ifndef CN_COMMAND
+#define CN_COMMAND              0
+#endif
+#ifndef CN_UPDATE_COMMAND_UI
+#define CN_UPDATE_COMMAND_UI    ((UINT)(-1))
+#endif
+#ifndef CN_EVENT
+#define CN_EVENT                ((UINT)(-2))
+#endif
+#ifndef CN_OLECOMMAND           
+#define CN_OLECOMMAND           ((UINT)(-3))
+#endif
+#ifndef CN_OLE_UNREGISTER
+#define CN_OLE_UNREGISTER       ((UINT)(-4))
 #endif

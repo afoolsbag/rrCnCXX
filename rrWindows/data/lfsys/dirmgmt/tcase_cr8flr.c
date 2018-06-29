@@ -10,10 +10,10 @@
 #include <check/check.h>
 
 #include "rrwindows/cr8flr.h"
+#include "rrwindows/dbgprt.h"
 #include "rrwindows/def.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
-#include "rrwindows/prtdbgstr.h"
 #include "tsuite_dirmgmt.h"
 
 START_TEST(TestCr8Flr)

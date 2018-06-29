@@ -3,7 +3,7 @@
 /// \file
 /// \brief 标签对话框（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-06-29
 /// \since 2017-04-04
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -37,6 +37,7 @@ public:
     virtual BOOL OnInitDialog() override;
 protected:
     virtual VOID DoDataExchange(CDataExchange *pDX) override;
+    virtual VOID OnOK() override { /*DONOTHING*/ }
 
 #// Implementation
 protected:

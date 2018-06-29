@@ -12,15 +12,15 @@
 FrameApplication::
 FrameApplication()
 {
-    NewDebugConsole();
-    DbgConMeth();
+    AllocDebugConsole();
+    DcMeth();
 }
 
 FrameApplication::
 ~FrameApplication()
 {
-    DbgConMeth();
-    DeleteDebugConsole();
+    DcMeth();
+    FreeDebugConsole();
 }
 
 #// Overridables
@@ -29,7 +29,7 @@ BOOL FrameApplication::
 InitInstance()
 {
     CWinApp::InitInstance();
-    DbgConMeth();
+    DcMeth();
 
     m_pMainWnd = DEBUG_NEW Frame;
     dynamic_cast<Frame *>(m_pMainWnd)->LoadFrame(Frame::IDR);

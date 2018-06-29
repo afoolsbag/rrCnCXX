@@ -7,7 +7,7 @@
 #include <check/check.h>
 
 #include "rrwindows/acsshrflr.h"
-#include "rrwindows/prtdbgstr.h"
+#include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "tsuite_wnet.h"
 

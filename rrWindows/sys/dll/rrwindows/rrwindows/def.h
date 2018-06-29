@@ -51,7 +51,7 @@
 #define FILELINEA __FILE__ "(" EXPAND_STRING(__LINE__) "): "
 #endif
 #ifndef FILENAMEW
-#define FILELINEW EXPAND_WIDE(__FILE__) L"(" EXPAND_WIDE(EXPAND_STRING(__LINE__)) L"): "
+#define FILELINEW EXPAND_WIDE(__FILE__) L"(" EXPAND_WIDE_STRING(__LINE__) L"): "
 #endif
 #ifndef FILELINE
 # ifdef _UNICODE

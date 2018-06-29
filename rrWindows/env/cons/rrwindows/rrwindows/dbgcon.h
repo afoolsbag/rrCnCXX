@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-28
+ * \version 2018-06-29
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -56,14 +56,14 @@
 #endif
 
 #ifdef __cplusplus
-# include "rrwindows/sysmsgstr.h"
+# include "rrwindows/syscodestr.h"
 #
 # define DckMeth(color) DckPut(color, _T(__FUNCTION__) _T("\n"))
 # define DcMeth() DckMeth(Gray)
 #
-# define DckCmdMsg(color) DckPrint(color, _T("%s %u with %d, 0x%p, 0x%p\n"), _T(__FUNCTION__), nID, nCode, pExtra, pHandlerInfo)
+# define DckCmdMsg(color) DckPrint(color, _T(__FUNCTION__) _T(" %6u(%s) nC=%d(%s) pE=0x%p, pHI=0x%p\n"), nID, SystemCommandString(nID), nCode, SystemCommandNotificationString(nCode), pExtra, pHandlerInfo)
 # define DcCmdMsg() DckCmdMsg(Gray)
 #
-# define DckWndMsg(color) DckPrint(color, _T("%s 0x%04X(%s), with %u, %ld, 0x%p\n"), _T(__FUNCTION__), message, SysMsgStr(message), wParam, lParam, pResult)
+# define DckWndMsg(color) DckPrint(color, _T(__FUNCTION__) _T(" 0x%04X(%s) wP=%u, lP=%ld, pR=0x%p\n"), message, SystemMessageString(message), wParam, lParam, pResult)
 # define DcWndMsg() DckWndMsg(Gray)
 #endif

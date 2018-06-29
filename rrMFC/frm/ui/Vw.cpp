@@ -25,13 +25,13 @@ END_MESSAGE_MAP()
 View::
 View()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 View::
 ~View()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 #// Overridables
@@ -39,14 +39,14 @@ View::
 BOOL View::
 OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
-    DbgConCmdMsg();
+    DcCmdMsg();
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
 }
 
 BOOL View::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-    DbgConWndMsg();
+    DcWndMsg();
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
@@ -55,7 +55,7 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 VOID View::
 OnContextMenu(CWnd *pWnd, CPoint point)
 {
-    DbgConMeth();
+    DcMeth();
     CMenu menu;
     menu.LoadMenu(IDM_FRAME);
     CMenu* pContextMenu = menu.GetSubMenu(3);
@@ -65,47 +65,47 @@ OnContextMenu(CWnd *pWnd, CPoint point)
 VOID View::
 OnCommand5()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnUpdateCommand5(CCmdUI *pCmdUI)
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnCommand6()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnUpdateCommand6(CCmdUI *pCmdUI)
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnCommand7()
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnUpdateCommand7(CCmdUI *pCmdUI)
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnUndefined(UINT nID)
 {
-    DbgConMeth();
+    DcMeth();
 }
 
 VOID View::
 OnUpdateUndefined(CCmdUI *pCmdUI)
 {
-    DbgConMeth();
+    DcMeth();
 }

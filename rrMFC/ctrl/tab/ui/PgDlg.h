@@ -3,7 +3,7 @@
 /// \file
 /// \brief （标签）页对话框（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-06-29
 /// \since 2017-04-08
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -34,6 +34,8 @@ public:
 #// Overridables
 protected:
     virtual VOID DoDataExchange(CDataExchange *pDX) override;
+    virtual VOID OnOK() override { /*DONOTHING*/ }
+    virtual VOID OnCancel() override { /*DONOTHING*/ }
 
 #// Implementation
 protected:

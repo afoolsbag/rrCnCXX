@@ -6,7 +6,7 @@
  * \sa ["UnhandledExceptionFilter function"](https://msdn.microsoft.com/library/ms681401). *MSDN*.
  * \sa ["SetUnhandledExceptionFilter function"](https://msdn.microsoft.com/library/ms680634). *MSDN*.
  *
- * \version 2018-06-28
+ * \version 2018-06-29
  * \since 2018-06-27
  * \authors zhengrr
  * \copyright The MIT License
@@ -28,7 +28,7 @@ extern "C" {;
 /**
  * \brief 未处理异常过滤器。
  * \details 生成转储文件：\n
- *          首先尝试存储在`%TMP%\\dump\\ExeBaseName.yyyyMMddHHmmss.unhdlexc.dmp`。\n
+ *          首先尝试存储在`%TMP%\\dump\\ExeBaseName.YYYYMMDDThhmmss.unhdlexc.dmp`。\n
  *          其次尝试存储在`StartIn\\unhdlexc.dmp`
  */
 RRWINDOWS_API
