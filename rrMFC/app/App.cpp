@@ -43,6 +43,8 @@ InitInstance()
 {
     CWinApp::InitInstance();
     DcMeth();
+
+    // Console
     if (SW_HIDE != m_nCmdShow)
         if (!AllocConsole())
             DpWarnFwLE(TEXT("AllocConsole"));

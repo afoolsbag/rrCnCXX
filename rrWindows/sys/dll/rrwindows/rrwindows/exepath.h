@@ -3,7 +3,7 @@
  * \defgroup gExePath 当前进程的可执行文件路径
  * \ingroup gDLL
  *
- * \version 2018-06-23
+ * \version 2018-06-29
  * \since 2018-05-08
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,14 +18,19 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
 
 /**
  * \brief 当前进程的可执行文件路径（ANSI适配）。
  * \details 形如`path\\to\\folder\\file.exe`。
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutablePathA(VOID);
 
 /**
@@ -33,7 +38,10 @@ ExecutablePathA(VOID);
  * \details 形如`path\\to\\folder\\file.exe`。
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutablePathW(VOID);
 
 #ifdef _UNICODE
@@ -47,7 +55,10 @@ ExecutablePathW(VOID);
  * \details 形如`path\\to\\folder`。
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableDirectoryPathA(VOID);
 
 /**
@@ -55,7 +66,10 @@ ExecutableDirectoryPathA(VOID);
  * \details 形如`path\\to\\folder`。
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  */
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableDirectoryPathW(VOID);
 
 #ifdef _UNICODE
@@ -70,7 +84,10 @@ ExecutableDirectoryPathW(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableNameA(VOID);
 
 /**
@@ -79,7 +96,10 @@ ExecutableNameA(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableNameW(VOID);
 
 #ifdef _UNICODE
@@ -94,7 +114,10 @@ ExecutableNameW(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableBaseNameA(VOID);
 
 /**
@@ -103,7 +126,10 @@ ExecutableBaseNameA(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableBaseNameW(VOID);
 
 #ifdef _UNICODE
@@ -118,7 +144,10 @@ ExecutableBaseNameW(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableExtensionNameA(VOID);
 
 /**
@@ -127,7 +156,10 @@ ExecutableExtensionNameA(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableExtensionNameW(VOID);
 
 #ifdef _UNICODE
@@ -142,7 +174,10 @@ ExecutableExtensionNameW(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 InitializationPathA(VOID);
 
 /**
@@ -151,7 +186,10 @@ InitializationPathA(VOID);
  * \warning 该头文件内所有函数共用同一字串缓存，请依次调用、勿同时使用。
  * \since 2018-06-02
  */
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 InitializationPathW(VOID);
 
 #ifdef _UNICODE
@@ -160,6 +198,8 @@ InitializationPathW(VOID);
 # define InitializationPath InitializationPathA
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 /** @} */

@@ -7,57 +7,84 @@
 #pragma comment(lib, "ShLwApi.lib")
 #include <strsafe.h>
 
-static LPSTR WINAPI ExePathA(VOID)
+#include "rrwindows/def.h"
+
+static
+_Success_(return != NULL)
+LPSTR
+WINAPI
+ExePathA(VOID)
 {
     __declspec(thread) static CHAR StaticBuffer[MAX_PATH];
 
-    if (0 == GetModuleFileNameA(NULL, StaticBuffer, _countof(StaticBuffer)))
+    if (0 == GetModuleFileNameA(NULL, StaticBuffer, countof(StaticBuffer)))
         return NULL;
     return StaticBuffer;
 }
 
-static LPWSTR WINAPI ExePathW(VOID)
+static
+_Success_(return != NULL)
+LPWSTR
+WINAPI
+ExePathW(VOID)
 {
     __declspec(thread) static WCHAR StaticBuffer[MAX_PATH];
 
-    if (0 == GetModuleFileNameW(NULL, StaticBuffer, _countof(StaticBuffer)))
+    if (0 == GetModuleFileNameW(NULL, StaticBuffer, countof(StaticBuffer)))
         return NULL;
     return StaticBuffer;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutablePathA(VOID)
 {
     return ExePathA();
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutablePathW(VOID)
 {
     return ExePathW();
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableDirectoryPathA(VOID)
 {
     LPSTR CONST path = ExePathA();
     if (NULL == path)
         return NULL;
-    PathRemoveFileSpecA(path);
+    if (FALSE == PathRemoveFileSpecA(path))
+        return NULL;
     return path;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableDirectoryPathW(VOID)
 {
     LPWSTR CONST path = ExePathW();
     if (NULL == path)
         return NULL;
-    PathRemoveFileSpecW(path);
+    if (FALSE == PathRemoveFileSpecW(path))
+        return NULL;
     return path;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableNameA(VOID)
 {
     LPCSTR CONST path = ExePathA();
@@ -69,7 +96,10 @@ ExecutableNameA(VOID)
     return name;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableNameW(VOID)
 {
     LPCWSTR CONST path = ExePathW();
@@ -81,7 +111,10 @@ ExecutableNameW(VOID)
     return name;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableBaseNameA(VOID)
 {
     LPSTR CONST path = ExePathA();
@@ -94,7 +127,10 @@ ExecutableBaseNameA(VOID)
     return base;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableBaseNameW(VOID)
 {
     LPWSTR CONST path = ExePathW();
@@ -107,7 +143,10 @@ ExecutableBaseNameW(VOID)
     return base;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 ExecutableExtensionNameA(VOID)
 {
     LPCSTR CONST path = ExePathA();
@@ -119,7 +158,10 @@ ExecutableExtensionNameA(VOID)
     return ext;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 ExecutableExtensionNameW(VOID)
 {
     LPCWSTR CONST path = ExePathW();
@@ -131,24 +173,30 @@ ExecutableExtensionNameW(VOID)
     return ext;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCSTR
+WINAPI
 InitializationPathA(VOID)
 {
     LPSTR CONST path = ExePathA();
     if (NULL == path)
         return NULL;
-    if (!PathRenameExtensionA(path, "ini"))
+    if (!PathRenameExtensionA(path, ".ini"))
         return NULL;
     return path;
 }
 
-RRWINDOWS_API _Success_(return != NULL) LPCWSTR WINAPI
+RRWINDOWS_API
+_Success_(return != NULL)
+LPCWSTR
+WINAPI
 InitializationPathW(VOID)
 {
     LPWSTR CONST path = ExePathW();
     if (NULL == path)
         return NULL;
-    if (!PathRenameExtensionW(path, L"ini"))
+    if (!PathRenameExtensionW(path, L".ini"))
         return NULL;
     return path;
 
