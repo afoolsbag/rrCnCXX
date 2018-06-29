@@ -3,7 +3,7 @@
  * \defgroup gFlrFS 文件夹可用空间。
  * \ingroup gFMgmt
  *
- * \version 2018-06-15
+ * \version 2018-06-29
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -18,13 +18,21 @@
 
 #include "rrwindows/rrwindowsapi.h"
 
-EXTERN_C_START
+#ifdef __cplusplus
+extern "C" {;
+#endif
 
-RRWINDOWS_API _Success_(return != 0) ULARGE_INTEGER WINAPI
+RRWINDOWS_API
+_Success_(return != 0)
+ULARGE_INTEGER
+WINAPI
 GetFolderFreeSpaceA(
     _In_z_ LPCSTR CONST folderPath);
 
-RRWINDOWS_API _Success_(return != 0) ULARGE_INTEGER WINAPI
+RRWINDOWS_API
+_Success_(return != 0)
+ULARGE_INTEGER
+WINAPI
 GetFolderFreeSpaceW(
     _In_z_ LPCWSTR CONST folderPath);
 
@@ -34,6 +42,8 @@ GetFolderFreeSpaceW(
 # define GetFolderFreeSpace GetFolderFreeSpaceA
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 /** @} */

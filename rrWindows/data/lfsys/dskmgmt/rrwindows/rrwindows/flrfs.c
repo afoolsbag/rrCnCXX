@@ -8,21 +8,24 @@
 
 #include "rrwindows/winstr.h"
 
-RRWINDOWS_API _Success_(return != 0) ULARGE_INTEGER WINAPI
+RRWINDOWS_API
+_Success_(return != 0)
+ULARGE_INTEGER
+WINAPI
 GetFolderFreeSpaceA(
     _In_z_ LPCSTR CONST folderPath)
 {
     ULARGE_INTEGER rv = {.QuadPart = 0};
-    HRESULT hrslt = SEC_E_OK;
     CONST SIZE_T siz = (StringCchLengthAs(folderPath) + 1) * sizeof(CHAR);
     CHAR *CONST tmp = (CHAR *)HeapAlloc(GetProcessHeap(), 0, siz);
     if (NULL == tmp) {
         SetLastError(ERROR_OUTOFMEMORY);
         return rv;
     }
-    if (FAILED(hrslt = StringCbCopyA(tmp, siz, folderPath))) {
+    CONST HRESULT hr = StringCbCopyA(tmp, siz, folderPath);
+    if (FAILED(hr)) {
         HeapFree(GetProcessHeap(), 0, tmp);
-        SetLastError(HRESULT_CODE(hrslt));
+        SetLastError(HRESULT_CODE(hr));
         return rv;
     }
     if (!PathStripToRootA(tmp)) {
@@ -38,21 +41,24 @@ GetFolderFreeSpaceA(
     return rv;
 }
 
-RRWINDOWS_API _Success_(return != 0) ULARGE_INTEGER WINAPI
+RRWINDOWS_API
+_Success_(return != 0)
+ULARGE_INTEGER
+WINAPI
 GetFolderFreeSpaceW(
     _In_z_ LPCWSTR CONST folderPath)
 {
     ULARGE_INTEGER rv = {.QuadPart = 0};
-    HRESULT hrslt = SEC_E_OK;
     CONST SIZE_T siz = (StringCchLengthWs(folderPath) + 1) * sizeof(WCHAR);
     WCHAR *CONST tmp = (WCHAR *)HeapAlloc(GetProcessHeap(), 0, siz);
     if (NULL == tmp) {
         SetLastError(ERROR_OUTOFMEMORY);
         return rv;
     }
-    if (FAILED(hrslt = StringCbCopyW(tmp, siz, folderPath))) {
+    CONST HRESULT hr = StringCbCopyW(tmp, siz, folderPath);
+    if (FAILED(hr)) {
         HeapFree(GetProcessHeap(), 0, tmp);
-        SetLastError(HRESULT_CODE(hrslt));
+        SetLastError(HRESULT_CODE(hr));
         return rv;
     }
     if (!PathStripToRootW(tmp)) {

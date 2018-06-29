@@ -62,7 +62,7 @@ ExecutableDirectoryPathA(VOID)
     LPSTR CONST path = ExePathA();
     if (NULL == path)
         return NULL;
-    if (FALSE == PathRemoveFileSpecA(path))
+    if (!PathRemoveFileSpecA(path))
         return NULL;
     return path;
 }
@@ -76,7 +76,7 @@ ExecutableDirectoryPathW(VOID)
     LPWSTR CONST path = ExePathW();
     if (NULL == path)
         return NULL;
-    if (FALSE == PathRemoveFileSpecW(path))
+    if (!PathRemoveFileSpecW(path))
         return NULL;
     return path;
 }

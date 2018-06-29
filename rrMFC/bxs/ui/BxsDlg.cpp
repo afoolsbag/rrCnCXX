@@ -110,9 +110,12 @@ OnBnClickedProperty()
 {
     DcMeth();
 
+    auto &option = reinterpret_cast<BoxesApplication *>(AfxGetApp())->option;
+
     CPropertySheet propertySheetDialog(TEXT("Properties Sheet"));
 
     PropertyPage1 propertyPage1;
+    propertyPage1.ReadFrom(option);
     propertySheetDialog.AddPage(&propertyPage1);
 
     PropertyPage2 propertyPage2;
@@ -124,6 +127,7 @@ OnBnClickedProperty()
     CONST INT_PTR result = propertySheetDialog.DoModal();
     switch (result) {
     case IDOK:
+        propertyPage1.WriteTo(&option);
         break;
     case IDCANCEL:
         break;

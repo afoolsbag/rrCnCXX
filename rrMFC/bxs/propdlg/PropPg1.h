@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include "BxsApp.h"
 #include "propdlg.resource.h"
 
 /// \brief 资源页1（类）。
@@ -28,6 +29,8 @@ public:
 
 #// Operations
 public:
+    VOID ReadFrom(CONST BoxesOption &opt);
+    VOID WriteTo(BoxesOption *CONST pOpt);
 
 #// Overridables
 public:
@@ -42,6 +45,11 @@ protected:
 
 #// Implementation
 protected:
+    CIPAddressCtrl ServiceIpaddressEdit;
+    DWORD          ServiceIpaddress = 0uL;
+
+    CEdit          ServiceIpportEdit;
+    UINT           ServiceIpport = 0u;
 
 #// Message Handlers
 protected:

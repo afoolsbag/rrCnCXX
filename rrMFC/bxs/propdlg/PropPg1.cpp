@@ -23,6 +23,27 @@ PropertyPage1::
     DcMeth();
 }
 
+#// Operations
+
+VOID PropertyPage1::
+ReadFrom(CONST BoxesOption& opt)
+{
+    DcMeth();
+    ServiceIpaddress = opt.ServiceIpaddress;
+    ServiceIpport = opt.ServiceIpport;
+    UpdateData(FALSE);
+}
+
+VOID PropertyPage1::
+WriteTo(BoxesOption *CONST pOpt)
+{
+    DcMeth();
+    UpdateData(FALSE);
+    pOpt->ServiceIpaddress = ServiceIpaddress;
+    pOpt->ServiceIpport = ServiceIpport;
+}
+
+
 #// Overridables
 
 BOOL PropertyPage1::
@@ -45,6 +66,12 @@ DoDataExchange(CDataExchange *pDX)
 {
     CPropertyPage::DoDataExchange(pDX);
     DcMeth();
+
+    DDX_Control(pDX, IDC_SERVICE_IPADDRESS, ServiceIpaddressEdit);
+    DDX_IPAddress(pDX, IDC_SERVICE_IPADDRESS, ServiceIpaddress);
+
+    DDX_Control(pDX, IDC_SERVICE_IPPORT, ServiceIpportEdit);
+    DDX_Text(pDX, IDC_SERVICE_IPPORT, ServiceIpport);
 }
 
 VOID PropertyPage1::

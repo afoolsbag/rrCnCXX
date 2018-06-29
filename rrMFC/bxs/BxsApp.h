@@ -12,6 +12,11 @@
 
 #pragma once
 
+struct BoxesOption {
+    DWORD ServiceIpaddress = 0uL;
+    UINT  ServiceIpport = 0u;
+};
+
 /// \brief 盒子应用（类）。
 class BoxesApplication: public CWinApp {
 
@@ -22,6 +27,7 @@ public:
 
 #// Attributes
 public:
+    BoxesOption option;
 
 #// Operations
 public:
