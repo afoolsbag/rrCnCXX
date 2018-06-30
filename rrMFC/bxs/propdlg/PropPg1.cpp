@@ -31,18 +31,15 @@ ReadFrom(CONST BoxesOption& opt)
     DcMeth();
     ServiceIpaddress = opt.ServiceIpaddress;
     ServiceIpport = opt.ServiceIpport;
-    UpdateData(FALSE);
 }
 
 VOID PropertyPage1::
 WriteTo(BoxesOption *CONST pOpt)
 {
     DcMeth();
-    UpdateData(FALSE);
     pOpt->ServiceIpaddress = ServiceIpaddress;
     pOpt->ServiceIpport = ServiceIpport;
 }
-
 
 #// Overridables
 
@@ -72,6 +69,7 @@ DoDataExchange(CDataExchange *pDX)
 
     DDX_Control(pDX, IDC_SERVICE_IPPORT, ServiceIpportEdit);
     DDX_Text(pDX, IDC_SERVICE_IPPORT, ServiceIpport);
+    DDV_MinMaxUInt(pDX, ServiceIpport, 0, 65535);
 }
 
 VOID PropertyPage1::

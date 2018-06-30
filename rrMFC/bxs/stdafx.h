@@ -48,3 +48,4 @@
 #include <afxcmn.h>
 #include <afxdlgs.h>
 #include <afxdtctl.h>
+#include <afxmt.h>

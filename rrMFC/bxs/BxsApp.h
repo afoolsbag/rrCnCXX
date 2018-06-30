@@ -13,8 +13,8 @@
 #pragma once
 
 struct BoxesOption {
-    DWORD ServiceIpaddress = 0uL;
-    UINT  ServiceIpport = 0u;
+    DWORD  ServiceIpaddress = 0uL;
+    UINT16 ServiceIpport = 0u;
 };
 
 /// \brief 盒子应用（类）。
@@ -27,10 +27,12 @@ public:
 
 #// Attributes
 public:
-    BoxesOption option;
+    BoxesOption Option;
 
 #// Operations
 public:
+    VOID ReadOptionFromProfile();
+    VOID WriteOptionToProfile();
 
 #// Overridables
 public:
