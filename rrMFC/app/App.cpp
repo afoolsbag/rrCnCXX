@@ -44,37 +44,42 @@ InitInstance()
     CWinApp::InitInstance();
     DcMeth();
 
+    AfxMessageBoxExpectTrue(SetConsoleCtrlHandler(&Application::HandlerRoutine, TRUE));
+
     // Console
     if (SW_HIDE != m_nCmdShow)
-        if (!AllocConsole())
-            DpWarnFwLE(TEXT("AllocConsole"));
-    if (!SetConsoleCtrlHandler(&Application::HandlerRoutine, TRUE))
-        AfxMessageBoxFwLE(TEXT("SetConsoleCtrlHandler"));
+        DpWarnExpectTrue(AllocConsole());
 
-    // Command Line Interface Loop
-    SetConsoleForeGroundColor(LightAqua);
-    ShowHello();
-    TCHAR buf[512] = TEXT("");
-    size_t len = 0;
-    while (TRUE) {
-        ConsoleColorPut(TEXT("\nEnter a command: "));
-        _cgetts_s(buf, &len);
-        std::vector<CString> tokens = TokenizeCommandLine(buf);
-        if (tokens.empty())
-            ShowUnknown(tokens);
-        else if (CommandMatches(tokens[0], TEXT("clearscreen"), TEXT("cls")))
-            ShowHello();
-        else if (CommandMatches(tokens[0], TEXT("help"), TEXT("?")))
-            ShowHelp(tokens);
-        else if (CommandMatches(tokens[0], TEXT("status")))
-            ShowStatus(tokens);
-        else if (CommandMatches(tokens[0], TEXT("exit"), TEXT("close"), TEXT("quit")))
-            break;
-        else
-            ShowUnknown(tokens);
+    if (SW_HIDE == m_nCmdShow) {
+        // Sleep
+        while (TRUE)
+            Sleep(INFINITE);
+    } else {
+        // Command Line Interface Loop
+        SetConsoleForeGroundColor(LightAqua);
+        ShowHello();
+        TCHAR buf[512] = TEXT("");
+        size_t len = 0;
+        while (TRUE) {
+            ConsoleColorPut(TEXT("\nEnter a command: "));
+            _cgetts_s(buf, &len);
+            std::vector<CString> tokens = TokenizeCommandLine(buf);
+            if (tokens.empty())
+                ShowUnknown(tokens);
+            else if (CommandMatches(tokens[0], TEXT("clearscreen"), TEXT("cls")))
+                ShowHello();
+            else if (CommandMatches(tokens[0], TEXT("help"), TEXT("?")))
+                ShowHelp(tokens);
+            else if (CommandMatches(tokens[0], TEXT("status")))
+                ShowStatus(tokens);
+            else if (CommandMatches(tokens[0], TEXT("exit"), TEXT("close"), TEXT("quit")))
+                break;
+            else
+                ShowUnknown(tokens);
 #ifndef _UNICODE
-        _cgetts_s(buf, &len);
+            _cgetts_s(buf, &len);
 #endif
+        }
     }
 
     return FALSE;
@@ -84,8 +89,7 @@ INT Application::
 ExitInstance()
 {
     if (SW_HIDE != m_nCmdShow)
-        if (!FreeConsole())
-            DpWarnFwLE(TEXT("FreeConsole"));
+        DpWarnExpectTrue(FreeConsole());
     DcMeth();
     return CWinApp::ExitInstance();
 }

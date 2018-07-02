@@ -18,9 +18,9 @@
 #include <tchar.h>
 
 #include <check/check.h>
-
 #include "rrwindows/def.h"
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
+
 #include "tsuite_str.h"
 
 /**

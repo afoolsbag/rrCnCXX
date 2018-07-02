@@ -6,7 +6,7 @@
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
 
 RRWINDOWS_API
 _Success_(return != 0)

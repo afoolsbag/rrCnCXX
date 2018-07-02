@@ -16,8 +16,8 @@
 #include <Windows.h>
 
 #include <check/check.h>
+#include "rrwindows/strsim.h"
 
-#include "rrwindows/winstr.h"
 #include "tsuite_str.h"
 
 /**

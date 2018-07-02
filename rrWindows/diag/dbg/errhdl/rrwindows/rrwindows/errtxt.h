@@ -93,6 +93,21 @@ AfxMessageBoxFwLE(LPCTSTR CONST op)
     text.Format(TEXT("%s failed with %lu, %s"), op, ec, ErrorTextOf(ec));
     AfxMessageBox(text, MB_ICONWARNING);
 }
+
+/**
+ * \brief 消息框：期望为真（Expect True）。
+ * \param proc 处理，返回`TRUE`或`FALSE`。
+ * \since 2018-07-02
+ */
+#define AfxMessageBoxExpectTrue(proc)  ((proc) || (AfxMessageBoxFwLE(_T(#proc)), FALSE))
+
+/**
+ * \brief 消息框：期望为假（Expect False）。
+ * \param proc 处理，返回`TRUE`或`FALSE`。
+ * \since 2018-07-02
+ */
+#define AfxMessageBoxExpectFalse(proc) ((proc) && (AfxMessageBoxFwLE(_T(#proc)), TRUE))
+
 #endif
 
 /** @} */

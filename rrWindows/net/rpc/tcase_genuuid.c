@@ -4,10 +4,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "check/check.h"
-
+#include <check/check.h>
 #include "rrwindows/genuuid.h"
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
 
 START_TEST(TestGenUuid)
 {

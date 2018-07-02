@@ -3,7 +3,7 @@
  * \defgroup gDiag 诊断
  * \ingroup gDvlp
  *
- * \sa ["Diagnostics"](https://msdn.microsoft.com/library/ee663269). *Microsoft® Developer Network*.
+ * \sa ["Diagnostics"](https://docs.microsoft.com/windows/desktop/diagnostics). *MSDocs*.
  *     + [Assessment Execution Engine](https://msdn.microsoft.com/library/hh437709)
  *     + [Debugging and Error Handling](https://msdn.microsoft.com/library/ee663265)
  *     + [Hardware Counter Profiling](https://msdn.microsoft.com/library/dd796395)
@@ -22,7 +22,7 @@
  *     + [Windows Performance Toolkit (WPT)](https://msdn.microsoft.com/library/hh162945)
  *     + [Windows Troubleshooting Platform](https://msdn.microsoft.com/library/dd323778)
  *
- * \version 2018-04-19
+ * \version 2018-07-02
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

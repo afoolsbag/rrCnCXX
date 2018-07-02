@@ -6,7 +6,7 @@
 #include <shellapi.h>
 #pragma comment(lib, "Mpr.Lib")
 
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
 
 RRWINDOWS_API
 _Success_(return != FALSE)
@@ -30,7 +30,7 @@ ConnectSharedFolderA(
         return FALSE;
     }
     NETRESOURCEA netRes;
-    SecureZeroMemory(&netRes, sizeof(netRes));
+    ZeroMemory(&netRes, sizeof(netRes));
     netRes.dwType = RESOURCETYPE_DISK;
     netRes.lpRemoteName = tmp;
     CONST DWORD ec = WNetAddConnection2A(&netRes, password, username, CONNECT_TEMPORARY);
@@ -65,7 +65,7 @@ ConnectSharedFolderW(
         return FALSE;
     }
     NETRESOURCEW netRes;
-    SecureZeroMemory(&netRes, sizeof(netRes));
+    ZeroMemory(&netRes, sizeof(netRes));
     netRes.dwType = RESOURCETYPE_DISK;
     netRes.lpRemoteName = tmp;
     CONST DWORD ec = WNetAddConnection2W(&netRes, password, username, CONNECT_TEMPORARY);

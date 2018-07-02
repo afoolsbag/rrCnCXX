@@ -54,12 +54,12 @@
  *
 *//*===--------------------------------------------------------------------===*/
 
-/*===-- Develop Desktop Applications ---------------------------*- C -*-===*//**
+/*===-- Develop Windows Desktop Applications -------------------*- C -*-===*//**
  *
- * \defgroup gDvlp 开发桌面应用程序
+ * \defgroup gDvlp 开发视窗桌面应用程序
  *
- * \sa ["Develop desktop applications"](https://developer.microsoft.com/windows/desktop/develop). *Windows Dev Center*.
- *     + [Desktop technologies](https://msdn.microsoft.com/library/bg126469)
+ * \sa ["Develop desktop applications"](https://docs.microsoft.com/windows/desktop/). *MSDocs*.
+ *     + [Desktop app technologies](https://docs.microsoft.com/windows/desktop/desktop-app-technologies)
  *         + [Desktop app UI](https://msdn.microsoft.com/library/ff657751)
  *         + [Desktop environment](https://msdn.microsoft.com/library/ee663298)
  *         + [Application installation and servicing](https://msdn.microsoft.com/library/ee663259)
@@ -72,11 +72,13 @@
  *         + [Networking and Internet](https://msdn.microsoft.com/library/ee663286)
  *         + [Security and identity](https://msdn.microsoft.com/library/ee663293)
  *         + [System services](https://msdn.microsoft.com/library/ee663297)
- *     + [Server and system technologies](https://msdn.microsoft.com/library/mt842907)
- *     + [Graphics and game technologies](https://msdn.microsoft.com/library/ee663279)
- *     + [API index](https://msdn.microsoft.com/library/hh920508)
+ *         + [Windows Machine Learning](https://docs.microsoft.com/windows/desktop/MachineLearning)
+ *     + [API index](https://docs.microsoft.com/windows/desktop/apiindex)
+ *     + [Windows Runtime C++ reference](https://docs.microsoft.com/windows/desktop/winrt)
+ *     + [Develop with server technologies](https://docs.microsoft.com/windows/desktop/server-and-system-technologies)
+ *     + [Windows certification](https://docs.microsoft.com/windows/desktop/win_cert)
  *
- * \version 2018-05-21
+ * \version 2018-07-02
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC BY 4.0

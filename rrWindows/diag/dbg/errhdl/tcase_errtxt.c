@@ -5,9 +5,8 @@
 #include <Windows.h>
 
 #include <check/check.h>
-
 #include "rrwindows/errtxt.h"
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
 
 START_TEST(TestErrTxt)
 {

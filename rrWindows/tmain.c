@@ -1,9 +1,9 @@
 /** \copyright The MIT License */
 
 #include <stdlib.h>
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <tchar.h>
 
 #include <check/check.h>
 
@@ -12,7 +12,7 @@
 #include "data/lfsys/fmgmt/tsuite_fmgmt.h"
 #include "diag/dbg/errhdl/tsuite_errhdl.h"
 #include "diag/dbg/basdbg/tsuite_basdbg.h"
-#include "diag/toolhelp/tsuite_toolhelp.h"
+#include "diag/th/tsuite_th.h"
 #include "env/sh/tsuite_sh.h"
 #include "net/rpc/tsuite_rpc.h"
 #include "net/wnet/tsuite_wnet.h"
@@ -33,7 +33,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(runner, TSuiteFMgmt());
     srunner_add_suite(runner, TSuiteErrHdl());
     srunner_add_suite(runner, TSuiteBasDbg());
-    srunner_add_suite(runner, TSuiteToolHelp());
+    srunner_add_suite(runner, TSuiteTH());
     srunner_add_suite(runner, TSuiteSh());
     srunner_add_suite(runner, TSuiteRPC());
     srunner_add_suite(runner, TSuiteWNet());

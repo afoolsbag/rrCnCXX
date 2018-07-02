@@ -1,9 +1,9 @@
-/*===-- Windows String -----------------------------------------*- C -*-===*//**
+/*===-- String Interface Simplify ------------------------------*- C -*-===*//**
  *
- * \defgroup gWinStr Windows字符串操作
+ * \defgroup gStrSim 字串接口简化
  * \ingroup gStr
  *
- * \version 2018-06-26
+ * \version 2018-07-02
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -21,6 +21,16 @@
 
 /*-C--------------------------------------------------------------------------*/
 
+/**
+ * \brief 按二进制顺序地比较UNICODE字串（Simplify接口，2参数）。
+ *
+ * \param lhs 左侧字串；
+ * \param rhs 右侧字串。
+ * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ *          CSTR_LESS_THAN    左侧小于右侧；\n
+ *          CSTR_EQUAL        两侧相等；\n
+ *          CSTR_GREATER_THAN 左侧大于右侧。
+ */
 _Success_(return != 0)
 FORCEINLINE
 INT
@@ -32,6 +42,17 @@ CompareStringOrdinalS2(
     return CompareStringOrdinal(lhs, -1, rhs, -1, FALSE);
 }
 
+/**
+ * \brief 按二进制顺序地比较UNICODE字串（Simplify接口，3参数）。
+ *
+ * \param lhs        左侧字串；
+ * \param rhs        右侧字串；
+ * \param ignoreCase 忽略大小写。
+ * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ *          CSTR_LESS_THAN    左侧小于右侧；\n
+ *          CSTR_EQUAL        两侧相等；\n
+ *          CSTR_GREATER_THAN 左侧大于右侧。
+ */
 _Success_(return != 0)
 FORCEINLINE
 INT
@@ -45,12 +66,12 @@ CompareStringOrdinalS3(
 }
 
 /**
- * \brief 二进制等价地比较两个字符串（UNICODE适配，Simplify接口）。
+ * \brief 按二进制顺序地比较UNICODE字串（Simplify接口，便利宏）。
  *
- * \param lhs        左侧字符串。
- * \param rhs        右侧字符串。
+ * \param lhs        左侧字串；
+ * \param rhs        右侧字串；
  * \param ignoreCase 可选的，忽略大小写，默认`FALSE`。
- * \returns 0                 失败，使用GetLastError()获取扩展错误信息；\n
+ * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
@@ -58,11 +79,11 @@ CompareStringOrdinalS3(
 #define CompareStringOrdinalS(...) EXPAND(VAFUNC3(__VA_ARGS__, CompareStringOrdinalS3, CompareStringOrdinalS2, VABAN)(__VA_ARGS__))
 
 /**
- * \brief 比较两个字符串（ANSI适配，Simplify接口）。
+ * \brief 比较字串（ANSI适配，Simplify接口）。
  *
- * \param lhs 左侧字符串。
- * \param rhs 右侧字符串。
- * \returns 0                 失败，使用GetLastError()获取扩展错误信息；\n
+ * \param lhs 左侧字串；
+ * \param rhs 右侧字串。
+ * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
@@ -79,11 +100,11 @@ CompareStringAs(
 }
 
 /**
- * \brief 比较两个字符串（UNICODE适配，Simplify接口）。
+ * \brief 比较字串（UNICODE适配，Simplify接口）。
  *
- * \param lhs 左侧字符串。
- * \param rhs 右侧字符串。
- * \returns 0                 失败，使用GetLastError()获取扩展错误信息；\n
+ * \param lhs 左侧字串；
+ * \param rhs 右侧字串。
+ * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
@@ -106,10 +127,10 @@ CompareStringWs(
 #endif
 
 /**
- * \brief 按区域地比较两个字符串（UNICODE适配，Simplify接口）。
+ * \brief 按区域地比较UNICODE字串（Simplify接口）。
  *
- * \param lhs 左侧字符串。
- * \param rhs 右侧字符串。
+ * \param lhs 左侧字串；
+ * \param rhs 右侧字串。
  * \returns 0                 失败，使用GetLastError()获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
@@ -130,37 +151,37 @@ CompareStringExS(
 /*-L--------------------------------------------------------------------------*/
 
 /**
- * \brief 计算字符串长度（ANSI适配，Simplify接口）。
+ * \brief 计算字串长度（ANSI适配，Simplify接口）。
  *
- * \param string 字符串。
- * \return 有效长度。
+ * \param str 字串。
+ * \return 长度。
  */
 FORCEINLINE
 size_t
 WINAPI_INLINE
 StringCchLengthAs(
-    _In_z_ LPCSTR CONST string)
+    _In_z_ LPCSTR CONST str)
 {
     size_t len = 0;
-    if (FAILED(StringCchLengthA(string, STRSAFE_MAX_CCH, &len)))
+    if (FAILED(StringCchLengthA(str, STRSAFE_MAX_CCH, &len)))
         return 0;
     return len;
 }
 
 /**
- * \brief 计算字符串长度（UNICODE适配，Simplify接口）。
+ * \brief 计算字串长度（UNICODE适配，Simplify接口）。
  *
- * \param string 字符串。
- * \return 有效长度。
+ * \param str 字串。
+ * \return 长度。
  */
 FORCEINLINE
 size_t
 WINAPI_INLINE
 StringCchLengthWs(
-    _In_z_ LPCWSTR CONST string)
+    _In_z_ LPCWSTR CONST str)
 {
     size_t len = 0;
-    if (FAILED(StringCchLengthW(string, STRSAFE_MAX_CCH, &len)))
+    if (FAILED(StringCchLengthW(str, STRSAFE_MAX_CCH, &len)))
         return 0;
     return len;
 }

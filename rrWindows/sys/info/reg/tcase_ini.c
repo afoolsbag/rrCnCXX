@@ -18,11 +18,11 @@
 #include <Windows.h>
 
 #include <check/check.h>
-
 #include "rrwindows/dbgprt.h"
 #include "rrwindows/errtxt.h"
 #include "rrwindows/exepath.h"
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
+
 #include "tsuite_reg.h"
 
 /**

@@ -6,7 +6,7 @@
 #include <strsafe.h>
 
 #include "rrwindows/def.h"
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
 
 #define BUFFER_SIZE 100
 #define BUFFER_OFFSET (countof("\r\n") - 1)

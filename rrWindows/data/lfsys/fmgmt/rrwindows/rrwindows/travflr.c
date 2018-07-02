@@ -6,7 +6,7 @@
 #include <strsafe.h>
 
 #include "rrwindows/def.h"
-#include "rrwindows/winstr.h"
+#include "rrwindows/strsim.h"
 
 RRWINDOWS_API
 _Success_(return == ERROR_SUCCESS)
@@ -26,8 +26,6 @@ TraverseFolderA(
     DWORD rv = ERROR_SUCCESS;
 
     WIN32_FIND_DATAA data;
-    SecureZeroMemory(&data, sizeof(data));
-
     HANDLE handle = INVALID_HANDLE_VALUE;
     if (INVALID_HANDLE_VALUE == (handle = FindFirstFileA(wildcardPath, &data))) {
         if (GetLastError() == ERROR_NO_MORE_FILES) {

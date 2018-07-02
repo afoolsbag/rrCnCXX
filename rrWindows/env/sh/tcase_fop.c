@@ -48,7 +48,7 @@ START_TEST(TestShDelete)
 {
     return;
     SHFILEOPSTRUCT param;
-    SecureZeroMemory(&param, sizeof(param));
+    ZeroMemory(&param, sizeof(param));
     param.wFunc = FO_DELETE;
     param.pFrom = _T("D:\\vpt\0");
     param.pTo = NULL;
