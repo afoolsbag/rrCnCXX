@@ -1,7 +1,7 @@
 /// \copyright The MIT License
 
 #include "stdafx.h"
-#include "ProgDlg.h"
+#include "ProgBox.h"
 
 #include "rrwindows/dbgcon.h"
 #include "rrwindows/dbgprt.h"
@@ -9,48 +9,48 @@
 #// Private Message
 #define PM_CLOSE (WM_USER + 1)
 
-IMPLEMENT_DYNAMIC(ProgressDialog, CDialog)
+IMPLEMENT_DYNAMIC(ProgressBox, CDialog)
 
-BEGIN_MESSAGE_MAP(ProgressDialog, CDialog)
+BEGIN_MESSAGE_MAP(ProgressBox, CDialog)
     ON_WM_TIMER()
-    ON_MESSAGE(PM_CLOSE, &ProgressDialog::OnClose)
+    ON_MESSAGE(PM_CLOSE, &ProgressBox::OnClose)
 END_MESSAGE_MAP()
 
 #// Constructors
 
-ProgressDialog::
-ProgressDialog(CWnd *pParent /*=NULL*/)
+ProgressBox::
+ProgressBox(CWnd *pParent /*=NULL*/)
     : CDialog(IDD, pParent)
 {
     DcMeth();
 }
 
-ProgressDialog::
-~ProgressDialog()
+ProgressBox::
+~ProgressBox()
 {
     DcMeth();
 }
 
 #// Overridables
 
-BOOL ProgressDialog::
+BOOL ProgressBox::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
     DcMeth();
-    AfxBeginThread(ProgressDialog::ThreadWrapper, this);
+    AfxBeginThread(ProgressBox::ThreadWrapper, this);
     SetTimer(REFRESH_UI, 40, NULL);
     return TRUE;
 }
 
-BOOL ProgressDialog::
+BOOL ProgressBox::
 OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
 {
     DcWndMsg();
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID ProgressDialog::
+VOID ProgressBox::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -61,12 +61,12 @@ DoDataExchange(CDataExchange *pDX)
     DDX_Control(pDX, IDC_CURRENT_PROGRESS, CurrentProgressControl);
 }
 
-UINT AFX_CDECL ProgressDialog::
+UINT AFX_CDECL ProgressBox::
 ThreadWrapper(LPVOID pParam)
 {
-    ProgressDialog *CONST self = reinterpret_cast<ProgressDialog *>(pParam);
-    if (NULL != self && self->IsKindOf(RUNTIME_CLASS(ProgressDialog))) {
-        CONST UINT rv = NULL != self->ThreadFunction ? self->ThreadFunction(self) : EXIT_FAILURE;
+    ProgressBox *CONST self = reinterpret_cast<ProgressBox *>(pParam);
+    if (NULL != self && self->IsKindOf(RUNTIME_CLASS(ProgressBox))) {
+        CONST UINT rv = (NULL != self->ThreadFunction) ? self->ThreadFunction(self) : EXIT_FAILURE;
         self->PostMessage(PM_CLOSE);
         return rv;
     } else {
@@ -78,7 +78,7 @@ ThreadWrapper(LPVOID pParam)
 
 #// Message Handlers
 
-VOID ProgressDialog::
+VOID ProgressBox::
 OnTimer(UINT_PTR nIDEvent)
 {
     switch (nIDEvent) {
@@ -97,7 +97,7 @@ OnTimer(UINT_PTR nIDEvent)
     }
 }
 
-LRESULT ProgressDialog::
+LRESULT ProgressBox::
 OnClose(WPARAM wParam, LPARAM lParam)
 {
     UNUSED_ALWAYS(wParam);

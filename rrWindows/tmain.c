@@ -16,7 +16,7 @@
 #include "env/sh/tsuite_sh.h"
 #include "net/rpc/tsuite_rpc.h"
 #include "net/wnet/tsuite_wnet.h"
-#include "sys/info/reg/tsuite_reg.h"
+#include "svc/info/reg/tsuite_reg.h"
 #include "ui/i18n/charset/tsuite_charset.h"
 #include "ui/res/str/tsuite_str.h"
 

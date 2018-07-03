@@ -14,13 +14,13 @@
  *
  * # References                                                   {#sReferences}
  *
- * ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *Microsoft Developer Network*.
- * ["Using the C++ Core Guidelines checkers"](https://docs.microsoft.com/visualstudio/code-quality/using-the-cpp-core-guidelines-checkers). *Microsoft Docs*.
- * ["Using SAL Annotations to Reduce C/C++ Code Defects"](https://docs.microsoft.com/visualstudio/code-quality/using-sal-annotations-to-reduce-c-cpp-code-defects). *Microsoft Docs*.
+ * ["Microsoft API and reference catalog"](https://msdn.microsoft.com/library/). *MSDN*.
+ * ["Using the C++ Core Guidelines checkers"](https://docs.microsoft.com/visualstudio/code-quality/using-the-cpp-core-guidelines-checkers). *MSDocs*.
+ * ["Using SAL Annotations to Reduce C/C++ Code Defects"](https://docs.microsoft.com/visualstudio/code-quality/using-sal-annotations-to-reduce-c-cpp-code-defects). *MSDocs*.
  *
  * # Programming Styles                                    {#sProgrammingStyles}
  *
- * ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *Microsoft Docs*.
+ * ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines/). *MSDocs*.
  *
  * Inherited from C Programming Styles.
  *
@@ -47,7 +47,7 @@
  * ___
  * <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
  *
- * \version 2018-05-28
+ * \version 2018-07-03
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC BY 4.0

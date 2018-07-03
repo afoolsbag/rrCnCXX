@@ -60,13 +60,13 @@ DoDataExchange(CDataExchange *pDX)
 }
 
 UINT BoxesDialog::
-ThreadFunction(ProgressDialog *CONST pProgressDialog)
+ThreadFunction(ProgressBox *CONST pProgBox)
 {
-    pProgressDialog->SetTitle(TEXT("Target"));
-    pProgressDialog->SetTotal(TEXT("Total progress"));
-    pProgressDialog->SetTotal(0, 100);
-    pProgressDialog->SetCurrent(TEXT("Current progress"));
-    pProgressDialog->SetCurrent(0, 100);
+    pProgBox->SetTitle(TEXT("Target"));
+    pProgBox->SetTotal(TEXT("Total progress"));
+    pProgBox->SetTotal(0, 100);
+    pProgBox->SetCurrent(TEXT("Current progress"));
+    pProgBox->SetCurrent(0, 100);
     INT total = 0;
     INT current = 0;
 
@@ -79,8 +79,8 @@ ThreadFunction(ProgressDialog *CONST pProgressDialog)
             current -= 100;
             ++total;
         }
-        pProgressDialog->SetCurrent(current);
-        pProgressDialog->SetTotal(total);
+        pProgBox->SetCurrent(current);
+        pProgBox->SetTotal(total);
         if (100 <= total)
             break;
         Sleep(1);
@@ -100,9 +100,9 @@ VOID BoxesDialog::
 OnBnClickedProgress()
 {
     DcMeth();
-    ProgressDialog dlg;
-    dlg.SetThreadFunction(std::bind(&BoxesDialog::ThreadFunction, this, std::placeholders::_1));
-    dlg.DoModal();
+    ProgressBox box;
+    box.SetThreadFunction(std::bind(&BoxesDialog::ThreadFunction, this, std::placeholders::_1));
+    box.DoModal();
 }
 
 VOID BoxesDialog::
@@ -113,22 +113,24 @@ OnBnClickedProperty()
     auto CONST pApp = reinterpret_cast<BoxesApplication *>(AfxGetApp());
     pApp->ReadOptionFromProfile();
 
-    CPropertySheet propertySheetDialog(TEXT("Properties Sheet"));
+    CPropertySheet sheet(TEXT("Properties Sheet"));
 
-    PropertyPage1 propertyPage1;
-    propertyPage1.ReadFrom(pApp->Option);
-    propertySheetDialog.AddPage(&propertyPage1);
+    PropertyPage1 page1;
+    page1.ReadFrom(pApp->Option);
+    sheet.AddPage(&page1);
 
-    PropertyPage2 propertyPage2;
-    propertySheetDialog.AddPage(&propertyPage2);
+    PropertyPage2 page2;
+    sheet.AddPage(&page2);
 
-    PropertyPage3 propertyPage3;
-    propertySheetDialog.AddPage(&propertyPage3);
+    PropertyPage3 page3;
+    page3.ReadFrom(pApp->Option);
+    sheet.AddPage(&page3);
 
-    CONST INT_PTR result = propertySheetDialog.DoModal();
+    CONST INT_PTR result = sheet.DoModal();
     switch (result) {
     case IDOK:
-        propertyPage1.WriteTo(&pApp->Option);
+        page1.WriteTo(&pApp->Option);
+        page3.WriteTo(&pApp->Option);
         pApp->WriteOptionToProfile();
         break;
     case IDCANCEL:

@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "progdlg/ProgDlg.h"
+#include "progbox/ProgBox.h"
 
 #include "resource.h"
 
@@ -40,7 +40,7 @@ protected:
 
 #// Implementation
 protected:
-    UINT ThreadFunction(ProgressDialog *CONST pProgressDialog);
+    UINT ThreadFunction(ProgressBox *CONST pProgBox);
 
 #// Message Handlers
 protected:

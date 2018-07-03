@@ -13,11 +13,18 @@
 #pragma once
 
 struct BoxesOption {
-    DWORD  ServiceIpaddress = 0uL;
+    DWORD  ServiceIpaddr = 0uL;
     UINT16 ServiceIpport = 0u;
+
+    DWORD  RedisIpaddr = 0uL;
+    UINT16 RedisIpport = 0u;
+    DWORD  RabbitIpaddr = 0uL;
+    UINT16 RabbitIpport = 0u;
 };
 
+///
 /// \brief 盒子应用（类）。
+///
 class BoxesApplication: public CWinApp {
 
 #// Constructors

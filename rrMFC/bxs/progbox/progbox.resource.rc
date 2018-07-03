@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "progdlg.resource.h"
+#include "progbox.resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 
 1 TEXTINCLUDE 
 BEGIN
-    "progdlg.resource.h\0"
+    "progbox.resource.h\0"
 END
 
 2 TEXTINCLUDE 

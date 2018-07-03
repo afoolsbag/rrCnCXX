@@ -3,7 +3,7 @@
 /// \file
 /// \brief 资源页3（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-07-03
 /// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,9 +12,12 @@
 
 #pragma once
 
+#include "BxsApp.h"
 #include "propdlg.resource.h"
 
+///
 /// \brief 资源页3（类）。
+///
 class PropertyPage3: public CPropertyPage {
 
 #// Constructors
@@ -28,6 +31,8 @@ public:
 
 #// Operations
 public:
+    VOID ReadFrom(CONST BoxesOption &opt);
+    VOID WriteTo(BoxesOption *CONST pOpt) CONST;
 
 #// Overridables
 public:
@@ -42,6 +47,17 @@ protected:
 
 #// Implementation
 protected:
+    CIPAddressCtrl RedisIpaddrEdit;
+    DWORD          RedisIpaddr = 0uL;
+
+    CEdit          RedisIpportEdit;
+    UINT           RedisIpport = 0u;
+
+    CIPAddressCtrl RabbitIpaddrEdit;
+    DWORD          RabbitIpaddr = 0uL;
+
+    CEdit          RabbitIpportEdit;
+    UINT           RabbitIpport = 0u;
 
 #// Message Handlers
 protected:

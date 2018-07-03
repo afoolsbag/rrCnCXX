@@ -1,9 +1,9 @@
-//===-- Progress Dialog -----------------------------------------*- C++ -*-===//
+//===-- Progress Box --------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 进度对话框（类）。
+/// \brief 进度框（类）。
 ///
-/// \verison 2018-06-29
+/// \verison 2018-07-03
 /// \since 2018-05-30
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -14,22 +14,22 @@
 
 #include <functional>
 
-#include "progdlg.resource.h"
+#include "progbox.resource.h"
 
-/// \brief 进度对话框（类）。
-class ProgressDialog: public CDialog {
-    DECLARE_DYNAMIC(ProgressDialog)
+/// \brief 进度框（类）。
+class ProgressBox: public CDialog {
+    DECLARE_DYNAMIC(ProgressBox)
 
 #// Constructors
 public:
-    ProgressDialog(CWnd *pParent = NULL);
+    ProgressBox(CWnd *pParent = NULL);
 
-    VOID SetThreadFunction(std::function<UINT(ProgressDialog *CONST)> CONST function)
+    VOID SetThreadFunction(std::function<UINT(ProgressBox *CONST)> CONST func)
     {
-        ThreadFunction = function;
+        ThreadFunction = func;
     }
 
-    virtual ~ProgressDialog() override;
+    virtual ~ProgressBox() override;
 
 #// Attributes
 public:
@@ -105,7 +105,7 @@ protected:
     SHORT   CurProgRngMax = 1;          ///< Current Progress Range Max.
     INT     CurProgPos = 0;             ///< Current Progress Position.
 
-    std::function<UINT(ProgressDialog *CONST)> ThreadFunction = NULL;
+    std::function<UINT(ProgressBox *CONST)> ThreadFunction = NULL;
     static UINT AFX_CDECL ThreadWrapper(LPVOID pParam);
 
 #// Message Handlers

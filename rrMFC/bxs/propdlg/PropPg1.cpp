@@ -29,15 +29,15 @@ VOID PropertyPage1::
 ReadFrom(CONST BoxesOption& opt)
 {
     DcMeth();
-    ServiceIpaddress = opt.ServiceIpaddress;
+    ServiceIpaddr = opt.ServiceIpaddr;
     ServiceIpport = opt.ServiceIpport;
 }
 
 VOID PropertyPage1::
-WriteTo(BoxesOption *CONST pOpt)
+WriteTo(BoxesOption *CONST pOpt) CONST
 {
     DcMeth();
-    pOpt->ServiceIpaddress = ServiceIpaddress;
+    pOpt->ServiceIpaddr = ServiceIpaddr;
     pOpt->ServiceIpport = ServiceIpport;
 }
 
@@ -64,8 +64,8 @@ DoDataExchange(CDataExchange *pDX)
     CPropertyPage::DoDataExchange(pDX);
     DcMeth();
 
-    DDX_Control(pDX, IDC_SERVICE_IPADDRESS, ServiceIpaddressEdit);
-    DDX_IPAddress(pDX, IDC_SERVICE_IPADDRESS, ServiceIpaddress);
+    DDX_Control(pDX, IDC_SERVICE_IPADDR, ServiceIpaddrEdit);
+    DDX_IPAddress(pDX, IDC_SERVICE_IPADDR, ServiceIpaddr);
 
     DDX_Control(pDX, IDC_SERVICE_IPPORT, ServiceIpportEdit);
     DDX_Text(pDX, IDC_SERVICE_IPPORT, ServiceIpport);

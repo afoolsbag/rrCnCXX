@@ -3,7 +3,7 @@
 /// \file
 /// \brief 资源页1（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-07-03
 /// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -15,7 +15,9 @@
 #include "BxsApp.h"
 #include "propdlg.resource.h"
 
+///
 /// \brief 资源页1（类）。
+///
 class PropertyPage1: public CPropertyPage {
 
 #// Constructors
@@ -30,7 +32,7 @@ public:
 #// Operations
 public:
     VOID ReadFrom(CONST BoxesOption &opt);
-    VOID WriteTo(BoxesOption *CONST pOpt);
+    VOID WriteTo(BoxesOption *CONST pOpt) CONST;
 
 #// Overridables
 public:
@@ -45,8 +47,8 @@ protected:
 
 #// Implementation
 protected:
-    CIPAddressCtrl ServiceIpaddressEdit;
-    DWORD          ServiceIpaddress = 0uL;
+    CIPAddressCtrl ServiceIpaddrEdit;
+    DWORD          ServiceIpaddr = 0uL;
 
     CEdit          ServiceIpportEdit;
     UINT           ServiceIpport = 0u;
