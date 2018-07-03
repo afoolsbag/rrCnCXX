@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-06-06 – 2018-06-06
+# 2018-06-06 – 2018-07-03
 # The MIT License
 
 #.rst:
@@ -127,7 +127,7 @@ endfunction()
 #.rst:
 # .. command::get_architecture_address_model_tag
 #
-#    获取地址模式标签：
+#    获取架构地址模式标签：
 #    ::
 #
 #       get_architecture_address_model_tag(

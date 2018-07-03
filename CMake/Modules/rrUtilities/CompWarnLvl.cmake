@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-04
+# 2016-10-08 – 2018-07-03
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -12,7 +12,8 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #    ::
 #
 #       compiler_warning_level(
-#         [HIGHEST] [AS_ERROR] [UTF-8]
+#         [HIGHEST] [AS_ERROR]
+#         [UTF-8]
 #         [ANALYZE]
 #       )
 #

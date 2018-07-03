@@ -5,7 +5,7 @@
 # | |   | | | | | (_| \ \_/ / |_) |  __/ | | | \__/\ \_/ / | | (_| | (__|   < (_| | (_| |  __/
 # \_|   |_|_| |_|\__,_|\___/| .__/ \___|_| |_|\____/\___/\_|  \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                   | |                    FindOpenCVPackage by FIGlet doom __/ |
-# 2018-06-04 – 04           |_|                                                    |___/
+# 2018-06-04 – 2018-07-03   |_|                                                    |___/
 # The MIT License
 
 #.rst:
@@ -35,15 +35,15 @@ endif()
 set(zHints "${OpenCV_ROOT_DIR}" "$ENV{OPENCVDIR}")
 
 find_path(OpenCV_ROOT_DIR
-  NAMES "OpenCVConfig.cmake"
-  HINTS ${zHints}
-        NO_DEFAULT_PATH)
+    NAMES "OpenCVConfig.cmake"
+    HINTS ${zHints}
+          NO_DEFAULT_PATH)
 mark_as_advanced(OpenCV_ROOT_DIR)
 
 find_path(OpenCVPackage_PREFIX_PATH
-  NAMES "OpenCVConfig.cmake"
-  HINTS ${zHints}
-        NO_DEFAULT_PATH)
+    NAMES "OpenCVConfig.cmake"
+    HINTS ${zHints}
+          NO_DEFAULT_PATH)
 mark_as_advanced(OpenCVPackage_PREFIX_PATH)
 
 include(FindPackageHandleStandardArgs)

@@ -1,0 +1,33 @@
+//===-- Main Page -----------------------------------------------*- C++ -*-===//
+//!
+//! \mainpage
+//! [TOC]
+//!
+//! # Qt                                                                  {#sQt}
+//!
+//! [Qt](https://qt.io)
+//!
+//! # References                                                  {#sReferences}
+//!
+//! [*Qt Documentation*](https://doc.qt.io)
+//! + [All Modules](https://doc.qt.io/qt-5/qtmodules.html)
+//! + [Qt Reference Pages](http://doc.qt.io/qt-5/reference-overview.html)
+//!     + [QDoc Manual](https://doc.qt.io/qt-5/qdoc-index.html)
+//!
+//! [*Qi Wiki*](https://wiki.qt.io)
+//!
+//! # Programming Styles                                   {#sProgrammingStyles}
+//!
+//! ["Coding Conventions"](https://wiki.qt.io/Coding_Conventions). *Qt Wiki*.
+//! ["Qt Coding Style"](https://wiki.qt.io/Qt_Coding_Style). *Qt Wiki*.
+//! ["QML Coding Conventions"](http://doc.qt.io/qt-5/qml-codingconventions.html). *Qt Documentation*.
+//!
+//! ___
+//! <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+//!
+//! \version 2018-07-03
+//! \sinve 2016-02-14
+//! \authors zhengrr
+//! \copyright CC BY 4.0
+//!
+//===----------------------------------------------------------------------===//

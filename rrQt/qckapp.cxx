@@ -1,7 +1,7 @@
 //===-- Quick Application ---------------------------------------*- C++ -*-===//
 //!
 //! \file
-//! \brief Qt¿ìËÙÓ¦ÓÃ³ÌĞòÈë¿Ú
+//! \brief Qtå¿«é€Ÿåº”ç”¨ç¨‹åºå…¥å£
 //!
 //! \author zhengrr
 //! \version 2018-03-19
@@ -16,11 +16,11 @@
 #include <QtQml/QQmlFileSelector>
 #include <QtQuick/QQuickView>
 
-//! \brief Qt¿ìËÙÓ¦ÓÃ³ÌĞòÈë¿Ú
+//! \brief Qtå¿«é€Ÿåº”ç”¨ç¨‹åºå…¥å£
 //!
-//! \param argc ²ÎÊı¼ÆÊı£¨argument count£©
-//! \param argv ²ÎÊıÊ¸Á¿£¨argument vector£©
-//! \return ·µ»ØÍË³ö×´Ì¬£¨exit status£©
+//! \param argc å‚æ•°è®¡æ•°ï¼ˆargument countï¼‰
+//! \param argv å‚æ•°çŸ¢é‡ï¼ˆargument vectorï¼‰
+//! \return è¿”å›é€€å‡ºçŠ¶æ€ï¼ˆexit statusï¼‰
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
