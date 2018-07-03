@@ -5,7 +5,7 @@
 # | |   | | | | | (_| /\__/ /\ \/' / |___| | ||  __/
 # \_|   |_|_| |_|\__,_\____/  \_/\_\_____/_|\__\___|
 # zhengrr                  FindSQLite by FIGlet doom
-# 2018-05-23 – 23
+# 2018-05-23 – 2018-07-03
 # The MIT License
 
 #.rst:
@@ -48,47 +48,21 @@
 #               sqlite3.exp
 #               sqlite3.lib
 #
+if(SQLite_FOUND)
+  return()
+endif()
+
+if(NOT COMMAND get_toolset_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
+endif()
+get_toolset_tag(sTool)
+get_architecture_address_model_tag(sArAd)
+
 set(zHints "${SQLite_ROOT_DIR}" "$ENV{SQLITEROOT}")
 
-if(MSVC)
-  if(MSVC_VERSION GREATER_EQUAL 1910)
-    set(sCompiler "vc141")
-  elseif(MSVC14)
-    set(sCompiler "vc140")
-  elseif(MSVC12)
-    set(sCompiler "vc120")
-  elseif(MSVC11)
-    set(sCompiler "vc110")
-  elseif(MSVC10)
-    set(sCompiler "vc100")
-  elseif(MSVC90)
-    set(sCompiler "vc90")
-  elseif(MSVC80)
-    set(sCompiler "vc80")
-  elseif(MSVC71)
-    set(sCompiler "vc71")
-  elseif(MSVC70)
-    set(sCompiler "vc7")
-  elseif(MSVC60)
-    set(sCompiler "vc6")
-  else()
-    message(FATAL_ERROR "Unsupported MSVC_VERSION: ${MSVC_VERSION}.")
-  endif()
-else()
-  set(sCompiler)
-endif()
-
-if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-  set(sArchitecture "x32")
-elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-  set(sArchitecture "x64")
-else()
-  message(FATAL_ERROR "Unsupported CMAKE_SIZEOF_VOID_P: ${CMAKE_SIZEOF_VOID_P}.")
-endif()
-
-set(zPathSuffixes "lib/${sCompiler}${sArchitecture}"
-                  "lib/${sArchitecture}"
-                  "lib")
+set(zPathSufs "lib/${sTool}${sArAd}"
+              "lib/${sArAd}"
+              "lib")
 
 find_path(SQLite_INCLUDE_DIRS
           NAMES "sqlite3/sqlite3.h"
@@ -100,7 +74,7 @@ mark_as_advanced(SQLite_INCLUDE_DIRS)
 find_library(SQLite_LIBRARY
           NAMES "sqlite3"
           HINTS ${zHints}
-  PATH_SUFFIXES ${zPathSuffixes}
+  PATH_SUFFIXES ${zPathSufs}
                 NO_DEFAULT_PATH)
 mark_as_advanced(SQLite_LIBRARY)
 
@@ -111,9 +85,14 @@ find_package_handle_standard_args(SQLite
                       DEFAULT_MSG SQLite_INCLUDE_DIRS
                                   SQLite_LIBRARY)
 
-if(SQLite_FOUND AND NOT TARGET SQLite)
+if(SQLite_FOUND)
+  if(NOT TARGET SQLite)
   add_library(SQLite UNKNOWN IMPORTED)
   set_target_properties(SQLite    PROPERTIES
                 IMPORTED_LOCATION "${SQLite_LIBRARY}"
     INTERFACE_INCLUDE_DIRECTORIES "${SQLite_INCLUDE_DIRS}")
+  endif()
+else()
+  set(SQLite_ROOT_DIR "${SQLite_ROOT_DIR}" CACHE PATH "The root directory of the SQLite installation.")
+  mark_as_advanced(CLEAR SQLite_ROOT_DIR)
 endif()

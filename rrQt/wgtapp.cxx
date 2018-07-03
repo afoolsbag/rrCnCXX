@@ -22,8 +22,14 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+#if 1
     QLabel label(QStringLiteral("Hello, world."));
     label.show();
+#else
+    QLabel *label {new QLabel(QStringLiteral("Hello, world"))};
+    label->setAttribute(Qt::WA_DeleteOnClose);
+    label->show();
+#endif
 
     return app.exec();
 }

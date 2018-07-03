@@ -15,9 +15,7 @@ compiler_warning_level(HIGHEST UTF-8)
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
 find_package(SQLite)
-if(NOT SQLite_FOUND)
-  message(WARNING "SQLite not found.")
-endif()
+
 aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "tmain" "tsuite" "tcase")
 facile_add_check_executable(OPTION_INITIAL_ON
                             ${zSrc}
