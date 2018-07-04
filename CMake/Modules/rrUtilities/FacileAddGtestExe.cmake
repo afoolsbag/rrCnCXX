@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-17 – 2018-06-04
+# 2017-12-17 – 2018-07-04
 # The MIT License
 
 if(NOT COMMAND facile_add_executable)
@@ -32,13 +32,9 @@ function(facile_add_gtest_executable)
   # LINK_LIBRARIES
   set(zLinkLibs ${_LINK_LIBRARIES})
 
+  find_package(GTest)
   if(NOT GTEST_FOUND)
-    find_package(GTest)
-    if(NOT GTEST_FOUND)
-      set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the GTest installation.")
-    endif()
-  endif()
-  if(NOT GTEST_FOUND)
+    set(GTEST_ROOT "${GTEST_ROOT}" CACHE PATH "The root directory of the GTest installation.")
     message(WARNING "GTest is needed to build executable with GTest.")
   endif()
 
@@ -51,10 +47,10 @@ function(facile_add_gtest_executable)
   # facile_add_executable
   enable_testing()
   facile_add_executable(
-    OPTION_DESCRIPTION     "${sOptDesc}"
-    TARGET_NAME_VARIABLE    sTgtName
-    ${_UNPARSED_ARGUMENTS}
-    LINK_LIBRARIES          ${zLinkLibs})
+     OPTION_DESCRIPTION "${sOptDesc}"
+   TARGET_NAME_VARIABLE sTgtName
+                        ${_UNPARSED_ARGUMENTS}
+         LINK_LIBRARIES ${zLinkLibs})
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

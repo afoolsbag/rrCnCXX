@@ -5,7 +5,7 @@
 # | |   | | | | | (_| /\__/ /\ \/' / |___| | ||  __/
 # \_|   |_|_| |_|\__,_\____/  \_/\_\_____/_|\__\___|
 # zhengrr                  FindSQLite by FIGlet doom
-# 2018-05-23 – 2018-07-03
+# 2018-05-23 – 2018-07-04
 # The MIT License
 
 #.rst:
@@ -14,20 +14,23 @@
 #
 # 寻找SQLite包。
 #
-# 缓存：
+# 导入目标：
 # ::
 #
-#    SQLite_ROOT_DIR
-#    ENV SQLITEROOT
+#    SQLite
 #
-# 影响：
+# 结果变量：
 # ::
 #
 #    SQLite_FOUND
 #    SQLite_INCLUDE_DIRS
 #    SQLite_LIBRARIES
 #
-#    SQLite
+# 提示变量：
+# ::
+#
+#    SQLite_ROOT_DIR
+#    ENV SQLITEROOT
 #
 # 预期：
 # ::
