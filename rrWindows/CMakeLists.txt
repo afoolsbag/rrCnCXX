@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-07-03
+# 2016-10-12 – 2018-07-04
 # The MIT License
 
-project(rrWindows VERSION 2018.7.3 LANGUAGES C)
+project(rrWindows VERSION 2018.7.4 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
@@ -27,9 +27,9 @@ facile_add_check_executable(SUBNAME Test
                 INCLUDE_DIRECTORIES PRIVATE "."
                      LINK_LIBRARIES "${sRrwindowsLib}")
 
-facile_add_executable(SUBNAME ConsoleApplication
+facile_add_executable(SUBNAME "ConsoleApplication"
                               "conapp.c")
-facile_add_executable(SUBNAME DesktopApplication
+facile_add_executable(SUBNAME "DesktopApplication"
                         WIN32 "dtpapp.c")
 
 aux_add_subdirectories()

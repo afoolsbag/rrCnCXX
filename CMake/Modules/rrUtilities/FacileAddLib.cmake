@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-04
+# 2016-10-08 – 2018-07-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -12,23 +12,21 @@ endif()
 #    便捷加入库文件（目标）：
 #    ::
 #
-#       facile_add_library(
-#         [NAME <full-name> | SUBNAME <sub-name>]
-#         [OPTION_DESCRIPTION <option-description>]
-#         [OPTION_INITIAL_ON]
-#         [TARGET_NAME_VARIABLE <target-name-variable>]
-#         [NO_DEFAULT_GROUP]
-#         [STATIC | SHARED | MODULE]
-#         [C90 | C99 | C11]
-#         [CXX98 | CXX11 | CXX14 | CXX17]
-#         <source>...
-#         [PROPERTIES <property-key property-value>...]
-#         [COMPILE_DEFINITIONS <definition>...]
-#         [INCLUDE_DIRECTORIES <directory>...]
-#         [LINK_LIBRARIES <library>...]
-#         [COMPILE_FEATURES <feature>...]
-#         [COMPILE_OPTIONS <option>...]
-#       )
+#       facile_add_library([NAME <full-name> | SUBNAME <sub-name>]
+#            [OPTION_DESCRIPTION <option-description>] [OPTION_INITIAL_ON]
+#          [TARGET_NAME_VARIABLE <target-name-variable>]
+#                                [FLAT_GROUP]
+#                                [STATIC | SHARED | MODULE]
+#                                [C90 | C99 | C11]
+#                                [CXX98 | CXX11 | CXX14 | CXX17]
+#                                <source>...
+#                    [PROPERTIES <property-key property-value>...]
+#           [COMPILE_DEFINITIONS <definition>...]
+#           [INCLUDE_DIRECTORIES <directory>...]
+#                [LINK_LIBRARIES <library>...]
+#              [COMPILE_FEATURES <feature>...]
+#               [COMPILE_OPTIONS <option>...]
+#                   [POST_COPIES <copies>...])
 #
 #    约定：
 #
@@ -41,10 +39,10 @@ endif()
 #
 function(facile_add_library)
   set(zOptKws    OPTION_INITIAL_ON
+                 FLAT_GROUP
                  STATIC SHARED MODULE
                  C90 C99 C11
-                 CXX98 CXX11 CXX14 CXX17
-                 NO_DEFAULT_GROUP)
+                 CXX98 CXX11 CXX14 CXX17)
   set(zOneValKws NAME SUBNAME
                  OPTION_DESCRIPTION
                  TARGET_NAME_VARIABLE)
@@ -53,7 +51,8 @@ function(facile_add_library)
                  INCLUDE_DIRECTORIES
                  LINK_LIBRARIES
                  COMPILE_FEATURES
-                 COMPILE_OPTIONS)
+                 COMPILE_OPTIONS
+                 POST_COPIES)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
 
   # name
@@ -67,6 +66,7 @@ function(facile_add_library)
   string(TOUPPER "${sName}" sNameUpr)
   string(TOLOWER "${sName}" sNameLwr)
 
+  # type
   if(_STATIC)
     set(sType "static")
   elseif(_SHARED)
@@ -80,6 +80,16 @@ function(facile_add_library)
   endif()
   string(TOUPPER "${sType}" sTypeUpr)
   string(TOLOWER "${sType}" sTypeLwr)
+
+  # target name
+  set(sTgtName "${sNameLwr}_${sTypeLwr}_library")
+  if(DEFINED _TARGET_NAME_VARIABLE)
+    check_name_with_cmake_recommend_variable_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
+    if(NOT sCkPassed)
+      message(WARNING "The variable name not meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
+    endif()
+    set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
+  endif()
 
   # option
   set(vOptName "${sNameUpr}_COMPILE_${sTypeUpr}_LIBRARY")
@@ -102,7 +112,7 @@ function(facile_add_library)
   endif()
 
   # source_group
-  if(NOT _NO_DEFAULT_GROUP)
+  if(_FLAT_GROUP)
     source_group("\\" FILES ${_UNPARSED_ARGUMENTS})
   endif()
 
@@ -131,19 +141,15 @@ function(facile_add_library)
   endif()
 
   # add_library
-  set(sTgtName "${sNameLwr}_${sTypeLwr}_library")
-  if(DEFINED _TARGET_NAME_VARIABLE)
-    check_name_with_cmake_recommend_variable_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
-    if(NOT sCkPassed)
-      message(WARNING "The variable name not meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
-    endif()
-    set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
-  endif()
-
   add_library("${sTgtName}" ${sTypeUpr} ${_UNPARSED_ARGUMENTS})
-  set_target_properties("${sTgtName}" PROPERTIES
-    ${zPropCStd} ${zPropCxxStd}
-    OUTPUT_NAME "${sName}" DEBUG_POSTFIX "d" CLEAN_DIRECT_OUTPUT ON)
+  set_target_properties("${sTgtName}"
+             PROPERTIES ${zPropCStd}
+                        ${zPropCxxStd}
+                        OUTPUT_NAME "${sName}"
+                        DEBUG_POSTFIX "d"
+                        CLEAN_DIRECT_OUTPUT ON)
+
+  # set_target_properties
   if(DEFINED _PROPERTIES)
     list(LENGTH _PROPERTIES sLen)
     if(sLen EQUAL 0)
@@ -151,6 +157,8 @@ function(facile_add_library)
     endif()
     set_target_properties("${sTgtName}" PROPERTIES ${_PROPERTIES})
   endif()
+
+  # target_compile_definitions
   if(DEFINED _COMPILE_DEFINITIONS)
     list(LENGTH _COMPILE_DEFINITIONS sLen)
     if(sLen EQUAL 0)
@@ -158,6 +166,8 @@ function(facile_add_library)
     endif()
     target_compile_definitions("${sTgtName}" ${_COMPILE_DEFINITIONS})
   endif()
+
+  # target_include_directories
   if(DEFINED _INCLUDE_DIRECTORIES)
     list(LENGTH _INCLUDE_DIRECTORIES sLen)
     if(sLen EQUAL 0)
@@ -165,6 +175,8 @@ function(facile_add_library)
     endif()
     target_include_directories("${sTgtName}" ${_INCLUDE_DIRECTORIES})
   endif()
+
+  # target_link_libraries
   if(DEFINED _LINK_LIBRARIES)
     list(LENGTH _LINK_LIBRARIES sLen)
     if(sLen EQUAL 0)
@@ -172,6 +184,8 @@ function(facile_add_library)
     endif()
     target_link_libraries("${sTgtName}" ${_LINK_LIBRARIES})
   endif()
+
+  # target_compile_features
   if(DEFINED _COMPILE_FEATURES)
     list(LENGTH _COMPILE_FEATURES sLen)
     if(sLen EQUAL 0)
@@ -179,12 +193,37 @@ function(facile_add_library)
     endif()
     target_compile_features("${sTgtName}" ${_COMPILE_FEATURES})
   endif()
+
+  # target_compile_options
   if(DEFINED _COMPILE_OPTIONS)
     list(LENGTH _COMPILE_OPTIONS sLen)
     if(sLen EQUAL 0)
       message(WARNING "Keyword COMPILE_OPTIONS is used, but without value.")
     endif()
     target_compile_options("${sTgtName}" ${_COMPILE_OPTIONS})
+  endif()
+
+  # POST_COPIES
+  if(DEFINED _POST_COPIES)
+    list(LENGTH _POST_COPIES sLen)
+    if(sLen EQUAL 0)
+      message(WARNING "Keyword POST_COPIES is used, but without value.")
+    endif()
+    foreach(copy ${_POST_COPIES})
+      if(TARGET "${copy}")
+        add_custom_command(TARGET ${sTgtName} POST_BUILD
+                          COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                                  $<TARGET_FILE:${copy}>
+                                  $<TARGET_FILE_DIR:${sTgtName}>)
+      elseif(EXISTS "${copy}")
+        add_custom_command(TARGET ${sTgtName} POST_BUILD
+                          COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                                  ${copy}
+                                  $<TARGET_FILE_DIR:${sTgtName}>)
+      else()
+        message(WARNING "A post copy item is invalid: ${copy}.")
+      endif()
+    endforeach()
   endif()
 
   # install

@@ -4,10 +4,10 @@
 # | |  | |  | |_| | |_
 # |_|  |_|   \__\_\\__| rrQt by FIGlet
 # zhengrr
-# 2016-06-28 – 2018-07-03
+# 2016-06-28 – 2018-07-04
 # The MIT License
 
-project(rrQt VERSION 2018.7.3 LANGUAGES CXX)
+project(rrQt VERSION 2018.7.4 LANGUAGES CXX)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
@@ -19,15 +19,25 @@ find_package(Qt5
              Quick
              Test)
 
-facile_add_executable(SUBNAME ConApp
+facile_add_executable(SUBNAME "ConsoleApplication"
+         TARGET_NAME_VARIABLE sTgt
                               "conapp.cxx"
                    PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON
-               LINK_LIBRARIES Qt5::Core)
-facile_add_executable(SUBNAME WgtApp
+               LINK_LIBRARIES Qt5::Core
+                  POST_COPIES Qt5::Core)
+
+facile_add_executable(SUBNAME "WidgetApplication"
+         TARGET_NAME_VARIABLE sTgt
                         WIN32 "wgtapp.cxx"
                    PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON
-               LINK_LIBRARIES Qt5::Core Qt5::Gui Qt5::Widgets)
-facile_add_executable(SUBNAME QckApp
+               LINK_LIBRARIES Qt5::Core Qt5::Gui Qt5::Widgets
+                  POST_COPIES Qt5::Core Qt5::Gui Qt5::Widgets)
+
+facile_add_executable(SUBNAME "QuickApplication"
+         TARGET_NAME_VARIABLE sTgt
                         WIN32 "qckapp.cxx"
                    PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON
-               LINK_LIBRARIES Qt5::Core Qt5::Gui Qt5::Qml Qt5::Quick)
+               LINK_LIBRARIES Qt5::Core Qt5::Gui Qt5::Qml Qt5::Quick
+                  POST_COPIES Qt5::Core Qt5::Gui Qt5::Qml Qt5::Quick)
+
+aux_add_subdirectories()

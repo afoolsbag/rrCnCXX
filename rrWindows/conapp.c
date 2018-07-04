@@ -1,9 +1,9 @@
 /*===-- Windows Console Application ----------------------------*- C -*-===*//**
  *
- * \defgroup gWinConApp Windows®控制台应用程序
+ * \defgroup gWinConApp Windows控制台应用程序
  * \ingroup gDvlp
  *
- * \version 2018-04-26
+ * \version 2018-07-04
  * \since 2016-10-12
  * \authors zhengrr
  * \copyright The MIT License
@@ -24,7 +24,7 @@
  * \param argc 参数计数（argument count）
  * \param argv 参数矢量（argument vector）
  * \param envp 环境变量（environment pointer）
- * \return 退出代码（exit code）
+ * \returns 退出代码（exit code）
  *
  * \sa \ref sHungarianNotation
  * \sa https://docs.microsoft.com/cpp/cpp/main-program-startup

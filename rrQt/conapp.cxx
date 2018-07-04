@@ -4,7 +4,7 @@
 //! \brief Qt小部件应用程序入口
 //!
 //! \author zhengrr
-//! \version 2018-03-19
+//! \version 2018-07-04
 //! \sinve 2016-02-14
 //! \copyright The MIT License
 //!
@@ -18,7 +18,7 @@
 //!
 //! \param argc 参数计数（argument count）
 //! \param argv 参数矢量（argument vector）
-//! \return 返回退出状态（exit status）
+//! \returns 退出状态（exit status）
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
