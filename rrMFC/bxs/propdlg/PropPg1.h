@@ -3,7 +3,7 @@
 /// \file
 /// \brief 资源页1（类）。
 ///
-/// \verison 2018-07-03
+/// \verison 2018-07-04
 /// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -47,11 +47,8 @@ protected:
 
 #// Implementation
 protected:
-    CIPAddressCtrl ServiceIpaddrEdit;
-    DWORD          ServiceIpaddr = 0uL;
-
-    CEdit          ServiceIpportEdit;
-    UINT           ServiceIpport = 0u;
+    DWORD ServiceIpaddr = 0uL;
+    UINT  ServiceIpport = 0u;
 
 #// Message Handlers
 protected:

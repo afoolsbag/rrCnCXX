@@ -3,7 +3,7 @@
 /// \file
 /// \brief 盒子应用（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-07-04
 /// \since 2018-05-29
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -16,10 +16,23 @@ struct BoxesOption {
     DWORD  ServiceIpaddr = 0uL;
     UINT16 ServiceIpport = 0u;
 
+    BOOL StretchMatching = FALSE;
+    BOOL ToneshiftMatching = FALSE;
+    BOOL SharpenMatching = FALSE;
+    BOOL ContrastMatching = FALSE;
+    INT  Operation = -1;
+    INT  Confidence = 0;
+
+    DWORD  PostgreIpaddr = 0uL;
+    UINT16 PostgreIpport = 0u;
     DWORD  RedisIpaddr = 0uL;
     UINT16 RedisIpport = 0u;
     DWORD  RabbitIpaddr = 0uL;
     UINT16 RabbitIpport = 0u;
+    DWORD  HumanIpaddr = 0uL;
+    UINT16 HumanIpport = 0u;
+    DWORD  VehicleIpaddr = 0uL;
+    UINT16 VehicleIpport = 0u;
 };
 
 ///

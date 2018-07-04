@@ -120,6 +120,7 @@ OnBnClickedProperty()
     sheet.AddPage(&page1);
 
     PropertyPage2 page2;
+    page2.ReadFrom(pApp->Option);
     sheet.AddPage(&page2);
 
     PropertyPage3 page3;
@@ -130,6 +131,7 @@ OnBnClickedProperty()
     switch (result) {
     case IDOK:
         page1.WriteTo(&pApp->Option);
+        page2.WriteTo(&pApp->Option);
         page3.WriteTo(&pApp->Option);
         pApp->WriteOptionToProfile();
         break;

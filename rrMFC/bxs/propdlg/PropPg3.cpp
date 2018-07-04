@@ -29,20 +29,42 @@ VOID PropertyPage3::
 ReadFrom(CONST BoxesOption& opt)
 {
     DcMeth();
-    RedisIpaddr = opt.RedisIpaddr;
-    RedisIpport = opt.RedisIpport;
-    RabbitIpaddr = opt.RabbitIpaddr;
-    RabbitIpport = opt.RabbitIpport;
+#ifdef M
+# error Macro name conflicts.
+#endif/*M*/
+#define M(prop) (prop = opt.prop)
+    M(PostgreIpaddr);
+    M(PostgreIpport);
+    M(RedisIpaddr);
+    M(RedisIpport);
+    M(RabbitIpaddr);
+    M(RabbitIpport);
+    M(HumanIpaddr);
+    M(HumanIpport);
+    M(VehicleIpaddr);
+    M(VehicleIpport);
+#undef M
 }
 
 VOID PropertyPage3::
 WriteTo(BoxesOption *CONST pOpt) CONST
 {
     DcMeth();
-    pOpt->RedisIpaddr = RedisIpaddr;
-    pOpt->RedisIpport = RedisIpport;
-    pOpt->RabbitIpaddr = RabbitIpaddr;
-    pOpt->RabbitIpport = RabbitIpport;
+#ifdef M
+# error Macro name conflicts.
+#endif/*M*/
+#define M(prop) (pOpt->prop = prop)
+    M(PostgreIpaddr);
+    M(PostgreIpport);
+    M(RedisIpaddr);
+    M(RedisIpport);
+    M(RabbitIpaddr);
+    M(RabbitIpport);
+    M(HumanIpaddr);
+    M(HumanIpport);
+    M(VehicleIpaddr);
+    M(VehicleIpport);
+#undef M
 }
 
 #// Overridables
@@ -68,19 +90,25 @@ DoDataExchange(CDataExchange *pDX)
     CPropertyPage::DoDataExchange(pDX);
     DcMeth();
 
-    DDX_Control(pDX, IDC_REDIS_IPADDR, RedisIpaddrEdit);
-    DDX_IPAddress(pDX, IDC_REDIS_IPADDR, RedisIpaddr);
+    DDX_IPAddress(pDX, IDC_POSTGRE_IPADDR, PostgreIpaddr);
+    DDX_Text(pDX, IDC_POSTGRE_IPPORT, PostgreIpport);
+    DDV_MinMaxUInt(pDX, PostgreIpport, 0, 65535);
 
-    DDX_Control(pDX, IDC_REDIS_IPPORT, RedisIpportEdit);
+    DDX_IPAddress(pDX, IDC_REDIS_IPADDR, RedisIpaddr);
     DDX_Text(pDX, IDC_REDIS_IPPORT, RedisIpport);
     DDV_MinMaxUInt(pDX, RedisIpport, 0, 65535);
 
-    DDX_Control(pDX, IDC_RABBIT_IPADDR, RabbitIpaddrEdit);
     DDX_IPAddress(pDX, IDC_RABBIT_IPADDR, RabbitIpaddr);
-
-    DDX_Control(pDX, IDC_RABBIT_IPPORT, RabbitIpportEdit);
     DDX_Text(pDX, IDC_RABBIT_IPPORT, RabbitIpport);
     DDV_MinMaxUInt(pDX, RabbitIpport, 0, 65535);
+
+    DDX_IPAddress(pDX, IDC_HUMAN_IPADDR, HumanIpaddr);
+    DDX_Text(pDX, IDC_HUMAN_IPPORT, HumanIpport);
+    DDV_MinMaxUInt(pDX, HumanIpport, 0, 65535);
+
+    DDX_IPAddress(pDX, IDC_VEHICLE_IPADDR, VehicleIpaddr);
+    DDX_Text(pDX, IDC_VEHICLE_IPPORT, VehicleIpport);
+    DDV_MinMaxUInt(pDX, VehicleIpport, 0, 65535);
 }
 
 VOID PropertyPage3::

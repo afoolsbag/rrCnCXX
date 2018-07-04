@@ -3,7 +3,7 @@
 /// \file
 /// \brief 资源页2（类）。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-07-04
 /// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -12,9 +12,12 @@
 
 #pragma once
 
+#include "BxsApp.h"
 #include "propdlg.resource.h"
 
+///
 /// \brief 资源页2（类）。
+///
 class PropertyPage2: public CPropertyPage {
 
 #// Constructors
@@ -28,6 +31,8 @@ public:
 
 #// Operations
 public:
+    VOID ReadFrom(CONST BoxesOption &opt);
+    VOID WriteTo(BoxesOption *CONST pOpt) CONST;
 
 #// Overridables
 public:
@@ -42,9 +47,21 @@ protected:
 
 #// Implementation
 protected:
+    BOOL StretchMatching = FALSE;
+    BOOL ToneshiftMatching = FALSE;
+    BOOL SharpenMatching = FALSE;
+    BOOL ContrastMatching = FALSE;
+
+    INT  Operation = -1;
+
+    CSliderCtrl ConfidenceSlider;
+    CEdit       ConfidenceEdit;
+    INT         Confidence = 0;
 
 #// Message Handlers
 protected:
+    afx_msg VOID OnNMCustomdrawConfidenceSlider(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg VOID OnEnChangeConfidenceEdit();
 
-    //DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };

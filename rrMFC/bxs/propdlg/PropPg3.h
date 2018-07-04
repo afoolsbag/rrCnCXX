@@ -3,7 +3,7 @@
 /// \file
 /// \brief 资源页3（类）。
 ///
-/// \verison 2018-07-03
+/// \verison 2018-07-04
 /// \since 2018-05-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -47,17 +47,20 @@ protected:
 
 #// Implementation
 protected:
-    CIPAddressCtrl RedisIpaddrEdit;
-    DWORD          RedisIpaddr = 0uL;
+    DWORD PostgreIpaddr = 0uL;
+    UINT  PostgreIpport = 0u;
 
-    CEdit          RedisIpportEdit;
-    UINT           RedisIpport = 0u;
+    DWORD RedisIpaddr = 0uL;
+    UINT  RedisIpport = 0u;
 
-    CIPAddressCtrl RabbitIpaddrEdit;
-    DWORD          RabbitIpaddr = 0uL;
+    DWORD RabbitIpaddr = 0uL;
+    UINT  RabbitIpport = 0u;
 
-    CEdit          RabbitIpportEdit;
-    UINT           RabbitIpport = 0u;
+    DWORD HumanIpaddr = 0uL;
+    UINT  HumanIpport = 0u;
+
+    DWORD VehicleIpaddr = 0uL;
+    UINT  VehicleIpport = 0u;
 
 #// Message Handlers
 protected:

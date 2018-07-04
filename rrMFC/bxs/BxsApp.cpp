@@ -32,62 +32,77 @@ BoxesApplication::
 VOID BoxesApplication::
 ReadOptionFromProfile()
 {
-    CString tmp;
-    LPCTSTR terminator;
-    IN_ADDR addr;
+    auto CONST StrToIpaddr = [](CONST CString &str) -> DWORD {
+        LPCTSTR terminator;
+        IN_ADDR addr;
+        RtlIpv4StringToAddress(str, FALSE, &terminator, &addr);
+        return htonl(addr.s_addr);
+    };
 
-    tmp = GetProfileString(TEXT("service"), TEXT("addr"), TEXT("127.0.0.1"));
-    RtlIpv4StringToAddress(tmp, FALSE, &terminator, &addr);
-    Option.ServiceIpaddr = htonl(addr.s_addr);
+    auto CONST StrToIpport = [](CONST CString &str) -> UINT16 {
+        return static_cast<UINT16>(_tcstoul(str, NULL, 10));
+    };
 
-    tmp = GetProfileString(TEXT("service"), TEXT("port"), TEXT("21520"));
-    Option.ServiceIpport = static_cast<UINT16>(_tcstoul(tmp, NULL, 10));
+    Option.ServiceIpaddr = StrToIpaddr(GetProfileString(TEXT("service"), TEXT("addr"), TEXT("127.0.0.1")));
+    Option.ServiceIpport = StrToIpport(GetProfileString(TEXT("service"), TEXT("port"), TEXT("21520")));
 
-    tmp = GetProfileString(TEXT("redis"), TEXT("addr"), TEXT("127.0.0.1"));
+    Option.StretchMatching = GetProfileInt(TEXT("configuration"), TEXT("stretch_matching"), FALSE);
+    Option.ToneshiftMatching = GetProfileInt(TEXT("configuration"), TEXT("toneshift_matching"), FALSE);
+    Option.SharpenMatching = GetProfileInt(TEXT("configuration"), TEXT("sharpen_matching"), FALSE);
+    Option.ContrastMatching = GetProfileInt(TEXT("configuration"), TEXT("contrast_matching"), FALSE);
+    Option.Operation = GetProfileInt(TEXT("configuration"), TEXT("operation"), -1);
+    Option.Confidence = GetProfileInt(TEXT("configuration"), TEXT("confidence"), 0);
 
-    RtlIpv4StringToAddress(tmp, FALSE, &terminator, &addr);
-    Option.RedisIpaddr = htonl(addr.s_addr);
-
-    tmp = GetProfileString(TEXT("redis"), TEXT("port"), TEXT("6379"));
-    Option.RedisIpport = static_cast<UINT16>(_tcstoul(tmp, NULL, 10));
-
-    tmp = GetProfileString(TEXT("rabbit"), TEXT("addr"), TEXT("127.0.0.1"));
-    RtlIpv4StringToAddress(tmp, FALSE, &terminator, &addr);
-    Option.RabbitIpaddr = htonl(addr.s_addr);
-
-    tmp = GetProfileString(TEXT("rabbit"), TEXT("port"), TEXT("5672"));
-    Option.RabbitIpport = static_cast<UINT16>(_tcstoul(tmp, NULL, 10));
+    Option.PostgreIpaddr = StrToIpaddr(GetProfileString(TEXT("postgre"), TEXT("addr"), TEXT("127.0.0.1")));
+    Option.PostgreIpport = StrToIpport(GetProfileString(TEXT("postgre"), TEXT("port"), TEXT("5432")));
+    Option.RedisIpaddr = StrToIpaddr(GetProfileString(TEXT("redis"), TEXT("addr"), TEXT("127.0.0.1")));
+    Option.RedisIpport = StrToIpport(GetProfileString(TEXT("redis"), TEXT("port"), TEXT("6379")));
+    Option.RabbitIpaddr = StrToIpaddr(GetProfileString(TEXT("rabbit"), TEXT("addr"), TEXT("127.0.0.1")));
+    Option.RabbitIpport = StrToIpport(GetProfileString(TEXT("rabbit"), TEXT("port"), TEXT("5672")));
+    Option.HumanIpaddr = StrToIpaddr(GetProfileString(TEXT("human"), TEXT("addr"), TEXT("127.0.0.1")));
+    Option.HumanIpport = StrToIpport(GetProfileString(TEXT("human"), TEXT("port"), TEXT("10021")));
+    Option.VehicleIpaddr = StrToIpaddr(GetProfileString(TEXT("vehicle"), TEXT("addr"), TEXT("127.0.0.1")));
+    Option.VehicleIpport = StrToIpport(GetProfileString(TEXT("vehicle"), TEXT("port"), TEXT("12569")));
 }
 
 VOID BoxesApplication::
 WriteOptionToProfile()
 {
-    CString tmp;
-    IN_ADDR addr;
+    auto CONST IpaddrToStr = [](CONST DWORD ipaddr) -> CString {
+        IN_ADDR addr;
+        addr.s_addr = ntohl(ipaddr);
+        CString tmp;
+        RtlIpv4AddressToString(&addr, tmp.GetBuffer(16));
+        tmp.ReleaseBuffer();
+        return tmp;
+    };
 
-    addr.s_addr = ntohl(Option.ServiceIpaddr);
-    RtlIpv4AddressToString(&addr, tmp.GetBuffer(16));
-    tmp.ReleaseBuffer();
-    WriteProfileString(TEXT("service"), TEXT("addr"), tmp);
+    auto CONST IpportToStr = [](CONST UINT16 ipport) -> CString {
+        CString tmp;
+        tmp.Format(TEXT("%hu"), ipport);
+        return tmp;
+    };
 
-    tmp.Format(TEXT("%hu"), Option.ServiceIpport);
-    WriteProfileString(TEXT("service"), TEXT("port"), tmp);
+    WriteProfileString(TEXT("service"), TEXT("addr"), IpaddrToStr(Option.ServiceIpaddr));
+    WriteProfileString(TEXT("service"), TEXT("port"), IpportToStr(Option.ServiceIpport));
 
-    addr.s_addr = ntohl(Option.RedisIpaddr);
-    RtlIpv4AddressToString(&addr, tmp.GetBuffer(16));
-    tmp.ReleaseBuffer();
-    WriteProfileString(TEXT("redis"), TEXT("addr"), tmp);
+    WriteProfileInt(TEXT("configuration"), TEXT("stretch_matching"), Option.StretchMatching);
+    WriteProfileInt(TEXT("configuration"), TEXT("toneshift_matching"), Option.ToneshiftMatching);
+    WriteProfileInt(TEXT("configuration"), TEXT("sharpen_matching"), Option.SharpenMatching);
+    WriteProfileInt(TEXT("configuration"), TEXT("contrast_matching"), Option.ContrastMatching);
+    WriteProfileInt(TEXT("configuration"), TEXT("operation"), Option.Operation);
+    WriteProfileInt(TEXT("configuration"), TEXT("confidence"), Option.Confidence);
 
-    tmp.Format(TEXT("%hu"), Option.RedisIpport);
-    WriteProfileString(TEXT("redis"), TEXT("port"), tmp);
-
-    addr.s_addr = ntohl(Option.RabbitIpaddr);
-    RtlIpv4AddressToString(&addr, tmp.GetBuffer(16));
-    tmp.ReleaseBuffer();
-    WriteProfileString(TEXT("rabbit"), TEXT("addr"), tmp);
-
-    tmp.Format(TEXT("%hu"), Option.RabbitIpport);
-    WriteProfileString(TEXT("rabbit"), TEXT("port"), tmp);
+    WriteProfileString(TEXT("postgre"), TEXT("addr"), IpaddrToStr(Option.ServiceIpaddr));
+    WriteProfileString(TEXT("postgre"), TEXT("port"), IpportToStr(Option.ServiceIpport));
+    WriteProfileString(TEXT("redis"), TEXT("addr"), IpaddrToStr(Option.RedisIpaddr));
+    WriteProfileString(TEXT("redis"), TEXT("port"), IpportToStr(Option.RedisIpport));
+    WriteProfileString(TEXT("rabbit"), TEXT("addr"), IpaddrToStr(Option.RabbitIpaddr));
+    WriteProfileString(TEXT("rabbit"), TEXT("port"), IpportToStr(Option.RabbitIpport));
+    WriteProfileString(TEXT("human"), TEXT("addr"), IpaddrToStr(Option.HumanIpaddr));
+    WriteProfileString(TEXT("human"), TEXT("port"), IpportToStr(Option.HumanIpport));
+    WriteProfileString(TEXT("vehicle"), TEXT("addr"), IpaddrToStr(Option.VehicleIpaddr));
+    WriteProfileString(TEXT("vehicle"), TEXT("port"), IpportToStr(Option.VehicleIpport));
 }
 
 

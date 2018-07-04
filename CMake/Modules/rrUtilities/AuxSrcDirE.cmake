@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-14
+# 2016-10-08 – 2018-07-04
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -137,7 +137,7 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   endif()
 
   if(_MFC)
-    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/mfc.pch")
+    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/mfc$<$<CONFIG:Debug>:d>.pch")
     foreach(sSrcFilePath ${zRsts})
       get_filename_component(sFileExt ${sSrcFilePath} NAME)
       string(TOLOWER ${sFileExt} sFileExtLwr)
