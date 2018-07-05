@@ -120,9 +120,8 @@ mark_as_advanced(Check_LIBRARIES_DEBUG)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Check
-                      DEFAULT_MSG Check_ROOT_DIR
+                      DEFAULT_MSG Check_check_LIBRARY_RELEASE
                                   Check_INCLUDE_DIR
-                                  Check_check_LIBRARY_RELEASE
                                   Check_check_LIBRARY_DEBUG
                                   Check_compat_LIBRARY_RELEASE
                                   Check_compat_LIBRARY_DEBUG)

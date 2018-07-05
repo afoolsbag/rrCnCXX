@@ -102,8 +102,8 @@ mark_as_advanced(Avro_LIBRARIES)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Avro
-                      DEFAULT_MSG Avro_INCLUDE_DIR
-                                  Avro_avrocpp_LIBRARY
+                      DEFAULT_MSG Avro_avrocpp_LIBRARY
+                                  Avro_INCLUDE_DIR
                                   Avro_avrocpp_LIBRARY_DLL)
 
 if(Avro_FOUND)

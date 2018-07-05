@@ -99,8 +99,8 @@ mark_as_advanced(SQLite_LIBRARIES)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(SQLite
-                      DEFAULT_MSG SQLite_INCLUDE_DIR
-                                  SQLite_LIBRARY
+                      DEFAULT_MSG SQLite_LIBRARY
+                                  SQLite_INCLUDE_DIR
                                   SQLite_LIBRARY_DLL)
 
 if(SQLite_FOUND)

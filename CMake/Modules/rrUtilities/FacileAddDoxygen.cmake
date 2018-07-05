@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-04
+# 2016-10-08 – 2018-07-05
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -55,9 +55,7 @@ function(facile_add_doxygen)
   # option
   set(vOptName "${sNameUpr}_GENERATE_DOCUMENTATION")
 
-  if(NOT DOXYGEN_FOUND)
-    find_package(Doxygen OPTIONAL_COMPONENTS dot)
-  endif()
+  find_package(Doxygen OPTIONAL_COMPONENTS dot)
   if(NOT DOXYGEN_FOUND)
     message(WARNING "Doxygen is needed to generate doxygen documentation.")
   endif()
@@ -125,11 +123,11 @@ function(facile_add_doxygen)
   # doxygen
   set(sTgtName "${sNameLwr}_documentation")
 
-  doxygen_add_docs("${sTgtName}"
-      "${PROJECT_SOURCE_DIR}"
-      "${PROJECT_BINARY_DIR}"
+  doxygen_add_docs(   "${sTgtName}"
+                      "${PROJECT_SOURCE_DIR}"
+                      "${PROJECT_BINARY_DIR}"
     WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-    COMMENT           "Generating documentation with Doxygen.")
+              COMMENT "Generating documentation with Doxygen.")
 
   # install
   install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen" DESTINATION "docs/${sName}")
