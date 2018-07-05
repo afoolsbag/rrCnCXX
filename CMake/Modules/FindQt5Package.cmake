@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-07-03
+# 2016-10-21 – 2018-07-05
 # The MIT License
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -16,17 +16,17 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 # 寻找Qt5包。
 #
-# 缓存：
-# ::
-#
-#    Qt5_ROOT_DIR
-#    ENV QTDIR[32|64]
-#
-# 影响：
+# 结果变量：
 # ::
 #
 #    Qt5Package_FOUND
 #    Qt5Package_PREFIX_PATH
+#
+# 提示变量：
+# ::
+#
+#    Qt5_ROOT_DIR
+#    ENV QTDIR[32|64]
 #
 # 预期：
 # ::
@@ -50,6 +50,8 @@ if(Qt5Package_FOUND)
   return()
 endif()
 
+# hints
+
 if(NOT COMMAND get_address_model_tag)
   include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
 endif()
@@ -59,11 +61,7 @@ set(zHints "${Qt5_ROOT_DIR}"
            "$ENV{QTDIR${sAddr}}"
            "$ENV{QTDIR}")
 
-find_path(Qt5_ROOT_DIR
-    NAMES "lib/cmake/Qt5/Qt5Config.cmake"
-    HINTS ${zHints}
-          NO_DEFAULT_PATH)
-mark_as_advanced(Qt_ROOT_DIR)
+# prefix
 
 find_path(Qt5Package_PREFIX_PATH
           NAMES "Qt5/Qt5Config.cmake"
@@ -72,16 +70,25 @@ find_path(Qt5Package_PREFIX_PATH
                 NO_DEFAULT_PATH)
 mark_as_advanced(Qt5Package_PREFIX_PATH)
 
+# package
+
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Qt5Package
-                      DEFAULT_MSG Qt5_ROOT_DIR
-                                  Qt5Package_PREFIX_PATH)
+                      DEFAULT_MSG Qt5Package_PREFIX_PATH)
 
 if(Qt5Package_FOUND)
+
+  # append
+
   if(NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
     list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
   endif()
+
 else()
+
+  # hints
+
   set(Qt5_ROOT_DIR "${Qt5_ROOT_DIR}" CACHE PATH "The root directory of the Qt5 installation.")
   mark_as_advanced(CLEAR Qt5_ROOT_DIR)
+
 endif()

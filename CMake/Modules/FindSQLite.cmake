@@ -5,14 +5,14 @@
 # | |   | | | | | (_| /\__/ /\ \/' / |___| | ||  __/
 # \_|   |_|_| |_|\__,_\____/  \_/\_\_____/_|\__\___|
 # zhengrr                  FindSQLite by FIGlet doom
-# 2018-05-23 – 2018-07-04
+# 2018-05-23 – 2018-07-05
 # The MIT License
 
 #.rst:
 # FindSQLite
 # ----------
 #
-# 寻找SQLite包。
+# 寻找SQLite。
 #
 # 导入目标：
 # ::
@@ -40,14 +40,11 @@
 #          v sqlite3
 #               sqlite3.h
 #               sqlite3ext.h
-#       v bin
+#       v lib
 #          > x32
 #          v x64
 #               sqlite3.def
 #               sqlite3.dll
-#       v lib
-#          > vc141x32
-#          v vc141x64
 #               sqlite3.exp
 #               sqlite3.lib
 #
@@ -55,24 +52,31 @@ if(SQLite_FOUND)
   return()
 endif()
 
-if(NOT COMMAND get_toolset_tag)
-  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
-endif()
-get_toolset_tag(sTool)
-get_architecture_address_model_tag(sArAd)
+# hints
 
 set(zHints "${SQLite_ROOT_DIR}" "$ENV{SQLITEROOT}")
 
-set(zPathSufs "lib/${sTool}${sArAd}"
-              "lib/${sArAd}"
-              "lib")
+if(NOT COMMAND get_architecture_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
+endif()
+get_architecture_address_model_tag(sArAd)
 
-find_path(SQLite_INCLUDE_DIRS
+# include
+
+find_path(SQLite_INCLUDE_DIR
           NAMES "sqlite3/sqlite3.h"
           HINTS ${zHints}
   PATH_SUFFIXES "include"
                 NO_DEFAULT_PATH)
+mark_as_advanced(SQLite_INCLUDE_DIR)
+
+set(SQLite_INCLUDE_DIRS ${SQLite_INCLUDE_DIR})
 mark_as_advanced(SQLite_INCLUDE_DIRS)
+
+# lib
+
+set(zPathSufs "lib/${sArAd}"
+              "lib")
 
 find_library(SQLite_LIBRARY
           NAMES "sqlite3"
@@ -82,20 +86,31 @@ find_library(SQLite_LIBRARY
 mark_as_advanced(SQLite_LIBRARY)
 
 set(SQLite_LIBRARIES ${SQLite_LIBRARY})
+mark_as_advanced(SQLite_LIBRARIES)
+
+# package
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(SQLite
-                      DEFAULT_MSG SQLite_INCLUDE_DIRS
+                      DEFAULT_MSG SQLite_INCLUDE_DIR
                                   SQLite_LIBRARY)
 
 if(SQLite_FOUND)
+
+  # target
+
   if(NOT TARGET SQLite)
-  add_library(SQLite UNKNOWN IMPORTED)
-  set_target_properties(SQLite    PROPERTIES
-                IMPORTED_LOCATION "${SQLite_LIBRARY}"
-    INTERFACE_INCLUDE_DIRECTORIES "${SQLite_INCLUDE_DIRS}")
+    add_library(SQLite UNKNOWN IMPORTED)
+    set_target_properties(SQLite
+               PROPERTIES IMPORTED_LOCATION "${SQLite_LIBRARY}"
+                          INTERFACE_INCLUDE_DIRECTORIES "${SQLite_INCLUDE_DIRS}")
   endif()
+
 else()
+
+  # hints
+
   set(SQLite_ROOT_DIR "${SQLite_ROOT_DIR}" CACHE PATH "The root directory of the SQLite installation.")
   mark_as_advanced(CLEAR SQLite_ROOT_DIR)
+
 endif()

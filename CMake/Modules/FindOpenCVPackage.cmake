@@ -5,7 +5,7 @@
 # | |   | | | | | (_| \ \_/ / |_) |  __/ | | | \__/\ \_/ / | | (_| | (__|   < (_| | (_| |  __/
 # \_|   |_|_| |_|\__,_|\___/| .__/ \___|_| |_|\____/\___/\_|  \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                   | |                    FindOpenCVPackage by FIGlet doom __/ |
-# 2018-06-04 – 2018-07-03   |_|                                                    |___/
+# 2018-06-04 – 2018-07-05   |_|                                                    |___/
 # The MIT License
 
 #.rst:
@@ -14,31 +14,27 @@
 #
 # 寻找OpenCV包。
 #
-# 缓存：
-# ::
-#
-#    OpenCV_ROOT_DIR
-#    ENV OPENCVDIR
-#
-# 影响：
+# 结果变量：
 # ::
 #
 #    OpenCVPackage_FOUND
 #    OpenCVPackage_PREFIX_PATH
 #
-# 参见：
+# 提示变量：
+# ::
+#
+#    OpenCV_ROOT_DIR
+#    ENV OPENCVDIR
 #
 if(OpenCVPackage_FOUND)
   return()
 endif()
 
+# hints
+
 set(zHints "${OpenCV_ROOT_DIR}" "$ENV{OPENCVDIR}")
 
-find_path(OpenCV_ROOT_DIR
-    NAMES "OpenCVConfig.cmake"
-    HINTS ${zHints}
-          NO_DEFAULT_PATH)
-mark_as_advanced(OpenCV_ROOT_DIR)
+# prefix
 
 find_path(OpenCVPackage_PREFIX_PATH
     NAMES "OpenCVConfig.cmake"
@@ -46,16 +42,25 @@ find_path(OpenCVPackage_PREFIX_PATH
           NO_DEFAULT_PATH)
 mark_as_advanced(OpenCVPackage_PREFIX_PATH)
 
+# package
+
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(OpenCVPackage
-                      DEFAULT_MSG OpenCV_ROOT_DIR
-                                  OpenCVPackage_PREFIX_PATH)
+                      DEFAULT_MSG OpenCVPackage_PREFIX_PATH)
 
 if(OpenCVPackage_FOUND)
+
+  # append
+
   if(NOT OpenCVPackage_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
     list(APPEND CMAKE_PREFIX_PATH "${OpenCVPackage_PREFIX_PATH}")
   endif()
+
 else()
+
+  # hints
+
   set(OpenCV_ROOT_DIR "${OpenCV_ROOT_DIR}" CACHE PATH "The root directory of the OpenCV installation.")
   mark_as_advanced(CLEAR OpenCV_ROOT_DIR)
+
 endif()

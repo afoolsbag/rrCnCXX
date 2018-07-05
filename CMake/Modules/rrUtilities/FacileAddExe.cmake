@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-07-04
+# 2017-12-18 – 2018-07-05
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -175,6 +175,7 @@ function(facile_add_executable)
     if(sLen EQUAL 0)
       message(WARNING "Keyword COMPILE_DEFINITIONS is used, but without value.")
     endif()
+    list(REMOVE_DUPLICATES _COMPILE_DEFINITIONS)
     target_compile_definitions("${sTgtName}" ${_COMPILE_DEFINITIONS})
   endif()
 
@@ -184,6 +185,7 @@ function(facile_add_executable)
     if(sLen EQUAL 0)
       message(WARNING "Keyword INCLUDE_DIRECTORIES is used, but without value.")
     endif()
+    list(REMOVE_DUPLICATES _INCLUDE_DIRECTORIES)
     target_include_directories("${sTgtName}" ${_INCLUDE_DIRECTORIES})
   endif()
 
@@ -193,6 +195,7 @@ function(facile_add_executable)
     if(sLen EQUAL 0)
       message(WARNING "Keyword LINK_LIBRARIES is used, but without value.")
     endif()
+    list(REMOVE_DUPLICATES _LINK_LIBRARIES)
     target_link_libraries("${sTgtName}" ${_LINK_LIBRARIES})
   endif()
 
@@ -220,6 +223,7 @@ function(facile_add_executable)
     if(sLen EQUAL 0)
       message(WARNING "Keyword POST_COPIES is used, but without value.")
     endif()
+    list(REMOVE_DUPLICATES _POST_COPIES)
     foreach(copy ${_POST_COPIES})
       if(TARGET "${copy}")
         add_custom_command(TARGET ${sTgtName} POST_BUILD
@@ -232,7 +236,7 @@ function(facile_add_executable)
                                   ${copy}
                                   $<TARGET_FILE_DIR:${sTgtName}>)
       else()
-        message(WARNING "A post copy item is invalid: ${copy}.")
+        message(WARNING "A post-copy-item is invalid: ${copy}.")
       endif()
     endforeach()
   endif()

@@ -282,7 +282,6 @@ quickref
 + 2008 [*Visual Assist*](https://wholetomato.com)
 + 2008 [*IncrediBuild*](https://incredibuild.com)
 + [*Studio Styles*](https://studiostyl.es)
-+ [*Dependency Walker*](http://dependencywalker.com)
 
 [*Understand™*](https://scitools.com)
 
