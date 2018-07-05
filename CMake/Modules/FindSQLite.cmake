@@ -85,6 +85,13 @@ find_library(SQLite_LIBRARY
                 NO_DEFAULT_PATH)
 mark_as_advanced(SQLite_LIBRARY)
 
+find_file(SQLite_LIBRARY_DLL
+          NAMES "sqlite3.dll"
+          HINTS ${zHints}
+  PATH_SUFFIXES ${zPathSufs}
+                NO_DEFAULT_PATH)
+mark_as_advanced(SQLite_LIBRARY_DLL)
+
 set(SQLite_LIBRARIES ${SQLite_LIBRARY})
 mark_as_advanced(SQLite_LIBRARIES)
 
@@ -93,16 +100,18 @@ mark_as_advanced(SQLite_LIBRARIES)
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(SQLite
                       DEFAULT_MSG SQLite_INCLUDE_DIR
-                                  SQLite_LIBRARY)
+                                  SQLite_LIBRARY
+                                  SQLite_LIBRARY_DLL)
 
 if(SQLite_FOUND)
 
   # target
 
   if(NOT TARGET SQLite)
-    add_library(SQLite UNKNOWN IMPORTED)
+    add_library(SQLite SHARED IMPORTED)
     set_target_properties(SQLite
-               PROPERTIES IMPORTED_LOCATION "${SQLite_LIBRARY}"
+               PROPERTIES IMPORTED_IMPLIB "${SQLite_LIBRARY}"
+                          IMPORTED_LOCATION "${SQLite_LIBRARY_DLL}"
                           INTERFACE_INCLUDE_DIRECTORIES "${SQLite_INCLUDE_DIRS}")
   endif()
 

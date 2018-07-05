@@ -27,7 +27,8 @@ function(facile_add_check_executable)
      OPTION_DESCRIPTION "Build executable with Check (requires Check)."
    TARGET_NAME_VARIABLE sTgtName
                         ${_UNPARSED_ARGUMENTS}
-         LINK_LIBRARIES Check::Check Check::Compat)
+         LINK_LIBRARIES Check::Check Check::Compat
+            POST_COPIES Check::Check Check::Compat)
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

@@ -224,19 +224,19 @@ function(facile_add_executable)
       message(WARNING "Keyword POST_COPIES is used, but without value.")
     endif()
     list(REMOVE_DUPLICATES _POST_COPIES)
-    foreach(copy ${_POST_COPIES})
-      if(TARGET "${copy}")
+    foreach(sCopy ${_POST_COPIES})
+      if(TARGET "${sCopy}")
         add_custom_command(TARGET ${sTgtName} POST_BUILD
                           COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                                  $<TARGET_FILE:${copy}>
+                                  $<TARGET_FILE:${sCopy}>
                                   $<TARGET_FILE_DIR:${sTgtName}>)
-      elseif(EXISTS "${copy}")
+      elseif(EXISTS "${sCopy}")
         add_custom_command(TARGET ${sTgtName} POST_BUILD
                           COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                                  ${copy}
+                                  ${sCopy}
                                   $<TARGET_FILE_DIR:${sTgtName}>)
       else()
-        message(WARNING "A post-copy-item is invalid: ${copy}.")
+        message(WARNING "A post-copy-item is invalid: ${sCopy}.")
       endif()
     endforeach()
   endif()

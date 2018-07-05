@@ -9,7 +9,7 @@
 
 project(rrQt VERSION 2018.7.4 LANGUAGES CXX)
 project_extra()
-compiler_warning_level(AS_ERROR UTF-8)
+compiler_warning_level(UTF-8)
 
 facile_add_doxygen()
 

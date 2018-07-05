@@ -88,6 +88,13 @@ find_library(Avro_avrocpp_LIBRARY
                 NO_DEFAULT_PATH)
 mark_as_advanced(Avro_avrocpp_LIBRARY)
 
+find_file(Avro_avrocpp_LIBRARY_DLL
+          NAMES "avrocpp.dll"
+          HINTS ${zHints}
+  PATH_SUFFIXES "lib"
+                NO_DEFAULT_PATH)
+mark_as_advanced(Avro_avrocpp_LIBRARY_DLL)
+
 set(Avro_LIBRARIES ${Avro_avrocpp_LIBRARY})
 mark_as_advanced(Avro_LIBRARIES)
 
@@ -96,22 +103,24 @@ mark_as_advanced(Avro_LIBRARIES)
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Avro
                       DEFAULT_MSG Avro_INCLUDE_DIR
-                                  Avro_avrocpp_LIBRARY)
+                                  Avro_avrocpp_LIBRARY
+                                  Avro_avrocpp_LIBRARY_DLL)
 
 if(Avro_FOUND)
 
   # targets
 
   if(NOT TARGET Avro::Avro)
-    add_library(Avro::Avro UNKNOWN IMPORTED)
+    add_library(Avro::Avro SHARED IMPORTED)
     set_target_properties(Avro::Avro
-               PROPERTIES IMPORTED_LOCATION "${Avro_avrocpp_LIBRARY}"
+               PROPERTIES IMPORTED_IMPLIB "${Avro_avrocpp_LIBRARY}"
+                          IMPORTED_LOCATION "${Avro_avrocpp_LIBRARY_DLL}"
                           INTERFACE_INCLUDE_DIRECTORIES "${Avro_INCLUDE_DIR}")
     target_link_libraries(Avro::Avro INTERFACE Boost::boost)
   endif()
 
   if(NOT TARGET Avro::AvroGenCpp)
-    add_executable(Avro::AvroGenCpp IMPORTED GLOBAL)
+    add_executable(Avro::AvroGenCpp IMPORTED)
     set_target_properties(Avro::AvroGenCpp
                PROPERTIES IMPORTED_LOCATION "${Avro_AvroGenCpp_EXECUTABLE}")
   endif()
