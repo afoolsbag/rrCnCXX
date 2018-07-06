@@ -1,10 +1,10 @@
 //! \copyright The MIT License
 
-#include <QApplication>
-
 #include "ui/Dlg.h"
 #include "ui/DlgRtBtn.h"
 #include "ui/DlgBtBtn.h"
+
+#include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {

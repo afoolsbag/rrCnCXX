@@ -3,7 +3,7 @@
 //! \file
 //! \brief 带底部按钮的对话框（类）。
 //!
-//! \verison 2018-07-04
+//! \verison 2018-07-06
 //! \since 2016-10-21
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -14,7 +14,7 @@
 #ifndef RRQT_DIALOG_UI_DIALOGWITHBOTTOMBUTTONS_H_
 #define RRQT_DIALOG_UI_DIALOGWITHBOTTOMBUTTONS_H_
 
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 namespace rrqt {
 namespace dialog {
@@ -32,10 +32,7 @@ class DialogWithBottomButtons: public QDialog {
 public:
     explicit DialogWithBottomButtons(QWidget *parent = Q_NULLPTR);
     virtual ~DialogWithBottomButtons() override;
-
-    Q_DISABLE_COPY(DialogWithBottomButtons);
-    explicit DialogWithBottomButtons(DialogWithBottomButtons &&) Q_DECL_EQ_DELETE;
-    DialogWithBottomButtons &operator=(DialogWithBottomButtons &&) Q_DECL_EQ_DELETE;
+    Q_DISABLE_COPY(DialogWithBottomButtons)
 
 private:
     Ui::DialogWithBottomButtons *ui {Q_NULLPTR};

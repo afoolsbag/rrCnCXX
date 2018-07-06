@@ -1,9 +1,9 @@
 //! \copyright The MIT License
 
-#include <QApplication>
-
 #include "ui/MnWnd.h"
 #include "ui/ComMnWnd.h"
+
+#include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {

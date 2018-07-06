@@ -1,9 +1,9 @@
 //! \copyright The MIT License
 
+#include <QtCore/QTimer>
+
 #include "ComMnWnd.h"
 #include "ui_ComMnWnd.h"
-
-#include <QTimer>
 
 namespace rrqt {
 namespace mainwindow {

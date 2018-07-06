@@ -6,7 +6,7 @@
 //! \sa <https://wikipedia.org/wiki/Cryptographic_hash_function>
 //! \sa <http://doc.qt.io/qt-5/qcryptographichash.html>
 //!
-//! \version 2018-07-05
+//! \version 2018-07-06
 //! \since 2016-11-15
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include <QCryptographicHash>
+#include <QtCore/QCryptographicHash>
 
 //!
 //! \brief 第四代消息摘要

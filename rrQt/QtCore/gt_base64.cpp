@@ -6,7 +6,7 @@
 //! \sa <https://wikipedia.org/wiki/Base64>
 //! \sa <https://doc.qt.io/qt-5/qbytearray.html>
 //!
-//! \version 2018-07-05
+//! \version 2018-07-06
 //! \since 2016-12-08
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include <QString>
+#include <QtCore/QString>
 
 //!
 //! \brief 标准的Base64转换。

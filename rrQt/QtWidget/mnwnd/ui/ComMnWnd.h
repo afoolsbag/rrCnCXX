@@ -3,7 +3,7 @@
 //! \file
 //! \brief 紧凑主窗口（类）。
 //!
-//! \verison 2018-07-04
+//! \verison 2018-07-06
 //! \since 2016-10-21
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -14,7 +14,7 @@
 #ifndef RRQT_MAINWINDOW_UI_COMMNWND_H_
 #define RRQT_MAINWINDOW_UI_COMMNWND_H_
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 
 namespace rrqt {
 namespace mainwindow {
@@ -31,12 +31,9 @@ class CompactMainWindow: public QMainWindow {
 
 public:
     explicit CompactMainWindow(QWidget *parent = Q_NULLPTR);
-    virtual ~CompactMainWindow() override;
     void initialize();
-
-    Q_DISABLE_COPY(CompactMainWindow);
-    explicit CompactMainWindow(CompactMainWindow &&) Q_DECL_EQ_DELETE;
-    CompactMainWindow &operator=(CompactMainWindow &&) Q_DECL_EQ_DELETE;
+    virtual ~CompactMainWindow() override;
+    Q_DISABLE_COPY(CompactMainWindow)
 
 private:
     bool initialized {false};

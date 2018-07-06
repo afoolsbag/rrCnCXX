@@ -3,7 +3,7 @@
 //! \file
 //! \brief 部件（类）。
 //!
-//! \verison 2018-07-04
+//! \verison 2018-07-06
 //! \since 2016-10-21
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -14,7 +14,7 @@
 #ifndef RRQT_WIDGET_UI_WGT_H_
 #define RRQT_WIDGET_UI_WGT_H_
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 namespace rrqt {
 namespace widget {
@@ -32,10 +32,7 @@ class Widget: public QWidget {
 public:
     explicit Widget(QWidget *parent = Q_NULLPTR);
     virtual ~Widget() override;
-
-    Q_DISABLE_COPY(Widget);
-    explicit Widget(Widget &&) Q_DECL_EQ_DELETE;
-    Widget &operator=(Widget &&) Q_DECL_EQ_DELETE;
+    Q_DISABLE_COPY(Widget)
 
 private:
     Ui::Widget *ui {Q_NULLPTR};

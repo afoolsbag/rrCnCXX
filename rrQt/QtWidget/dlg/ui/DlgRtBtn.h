@@ -3,7 +3,7 @@
 //! \file
 //! \brief 带右侧按钮的对话框（类）。
 //!
-//! \verison 2018-07-04
+//! \verison 2018-07-06
 //! \since 2016-10-21
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -14,7 +14,7 @@
 #ifndef RRQT_DIALOG_UI_DIALOGWITHRIGHTBUTTONS_H_
 #define RRQT_DIALOG_UI_DIALOGWITHRIGHTBUTTONS_H_
 
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 namespace rrqt {
 namespace dialog {
@@ -32,10 +32,7 @@ class DialogWithRightButtons: public QDialog {
 public:
     explicit DialogWithRightButtons(QWidget *parent = Q_NULLPTR);
     virtual ~DialogWithRightButtons() override;
-
-    Q_DISABLE_COPY(DialogWithRightButtons);
-    explicit DialogWithRightButtons(DialogWithRightButtons &&) Q_DECL_EQ_DELETE;
-    DialogWithRightButtons &operator=(DialogWithRightButtons &&) Q_DECL_EQ_DELETE;
+    Q_DISABLE_COPY(DialogWithRightButtons)
 
 private:
     Ui::DialogWithRightButtons *ui {Q_NULLPTR};

@@ -1,14 +1,14 @@
 //! \copyright The MIT License
 
-#include "ui/Wgt.h"
+#include "MnWnd.h"
 
-#include <QApplication>
+#include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    rrqt::widget::Widget wnd;
+    rrqt::threadlcd::MainWindow wnd;
     wnd.show();
 
     return app.exec();

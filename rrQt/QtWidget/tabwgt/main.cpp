@@ -1,8 +1,8 @@
 //! \copyright The MIT License
 
-#include <QApplication>
-
 #include "ui/TabWgt.h"
+
+#include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {

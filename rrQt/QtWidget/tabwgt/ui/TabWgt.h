@@ -3,7 +3,7 @@
 //! \file
 //! \brief 标签页部件（类）。
 //!
-//! \verison 2018-07-04
+//! \verison 2018-07-06
 //! \since 2016-10-21
 //! \authors zhengrr
 //! \copyright The MIT License
@@ -14,7 +14,7 @@
 #ifndef RRQT_TABWIDGET_UI_TABWGT_H_
 #define RRQT_TABWIDGET_UI_TABWGT_H_
 
-#include <QTabWidget>
+#include <QtWidgets/QTabWidget>
 
 namespace rrqt {
 namespace tabwidget {
@@ -32,10 +32,7 @@ class TabWidget: public QTabWidget {
 public:
     explicit TabWidget(QWidget *parent = Q_NULLPTR);
     virtual ~TabWidget() override;
-
-    Q_DISABLE_COPY(TabWidget);
-    explicit TabWidget(TabWidget &&) Q_DECL_EQ_DELETE;
-    TabWidget &operator=(TabWidget &&) Q_DECL_EQ_DELETE;
+    Q_DISABLE_COPY(TabWidget)
 
 private:
     Ui::TabWidget *ui {Q_NULLPTR};
