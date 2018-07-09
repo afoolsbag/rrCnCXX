@@ -56,11 +56,10 @@ endif()
 
 set(zHints "${Check_ROOT_DIR}" "$ENV{CHECK_DIR}")
 
-if(NOT COMMAND get_toolset_tag)
+if(NOT COMMAND get_toolset_architecture_address_model_tag)
   include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
 endif()
-get_toolset_tag(sTool)
-get_architecture_address_model_tag(sArAd)
+get_toolset_architecture_address_model_tag(sTag)
 
 # include
 
@@ -76,11 +75,8 @@ mark_as_advanced(Check_INCLUDE_DIRS)
 
 # lib
 
-set(zRelPathSufs "lib/${sTool}${sArAd}"
-                 "lib/${sArAd}"
-                 "lib")
-set(zDbgPathSufs "lib/${sTool}${sArAd}d"
-                 "lib/${sArAd}d"
+set(zRelPathSufs "lib/${sTag}")
+set(zDbgPathSufs "lib/${sTag}d"
                  ${zRelPathSufs})
 
 find_library(Check_check_LIBRARY_RELEASE
@@ -130,20 +126,20 @@ if(Check_FOUND)
 
   # targets
 
-  if(NOT TARGET Check::Compat)
-    add_library(Check::Compat STATIC IMPORTED)
-    set_target_properties(Check::Compat
-               PROPERTIES IMPORTED_LOCATION_RELEASE "${Check_compat_LIBRARY_RELEASE}"
-                          IMPORTED_LOCATION_DEBUG "${Check_compat_LIBRARY_DEBUG}"
-                          INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
-  endif()
-
   if(NOT TARGET Check::Check)
     add_library(Check::Check STATIC IMPORTED)
     set_target_properties(Check::Check
                PROPERTIES IMPORTED_LOCATION_RELEASE "${Check_check_LIBRARY_RELEASE}"
                           IMPORTED_LOCATION_DEBUG "${Check_check_LIBRARY_DEBUG}"
                           INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
+  endif()
+
+  if(NOT TARGET Check::Compat)
+    add_library(Check::Compat STATIC IMPORTED)
+    set_target_properties(Check::Compat
+               PROPERTIES IMPORTED_LOCATION_RELEASE "${Check_compat_LIBRARY_RELEASE}"
+                          IMPORTED_LOCATION_DEBUG "${Check_compat_LIBRARY_DEBUG}"
+                          INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
   endif()
 
   mark_as_advanced(Check_ROOT_DIR)
