@@ -4,7 +4,7 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 2018-07-05
+# 2018-02-02 – 2018-07-09
 # The MIT License
 
 #.rst:
@@ -31,7 +31,7 @@
 # ::
 #
 #    Check_ROOT_DIR
-#    ENV CHECKROOT
+#    ENV CHECK_DIR
 #
 # 预期：
 # ::
@@ -54,7 +54,7 @@ endif()
 
 # hints
 
-set(zHints "${Check_ROOT_DIR}" "$ENV{CHECKROOT}")
+set(zHints "${Check_ROOT_DIR}" "$ENV{CHECK_DIR}")
 
 if(NOT COMMAND get_toolset_tag)
   include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
@@ -145,6 +145,8 @@ if(Check_FOUND)
                           IMPORTED_LOCATION_DEBUG "${Check_check_LIBRARY_DEBUG}"
                           INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
   endif()
+
+  mark_as_advanced(Check_ROOT_DIR)
 
 else()
 

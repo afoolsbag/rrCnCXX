@@ -1,16 +1,23 @@
-#===========================================================================
-# rrC-Lua
+#            _
+#           | |
+#  _ __ _ __| |    _   _  __ _
+# | '__| '__| |   | | | |/ _` |
+# | |  | |  | |___| |_| | (_| |
+# |_|  |_|  \_____/\__,_|\__,_| rrLua by FIGlet doom
 # zhengrr
-# 2016-10-27 – 2017-7-24
+# 2016-10-27 – 2018-07-09
 # The MIT License
-#---------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.0)
-project("${PRODUCT_NAME}-Lua" LANGUAGES C)
-make_project_extra_variables()
 
-adjust_compiler_warning_level_to_highest()
+project(rrLua VERSION 2018.7.9 LANGUAGES C)
+project_extra()
+compiler_warning_level(HIGHEST UTF-8)
+
+facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
 find_package(Lua)
-if(LUA_FOUND)
-  add_subdirectory("src")
-endif()
+
+aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "tmain" "tsuite" "tcase")
+facile_add_check_executable(OPTION_INITIAL_ON
+                            ${zSrc}
+             LINK_LIBRARIES Lua::Lua
+                POST_COPIES Lua::Lua)

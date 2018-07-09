@@ -84,6 +84,8 @@ if(Qt5Package_FOUND)
     list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
   endif()
 
+  mark_as_advanced(Qt5_ROOT_DIR)
+
 else()
 
   # hints

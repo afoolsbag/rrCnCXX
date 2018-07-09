@@ -56,6 +56,8 @@ if(OpenCVPackage_FOUND)
     list(APPEND CMAKE_PREFIX_PATH "${OpenCVPackage_PREFIX_PATH}")
   endif()
 
+  mark_as_advanced(OpenCV_ROOT_DIR)
+
 else()
 
   # hints
