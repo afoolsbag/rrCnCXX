@@ -5,7 +5,7 @@
  * \details ELF（Executable and Linkable Format）缺省导出符号；
  *          PE（Portable Executable）缺省隐藏符号。
  *
- * \version 2018-06-20
+ * \version 2018-07-10
  * \since 2016-08-01
  * \authors zhengrr
  * \copyright The MIT License
@@ -15,28 +15,6 @@
 #pragma once
 #ifndef RRC_RRCAPI_H_
 #define RRC_RRCAPI_H_
-
-#ifdef __cplusplus
-# ifndef EXTERN_C
-# define EXTERN_C       extern "C"
-# endif
-# ifndef EXTERN_C_START
-# define EXTERN_C_START extern "C" {
-# endif
-# ifndef EXTERN_C_END
-# define EXTERN_C_END   }
-# endif
-#else
-# ifndef EXTERN_C
-# define EXTERN_C       extern
-# endif
-# ifndef EXTERN_C_START
-# define EXTERN_C_START
-# endif
-# ifndef EXTERN_C_END
-# define EXTERN_C_END
-# endif
-#endif
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 # if defined(_MSC_VER)

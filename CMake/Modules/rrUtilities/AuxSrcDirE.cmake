@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-07-04
+# 2016-10-08 – 2018-07-10
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -17,7 +17,7 @@ endif()
 #
 #       aux_source_directory_enhanced(
 #         <results-variable>
-#         [RECURES] [C] [CXX] [MFC] [QT] [EXPLICIT]
+#         [RECURES] [C] [CXX] [MFC] [QT] [CFG] [EXPLICIT]
 #         [SOURCE_DIRECTORY <directory>]
 #         [SOURCE_PREFIXS <prefix>...]
 #         [SOURCE_SUFFIXS <suffix>...]
@@ -28,7 +28,7 @@ endif()
 #
 function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
-                 C CXX MFC QT
+                 C CXX MFC QT CFG
                  EXPLICIT)
   set(zOneValKws SOURCE_DIRECTORY
                  SOURCE_GROUP)
@@ -98,6 +98,9 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   if(_QT)
     list(APPEND zSrcExts ".h"   ".cpp"
                          ".ui")
+  endif()
+  if(NOT _EXPLICIT OR _CFG)
+    list(APPEND zSrcExts ".in")
   endif()
   if(DEFINED _SOURCE_EXTENSIONS)
     foreach(sSrcExt ${_SOURCE_EXTENSIONS})

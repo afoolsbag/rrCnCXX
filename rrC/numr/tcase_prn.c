@@ -20,24 +20,29 @@
 
 #include "tsuite_numr.h"
 
-/** \brief Generate Pseudo-Random Number (By Current Time).
- *         依据当前时间生成伪随机数。
- *  \returns 生成的伪随机数，范围在 [0, RAND_MAX]。 */
+/**
+ * \brief 依据当前时间生成伪随机数。
+ *        Generate Pseudo-Random Number (By Current Time).
+ *         
+ * \returns 生成的伪随机数，范围在 [0, RAND_MAX]。
+ */
 static int genprn(void)
 {
-	srand((unsigned) time(NULL));
-	return rand();
+    srand((unsigned)time(NULL));
+    return rand();
 }
 
 START_TEST(test_genpr)
-	genprn();
+{
+    genprn();
+}
 END_TEST
 
 /** @} */
 
 TCase *tcase_prn(void)
 {
-	TCase *tcase = tcase_create("prn");
-	tcase_add_test(tcase, test_genpr);
-	return tcase;
+    TCase *tcase = tcase_create("prn");
+    tcase_add_test(tcase, test_genpr);
+    return tcase;
 }

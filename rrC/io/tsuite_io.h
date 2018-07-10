@@ -1,6 +1,6 @@
 #pragma once
-#ifndef RRC_IO_TSUITEIO_H_
-#define RRC_IO_TSUITEIO_H_
+#ifndef RRC_TSUITEIO_H_
+#define RRC_TSUITEIO_H_
 
 #include <check/check.h>
 
@@ -13,4 +13,4 @@ TCase *tcase_fop(void);
 TCase *tcase_fpos(void);
 TCase *tcase_unfmtio(void);
 
-#endif/*RRC_IO_TSUITEIO_H_*/
+#endif/*RRC_TSUITEIO_H_*/

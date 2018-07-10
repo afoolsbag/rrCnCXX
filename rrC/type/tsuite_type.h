@@ -1,6 +1,6 @@
 #pragma once
-#ifndef RRC_STR_TSUITETYPE_H_
-#define RRC_STR_TSUITETYPE_H_
+#ifndef RRC_TSUITETYPE_H_
+#define RRC_TSUITETYPE_H_
 
 #include <check/check.h>
 
@@ -10,4 +10,4 @@ TCase *tcase_array(void);
 TCase *tcase_char(void);
 TCase *tcase_struct(void);
 
-#endif/*RRC_STR_TSUITETYPE_H_*/
+#endif/*RRC_TSUITETYPE_H_*/

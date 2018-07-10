@@ -15,27 +15,34 @@
 **//*===-------------------------------------------------------------------===*/
 
 #include <check/check.h>
-#include "cver.h"
-#include "type/tsuite_type.h"
 
-/** \brief 复合字面量、匿名数组
- *  \sa ["compound literals"](http://en.cppreference.com/w/c/language/compound_literal). *cppreference.com*. */
+#include "rrc/ver.h"
+
+#include "tsuite_type.h"
+
+/**
+ * \brief 复合字面量、匿名数组。
+ *
+ * \sa <http://zh.cppreference.com/w/c/language/compound_literal>
+ */
 START_TEST(test_array_compound_literals)
+{
 #if C99
-	int *pcl = (int[]) {0, 1, 2};  /* pointer to compound literals */
-	ck_assert_int_eq(pcl[0], 0);
-	ck_assert_int_eq(pcl[0], 0);
-	ck_assert_int_eq(pcl[0], 0);
+    int *pcl = (int[]) { 0, 1, 2 };  /* pointer to compound literals */
+    ck_assert_int_eq(pcl[0], 0);
+    ck_assert_int_eq(pcl[0], 0);
+    ck_assert_int_eq(pcl[0], 0);
 #endif/*C99*/
-END_TEST
+}
+END_TEST;
 
 /** @} */
 
 TCase *tcase_array(void)
 {
-	TCase *tcase = tcase_create("array");
+    TCase *tcase = tcase_create("array");
 
-	tcase_add_test(tcase, test_array_compound_literals);
+    tcase_add_test(tcase, test_array_compound_literals);
 
-	return tcase;
+    return tcase;
 }
