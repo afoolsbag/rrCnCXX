@@ -3,11 +3,11 @@
  * \defgroup gChar 字符
  * \ingroup gType
  *
- * \sa <http://zh.cppreference.com/w/c/language/arithmetic_types#Character_types>
- * \sa <http://zh.cppreference.com/w/c/language/character_constant>
- * \sa <http://zh.cppreference.com/w/c/language/escape>
+ * \sa <https://zh.cppreference.com/w/c/language/arithmetic_types#Character_types>
+ * \sa <https://zh.cppreference.com/w/c/language/character_constant>
+ * \sa <https://zh.cppreference.com/w/c/language/escape>
  *
- * \version 2018-07-10
+ * \version 2018-07-11
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License

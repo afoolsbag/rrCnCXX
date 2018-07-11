@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLang
  *
- * \version 2018-07-10
+ * \version 2018-07-11
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     srunner_add_suite(runner, tsuite_cmnmath());
     srunner_add_suite(runner, tsuite_str());
 
-    srunner_run_all(runner, CK_VERBOSE);
+    srunner_run_all(runner, CK_NORMAL);
     const int ec = srunner_ntests_failed(runner);
     srunner_free(runner);
 

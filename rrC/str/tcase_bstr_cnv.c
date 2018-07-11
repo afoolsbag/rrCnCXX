@@ -3,9 +3,9 @@
  * \defgroup gBStrCnv 空终止字节字符串：转换成数值格式
  * \ingroup gStr
  *
- * \sa ["Conversions to numeric formats"](http://en.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
+ * \sa ["Conversions to numeric formats"](https://zh.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
  *
- * \version 2018-04-25
+ * \version 2018-07-11
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright The MIT License
@@ -29,14 +29,16 @@
  * \brief 将字节字符串转换成整数值。
  *        ASCII to Integer.
  *
- * \sa <http://zh.cppreference.com/w/c/string/byte/atoi>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/atoi>
  */
 START_TEST(test_atoi)
 {
     static_assert(sizeof(int) * 8 == 32);
     ck_assert_int_eq(atoi("2147483647"), INT32_MAX);
+
     static_assert(sizeof(long) * 8 == 32);
     ck_assert_int_eq(atol("2147483647"), INT32_MAX);
+
 #if C99 || MSC
     static_assert(sizeof(long long) * 8 == 64);
     ck_assert_int_eq(atoll("9223372036854775807"), INT64_MAX);
@@ -48,7 +50,7 @@ END_TEST;
  * \brief 将字节字符串转换成浮点值
  *        ASCII to Floating.
  *
- * \sa <http://zh.cppreference.com/w/c/string/byte/atof>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/atof>
  */
 START_TEST(test_atof)
 {
@@ -61,26 +63,30 @@ END_TEST;
  * \brief 将字节字符串转换成整数值。
  *        String to Integer.
  *
- * \sa <http://zh.cppreference.com/w/c/string/byte/strtol>
- * \sa <http://zh.cppreference.com/w/c/string/byte/strtoul>
- * \sa <http://zh.cppreference.com/w/c/string/byte/strtoimax>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strtol>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strtoul>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strtoimax>
  */
 START_TEST(test_strtoi)
 {
     static_assert(sizeof(long) * 8 == 32);
     ck_assert_int_eq(strtol("2147483647", NULL, 0), INT32_MAX);
+
 #if C99 || MSC
     static_assert(sizeof(long long) * 8 == 64);
     ck_assert_int_eq(strtoll("9223372036854775807", NULL, 0), INT64_MAX);
+
     static_assert(sizeof(intmax_t) * 8 == 64);
     ck_assert_int_eq(strtoimax("9223372036854775807", NULL, 0), INTMAX_MAX);
 #endif
 
     static_assert(sizeof(unsigned long) * 8 == 32);
     ck_assert_uint_eq(strtoul("0xFFFFFFFF", NULL, 0), UINT32_MAX);
+
 #if C99 || MSC
     static_assert(sizeof(unsigned long long) * 8 == 64);
     ck_assert_uint_eq(strtoull("0xFFFFFFFFFFFFFFFF", NULL, 0), UINT64_MAX);
+
     static_assert(sizeof(uintmax_t) * 8 == 64);
     ck_assert_int_eq(strtoumax("0xFFFFFFFFFFFFFFFF", NULL, 0), UINTMAX_MAX);
 #endif
@@ -91,7 +97,7 @@ END_TEST;
  * \brief 将字节字符串转换成浮点值。
  *        String to Floating.
  *
- * \sa <http://en.cppreference.com/w/c/string/byte/strtof>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strtof>
  */
 START_TEST(test_strtof)
 {

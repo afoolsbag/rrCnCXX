@@ -3,9 +3,9 @@
  * \defgroup gBStrExam 空终止字节字符串：字符串检验
  * \ingroup gStr
  *
- * \sa ["String examination"](http://en.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.
+ * \sa ["String examination"](https://zh.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.
  *
- * \version 2018-04-21
+ * \version 2018-07-11
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright The MIT License
@@ -13,40 +13,72 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#define __STDC_WANT_LIB_EXT1__ 1
 #include <string.h>
 
 #include <check/check.h>
-#include "str/tsuite_str.h"
 
-/** \brief String Length
- *  \sa ["strlen"](http://cplusplus.com/reference/cstring/strlen/). *C++ Reference*.
- *  \sa ["strlen, strnlen_s"](http://en.cppreference.com/w/c/string/byte/strlen). *cppreference.com*. */
-START_TEST(test_strlen)
-	const char src[] = "zhengrr";
-	const size_t len = strlen(src);
-	ck_assert_int_eq(len, 7);
-END_TEST
+#include "rrc/def.h"
+#include "rrc/ver.h"
+
+#include "tsuite_str.h"
 
 /**
- * \brief String Compare
- * \sa ["strcmp"](http://cplusplus.com/reference/cstring/strcmp/). *C++ Reference*.
- * \sa ["strcmp"](http://en.cppreference.com/w/c/string/byte/strcmp). *cppreference.com*.
+ * \brief 字符串长度。
+ *        String Length.
+ *
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strlen>
+ * \sa <http://cplusplus.com/reference/cstring/strlen/>
+ */
+START_TEST(test_strlen)
+{
+    ck_assert_int_eq(strlen("zhengrr"), 7);
+
+#if LIB_EXT1
+    ck_assert_int_eq(strnlen_s("zhengrr", countof("zhengrr")), 7);
+#endif
+}
+END_TEST;
+
+/**
+ * \brief 字符串比较。
+ *        String Compare.
+ *
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strcmp>
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strncmp>
+ * \sa <http://cplusplus.com/reference/cstring/strcmp/>
+ * \sa <http://cplusplus.com/reference/cstring/strncmp/>
  */
 START_TEST(test_strcmp)
-	const char str_upper[] = "ZHENGRR";
-	const char str_lower[] = "zhengrr";
-	ck_assert(strcmp(str_upper, str_lower) < 0);
-	ck_assert(0 < strcmp(str_lower, str_upper));
-END_TEST
+{
+    ck_assert_int_lt(strcmp("1993ZhengRr", "1993zhengrr"), 0);
+    ck_assert_int_eq(strncmp("1993ZhengRr", "1993zhengrr", 4), 0);
+}
+END_TEST;
+
+/**
+ * \brief 字符串指针打断。
+ *        String Pointer Break
+ *
+ * \sa <https://zh.cppreference.com/w/c/string/byte/strpbrk>
+ * \sa <http://cplusplus.com/reference/cstring/strpbrk/>
+ */
+START_TEST(test_strpbrk)
+{
+    const char src[] = "My life for Aiur!";
+    ck_assert(strpbrk(src, "\t\n\v\r") == src + 2);
+}
+END_TEST;
 
 /** @} */
 
 TCase *tcase_bstr_exam(void)
 {
-	TCase *tcase = tcase_create("bstr_exam");
+    TCase *tcase = tcase_create("bstr_exam");
 
-	tcase_add_test(tcase, test_strlen);
-	tcase_add_test(tcase, test_strcmp);
+    tcase_add_test(tcase, test_strlen);
+    tcase_add_test(tcase, test_strcmp);
+    tcase_add_test(tcase, test_strpbrk);
 
-	return tcase;
+    return tcase;
 }
