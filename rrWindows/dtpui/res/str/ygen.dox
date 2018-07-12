@@ -3,9 +3,9 @@
  * \defgroup gStr 字符串
  * \ingroup gRes
  *
- * \sa ["Strings"](https://msdn.microsoft.com/library/ms646979). *Microsoft® Developer Network*.
+ * \sa ["Strings"](https://docs.microsoft.com/windows/desktop/menurc/strings). *MSDocs*.
  *
- * \version 2018-04-27
+ * \version 2018-07-12
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright CC BY 4.0

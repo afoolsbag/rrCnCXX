@@ -1,0 +1,22 @@
+/*===-- Menus and Other Resources ------------------------------*- C -*-===*//**
+ *
+ * \defgroup gRes 菜单和其它资源
+ * \ingroup gDtpUI
+ *
+ * \sa ["Menus and Other Resources"](https://docs.microsoft.com/windows/desktop/menurc/resources). *MSDocs*.
+ *     + Introduction to Resources
+ *     + Carets
+ *     + Cursors
+ *     + Icons
+ *     + Keyboard Accelerators
+ *     + Menus
+ *     + [Strings](https://docs.microsoft.com/windows/desktop/menurc/strings)
+ *     + [Version Information](https://docs.microsoft.com/windows/desktop/menurc/version-information)
+ *     + Resource Compiler
+ *
+ * \version 2018-07-12
+ * \since 2018-02-23
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

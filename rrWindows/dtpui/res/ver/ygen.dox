@@ -1,0 +1,13 @@
+/*===-- Version Information ------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gVer 版本信息
+ * \ingroup gRes
+ *
+ * \sa ["Version Information"](https://docs.microsoft.com/windows/desktop/menurc/version-information). *MSDocs*.
+ *
+ * \version 2018-07-12
+ * \since 2018-07-12
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

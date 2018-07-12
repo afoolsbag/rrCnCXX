@@ -17,8 +17,9 @@
 #include "net/rpc/tsuite_rpc.h"
 #include "net/wnet/tsuite_wnet.h"
 #include "svc/info/reg/tsuite_reg.h"
-#include "ui/i18n/charset/tsuite_charset.h"
-#include "ui/res/str/tsuite_str.h"
+#include "dtpui/i18n/charset/tsuite_charset.h"
+#include "dtpui/res/str/tsuite_str.h"
+#include "dtpui/res/ver/tsuite_ver.h"
 
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
@@ -40,6 +41,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(runner, TSuiteReg());
     srunner_add_suite(runner, TSuiteCharSet());
     srunner_add_suite(runner, TSuiteStr());
+    srunner_add_suite(runner, TSuiteVer());
 
     srunner_run_all(runner, CK_NORMAL);
     CONST INT errco = srunner_ntests_failed(runner);

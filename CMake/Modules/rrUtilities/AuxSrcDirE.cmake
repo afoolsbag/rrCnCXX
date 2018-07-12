@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-07-10
+# 2016-10-08 – 2018-07-12
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -100,7 +100,7 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
                          ".ui")
   endif()
   if(NOT _EXPLICIT OR _CFG)
-    list(APPEND zSrcExts ".in")
+    list(APPEND zSrcExts ".in"  ".dox")
   endif()
   if(DEFINED _SOURCE_EXTENSIONS)
     foreach(sSrcExt ${_SOURCE_EXTENSIONS})

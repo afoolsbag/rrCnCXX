@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-06-04
+# 2016-10-08 – 2018-07-11
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
@@ -48,16 +48,28 @@ function(project_extra)
     set(zAuthors ${PRODUCT_AUTHORS})
   endif()
 
-  if(DEFINED _COPYRIGHT)
+  if(DEFINED _LICENSE)
     set(sLicense "${_LICENSE}")
   else()
     set(sLicense "${PRODUCT_LICENSE}")
   endif()
 
-  set(PROJECT_NAME_UPPER "${projNameUpr}" PARENT_SCOPE)
-  set(PROJECT_NAME_LOWER "${projNameLwr}" PARENT_SCOPE)
-  set(PROJECT_AUTHORS     ${zAuthors}     PARENT_SCOPE)
-  set(PROJECT_COPYRIGHT  "${sLicense}"    PARENT_SCOPE)
+  set(PROJECT_NAME_UPPER      "${projNameUpr}" PARENT_SCOPE)
+  set(PROJECT_NAME_LOWER      "${projNameLwr}" PARENT_SCOPE)
+  if(NOT "${PROJECT_VERSION_MAJOR}")
+    set(PROJECT_VERSION_MAJOR 0                PARENT_SCOPE)
+  endif()
+  if(NOT "${PROJECT_VERSION_MINOR}")
+    set(PROJECT_VERSION_MINOR 0                PARENT_SCOPE)
+  endif()
+  if(NOT "${PROJECT_VERSION_PATCH}")
+    set(PROJECT_VERSION_PATCH 0                PARENT_SCOPE)
+  endif()
+  if(NOT "${PROJECT_VERSION_TWEAK}")
+    set(PROJECT_VERSION_TWEAK 0                PARENT_SCOPE)
+  endif()
+  set(PROJECT_AUTHORS         ${zAuthors}      PARENT_SCOPE)
+  set(PROJECT_LICENSE         "${sLicense}"    PARENT_SCOPE)
 
   check_name_with_cmake_recommend_variable_rules("${PROJECT_NAME}" sCkPassed)
   if(NOT sCkPassed)

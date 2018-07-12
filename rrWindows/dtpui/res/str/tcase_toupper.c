@@ -4,16 +4,16 @@
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-06-09
+ * \version 2018-07-12
  * \since 2018-02-23
  * \copyright The MIT License
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <tchar.h>
 
 #include <check/check.h>
 #include "rrwindows/strsim.h"

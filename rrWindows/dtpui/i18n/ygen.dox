@@ -1,7 +1,7 @@
 /*===-- Internationalization for Windows Applications ----------*- C -*-===*//**
  *
  * \defgroup gI18n Windows©应用程序国际化
- * \ingroup gUI
+ * \ingroup gDtpUI
  *
  * \sa ["Internationalization for Windows Applications"](https://msdn.microsoft.com/library/dd318661). *Microsoft® Developer Network*.
  *     + [Getting Started with International Windows Development](https://msdn.microsoft.com/library/ee845044)
@@ -12,7 +12,7 @@
  *     + [Unicode and Character Sets](https://msdn.microsoft.com/library/dd374083)
  *     + [Security Considerations: International Features](https://msdn.microsoft.com/library/dd374047)
  *
- * \version 2018-05-03
+ * \version 2018-07-12
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

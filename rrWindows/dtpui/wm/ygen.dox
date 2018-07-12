@@ -1,7 +1,7 @@
 /*===-- Windows and Messages -----------------------------------*- C -*-===*//**
  *
  * \defgroup gWM Windows®和消息
- * \ingroup gUI
+ * \ingroup gDtpUI
  *
  * \sa ["Windows and Messages"](https://msdn.microsoft.com/library/ms632586). *Microsoft® Developer Network*.
  *     + [Windows](https://msdn.microsoft.com/library/ms632595)
@@ -14,7 +14,7 @@
  *     + [Hooks](https://msdn.microsoft.com/library/ms632589)
  *     + [Multiple Document Interface](https://msdn.microsoft.com/library/ms632591)
  *
- * \version 2018-05-03
+ * \version 2018-07-12
  * \since 2018-05-03
  * \authors zhengrr
  * \copyright CC BY 4.0
