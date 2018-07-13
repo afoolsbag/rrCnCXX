@@ -27,7 +27,7 @@ extern "C" {;
 
 /**
  * \brief 获取错误码对应的描述字符串（ANSI适配）。
- * \warning 该字串缓存在公用静态变量中，请即取即用。
+ * \warning 该字符串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *
  * \param errorCode 错误码。
@@ -43,7 +43,7 @@ ErrorTextOfA(
 );
 /**
  * \brief 获取错误码对应的描述字符串（UNICODE适配）。
- * \warning 该字串缓存在公用静态变量中，请即取即用。
+ * \warning 该字符串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *
  * \param errorCode 错误码。
@@ -67,6 +67,14 @@ ErrorTextOfW(
 }
 #endif
 
+/**
+ * \brief 获取最新错误的描述字符串。
+ * \warning 该字符串缓存在公用静态变量中，请即取即用。
+ * \warning 预设的缓存尺寸可能不足。
+ *
+ * \returns !NULL 字符串指针；\n
+ *           NULL 失败。
+ */
 FORCEINLINE
 _Success_(return != NULL)
 LPCTSTR
