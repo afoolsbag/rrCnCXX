@@ -10,8 +10,8 @@
 #include "rrwindows/def.h"
 #include "rrwindows/strsim.h"
 
-_Success_(return != FALSE)
 RRWINDOWS_API
+_Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableA4(
@@ -26,11 +26,15 @@ RunExecutableA4(
     } else {
         CONST size_t cmdBufCnt = 1/*' '*/ + StringCchLengthAs(command) + 1/*'\0'*/;
         cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(CHAR));
-        if (!cmdBuf)
+        if (!cmdBuf) {
+            SetLastError(ERROR_OUTOFMEMORY);
             return FALSE;
+        }
         cmdBuf[0] = ' ';
-        if (FAILED(StringCchCopyA(cmdBuf + 1, cmdBufCnt - 1, command))) {
+        CONST HRESULT hr = StringCchCopyA(cmdBuf + 1, cmdBufCnt - 1, command);
+        if (FAILED(hr)) {
             HeapFree(GetProcessHeap(), 0, cmdBuf);
+            SetLastError(HRESULT_CODE(hr));
             return FALSE;
         }
     }
@@ -56,8 +60,8 @@ RunExecutableA4(
     return succ;
 }
 
-_Success_(return != FALSE)
 RRWINDOWS_API
+_Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableW4(
@@ -72,11 +76,15 @@ RunExecutableW4(
     } else {
         CONST size_t cmdBufCnt = 1/*L' '*/ + StringCchLengthWs(command) + 1/*L'\0'*/;
         cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(WCHAR));
-        if (!cmdBuf)
+        if (!cmdBuf) {
+            SetLastError(ERROR_OUTOFMEMORY);
             return FALSE;
+        }
         cmdBuf[0] = L' ';
-        if (FAILED(StringCchCopyW(cmdBuf + 1, cmdBufCnt - 1, command))) {
+        CONST HRESULT hr = StringCchCopyW(cmdBuf + 1, cmdBufCnt - 1, command);
+        if (FAILED(hr)) {
             HeapFree(GetProcessHeap(), 0, cmdBuf);
+            SetLastError(HRESULT_CODE(hr));
             return FALSE;
         }
     }
@@ -102,8 +110,8 @@ RunExecutableW4(
     return succ;
 }
 
-_Success_(return >= 0)
 RRWINDOWS_API
+_Success_(return >= 0)
 INT
 WINAPI
 KillExecutableA(
@@ -143,8 +151,8 @@ err:
     return -1;
 }
 
-_Success_(return >= 0)
 RRWINDOWS_API
+_Success_(return >= 0)
 INT
 WINAPI
 KillExecutableW(

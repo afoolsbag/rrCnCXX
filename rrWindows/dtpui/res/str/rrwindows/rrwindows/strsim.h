@@ -1,9 +1,9 @@
 /*===-- String Interface Simplify ------------------------------*- C -*-===*//**
  *
- * \defgroup gStrSim 字串接口简化
+ * \defgroup gStrSim 字符串接口简化
  * \ingroup gStr
  *
- * \version 2018-07-02
+ * \version 2018-07-13
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright The MIT License
@@ -22,17 +22,17 @@
 /*-C--------------------------------------------------------------------------*/
 
 /**
- * \brief 按二进制顺序地比较UNICODE字串（Simplify接口，2参数）。
+ * \brief 按二进制顺序地比较UNICODE字符串（Simplify接口，2参数）。
  *
- * \param lhs 左侧字串；
- * \param rhs 右侧字串。
- * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ * \param lhs 左侧字符串；
+ * \param rhs 右侧字符串。
+ * \returns 0                 失败，可调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
  */
-_Success_(return != 0)
 FORCEINLINE
+_Success_(return != 0)
 INT
 WINAPI_INLINE
 CompareStringOrdinalS2(
@@ -41,20 +41,19 @@ CompareStringOrdinalS2(
 {
     return CompareStringOrdinal(lhs, -1, rhs, -1, FALSE);
 }
-
 /**
- * \brief 按二进制顺序地比较UNICODE字串（Simplify接口，3参数）。
+ * \brief 按二进制顺序地比较UNICODE字符串（Simplify接口，3参数）。
  *
- * \param lhs        左侧字串；
- * \param rhs        右侧字串；
+ * \param lhs        左侧字符串；
+ * \param rhs        右侧字符串；
  * \param ignoreCase 忽略大小写。
- * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ * \returns 0                 失败，可调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
  */
-_Success_(return != 0)
 FORCEINLINE
+_Success_(return != 0)
 INT
 WINAPI_INLINE
 CompareStringOrdinalS3(
@@ -64,14 +63,13 @@ CompareStringOrdinalS3(
 {
     return CompareStringOrdinal(lhs, -1, rhs, -1, ignoreCase);
 }
-
 /**
- * \brief 按二进制顺序地比较UNICODE字串（Simplify接口，便利宏）。
+ * \brief 按二进制顺序地比较UNICODE字符串（Simplify接口，便利宏）。
  *
- * \param lhs        左侧字串；
- * \param rhs        右侧字串；
+ * \param lhs        左侧字符串；
+ * \param rhs        右侧字符串；
  * \param ignoreCase 可选的，忽略大小写，默认`FALSE`。
- * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ * \returns 0                 失败，可调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
@@ -79,17 +77,17 @@ CompareStringOrdinalS3(
 #define CompareStringOrdinalS(...) EXPAND(VAFUNC3(__VA_ARGS__, CompareStringOrdinalS3, CompareStringOrdinalS2, VABAN)(__VA_ARGS__))
 
 /**
- * \brief 比较字串（ANSI适配，Simplify接口）。
+ * \brief 比较字符串（ANSI适配，Simplify接口）。
  *
- * \param lhs 左侧字串；
- * \param rhs 右侧字串。
- * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ * \param lhs 左侧字符串；
+ * \param rhs 右侧字符串。
+ * \returns 0                 失败，可调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
  */
-_Success_(return != 0)
 FORCEINLINE
+_Success_(return != 0)
 INT
 WINAPI_INLINE
 CompareStringAs(
@@ -98,19 +96,18 @@ CompareStringAs(
 {
     return CompareStringA(LOCALE_USER_DEFAULT, NORM_LINGUISTIC_CASING, lhs, -1, rhs, -1);
 }
-
 /**
- * \brief 比较字串（UNICODE适配，Simplify接口）。
+ * \brief 比较字符串（UNICODE适配，Simplify接口）。
  *
- * \param lhs 左侧字串；
- * \param rhs 右侧字串。
- * \returns 0                 失败，调用`GetLastError()`获取扩展错误信息；\n
+ * \param lhs 左侧字符串；
+ * \param rhs 右侧字符串。
+ * \returns 0                 失败，可调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
  */
-_Success_(return != 0)
 FORCEINLINE
+_Success_(return != 0)
 INT
 WINAPI_INLINE
 CompareStringWs(
@@ -119,7 +116,6 @@ CompareStringWs(
 {
     return CompareStringW(LOCALE_USER_DEFAULT, NORM_LINGUISTIC_CASING, lhs, -1, rhs, -1);
 }
-
 #ifdef _UNICODE
 # define CompareStringS CompareStringWs
 #else
@@ -127,17 +123,17 @@ CompareStringWs(
 #endif
 
 /**
- * \brief 按区域地比较UNICODE字串（Simplify接口）。
+ * \brief 按区域地比较UNICODE字符串（Simplify接口）。
  *
- * \param lhs 左侧字串；
- * \param rhs 右侧字串。
- * \returns 0                 失败，使用GetLastError()获取扩展错误信息；\n
+ * \param lhs 左侧字符串；
+ * \param rhs 右侧字符串。
+ * \returns 0                 失败，可调用`GetLastError()`获取扩展错误信息；\n
  *          CSTR_LESS_THAN    左侧小于右侧；\n
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
  */
-_Success_(return != 0)
 FORCEINLINE
+_Success_(return != 0)
 INT
 WINAPI_INLINE
 CompareStringExS(
@@ -151,10 +147,10 @@ CompareStringExS(
 /*-L--------------------------------------------------------------------------*/
 
 /**
- * \brief 计算字串长度（ANSI适配，Simplify接口）。
+ * \brief 计算字符串长度（ANSI适配，Simplify接口）。
  *
- * \param str 字串。
- * \return 长度。
+ * \param str 字符串。
+ * \returns 长度。
  */
 FORCEINLINE
 size_t
@@ -167,12 +163,11 @@ StringCchLengthAs(
         return 0;
     return len;
 }
-
 /**
- * \brief 计算字串长度（UNICODE适配，Simplify接口）。
+ * \brief 计算字符串长度（UNICODE适配，Simplify接口）。
  *
- * \param str 字串。
- * \return 长度。
+ * \param str 字符串。
+ * \returns 长度。
  */
 FORCEINLINE
 size_t
@@ -185,7 +180,6 @@ StringCchLengthWs(
         return 0;
     return len;
 }
-
 #ifdef _UNICODE
 # define StringCchLengthS StringCchLengthWs
 #else

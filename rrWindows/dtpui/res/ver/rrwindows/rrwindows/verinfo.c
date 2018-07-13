@@ -5,44 +5,36 @@
 
 #pragma comment(lib, "Version.Lib")
 
+#include "rrwindows/memsim.h"
+
 RRWINDOWS_API
 _Success_(return != FALSE)
 BOOL
 WINAPI
-GetFileVersionInformationA(
-    _In_z_    LPCSTR CONST filePath,
-    _Out_opt_ LPWORD CONST pMajor,
-    _Out_opt_ LPWORD CONST pMinor,
-    _Out_opt_ LPWORD CONST pPatch,
-    _Out_opt_ LPWORD CONST pTweak)
+GetFileFixedInformationA(
+    _In_z_          LPCSTR  CONST filePath,
+    _Out_ VS_FIXEDFILEINFO *CONST pFixedInfo)
 {
     CONST DWORD siz = GetFileVersionInfoSizeA(filePath, NULL);
     if (siz == 0)
         return FALSE;
-    LPVOID CONST buf = HeapAlloc(GetProcessHeap(), 0, siz);
+    LPVOID CONST buf = HeapAllocS(siz);
     if (NULL == buf) {
         SetLastError(ERROR_OUTOFMEMORY);
         return FALSE;
     }
     if (!GetFileVersionInfoA(filePath, 0, siz, buf)) {
-        HeapFree(GetProcessHeap(), 0, buf);
+        HeapFreeS(buf);
         return FALSE;
     }
-    VS_FIXEDFILEINFO *ver;
+    VS_FIXEDFILEINFO *tmp;
     UINT len;
-    if (!VerQueryValueA(buf, "\\", (LPVOID *)&ver, &len)) {
-        HeapFree(GetProcessHeap(), 0, buf);
+    if (!VerQueryValueA(buf, "\\", (LPVOID *)&tmp, &len)) {
+        HeapFreeS(buf);
         return FALSE;
     }
-    if (NULL != pMajor)
-        *pMajor = HIWORD(ver->dwFileVersionMS);
-    if (NULL != pMinor)
-        *pMinor = LOWORD(ver->dwFileVersionMS);
-    if (NULL != pPatch)
-        *pPatch = HIWORD(ver->dwFileVersionLS);
-    if (NULL != pTweak)
-        *pTweak = LOWORD(ver->dwFileVersionLS);
-    HeapFree(GetProcessHeap(), 0, buf);
+    CopyMemory(pFixedInfo, tmp, min(len, sizeof(VS_FIXEDFILEINFO)));
+    HeapFreeS(buf);
     return TRUE;
 }
 
@@ -50,39 +42,29 @@ RRWINDOWS_API
 _Success_(return != FALSE)
 BOOL
 WINAPI
-GetFileVersionInformationW(
-    _In_z_   LPCWSTR CONST filePath,
-    _Out_opt_ LPWORD CONST pMajor,
-    _Out_opt_ LPWORD CONST pMinor,
-    _Out_opt_ LPWORD CONST pPatch,
-    _Out_opt_ LPWORD CONST pTweak)
+GetFileFixedInformationW(
+    _In_z_         LPCWSTR  CONST filePath,
+    _Out_ VS_FIXEDFILEINFO *CONST pFixedInfo)
 {
     CONST DWORD siz = GetFileVersionInfoSizeW(filePath, NULL);
     if (siz == 0)
         return FALSE;
-    LPVOID CONST buf = HeapAlloc(GetProcessHeap(), 0, siz);
+    LPVOID CONST buf = HeapAllocS(siz);
     if (NULL == buf) {
         SetLastError(ERROR_OUTOFMEMORY);
         return FALSE;
     }
     if (!GetFileVersionInfoW(filePath, 0, siz, buf)) {
-        HeapFree(GetProcessHeap(), 0, buf);
+        HeapFreeS(buf);
         return FALSE;
     }
-    VS_FIXEDFILEINFO *ver;
+    VS_FIXEDFILEINFO *tmp;
     UINT len;
-    if (!VerQueryValueW(buf, L"\\", (LPVOID *)&ver, &len)) {
-        HeapFree(GetProcessHeap(), 0, buf);
+    if (!VerQueryValueW(buf, L"\\", (LPVOID *)&tmp, &len)) {
+        HeapFreeS(buf);
         return FALSE;
     }
-    if (NULL != pMajor)
-        *pMajor = HIWORD(ver->dwFileVersionMS);
-    if (NULL != pMinor)
-        *pMinor = LOWORD(ver->dwFileVersionMS);
-    if (NULL != pPatch)
-        *pPatch = HIWORD(ver->dwFileVersionLS);
-    if (NULL != pTweak)
-        *pTweak = LOWORD(ver->dwFileVersionLS);
-    HeapFree(GetProcessHeap(), 0, buf);
+    CopyMemory(pFixedInfo, tmp, min(len, sizeof(VS_FIXEDFILEINFO)));
+    HeapFreeS(buf);
     return TRUE;
 }

@@ -1,0 +1,13 @@
+/*===-- Memory Management --------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gMem 内存管理
+ * \ingroup gSvc
+ *
+ * \sa ["Memory Management"](https://docs.microsoft.com/windows/desktop/Memory/memory-management-reference). *MSDocs*.
+ *
+ * \version 2018-07-13
+ * \since 2018-07-13
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

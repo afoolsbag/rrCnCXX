@@ -1,11 +1,11 @@
 /*===-- Dynamic-Link Libraries ---------------------------------*- C -*-===*//**
  *
  * \defgroup gDLL 动态链接库
- * \ingroup gSys
+ * \ingroup gSvc
  *
  * \sa ["Dynamic-Link Libraries"](https://msdn.microsoft.com/library/ms682589). *Microsoft® Developer Network*.
  *
- * \version 2018-06-02
+ * \version 2018-07-13
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

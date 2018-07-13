@@ -26,7 +26,7 @@
 START_TEST(TestExeVer)
 {
     WORD major, minor, patch, tweak;
-    GetFileVersionInformation(ExecutablePath(), &major, &minor, &patch, &tweak);
+    GetFileFileVersionInformation(ExecutablePath(), &major, &minor, &patch, &tweak);
     ck_assert_int_le(2018, major);
 }
 END_TEST
