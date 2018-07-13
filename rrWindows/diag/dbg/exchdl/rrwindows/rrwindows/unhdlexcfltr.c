@@ -5,15 +5,13 @@
 
 #include <ImageHlp.h>
 #pragma comment(lib, "DbgHelp.Lib")
-#include <KnownFolders.h>
 #include <PathCch.h>
 #pragma comment(lib, "pathcch.Lib")
 #include <strsafe.h>
-#include <ShlObj.h>
-#pragma comment(lib, "shell32.lib")
 
 #include "rrwindows/def.h"
 #include "rrwindows/exepath.h"
+#include "rrwindows/verinfo.h"
 
 RRWINDOWS_API
 LONG
@@ -27,26 +25,42 @@ ExceptionCrashHandler(
     OutputDebugStringW(L" ");
     OutputDebugStringW(L"Try generating a dump file...");
 
-    WCHAR dumpPath[MAX_PATH];
+    WCHAR dumpPath[MAX_PATH] = L"\0";
 
     BOOL tempDump = FALSE;
     do {
+        // %TEMP%/dump
         if (0 == GetTempPathW(countof(dumpPath), dumpPath))
             break;
-
         if (FAILED(PathCchAppend(dumpPath, countof(dumpPath), L"dump")))
             break;
         CreateDirectoryW(dumpPath, NULL);
 
+        // %TEMP%/dump/ExeBaseName
         if (FAILED(PathCchAppend(dumpPath, countof(dumpPath), ExecutableBaseNameW())))
             break;
 
+        // %TEMP%/dump/ExeBaseName[_m.n.p.t]
+        WORD major, minor, patch, tweak;
+        if (GetFileFileVersionInformation(ExecutablePath(), &major, &minor, &patch, &tweak)) {
+            WCHAR ver[25];
+            if (FAILED(StringCchPrintfW(ver, countof(ver), L"_%hu.%hu.%hu.%hu", major, minor, patch, tweak)))
+                break;
+            if (FAILED(StringCchCatW(dumpPath, countof(dumpPath), ver)))
+                break;
+        }
+
+        // %TEMP%/dump/ExeBaseName[_m.n.p.t]_YYYYMMDD_hhmmss
         SYSTEMTIME lclTm;
         GetLocalTime(&lclTm);
-        WCHAR ext[21];
-        if (FAILED(StringCchPrintfW(ext, countof(ext), L"_%04hu%02hu%02hu_%02hu%02hu%02hu.dmp", lclTm.wYear, lclTm.wMonth, lclTm.wDay, lclTm.wHour, lclTm.wMinute, lclTm.wSecond)))
+        WCHAR tm[17];
+        if (FAILED(StringCchPrintfW(tm, countof(tm), L"_%04hu%02hu%02hu_%02hu%02hu%02hu", lclTm.wYear, lclTm.wMonth, lclTm.wDay, lclTm.wHour, lclTm.wMinute, lclTm.wSecond)))
             break;
-        if (FAILED(StringCchCatW(dumpPath, countof(dumpPath), ext)))
+        if (FAILED(StringCchCatW(dumpPath, countof(dumpPath), tm)))
+            break;
+
+        // %TEMP%/dump/ExeBaseName[_m.n.p.t]_YYYYMMDD_hhmmss.dmp
+        if (FAILED(StringCchCatW(dumpPath, countof(dumpPath), L".dmp")))
             break;
 
         tempDump = TRUE;
@@ -65,7 +79,7 @@ ExceptionCrashHandler(
     }
 
     HANDLE CONST dumpFile = CreateFileW(dumpPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-    if (INVALID_HANDLE_VALUE == dumpPath) {
+    if (INVALID_HANDLE_VALUE == dumpFile) {
         OutputDebugStringW(L"   x create the dump file");
         OutputDebugStringW(L"Generate the dump file failed.");
         OutputDebugStringW(L"--------------------------------------------------------------------------------");

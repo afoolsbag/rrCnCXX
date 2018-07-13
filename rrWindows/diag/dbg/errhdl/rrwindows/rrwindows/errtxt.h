@@ -6,7 +6,7 @@
  * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *MSDN*.
  * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *MSDN*.
  *
- * \version 2018-06-27
+ * \version 2018-07-13
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -26,37 +26,37 @@ extern "C" {;
 #endif
 
 /**
- * \brief 获取错误码对应的描述字串（ANSI适配）。
+ * \brief 获取错误码对应的描述字符串（ANSI适配）。
  * \warning 该字串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *
  * \param errorCode 错误码。
- * \returns 若成功，返回指向缓存的指针；
- *          若失败，返回空指针（`NULL`）。
+ * \returns !NULL 字符串指针；\n
+ *           NULL 失败。
  */
 RRWINDOWS_API
 _Success_(return != NULL)
 LPCSTR
 WINAPI
 ErrorTextOfA(
-    _In_ CONST DWORD errorCode);
-
+    _In_ CONST DWORD errorCode
+);
 /**
- * \brief 获取错误码对应的描述字串（UNICODE适配）。
+ * \brief 获取错误码对应的描述字符串（UNICODE适配）。
  * \warning 该字串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *
  * \param errorCode 错误码。
- * \returns 若成功，返回指向缓存的指针；
- *          若失败，返回空指针（`NULL`）。
+ * \returns !NULL 字符串指针；\n
+ *           NULL 失败。
  */
 RRWINDOWS_API
 _Success_(return != NULL)
 LPCWSTR
 WINAPI
 ErrorTextOfW(
-    _In_ CONST DWORD errorCode);
-
+    _In_ CONST DWORD errorCode
+);
 #ifdef _UNICODE
 # define ErrorTextOf ErrorTextOfW
 #else
@@ -67,8 +67,8 @@ ErrorTextOfW(
 }
 #endif
 
-_Success_(return != NULL)
 FORCEINLINE
+_Success_(return != NULL)
 LPCTSTR
 WINAPI_INLINE
 GetLastErrorText(VOID)
