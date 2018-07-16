@@ -20,6 +20,7 @@ ExceptionCrashHandler(
     _In_ EXCEPTION_POINTERS *CONST ExceptionInfo)
 {
     OutputDebugStringW(L"--------------------------------------------------------------------------------");
+    OutputDebugStringW(L" ");
     OutputDebugStringW(ExecutableNameW());
     OutputDebugStringW(L"The program has crashed by unhandled exception.");
     OutputDebugStringW(L" ");
@@ -29,18 +30,20 @@ ExceptionCrashHandler(
 
     BOOL tempDump = FALSE;
     do {
-        // %TEMP%/dump
+        /* %TEMP% */
         if (0 == GetTempPathW(countof(dumpPath), dumpPath))
             break;
+
+        /* %TEMP%/dump */
         if (FAILED(PathCchAppend(dumpPath, countof(dumpPath), L"dump")))
             break;
         CreateDirectoryW(dumpPath, NULL);
 
-        // %TEMP%/dump/ExeBaseName
+        /* %TEMP%/dump/ExeBaseName */
         if (FAILED(PathCchAppend(dumpPath, countof(dumpPath), ExecutableBaseNameW())))
             break;
 
-        // %TEMP%/dump/ExeBaseName[_m.n.p.t]
+        /* %TEMP%/dump/ExeBaseName[_m.n.p.t] */
         WORD major, minor, patch, tweak;
         if (GetFileFileVersionInformation(ExecutablePath(), &major, &minor, &patch, &tweak)) {
             WCHAR ver[25];
@@ -50,7 +53,7 @@ ExceptionCrashHandler(
                 break;
         }
 
-        // %TEMP%/dump/ExeBaseName[_m.n.p.t]_YYYYMMDD_hhmmss
+        /* %TEMP%/dump/ExeBaseName[_m.n.p.t]_YYYYMMDD_hhmmss */
         SYSTEMTIME lclTm;
         GetLocalTime(&lclTm);
         WCHAR tm[17];
@@ -59,33 +62,33 @@ ExceptionCrashHandler(
         if (FAILED(StringCchCatW(dumpPath, countof(dumpPath), tm)))
             break;
 
-        // %TEMP%/dump/ExeBaseName[_m.n.p.t]_YYYYMMDD_hhmmss.dmp
+        /* %TEMP%/dump/ExeBaseName[_m.n.p.t]_YYYYMMDD_hhmmss.dmp */
         if (FAILED(StringCchCatW(dumpPath, countof(dumpPath), L".dmp")))
             break;
 
         tempDump = TRUE;
     } while (FALSE);
     if (tempDump) {
-        OutputDebugStringW(L"   o find the first dump place");
+        OutputDebugStringW(L"   [o] find the first dump place");
     } else {
-        OutputDebugStringW(L"   x find the first dump place");
+        OutputDebugStringW(L"   [x] find the first dump place");
         if (FAILED(StringCchCopyW(dumpPath, countof(dumpPath), L"crash.dmp"))) {
-            OutputDebugStringW(L"   x find the second dump place failed");
+            OutputDebugStringW(L"   [x] find the second dump place failed");
             OutputDebugStringW(L"Generate the dump file failed.");
-            OutputDebugStringW(L"--------------------------------------------------------------------------------");
             return EXCEPTION_EXECUTE_HANDLER;
         }
-        OutputDebugStringW(L"   o find the second dump place");
+        OutputDebugStringW(L"   [o] find the second dump place");
     }
 
     HANDLE CONST dumpFile = CreateFileW(dumpPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (INVALID_HANDLE_VALUE == dumpFile) {
-        OutputDebugStringW(L"   x create the dump file");
+        OutputDebugStringW(L"   [x] create the dump file");
         OutputDebugStringW(L"Generate the dump file failed.");
+        OutputDebugStringW(L" ");
         OutputDebugStringW(L"--------------------------------------------------------------------------------");
         return EXCEPTION_EXECUTE_HANDLER;
     }
-    OutputDebugStringW(L"   o create the dump file");
+    OutputDebugStringW(L"   [o] create the dump file");
 
     MINIDUMP_EXCEPTION_INFORMATION dumpInfo;
     dumpInfo.ThreadId = GetCurrentThreadId();
@@ -94,13 +97,17 @@ ExceptionCrashHandler(
 
     if (FAILED(MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), dumpFile, MiniDumpNormal, &dumpInfo, NULL, NULL))) {
         CloseHandle(dumpFile);
-        OutputDebugStringW(L"   x write MiniDump to the dump file");
+        OutputDebugStringW(L"   [x] write MiniDump to the dump file");
         OutputDebugStringW(L"Generate the dump file failed.");
+        OutputDebugStringW(L" ");
         OutputDebugStringW(L"--------------------------------------------------------------------------------");
+        return EXCEPTION_EXECUTE_HANDLER;
     }
     CloseHandle(dumpFile);
-    OutputDebugStringW(L"   o write MiniDump to the dump file");
-    OutputDebugStringW(L"Generate the dump file succeeded.");
+    OutputDebugStringW(L"   [o] write MiniDump to the dump file");
+    OutputDebugStringW(L"Generate the dump file succeeded at:");
+    OutputDebugStringW(dumpPath);
+    OutputDebugStringW(L" ");
     OutputDebugStringW(L"--------------------------------------------------------------------------------");
 
     WCHAR txt[512];

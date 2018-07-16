@@ -68,7 +68,7 @@ ErrorTextOfW(
 #endif
 
 /**
- * \brief 获取最新错误的描述字符串。
+ * \brief 获取当前线程最新错误的描述字符串。
  * \warning 该字符串缓存在公用静态变量中，请即取即用。
  * \warning 预设的缓存尺寸可能不足。
  *

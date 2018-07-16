@@ -1,7 +1,7 @@
 //===-- Hello Server --------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Hello∑˛ŒÒ∆˜
+/// \brief HelloÊúçÂä°Âô®
 ///
 /// \author zhengrr
 /// \version 2018-03-22
@@ -15,15 +15,19 @@
 #include <memory>
 
 #include <Ice/Ice.h>
-#include "HelloSlice.h"
+#include "HelloWorld.h"
 
+///
 /// \brief Hello Service Implement
-class HelloServiceImpl: public HelloSlice::HelloServiceItf {
+///
+class HelloWorldServiceImpl: public rrIce::HelloWorldService {
 public:
-    void sayHello(const std::string &str, const Ice::Current &) override;
+    virtual void HelloWorld(const ::std::string &str, const ::Ice::Current &) override;
 };
 
-void HelloServiceImpl::sayHello(const std::string &str, const Ice::Current &)
+void
+HelloWorldServiceImpl::
+HelloWorld(const ::std::string &str, const ::Ice::Current &)
 {
     std::cout << str << std::endl;
 }
@@ -31,12 +35,12 @@ void HelloServiceImpl::sayHello(const std::string &str, const Ice::Current &)
 int main(int argc, char *argv[])
 {
     try {
-        Ice::CommunicatorHolder icech(argc, argv);  // ice communicator holder
-        auto adapter = icech->createObjectAdapterWithEndpoints("HelloServiceAdapter", "default -p 10000");
-        auto servant = new HelloServiceImpl;  // leak?
-        adapter->add(servant, Ice::stringToIdentity("HelloService"));
+        Ice::CommunicatorHolder iceCH(argc, argv);  // ice communicator holder
+        auto adapter = iceCH->createObjectAdapterWithEndpoints("HelloWorldServiceAdapter", "default -p 10000");
+        auto servant = new HelloWorldServiceImpl;  // leak?
+        adapter->add(servant, Ice::stringToIdentity("HelloWorldService"));
         adapter->activate();
-        icech->waitForShutdown();
+        iceCH->waitForShutdown();
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         return EXIT_FAILURE;

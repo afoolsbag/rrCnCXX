@@ -1,0 +1,26 @@
+/*===-- Main Page ----------------------------------------------*- C -*-===*//**
+ *
+ * \mainpage
+ * [TOC]
+ *
+ * # Ice                                                                 {#sIce}
+ *
+ * [Internet Communications Engine](https://zeroc.com/products/ice)
+ *
+ * # References                                                   {#sReferences}
+ *
+ * [The Slice Language](https://doc.zeroc.com/ice/3.7/the-slice-language)
+ * + [Slice Compilation](https://doc.zeroc.com/ice/3.7/the-slice-language/slice-compilation)
+ * + [Slice Source Files](https://doc.zeroc.com/ice/3.7/the-slice-language/slice-source-files)
+ * + [Lexical Rules](https://doc.zeroc.com/ice/3.7/the-slice-language/lexical-rules)
+ * + [Modules](https://doc.zeroc.com/ice/3.7/the-slice-language/modules)
+ * + [Basic Types](https://doc.zeroc.com/ice/3.7/the-slice-language/basic-types)
+ * ___
+ * <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+ *
+ * \version 2018-07-16
+ * \since 2017-12-13
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

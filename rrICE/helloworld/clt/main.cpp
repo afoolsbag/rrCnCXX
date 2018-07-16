@@ -1,7 +1,7 @@
 //===-- Hello Client --------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Hello¿Í»§¶Ë
+/// \brief Helloå®¢æˆ·ç«¯
 ///
 /// \author zhengrr
 /// \version 2018-03-22
@@ -15,17 +15,17 @@
 #include <stdexcept>
 
 #include <Ice/Ice.h>
-#include "HelloSlice.h"
+#include "HelloWorld.h"
 
 int main(int argc, char *argv[])
 {
     try {
-        Ice::CommunicatorHolder icech(argc, argv);  // ice communicator holder
-        auto proxy = icech->stringToProxy("HelloService: default -p 10000");
-        auto hellosvc = Ice::checkedCast<HelloSlice::HelloServiceItfPrx>(proxy);  // hello service
-        if (!hellosvc)
+        Ice::CommunicatorHolder iceCH(argc, argv);  // ice communicator holder
+        auto proxy = iceCH->stringToProxy("HelloWorldService: default -p 10000");
+        auto service = Ice::checkedCast<rrIce::HelloWorldServicePrx>(proxy);  // hello service
+        if (!service)
             throw std::runtime_error("Incalid proxy");
-        hellosvc->sayHello("Hello World!");
+        service->HelloWorld("Hello World!");
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         return EXIT_FAILURE;
