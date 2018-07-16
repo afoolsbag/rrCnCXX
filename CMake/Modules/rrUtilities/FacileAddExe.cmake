@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-07-05
+# 2017-12-18 – 2018-07-16
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -26,7 +26,8 @@ endif()
 #                   [LINK_LIBRARIES <library>...]
 #                 [COMPILE_FEATURES <feature>...]
 #                  [COMPILE_OPTIONS <option>...]
-#                      [POST_COPIES <copies>...])
+#                      [POST_COPIES <copies>...]
+#       )
 #
 #    约定：
 #
