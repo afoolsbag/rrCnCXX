@@ -16,23 +16,45 @@
 
 namespace {
 
-/// \brief 滑动条滑动回调
-void on_trackbar_change(int pos, void *userdata) {}
+///
+/// \brief 自定义数据。
+///
+struct UserData {
+    cv::Mat &img;
+    const std::string wndName;
+
+    UserData() = delete;
+};
+
+///
+/// \brief 滑动条滑动回调。
+///
+void OnTrackbarChange(int pos, void *userdata)
+{
+    const auto val = std::min(std::max(0, pos), static_cast<int>(UINT8_MAX));
+    auto &data = *reinterpret_cast<UserData *>(userdata);
+
+    data.img = cv::Mat(300, 400, CV_8UC3, cv::Scalar::all(val));
+    cv::imshow(data.wndName, data.img);
+}
 
 }// namespace
 
 int main(int argc, char *argv[])
 {
-    const std::string kwndname = "Window Name";
-    const std::string ktrkbarname = "Trackbar Name";
-    const int kslidermax = 100;
-    int slider = 0;
+    CV_UNUSED(argc);
+    CV_UNUSED(argv);
 
-    cv::namedWindow(kwndname);
-    cv::createTrackbar(ktrkbarname, kwndname, &slider, kslidermax, on_trackbar_change);
+    cv::Mat img;
 
-    cv::imshow(kwndname, cv::Mat(300, 400, CV_8UC3, cv::Scalar(128, 128, 128)));
+    const std::string wndName = "Window";
+    cv::namedWindow(wndName);
 
+    UserData data {img, wndName};
+    const std::string trkbarName = "Trackbar";
+    cv::createTrackbar(trkbarName, wndName, nullptr, UINT8_MAX, OnTrackbarChange, &data);
+
+    OnTrackbarChange(0, &data);
     cv::waitKey(0);
     return 0;
 }
