@@ -1,41 +1,50 @@
-//===-- OpenCV - Core - Blending --------------------------------*- C++ -*-===//
+//===-- Blending ------------------------------------------------*- C++ -*-===//
 ///
-/// \file
-/// \brief 混合
+/// \defgroup gBlending 混合
+/// \ingroup gCore
 ///
 /// \sa <https://docs.opencv.org/3.4.2/d5/dc4/tutorial_adding_images.html>
 ///
 /// \author zhengrr
-/// \version 2018-07-17
+/// \version 2018-07-19
 /// \since 2018-03-01
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
+#include <string>
 
+#include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 namespace rropencv {
 
+/// @addtogroup gBlending
+/// @{
+
 ///
 /// \brief 混合。
-/// \details
-///     \f[
-///       I_{\textrm{rslt}} = α_{\textrm{ratio1}}I_{\textrm{inp1}} + (1-α_{\textrm{ratio1}})I_{\textrm{inp2}}
-///     \f]
+/// \details 按配比混合两图像。
+///          \f[
+///            I_{\textrm{rtn}} = α_{\textrm{ratio1}}I_{\textrm{img1}} + (1-α_{\textrm{ratio1}})I_{\textrm{img2}}
+///          \f]
 ///
-/// \param[out] rsltImg 成果图像；
-/// \param[in]  inpImg1 输入图像1；
-/// \param[in]  inpImg2 输入图像2；
-/// \param[in]  ratio1  配比1；
+/// \param img1    图像1；
+/// \param ratio1  配比1；
+/// \param img2    图像2。
+/// \returns 结果图像。
 ///
-void Blend(cv::Mat *const rsltImg, const cv::Mat &inpImg1, const cv::Mat &inpImg2, const double ratio1)
+cv::Mat Blend(const cv::Mat &img1, const double ratio1, const cv::Mat &img2)
 {
     CV_Assert(0 <= ratio1, ratio1 <= 1);
     const double ratio2 = 1 - ratio1;
-    cv::addWeighted(inpImg1, ratio1, inpImg2, ratio2, 0., *rsltImg);
+    cv::Mat tmp;
+    cv::addWeighted(img1, ratio1, img2, ratio2, 0., tmp);
+    return tmp;
 }
+
+/// @}
 
 }// namespace rropencv
 
@@ -53,7 +62,7 @@ struct UserData {
 void OnTrackbarChange(int pos, void *userdata)
 {
     auto const data = reinterpret_cast<UserData *>(userdata);
-    rropencv::Blend(&data->rsltImg, data->inpImg1, data->inpImg2, pos / 100.);
+    data->rsltImg = rropencv::Blend(data->inpImg1, pos / 100., data->inpImg2);
     cv::imshow(data->wndName, data->rsltImg);
 }
 
@@ -94,7 +103,7 @@ int main(int argc, char *argv[])
     cv::namedWindow(wndName);
 
     cv::Mat rsltImg;
-    UserData data = {inpImg1, inpImg2, rsltImg, wndName};
+    UserData data {inpImg1, inpImg2, rsltImg, wndName};
 
     const std::string trkbarName = "Ratio1";
     cv::createTrackbar(trkbarName, wndName, nullptr, 100, OnTrackbarChange, &data);

@@ -1,0 +1,13 @@
+//===-- High-level GUI ------------------------------------------*- C++ -*-===//
+///
+/// \defgroup gHighGUI 高级图形用户接口
+/// \ingroup gOpenCV
+///
+/// \sa [*High-level GUI*](https://docs.opencv.org/3.4.2/d7/dfc/group__highgui.html)
+///
+/// \version 2018-07-19
+/// \since 2018-07-19
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//

@@ -1,0 +1,13 @@
+//===-- Image Processing ----------------------------------------*- C++ -*-===//
+///
+/// \defgroup gImgProc 图像处理
+/// \ingroup gOpenCV
+///
+/// \sa [*Image processing*](https://docs.opencv.org/3.4.2/d7/dbd/group__imgproc.html)
+///
+/// \version 2018-07-19
+/// \since 2018-07-19
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//

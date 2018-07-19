@@ -1,19 +1,21 @@
-//===-- OpenCV - Core - Contrast & Brightness -------------------*- C++ -*-===//
+//===-- Contrast & Brightness -----------------------------------*- C++ -*-===//
 ///
-/// \file
-/// \brief 对比度和亮度
+/// \defgroup gContBrt 对比度和亮度
+/// \ingroup gCore
 ///
 /// \sa <https://docs.opencv.org/3.4.2/d3/dc1/tutorial_basic_linear_transform.html>
 ///
 /// \author zhengrr
-/// \version 2018-07-17
+/// \version 2018-07-19
 /// \since 2018-07-17
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
+#include <string>
 
+#include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 namespace {
@@ -75,7 +77,6 @@ int main(int argc, char *argv[])
 
 
     const std::string betaTrkbarName = "Beta";
-    int betaTrkbarVal = UINT8_MAX;
     cv::createTrackbar(betaTrkbarName, wndName, &beta, 2 * UINT8_MAX, OnBetaTrackbarChange, &data);
 
     OnAlphaTrackbarChange(alpha, &data);

@@ -1,12 +1,12 @@
-//===-- OpenCV - Core - Mask ------------------------------------*- C++ -*-===//
+//===-- Mask ----------------------------------------------------*- C++ -*-===//
 ///
-/// \file
-/// \brief 掩码
+/// \defgroup gMask 掩码
+/// \ingroup gCore
 ///
 /// \sa <https://docs.opencv.org/3.4.2/d7/d37/tutorial_mat_mask_operations.html>
 ///
 /// \author zhengrr
-/// \version 2018-07-17
+/// \version 2018-07-19
 /// \since 2018-02-27
 /// \copyright The MIT License
 ///
@@ -15,28 +15,35 @@
 #include <iostream>
 #include <string>
 
+#include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
 namespace rropencv {
 
+/// @addtogroup gMask
+/// @{
+
 ///
 /// \brief 锐化。
 ///
-/// \param[out] rsltImg 成果图像；
-/// \param[in]  inpImg  输入图像。
+/// \param img 输入图像。
+/// \returns 结果图像。
 ///
-void Sharpen(cv::Mat *const rsltImg, const cv::Mat &inpImg)
+cv::Mat Sharpen(const cv::Mat &img)
 {
-    CV_Assert(inpImg.depth() == CV_8U);
+    CV_Assert(img.depth() == CV_8U);
 
-    static const cv::Mat Kernel = (cv::Mat_<char>(3, 3) <<
+    static const cv::Mat KERNEL = (cv::Mat_<char>(3, 3) <<
                                    0, -1, 0,
                                    -1, 5, -1,
                                    0, -1, 0);
-
-    cv::filter2D(inpImg, *rsltImg, inpImg.depth(), Kernel);
+    cv::Mat tmp;
+    cv::filter2D(img, tmp, img.depth(), KERNEL);
+    return tmp;
 }
+
+/// @}
 
 }// namespace rropencv
 
@@ -61,8 +68,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    cv::Mat rsltImg;
-    rropencv::Sharpen(&rsltImg, inpImg);
+    cv::Mat rsltImg = rropencv::Sharpen(inpImg);
 
     const std::string wndName = "Sharpen Image";
     cv::namedWindow(wndName);

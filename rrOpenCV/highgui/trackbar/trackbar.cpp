@@ -1,18 +1,21 @@
-//===-- OpenCV Tutorials - HighGui - Trackbar -------------------*- C++ -*-===//
+//===-- Trackbar ------------------------------------------------*- C++ -*-===//
 ///
-/// \file
-/// \brief OpenCV教程：滑动条
+/// \defgroup gTrkbar 滑动条
+/// \ingroup gHighGUI
 ///
-/// \sa http://opencv.org.cn/opencvdoc/2.3.2/html/doc/tutorials/highgui/trackbar/trackbar.html
-/// \sa https://docs.opencv.org/3.4.1/da/d6a/tutorial_trackbar.html
+/// \sa <https://docs.opencv.org/3.4.2/da/d6a/tutorial_trackbar.html>
 ///
 /// \author zhengrr
-/// \version 2018-2-28
+/// \version 2018-7-19
 /// \since 2018-2-28
 /// \copyright The MIT License
 //===----------------------------------------------------------------------===//
 
-#include <opencv2/highgui.hpp>
+#include <iostream>
+#include <string>
+
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 namespace {
 
@@ -21,7 +24,7 @@ namespace {
 ///
 struct UserData {
     cv::Mat &img;
-    const std::string wndName;
+    const std::string &wndName;
 
     UserData() = delete;
 };
