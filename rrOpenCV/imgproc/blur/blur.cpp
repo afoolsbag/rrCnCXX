@@ -6,7 +6,7 @@
 /// \sa <https://docs.opencv.org/3.4.2/dc/dd3/tutorial_gausian_median_blur_bilateral_filter.html>
 ///
 /// \author zhengrr
-/// \version 2018-07-19
+/// \version 2018-07-20
 /// \since 2018-07-19
 /// \copyright The MIT License
 //===----------------------------------------------------------------------===//
@@ -41,7 +41,11 @@ struct UserData {
 
 void Blur(const UserData &data)
 {
+    const auto &src = data.inpImg;
+    auto &dst = data.rsltImg;
+
     int param;
+
     auto const watch = []() -> std::string {
         static int64 tick = 0;
         const int64 cur = cv::getTickCount();
@@ -50,46 +54,45 @@ void Blur(const UserData &data)
         return tmp;
     };
 
-    const cv::Point org = cv::Point(5, data.inpImg.rows - 5);
+    const cv::Point org = cv::Point(static_cast<int>(.01 * src.cols), static_cast<int>(.98 * src.rows));
     const int fontFace = CV_FONT_HERSHEY_TRIPLEX;
     const int fontScale = 1;
     const cv::Scalar color = cv::Scalar::all(127);
 
     switch (data.blurType) {
-    case BlurType::ORIGINAL: {
+    case BlurType::ORIGINAL:
         CV_UNUSED(watch());
-        data.rsltImg = data.inpImg.clone();
-        cv::putText(data.rsltImg, "Original (" + watch() + ")", org, fontFace, fontScale, color);
-        cv::imshow(data.wndName, data.rsltImg);
+        dst = src.clone();
+        cv::putText(dst, "Original (" + watch() + ")", org, fontFace, fontScale, color);
+        cv::imshow(data.wndName, dst);
         break;
-    }
     case BlurType::HOMOGENEOUS:
         param = 1 + data.blurParam / 2 * 2;
         CV_UNUSED(watch());
-        cv::blur(data.inpImg, data.rsltImg, cv::Size(param, param), cv::Point(-1, -1));
-        cv::putText(data.rsltImg, "Homogeneous Blur (" + watch() + ")", org, fontFace, fontScale, color);
-        cv::imshow(data.wndName, data.rsltImg);
+        cv::blur(src, dst, cv::Size(param, param), cv::Point(-1, -1));
+        cv::putText(dst, "Homogeneous Blur (" + watch() + ")", org, fontFace, fontScale, color);
+        cv::imshow(data.wndName, dst);
         break;
     case BlurType::GAUSSIAN:
         param = 1 + data.blurParam / 2 * 2;
         CV_UNUSED(watch());
-        cv::GaussianBlur(data.inpImg, data.rsltImg, cv::Size(param, param), 0.);
-        cv::putText(data.rsltImg, "Gaussian Blur (" + watch() + ")", org, fontFace, fontScale, color);
-        cv::imshow(data.wndName, data.rsltImg);
+        cv::GaussianBlur(src, dst, cv::Size(param, param), 0.);
+        cv::putText(dst, "Gaussian Blur (" + watch() + ")", org, fontFace, fontScale, color);
+        cv::imshow(data.wndName, dst);
         break;
     case BlurType::MEDIAN:
         param = 1 + data.blurParam / 2 * 2;
         CV_UNUSED(watch());
-        cv::medianBlur(data.inpImg, data.rsltImg, param);
-        cv::putText(data.rsltImg, "Median Blur (" + watch() + ")", org, fontFace, fontScale, color);
-        cv::imshow(data.wndName, data.rsltImg);
+        cv::medianBlur(src, dst, param);
+        cv::putText(dst, "Median Blur (" + watch() + ")", org, fontFace, fontScale, color);
+        cv::imshow(data.wndName, dst);
         break;
     case BlurType::BILATERAL:
         param = data.blurParam;
         CV_UNUSED(watch());
-        cv::bilateralFilter(data.inpImg, data.rsltImg, param, param * 2, param / 2);
-        cv::putText(data.rsltImg, "Bilateral Blur (" + watch() + ")", org, fontFace, fontScale, color);
-        cv::imshow(data.wndName, data.rsltImg);
+        cv::bilateralFilter(src, dst, param, param * 2, param / 2);
+        cv::putText(dst, "Bilateral Blur (" + watch() + ")", org, fontFace, fontScale, color);
+        cv::imshow(data.wndName, dst);
         break;
     default:
         assert(false);

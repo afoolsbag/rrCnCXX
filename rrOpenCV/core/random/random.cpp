@@ -218,8 +218,7 @@ bool DisplayingBigEnd(cv::Mat &img, const std::string &wndName, cv::RNG &rng)
 
     for (int i = 0; i < 255; i += 2) {
         img2 = img - cv::Scalar::all(i);
-        cv::putText(img2, "OpenCV forever!", org, cv::FONT_HERSHEY_COMPLEX, 3,
-                    cv::Scalar(i, i, 255), 5, 8);
+        cv::putText(img2, "OpenCV forever!", org, cv::FONT_HERSHEY_COMPLEX, 3, cv::Scalar(i, i, 255), 5, 8);
 
         cv::imshow(wndName, img2);
         if (cv::waitKey(DELAY) >= 0)
