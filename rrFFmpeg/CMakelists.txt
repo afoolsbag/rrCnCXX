@@ -1,0 +1,17 @@
+#           ____________
+#           |  ___|  ___|
+#  _ __ _ __| |_  | |_ _ __ ___  _ __   ___  __ _
+# | '__| '__|  _| |  _| '_ ` _ \| '_ \ / _ \/ _` |
+# | |  | |  | |   | | | | | | | | |_) |  __/ (_| |
+# |_|  |_|  \_|   \_| |_| |_| |_| .__/ \___|\__, |
+# zhengrr                       | |          __/ |
+# 2018-07-20 – 2018-07-20       |_|         |___/  rrFFmpeg by FIGlet doom
+# The MIT License
+
+project(rrFFmpeg VERSION 2018.7.20 LANGUAGES C)
+project_extra()
+compiler_warning_level(AS_ERROR UTF-8)
+
+facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
+
+aux_add_subdirectories()

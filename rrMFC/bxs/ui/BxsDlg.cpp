@@ -15,7 +15,15 @@
 #include "propdlg/PropPg3.h"
 
 BEGIN_MESSAGE_MAP(BoxesDialog, CDialog)
+    ON_BN_CLICKED(IDC_MSGBOX_BUTTON, &BoxesDialog::OnBnClickedMsgboxButton)
+    ON_BN_CLICKED(IDC_AFXMSGBOX_BUTTON, &BoxesDialog::OnBnClickedAfxmsgboxButton)
+    ON_BN_CLICKED(IDC_ERROR_BUTTON, &BoxesDialog::OnBnClickedErrorButton)
+    ON_BN_CLICKED(IDC_WARNING_BUTTON, &BoxesDialog::OnBnClickedWarningButton)
+    ON_BN_CLICKED(IDC_INFORMATION_BUTTON, &BoxesDialog::OnBnClickedInformationButton)
+    ON_BN_CLICKED(IDC_QUESTION_BUTTON, &BoxesDialog::OnBnClickedQuestionButton)
+
     ON_BN_CLICKED(IDC_DDX_BUTTON, &BoxesDialog::OnBnClickedDdx)
+
     ON_BN_CLICKED(IDC_PROGRESS_BUTTON, &BoxesDialog::OnBnClickedProgress)
     ON_BN_CLICKED(IDC_PROPERTY_BUTTON, &BoxesDialog::OnBnClickedProperty)
 END_MESSAGE_MAP()
@@ -86,6 +94,48 @@ ThreadFunction(ProgressBox *CONST pProgBox)
         Sleep(1);
     }
     return EXIT_SUCCESS;
+}
+
+VOID BoxesDialog::
+OnBnClickedMsgboxButton()
+{
+    DcMeth();
+    MessageBox(TEXT("CWnd::MessageBox"));
+}
+
+VOID BoxesDialog::
+OnBnClickedAfxmsgboxButton()
+{
+    DcMeth();
+    AfxMessageBox(TEXT("AfxMessageBox"));
+}
+
+VOID BoxesDialog::
+OnBnClickedErrorButton()
+{
+    DcMeth();
+    AfxMessageBox(TEXT("AfxMessageBox with icon error"), MB_ICONERROR);
+}
+
+VOID BoxesDialog::
+OnBnClickedWarningButton()
+{
+    DcMeth();
+    AfxMessageBox(TEXT("AfxMessageBox with icon warning"), MB_ICONWARNING);
+}
+
+VOID BoxesDialog::
+OnBnClickedInformationButton()
+{
+    DcMeth();
+    AfxMessageBox(TEXT("AfxMessageBox with icon information"), MB_ICONINFORMATION);
+}
+
+VOID BoxesDialog::
+OnBnClickedQuestionButton()
+{
+    DcMeth();
+    AfxMessageBox(TEXT("AfxMessageBox with icon question"), MB_ICONQUESTION);
 }
 
 VOID BoxesDialog::

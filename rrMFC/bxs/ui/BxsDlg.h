@@ -44,9 +44,18 @@ protected:
 
 #// Message Handlers
 protected:
+    afx_msg VOID OnBnClickedMsgboxButton();
+    afx_msg VOID OnBnClickedAfxmsgboxButton();
+    afx_msg VOID OnBnClickedErrorButton();
+    afx_msg VOID OnBnClickedWarningButton();
+    afx_msg VOID OnBnClickedInformationButton();
+    afx_msg VOID OnBnClickedQuestionButton();
+
     afx_msg VOID OnBnClickedDdx();
+
     afx_msg VOID OnBnClickedProgress();
     afx_msg VOID OnBnClickedProperty();
 
     DECLARE_MESSAGE_MAP()
+public:
 };
