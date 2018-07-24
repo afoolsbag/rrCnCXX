@@ -18,7 +18,7 @@
 /// ["C++ reference"](http://en.cppreference.com/w/cpp). *cppreference.com*.
 /// [*cplusplus.com*](http://cplusplus.com)
 ///
-/// # Programming Styles                                   {#sProgrammingStyles}
+/// # Styles                                                          {#sStyles}
 ///
 /// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
 /// [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
@@ -56,21 +56,21 @@
 ///
 /// # Guides                                                          {#sGuides}
 ///
-/// ["C/C++"](http://fffaraz.github.io/awesome-cpp/). *Awesome*.
-///
 /// [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
 /// ["C++必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
 ///
 /// *Effective C++*
 ///
-/// # Groceries                                                     {#Groceries}
+/// # Awesome                                                        {#sAwesome}
+///
+/// [*Awesome C++*](http://fffaraz.github.io/awesome-cpp/)
 ///
 /// [*Google Test*](https://github.com/google/googletest)
 ///
 /// ___
 /// <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
 ///
-/// \version 2018-05-28
+/// \version 2018-07-24
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC BY 4.0

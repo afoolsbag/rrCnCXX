@@ -20,19 +20,19 @@
  *
  * # References                                                   {#sReferences}
  *
- * ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
- * ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft Docs*.
- * [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
  * ["C and C++ Language Syntax Reference"](https://cprogramming.com/reference). *Cprogramming.com*.
+ * ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft Docs*.
+ * ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
  * [*comp.lang.c Frequently Asked Questions*](http://c-faq.com/)
+ * [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
 
- * # Programming Styles                                    {#sProgrammingStyles}
+ * # Styles                                                           {#sStyles}
  *
- * [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
  * [*GNU Coding Standards*](https://gnu.org/prep/standards/standards.html)
- * [*SEI CERT C Coding Standard*](https://wiki.sei.cmu.edu/confluence/display/c)
+ * [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
  * [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
  * [*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
+ * [*SEI CERT C Coding Standard*](https://wiki.sei.cmu.edu/confluence/display/c)
  *
  * ## Naming                                                         {#ssNaming}
  *
@@ -66,26 +66,26 @@
  *
  * # Guides                                                           {#sGuides}
  *
- * ["C"](https://notabug.org/koz.ross/awesome-c). *Awesome*.
- *
+ * *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
  * *C Programming: A Modern Approach.* 1st ed. 1996; [2nd ed.](http://knking.com/books/c2) 2008. K. N. King.
- * *The C Programming Language*. 1st ed. 1978; 2nd ed. 1988. Brian Kernighan; Dennis Ritchie.
- * *Pointers on C*. 1997. Kenneth Reek.
  * *C Traps and Pitfalls*. 1989. Andrew Koenig.
  * *Expert C Programming: Deep C Secrets*. 1994. Peter van der Linden.
+ * [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf). 1989. Eric. S. Roberts.
+ * *Pointers on C*. 1997. Kenneth Reek.
+ * [*The C Library Reference Guide*](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide). 1997. Eric Huss.
+ * *The C Programming Language*. 1st ed. 1978; 2nd ed. 1988. Brian Kernighan; Dennis Ritchie.
+ * *The Standard C Library*. 1992. P. J. Plauger.
  *
- * # Groceries                                                     {#sGroceries}
+ * # Awesome                                                         {#sAwesome}
+ *
+ * [*Awesome C*](https://notabug.org/koz.ross/awesome-c)
  *
  * [*Check*](https://libcheck.github.io/check)
- * *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
- * [*The C Library Reference Guide*](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide). 1997. Eric Huss.
- * *The Standard C Library*. 1992. P. J. Plauger.
- * [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf). 1989. Eric. S. Roberts.
  *
  * ___
  * <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
  *
- * \version 2018-05-28
+ * \version 2018-07-24
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0
