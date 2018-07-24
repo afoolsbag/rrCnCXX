@@ -3,16 +3,16 @@
  * \defgroup gDtpUI 桌面应用用户界面
  * \ingroup gDvlp
  *
- * \sa ["Desktop App User Interface"](https://docs.microsoft.com/windows/desktop/windows-application-ui-development). *MSDocs*.
+ * \sa ["Desktop App User Interface"](https://docs.microsoft.com/windows/desktop/windows-application-ui-development). *Microsoft Docs*.
  *     + Getting Started Developing User Interfaces for Windows Applications
  *     + Windows User Experience Interaction Guidelines
- *     + [Internationalization for Windows Applications](https://docs.microsoft.com/windows/desktop/Intl/international-support)
+ *     + [Internationalization for Windows Applications](https://docs.microsoft.com/windows/desktop/Intl)
  *     + Accessibility
  *     + User Interaction
- *     + [Windows and Messages](https://docs.microsoft.com/windows/desktop/winmsg/windowing)
+ *     + [Windows and Messages](https://docs.microsoft.com/windows/desktop/winmsg)
  *     + Desktop Window Manager
- *     + Dialog Boxes
- *     + [Menus and Other Resources](https://docs.microsoft.com/windows/desktop/menurc/resources)
+ *     + [Dialog Boxes](https://docs.microsoft.com/windows/desktop/dlgbox)
+ *     + [Menus and Other Resources](https://docs.microsoft.com/windows/desktop/menurc)
  *     + Data Exchange
  *     + High DPI
  *     + Windows Animation Manager
@@ -21,7 +21,7 @@
  *     + Tiles, badges, and notifications for Classic desktop applications
  *     + Title Callable UI
  *
- * \version 2018-07-12
+ * \version 2018-07-24
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

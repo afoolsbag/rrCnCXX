@@ -1,0 +1,13 @@
+/*===-- Dialog Boxes -------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gDlgBox 对话框
+ * \ingroup gDtpUI
+ *
+ * \sa ["Dialog Boxes"](https://docs.microsoft.com/windows/desktop/dlgbox). *Microsoft Docs*.
+ *
+ * \version 2018-07-24
+ * \since 2018-07-24
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

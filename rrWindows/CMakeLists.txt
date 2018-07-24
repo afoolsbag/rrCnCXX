@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-07-12
+# 2016-10-12 – 2018-07-24
 # The MIT License
 
-project(rrWindows VERSION 2018.7.12 LANGUAGES C)
+project(rrWindows VERSION 2018.7.24 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
@@ -32,6 +32,7 @@ facile_add_check_executable(SUBNAME Test
 
 facile_add_executable(SUBNAME "ConsoleApplication"
                               "conapp.c")
+
 facile_add_executable(SUBNAME "DesktopApplication"
                         WIN32 "dtpapp.c")
 

@@ -1,11 +1,11 @@
 /*===-- Unicode and Character Sets -----------------------------*- C -*-===*//**
  *
  * \defgroup gCharSet 统一码和字符集
- * \ingroup gI18n
+ * \ingroup gIntl
  *
- * \sa ["Unicode and Character Sets"](https://msdn.microsoft.com/library/dd374083). *Microsoft® Developer Network*.
+ * \sa ["Unicode and Character Sets"](https://docs.microsoft.com/windows/desktop/Intl/unicode-and-character-sets). *Microsoft Docs*.
  *
- * \version 2018-04-26
+ * \version 2018-07-24
  * \since 2018-01-11
  * \authors zhengrr
  * \copyright CC BY 4.0

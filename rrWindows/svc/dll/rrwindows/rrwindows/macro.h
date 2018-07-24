@@ -3,7 +3,7 @@
  * \file
  * \brief 宏。
  *
- * \version 2018-06-29
+ * \version 2018-07-24
  * \since 2018-06-12
  * \authors zhengrr
  * \copyright The MIT License
@@ -47,3 +47,12 @@
 #define VAFUNC9(_1, _2, _3, _4, _5, _6, _7, _8, _9, func9, ...) func9
 /** \brief 变参宏函数（1-10参数）。 */
 #define VAFUNC10(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, func10, ...) func10
+
+/** \brief 条件展开。 */
+#ifdef _DEBUG
+# define DEBUG_ONLY(macro) macro
+# define RELEASE_ONLY(macro) /*nothing*/
+#else
+# define DEBUG_ONLY(macro) /*nothing*/
+# define RELEASE_ONLY(macro) macro
+#endif

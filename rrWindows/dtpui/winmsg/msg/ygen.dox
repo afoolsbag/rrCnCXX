@@ -1,11 +1,11 @@
 /*===-- Messages and Message Queues ----------------------------*- C -*-===*//**
  *
  * \defgroup gMsg 消息和消息队列
- * \ingroup gWM
+ * \ingroup gWinMsg
  *
- * \sa ["Messages and Message Queues"](https://msdn.microsoft.com/library/ms632590). *Microsoft® Developer Network*.
+ * \sa ["Messages and Message Queues"](https://docs.microsoft.com/windows/desktop/winmsg/messages-and-message-queues). *Microsoft Docs*.
  *
- * \version 2018-05-03
+ * \version 2018-07-24
  * \since 2018-05-03
  * \authors zhengrr
  * \copyright CC BY 4.0

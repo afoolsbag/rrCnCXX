@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-06-04
+# 2017-12-18 – 2018-07-24
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -12,12 +12,11 @@ endif()
 #    便捷加入子目录（构建）：
 #    ::
 #
-#       facile_add_subdirectory(
-#         <source-directory>
-#         [binary-directory]
-#         [EXCLUDE_FROM_ALL]
-#         [WITHOUT_OPTION]
-#         [OPTION_INITIAL_ON]
+#       facile_add_subdirectory(<source-directory>
+#                               [binary-directory]
+#                               [EXCLUDE_FROM_ALL]
+#                               [WITHOUT_OPTION]
+#                               [OPTION_INITIAL_ON]
 #       )
 #
 function(facile_add_subdirectory _SOURCE_DIRECTORY)

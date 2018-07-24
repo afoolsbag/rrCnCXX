@@ -1,9 +1,9 @@
 /*===-- System Code String -------------------------------------*- C -*-===*//**
  *
  * \file
- * \brief 系统代码字串。
+ * \brief 系统代码字符串。
  *
- * \version 2018-06-29
+ * \version 2018-07-24
  * \since 2018-04-13
  * \authors zhengrr
  * \copyright The MIT License

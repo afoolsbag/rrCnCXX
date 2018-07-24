@@ -1,0 +1,22 @@
+/*===-- Windows and Messages -----------------------------------*- C -*-===*//**
+ *
+ * \defgroup gWinMsg Windows和消息
+ * \ingroup gDtpUI
+ *
+ * \sa ["Windows and Messages"](https://docs.microsoft.com/windows/desktop/winmsg). *Microsoft Docs*.
+ *     + Windows
+ *     + Window Classes
+ *     + Window Procedures
+ *     + [Messages and Message Queues](https://msdn.microsoft.com/library/ms632590)
+ *     + Timers
+ *     + Window Properties
+ *     + Configuration
+ *     + Hooks
+ *     + Multiple Document Interface
+ *
+ * \version 2018-07-24
+ * \since 2018-05-03
+ * \authors zhengrr
+ * \copyright CC BY 4.0
+ *
+*//*===--------------------------------------------------------------------===*/

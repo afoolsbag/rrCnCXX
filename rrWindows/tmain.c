@@ -17,9 +17,9 @@
 #include "net/rpc/tsuite_rpc.h"
 #include "net/wnet/tsuite_wnet.h"
 #include "svc/info/reg/tsuite_reg.h"
-#include "dtpui/i18n/charset/tsuite_charset.h"
-#include "dtpui/res/str/tsuite_str.h"
-#include "dtpui/res/ver/tsuite_ver.h"
+#include "dtpui/intl/charset/tsuite_charset.h"
+#include "dtpui/menurc/str/tsuite_str.h"
+#include "dtpui/menurc/ver/tsuite_ver.h"
 
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {

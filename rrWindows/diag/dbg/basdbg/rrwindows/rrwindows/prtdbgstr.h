@@ -45,7 +45,7 @@ extern "C" {;
 #endif
 
 /**
- * \brief 打印调试字串（va_list接口，ANSI适配，MemoryAllocate实现）。
+ * \brief 变参打印调试字串（ANSI适配，MemoryAllocate实现）。
  */
 RRWINDOWS_API
 VOID
@@ -55,7 +55,23 @@ VPrintDebugStringAma(
     _In_                         va_list CONST va);
 
 /**
- * \brief 打印调试字串（va_list接口，ANSI适配，StaticBuffer实现）。
+ * \brief 变参打印调试字串（UNICODE适配，MemoryAllocate实现）。
+ */
+RRWINDOWS_API
+VOID
+WINAPI
+VPrintDebugStringWma(
+    _In_z_ _Printf_format_string_ LPCWSTR CONST format,
+    _In_                          va_list CONST va);
+
+#ifdef _UNICODE
+# define VPrintDebugStringMa VPrintDebugStringWma
+#else
+# define VPrintDebugStringMa VPrintDebugStringAma
+#endif
+
+/**
+ * \brief 变参打印调试字串（ANSI适配，StaticBuffer实现）。
  * \warning 预设的缓存尺寸可能不足。
  */
 RRWINDOWS_API
@@ -65,18 +81,9 @@ VPrintDebugStringAsb(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
     _In_                         va_list CONST va);
 
-/**
- * \brief 打印调试字串（va_list接口，UNICODE适配，MemoryAllocate实现）。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-VPrintDebugStringWma(
-    _In_z_ _Printf_format_string_ LPCWSTR CONST format,
-    _In_                          va_list CONST va);
 
 /**
- * \brief 打印调试字串（va_list接口，UNICODE适配，StaticBuffer实现）。
+ * \brief 变参打印调试字串（UNICODE适配，StaticBuffer实现）。
  * \warning 预设的缓存尺寸可能不足。
  */
 RRWINDOWS_API
@@ -86,6 +93,12 @@ VPrintDebugStringWsb(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     _In_                          va_list CONST va);
 
+#ifdef _UNICODE
+# define VPrintDebugStringSb VPrintDebugStringWsb
+#else
+# define VPrintDebugStringSb VPrintDebugStringAsb
+#endif
+
 #ifdef __cplusplus
 }
 #endif
@@ -93,29 +106,13 @@ VPrintDebugStringWsb(
 /*-Print-Debug-String---------------------------------------------------------*/
 
 /**
- * \brief 打印调试字串（ANSI适配，MemoryAllocate实现）。
- */
-FORCEINLINE
-VOID
-WINAPIV
-PrintDebugStringAma(
-    _In_z_ _Printf_format_string_ LPCSTR CONST format,
-    ...)
-{
-    va_list va;
-    va_start(va, format);
-    VPrintDebugStringAma(format, va);
-    va_end(va);
-}
-
-/**
- * \brief 打印调试字串（ANSI适配，StaticBuffer实现）。
+ * \brief 打印调试字串（ANSI适配）。
  * \warning 预设的缓存尺寸可能不足。
  */
 FORCEINLINE
 VOID
 WINAPIV
-PrintDebugStringAsb(
+PrintDebugStringA(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
     ...)
 {
@@ -126,29 +123,13 @@ PrintDebugStringAsb(
 }
 
 /**
- * \brief 打印调试字串（UNICODE适配，MemoryAllocate实现）。
- */
-FORCEINLINE
-VOID
-WINAPIV
-PrintDebugStringWma(
-    _In_z_ _Printf_format_string_ LPCWSTR CONST format,
-    ...)
-{
-    va_list va;
-    va_start(va, format);
-    VPrintDebugStringWma(format, va);
-    va_end(va);
-}
-
-/**
- * \brief 打印调试字串（UNICODE适配，StaticBuffer实现）。
+ * \brief 打印调试字串（UNICODE适配）。
  * \warning 预设的缓存尺寸可能不足。
  */
 FORCEINLINE
 VOID
 WINAPIV
-PrintDebugStringWsb(
+PrintDebugStringW(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     ...)
 {
@@ -159,9 +140,9 @@ PrintDebugStringWsb(
 }
 
 #ifdef _UNICODE
-# define PrintDebugString PrintDebugStringWsb
+# define PrintDebugString PrintDebugStringW
 #else
-# define PrintDebugString PrintDebugStringAsb
+# define PrintDebugString PrintDebugStringA
 #endif
 
 /** @} */

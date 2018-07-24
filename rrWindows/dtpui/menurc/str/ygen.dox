@@ -1,11 +1,11 @@
 /*===-- Strings ------------------------------------------------*- C -*-===*//**
  *
  * \defgroup gStr 字符串
- * \ingroup gRes
+ * \ingroup gMenuRc
  *
- * \sa ["Strings"](https://docs.microsoft.com/windows/desktop/menurc/strings). *MSDocs*.
+ * \sa ["Strings"](https://docs.microsoft.com/windows/desktop/menurc/strings). *Microsoft Docs*.
  *
- * \version 2018-07-12
+ * \version 2018-07-24
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright CC BY 4.0
