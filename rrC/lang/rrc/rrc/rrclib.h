@@ -5,7 +5,7 @@
  *
  * \sa [DLL编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2018-06-20
+ * \version 2018-07-25
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright The MIT License
@@ -22,17 +22,17 @@
 #include "rrcapi.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C" {;
 #endif
 
 /**
  * \brief rrc版本类型（结构体）。
  */
 struct rrc_version_t {
-	uint16_t major;  /**< 主版本号。 */
-	uint16_t minor;  /**< 次版本号。 */
-	uint16_t patch;  /**< 补丁版本号。 */
-	uint16_t tweak;  /**< 微调版本号。 */
+    uint16_t major;  /**< 主版本号。 */
+    uint16_t minor;  /**< 次版本号。 */
+    uint16_t patch;  /**< 补丁版本号。 */
+    uint16_t tweak;  /**< 微调版本号。 */
 };
 
 /**

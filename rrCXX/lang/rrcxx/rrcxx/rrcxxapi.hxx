@@ -1,42 +1,20 @@
-/*===-- API Import/Export Macro Definition ---------------------*- C -*-===*//**
- *
- * \file
- * \brief 应用程序接口导入/导出宏定义
- * \details ELF（Executable and Linkable Format）缺省导出/导出符号；
- *          PE（Portable Executable）缺省隐藏符号。
- *
- * \version 2018-06-20
- * \since 2017-01-12
- * \authors zhengrr
- * \copyright The MIT License
- *
-**//*===-------------------------------------------------------------------===*/
+//===-- API Import/Export Macro Definition ----------------------*- C++ -*-===//
+///
+/// \file
+/// \brief 应用程序接口导入/导出宏定义
+/// \details ELF（Executable and Linkable Format）缺省导出/导出符号；
+///          PE（Portable Executable）缺省隐藏符号。
+///
+/// \version 2018-07-25
+/// \since 2017-01-12
+/// \authors zhengrr
+/// \copyright The MIT License
+///
+//===----------------------------------------------------------------------===//
 
 #pragma once
 #ifndef RRCXX_RRCXXAPI_HXX_
 #define RRCXX_RRCXXAPI_HXX_
-
-#ifdef __cplusplus
-# ifndef EXTERN_C
-# define EXTERN_C       extern "C"
-# endif
-# ifndef EXTERN_C_START
-# define EXTERN_C_START extern "C" {
-# endif
-# ifndef EXTERN_C_END
-# define EXTERN_C_END   }
-# endif
-#else
-# ifndef EXTERN_C
-# define EXTERN_C       extern
-# endif
-# ifndef EXTERN_C_START
-# define EXTERN_C_START
-# endif
-# ifndef EXTERN_C_END
-# define EXTERN_C_END
-# endif
-#endif
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 # if defined(_MSC_VER)
@@ -69,12 +47,12 @@
 
 #ifdef RRCXX_SHARED
 # ifdef RRCXX_EXPORTS
-#  define RRCXX_API   RRCXX_EXPORT
+#  define RRCXX_API RRCXX_EXPORT
 # else
-#  define RRCXX_API   RRCXX_IMPORT
+#  define RRCXX_API RRCXX_IMPORT
 # endif
 #else
 #  define RRCXX_API
 #endif
 
-#endif/*RRCXX_RRCXXAPI_HXX_*/
+#endif//RRCXX_RRCXXAPI_HXX_
