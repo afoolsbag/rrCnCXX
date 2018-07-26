@@ -25,7 +25,7 @@ namespace nl1 {
 ///
 /// \brief 点。
 ///
-template <typename ScalarType>
+template <typename ScalarType = double>
 struct Point {
     ScalarType x = 0;  ///< 坐标。
 
@@ -43,7 +43,7 @@ struct Point {
 ///
 /// \brief 区间。
 ///
-template <typename ScalarType>
+template <typename ScalarType = double>
 struct Interval {
     ///
     /// \brief 区间类型。

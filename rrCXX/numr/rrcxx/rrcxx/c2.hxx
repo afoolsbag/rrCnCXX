@@ -41,7 +41,7 @@ enum class PlaneArea {
 ///
 /// \brief 点。
 ///
-template <typename ScalarType>
+template <typename ScalarType = double>
 struct Point {
     ScalarType x = 0;  ///< 横坐标。
     ScalarType y = 0;  ///< 纵坐标。
@@ -83,7 +83,7 @@ struct Point {
 ///
 /// \brief 自由矢量。
 ///
-template <typename ScalarType>
+template <typename ScalarType = double>
 struct FreeVector {
     ScalarType x = 0;  ///< 横坐标。
     ScalarType y = 0;  ///< 纵坐标。
@@ -110,19 +110,46 @@ struct FreeVector {
         return Point<ScalarType>(x, y);
     }
 
-    /**
-     * \brief 模。
-     */
-    inline ScalarType modulus() const
+    ///
+    /// \brief 模。
+    ///
+    inline ScalarType norm() const
     {
         return std::sqrt(x * x + y * y);
+    }
+
+    ///
+    /// \brief 垂直向量（\f$ \vec{v}^\perp \f$）。
+    ///
+    /// \param ccw 旋转方向，`true`逆时针、`false`顺时针。
+    /// \returns 逆时针或顺时针旋转\f$ 90^\circ \f$的垂直向量。
+    ///
+    inline FreeVector<ScalarType> PerpendicularVector(const bool ccw = true) const
+    {
+        if (ccw)
+            return FreeVector<ScalarType>(-y, x);
+        else
+            return FreeVector<ScalarType>(y, -x);
+    }
+
+    ///
+    /// \brief 垂直向量（\f$ \vec{v}^{\perp} \f$）。
+    ///
+    /// \param dir 方向向量，若共线则取逆时针垂直向量。
+    ///
+    inline FreeVector<ScalarType> PerpendicularVector(const FreeVector<ScalarType> &dir) const
+    {
+        if (x * dir.y - y * dir.x < 0)
+            return FreeVector<ScalarType>(y, -x);
+        else
+            return FreeVector<ScalarType>(-y, x);
     }
 };
 
 ///
 /// \brief 反矢量。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline FreeVector<ScalarType> operator -(const FreeVector<ScalarType> &vec)
 {
     return FreeVector<ScalarType>(-vec.x, -vec.y);
@@ -131,7 +158,7 @@ inline FreeVector<ScalarType> operator -(const FreeVector<ScalarType> &vec)
 ///
 /// \brief 矢量加。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline FreeVector<ScalarType> operator +(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
 {
     return FreeVector<ScalarType>(vec1.x + vec2.x, vec1.y + vec2.y);
@@ -140,25 +167,25 @@ inline FreeVector<ScalarType> operator +(const FreeVector<ScalarType> &vec1, con
 ///
 /// \brief 矢量减。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline FreeVector<ScalarType> operator -(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
 {
     return FreeVector<ScalarType>(vec1.x - vec1.x, vec2.y - vec2.y);
 }
 
 ///
-/// \brief 点积（标量积）。
+/// \brief 点积（标量积）（\f$ \cdot \f$）。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline ScalarType DotProduct(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
 {
     return vec1.x * vec2.x + vec1.y * vec2.y;
 }
 
 ///
-/// \brief 叉积（矢量积）。
+/// \brief 叉积（矢量积）（\f$ \times \f$）。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline ScalarType CrossProduct(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
 {
     return vec1.x * vec2.y - vec1.y * vec2.x;
@@ -174,16 +201,16 @@ inline ScalarType CrossProduct(const FreeVector<ScalarType> &vec1, const FreeVec
 ///            \end{align}
 ///          \f]
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline ScalarType Angle(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
 {
-    return std::acos(DotProduct(vec1, vec2) / (vec1.modulus() * vec2.modulus()));
+    return std::acos(DotProduct(vec1, vec2) / (vec1.norm() * vec2.norm()));
 }
 
 ///
 /// \brief 常量乘矢量。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline FreeVector<ScalarType> operator *(const ScalarType &a, const FreeVector<ScalarType> &vec)
 {
     return FreeVector<ScalarType>(a * vec.x, a * vec.y);
@@ -192,7 +219,7 @@ inline FreeVector<ScalarType> operator *(const ScalarType &a, const FreeVector<S
 ///
 /// \brief 矢量乘常量。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline FreeVector<ScalarType> operator *(const FreeVector<ScalarType> &vec, const ScalarType &a)
 {
     return a * vec;
@@ -201,7 +228,7 @@ inline FreeVector<ScalarType> operator *(const FreeVector<ScalarType> &vec, cons
 ///
 /// \brief 点加矢量。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline Point<ScalarType> operator +(const Point<ScalarType> &pt, const FreeVector<ScalarType> &vec)
 {
     return Point<ScalarType>(pt.x + vec.x, pt.y + vec.y);
@@ -210,7 +237,7 @@ inline Point<ScalarType> operator +(const Point<ScalarType> &pt, const FreeVecto
 ///
 /// \brief 点减矢量。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline Point<ScalarType> operator -(const Point<ScalarType> &pt, const FreeVector<ScalarType> &vec)
 {
     return Point<ScalarType>(pt.x - vec.x, pt.y - vec.y);
@@ -219,7 +246,7 @@ inline Point<ScalarType> operator -(const Point<ScalarType> &pt, const FreeVecto
 ///
 /// \brief 固定矢量。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 struct BoundVector {
     Point<ScalarType> ipt;       ///< 起始点。
     FreeVector<ScalarType> vec;  ///< 自由矢量。
@@ -235,7 +262,7 @@ struct BoundVector {
 ///
 /// \brief 线段。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 struct LineSegment {
     Point<ScalarType> ept1;  ///< 端点1。
     Point<ScalarType> ept2;  ///< 端点2。
@@ -281,7 +308,7 @@ struct LineSegment {
 ///
 /// \brief 点与线段相交否。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline bool Intersected(const Point<ScalarType> &pt, const LineSegment<ScalarType> &ls)
 {
     // 进行快速判定，排除明显不相交的情形：
@@ -301,7 +328,7 @@ inline bool Intersected(const Point<ScalarType> &pt, const LineSegment<ScalarTyp
 ///
 /// \brief 线段与点相交否。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline bool Intersected(const LineSegment<ScalarType> &ls, const Point<ScalarType> &pt)
 {
     return Intersected(pt, ls);
@@ -345,7 +372,7 @@ inline bool Intersected(const LineSegment<ScalarType> &ls, const Point<ScalarTyp
 ///
 /// \sa <https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect>
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline bool Intersected(const LineSegment<ScalarType> &ls1, const LineSegment<ScalarType> &ls2)
 {
     // 进行快速判定，排除明显不相交的情形：
@@ -377,7 +404,7 @@ inline bool Intersected(const LineSegment<ScalarType> &ls1, const LineSegment<Sc
 ///
 /// \brief 射线。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 struct Ray {
     Point<ScalarType> ipt;  ///< 起始点。
     ScalarType phi = 0;     ///< 角。
@@ -394,7 +421,7 @@ struct Ray {
 /// \brief 直线。
 /// \details 形如 \f$ L = \{ (x,y) \mid ax+by+c=0 \} \f$
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 struct Line {
     ScalarType a = 0;  ///< 横坐标系数。
     ScalarType b = 0;  ///< 纵坐标系数。
@@ -412,7 +439,7 @@ struct Line {
 ///
 /// \brief 轴平行矩形。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 struct AxisParallelRectangle {
     ScalarType x1 = 0;  ///< 横坐标1。
     ScalarType x2 = 0;  ///< 横坐标2。
@@ -453,7 +480,7 @@ struct AxisParallelRectangle {
 ///
 /// \brief 线段与轴平行矩形相交否。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline bool Intersected(const LineSegment<ScalarType> &ls, const AxisParallelRectangle<ScalarType> &r)
 {
     // 进行快速判定，排除明显不相交的情形：
@@ -496,7 +523,7 @@ inline bool Intersected(const LineSegment<ScalarType> &ls, const AxisParallelRec
 ///
 /// \brief 轴平行矩形与线段相交否。
 ///
-template<typename ScalarType>
+template<typename ScalarType = double>
 inline bool Intersected(const AxisParallelRectangle<ScalarType> &r, const LineSegment<ScalarType> &ls)
 {
     return Intersected(ls, r);
