@@ -125,6 +125,7 @@
 
 ["Including formulas"](http://doxygen.org/manual/formulas.html). *Doxygen Manual*.
 + [*LaTeX*](https://latex-project.org)
+    + [*An introduction to beautiful math on Quora*](https://math-on-quora.surge.sh/)
 + [*Dvips*](https://tug.org/texinfohtml/dvips.html)
 + [*GhostScript*](https://ghostscript.com)
 + [*MathJax*](https://mathjax.org/)

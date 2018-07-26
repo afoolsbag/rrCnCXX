@@ -109,6 +109,14 @@ struct FreeVector {
     {
         return Point<ScalarType>(x, y);
     }
+
+    /**
+     * \brief 模。
+     */
+    inline ScalarType modulus() const
+    {
+        return std::sqrt(x * x + y * y);
+    }
 };
 
 ///
@@ -154,6 +162,22 @@ template<typename ScalarType>
 inline ScalarType CrossProduct(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
 {
     return vec1.x * vec2.y - vec1.y * vec2.x;
+}
+
+///
+/// \brief 夹角。
+/// \details \f[
+///            \begin{align}
+///              \vec{AB} \cdot \vec{CD} &= \left| \vec{AB} \right| \left| \vec{CD} \right| \cos \theta                                 \\
+///                          \cos \theta &= \frac{ \vec{AB} \cdot \vec{CD} }{ \left| \vec{AB} \right| \left| \vec{CD} \right| }         \\
+///                               \theta &= \arccos \frac{ \vec{AB} \cdot \vec{CD} }{ \left| \vec{AB} \right| \left| \vec{CD} \right| }
+///            \end{align}
+///          \f]
+///
+template<typename ScalarType>
+inline ScalarType Angle(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
+{
+    return std::acos(DotProduct(vec1, vec2) / (vec1.modulus() * vec2.modulus()));
 }
 
 ///
@@ -285,42 +309,41 @@ inline bool Intersected(const LineSegment<ScalarType> &ls, const Point<ScalarTyp
 
 ///
 /// \brief 线段相交否。
-/// \details 设两线段 \f$ AB \f$ 和 \f$ CD \f$ 交于点 \f$ X \f$，则有：\n
-///          （1）
-///          \f$
-///            \begin{align*}
-///              \vec{OX} &= \vec{OA} + \vec{AX}          \\
-///                       &= \vec{OA} + r_{AB} × \vec{AB}
-///            \end{align*}
-///          \f$ \n
-///          （2）
-///          \f$
-///            \begin{align*}
-///              \vec{OX} &= \vec{OC} + \vec{CX}          \\
-///                       &= \vec{OC} + r_{CD} × \vec{CD}
-///            \end{align*}
-///          \f$ \n
-///          由（1）和（2）可得（3）
-///          \f$
-///            \begin{align*}
-///                                        \vec{OA} + r_{AB} × \vec{AB} &= \vec{OC} + r_{CD} × \vec{CD}                                              \\
-///              \left( \vec{OA} + r_{AB} × \vec{AB} \right) × \vec{CD} &= \left( \vec{OC} + r_{CD} × \vec{CD} \right) × \vec{CD}                    \\
-///                  \vec{OA} × \vec{CD} + r_{AB} × \vec{AB} × \vec{CD} &= \vec{OC} × \vec{CD} + r_{CD} × \vec{CD} × \vec{CD}                        \\
-///                                                              r_{AB} &= \frac{ \vec{OC} × \vec{CD} - \vec{OA} × \vec{CD} }{ \vec{AB} × \vec{CD} } \\
-///                                                              r_{AB} &= \frac{ \vec{AC} × \vec{CD} }{ \vec{AB} × \vec{CD} }
-///            \end{align*}
-///          \f$ \n
-///          同理可得（4）
-///          \f$
-///            \begin{align*}
-///              r_{CD} &= \frac{ \vec{CA} × \vec{AB} }{ \vec{CD} × \vec{AB} } \\
-///                     &= \frac{ \vec{AB} × \vec{CA} }{ \vec{AB} × \vec{CD} } \\
-///                     &= \frac{ \vec{AC} × \vec{AB} }{ \vec{AB} × \vec{CD} }
-///            \end{align*}
-///          \f$ \n
+/// \details 设两线段 \f$ AB \f$ 和 \f$ CD \f$ 交于点 \f$ X \f$，则有：
+///          \f[
+///            \left\{ \begin{align}
+///              \vec{OX} &= \vec{OA} + \vec{AX}              && \text{令} \vec{AX} = \lambda_{AB} \vec{AB} \\
+///                       &= \vec{OA} + \lambda_{AB} \vec{AB}
+///            \end{align} \right.
+///          \f]
+///          \f[
+///            \left\{ \begin{align}
+///              \vec{OX} &= \vec{OC} + \vec{CX}              && \text{令} \vec{CX} = \lambda_{CD} \vec{CD} \\
+///                       &= \vec{OC} + \lambda_{CD} \vec{CD}
+///            \end{align} \right.
+///          \f]
+///          \f[
+///            \left\{ \begin{align}
+///                                              \vec{OA} + \lambda_{AB} \vec{AB} &= \vec{OC} + \lambda_{CD} \vec{CD}
+///                                                                               && \text{两边同乘}\vec{CD}                                                                   \\
+///              \vec{OA} \times \vec{CD} + \lambda_{AB} \vec{AB} \times \vec{CD} &= \vec{OC} \times \vec{CD} + \lambda_{CD} \vec{CD} \times \vec{CD}
+///                                                                               && \text{消去} \vec{CD} \times \vec{CD} = 0                                                 \\
+///                                                                  \lambda_{AB} &= \frac{ \vec{OC} \times \vec{CD} - \vec{OA} \times \vec{CD} }{ \vec{AB} \times \vec{CD} } \\
+///                                                                  \lambda_{AB} &= \frac{ \vec{AC} \times \vec{CD} }{ \vec{AB} \times \vec{CD} }
+///            \end{align} \right.
+///          \f]
+///          \f[
+///            \left\{ \begin{align}
+///              \lambda_{CD} &= \frac{ \vec{CA} \times \vec{AB} }{ \vec{CD} \times \vec{AB} } && \text{减少变量} \\
+///                           &= \frac{ \vec{AB} \times \vec{CA} }{ \vec{AB} \times \vec{CD} } && \text{减少变量} \\
+///                           &= \frac{ \vec{AC} \times \vec{AB} }{ \vec{AB} \times \vec{CD} }
+///            \end{align} \right.
+///          \f]
 ///          + 若 \f$ \vec{AB} × \vec{CD} \f$ 为零（两线段平行），且 \f$ \vec{AC} × \vec{CD} \f$ 和 \f$ \vec{AC} × \vec{AB} \f$ 为零（两线段共线），则通过投影判断是否相交；
 ///          + 若平行而不共线，则必然不相交；
-///          + 若不平行，则通过判断 \f$ r_{AB} \f$ 和 \f$ r_{CD} \f$ 是否处于 \f$ [0, 1] \f$ 判断是否相交。
+///          + 若不平行，则通过判断 \f$ \lambda_{AB} \f$ 和 \f$ \lambda_{CD} \f$ 是否处于 \f$ [0, 1] \f$ 判断是否相交。
+///
+/// \sa <https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect>
 ///
 template<typename ScalarType>
 inline bool Intersected(const LineSegment<ScalarType> &ls1, const LineSegment<ScalarType> &ls2)
@@ -345,9 +368,9 @@ inline bool Intersected(const LineSegment<ScalarType> &ls1, const LineSegment<Sc
         // 因已通过快速判定，平行且共线必然相交，平行不共线必然相离：
         return ACxCD == 0 && ACxAB == 0;
     } else {
-        const ScalarType rAB = ACxCD / ABxCD;
-        const ScalarType rCD = ACxAB / ABxCD;
-        return (0 <= rAB && rAB <= 1 && 0 <= rCD && rCD <= 1);
+        const ScalarType lambdaAB = ACxCD / ABxCD;
+        const ScalarType lambdaCD = ACxAB / ABxCD;
+        return (0 <= lambdaAB && lambdaAB <= 1 && 0 <= lambdaCD && lambdaCD <= 1);
     }
 }
 
