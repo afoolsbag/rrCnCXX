@@ -1,9 +1,9 @@
-//===-- Cartesian Coordinate System 2-Dimensional ---------------*- C++ -*-===//
+//===-- Cartesian Coordinate System 2-Dimensional: Line Segment -*- C++ -*-===//
 ///
-/// \file
-/// \brief 平面直角坐标系。
+/// \defgroup gC2Ls 平面直角坐标系：线段。
+/// \ingroup gGeom
 ///
-/// \version 2018-07-26
+/// \version 2018-07-27
 /// \since 2018-07-25
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -11,277 +11,36 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_C2_HXX_
-#define RRCXX_C2_HXX_
+#ifndef RRCXX_C2LS_HXX_
+#define RRCXX_C2LS_HXX_
 
-#include "nl1.hxx"
+#include "c2bv.hxx"
+#include "c2fv.hxx"
+#include "c2pt.hxx"
 
 namespace rrcxx {
 namespace geom {
-///
-/// \brief 平面直角坐标系（二维）。
-///
 namespace c2 {
 
-///
-/// \brief 平面区域。
-///
-enum class PlaneArea {
-    ORIGIN,           ///< 原点。
-    POSITIVE_X_AXIS,  ///< 正横轴。
-    QUADRANT_I,       ///< 第一象限。
-    POSITIVE_Y_AXIS,  ///< 正纵轴。
-    QUADRANT_II,      ///< 第二象限。
-    NEGATIVE_X_AXIS,  ///< 负横轴。
-    QUADRANT_III,     ///< 第三象限。
-    NEGATIVE_Y_AXIS,  ///< 负纵轴。
-    QUADRANT_IV,      ///< 第四象限。
-};
+/// @addtogroup gC2Ls
+/// @{
 
 ///
-/// \brief 点。
-///
-template <typename ScalarType = double>
-struct Point {
-    ScalarType x = 0;  ///< 横坐标。
-    ScalarType y = 0;  ///< 纵坐标。
-
-    inline explicit Point() = default;
-    inline explicit Point(const ScalarType &x, const ScalarType &y)
-    {
-        this->x = x;
-        this->y = y;
-    }
-
-    explicit operator PlaneArea() const
-    {
-        if (0 < x) {
-            if (0 < y)
-                return PlaneArea::QUADRANT_I;
-            else if (y < 0)
-                return PlaneArea::QUADRANT_IV;
-            else /* 0 == y */
-                return PlaneArea::POSITIVE_X_AXIS;
-        } else if (x < 0) {
-            if (0 < y)
-                return PlaneArea::QUADRANT_II;
-            else if (y < 0)
-                return PlaneArea::QUADRANT_III;
-            else /* 0 == y */
-                return PlaneArea::NEGATIVE_X_AXIS;
-        } else /* 0 == x */ {
-            if (0 < y)
-                return PlaneArea::POSITIVE_Y_AXIS;
-            else if (y < 0)
-                return PlaneArea::NEGATIVE_Y_AXIS;
-            else /* 0 == y */
-                return PlaneArea::ORIGIN;
-        }
-    }
-};
-
-///
-/// \brief 自由矢量。
-///
-template <typename ScalarType = double>
-struct FreeVector {
-    ScalarType x = 0;  ///< 横坐标。
-    ScalarType y = 0;  ///< 纵坐标。
-
-    inline explicit FreeVector() = default;
-    inline explicit FreeVector(const ScalarType &x, const ScalarType &y)
-    {
-        this->x = x;
-        this->y = y;
-    }
-    inline explicit FreeVector(const Point<ScalarType> &pt)
-    {
-        x = pt.x;
-        y = pt.y;
-    }
-    inline explicit FreeVector(const Point<ScalarType> &from, const Point<ScalarType> &to)
-    {
-        x = to.x - from.x;
-        y = to.y - from.y;
-    }
-
-    inline explicit operator Point<ScalarType>() const
-    {
-        return Point<ScalarType>(x, y);
-    }
-
-    ///
-    /// \brief 模。
-    ///
-    inline ScalarType norm() const
-    {
-        return std::sqrt(x * x + y * y);
-    }
-
-    ///
-    /// \brief 垂直向量（\f$ \vec{v}^\perp \f$）。
-    ///
-    /// \param ccw 旋转方向，`true`逆时针、`false`顺时针。
-    /// \returns 逆时针或顺时针旋转\f$ 90^\circ \f$的垂直向量。
-    ///
-    inline FreeVector<ScalarType> PerpendicularVector(const bool ccw = true) const
-    {
-        if (ccw)
-            return FreeVector<ScalarType>(-y, x);
-        else
-            return FreeVector<ScalarType>(y, -x);
-    }
-
-    ///
-    /// \brief 垂直向量（\f$ \vec{v}^{\perp} \f$）。
-    ///
-    /// \param dir 方向向量，若共线则取逆时针垂直向量。
-    ///
-    inline FreeVector<ScalarType> PerpendicularVector(const FreeVector<ScalarType> &dir) const
-    {
-        if (x * dir.y - y * dir.x < 0)
-            return FreeVector<ScalarType>(y, -x);
-        else
-            return FreeVector<ScalarType>(-y, x);
-    }
-};
-
-///
-/// \brief 反矢量。
-///
-template<typename ScalarType = double>
-inline FreeVector<ScalarType> operator -(const FreeVector<ScalarType> &vec)
-{
-    return FreeVector<ScalarType>(-vec.x, -vec.y);
-}
-
-///
-/// \brief 矢量加。
-///
-template<typename ScalarType = double>
-inline FreeVector<ScalarType> operator +(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
-{
-    return FreeVector<ScalarType>(vec1.x + vec2.x, vec1.y + vec2.y);
-}
-
-///
-/// \brief 矢量减。
-///
-template<typename ScalarType = double>
-inline FreeVector<ScalarType> operator -(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
-{
-    return FreeVector<ScalarType>(vec1.x - vec1.x, vec2.y - vec2.y);
-}
-
-///
-/// \brief 点积（标量积）（\f$ \cdot \f$）。
-///
-template<typename ScalarType = double>
-inline ScalarType DotProduct(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
-{
-    return vec1.x * vec2.x + vec1.y * vec2.y;
-}
-
-///
-/// \brief 叉积（矢量积）（\f$ \times \f$）。
-///
-template<typename ScalarType = double>
-inline ScalarType CrossProduct(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
-{
-    return vec1.x * vec2.y - vec1.y * vec2.x;
-}
-
-///
-/// \brief 夹角。
-/// \details \f[
-///            \begin{align}
-///              \vec{AB} \cdot \vec{CD} &= \left| \vec{AB} \right| \left| \vec{CD} \right| \cos \theta                                 \\
-///                          \cos \theta &= \frac{ \vec{AB} \cdot \vec{CD} }{ \left| \vec{AB} \right| \left| \vec{CD} \right| }         \\
-///                               \theta &= \arccos \frac{ \vec{AB} \cdot \vec{CD} }{ \left| \vec{AB} \right| \left| \vec{CD} \right| }
-///            \end{align}
-///          \f]
-///
-template<typename ScalarType = double>
-inline ScalarType Angle(const FreeVector<ScalarType> &vec1, const FreeVector<ScalarType> &vec2)
-{
-    return std::acos(DotProduct(vec1, vec2) / (vec1.norm() * vec2.norm()));
-}
-
-///
-/// \brief 常量乘矢量。
-///
-template<typename ScalarType = double>
-inline FreeVector<ScalarType> operator *(const ScalarType &a, const FreeVector<ScalarType> &vec)
-{
-    return FreeVector<ScalarType>(a * vec.x, a * vec.y);
-}
-
-///
-/// \brief 矢量乘常量。
-///
-template<typename ScalarType = double>
-inline FreeVector<ScalarType> operator *(const FreeVector<ScalarType> &vec, const ScalarType &a)
-{
-    return a * vec;
-}
-
-///
-/// \brief 点加矢量。
-///
-template<typename ScalarType = double>
-inline Point<ScalarType> operator +(const Point<ScalarType> &pt, const FreeVector<ScalarType> &vec)
-{
-    return Point<ScalarType>(pt.x + vec.x, pt.y + vec.y);
-}
-
-///
-/// \brief 点减矢量。
-///
-template<typename ScalarType = double>
-inline Point<ScalarType> operator -(const Point<ScalarType> &pt, const FreeVector<ScalarType> &vec)
-{
-    return Point<ScalarType>(pt.x - vec.x, pt.y - vec.y);
-}
-
-///
-/// \brief 固定矢量。
-///
-template<typename ScalarType = double>
-struct BoundVector {
-    Point<ScalarType> ipt;       ///< 起始点。
-    FreeVector<ScalarType> vec;  ///< 自由矢量。
-
-    inline explicit BoundVector() = default;
-    inline explicit BoundVector(const Point<ScalarType> &ipt, const FreeVector<ScalarType> &vec)
-    {
-        this->ipt = ipt;
-        this->vec = vec;
-    }
-};
-
-///
-/// \brief 线段。
+/// \brief 线段 \f$ \overline{L} \f$。
 ///
 template<typename ScalarType = double>
 struct LineSegment {
-    Point<ScalarType> ept1;  ///< 端点1。
-    Point<ScalarType> ept2;  ///< 端点2。
+    Point<ScalarType> ept1;  ///< 端点 \f$ Ept1 \f$。
+    Point<ScalarType> ept2;  ///< 端点 \f$ Ept2 \f$。
 
     inline explicit LineSegment() = default;
+    ///
+    /// \brief 线段 \f$ \overline{Ept1 Ept2} \f$。
+    ///
     inline explicit LineSegment(const Point<ScalarType> &ept1, const Point<ScalarType> &ept2)
     {
         this->ept1 = ept1;
         this->ept2 = ept2;
-    }
-    inline explicit LineSegment(const BoundVector<ScalarType> &vec)
-    {
-        ept1 = vec.ipt;
-        ept2 = vec.ipt + vec.vec;
-    }
-
-    inline explicit operator FreeVector<ScalarType>() const
-    {
-        return FreeVector<ScalarType>(ept2.x - ept1.x, ept2.y - ept1.y);
     }
 
     ///
@@ -302,6 +61,30 @@ struct LineSegment {
         return nl1::Interval<ScalarType>(nl1::Interval<ScalarType>::Type::CLOSE,
                                          nl1::Point<ScalarType>(ept1.y),
                                          nl1::Point<ScalarType>(ept2.y));
+    }
+
+    ///
+    /// \brief 线段转自由向量。
+    ///
+    inline explicit operator FreeVector<ScalarType>() const
+    {
+        return FreeVector<ScalarType>(ept2.x - ept1.x, ept2.y - ept1.y);
+    }
+
+    ///
+    /// \brief 固定向量转线段。
+    ///
+    inline explicit LineSegment(const BoundVector<ScalarType> &vec)
+    {
+        ept1 = vec.ipt;
+        ept2 = vec.ipt + vec.vec;
+    }
+    ///
+    /// \brief 线段转固定向量。
+    ///
+    inline explicit operator BoundVector<ScalarType>() const
+    {
+        return BoundVector<ScalarType>(ept1, FreeVector<ScalarType>(*this));
     }
 };
 
@@ -529,8 +312,10 @@ inline bool Intersected(const AxisParallelRectangle<ScalarType> &r, const LineSe
     return Intersected(ls, r);
 }
 
+/// @}
+
 }//namespace c2
 }//namespace geom
 }//namespace rrcxx
 
-#endif//RRCXX_C2_HXX_
+#endif//RRCXX_C2LS_HXX_

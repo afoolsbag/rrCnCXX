@@ -18,7 +18,7 @@ facile_add_library(    OPTION_INITIAL_ON
                        SHARED
    COMPILE_DEFINITIONS PUBLIC "-DRRCXX_SHARED")
 
-aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "gt")
+aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "gt" "ygen")
 facile_add_gtest_executable(SUBNAME "Test"
                                     OPTION_INITIAL_ON
                                     ${zSrc}

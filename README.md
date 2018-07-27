@@ -11,6 +11,7 @@
 ## WWW
 
 [*Wolfram|Alpha*](https://wolframalpha.com/)
+[*Wolfram MathWorld*](http://mathworld.wolfram.com/)
 
 [*36氪*](https://36kr.com/)
 [*CodeProject*](https://codeproject.com/)
@@ -126,6 +127,8 @@
 ["Including formulas"](http://doxygen.org/manual/formulas.html). *Doxygen Manual*.
 + [*LaTeX*](https://latex-project.org)
     + [*An introduction to beautiful math on Quora*](https://math-on-quora.surge.sh/)
+	+ [*Detexify LaTeX handwritten symbol recognition*](http://detexify.kirelabs.org/)
+	+ [*TexPaste: Math Pastebin with LaTeX*](http://texpaste.com/)
 + [*Dvips*](https://tug.org/texinfohtml/dvips.html)
 + [*GhostScript*](https://ghostscript.com)
 + [*MathJax*](https://mathjax.org/)
