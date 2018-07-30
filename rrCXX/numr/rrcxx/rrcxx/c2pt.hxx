@@ -25,15 +25,15 @@ namespace c2 {
 /// \brief 区域。
 ///
 enum class Area {
-    ORIGIN,           ///< 原点 \f$ O \f$。
-    POSITIVE_X_AXIS,  ///< 正横轴。
-    QUADRANT_I,       ///< 第一象限 \f$ I \f$。
-    POSITIVE_Y_AXIS,  ///< 正纵轴。
-    QUADRANT_II,      ///< 第二象限 \f$ II \f$。
-    NEGATIVE_X_AXIS,  ///< 负横轴。
-    QUADRANT_III,     ///< 第三象限 \f$ III \f$。
-    NEGATIVE_Y_AXIS,  ///< 负纵轴。
-    QUADRANT_IV,      ///< 第四象限 \f$ IV \f$。
+    ORIGIN,           ///< 原点 \f$ O = (0, 0) \f$。
+    POSITIVE_X_AXIS,  ///< 正横轴 \f$ (+, 0) \f$。
+    QUADRANT_I,       ///< 第一象限 \f$ I = (+, +) \f$。
+    POSITIVE_Y_AXIS,  ///< 正纵轴 \f$ (0, +) \f$。
+    QUADRANT_II,      ///< 第二象限 \f$ II = (-, +) \f$。
+    NEGATIVE_X_AXIS,  ///< 负横轴 \f$ (-, 0) \f$。
+    QUADRANT_III,     ///< 第三象限 \f$ III = (-, -) \f$。
+    NEGATIVE_Y_AXIS,  ///< 负纵轴 \f$ (0, -) \f$。
+    QUADRANT_IV,      ///< 第四象限 \f$ IV = (+, -) \f$。
 };
 
 ///

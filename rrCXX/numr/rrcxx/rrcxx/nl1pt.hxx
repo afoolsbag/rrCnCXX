@@ -66,7 +66,7 @@ struct Point {
 };
 
 ///
-/// \brief 比较相等。
+/// \brief 相等 \f$ P_1 = P_2 \f$。
 ///
 template <typename ScalarType = double>
 inline bool operator ==(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
@@ -75,7 +75,7 @@ inline bool operator ==(const Point<ScalarType> &p1, const Point<ScalarType> &p2
 }
 
 ///
-/// \brief 比较不等。
+/// \brief 不等 \f$ P_1 \ne P_2 \f$。
 ///
 template <typename ScalarType = double>
 inline bool operator !=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
@@ -84,7 +84,7 @@ inline bool operator !=(const Point<ScalarType> &p1, const Point<ScalarType> &p2
 }
 
 ///
-/// \brief 比较小于。
+/// \brief 小于 \f$ P_1 \lt P_2 \f$。
 ///
 template <typename ScalarType = double>
 inline bool operator <(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
@@ -93,7 +93,7 @@ inline bool operator <(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
 }
 
 ///
-/// \brief 比较不小于。
+/// \brief 不小于 \f$ P_1 \ge P_2 \f$。
 ///
 template <typename ScalarType = double>
 inline bool operator >=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
@@ -102,7 +102,7 @@ inline bool operator >=(const Point<ScalarType> &p1, const Point<ScalarType> &p2
 }
 
 ///
-/// \brief 比较大于。
+/// \brief 大于 \f$ P_1 \gt P_2 \f$。
 ///
 template <typename ScalarType = double>
 inline bool operator >(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
@@ -111,7 +111,7 @@ inline bool operator >(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
 }
 
 ///
-/// \brief 比较不大于。
+/// \brief 不大于 \f$ P_1 \le P_2 \f$。
 ///
 template <typename ScalarType = double>
 inline bool operator <=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
