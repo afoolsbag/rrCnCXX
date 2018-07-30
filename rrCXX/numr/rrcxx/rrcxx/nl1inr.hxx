@@ -45,7 +45,7 @@ struct Interval {
     ///
     /// \brief 有序区间。
     ///
-    inline explicit Interval(const ScalarType &limit1, const Point<ScalarType> &limit2, const Type type)
+    inline explicit Interval(const ScalarType &limit1, const ScalarType &limit2, const Type type)
     {
         if (limit1 < limit2) {
             min = limit1;

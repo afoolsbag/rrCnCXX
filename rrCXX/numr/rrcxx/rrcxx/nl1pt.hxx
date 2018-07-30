@@ -25,9 +25,9 @@ namespace nl1 {
 /// \brief 区域。
 ///
 enum class Area {
-    ORIGIN,         ///< 原点 \f$ O \f$。
-    POSITIVE_AXIS,  ///< 正轴。
-    NEGATIVE_AXIS,  ///< 负轴。
+    ORIGIN,         ///< 原点 \f$ O = (0) \f$。
+    POSITIVE_AXIS,  ///< 正轴 \f$ (+) \f$。
+    NEGATIVE_AXIS,  ///< 负轴 \f$ (-) \f$。
 };
 
 ///

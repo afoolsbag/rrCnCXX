@@ -47,9 +47,9 @@ struct Vector {
         this->y = y;
     }
 
-    static const Vector<ScalarType> ZERO = {0, 0};   ///< 零向量 \f$ \vec{0} \f$。
-    static const Vector<ScalarType> XUNIT = {1, 0};  ///< 横轴单位向量 \f$ \hat{x} \f$。
-    static const Vector<ScalarType> YUNIT = {0, 1};  ///< 纵轴单位向量 \f$ \hat{y} \f$。
+    static const Vector<ScalarType> ZERO;   ///< 零向量 \f$ \vec{0} \f$。
+    static const Vector<ScalarType> XUNIT;  ///< 横轴单位向量 \f$ \hat{x} \f$。
+    static const Vector<ScalarType> YUNIT;  ///< 纵轴单位向量 \f$ \hat{y} \f$。
 
     ///
     /// \brief 反向量 \f$ -\vec{v} \f$。
@@ -127,6 +127,31 @@ struct Vector {
         return Point<ScalarType>(x, y);
     }
 };
+
+template<typename ScalarType = double>
+const Vector<ScalarType> Vector<ScalarType>::ZERO(0, 0);
+template<typename ScalarType = double>
+const Vector<ScalarType> Vector<ScalarType>::XUNIT(1, 0);
+template<typename ScalarType = double>
+const Vector<ScalarType> Vector<ScalarType>::YUNIT(0, 1);
+
+///
+/// \brief 相等 \f$ \vec{v_1} = \vec{v_2} \f$。
+///
+template <typename ScalarType = double>
+inline bool operator ==(const Vector<ScalarType> &v1, const Vector<ScalarType> &v2)
+{
+    return v1.x == v2.x && v1.y == v2.y;
+}
+
+///
+/// \brief 不等 \f$ \vec{v_1} \ne \vec{v_2} \f$。
+///
+template <typename ScalarType = double>
+inline bool operator !=(const Vector<ScalarType> &v1, const Vector<ScalarType> &v2)
+{
+    return !(v1 == v2);
+}
 
 ///
 /// \brief 反 \f$ -\vec{v} \f$。

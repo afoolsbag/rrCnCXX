@@ -58,6 +58,8 @@ struct Point {
         this->y = y;
     }
 
+    static const Point<ScalarType> ORIGIN;  ///< 零向量 \f$ \vec{0} \f$。
+
     ///
     /// \brief 所在区域。
     ///
@@ -87,6 +89,27 @@ struct Point {
         }
     }
 };
+
+template<typename ScalarType = double>
+const Point<ScalarType> Point<ScalarType>::ORIGIN(0, 0);
+
+///
+/// \brief 相等 \f$ P_1 = P_2 \f$。
+///
+template <typename ScalarType = double>
+inline bool operator ==(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+{
+    return p1.x == p2.x && p1.y == p2.y;
+}
+
+///
+/// \brief 不等 \f$ P_1 \ne P_2 \f$。
+///
+template <typename ScalarType = double>
+inline bool operator !=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+{
+    return !(p1 == p2);
+}
 
 /// @}
 
