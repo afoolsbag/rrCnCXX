@@ -3,10 +3,13 @@
 /// \defgroup gGen 通用工具库
 /// \ingroup gRef
 ///
-/// \sa ["General-purpose utilities"](http://en.cppreference.com/w/cpp/utility#General-purpose_utilities). *cppreference.com*.
-///     + [Date and time](http://en.cppreference.com/w/cpp/chrono)
+/// \sa ["工具库"](https://zh.cppreference.com/w/cpp/utility). *cppreference.com*.
+///     + 语言支持
+///         + 动态内存管理
+///     + 通用工具
+///         + 日期和时间
 ///
-/// \version 2018-05-21
+/// \version 2018-07-31
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC BY 4.0

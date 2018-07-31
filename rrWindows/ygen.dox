@@ -95,7 +95,7 @@
  *
 *//*===--------------------------------------------------------------------===*/
 
-/*===-- Develop Desktop Applications Topics --------------------*- C -*-===*//**
+/*===-- Develop Windows Desktop Applications Topics ------------*- C -*-===*//**
  *
  * \page pDvlp 开发桌面应用程序议题
  * \tableofcontents
@@ -118,10 +118,10 @@
  * + 在不提供模块、包、命名空间等类似功能的语言里，使用前缀以区分不同模块；
  * + 在任何更有助于理解的情况下使用。
  *
- * \sa ["Hungarian notation"](https://wikipedia.org/wiki/Hungarian_notation). *Wikipedia*.
- * \sa ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
+ * \sa <https://wikipedia.org/wiki/Hungarian_notation>
+ * \sa <https://stackoverflow.com/questions/1228161/why-use-prefixes-on-member-variables-in-c-classes>
  *
- * \version 2018-05-21
+ * \version 2018-07-31
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0

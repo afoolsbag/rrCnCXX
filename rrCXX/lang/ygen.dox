@@ -1,38 +1,24 @@
 //===-- C++ Language --------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gLang C++语言
+/// \defgroup gLang C++ 语言
 /// \ingroup gRef
 ///
-/// \sa ["C++ language"](http://en.cppreference.com/w/cpp/language). *cppreference.com*.
-///     + [Basic concepts](http://en.cppreference.com/w/cpp/language/basic_concepts)
-///         + [Comments](http://en.cppreference.com/w/cpp/comment)
-///         + [ASCII chart](http://en.cppreference.com/w/cpp/language/ascii)
-///         + [Names and identifiers](http://en.cppreference.com/w/cpp/language/identifiers)
-///         + [Types](http://en.cppreference.com/w/cpp/language/type)
-///             + [Fundamental types](http://en.cppreference.com/w/cpp/language/types)
-///         + [Object](http://en.cppreference.com/w/cpp/language/object)
-///             + [Scope](http://en.cppreference.com/w/cpp/language/scope)
-///             + [Lifetime](http://en.cppreference.com/w/cpp/language/lifetime)
-///         + [Definitions and ODR](http://en.cppreference.com/w/cpp/language/definition)
-///         + [Name lookup](http://en.cppreference.com/w/cpp/language/lookup)
-///             + [qualified](http://en.cppreference.com/w/cpp/language/qualified_lookup)
-///             + [unqualified](http://en.cppreference.com/w/cpp/language/unqualified_lookup)
-///         + [Memory model and data races](http://en.cppreference.com/w/cpp/language/memory_model)
-///         + [Phases of translation](http://en.cppreference.com/w/cpp/language/translation_phases)
-///         + [The main() function](http://en.cppreference.com/w/cpp/language/main_function)
-///     + [C++ Keywords](http://en.cppreference.com/w/cpp/keyword)
-///     + [Preprocessor](http://en.cppreference.com/w/cpp/preprocessor)
-///     + [Expressions](http://en.cppreference.com/w/cpp/language/expressions)
-///     + [Declaration](http://en.cppreference.com/w/cpp/language/declarations)
-///     + [Initialization](http://en.cppreference.com/w/cpp/language/initialization)
-///     + [Functions](http://en.cppreference.com/w/cpp/language/functions)
-///     + [Statements](http://en.cppreference.com/w/cpp/language/statements)
-///     + [Classes](http://en.cppreference.com/w/cpp/language/classes)
-///     + [Templates](http://en.cppreference.com/w/cpp/language/templates)
-///     + [Exceptions](http://en.cppreference.com/w/cpp/language/exceptions)
-///     + Miscellaneous
+/// \sa ["C++ language"](https://zh.cppreference.com/w/cpp/language). *cppreference.com*.
+///     + 基本概念
+///     + C++ 关键词
+///     + 预处理器
+///     + 表达式
+///     + 声明
+///     + 初始化
+///     + 函数
+///     + 语句
+///     + 类
+///     + 模板
+///     + 异常
+///     + 杂项
+///     + 惯用手法
 ///
-/// \version 2018-04-21
+/// \version 2018-07-31
 /// \since 2018-01-23
 /// \author zhengrr
 /// \copyright CC BY 4.0

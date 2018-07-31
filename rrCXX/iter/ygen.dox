@@ -1,9 +1,0 @@
-/**
- * \defgroup g_iter_lib 迭代器库
- * \ingroup g_ref
- *
- * \sa ["Iterator library (迭代器库)"](http://en.cppreference.com/w/cpp/iterator). *cppreference.com*.
- * \author zhengrr
- * \date 2018-1-23 – 25
- * \copyright The MIT License
- */

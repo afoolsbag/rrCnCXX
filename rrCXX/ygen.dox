@@ -63,14 +63,14 @@
 ///
 /// # Awesome                                                        {#sAwesome}
 ///
-/// [*Awesome C++*](http://fffaraz.github.io/awesome-cpp/)
+/// [*Awesome C++*](https://fffaraz.github.io/awesome-cpp/)
 ///
 /// [*Google Test*](https://github.com/google/googletest)
 ///
 /// ___
 /// <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
 ///
-/// \version 2018-07-24
+/// \version 2018-07-31
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC BY 4.0
@@ -81,26 +81,27 @@
 ///
 /// \defgroup gRef C++参考手册
 ///
-/// \sa ["C++ reference"](http://cppreference.com/w/cpp). *cppreference.com*.
-///     + [Language](http://en.cppreference.com/w/cpp/language)
-///     + [Headers](http://en.cppreference.com/w/cpp/header)
-///         + [Library concepts](http://en.cppreference.com/w/cpp/concept)
-///     + [Language support library](http://en.cppreference.com/w/cpp/utility#Language_support)
-///     + [Diagnostics library](http://en.cppreference.com/w/cpp/error)
-///     + [General utilities library](http://en.cppreference.com/w/cpp/utility#General-purpose_utilities)
-///     + [Strings library](http://en.cppreference.com/w/cpp/string)
-///     + [Containers library](http://en.cppreference.com/w/cpp/container)
-///     + [Iterators library](http://en.cppreference.com/w/cpp/iterator)
-///     + [Algorithms library](http://en.cppreference.com/w/cpp/algorithm)
-///     + [Numerics library](http://en.cppreference.com/w/cpp/numeric)
-///     + [Input/output library](http://en.cppreference.com/w/cpp/io)
-///     + [Localizations library](http://en.cppreference.com/w/cpp/locale)
-///     + [Regular expressions library](http://en.cppreference.com/w/cpp/regex)
-///     + [Atomic operations library](http://en.cppreference.com/w/cpp/atomic)
-///     + [Thread support library](http://en.cppreference.com/w/cpp/thread)
-///     + [Filesystem library](http://en.cppreference.com/w/cpp/filesystem)
+/// \sa ["C++ reference"](https://cppreference.com/w/cpp). *cppreference.com*.
+///     + 语言
+///     + 头文件
+///     + 具名要求
+///     + 语言支持库
+///     + 概念库（C++20）
+///     + 诊断库
+///     + 通用工具库
+///     + 字符串库
+///     + 容器库
+///     + 迭代器库
+///     + 算法库
+///     + 数值库
+///     + 输入、输出库
+///     + 本地化库
+///     + 正则表达式库（C++11）
+///     + 原子操作库（C++11）
+///     + 线程支持库（C++11）
+///     + 文件系统库（C++17）
 ///
-/// \version 2018-04-21
+/// \version 2018-07-31
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC BY 4.0

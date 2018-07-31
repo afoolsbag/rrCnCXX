@@ -35,7 +35,7 @@
     + [*汉典*](http://zdic.net/)
 + :gb:
     + [*Abbreviations.com*](https://abbreviations.com/) & [*All Acronyms Dictionary*](https://allacronyms.com/)
-    + [*Dictionary.com*](http://dictionary.com/) & [*Thesaurus.com*](http://thesaurus.com/)
+    + [*Dictionary.com*](https://dictionary.com/) & [*Thesaurus.com*](https://thesaurus.com/)
     + [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
 
 ### Characters

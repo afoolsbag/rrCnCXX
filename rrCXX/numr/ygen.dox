@@ -1,9 +1,13 @@
-/**
- * \defgroup g_numerics_lib 数值库
- * \ingroup g_ref
- *
- * \sa ["Numerics library (数值库)"](http://en.cppreference.com/w/cpp/numeric). *cppreference.com*.
- * \author zhengrr
- * \date 2018-1-23 – 2-2
- * \copyright The MIT License
- */
+//===-- Numerics library ----------------------------------------*- C++ -*-===//
+///
+/// \defgroup gNumr 数值库
+/// \ingroup gRef
+///
+/// \sa ["数值库"](https://zh.cppreference.com/w/cpp/numeric). *cppreference.com*.
+///
+/// \version 2018-07-31
+/// \since 2018-01-23
+/// \author zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//

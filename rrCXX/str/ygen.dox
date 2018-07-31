@@ -1,9 +1,0 @@
-/**
- * \defgroup g_strs_lib 字符串库
- * \ingroup g_ref
- *
- * \sa ["Strings library (字符串库)"](http://en.cppreference.com/w/cpp/string). *cppreference.com*.
- * \author zhengrr
- * \date 2018-1-23 – 2-2
- * \copyright The MIT License
- */

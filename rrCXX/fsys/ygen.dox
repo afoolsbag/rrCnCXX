@@ -1,9 +1,0 @@
-/**
- * \defgroup g_fsys_lib 文件系统库
- * \ingroup g_ref
- *
- * \sa ["Filesystem library (文件系统库)"](http://en.cppreference.com/w/cpp/filesystem). *cppreference.com*.
- * \author zhengrr
- * \date 2018-1-23 – 25
- * \copyright The MIT License
- */

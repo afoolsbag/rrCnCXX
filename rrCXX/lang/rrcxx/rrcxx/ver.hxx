@@ -1,7 +1,7 @@
-//===-- C++ Version ---------------------------------------------*- C++ -*-===//
+//===-- Version -------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief C++版本。
+/// \brief 版本。
 ///
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ compiler support"](http://en.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
@@ -9,61 +9,63 @@
 /// \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
 /// \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
 ///
-/// \version 2018-06-20
+/// \version 2018-07-31
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright The MIT License
 ///
 //===----------------------------------------------------------------------===//
 
-#ifndef RRCXX_CXXVER_HXX_
-#define RRCXX_CXXVER_HXX_
+#ifndef RRCXX_VER_HXX_
+#define RRCXX_VER_HXX_
 
-// Language Standards
+//-Compilers--------------------------------------------------------------------
+
+#ifdef __clang__
+# define CLANG (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)
+#else
+# define CLANG 0
+#endif
+
+#ifdef __GNUC__
+# define GNUC (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+#else
+# define GNUC 0
+#endif
+
+#ifdef _MSC_VER
+# define MSC (_MSC_VER)
+#else
+# define MSC 0
+#endif
+
+//-Language-Standards-----------------------------------------------------------
 
 #ifndef __cplusplus
 # error A C++ compiler is required.
 #endif
 
 /// \brief C++20
-/// \sa https://isocpp.org/std/status
+/// \sa <https://isocpp.org/std/status>
 #define CXX20 (0)
 
 /// \brief ISO/IEC 14882:2017
-/// \sa https://iso.org/standard/68564.html
+/// \sa <https://iso.org/standard/68564.html>
 #define CXX17 (201703L <= __cplusplus)
 
 /// \brief ISO/IEC 14882:2014
-/// \sa https://iso.org/standard/64029.html
+/// \sa <https://iso.org/standard/64029.html>
 #define CXX14 (201402L <= __cplusplus)
 
 /// \brief ISO/IEC 14882:2011
-/// \sa https://iso.org/standard/50372.html
+/// \sa <https://iso.org/standard/50372.html>
 #define CXX11 (201103L <= __cplusplus)
 
 /// \brief ISO/IEC 14882:1998
-/// \sa https://iso.org/standard/25845.html
+/// \sa <https://iso.org/standard/25845.html>
 #define CXX98 (199711L <= __cplusplus)
 
-#ifdef __clang__
-# define CLANG (__clang_major__*10000+__clang_minor__*100+__clang_patchlevel__)
-#else
-# undef CLANG
-#endif
-
-#ifdef __GNUC__
-# define GNUC (__GNUC__*10000+__GNUC_MINOR__*100+__GNUC_PATCHLEVEL__)
-#else
-# undef GNUC
-#endif
-
-#ifdef _MSC_VER
-# define MSC _MSC_VER
-#else
-# undef MSC
-#endif
-
-// Language Features
+//-Language-Features------------------------------------------------------------
 
 /// \brief Wording Paper, C++ extensions for Concepts
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0734r0
@@ -451,7 +453,7 @@
 
 /// \brief Range-Based For Loop Wording (Without Concepts)
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2930
-#define N2930 (CXX11)
+#define N2930 (CXX11 || 1700<=MSC)
 
 /// \brief Explicit Virtual Overrides
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2928
@@ -633,4 +635,4 @@
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1653
 #define N1653 (CXX11)
 
-#endif//RRCXX_CXXVER_HXX_
+#endif//RRCXX_VER_HXX_

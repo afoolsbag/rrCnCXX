@@ -1,28 +1,39 @@
-/**
- * \defgroup g_thrd_supt_lib 线程支持库
- * \ingroup g_ref
- *
- * \sa ["Thread support library (线程支持库)"](http://en.cppreference.com/w/cpp/thread). *cppreference.com*.
- * \author zhengrr
- * \date 2018-1-23 – 2-2
- * \copyright The MIT License
- */
+//===-- Thread Support Library ----------------------------------*- C++ -*-===//
+///
+/// \defgroup gThrd 线程支持库
+/// \ingroup gRef
+///
+/// \sa ["线程支持库"](https://zh.cppreference.com/w/cpp/thread). *cppreference.com*.
+///
+/// \version 2018-07-31
+/// \since 2016-11-07
+/// \author zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//
 
-/**
- * \page p_thrd_supt_lib 线程支持库话题
- * \tableofcontents
- *
- * -----------------------
- * \section s_stdendl_vs_n `std::endl` 和 `\n` 的差异
- *
- * 除了明确指定二进制输出，`\n`在底层会依据系统环境自动判断为`\n`、`\r\n` 或 `\r`，
- * 因此在输出的含义上，二者等效。
- *
- * 实际区别在于 `std::endl` 会刷新缓冲区，而 `\n` 不会。因而需要强即时性的输出宜使用
- * `std::endl`，而大段大段的输出则宜使用 `\n`。
- *
- * 又，在多线程环境下，`std::cout` 仅保证单个 `<<` 操作的原子性，所以在多线程环境中
- * 应使用 `\n` 以保证输出不畸形。
- *
- * \sa ["C++: “std::endl” vs “\n”"](http://stackoverflow.com/questions/213907). *Stack Overflow*.
- */
+//===-- Thread Support Library Topics ---------------------------*- C++ -*-===//
+///
+/// \page pThrd 线程支持库议题
+/// \tableofcontents
+///
+/// _____________________________
+/// \section sStdendlVsBackslashn `std::endl`与`\n`的异同
+///
+/// 除了明确指定二进制输出，`\n`在底层会依据系统环境自动判断为`\n`、`\r\n`或`\r`，
+/// 因此在输出的含义上，二者等效。
+///
+/// 实际区别在于`std::endl`会刷新缓冲区，而`\n`不会。
+/// 因此需要强即时性的输出宜使用`std::endl`，而大段大段的输出则宜使用`\n`。
+///
+/// 又，在多线程环境下，`std::cout`仅保证单个`<<`操作的原子性，所以在多线程环境中
+/// 应使用`\n`以防止输出畸形。
+///
+/// \sa <https://stackoverflow.com/questions/213907/c-stdendl-vs-n>
+///
+/// \version 2018-07-31
+/// \since 2018-01-23
+/// \authors zhengrr
+/// \copyright CC BY 4.0
+///
+//===----------------------------------------------------------------------===//
