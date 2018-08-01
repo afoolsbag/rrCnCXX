@@ -29,10 +29,23 @@ namespace demov {
 struct Slice {
     /// \brief 分片类型。
     enum class Type {
-        UNKNOWN,   ///< 未知。
-        COMPLETE,  ///< 完整。
-        INDEX,     ///< 索引。
-        CLIP       ///< 片段。
+        UNKNOWN,  ///< 未知。
+        SINGLE,   ///< 独一。
+        INDEX,    ///< 索引。
+        FRAGMENT  ///< 片段。
+    };
+
+    /// \brief 分片状态。
+    enum class Status {
+        WELL,                          ///< 顺利。
+        PAUSED,                        ///< 暂停。
+        FAILED_UNKNOWN,                ///< 失败：未知原因。
+        FAILED_CANCELED,               ///< 失败：人为取消。
+        FAILED_ACCESS_DENIED,          ///< 失败：拒绝访问。
+        FAILED_CONNECTION_BROKEN,      ///< 失败：连接中断。
+        FAILED_OUT_OF_STORAGE,         ///< 失败：存储不足。
+        FAILED_OUT_OF_MEMORY,          ///< 失败：内存不足。
+        FAILED_OUT_OF_GRAPHICS_MEMORY  ///< 失败：显存不足。
     };
 
     /// \brief 分片阶段。
@@ -51,24 +64,11 @@ struct Slice {
         FINISHED             ///< 结束。
     };
 
-    /// \brief 分片状态。
-    enum class Status {
-        WELL,                          ///< 顺利。
-        PAUSED,                        ///< 暂停。
-        FAILED_UNKNOWN,                ///< 失败：未知原因。
-        FAILED_CANCELED,               ///< 失败：人为取消。
-        FAILED_ACCESS_DENIED,          ///< 失败：拒绝访问。
-        FAILED_CONNECTION_BROKEN,      ///< 失败：连接中断。
-        FAILED_OUT_OF_STORAGE,         ///< 失败：存储不足。
-        FAILED_OUT_OF_MEMORY,          ///< 失败：内存不足。
-        FAILED_OUT_OF_GRAPHICS_MEMORY  ///< 失败：显存不足。
-    };
-
     unsigned sn;                      ///< 序列号（serial number）。
     Type     type;                    ///< 类型。
+    Status   stus = Status::WELL;     ///< 状态（status）。
     Stage    stg = Stage::PREPARING;  ///< 阶段（stage）。
     double   stgprog = 0;             ///< 阶段进度（stage progress）。
-    Status   stus = Status::WELL;     ///< 状态（status）。
 
     std::string path;                 ///< 路径。
 
@@ -87,10 +87,10 @@ public:
         return Slice(0, Type::UNKNOWN, path);
     }
 
-    /// \brief 完整分片。
-    inline static Slice Complete(const std::string &path)
+    /// \brief 独立分片。
+    inline static Slice Single(const std::string &path)
     {
-        return Slice(0, Type::COMPLETE, path);
+        return Slice(0, Type::SINGLE, path);
     }
 
     /// \brief 索引分片。
@@ -100,10 +100,10 @@ public:
     }
 
     /// \brief 片段分片。
-    inline static Slice Clip(const unsigned sn, const std::string &path)
+    inline static Slice Fragment(const unsigned sn, const std::string &path)
     {
         assert(0 < sn);
-        return Slice(sn, Type::CLIP, path);
+        return Slice(sn, Type::FRAGMENT, path);
     }
 
     /// \brief 暂停。
@@ -113,6 +113,7 @@ public:
         if (stus != Status::WELL)
             return;
 
+        stus = Status::PAUSED;
         switch (stg) {
         case Stage::UPLOADING:   stg = Stage::READY_TO_UPLOAD;    break;
         case Stage::TRANSCODING: stg = Stage::READY_TO_TRANSCODE; break;
@@ -122,7 +123,6 @@ public:
         default:                                                  break;
         }
         stgprog = 0;
-        stus = Status::PAUSED;
     }
 
     /// \brief 恢复。
@@ -141,6 +141,8 @@ public:
             return;
 
         stus = Status::FAILED_CANCELED;
+        stg = Stage::PREPARING;
+        stgprog = 0;
     }
 
     /// \brief 重试。
@@ -149,8 +151,6 @@ public:
         if (stus < Status::FAILED_UNKNOWN)
             return;
 
-        stg = Stage::PREPARING;
-        stgprog = 0;
         stus = Status::WELL;
     }
 };

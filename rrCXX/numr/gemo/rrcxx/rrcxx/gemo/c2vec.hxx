@@ -3,7 +3,7 @@
 /// \defgroup gC2Vec 平面直角坐标系：向量
 /// \ingroup gGeom
 ///
-/// \version 2018-07-30
+/// \version 2018-08-01
 /// \since 2018-07-25
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -47,9 +47,9 @@ struct Vector {
         this->y = y;
     }
 
-    static const Vector<ScalarType> ZERO;   ///< 零向量 \f$ \vec{0} \f$。
-    static const Vector<ScalarType> XUNIT;  ///< 横轴单位向量 \f$ \hat{x} \f$。
-    static const Vector<ScalarType> YUNIT;  ///< 纵轴单位向量 \f$ \hat{y} \f$。
+    static constexpr Vector<ScalarType> ZERO;   ///< 零向量 \f$ \vec{0} \f$。
+    static constexpr Vector<ScalarType> XUNIT;  ///< 横轴单位向量 \f$ \hat{x} \f$。
+    static constexpr Vector<ScalarType> YUNIT;  ///< 纵轴单位向量 \f$ \hat{y} \f$。
 
     ///
     /// \brief 反向量 \f$ -\vec{v} \f$。
@@ -129,11 +129,11 @@ struct Vector {
 };
 
 template<typename ScalarType = double>
-const Vector<ScalarType> Vector<ScalarType>::ZERO(0, 0);
+constexpr Vector<ScalarType> Vector<ScalarType>::ZERO(0, 0);
 template<typename ScalarType = double>
-const Vector<ScalarType> Vector<ScalarType>::XUNIT(1, 0);
+constexpr Vector<ScalarType> Vector<ScalarType>::XUNIT(1, 0);
 template<typename ScalarType = double>
-const Vector<ScalarType> Vector<ScalarType>::YUNIT(0, 1);
+constexpr Vector<ScalarType> Vector<ScalarType>::YUNIT(0, 1);
 
 ///
 /// \brief 相等 \f$ \vec{v_1} = \vec{v_2} \f$。
