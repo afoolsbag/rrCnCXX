@@ -3,7 +3,7 @@
 /// \defgroup gVideo 录像
 /// \ingroup gDemoV
 ///
-/// \version 2018-07-31
+/// \version 2018-08-01
 /// \since 2018-07-31
 /// \authors zhengrr
 /// \copyright The MIT License

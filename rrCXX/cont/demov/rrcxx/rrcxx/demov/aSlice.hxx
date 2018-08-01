@@ -70,7 +70,7 @@ struct Slice {
     double   stgprog = 0;             ///< 阶段进度（stage progress）。
     Status   stus = Status::WELL;     ///< 状态（status）。
 
-    std::string path;              ///< 路径。
+    std::string path;                 ///< 路径。
 
 private:
     inline Slice(const unsigned sn, const Type type, const std::string &path)
