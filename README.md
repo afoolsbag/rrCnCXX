@@ -162,7 +162,7 @@ quickref
     + 顶行<kbd>g</kbd><kbd>g</kbd>
     + 上移<kbd>k</kbd>　且到行首<kbd>-</kbd>
     + 某行<kbd>Number</kbd><kbd>g</kbd><kbd>g</kbd>　或<kbd>Number</kbd><kbd>G</kbd>
-    + 下移<kbd>j</kbd>　且到行首<kbd>=</kbd>
+    + 下移<kbd>j</kbd>　且到行首<kbd>+</kbd>
     + 底行<kbd>G</kbd>
 + [motion: Text object](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_tm) [文本对象动作](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_tm)
     + 前词头<kbd>b</kbd>　前词尾<kbd>g</kbd><kbd>e</kbd>　后词头<kbd>w</kbd>　后词尾<kbd>e</kbd>
@@ -219,7 +219,7 @@ quickref
     + 修改<kbd>c</kbd><kbd>Motion...</kbd>
     + 修改整行<kbd>c</kbd><kbd>c</kbd>　或<kbd>S</kbd>　修改光标处字符<kbd>s</kbd>　修改至底格<kbd>C</kbd>
     + 替换光标处字符<kbd>r</kbd><kbd>Character</kbd>　替换模式<kbd>R</kbd>
-    + 翻转大小写<kbd>~</kbd>　翻转大小写<kbd>g</kbd><kbd>~</kbd><kbd>Motion...</kbd>　改为小写<kbd>g</kbd><kbd>u</kbd><kbd>Motion...</kbd>　改为大写<kbd>g</kbd><kbd>U</kbd><kbd>Motion...</kbd>
+    + 翻转大小写<kbd>\~</kbd>　翻转大小写<kbd>g</kbd><kbd>\~</kbd><kbd>Motion...</kbd>　改为小写<kbd>g</kbd><kbd>u</kbd><kbd>Motion...</kbd>　改为大写<kbd>g</kbd><kbd>U</kbd><kbd>Motion...</kbd>
     + 数值自减<kbd>Ctrl-X</kbd>　数值自增<kbd>Ctrl-A</kbd>
     + 减少缩进<kbd><</kbd><kbd><</kbd>　增加缩进<kbd>></kbd><kbd>></kbd>
 + [change: Complex](http://vimdoc.sourceforge.net/htmldoc/quickref.html#Q_co) [复杂改动](http://vimcdoc.sourceforge.net/doc/quickref.html#Q_co)
