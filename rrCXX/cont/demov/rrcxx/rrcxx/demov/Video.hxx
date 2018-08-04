@@ -88,22 +88,40 @@ public:
     template<constexpr Slice::Status STATUS>
     inline bool haveStatus() const
     {
-        return std::any_of(
-            slices.cbegin(),
-            slices.cend(),
-            [](const std::pair<unsigned, Slice> &pair) -> bool {
-            return pair.second.stus == STATUS; });
+        return std::any_of(slices.cbegin(), slices.cend(),
+                           [](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stus == STATUS;
+        });
     }
 
     /// \brief 计数某状态（分片）。
     template<constexpr Slice::Status STATUS>
     inline std::size_t countStatus() const
     {
-        return std::count_if(
-            slices.cbegin(),
-            slices.cend(),
-            [](const std::pair<unsigned, Slice> &pair) -> bool {
-            return pair.second.stus == STATUS; });
+        return std::count_if(slices.cbegin(), slices.cend(),
+                             [](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stus == STATUS;
+        });
+    }
+
+    /// \brief 是否含有某阶段（分片）。
+    template<constexpr Slice::Stage STAGE>
+    inline bool haveStages() const
+    {
+        return std::any_of(slices.cbegin(), slices.cend(),
+                           [](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stg == STAGE;
+        });
+    }
+
+    /// \brief 计数某阶段（分片）。
+    template<constexpr Slice::Stage STAGE>
+    inline std::size_t countStages() const
+    {
+        return std::count_if(slices.cbegin(), slices.cend(),
+                             [](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stg == STAGE;
+        });
     }
 
     /// \brief 某阶段进度。

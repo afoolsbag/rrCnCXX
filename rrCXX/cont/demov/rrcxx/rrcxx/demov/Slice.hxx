@@ -3,7 +3,7 @@
 /// \defgroup gSlice 分片
 /// \ingroup gDemoV
 ///
-/// \version 2018-07-31
+/// \version 2018-08-04
 /// \since 2018-07-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -107,7 +107,7 @@ public:
     }
 
     /// \brief 暂停。
-    /// \details 为防止资源搁置，暂停将回退到上一阶段并释放相应资源，不允许执行进程暂停。
+    /// \details 为防止资源搁置，暂停将回退到上一阶段。
     inline void pause()
     {
         if (stus != Status::WELL)
