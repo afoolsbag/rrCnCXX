@@ -110,9 +110,5 @@ ExceptionCrashHandler(
     OutputDebugStringW(L" ");
     OutputDebugStringW(L"--------------------------------------------------------------------------------");
 
-    WCHAR txt[512];
-    if (SUCCEEDED(StringCchPrintfW(txt, countof(txt), L"%s has crashed.\nThe dump file is generated at %s.", ExecutableNameW(), dumpPath)))
-        MessageBoxW(NULL, txt, L"Whoops...", MB_ICONERROR | MB_OK);
-
     return EXCEPTION_EXECUTE_HANDLER;
 }

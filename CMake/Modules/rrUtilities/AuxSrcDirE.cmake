@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-07-12
+# 2016-10-08 – 2018-08-06
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -19,8 +19,8 @@ endif()
 #         <results-variable>
 #         [RECURES] [C] [CXX] [MFC] [QT] [CFG] [EXPLICIT]
 #         [SOURCE_DIRECTORY <directory>]
-#         [SOURCE_PREFIXS <prefix>...]
-#         [SOURCE_SUFFIXS <suffix>...]
+#         [SOURCE_BASE_MATCHES <regex>]
+#         [SOURCE_BASE_CLASHES <regex>]
 #         [SOURCE_EXTENSIONS <extension>...]
 #         [SOURCE_PROPERTIES <property-key property-value>...]
 #         [SOURCE_GROUP <group-folder>]
@@ -31,10 +31,10 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
                  C CXX MFC QT CFG
                  EXPLICIT)
   set(zOneValKws SOURCE_DIRECTORY
+                 SOURCE_BASE_MATCHES
+                 SOURCE_BASE_CLASHES
                  SOURCE_GROUP)
-  set(zMutValKws SOURCE_PREFIXS
-                 SOURCE_SUFFIXS
-                 SOURCE_EXTENSIONS
+  set(zMutValKws SOURCE_EXTENSIONS
                  SOURCE_PROPERTIES)
   cmake_parse_arguments(PARSE_ARGV 1 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
@@ -63,20 +63,6 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   else()
     set(sRecurse "GLOB")
   endif()
-
-  if(DEFINED _SOURCE_PREFIXS)
-    set(zSrcPres ${_SOURCE_PREFIXS})
-  else()
-    set(zSrcPres "*")
-  endif()
-  list(REMOVE_DUPLICATES zSrcPres)
-
-  if(DEFINED _SOURCE_SUFFIXS)
-    set(zSrcSufs ${_SOURCE_SUFFIXS})
-  else()
-    set(zSrcSufs "*")
-  endif()
-  list(REMOVE_DUPLICATES zSrcSufs)
 
   if(_EXPLICIT)
     set(zLangs)
@@ -120,28 +106,46 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
     set(sSrcGrp)
   endif()
 
-  set(zRsts)
-  foreach(sSrcPre ${zSrcPres})
-    foreach(sSrcSuf ${zSrcSufs})
-      foreach(sSrcExt ${zSrcExts})
-        file(${sRecurse} zSrcFilePaths "${sSrcDir}/${sSrcPre}*${sSrcSuf}${sSrcExt}")
-        foreach(sSrcFilePath ${zSrcFilePaths})
-          get_filename_component(sSrcFileDir "${sSrcFilePath}" DIRECTORY)
-          file(RELATIVE_PATH sSrcFileRelDir "${sSrcDir}" "${sSrcFileDir}")
-          string(REPLACE "/" "\\\\" sSrcFileGrp "${sSrcGrp}${sSrcFileRelDir}")
-          list(APPEND zRsts "${sSrcFilePath}")
-          source_group("${sSrcFileGrp}" FILES "${sSrcFilePath}")
-        endforeach()
-      endforeach()
+  set(zRslts)
+  foreach(sSrcExt ${zSrcExts})
+    file(${sRecurse} zSrcFilePaths "${sSrcDir}/*${sSrcExt}")
+    foreach(sSrcFilePath ${zSrcFilePaths})
+
+      # check valid by regex
+      if (DEFINED _SOURCE_BASE_MATCHES OR DEFINED _SOURCE_BASE_CLASHES)
+        get_filename_component(sSrcFileName "${sSrcFilePath}" NAME)
+        string(REGEX REPLACE "${sSrcExt}$" "" sSrcFileBase "${sSrcFileName}")
+
+        # matches
+        if(DEFINED _SOURCE_BASE_MATCHES AND NOT sSrcFileBase MATCHES "${_SOURCE_BASE_MATCHES}")
+          continue()
+        endif()
+
+        # clashes
+        if(DEFINED _SOURCE_BASE_CLASHES AND sSrcFileBase MATCHES "${_SOURCE_BASE_CLASHES}")
+          continue()
+        endif()
+
+      endif()
+
+	  # piece group name
+      get_filename_component(sSrcFileDir "${sSrcFilePath}" DIRECTORY)
+      file(RELATIVE_PATH sSrcFileRelDir "${sSrcDir}" "${sSrcFileDir}")
+      string(REPLACE "/" "\\\\" sSrcFileGrp "${sSrcGrp}${sSrcFileRelDir}")
+
+	  # append & group
+      list(APPEND zRslts "${sSrcFilePath}")
+      source_group("${sSrcFileGrp}" FILES "${sSrcFilePath}")
+
     endforeach()
   endforeach()
-  if(zRsts)
-    list(REMOVE_DUPLICATES zRsts)
+  if(zRslts)
+    list(REMOVE_DUPLICATES zRslts)
   endif()
 
   if(_MFC)
     set(sPch "${CMAKE_CURRENT_BINARY_DIR}/mfc$<$<CONFIG:Debug>:d>.pch")
-    foreach(sSrcFilePath ${zRsts})
+    foreach(sSrcFilePath ${zRslts})
       get_filename_component(sFileExt ${sSrcFilePath} NAME)
       string(TOLOWER ${sFileExt} sFileExtLwr)
       if(NOT sFileExtLwr MATCHES ".*\.cpp$")
@@ -166,8 +170,8 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
     if(sLen EQUAL 0)
       message(WARNING "Keyword SOURCE_PROPERTIES is used, but without value.")
     endif()
-    set_source_files_properties(${zRsts} PROPERTIES ${_SOURCE_PROPERTIES})
+    set_source_files_properties(${zRslts} PROPERTIES ${_SOURCE_PROPERTIES})
   endif()
 
-  set(${_RESULTS_VARIABLE} ${zRsts} PARENT_SCOPE)
+  set(${_RESULTS_VARIABLE} ${zRslts} PARENT_SCOPE)
 endfunction()

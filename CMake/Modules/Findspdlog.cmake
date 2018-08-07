@@ -5,7 +5,7 @@
 # | |   | | | | | (_| \__ \ |_) | (_| | | (_) | (_| |
 # \_|   |_|_| |_|\__,_|___/ .__/ \__,_|_|\___/ \__, |
 # zhengrr                 | |                   __/ |
-# 2018-08-04 – 2018-08-04 |_|                  |___/  Findspdlog by FIGlet doom
+# 2018-08-04 – 2018-08-06 |_|                  |___/  Findspdlog by FIGlet doom
 # The MIT License
 
 #.rst:
@@ -24,7 +24,7 @@
 # ::
 #
 #    spdlog_ROOT_DIR
-#    ENV SPDLOG_DIR
+#    ENV SPDLOG_ROOT
 #
 # 预期：
 # ::
@@ -43,7 +43,7 @@ endif()
 
 # hints
 
-set(zHints "${spdlog_ROOT_DIR}" "$ENV{SPDLOG_DIR}")
+set(zHints "${spdlog_ROOT_DIR}" "$ENV{SPDLOG_ROOT}")
 
 # include
 

@@ -6,10 +6,10 @@
 # |_|  |_|  |___/ .__/ \__,_|_|\___/ \__, |
 #               | |                   __/ |
 # zhengrr       |_|                  |___/  rrspdlog by FIGlet doom
-# 2018-08-04 – 2018-08-04
+# 2018-08-04 – 2018-08-06
 # The MIT License
 
-project(rrspdlog VERSION 2108.8.4 LANGUAGES CXX)
+project(rrspdlog VERSION 2108.8.6 LANGUAGES CXX)
 project_extra()
 compiler_warning_level(HIGHEST UTF-8)
 
@@ -17,7 +17,8 @@ facile_add_doxygen()
 
 find_package(spdlog)
 
-aux_source_directory_enhanced(zSrc RECURSE)
-facile_add_executable(OPTION_INITIAL_ON
-                      ${zSrc}
-  INCLUDE_DIRECTORIES PRIVATE ${spdlog_INCLUDE_DIRS})
+aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "gt" "ygen")
+facile_add_gtest_executable(SUBNAME "Test"
+                                    OPTION_INITIAL_ON
+                                    ${zSrc}
+                INCLUDE_DIRECTORIES PRIVATE ${spdlog_INCLUDE_DIRS})
