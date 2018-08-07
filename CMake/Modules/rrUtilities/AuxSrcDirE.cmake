@@ -114,6 +114,9 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
       # check valid by regex
       if (DEFINED _SOURCE_BASE_MATCHES OR DEFINED _SOURCE_BASE_CLASHES)
         get_filename_component(sSrcFileName "${sSrcFilePath}" NAME)
+        if (NOT sSrcFileName MATCHES "${sSrcExt}$")
+          continue()
+        endif()
         string(REGEX REPLACE "${sSrcExt}$" "" sSrcFileBase "${sSrcFileName}")
 
         # matches

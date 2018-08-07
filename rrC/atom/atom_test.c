@@ -13,7 +13,7 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
-#include "rrc/ver.h"
+#include "rrC/cver.h"
 #if ATOMICS
 # include <stdatomic.h>
 #include "rrc/def.h"

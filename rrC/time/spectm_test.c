@@ -17,8 +17,8 @@
 
 #include <check/check.h>
 
-#include "rrc/def.h"
-#include "rrc/ver.h"
+#include "rrC/cver.h"
+#include "rrC/def.h"
 
 #include "test.h"
 

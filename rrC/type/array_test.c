@@ -16,7 +16,7 @@
 
 #include <check/check.h>
 
-#include "rrc/ver.h"
+#include "rrC/cver.h"
 
 #include "test.h"
 
