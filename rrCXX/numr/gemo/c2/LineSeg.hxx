@@ -14,10 +14,10 @@
 #ifndef RRCXX_C2_LINESEG_HXX_
 #define RRCXX_C2_LINESEG_HXX_
 
-#include "rrcxx/gemo/nl1/Inr.hxx"
-#include "BndVec.hxx"
-#include "Pt.hxx"
-#include "Vec.hxx"
+#include "rrCXX/numr/gemo/c2/BndVec.hxx"
+#include "rrCXX/numr/gemo/c2/Pt.hxx"
+#include "rrCXX/numr/gemo/c2/Vec.hxx"
+#include "rrCXX/numr/gemo/nl1/Inr.hxx"
 
 namespace rrcxx {
 namespace geom {

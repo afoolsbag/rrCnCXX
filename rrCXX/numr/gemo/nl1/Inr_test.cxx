@@ -1,8 +1,7 @@
 /// \copyright The MIT License
 
 #include <gtest/gtest.h>
-
-#include "Inr.hxx"
+#include "rrCXX/numr/gemo/nl1/Inr.hxx"
 
 namespace rrcxx {
 namespace geom {

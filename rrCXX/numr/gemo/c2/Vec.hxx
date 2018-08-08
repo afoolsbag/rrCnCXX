@@ -16,7 +16,7 @@
 
 #include <cmath>
 
-#include "Pt.hxx"
+#include "rrCXX/numr/gemo/c2/Pt.hxx"
 
 namespace rrcxx {
 namespace geom {

@@ -4,8 +4,7 @@
 #include <cmath>
 
 #include <gtest/gtest.h>
-
-#include "Vec.hxx"
+#include "rrCXX/numr/gemo/c2/Vec.hxx"
 
 namespace rrcxx {
 namespace geom {

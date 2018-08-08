@@ -17,7 +17,7 @@
 #include <cstdint>
 #include <chrono>
 
-#include "rrcxx/rrcxxapi.hxx"
+#include "rrCXX/rrcxxapi.hxx"
 
 namespace rrcxx {
 namespace lib {

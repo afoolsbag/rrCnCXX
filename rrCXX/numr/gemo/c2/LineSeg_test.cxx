@@ -1,9 +1,8 @@
 /// \copyright The MIT License
 
 #include <gtest/gtest.h>
-
-#include "rrcxx/gemo/nl1/Inr.hxx"
-#include "LineSeg.hxx"
+#include "rrCXX/numr/gemo/c2/LineSeg.hxx"
+#include "rrCXX/numr/gemo/nl1/Inr.hxx"
 
 namespace rrcxx {
 namespace geom {

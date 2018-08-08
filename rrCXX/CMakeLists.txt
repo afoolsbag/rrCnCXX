@@ -5,12 +5,12 @@
 # | |  | |  | \__/\/ /^\ \/ /^\ \
 # |_|  |_|   \____/\/   \/\/   \/ rrCxx by FIGlet doom
 # zhengrr
-# 2016-08-01 – 2018-08-07
+# 2016-08-01 – 2018-08-08
 # The MIT License
 
-project(rrCXX VERSION 2018.8.7 LANGUAGES CXX)
+project(rrCXX VERSION 2018.8.8 LANGUAGES CXX)
 project_extra()
-compiler_warning_level(HIGHEST UTF-8)
+compiler_warning_level(UTF-8)
 
 facile_add_doxygen()
 

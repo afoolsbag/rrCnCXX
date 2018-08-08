@@ -2,5 +2,4 @@
 
 #include <gtest/gtest.h>
 
-#include "rrcxx/demov/video.hxx"
-using namespace rrcxx::demov;
+#include "rrCXX/cont/demov/domev.hxx"

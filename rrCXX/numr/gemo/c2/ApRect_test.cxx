@@ -1,8 +1,7 @@
 /// \copyright The MIT License
 
 #include <gtest/gtest.h>
-
-#include "ApRect.hxx"
+#include "rrCXX/numr/gemo/c2/ApRect.hxx"
 
 namespace rrcxx {
 namespace geom {

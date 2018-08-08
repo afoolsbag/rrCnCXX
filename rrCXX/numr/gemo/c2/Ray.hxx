@@ -14,7 +14,7 @@
 #ifndef RRCXX_C2_RAY_HXX_
 #define RRCXX_C2_RAY_HXX_
 
-#include "Pt.hxx"
+#include "rrCXX/numr/gemo/c2/Pt.hxx"
 
 namespace rrcxx {
 namespace geom {

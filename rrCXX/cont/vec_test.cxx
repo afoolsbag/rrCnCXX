@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include "rrcxx/ver.hxx"
+#include "rrCXX/ver.hxx"
 
 namespace rrcxx {
 

@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <map>
 
-#include "slice.hxx"
+#include "rrCXX/cont/demov/Slice.hxx"
 
 namespace rrcxx {
 namespace demov {

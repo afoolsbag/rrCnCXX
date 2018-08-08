@@ -14,8 +14,8 @@
 #ifndef RRCXX_C2_BNDVEC_HXX_
 #define RRCXX_C2_BNDVEC_HXX_
 
-#include "Pt.hxx"
-#include "Vec.hxx"
+#include "rrCXX/numr/gemo/c2/Pt.hxx"
+#include "rrCXX/numr/gemo/c2/Vec.hxx"
 
 namespace rrcxx {
 namespace geom {

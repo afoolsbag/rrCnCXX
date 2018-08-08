@@ -5,7 +5,7 @@
 
 #include <ctime>
 
-#include "rrcxx/rrcxxcfg.hxx"
+#include "rrCXX/rrcxxcfg.hxx"
 
 namespace rrcxx {
 namespace lib {

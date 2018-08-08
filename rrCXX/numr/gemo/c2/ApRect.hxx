@@ -14,9 +14,9 @@
 #ifndef RRCXX_C2_APRECT_HXX_
 #define RRCXX_C2_APRECT_HXX_
 
-#include "BndVec.hxx"
-#include "LineSeg.hxx"
-#include "Vec.hxx"
+#include "rrCXX/numr/gemo/c2/BndVec.hxx"
+#include "rrCXX/numr/gemo/c2/LineSeg.hxx"
+#include "rrCXX/numr/gemo/c2/Vec.hxx"
 
 namespace rrcxx {
 namespace geom {
