@@ -39,22 +39,22 @@ enum class Area {
 ///
 /// \brief 点 \f$ P \f$。
 ///
-template <typename ScalarType = double>
-struct Point {
+template <typename ScalarType>
+struct Point_ {
     ScalarType x = 0;  ///< 横坐标 \f$ x \f$。
     ScalarType y = 0;  ///< 纵坐标 \f$ y \f$。
 
     /// \brief 原点 \f$ O = (0, 0) \f$。
-    inline explicit Point() = default;
+    inline explicit Point_() = default;
 
     /// \brief 点 \f$ P = (x, y) \f$。
-    inline explicit Point(const ScalarType &x, const ScalarType &y)
+    inline explicit Point_(const ScalarType &x, const ScalarType &y)
     {
         this->x = x;
         this->y = y;
     }
 
-    static const Point<ScalarType> ORIGIN;  ///< 零向量 \f$ \vec{0} \f$。
+    static const Point_<ScalarType> ORIGIN;  ///< 零向量 \f$ \vec{0} \f$。
 
     /// \brief 所在区域。
     inline Area area() const
@@ -84,14 +84,14 @@ struct Point {
     }
 };
 
-template<typename ScalarType = double>
-const Point<ScalarType> Point<ScalarType>::ORIGIN(0, 0);
+template<typename ScalarType>
+const Point_<ScalarType> Point_<ScalarType>::ORIGIN(0, 0);
 
 ///
 /// \brief 相等 \f$ P_1 = P_2 \f$。
 ///
-template <typename ScalarType = double>
-inline bool operator ==(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator ==(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x == p2.x && p1.y == p2.y;
 }
@@ -99,8 +99,8 @@ inline bool operator ==(const Point<ScalarType> &p1, const Point<ScalarType> &p2
 ///
 /// \brief 不等 \f$ P_1 \ne P_2 \f$。
 ///
-template <typename ScalarType = double>
-inline bool operator !=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator !=(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return !(p1 == p2);
 }

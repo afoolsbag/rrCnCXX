@@ -28,17 +28,17 @@ namespace c2 {
 ///
 /// \brief 轴平行矩形 \f$ R \f$。
 ///
-template<typename ScalarType = double>
-struct AxisParallelRectangle {
+template<typename ScalarType>
+struct AxisParallelRectangle_ {
     ScalarType xMin = 0;  ///< 最小横坐标 \f$ x_{min} \f$。
     ScalarType xMax = 0;  ///< 最大横坐标 \f$ x_{max} \f$。
     ScalarType yMin = 0;  ///< 最小纵坐标 \f$ y_{min} \f$。
     ScalarType yMax = 0;  ///< 最大纵坐标 \f$ y_{max} \f$。
 
-    inline explicit AxisParallelRectangle() = default;
+    inline explicit AxisParallelRectangle_() = default;
 
     /// \brief 有序轴平行矩形。
-    inline explicit AxisParallelRectangle(const ScalarType &x1, const ScalarType &x2, const ScalarType &y1, const ScalarType &y2)
+    inline explicit AxisParallelRectangle_(const ScalarType &x1, const ScalarType &x2, const ScalarType &y1, const ScalarType &y2)
     {
         if (x1 < x2) {
             xMin = x1;
@@ -58,26 +58,40 @@ struct AxisParallelRectangle {
 };
 
 /// \brief 相等 \f$ R_1 = R_2 \f$。
-template <typename ScalarType = double>
-inline bool operator ==(const AxisParallelRectangle<ScalarType> &r1, const AxisParallelRectangle<ScalarType> &r2)
+template <typename ScalarType>
+inline bool operator ==(const AxisParallelRectangle_<ScalarType> &r1, const AxisParallelRectangle_<ScalarType> &r2)
 {
     return r1.xMin == r2.xMin && r1.xMax == r2.xMax && r1.yMin == r2.yMin && r1.yMax == r2.yMax;
 }
 
 /// \brief 不等 \f$ R_1 \ne R_2 \f$。
-template <typename ScalarType = double>
-inline bool operator !=(const AxisParallelRectangle<ScalarType> &r1, const AxisParallelRectangle<ScalarType> &r2)
+template <typename ScalarType>
+inline bool operator !=(const AxisParallelRectangle_<ScalarType> &r1, const AxisParallelRectangle_<ScalarType> &r2)
 {
     return !(r1 == r2);
 }
 
-/// \brief 是否相交 \f$ p: \overline{S} \cap R \ne \emptyset \f$。
-template<typename ScalarType = double>
-inline bool Intersected(const LineSegment<ScalarType> &s, const AxisParallelRectangle<ScalarType> &r)
+/// \brief 是否相交 \f$ p: P \cap R \ne \emptyset \f$。
+template<typename ScalarType>
+inline bool Intersected(const Point_<ScalarType> &p, const AxisParallelRectangle_<ScalarType> &r)
 {
-    using BoundVector = BoundVector<ScalarType>;
-    using Point = Point<ScalarType>;
-    using Vector = Vector<ScalarType>;
+    return r.xMin <= p.x && p.x <= r.xMax && r.yMin <= p.y && p.y <= r.yMax;
+}
+
+/// \brief 是否相交 \f$ p: R \cap P \ne \emptyset \f$。
+template<typename ScalarType>
+inline bool Intersected(const AxisParallelRectangle_<ScalarType> &r, const Point_<ScalarType> &p)
+{
+    return Intersected(p, r);
+}
+
+/// \brief 是否相交 \f$ p: \overline{S} \cap R \ne \emptyset \f$。
+template<typename ScalarType>
+inline bool Intersected(const LineSegment_<ScalarType> &s, const AxisParallelRectangle_<ScalarType> &r)
+{
+    using BoundVector_ = BoundVector_<ScalarType>;
+    using Point_ = Point_<ScalarType>;
+    using Vector_ = Vector_<ScalarType>;
 
     // 进行快速判定，排除明显不相交的情形：
     if (s.xProjection().max < r.xMin || r.xMax < s.xProjection().min ||
@@ -85,11 +99,11 @@ inline bool Intersected(const LineSegment<ScalarType> &s, const AxisParallelRect
         return false;
 
     // 若通过快速判定，则进行严格判定：
-    const Vector vMN = BoundVector(s).vec;
-    const Vector vMA = BoundVector(s.ept1, Point(r.xMin, r.yMin)).vec;
-    const Vector vMB = BoundVector(s.ept1, Point(r.xMin, r.yMax)).vec;
-    const Vector vMC = BoundVector(s.ept1, Point(r.xMax, r.yMin)).vec;
-    const Vector vMD = BoundVector(s.ept1, Point(r.xMax, r.yMax)).vec;
+    const Vector_ vMN = BoundVector_(s).vec;
+    const Vector_ vMA = BoundVector_(s.ept1, Point_(r.xMin, r.yMin)).vec;
+    const Vector_ vMB = BoundVector_(s.ept1, Point_(r.xMin, r.yMax)).vec;
+    const Vector_ vMC = BoundVector_(s.ept1, Point_(r.xMax, r.yMin)).vec;
+    const Vector_ vMD = BoundVector_(s.ept1, Point_(r.xMax, r.yMax)).vec;
 
     // 因已通过快速判定，共线必然相交，同边必然相离：
     const ScalarType ref = CrossProduct(vMN, vMA);
@@ -115,8 +129,8 @@ inline bool Intersected(const LineSegment<ScalarType> &s, const AxisParallelRect
 }
 
 /// \brief 是否相交 \f$ p: R \cap \overline{S} \ne \emptyset \f$。
-template<typename ScalarType = double>
-inline bool Intersected(const AxisParallelRectangle<ScalarType> &r, const LineSegment<ScalarType> &s)
+template<typename ScalarType>
+inline bool Intersected(const AxisParallelRectangle_<ScalarType> &r, const LineSegment_<ScalarType> &s)
 {
     return Intersected(s, r);
 }

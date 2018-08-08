@@ -29,16 +29,16 @@ namespace c2 {
 ///
 /// \brief 线段 \f$ \overline{S} \f$。
 ///
-template<typename ScalarType = double>
-struct LineSegment {
-    Point<ScalarType> ept1;  ///< 端点（End Point）\f$ P_1 \f$。
-    Point<ScalarType> ept2;  ///< 端点（End Point）\f$ P_2 \f$。
+template<typename ScalarType>
+struct LineSegment_ {
+    Point_<ScalarType> ept1;  ///< 端点（End Point）\f$ P_1 \f$。
+    Point_<ScalarType> ept2;  ///< 端点（End Point）\f$ P_2 \f$。
 
     /// \brief 线段 \f$ \overline{S} = \overline{OO} \f$。
-    inline explicit LineSegment() = default;
+    inline explicit LineSegment_() = default;
 
     /// \brief 线段 \f$ \overline{S} = \overline{P_1P_2} \f$。
-    inline explicit LineSegment(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+    inline explicit LineSegment_(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
     {
         ept1 = p1;
         ept2 = p2;
@@ -48,59 +48,69 @@ struct LineSegment {
     ///                                                     P_1 &= (x_1, y_1) \\
     ///                                                     P_2 &= (x_2, y_2)
     ///                                                   \end{align} \right.    \f$。
-    inline explicit LineSegment(const ScalarType &x1, const ScalarType &y1, const ScalarType &x2, const ScalarType &y2)
-        : LineSegment(Point<ScalarType>(x1, y1), Point<ScalarType>(x2, y2))
+    inline explicit LineSegment_(const ScalarType &x1, const ScalarType &y1, const ScalarType &x2, const ScalarType &y2)
+        : LineSegment_(Point_<ScalarType>(x1, y1), Point_<ScalarType>(x2, y2))
     {}
 
-    /// \brief 横轴投影区间。
-    nl1::Interval<ScalarType> xProjection() const
+    /// \brief 端点是否重合。
+    inline bool isPoint() const
     {
-        using Interval = nl1::Interval<ScalarType>;
+        return ept1 == ept2;
+    }
 
-        return Interval(ept1.x, ept2.x, Interval::Type::CLOSE);
+    /// \brief 横轴投影区间。
+    inline nl1::Interval_<ScalarType> xProjection() const
+    {
+        using Interval_ = nl1::Interval_<ScalarType>;
+
+        return Interval_(ept1.x, ept2.x, Interval_::Type::CLOSE);
     }
 
     /// \brief 纵轴投影区间。
-    nl1::Interval<ScalarType> yProjection() const
+    inline nl1::Interval_<ScalarType> yProjection() const
     {
-        using Interval = nl1::Interval<ScalarType>;
+        using Interval_ = nl1::Interval_<ScalarType>;
 
-        return Interval(ept1.y, ept2.y, Interval::Type::CLOSE);
+        return Interval_(ept1.y, ept2.y, Interval_::Type::CLOSE);
     }
 
     /// \brief 固定向量 \f$ \vec{B} \f$ 转线段 \f$ \overline{S} \f$。
-    inline explicit LineSegment(const BoundVector<ScalarType> &b)
-        : LineSegment(b.bpt, b.bpt + b.vec)
+    inline explicit LineSegment_(const BoundVector_<ScalarType> &b)
+        : LineSegment_(b.bpt, b.bpt + b.vec)
     {}
 
     /// \brief 线段 \f$ \overline{S} \f$ 转固定向量 \f$ \vec{B} \f$。
-    inline explicit operator BoundVector<ScalarType>() const
+    inline explicit operator BoundVector_<ScalarType>() const
     {
-        return BoundVector<ScalarType>(ept1, ept2);
+        return BoundVector_<ScalarType>(ept1, ept2);
     }
 };
 
 /// \brief 相等 \f$ \overline{S_1} = \overline{S_2} \f$。
-template <typename ScalarType = double>
-inline bool operator ==(const LineSegment<ScalarType> &s1, const LineSegment<ScalarType> &s2)
+template <typename ScalarType>
+inline bool operator ==(const LineSegment_<ScalarType> &s1, const LineSegment_<ScalarType> &s2)
 {
     return (s1.ept1 == s2.ept1 && s1.ept2 == s2.ept2)
         || (s1.ept1 == s2.ept2 && s1.ept2 == s2.ept1);
 }
 
 /// \brief 不等 \f$ \overline{S_1} \ne \overline{S_2} \f$。
-template <typename ScalarType = double>
-inline bool operator !=(const LineSegment<ScalarType> &s1, const LineSegment<ScalarType> &s2)
+template <typename ScalarType>
+inline bool operator !=(const LineSegment_<ScalarType> &s1, const LineSegment_<ScalarType> &s2)
 {
     return !(s1 == s2);
 }
 
 /// \brief 是否相交 \f$ p: P \cap \overline{S} \ne \emptyset \f$。
-template<typename ScalarType = double>
-inline bool Intersected(const Point<ScalarType> &p, const LineSegment<ScalarType> &s)
+template<typename ScalarType>
+inline bool Intersected(const Point_<ScalarType> &p, const LineSegment_<ScalarType> &s)
 {
-    using BoundVector = BoundVector<ScalarType>;
-    using Vector = Vector<ScalarType>;
+    using BoundVector_ = BoundVector_<ScalarType>;
+    using Vector_ = Vector_<ScalarType>;
+
+    // 若线段端点重合。
+    if (s.isPoint())
+        return p == s.ept1;
 
     // 进行快速判定，排除明显不相交的情形：
     if (p.x < s.xProjection().min || s.xProjection().max < p.x ||
@@ -108,15 +118,15 @@ inline bool Intersected(const Point<ScalarType> &p, const LineSegment<ScalarType
         return false;
 
     // 若通过快速判定，则进行严格判定：
-    const Vector vAB = BoundVector(s).vec;
-    const Vector vAP = BoundVector(s.ept1, p).vec;
+    const Vector_ vAB = BoundVector_(s).vec;
+    const Vector_ vAP = BoundVector_(s.ept1, p).vec;
     // 因已通过快速判定，共线必然相交，不共线必然相离：
     return CrossProduct(vAB, vAP) == 0;
 }
 
 /// \brief 是否相交 \f$ p: \overline{S} \cap P \ne \emptyset \f$。
-template<typename ScalarType = double>
-inline bool Intersected(const LineSegment<ScalarType> &s, const Point<ScalarType> &p)
+template<typename ScalarType>
+inline bool Intersected(const LineSegment_<ScalarType> &s, const Point_<ScalarType> &p)
 {
     return Intersected(p, s);
 }
@@ -147,11 +157,11 @@ inline bool Intersected(const LineSegment<ScalarType> &s, const Point<ScalarType
 ///          + 若不平行，则通过判断 \f$ \lambda_{AB} \f$ 和 \f$ \lambda_{CD} \f$ 是否处于 \f$ [0, 1] \f$ 判断是否相交。
 ///
 /// \sa <https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect>
-template<typename ScalarType = double>
-inline bool Intersected(const LineSegment<ScalarType> &s1, const LineSegment<ScalarType> &s2)
+template<typename ScalarType>
+inline bool Intersected(const LineSegment_<ScalarType> &s1, const LineSegment_<ScalarType> &s2)
 {
-    using BoundVector = BoundVector<ScalarType>;
-    using Vector = Vector<ScalarType>;
+    using BoundVector_ = BoundVector_<ScalarType>;
+    using Vector_ = Vector_<ScalarType>;
 
     // 进行快速判定，排除明显不相交的情形：
     if (s1.xProjection().max < s2.xProjection().min || s2.xProjection().max < s1.xProjection().min ||
@@ -159,9 +169,9 @@ inline bool Intersected(const LineSegment<ScalarType> &s1, const LineSegment<Sca
         return false;
 
     // 若通过快速判定，则进行严格判定：
-    const Vector vAB = BoundVector(s1).vec;
-    const Vector vAC = BoundVector(s1.ept1, s2.ept1).vec;
-    const Vector vCD = BoundVector(s2).vec;
+    const Vector_ vAB = BoundVector_(s1).vec;
+    const Vector_ vAC = BoundVector_(s1.ept1, s2.ept1).vec;
+    const Vector_ vCD = BoundVector_(s2).vec;
 
     const ScalarType ABxCD = CrossProduct(vAB, vCD);
     const ScalarType ACxCD = CrossProduct(vAC, vCD);

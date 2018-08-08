@@ -24,16 +24,16 @@ namespace c2 {
 ///
 /// \brief 直线 \f$ \overleftrightarrow{L} \f$。
 ///
-template<typename ScalarType = double>
-struct Line {
+template<typename ScalarType>
+struct Line_ {
     ScalarType a = 0;  ///< 横坐标系数。
     ScalarType b = 0;  ///< 纵坐标系数。
     ScalarType c = 0;  ///< 常数。
 
-    explicit Line() = default;
+    explicit Line_() = default;
 
     /// \brief 直线 \f$ \overleftrightarrow{L} = \{ (x,y) \mid ax+by+c=0 \} \f$。
-    explicit Line(const ScalarType &a, const ScalarType &b, const ScalarType &c)
+    explicit Line_(const ScalarType &a, const ScalarType &b, const ScalarType &c)
     {
         this->a = a;
         this->b = b;

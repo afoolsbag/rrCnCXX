@@ -24,8 +24,8 @@ namespace nl1 {
 ///
 /// \brief 区间。
 ///
-template <typename ScalarType = double>
-struct Interval {
+template <typename ScalarType>
+struct Interval_ {
     /// \brief 区间类型。
     enum class Type {
         OPEN,        ///< 开区间 \f$ (min, max) \f$。
@@ -39,10 +39,10 @@ struct Interval {
     Type       type = Type::OPEN;  ///< 类型。
 
     /// \brief 空集 \f$ \emptyset \f$。
-    inline explicit Interval() = default;
+    inline explicit Interval_() = default;
 
     /// \brief 有序区间。
-    inline explicit Interval(const ScalarType &limit1, const ScalarType &limit2, const Type type)
+    inline explicit Interval_(const ScalarType &limit1, const ScalarType &limit2, const Type type)
     {
         if (limit1 < limit2) {
             min = limit1;
@@ -62,15 +62,15 @@ struct Interval {
 };
 
 /// \brief 相等。
-template <typename ScalarType = double>
-inline bool operator ==(const Interval<ScalarType> &i1, const Interval<ScalarType> &i2)
+template <typename ScalarType>
+inline bool operator ==(const Interval_<ScalarType> &i1, const Interval_<ScalarType> &i2)
 {
     return i1.min == i2.min && i1.max == i2.max && i1.type == i2.type;
 }
 
 /// \brief 不等。
-template <typename ScalarType = double>
-inline bool operator !=(const Interval<ScalarType> &i1, const Interval<ScalarType> &i2)
+template <typename ScalarType>
+inline bool operator !=(const Interval_<ScalarType> &i1, const Interval_<ScalarType> &i2)
 {
     return !(i1 == i2);
 }

@@ -26,16 +26,16 @@ namespace c2 {
 ///
 /// \brief 射线 \f$ \overrightarrow{R} \f$。
 ///
-template<typename ScalarType = double>
-struct Ray {
-    Point<ScalarType> ipt;        ///< 起始点（Initial Point）\f$ P_{initial} \f$。
+template<typename ScalarType>
+struct Ray_ {
+    Point_<ScalarType> ipt;        ///< 起始点（Initial Point）\f$ P_{initial} \f$。
     ScalarType        theta = 0;  ///< 角 \f$ \theta \f$。
 
     /// \brief 射线。
-    explicit Ray() = default;
+    explicit Ray_() = default;
 
     /// \brief 射线。
-    explicit Ray(const Point<ScalarType> &ipt, const ScalarType &theta)
+    explicit Ray_(const Point_<ScalarType> &ipt, const ScalarType &theta)
     {
         this->ipt = ipt;
         this->theta = theta;

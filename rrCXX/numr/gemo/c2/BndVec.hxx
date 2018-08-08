@@ -27,16 +27,16 @@ namespace c2 {
 ///
 /// \brief 固定向量 \f$ \vec{B} \f$。
 ///
-template<typename ScalarType = double>
-struct BoundVector {
-    Point<ScalarType>  bpt;  ///< 基点（Base Point）\f$ P_{base} \f$。
-    Vector<ScalarType> vec;  ///< 向量（Vector）\f$ \vec{v} \f$。
+template<typename ScalarType>
+struct BoundVector_ {
+    Point_<ScalarType>  bpt;  ///< 基点（Base Point）\f$ P_{base} \f$。
+    Vector_<ScalarType> vec;  ///< 向量（Vector）\f$ \vec{v} \f$。
 
     /// \brief 固定向量 \f$ \vec{B} = \vec{OO} \f$。
-    inline explicit BoundVector() = default;
+    inline explicit BoundVector_() = default;
 
     /// \brief 固定向量 \f$ \vec{B} = \vec{P_{base}P_{tip}}, P_{tip} = P_{base} + \vec{v} \f$。
-    inline explicit BoundVector(const Point<ScalarType> &pBase, const Vector<ScalarType> &v)
+    inline explicit BoundVector_(const Point_<ScalarType> &pBase, const Vector_<ScalarType> &v)
     {
         bpt = pBase;
         vec = v;
@@ -47,26 +47,26 @@ struct BoundVector {
     ///                                                       P_{base} &= (x_{base}, y_{base})      \\
     ///                                                        \vec{v} &= \left<x_{v}, y_{v}\right>
     ///                                                     \end{align} \right.                        \f$。
-    inline explicit BoundVector(const ScalarType &xBase, const ScalarType &yBase, const ScalarType &xV, const ScalarType &yV)
-        : BoundVector(Point<ScalarType>(xBase, yBase), Vector<ScalarType>(xV, yV))
+    inline explicit BoundVector_(const ScalarType &xBase, const ScalarType &yBase, const ScalarType &xV, const ScalarType &yV)
+        : BoundVector_(Point_<ScalarType>(xBase, yBase), Vector_<ScalarType>(xV, yV))
     {}
 
     /// \brief 固定向量 \f$ \vec{B} = \vec{P_{base}P_{tip}} \f$。
-    inline explicit BoundVector(const Point<ScalarType> &pBase, const Point<ScalarType> &pTip)
-        : BoundVector(pBase, Vector<ScalarType>(pTip.x - pBase.x, pTip.y - pBase.y))
+    inline explicit BoundVector_(const Point_<ScalarType> &pBase, const Point_<ScalarType> &pTip)
+        : BoundVector_(pBase, Vector_<ScalarType>(pTip.x - pBase.x, pTip.y - pBase.y))
     {}
 };
 
 /// \brief 相等 \f$ \vec{B_1} = \vec{B_2} \f$。
-template <typename ScalarType = double>
-inline bool operator ==(const BoundVector<ScalarType> &b1, const BoundVector<ScalarType> &b2)
+template <typename ScalarType>
+inline bool operator ==(const BoundVector_<ScalarType> &b1, const BoundVector_<ScalarType> &b2)
 {
     return b1.bpt == b2.bpt && b1.vec == b2.vec;
 }
 
 /// \brief 不等 \f$ \vec{B_1} \ne \vec{B_2} \f$。
-template <typename ScalarType = double>
-inline bool operator !=(const BoundVector<ScalarType> &b1, const BoundVector<ScalarType> &b2)
+template <typename ScalarType>
+inline bool operator !=(const BoundVector_<ScalarType> &b1, const BoundVector_<ScalarType> &b2)
 {
     return !(b1 == b2);
 }

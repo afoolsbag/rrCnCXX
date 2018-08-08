@@ -14,6 +14,17 @@
 #ifndef RRCXX_GEOM_HXX_
 #define RRCXX_GEOM_HXX_
 
+#include "rrCXX/numr/gemo/c2/ApRect.hxx"
+#include "rrCXX/numr/gemo/c2/BndVec.hxx"
+#include "rrCXX/numr/gemo/c2/Line.hxx"
+#include "rrCXX/numr/gemo/c2/LineSeg.hxx"
+#include "rrCXX/numr/gemo/c2/Polygon.hxx"
+#include "rrCXX/numr/gemo/c2/Pt.hxx"
+#include "rrCXX/numr/gemo/c2/Ray.hxx"
+#include "rrCXX/numr/gemo/c2/Vec.hxx"
+#include "rrCXX/numr/gemo/nl1/Inr.hxx"
+#include "rrCXX/numr/gemo/nl1/Pt.hxx"
+
 namespace rrcxx {
 
 /// @addtogroup gGeom
@@ -29,6 +40,8 @@ namespace geom {
 ///        Number Line 1-Dimensional.
 ///
 namespace nl1 {
+using Interval = Interval_<double>;
+using Point = Point_<double>;
 }//namespace nl1
 
 ///
@@ -36,6 +49,14 @@ namespace nl1 {
 ///        Cartesian Coordinate System 2-Dimensional.
 ///
 namespace c2 {
+using AxisParallelRectangle = AxisParallelRectangle_<double>;
+using BoundVector = BoundVector_<double>;
+using Line = Line_<double>;
+using LineSegment = LineSegment_<double>;
+using Polygon = Polygon_<double>;
+using Point = Point_<double>;
+using Ray = Ray_<double>;
+using Vector = Vector_<double>;
 }//namespace c2
 
 }//namespace geom

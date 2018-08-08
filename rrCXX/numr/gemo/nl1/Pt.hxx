@@ -33,15 +33,15 @@ enum class Area {
 ///
 /// \brief 点 \f$ P \f$。
 ///
-template <typename ScalarType = double>
-struct Point {
+template <typename ScalarType>
+struct Point_ {
     ScalarType x = 0;  ///< 坐标 \f$ x \f$。
 
     /// \brief 原点 \f$ O = (0) \f$。
-    inline explicit Point() = default;
+    inline explicit Point_() = default;
 
     /// \brief 点 \f$ P = (x) \f$。
-    inline explicit Point(const ScalarType &x)
+    inline explicit Point_(const ScalarType &x)
     {
         this->x = x;
     }
@@ -60,43 +60,43 @@ struct Point {
 };
 
 /// \brief 相等 \f$ P_1 = P_2 \f$。
-template <typename ScalarType = double>
-inline bool operator ==(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator ==(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x == p2.x;
 }
 
 /// \brief 不等 \f$ P_1 \ne P_2 \f$。
-template <typename ScalarType = double>
-inline bool operator !=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator !=(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x != p2.x;
 }
 
 /// \brief 小于 \f$ P_1 \lt P_2 \f$。
-template <typename ScalarType = double>
-inline bool operator <(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator <(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x < p2.x;
 }
 
 /// \brief 不小于 \f$ P_1 \ge P_2 \f$。
-template <typename ScalarType = double>
-inline bool operator >=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator >=(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x >= p2.x;
 }
 
 /// \brief 大于 \f$ P_1 \gt P_2 \f$。
-template <typename ScalarType = double>
-inline bool operator >(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator >(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x > p2.x;
 }
 
 /// \brief 不大于 \f$ P_1 \le P_2 \f$。
-template <typename ScalarType = double>
-inline bool operator <=(const Point<ScalarType> &p1, const Point<ScalarType> &p2)
+template <typename ScalarType>
+inline bool operator <=(const Point_<ScalarType> &p1, const Point_<ScalarType> &p2)
 {
     return p1.x <= p2.x;
 }
