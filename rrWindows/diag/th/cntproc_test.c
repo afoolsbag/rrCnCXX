@@ -5,9 +5,9 @@
 #include <tchar.h>
 
 #include <check/check.h>
+#include "rrWindows/rrWindows.h"
 
-#include "rrwindows/cntproc.h"
-#include "tsuite_th.h"
+#include "test.h"
 
 START_TEST(TestCntProcByExe)
 {

@@ -11,17 +11,15 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <stdlib.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <strsafe.h>
 #include <tchar.h>
 
 #include <check/check.h>
-#include "rrwindows/def.h"
-#include "rrwindows/strsim.h"
+#include "rrWindows/rrWindows.h"
 
-#include "tsuite_str.h"
+#include "test.h"
 
 /**
  * \sa ["StringCchCopy function"](https://msdn.microsoft.com/library/ms647527). *Microsoft Developer Network*.

@@ -1,25 +1,24 @@
 /** \copyright The MIT License */
 
-#include <stdlib.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <tchar.h>
 
 #include <check/check.h>
 
-#include "data/lfsys/dirmgmt/tsuite_dirmgmt.h"
-#include "data/lfsys/dskmgmt/tsuite_dskmgmt.h"
-#include "data/lfsys/fmgmt/tsuite_fmgmt.h"
-#include "diag/dbg/errhdl/tsuite_errhdl.h"
-#include "diag/dbg/basdbg/tsuite_basdbg.h"
-#include "diag/th/tsuite_th.h"
-#include "env/sh/tsuite_sh.h"
-#include "net/rpc/tsuite_rpc.h"
-#include "net/wnet/tsuite_wnet.h"
-#include "svc/info/reg/tsuite_reg.h"
-#include "dtpui/intl/charset/tsuite_charset.h"
-#include "dtpui/menurc/str/tsuite_str.h"
-#include "dtpui/menurc/ver/tsuite_ver.h"
+#include "data/lfsys/dirmgmt/test.h"
+#include "data/lfsys/dskmgmt/test.h"
+#include "data/lfsys/fmgmt/test.h"
+#include "diag/dbg/errhdl/test.h"
+#include "diag/dbg/basdbg/test.h"
+#include "diag/th/test.h"
+#include "env/sh/test.h"
+#include "net/rpc/test.h"
+#include "net/wnet/test.h"
+#include "svc/info/reg/test.h"
+#include "dtpui/intl/charset/test.h"
+#include "dtpui/menurc/str/test.h"
+#include "dtpui/menurc/ver/test.h"
 
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {

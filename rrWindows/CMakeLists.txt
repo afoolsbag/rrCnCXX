@@ -13,8 +13,8 @@ compiler_warning_level(AS_ERROR UTF-8)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
-#add_definitions("-D_UNICODE" "-DUNICODE")
-#remove_definitions("-D_MBCS")
+add_definitions("-D_UNICODE" "-DUNICODE")
+remove_definitions("-D_MBCS")
 
 configure_file("exever.rc.in" "exever.rc" @ONLY)
 aux_source_directory_enhanced(zSrc

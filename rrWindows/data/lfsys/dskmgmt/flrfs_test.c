@@ -4,12 +4,9 @@
 #include <Windows.h>
 
 #include <check/check.h>
+#include "rrWindows/rrWindows.h"
 
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "rrwindows/exepath.h"
-#include "rrwindows/flrfs.h"
-#include "tsuite_dskmgmt.h"
+#include "test.h"
 
 START_TEST(TestFlrFS)
 {

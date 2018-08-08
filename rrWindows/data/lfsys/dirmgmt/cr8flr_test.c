@@ -8,11 +8,7 @@
 #include <tchar.h>
 
 #include <check/check.h>
-#include "rrWindows/data/lfsys/dirmgmt/cr8flr.h"
-#include "rrWindows/diag/dbg/basdbg/dbgprt.h"
-#include "rrWindows/diag/dbg/errhdl/errtxt.h"
-#include "rrWindows/svc/dll/exepath.h"
-#include "rrWindows/def.h"
+#include "rrWindows/rrWindows.h"
 
 #include "test.h"
 

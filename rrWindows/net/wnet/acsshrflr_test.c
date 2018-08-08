@@ -5,11 +5,9 @@
 #include <Windows.h>
 
 #include <check/check.h>
+#include "rrWindows/rrWindows.h"
 
-#include "rrwindows/acsshrflr.h"
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "tsuite_wnet.h"
+#include "test.h"
 
 START_TEST(TestAcsShrFlr)
 {

@@ -1,16 +1,13 @@
 /** \copyright The MIT License */
 
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <tchar.h>
 
 #include <check/check.h>
+#include "rrWindows/rrWindows.h"
 
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "rrwindows/travflr.h"
-#include "tsuite_fmgmt.h"
-#include "rrwindows/exepath.h"
+#include "test.h"
 
 static DWORD CALLBACK
 OnFileFound(LPCTSTR CONST path, LPWIN32_FIND_DATA CONST pData)

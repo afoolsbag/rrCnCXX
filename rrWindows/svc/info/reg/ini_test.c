@@ -11,19 +11,15 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <stdlib.h>
-#include <strsafe.h>
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <strsafe.h>
+#include <tchar.h>
 
 #include <check/check.h>
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "rrwindows/exepath.h"
-#include "rrwindows/strsim.h"
+#include "rrWindows/rrWindows.h"
 
-#include "tsuite_reg.h"
+#include "test.h"
 
 /**
  * \sa ["WritePrivateProfileString function"](https://msdn.microsoft.com/library/ms725501). *Microsoft® Developer Network*.
@@ -33,7 +29,7 @@
 START_TEST(TestIni)
 {
     TCHAR iniPath[MAX_PATH];
-    if (FAILED(StringCchCopy(iniPath, _countof(iniPath), InitializationPath())))
+    if (FAILED(StringCchCopy(iniPath, countof(iniPath), InitializationPath())))
         goto out_abort;
 
     if (!WritePrivateProfileString(_T("app"), _T("str"), _T("wow"), iniPath))
@@ -44,7 +40,7 @@ START_TEST(TestIni)
     TCHAR txt[4];
     *txt = _T('\0');
     SetLastError(ERROR_SUCCESS);
-    if (!GetPrivateProfileString(_T("app"), _T("str"), NULL, txt, _countof(txt), iniPath))
+    if (!GetPrivateProfileString(_T("app"), _T("str"), NULL, txt, countof(txt), iniPath))
         goto out_dbgprt;
     ck_assert(CSTR_EQUAL == CompareStringS(txt, _T("wow")));
 

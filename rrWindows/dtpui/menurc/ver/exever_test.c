@@ -18,10 +18,9 @@
 #pragma comment(lib, "mincore.lib")
 
 #include <check/check.h>
-#include "rrwindows/exepath.h"
-#include "rrwindows/verinfo.h"
+#include "rrWindows/rrWindows.h"
 
-#include "tsuite_ver.h"
+#include "test.h"
 
 START_TEST(TestExeVer)
 {

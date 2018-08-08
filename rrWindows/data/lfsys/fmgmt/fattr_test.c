@@ -1,15 +1,13 @@
 /** \copyright The MIT License */
 
-#include <tchar.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <tchar.h>
 
 #include <check/check.h>
+#include "rrWindows/rrWindows.h"
 
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "rrwindows/exepath.h"
-#include "tsuite_fmgmt.h"
+#include "test.h"
 
 /**
  * \sa ["WIN32_FILE_ATTRIBUTE_DATA structure"](https://msdn.microsoft.com/library/aa365739). *Microsoft Developer Network*.

@@ -1,12 +1,13 @@
 /** \copyright The MIT License */
 
-#include <strsafe.h>
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <strsafe.h>
 
 #include <check/check.h>
-#include "rrwindows/genuuid.h"
-#include "rrwindows/strsim.h"
+#include "rrWindows/rrWindows.h"
+
+#include "test.h"
 
 START_TEST(TestGenUuid)
 {

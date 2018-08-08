@@ -1,8 +1,10 @@
-#include "tsuite_reg.h"
+#pragma once
 
 #include <check/check.h>
 
-Suite *TSuiteReg(void)
+TCase *TCaseIni(void);
+
+inline Suite *TSuiteReg(void)
 {
 	Suite *tsuite = suite_create("Reg");
 	suite_add_tcase(tsuite, TCaseIni());

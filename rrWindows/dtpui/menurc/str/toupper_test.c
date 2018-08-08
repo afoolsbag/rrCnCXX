@@ -16,9 +16,9 @@
 #include <tchar.h>
 
 #include <check/check.h>
-#include "rrwindows/strsim.h"
+#include "rrWindows/rrWindows.h"
 
-#include "tsuite_str.h"
+#include "test.h"
 
 /**
  * \brief Converts a character or string to uppercase.

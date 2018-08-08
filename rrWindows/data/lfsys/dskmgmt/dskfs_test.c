@@ -4,7 +4,7 @@
  * \ingroup gDskMgmt
  *
  * \author zhengrr
- * \version 2018-06-26
+ * \version 2018-08-08
  * \since 2018-06-15
  * \copyright The MIT License
  *
@@ -15,10 +15,9 @@
 #include <Windows.h>
 
 #include <check/check.h>
+#include "rrWindows/rrWindows.h"
 
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "tsuite_dskmgmt.h"
+#include "test.h"
 
 START_TEST(TestDskFS)
 {
