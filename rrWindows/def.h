@@ -3,7 +3,7 @@
  * \file
  * \brief 定义。
  *
- * \version 2018-06-27
+ * \version 2018-08-08
  * \since 2018-06-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -20,7 +20,7 @@
 #define ATFUNCNLA " @" __FUNCTION__ ".\n"
 #endif
 #ifndef ATFUNCNLW
-#define ATFUNCNLW L" @" EXPAND_WIDE(__FUNCTION__) L".\n"
+#define ATFUNCNLW L" @" RRWINDOWS_EXPAND_WIDE(__FUNCTION__) L".\n"
 #endif
 #ifndef ATFUNCNL
 # ifdef _UNICODE
@@ -48,10 +48,10 @@
 /*-F--------------------------------------------------------------------------*/
 
 #ifndef FILELINEA
-#define FILELINEA __FILE__ "(" EXPAND_STRING(__LINE__) "): "
+#define FILELINEA __FILE__ "(" RRWINDOWS_EXPAND_STRING(__LINE__) "): "
 #endif
 #ifndef FILENAMEW
-#define FILELINEW EXPAND_WIDE(__FILE__) L"(" EXPAND_WIDE_STRING(__LINE__) L"): "
+#define FILELINEW RRWINDOWS_EXPAND_WIDE(__FILE__) L"(" RRWINDOWS_EXPAND_WIDE_STRING(__LINE__) L"): "
 #endif
 #ifndef FILELINE
 # ifdef _UNICODE

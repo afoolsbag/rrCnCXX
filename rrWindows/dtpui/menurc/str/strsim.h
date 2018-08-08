@@ -74,7 +74,12 @@ CompareStringOrdinalS3(
  *          CSTR_EQUAL        两侧相等；\n
  *          CSTR_GREATER_THAN 左侧大于右侧。
  */
-#define CompareStringOrdinalS(...) EXPAND(VAFUNC3(__VA_ARGS__, CompareStringOrdinalS3, CompareStringOrdinalS2, VABAN)(__VA_ARGS__))
+#define CompareStringOrdinalS(...)                                             \
+    RRWINDOWS_EXPAND(                                                          \
+        RRWINDOWS_VAFUNC3(__VA_ARGS__, CompareStringOrdinalS3,                 \
+                                       CompareStringOrdinalS2,                 \
+                                       RRWINDOWS_VABAN)(__VA_ARGS__)           \
+    )
 
 /**
  * \brief 比较字符串（ANSI适配，Simplify接口）。

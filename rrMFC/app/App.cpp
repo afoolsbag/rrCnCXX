@@ -6,11 +6,7 @@
 #include <vector>
 #include <conio.h>
 
-#include "rrwindows/conutil.h"
-#include "rrwindows/dbgcon.h"
-#include "rrwindows/dbgprt.h"
-#include "rrwindows/errtxt.h"
-#include "rrwindows/unhdlexcfltr.h"
+#include "rrWindows/rrWindows.h"
 
 #// Constructors
 

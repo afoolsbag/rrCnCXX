@@ -56,7 +56,7 @@
 #endif
 
 #ifdef __cplusplus
-# include "rrwindows/syscodestr.h"
+# include "rrWindows/dtpui/winmsg/msg/syscodestr.h"
 #
 # define DckMeth(color) DckPut(color, _T(__FUNCTION__) _T("\n"))
 # define DcMeth() DckMeth(Gray)

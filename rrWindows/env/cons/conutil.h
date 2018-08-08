@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台工具。
  *
- * \version 2018-06-28
+ * \version 2018-08-08
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright The MIT License
@@ -210,7 +210,19 @@ ConsoleColorPut10(
 }
 
 /** \brief 控制台放置有色字串（便利宏）。 */
-#define ConsoleColorPut(...) EXPAND(VAFUNC10(__VA_ARGS__, ConsoleColorPut10, VABAN, ConsoleColorPut8, VABAN, ConsoleColorPut6, VABAN, ConsoleColorPut4, VABAN, ConsoleColorPut2, ConsoleColorPut1)(__VA_ARGS__))
+#define ConsoleColorPut(...)                                                   \
+    RRWINDOWS_EXPAND(                                                          \
+        RRWINDOWS_VAFUNC10(__VA_ARGS__, ConsoleColorPut10,                     \
+                                        RRWINDOWS_VABAN,                       \
+                                        ConsoleColorPut8,                      \
+                                        RRWINDOWS_VABAN,                       \
+                                        ConsoleColorPut6,                      \
+                                        RRWINDOWS_VABAN,                       \
+                                        ConsoleColorPut4,                      \
+                                        RRWINDOWS_VABAN,                       \
+                                        ConsoleColorPut2,                      \
+                                        ConsoleColorPut1)(__VA_ARGS__)         \
+    )
 
 /*-Console-Color-Print--------------------------------------------------------*/
 

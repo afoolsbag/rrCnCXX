@@ -59,7 +59,7 @@ WINAPI_INLINE
 RunExecutableA3(
     _In_z_     LPCSTR CONST path,
     _In_opt_z_ LPCSTR CONST command,
-    _In_z_     LPCSTR CONST startin)
+    _In_opt_z_ LPCSTR CONST startin)
 {
     return RunExecutableA4(path, command, startin, TRUE);
 }
@@ -110,7 +110,13 @@ RunExecutableA1(
  * \returns !FALSE 成功；\n
  *           FALSE 失败，可调用`GetLastError()`获取扩展错误信息。
  */
-#define RunExecutableA(...) EXPAND(VAFUNC4(__VA_ARGS__, RunExecutableA4, RunExecutableA3, RunExecutableA2, RunExecutableA1)(__VA_ARGS__))
+#define RunExecutableA(...)                                                    \
+    RRWINDOWS_EXPAND(                                                          \
+        RRWINDOWS_VAFUNC4(__VA_ARGS__, RunExecutableA4,                        \
+                                       RunExecutableA3,                        \
+                                       RunExecutableA2,                        \
+                                       RunExecutableA1)(__VA_ARGS__)           \
+    )
 
 /**
  * \brief 运行可执行文件（UNICODE适配，4参数）。
@@ -199,7 +205,13 @@ RunExecutableW1(
  * \returns !FALSE 成功；\n
  *           FALSE 失败，可调用`GetLastError()`获取扩展错误信息。
  */
-#define RunExecutableW(...) EXPAND(VAFUNC4(__VA_ARGS__, RunExecutableW4, RunExecutableW3, RunExecutableW2, RunExecutableW1)(__VA_ARGS__))
+#define RunExecutableW(...)                                                    \
+    RRWINDOWS_EXPAND(                                                          \
+        RRWINDOWS_VAFUNC4(__VA_ARGS__, RunExecutableW4,                        \
+                                       RunExecutableW3,                        \
+                                       RunExecutableW2,                        \
+                                       RunExecutableW1)(__VA_ARGS__)           \
+    )
 
 #ifdef _UNICODE
 # define RunExecutable RunExecutableW

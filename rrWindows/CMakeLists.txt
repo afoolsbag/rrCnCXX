@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-08-07
+# 2016-10-12 – 2018-08-08
 # The MIT License
 
-project(rrWindows VERSION 2018.8.7 LANGUAGES C)
+project(rrWindows VERSION 2018.8.8 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 

@@ -3,7 +3,7 @@
  * \file
  * \brief 定义。
  *
- * \version 2018-08-07
+ * \version 2018-08-08
  * \since 2018-04-25
  * \authors zhengrr
  * \copyright The MIT License
@@ -56,6 +56,6 @@
 
 #ifndef UNUSED
 #define UNUSED(x) ((void)(x))
-#endif/*UNUSED*/
+#endif
 
 #endif/*RRC_DEF_H_*/
