@@ -8,7 +8,9 @@
 >
 > [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
-## WWW
+[*TIOBE Index*](https://tiobe.com/tiobe-index/)
+
+# References
 
 [*Wolfram|Alpha*](https://wolframalpha.com/)
 [*Wolfram MathWorld*](http://mathworld.wolfram.com/)
@@ -26,9 +28,7 @@
 [*开源中国*](https://oschina.net/)
 [*前端乱炖*](http://html-js.com/)
 
-## Symbols
-
-### Directories
+## Directories
 
 + [*The Free Dictionary*](https://thefreedictionary.com/)
 + :cn:
@@ -38,12 +38,12 @@
     + [*Dictionary.com*](https://dictionary.com/) & [*Thesaurus.com*](https://thesaurus.com/)
     + [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
 
-### Characters
+## Characters
 
 + [*Unicode® character table*](http://unicode-table.com/)
 + [*Emoji*](http://iemoji.com/)
 
-### Codes
+## Codes
 
 + ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
     + ["ISO 8601"](https://wikipedia.org/wiki/ISO_8601). *Wikipedia*.
@@ -55,7 +55,7 @@
     + [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
         + ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
 
-## Groceries
+# Awesome
 
 ["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/).  *计算机书籍控*.
 + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
@@ -63,7 +63,7 @@
 
 [free-programming-books](https://github.com/EbookFoundation/free-programming-books)
 
-### [Git](https://git-scm.com/)
+## [Git](https://git-scm.com/)
 
 ["Reference"](https://git-scm.com/docs). *Git*.
 + Getting and Creating Projects
@@ -104,7 +104,7 @@
 [*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
 ["Git教程"](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000). *廖雪峰的官方网站*.
 
-### [Markdown](https://daringfireball.net/markdown/)
+## [Markdown](https://daringfireball.net/markdown/)
 
 ["Syntax"](https://daringfireball.net/markdown/syntax). *Markdown*.
 + Block Elements
@@ -118,7 +118,7 @@
 
 ["Mastering Markdown"](https://guides.github.com/features/mastering-markdown/). *GitHub Guides*.
 
-### [Doxygen](http://doxygen.org/)
+## [Doxygen](http://doxygen.org/)
 
 ["Doxygen Manual"](http://doxygen.org/manual). *Doxygen*.
 + [Configuration](http://doxygen.org/manual/config.html)
@@ -139,7 +139,7 @@
 ["\startuml"](http://doxygen.org/manual/commands.html#cmdstartuml). *Doxygen Manual*.
 + [*PlantUML*](http://plantuml.com)
 
-### Editors
+## Editors
 
 [*Emacs (Editor Macros)*](https://gnu.org/software/emacs/)
 [*Vim (Visual Editor Improved)*](http://vim.org/)
@@ -273,12 +273,12 @@ quickref
 + More
     + 左一标签页<kbd>g</kbd><kbd>T</kbd>　某标签页<kbd>Number</kbd><kbd>g</kbd><kbd>t</kbd>　右一标签页<kbd>g</kbd><kbd>t</kbd>
 
-### Environments
+## Environments
 
 [*Cygwin*](http://cygwin.com)
 [*MinGW (Minimalist GNU for Windows)*](http://mingw.org)
 
-### Integrated Development Environments
+## Integrated Development Environments
 
 [*Visual Studio*](https://visualstudio.com)
 + [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
