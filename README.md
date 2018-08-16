@@ -275,8 +275,9 @@ quickref
 
 ## Environments
 
-[*Cygwin*](http://cygwin.com)
-[*MinGW (Minimalist GNU for Windows)*](http://mingw.org)
+[*Cygwin*](http://cygwin.com/)
+[*MinGW (Minimalist GNU for Windows)*](http://mingw.org/)
+[*Mingw-w64*](http://mingw-w64.org/)
 
 ## Integrated Development Environments
 
