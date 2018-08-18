@@ -3,7 +3,7 @@
 /// \defgroup gVideo 录像
 /// \ingroup gDemoV
 ///
-/// \version 2018-08-01
+/// \version 2018-08-17
 /// \since 2018-07-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -16,8 +16,9 @@
 
 #include <algorithm>
 #include <map>
+#include <mutex>
 
-#include "rrCXX/cont/demov/Slice.hxx"
+#include "Slice.hxx"
 
 namespace rrcxx {
 namespace demov {
@@ -29,160 +30,125 @@ namespace demov {
 /// \brief 录像。
 ///
 struct Video {
-    std::string               id;      ///< 标识（identifier）。
-    std::map<unsigned, Slice> slices;  ///< 分片。
+    std::string               identifier;  ///< 标识。
+    std::map<unsigned, Slice> slices;      ///< 分片。
+    std::mutex                writeMutex;  ///< 写互斥量。
 
-private:
-    inline Video(const std::string &id)
+    /// \brief 构造函数。
+    inline Video(const std::string &identifier, const std::string &path)
     {
-        this->id = id;
+        this->identifier = identifier;
+        this->slices.insert(std::make_pair(0u, Slice::Original(path)));
     }
 
-public:
-    /// \brief 未知录像。
-    inline static Video Unknown(const std::string &id, const std::string &path)
+    /// \brief 是否包含某状态分片。
+    inline bool containsSlices(const Slice::Status status) const
     {
-        Video tmp(id);
-        tmp.slices.insert(std::make_pair(0u, Slice::Unknown(path)));
-        return tmp;
-    }
-
-    /// \brief 独一录像。
-    inline static Video Single(const std::string &id, const std::string &path)
-    {
-        Video tmp(id);
-        tmp.slices.insert(std::make_pair(0u, Slice::Single(path)));
-        return tmp;
-    }
-
-    /// \brief 分段录像。
-    inline static Video Fragmented(const std::string &id, const std::string &path)
-    {
-        Video tmp(id);
-        tmp.slices.insert(std::make_pair(0u, Slice::Index(path)));
-        return tmp;
-    }
-
-    /// \brief 是否是未知录像。
-    inline bool isUnknown() const
-    {
-        assert(slices.count(0u));
-        return Slice::Type::UNKNOWN == slices.at(0u).type;
-    }
-
-    /// \brief 是否是独一录像。
-    inline bool isSingle() const
-    {
-        assert(slices.count(0u));
-        return Slice::Type::SINGLE == slices.at(0u).type;
-    }
-
-    /// \brief 是否是分段录像。
-    inline bool isFragmented() const
-    {
-        assert(slices.count(0u));
-        return Slice::Type::INDEX == slices.at(0u).type;
-    }
-
-    /// \brief 是否含有某状态（分片）。
-    template<const Slice::Status STATUS>
-    inline bool haveStatus() const
-    {
-        return std::any_of(slices.cbegin(), slices.cend(),
-                           [](const std::pair<unsigned, Slice> &pair) -> bool {
-            return pair.second.stus == STATUS;
+        return std::any_of(slices.cbegin(), slices.cend(), [&](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.status == status;
         });
     }
 
-    /// \brief 计数某状态（分片）。
-    template<const Slice::Status STATUS>
-    inline std::size_t countStatus() const
+    /// \brief 是否包含某阶段分片。
+    inline bool containsSlices(const Slice::Stage stage) const
     {
-        return std::count_if(slices.cbegin(), slices.cend(),
-                             [](const std::pair<unsigned, Slice> &pair) -> bool {
-            return pair.second.stus == STATUS;
+        return std::any_of(slices.cbegin(), slices.cend(), [&](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stage == stage;
         });
     }
 
-    /// \brief 是否含有某阶段（分片）。
-    template<const Slice::Stage STAGE>
-    inline bool haveStages() const
+    /// \brief 计数某状态分片。
+    inline std::size_t countSlices(const Slice::Status statuc) const
     {
-        return std::any_of(slices.cbegin(), slices.cend(),
-                           [](const std::pair<unsigned, Slice> &pair) -> bool {
-            return pair.second.stg == STAGE;
+        return std::count_if(slices.cbegin(), slices.cend(), [&](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.status == statuc;
         });
     }
 
-    /// \brief 计数某阶段（分片）。
-    template<const Slice::Stage STAGE>
-    inline std::size_t countStages() const
+    /// \brief 计数某阶段分片。
+    inline std::size_t countSlices(const Slice::Stage stage) const
     {
-        return std::count_if(slices.cbegin(), slices.cend(),
-                             [](const std::pair<unsigned, Slice> &pair) -> bool {
-            return pair.second.stg == STAGE;
+        return std::count_if(slices.cbegin(), slices.cend(), [&](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stage == stage;
+        });
+    }
+
+    /// \brief 是否仅包含某状态分片。
+    inline bool onlyContainsSlices(const Slice::Status status) const
+    {
+        return std::all_of(slices.cbegin(), slices.cend(), [&](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.status == status;
+        });
+    }
+
+    /// \brief 是否仅包含某阶段分片。
+    inline bool onlyContainsSlices(const Slice::Stage stage) const
+    {
+        return std::all_of(slices.cbegin(), slices.cend(), [&](const std::pair<unsigned, Slice> &pair) -> bool {
+            return pair.second.stage == stage;
         });
     }
 
     /// \brief 某阶段进度。
-    template<const Slice::Stage STAGE>
-    inline double stageProgress() const
+    inline double stageProgress(const Slice::Stage stage) const
     {
-        assert(slices.size());
-
+        assert(!slices.empty());
         double   numerator {0};
         unsigned denominator {0};
-
         for (const auto &pair : slices) {
-            if (pair.second.stg == STAGE)
-                numerator += pair.second.stgprog;
-            else if (STAGE < pair.second.stg)
-                ++numerator;
-            ++denominator;
+            if (pair.second.stage == stage)
+                numerator += pair.second.stageProgress;
+            else if (stage < pair.second.stage)
+                numerator++;
+            denominator++;
         }
-
         return numerator / denominator;
     }
-    /// \brief 上传进度。
-    inline double uploadProgress()    const { return stageProgress<Slice::Stage::UPLOADING>(); }
-    /// \brief 转码进度。
-    inline double transcodeProgress() const { return stageProgress<Slice::Stage::TRANSCODING>(); }
-    /// \brief 提取进度。
-    inline double extractProgress()   const { return stageProgress<Slice::Stage::EXTRACTING>(); }
-    /// \brief 检测进度。
-    inline double detectProgress()    const { return stageProgress<Slice::Stage::DETECTING>(); }
-    /// \brief 识别进度。
-    inline double recognizeProgress() const { return stageProgress<Slice::Stage::RECOGNIZING>(); }
+
+    /// \brief 获取一个可用分片序列号。
+    inline std::pair<bool, unsigned> getAnAvailableSliceSerialNumber(const Slice::Status status, const Slice::Stage stage) const
+    {
+        for (const auto &pair : slices)
+        {
+            if (pair.second.status == status && pair.second.stage == stage)
+                return std::make_pair(true, pair.second.serialNumber);
+        }
+        return std::make_pair(false, 0);
+    }
 
     /// \brief 暂停。
     inline void pause()
     {
+        std::lock_guard<std::mutex> lockGuard(writeMutex);
         for (auto &pair : slices) {
-            pair.second.pause();
+            pair.second.tryPause();
         }
     }
 
     /// \brief 恢复。
     inline void resume()
     {
+        std::lock_guard<std::mutex> lockGuard(writeMutex);
         for (auto &pair : slices) {
-            pair.second.resume();
+            pair.second.tryResume();
         }
     }
 
     /// \brief 取消。
     inline void cancel()
     {
+        std::lock_guard<std::mutex> lockGuard(writeMutex);
         for (auto &pair : slices) {
-            pair.second.cancel();
+            pair.second.tryFail(Slice::Status::FAILED_CANCELED);
         }
     }
 
     /// \brief 重试。
     inline void retry()
     {
+        std::lock_guard<std::mutex> lockGuard(writeMutex);
         for (auto &pair : slices) {
-            pair.second.retry();
+            pair.second.tryRetry();
         }
     }
 };
