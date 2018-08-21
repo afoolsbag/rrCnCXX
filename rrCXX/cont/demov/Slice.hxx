@@ -3,7 +3,7 @@
 /// \defgroup gSlice 分片
 /// \ingroup gDemoV
 ///
-/// \version 2018-08-17
+/// \version 2018-08-21
 /// \since 2018-07-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -65,45 +65,70 @@ private:
 
     std::string path_;        ///< 路径。
 
+public:
+    inline const unsigned    &serialNumber()  const { return serialNumber_; }
+    inline const Status      &status()        const { return status_; }
+    inline const Stage       &stage()         const { return stage_; }
+    inline const double      &stegeProgress() const { return stageProgress_; }
+    inline const std::string &path()          const { return path_; }
+
+private:
     /// \brief 构造函数。
-    inline Slice(const unsigned serialNumber, const Stage stage, const std::string &path);
+    inline Slice(const unsigned serialNumber, const Stage stage, const std::string &path)
+    {
+        serialNumber_ = serialNumber;
+        status_ = Status::ACTIVE;
+        stage_ = stage;
+        stageProgress_ = 0;
+        path_ = path;
+    }
 
 public:
     /// \brief 原始分片。
-    inline static Slice Original(const std::string &path);
+    inline static Slice Original(const std::string &path)
+    {
+        return Slice(0, Stage::ORIGINAL, path);
+    }
 
     /// \brief 片段分片。
-    inline static Slice Fragment(const unsigned serialNumber, const std::string &path);
+    inline static Slice Fragment(const unsigned serialNumber, const std::string &path)
+    {
+        return Slice(serialNumber, Stage::TRANSCODED, path);
+    }
 
     /// \brief 暂停。
     /// \details 为防止资源搁置，暂停将回退正在进行的处理。
-    ///
-    /// \pre assert(Status::ACTIVE == status_)
-    void pause();
+    bool pause();
 
     /// \brief 恢复。
-    ///
-    /// \pre assert(Status::PAUSING == status_)
-    inline void resume();
+    bool resume();
 
     /// \brief 失败。
     /// \details 失败将回退正在进行的处理。
-    ///
-    /// \pre assert(status_ < Status::FINISHED)
-    void fail(const Status failedStatus);
+    bool fail(const Status failedStatus);
 
     /// \brief 重试。
-    ///
-    /// \pre assert(Status::FINISHED < status_)
-    inline void retry();
+    bool retry();
 
+    /// \brief 上传。
+    bool upload(const double progress, const bool finished = false, const std::string &newPath = "");
+
+    /// \brief 转码。
+    bool transcode(const double progress, const bool finished = false);
+
+    /// \brief 提取（特征）。
+    bool extract(const double progress, const bool finished = false);
+
+    /// \brief 检测（分割）。
+    bool detect(const double progress, const bool finished = false);
+
+    /// \brief 识别（分类）。
+    bool recognize(const double progress, const bool finished = false);
 };
 
 /// @}
 
 }//namespace demov
 }//namespace rrcxx
-
-#include "Slice.inl"
 
 #endif//RRCXX_SLICE_HXX_
