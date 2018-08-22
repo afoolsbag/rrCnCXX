@@ -41,139 +41,162 @@
 /*-Debug-Print-Basic----------------------------------------------------------*/
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_FATAL
-# define DpFatal(...)         ((void)0)
+# define DpFatal(...) ((void)0)
 #elif defined(_DEBUG)
-# define DpFatal(apdfmt, ...) do {                                             \
-                              PrintDebugString(FILELINE _T("<%lu> Fatal: ") apdfmt ATFUNCNL, \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__);                   \
-                              __debugbreak();                                  \
-                              } while(0)
+# define DpFatal(apdfmt, ...)                                                  \
+  do {                                                                         \
+      PrintDebugString(FILELINE _T("<%lu> Fatal: ") apdfmt ATFUNCNL,           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__);                                           \
+      __debugbreak();                                                          \
+  } while(0)
 #else
-# define DpFatal(apdfmt, ...) PrintDebugString(         _T("<%lu> Fatal: ") apdfmt _T("\n"), \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpFatal(apdfmt, ...)                                                  \
+      PrintDebugString(         _T("<%lu> Fatal: ") apdfmt _T("\n"),           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #endif
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_ERROR
-# define DpError(...)         ((void)0)
+# define DpError(...) ((void)0)
 #elif defined(_DEBUG)
-# define DpError(apdfmt, ...) do {                                             \
-                              PrintDebugString(FILELINE _T("<%lu> Error: ") apdfmt ATFUNCNL, \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__);                   \
-                              __debugbreak();                                  \
-                              } while(0)
+# define DpError(apdfmt, ...)                                                  \
+  do {                                                                         \
+      PrintDebugString(FILELINE _T("<%lu> Error: ") apdfmt ATFUNCNL,           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__);                                           \
+      __debugbreak();                                                          \
+  } while(0)
 #else
-# define DpError(apdfmt, ...) PrintDebugString(         _T("<%lu> Error: ") apdfmt _T("\n"), \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpError(apdfmt, ...)                                                  \
+      PrintDebugString(         _T("<%lu> Error: ") apdfmt _T("\n"),           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #endif
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
-# define DpWarn(...)          ((void)0)
+# define DpWarn(...) ((void)0)
 #elif defined(_DEBUG)
-# define DpWarn(apdfmt, ...)  PrintDebugString(FILELINE _T("<%lu> Warn: ") apdfmt ATFUNCNL, \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpWarn(apdfmt, ...)                                                   \
+      PrintDebugString(FILELINE _T("<%lu> Warn: ") apdfmt ATFUNCNL,            \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #else
-# define DpWarn(apdfmt, ...)  PrintDebugString(         _T("<%lu> Warn: ") apdfmt _T("\n"), \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpWarn(apdfmt, ...)                                                   \
+      PrintDebugString(         _T("<%lu> Warn: ") apdfmt _T("\n"),            \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #endif
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_INFO
-# define DpInfo(...)          ((void)0)
+# define DpInfo(...) ((void)0)
 #elif defined(_DEBUG)
-# define DpInfo(apdfmt, ...)  PrintDebugString(FILELINE _T("<%lu> Info: ") apdfmt ATFUNCNL, \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpInfo(apdfmt, ...)                                                   \
+      PrintDebugString(FILELINE _T("<%lu> Info: ") apdfmt ATFUNCNL,            \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #else
-# define DpInfo(apdfmt, ...)  PrintDebugString(         _T("<%lu> Info: ") apdfmt _T("\n"), \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpInfo(apdfmt, ...)                                                   \
+      PrintDebugString(         _T("<%lu> Info: ") apdfmt _T("\n"),            \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #endif
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_DEBUG
-# define DpDebug(...)         ((void)0)
+# define DpDebug(...) ((void)0)
 #elif defined(_DEBUG)
-# define DpDebug(apdfmt, ...) PrintDebugString(FILELINE _T("<%lu> Debug: ") apdfmt ATFUNCNL, \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpDebug(apdfmt, ...)                                                  \
+      PrintDebugString(FILELINE _T("<%lu> Debug: ") apdfmt ATFUNCNL,           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #else
-# define DpDebug(apdfmt, ...) PrintDebugString(         _T("<%lu> Debug: ") apdfmt _T("\n"), \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpDebug(apdfmt, ...)                                                  \
+      PrintDebugString(         _T("<%lu> Debug: ") apdfmt _T("\n"),           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #endif
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_TRACE
-# define DpTrace(...)         ((void)0)
+# define DpTrace(...) ((void)0)
 #elif defined(_DEBUG)
-# define DpTrace(apdfmt, ...) PrintDebugString(FILELINE _T("<%lu> Trace: ") apdfmt ATFUNCNL, \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpTrace(apdfmt, ...)                                                  \
+      PrintDebugString(FILELINE _T("<%lu> Trace: ") apdfmt ATFUNCNL,           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #else
-# define DpTrace(apdfmt, ...) PrintDebugString(         _T("<%lu> Trace: ") apdfmt _T("\n"), \
-                                               GetCurrentThreadId(),           \
-                                               __VA_ARGS__)
+# define DpTrace(apdfmt, ...)                                                  \
+      PrintDebugString(         _T("<%lu> Trace: ") apdfmt _T("\n"),           \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__)
 #endif
 
 /*-Debug-Print-Extended-------------------------------------------------------*/
 
 /**
- * \brief 调试打印错误：未知的（不预期的）Switch路由。
+ * \brief 调试打印错误：未知的 Switch 路由。
  */
-#define DpErrorSwitchUnknown(expr) DpError(_T("Unknown switch-route with expression: ") _T(#expr) _T("=%I64d."), (INT64)(expr))
+#define DpErrorSwitchUnknown(expr)                                             \
+    DpError(_T("Unknown switch-route with expression: ") _T(#expr) _T("=%I64d."), \
+            (INT64)(expr))
 
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
-# define DpWarnFwLE(...)        ((void)0)
+# define DpWarnFwLE(...) ((void)0)
 #elif defined(_DEBUG)
- /**
-  * \brief 调试打印警告：失败和最后错误。
-  *        Failed with Last Error.
-  * \param opfmt 操作描述。
-  * \since 2018-06-25
-  */
-# define DpWarnFwLE(opfmt, ...) PrintDebugString(FILELINE _T("<%lu> Warn: ") opfmt _T(" failed with error %lu: %s") ATFUNCNL, \
-                                                 GetCurrentThreadId(),         \
-                                                 __VA_ARGS__,                  \
-                                                 GetLastError(),               \
-                                                 GetLastErrorText())
+  /**
+   * \brief 调试打印警告：失败和最后错误。\n
+   *        Failed with Last Error.
+   * \param opfmt 操作描述。
+   * \since 2018-06-25
+   */
+# define DpWarnFwLE(opfmt, ...)                                                \
+      PrintDebugString(FILELINE _T("<%lu> Warn: ") opfmt _T(" failed with error %lu: %s") ATFUNCNL, \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__,                                            \
+                       GetLastError(),                                         \
+                       LastErrorText())
 #else
- /**
-  * \brief 调试打印警告：失败和最后错误。
-  *        Failed with Last Error.
-  * \param opfmt 操作描述。
-  * \since 2018-06-25
-  */
-# define DpWarnFwLE(opfmt, ...) PrintDebugString(         _T("<%lu> Warn: ") opfmt _T(" failed with error %lu: %s") _T("\n"), \
-                                                 GetCurrentThreadId(),         \
-                                                 __VA_ARGS__,                  \
-                                                 GetLastError(),               \
-                                                 GetLastErrorText())
+  /**
+   * \brief 调试打印警告：失败和最后错误。\n
+   *        Failed with Last Error.
+   * \param opfmt 操作描述。
+   * \since 2018-06-25
+   */
+# define DpWarnFwLE(opfmt, ...)                                                \
+      PrintDebugString(         _T("<%lu> Warn: ") opfmt _T(" failed with error %lu: %s") _T("\n"), \
+                       GetCurrentThreadId(),                                   \
+                       __VA_ARGS__,                                            \
+                       GetLastError(),                                         \
+                       LastErrorText())
 #endif
 
-#define DpDebugFunc() DpDebug(_T("Function name \"") _T(__FUNCTION__) _T("\", decorated name \"") _T(__FUNCDNAME__) _T("\", signature \"") _T(__FUNCSIG__) _T("\"."))
-
 #if DEBUG_PRINT_LEVEL < DEBUG_PRINT_WARN
-# define DpWarnExpectTrue(...)   ((void)0)
-# define DpWarnExpectFalse(...)  ((void)0)
+# define DpWarnExpectTrue(...)  ((void)0)
+# define DpWarnExpectFalse(...) ((void)0)
 #else
  /**
-  * \brief 调试打印警告：期望为真。
+  * \brief 调试打印警告：期望为真。\n
   *        Expect True.
   * \param proc 处理，返回`TRUE`或`FALSE`。
   * \since 2018-07-02
   */
 # define DpWarnExpectTrue(proc)  ((proc) || (DpWarnFwLE(#proc), FALSE))
  /**
-  * \brief 调试打印警告：期望为假。
+  * \brief 调试打印警告：期望为假。\n
   *        Expect False.
   * \param proc 处理，返回`TRUE`或`FALSE`。
   * \since 2018-07-02
   */
 # define DpWarnExpectFalse(proc) ((proc) && (DpWarnFwLE(#proc), TRUE))
 #endif
+
+/**
+ * \brief 调试打印调试：函数信息。
+ */
+#define DpDebugFunc()                                                          \
+    DpDebug(_T("Function name \"%s\", decorated name \"%s\", signature \"%s\"."), \
+            _T(__FUNCTION__),                                                  \
+            _T(__FUNCDNAME__),                                                 \
+            _T(__FUNCSIG__))
 
 /**
  * \brief 调试打印追踪：进入函数。

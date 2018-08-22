@@ -12,7 +12,7 @@
 START_TEST(TestErrTxt)
 {
     GetProcessId(NULL);
-    ck_assert_int_lt(0, StringCchLengthS(GetLastErrorText()));
+    ck_assert_int_lt(0, StringCchLengthS(LastErrorText()));
 }
 END_TEST
 

@@ -3,16 +3,16 @@
  * \defgroup gDbg 调试和错误处理
  * \ingroup gDiag
  *
- * \sa ["Debugging and Error Handling"](https://msdn.microsoft.com/library/ee663265). *MSDN*.
- *     + [Application Recovery and Restart](https://msdn.microsoft.com/library/cc948909)
- *     + [Error Handling](https://msdn.microsoft.com/library/ms679320)
- *     + [Basic Debugging](https://msdn.microsoft.com/library/ms679276)
- *     + [Debug Help Library](https://msdn.microsoft.com/library/ms679309)
- *     + [Structured Exception Handling](https://msdn.microsoft.com/library/ms680657)
- *     + [Wait Chain Traversal](https://msdn.microsoft.com/library/ms681622)
- *     + [Intel AVX](https://msdn.microsoft.com/library/hh134233)
+ * \sa ["Debugging and Error Handling"](https://docs.microsoft.com/windows/desktop/debugging-and-error-handling). *Microsoft Docs*.
+ *     + Application Recovery and Restart
+ *     + Error Handling
+ *     + Basic Debugging
+ *     + Debug Help Library
+ *     + Structured Exception Handling
+ *     + Wait Chain Traversal
+ *     + Intel AVX
  *
- * \version 2018-06-27
+ * \version 2018-08-22
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

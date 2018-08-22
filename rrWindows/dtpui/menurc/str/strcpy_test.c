@@ -1,10 +1,10 @@
 /*===-- strcpy in Windows API ----------------------------------*- C -*-===*//**
  *
- * \defgroup gStrCpy WindowsAPI中的`strcpy`
+ * \defgroup gStrCpy Windows API 中的 `strcpy`
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-06-26
+ * \version 2018-08-22
  * \since 2018-06-02
  * \copyright The MIT License
  *
@@ -21,9 +21,6 @@
 
 #include "test.h"
 
-/**
- * \sa ["StringCchCopy function"](https://msdn.microsoft.com/library/ms647527). *Microsoft Developer Network*.
- */
 START_TEST(TestStringCchCopy)
 {
     TCHAR txt[5];

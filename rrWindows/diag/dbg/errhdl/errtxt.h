@@ -3,10 +3,7 @@
  * \defgroup gErrTxt 错误文本
  * \ingroup gErrHdl
  *
- * \sa ["GetLastError function"](https://msdn.microsoft.com/library/ms679360). *MSDN*.
- * \sa ["FormatMessage function"](https://msdn.microsoft.com/library/ms679351). *MSDN*.
- *
- * \version 2018-07-24
+ * \version 2018-08-22
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The MIT License
@@ -26,10 +23,9 @@ extern "C" {;
 #endif
 
 /**
- * \brief 获取错误码对应的描述字符串（ANSI适配）。
- * \warning 该字符串缓存在公用静态变量中，请即取即用。
- * \warning 预设的缓存尺寸可能不足。
- *
+ * \brief 获取错误码对应的描述字符串（ANSI 适配）。
+ * \warning 该字符串缓存在共用静态变量中，请即取即用。\n
+ *          预设的缓存尺寸可能不足。
  * \param errorCode 错误码。
  * \returns !NULL 字符串指针；\n
  *           NULL 失败。
@@ -42,10 +38,9 @@ ErrorTextOfA(
     _In_ CONST DWORD errorCode
 );
 /**
- * \brief 获取错误码对应的描述字符串（UNICODE适配）。
- * \warning 该字符串缓存在公用静态变量中，请即取即用。
- * \warning 预设的缓存尺寸可能不足。
- *
+ * \brief 获取错误码对应的描述字符串（UNICODE 适配）。
+ * \warning 该字符串缓存在共用静态变量中，请即取即用。\n
+ *          预设的缓存尺寸可能不足。
  * \param errorCode 错误码。
  * \returns !NULL 字符串指针；\n
  *           NULL 失败。
@@ -68,20 +63,39 @@ ErrorTextOfW(
 #endif
 
 /**
- * \brief 获取当前线程最新错误的描述字符串。
- * \warning 该字符串缓存在公用静态变量中，请即取即用。
- * \warning 预设的缓存尺寸可能不足。
- *
+ * \brief 获取当前线程最新错误的描述字符串（ANSI 适配）。
+ * \warning 该字符串缓存在共用静态变量中，请即取即用。\n
+ *          预设的缓存尺寸可能不足。
  * \returns !NULL 字符串指针；\n
  *           NULL 失败。
  */
 FORCEINLINE
 _Success_(return != NULL)
-LPCTSTR
+LPCSTR
 WINAPI_INLINE
-GetLastErrorText(VOID)
+LastErrorTextA(VOID)
 {
-    return ErrorTextOf(GetLastError());
+    return ErrorTextOfA(GetLastError());
 }
+/**
+ * \brief 获取当前线程最新错误的描述字符串（UNICODE 适配）。
+ * \warning 该字符串缓存在共用静态变量中，请即取即用。\n
+ *          预设的缓存尺寸可能不足。
+ * \returns !NULL 字符串指针；\n
+ *           NULL 失败。
+ */
+FORCEINLINE
+_Success_(return != NULL)
+LPCWSTR
+WINAPI_INLINE
+LastErrorTextW(VOID)
+{
+    return ErrorTextOfW(GetLastError());
+}
+#ifdef _UNICODE
+# define LastErrorText LastErrorTextW
+#else
+# define LastErrorText LastErrorTextA
+#endif
 
 /** @} */

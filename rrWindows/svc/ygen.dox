@@ -3,7 +3,7 @@
  * \defgroup gSvc 系统服务
  * \ingroup gDvlp
  *
- * \sa ["System Services"](https://docs.microsoft.com/windows/desktop/system-services). *MSDocs*.
+ * \sa ["System Services"](https://docs.microsoft.com/windows/desktop/system-services). *Microsoft Docs*.
  *     + COM
  *     + COM+
  *     + Compression API
@@ -14,7 +14,7 @@
  *     + Help API
  *     + Interprocess Communications
  *     + Kernel Transaction Manager
- *     + [Memory Management](https://docs.microsoft.com/windows/desktop/Memory/memory-management)
+ *     + Memory Management
  *     + MultiPoint Services
  *     + Operation Recorder
  *     + Power Management
@@ -27,7 +27,7 @@
  *     + Windows Subsystem for Linux
  *     + Windows System Information
  *
- * \version 2018-07-03
+ * \version 2018-08-22
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

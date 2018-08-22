@@ -13,7 +13,7 @@ static
 _Success_(return != NULL)
 LPSTR
 WINAPI
-ExePathA(VOID)
+ModuleFileNameA(VOID)
 {
     __declspec(thread) static CHAR StaticBuffer[MAX_PATH];
 
@@ -26,7 +26,7 @@ static
 _Success_(return != NULL)
 LPWSTR
 WINAPI
-ExePathW(VOID)
+ModuleFileNameW(VOID)
 {
     __declspec(thread) static WCHAR StaticBuffer[MAX_PATH];
 
@@ -41,7 +41,7 @@ LPCSTR
 WINAPI
 ExecutablePathA(VOID)
 {
-    return ExePathA();
+    return ModuleFileNameA();
 }
 
 RRWINDOWS_API
@@ -50,7 +50,7 @@ LPCWSTR
 WINAPI
 ExecutablePathW(VOID)
 {
-    return ExePathW();
+    return ModuleFileNameW();
 }
 
 RRWINDOWS_API
@@ -59,7 +59,7 @@ LPCSTR
 WINAPI
 ExecutableDirectoryPathA(VOID)
 {
-    LPSTR CONST path = ExePathA();
+    LPSTR CONST path = ModuleFileNameA();
     if (NULL == path)
         return NULL;
     if (!PathRemoveFileSpecA(path))
@@ -73,7 +73,7 @@ LPCWSTR
 WINAPI
 ExecutableDirectoryPathW(VOID)
 {
-    LPWSTR CONST path = ExePathW();
+    LPWSTR CONST path = ModuleFileNameW();
     if (NULL == path)
         return NULL;
     if (!PathRemoveFileSpecW(path))
@@ -87,7 +87,7 @@ LPCSTR
 WINAPI
 ExecutableNameA(VOID)
 {
-    LPCSTR CONST path = ExePathA();
+    LPCSTR CONST path = ModuleFileNameA();
     if (NULL == path)
         return NULL;
     LPCSTR CONST name = PathFindFileNameA(path);
@@ -102,7 +102,7 @@ LPCWSTR
 WINAPI
 ExecutableNameW(VOID)
 {
-    LPCWSTR CONST path = ExePathW();
+    LPCWSTR CONST path = ModuleFileNameW();
     if (NULL == path)
         return NULL;
     LPCWSTR CONST name = PathFindFileNameW(path);
@@ -117,7 +117,7 @@ LPCSTR
 WINAPI
 ExecutableBaseNameA(VOID)
 {
-    LPSTR CONST path = ExePathA();
+    LPSTR CONST path = ModuleFileNameA();
     if (NULL == path)
         return NULL;
     LPSTR CONST base = PathFindFileNameA(path);
@@ -133,7 +133,7 @@ LPCWSTR
 WINAPI
 ExecutableBaseNameW(VOID)
 {
-    LPWSTR CONST path = ExePathW();
+    LPWSTR CONST path = ModuleFileNameW();
     if (NULL == path)
         return NULL;
     LPWSTR CONST base = PathFindFileNameW(path);
@@ -149,7 +149,7 @@ LPCSTR
 WINAPI
 ExecutableExtensionNameA(VOID)
 {
-    LPCSTR CONST path = ExePathA();
+    LPCSTR CONST path = ModuleFileNameA();
     if (NULL == path)
         return NULL;
     LPCSTR CONST ext = PathFindExtensionA(path);
@@ -164,7 +164,7 @@ LPCWSTR
 WINAPI
 ExecutableExtensionNameW(VOID)
 {
-    LPCWSTR CONST path = ExePathW();
+    LPCWSTR CONST path = ModuleFileNameW();
     if (NULL == path)
         return NULL;
     LPCWSTR CONST ext = PathFindExtensionW(path);
@@ -179,7 +179,7 @@ LPCSTR
 WINAPI
 InitializationPathA(VOID)
 {
-    LPSTR CONST path = ExePathA();
+    LPSTR CONST path = ModuleFileNameA();
     if (NULL == path)
         return NULL;
     if (!PathRenameExtensionA(path, ".ini"))
@@ -193,11 +193,10 @@ LPCWSTR
 WINAPI
 InitializationPathW(VOID)
 {
-    LPWSTR CONST path = ExePathW();
+    LPWSTR CONST path = ModuleFileNameW();
     if (NULL == path)
         return NULL;
     if (!PathRenameExtensionW(path, L".ini"))
         return NULL;
     return path;
-
 }

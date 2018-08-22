@@ -3,26 +3,26 @@
  * \defgroup gDiag 诊断
  * \ingroup gDvlp
  *
- * \sa ["Diagnostics"](https://docs.microsoft.com/windows/desktop/diagnostics). *MSDocs*.
- *     + [Assessment Execution Engine](https://msdn.microsoft.com/library/hh437709)
- *     + [Debugging and Error Handling](https://msdn.microsoft.com/library/ee663265)
- *     + [Hardware Counter Profiling](https://msdn.microsoft.com/library/dd796395)
- *     + [Network Diagnostics Framework](https://msdn.microsoft.com/library/aa369892)
- *     + [Network Monitor](https://msdn.microsoft.com/library/ee831989)
- *     + [Performance Counters](https://msdn.microsoft.com/library/aa373083)
- *     + [Performance Logs and Alerts](https://msdn.microsoft.com/library/aa372635)
- *     + [Process Snapshotting](https://msdn.microsoft.com/library/dn457825)
- *     + [Process Status API](https://msdn.microsoft.com/library/ms684884)
- *     + [System Event Notification Service](https://msdn.microsoft.com/library/cc185680)
- *     + [System Monitor](https://msdn.microsoft.com/library/dd408124)
- *     + [Tool Help Library](https://msdn.microsoft.com/library/ms686837)
- *     + [Windows Error Reporting](https://msdn.microsoft.com/library/bb513641)
- *     + [Windows Events](https://msdn.microsoft.com/library/aa964766)
- *     + [Windows Performance Analyzer (WPA)](https://msdn.microsoft.com/library/ff191077)
- *     + [Windows Performance Toolkit (WPT)](https://msdn.microsoft.com/library/hh162945)
- *     + [Windows Troubleshooting Platform](https://msdn.microsoft.com/library/dd323778)
+ * \sa ["Diagnostics"](https://docs.microsoft.com/windows/desktop/diagnostics). *Microsoft Docs*.
+ *     + Assessment Execution Engine
+ *     + Debugging and Error Handling
+ *     + Hardware Counter Profiling
+ *     + Network Diagnostics Framework
+ *     + Network Monitor
+ *     + Performance Counters
+ *     + Performance Logs and Alerts
+ *     + Process Snapshotting
+ *     + Process Status API
+ *     + System Event Notification Service
+ *     + System Monitor
+ *     + Tool Help Library
+ *     + Windows Error Reporting
+ *     + Windows Events
+ *     + Windows Performance Analyzer (WPA)
+ *     + Windows Performance Toolkit (WPT)
+ *     + Windows Troubleshooting Platform
  *
- * \version 2018-07-02
+ * \version 2018-08-22
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

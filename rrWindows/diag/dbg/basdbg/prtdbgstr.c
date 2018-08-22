@@ -18,23 +18,23 @@ VPrintDebugStringAma(
 {
     CONST INT cnt = _vscprintf(format, va) + 1/*'\0'*/;
     if (0 == cnt) {
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: _vscprintf failed." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational error: _vscprintf failed." ATFUNCNLA);
         return;
     }
     CHAR *CONST buf = HeapAlloc(GetProcessHeap(), 0, cnt * sizeof(CHAR));
     if (NULL == buf) {
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: HeapAlloc failed." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational error: HeapAlloc failed." ATFUNCNLA);
         return;
     }
     if (FAILED(StringCchVPrintfA(buf, cnt, format, va))) {
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: StringCchVPrintfA failed." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational error: StringCchVPrintfA failed." ATFUNCNLA);
         goto return_freeheap;
     }
     OutputDebugStringA(buf);
 
 return_freeheap:
     if (FALSE == HeapFree(GetProcessHeap(), 0, buf))
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: HeapFree failed." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational error: HeapFree failed." ATFUNCNLA);
 }
 
 RRWINDOWS_API
@@ -46,23 +46,23 @@ VPrintDebugStringWma(
 {
     CONST INT cnt = _vscwprintf(format, va) + 1/*L'\0'*/;
     if (0 == cnt) {
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error: _vscwprintf failed." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational error: _vscwprintf failed." ATFUNCNLW);
         return;
     }
     WCHAR *CONST buf = HeapAlloc(GetProcessHeap(), 0, cnt * sizeof(WCHAR));
     if (NULL == buf) {
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error, HeapAlloc failed." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational error, HeapAlloc failed." ATFUNCNLW);
         return;
     }
     if (FAILED(StringCchVPrintfW(buf, cnt, format, va))) {
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error, StringCchVPrintfW failed." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational error, StringCchVPrintfW failed." ATFUNCNLW);
         goto return_freeheap;
     }
     OutputDebugStringW(buf);
 
 return_freeheap:
     if (FALSE == HeapFree(GetProcessHeap(), 0, buf))
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error, HeapFree failed." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational error, HeapFree failed." ATFUNCNLW);
 }
 
 RRWINDOWS_API
@@ -79,14 +79,14 @@ VPrintDebugStringAsb(
         OutputDebugStringA(StaticBuffer);
         break;
     case STRSAFE_E_INVALID_PARAMETER:
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: StringCchVPrintfA failed with STRSAFE_E_INVALID_PARAMETER." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational error: StringCchVPrintfA failed with STRSAFE_E_INVALID_PARAMETER." ATFUNCNLA);
         break;
     case STRSAFE_E_INSUFFICIENT_BUFFER:
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational warn: StringCchVPrintfA failed with STRSAFE_E_INSUFFICIENT_BUFFER." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational warn: StringCchVPrintfA failed with STRSAFE_E_INSUFFICIENT_BUFFER." ATFUNCNLA);
         OutputDebugStringA(StaticBuffer);
         break;
     default:
-        OutputDebugStringA(FILELINEA "RrwindowsLib foundational error: StringCchVPrintfA failed with Unknown HRESULT." ATFUNCNLA);
+        OutputDebugStringA(FILELINEA "rrWindows foundational error: StringCchVPrintfA failed with Unknown HRESULT." ATFUNCNLA);
         break;
     }
 }
@@ -105,14 +105,14 @@ VPrintDebugStringWsb(
         OutputDebugStringW(StaticBuffer);
         break;
     case STRSAFE_E_INVALID_PARAMETER:
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error: StringCchVPrintfW failed with STRSAFE_E_INVALID_PARAMETER." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational error: StringCchVPrintfW failed with STRSAFE_E_INVALID_PARAMETER." ATFUNCNLW);
         break;
     case STRSAFE_E_INSUFFICIENT_BUFFER:
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational warn: StringCchVPrintfW failed with STRSAFE_E_INSUFFICIENT_BUFFER." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational warn: StringCchVPrintfW failed with STRSAFE_E_INSUFFICIENT_BUFFER." ATFUNCNLW);
         OutputDebugStringW(StaticBuffer);
         break;
     default:
-        OutputDebugStringW(FILELINEW L"RrwindowsLib foundational error: StringCchVPrintfW failed with Unknown HRESULT." ATFUNCNLW);
+        OutputDebugStringW(FILELINEW L"rrWindows foundational error: StringCchVPrintfW failed with Unknown HRESULT." ATFUNCNLW);
         break;
     }
 }

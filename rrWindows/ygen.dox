@@ -70,9 +70,9 @@
  *
  * \defgroup gDvlp 开发视窗桌面应用程序
  *
- * \sa ["Develop desktop applications"](https://docs.microsoft.com/windows/desktop/). *MSDocs*.
+ * \sa ["Develop desktop applications"](https://docs.microsoft.com/windows/desktop/). *Microsoft Docs*.
  *     + [Desktop app technologies](https://docs.microsoft.com/windows/desktop/desktop-app-technologies)
- *         + [Desktop app UI](https://docs.microsoft.com/windows/desktop/windows-application-ui-development)
+ *         + Desktop app UI
  *         + Desktop environment
  *         + Application installation and servicing
  *         + Audio and video
@@ -84,13 +84,13 @@
  *         + Networking and Internet
  *         + Security and identity
  *         + System services
- *         + [Windows Machine Learning](https://docs.microsoft.com/windows/desktop/MachineLearning)
+ *         + Windows Machine Learning
  *     + [API index](https://docs.microsoft.com/windows/desktop/apiindex)
  *     + [Windows Runtime C++ reference](https://docs.microsoft.com/windows/desktop/winrt)
  *     + [Develop with server technologies](https://docs.microsoft.com/windows/desktop/server-and-system-technologies)
  *     + [Windows certification](https://docs.microsoft.com/windows/desktop/win_cert)
  *
- * \version 2018-07-12
+ * \version 2018-08-22
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC BY 4.0
