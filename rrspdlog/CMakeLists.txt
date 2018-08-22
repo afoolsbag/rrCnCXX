@@ -17,8 +17,7 @@ facile_add_doxygen()
 
 find_package(spdlog)
 
-aux_source_directory_enhanced(zSrc RECURSE SOURCE_PREFIXS "gt" "ygen")
-facile_add_gtest_executable(SUBNAME "Test"
-                                    OPTION_INITIAL_ON
-                                    ${zSrc}
-                INCLUDE_DIRECTORIES PRIVATE ${spdlog_INCLUDE_DIRS})
+aux_source_directory_enhanced(zSrc RECURSE)
+facile_add_gtest_executable(OPTION_INITIAL_ON
+                            ${zSrc}
+        INCLUDE_DIRECTORIES PRIVATE ${spdlog_INCLUDE_DIRS})

@@ -4,10 +4,10 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-08-08
+# 2016-10-12 – 2018-08-22
 # The MIT License
 
-project(rrWindows VERSION 2018.8.8 LANGUAGES C)
+project(rrWindows VERSION 2018.8.22 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
@@ -19,20 +19,20 @@ remove_definitions("-D_MBCS")
 configure_file("exever.rc.in" "exever.rc" @ONLY)
 aux_source_directory_enhanced(zSrc
                               RECURSE)
-facile_add_check_executable(  OPTION_INITIAL_ON
-                              ${zSrc}
-                              "${CMAKE_CURRENT_BINARY_DIR}/exever.rc"
-          INCLUDE_DIRECTORIES PRIVATE "."
-                                      "../")
+facile_add_check_executable(OPTION_INITIAL_ON
+                            ${zSrc}
+                            "${CMAKE_CURRENT_BINARY_DIR}/exever.rc"
+        INCLUDE_DIRECTORIES PRIVATE "."
+                                    "../")
 
 configure_file("dllver.rc.in" "dllver.rc" @ONLY)
 aux_source_directory_enhanced(zSrc
                               RECURSE
           SOURCE_BASE_CLASHES "_test$|^test$|^ygen$")
 facile_add_library(           OPTION_INITIAL_ON
-         TARGET_NAME_VARIABLE sRrwindowsLib
-                              SHARED
-                              ${zSrc}
-                              "${CMAKE_CURRENT_BINARY_DIR}/dllver.rc"
-          COMPILE_DEFINITIONS PUBLIC "-DRRWINDOWS_SHARED"
-          INCLUDE_DIRECTORIES PUBLIC "../")
+  TARGET_NAME_VARIABLE sRrwindowsLib
+                       SHARED
+                       ${zSrc}
+                       "${CMAKE_CURRENT_BINARY_DIR}/dllver.rc"
+   COMPILE_DEFINITIONS PUBLIC "-DRRWINDOWS_SHARED"
+   INCLUDE_DIRECTORIES PUBLIC "../")

@@ -19,6 +19,7 @@ TEST(main, basicLogger)
         const auto logger = spdlog::basic_logger_mt("basic logger", "logs/basic.log");
         logger->set_pattern(PATTERN);
         logger->set_level(spdlog::level::trace);
+        logger->flush_on(spdlog::level::warn);
     } catch (const spdlog::spdlog_ex &ex) {
         FAIL() << "Log init failed: " << ex.what();
     }
@@ -49,6 +50,7 @@ TEST(main, multiSink)
     const auto logger = std::make_shared<spdlog::logger>("combined logger", sinks.begin(), sinks.end());
     logger->set_pattern(PATTERN);
     logger->set_level(spdlog::level::trace);
+    logger->flush_on(spdlog::level::warn);
     spdlog::register_logger(logger);
 
     logger->trace("Trace message");
