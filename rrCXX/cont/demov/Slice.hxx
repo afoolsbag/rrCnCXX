@@ -3,7 +3,7 @@
 /// \defgroup gSlice 分片
 /// \ingroup gDemoV
 ///
-/// \version 2018-08-21
+/// \version 2018-08-22
 /// \since 2018-07-31
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -58,19 +58,26 @@ public:
     };
 
 private:
-    unsigned serialNumber_;   ///< 序列号。
-    Status   status_;         ///< 状态。
-    Stage    stage_;          ///< 阶段。
-    double   stageProgress_;  ///< 阶段进度。
+    unsigned    serialNumber_;   ///< 序列号。
+    Status      status_;         ///< 状态。
+    Stage       stage_;          ///< 阶段。
+    double      stageProgress_;  ///< 阶段进度。
 
-    std::string path_;        ///< 路径。
+    std::string path_;           ///< 路径。
 
 public:
     inline const unsigned    &serialNumber()  const { return serialNumber_; }
     inline const Status      &status()        const { return status_; }
     inline const Stage       &stage()         const { return stage_; }
-    inline const double      &stegeProgress() const { return stageProgress_; }
+    inline const double      &stageProgress() const { return stageProgress_; }
     inline const std::string &path()          const { return path_; }
+
+    inline Slice() = delete;
+    inline Slice(const Slice &) = delete;
+    inline Slice &operator=(const Slice &) = delete;
+    inline Slice(Slice &&) = default;
+    inline Slice &operator=(Slice &&) = default;
+    inline virtual ~Slice() = default;
 
 private:
     /// \brief 构造函数。
