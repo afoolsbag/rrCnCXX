@@ -7,7 +7,7 @@
  *
  * [*ISO/IEC JTC1/SC22/WG14 - C*](http://open-std.org/jtc1/sc22/wg14/)
  *
- * [*C17*](https://iso.org/standard/74528.html) (2017)
+ * [*C18*](https://iso.org/standard/74528.html) (2017)
  * [*C11*](https://iso.org/standard/57853.html) (2011)
  * [*C99*](https://iso.org/standard/29237.html) (1999)
  * [*C90*](https://iso.org/standard/17782.html) (1990)
@@ -84,34 +84,6 @@
  * <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
  *
  * \version 2018-08-07
- * \since 2018-01-23
- * \authors zhengrr
- * \copyright CC BY 4.0
- *
-*//*===--------------------------------------------------------------------===*/
-
-/*===-- C Reference --------------------------------------------*- C -*-===*//**
- *
- * \defgroup gRef C参考手册
- *
- * \sa ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
- *     + [Language](http://en.cppreference.com/w/c/language)
- *     + [Headers](http://en.cppreference.com/w/c/header)
- *     + [Type support](http://en.cppreference.com/w/c/types)
- *     + [Program utilities](http://en.cppreference.com/w/c/program)
- *     + [Variadic functions](http://en.cppreference.com/w/c/variadic)
- *     + [Error handling](http://en.cppreference.com/w/c/error)
- *     + [Dynamic memory management](http://en.cppreference.com/w/c/memory)
- *     + [Date and time utilities](http://en.cppreference.com/w/c/chrono)
- *     + [Strings library](http://en.cppreference.com/w/c/string)
- *     + [Algorithms](http://en.cppreference.com/w/c/algorithm)
- *     + [Numerics](http://en.cppreference.com/w/c/numeric)
- *     + [Input/output support](http://en.cppreference.com/w/c/io)
- *     + [Localization support](http://en.cppreference.com/w/c/locale)
- *     + [Atomic operations library](http://en.cppreference.com/w/c/atomic)
- *     + [Thread support library](http://en.cppreference.com/w/c/thread)
- *
- * \version 2018-04-25
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0

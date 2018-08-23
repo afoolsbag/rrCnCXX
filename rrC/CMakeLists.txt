@@ -4,32 +4,43 @@
 # | |  | |  | |___
 # |_|  |_|   \____| rrC by FIGlet
 # zhengrr
-# 2016-08-01 – 2018-08-07
+# 2016-08-01 – 2018-08-23
 # The MIT License
 
-project(rrC VERSION 2018.8.7 LANGUAGES C)
+project(rrC VERSION 2018.8.23 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
-configure_file("rrccfg.h.in" "rrccfg.h" @ONLY)
-
-aux_source_directory_enhanced(zSrc
-                              RECURSE)
-facile_add_check_executable(  OPTION_INITIAL_ON
-                              ${zSrc}
-          INCLUDE_DIRECTORIES PRIVATE "."
-                                      "../"
-                                      "${CMAKE_CURRENT_BINARY_DIR}/../")
-
+configure_file("src/cfg.h.in" "src/cfg.h" @ONLY)
+aux_source_directory_enhanced(zInclude
+                              RECURSE
+             SOURCE_DIRECTORY "include/"
+                 SOURCE_GROUP "include/")
 aux_source_directory_enhanced(zSrc
                               RECURSE
-          SOURCE_BASE_CLASHES "_test$|^test$|^ygen$")
-facile_add_library(           OPTION_INITIAL_ON
-         TARGET_NAME_VARIABLE sRrcLib
-                              SHARED
-                              ${zSrc}
-          COMPILE_DEFINITIONS PUBLIC  "-DRRC_SHARED"
-          INCLUDE_DIRECTORIES PUBLIC  "../"
-                              PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/../")
+             SOURCE_DIRECTORY "src/"
+                 SOURCE_GROUP "src/")
+aux_source_directory_enhanced(zGenerate
+                              RECURSE
+             SOURCE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src/"
+                 SOURCE_GROUP "generate/")
+facile_add_library(   OPTION_INITIAL_ON
+ TARGET_NAME_VARIABLE sRrcLib
+                      SHARED
+                      ${zInclude} ${zSrc} ${zGenerate}
+  COMPILE_DEFINITIONS PUBLIC  "-DRRC_SHARED"
+  INCLUDE_DIRECTORIES PUBLIC  "include/"
+                      PRIVATE "src/"
+                              "${CMAKE_CURRENT_BINARY_DIR}/src/")
+
+aux_source_directory_enhanced(zTest
+                              RECURSE
+             SOURCE_DIRECTORY "test/"
+                 SOURCE_GROUP "test/")
+facile_add_check_executable(OPTION_INITIAL_ON
+                            ${zTest}
+        INCLUDE_DIRECTORIES PRIVATE "test/"
+             LINK_LIBRARIES ${sRrcLib}
+                POST_COPIES ${sRrcLib})

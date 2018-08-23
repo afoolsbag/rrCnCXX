@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-07-05
+# 2016-10-08 – 2018-08-23
 # The MIT License
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -140,12 +140,20 @@ function(facile_add_library)
     set(zPropertyCxxStd)
   endif()
 
+  # prop PREFIX
+  if(sType STREQUAL "static")
+    set(zPrefix PREFIX "lib")
+  else()
+    set(zPrefix)
+  endif()
+
   # add_library
   add_library("${sTgtName}" ${sTypeUpr} ${_UNPARSED_ARGUMENTS})
   set_target_properties("${sTgtName}"
              PROPERTIES ${zPropCStd}
                         ${zPropCxxStd}
-                        OUTPUT_NAME "${sName}"
+                        ${zPrefix}
+                        OUTPUT_NAME "${sNameLwr}"
                         DEBUG_POSTFIX "d"
                         CLEAN_DIRECT_OUTPUT ON)
 
