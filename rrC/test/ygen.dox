@@ -1,6 +1,6 @@
 /*===-- C Reference --------------------------------------------*- C -*-===*//**
  *
- * \defgroup gRef C参考手册
+ * \defgroup gRef C 参考手册
  *
  * \sa ["C reference"](https://zh.cppreference.com/w/c). *cppreference.com*.
  *     + Language
@@ -19,7 +19,7 @@
  *     + Atomic operations library
  *     + Thread support library
  *
- * \version 2018-08-22
+ * \version 2018-08-23
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC BY 4.0

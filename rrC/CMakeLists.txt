@@ -26,21 +26,22 @@ aux_source_directory_enhanced(zGenerate
                               RECURSE
              SOURCE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src/"
                  SOURCE_GROUP "generate/")
-facile_add_library(   OPTION_INITIAL_ON
- TARGET_NAME_VARIABLE sRrcLib
-                      SHARED
-                      ${zInclude} ${zSrc} ${zGenerate}
-  COMPILE_DEFINITIONS PUBLIC  "-DRRC_SHARED"
-  INCLUDE_DIRECTORIES PUBLIC  "include/"
-                      PRIVATE "src/"
-                              "${CMAKE_CURRENT_BINARY_DIR}/src/")
+facile_add_library(    OPTION_INITIAL_ON
+  TARGET_NAME_VARIABLE sRrcLib
+                       SHARED
+                       ${zInclude} ${zSrc} ${zGenerate}
+   COMPILE_DEFINITIONS PUBLIC  "-DRRC_SHARED"
+   INCLUDE_DIRECTORIES PUBLIC  "include/"
+                       PRIVATE "src/"
+                               "${CMAKE_CURRENT_BINARY_DIR}/src/")
 
 aux_source_directory_enhanced(zTest
                               RECURSE
              SOURCE_DIRECTORY "test/"
                  SOURCE_GROUP "test/")
-facile_add_check_executable(OPTION_INITIAL_ON
-                            ${zTest}
-        INCLUDE_DIRECTORIES PRIVATE "test/"
-             LINK_LIBRARIES ${sRrcLib}
-                POST_COPIES ${sRrcLib})
+facile_add_check_executable(SUBNAME "test"
+                                    OPTION_INITIAL_ON
+                                    ${zTest} "ygen.dox"
+                INCLUDE_DIRECTORIES PRIVATE "test/"
+                     LINK_LIBRARIES ${sRrcLib}
+                        POST_COPIES ${sRrcLib})

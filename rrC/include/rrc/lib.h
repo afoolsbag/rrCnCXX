@@ -35,13 +35,17 @@ struct rrc_version_t {
     uint16_t tweak;  /**< 微调版本号。 */
 };
 
-/** \brief 获取rrc版本。
- *  \return 库版本结构体。 */
+/**
+ * \brief 获取rrc版本。
+ * \return 库版本结构体。
+ */
 RRC_API struct rrc_version_t
 rrc_version(void);
 
-/** \brief 叹。
- *  \return 纪元时间。 */
+/**
+ * \brief 叹。
+ * \return 纪元时间。
+ */
 RRC_API time_t
 rrc_sigh(void);
 
