@@ -6,7 +6,7 @@
 #include <vector>
 #include <conio.h>
 
-#include "rrWindows/rrWindows.h"
+#include "rrwindows/rrwindows.h"
 
 #// Constructors
 
@@ -14,7 +14,7 @@ Application::
 Application()
 {
     SetUnhandledExceptionFilter(ExceptionCrashHandler);
-    AllocDebugConsole();
+    DcAlloc();
     DcMeth();
 }
 
@@ -22,7 +22,7 @@ Application::
 ~Application()
 {
     DcMeth();
-    FreeDebugConsole();
+    DcFree();
 }
 
 #// Overridables

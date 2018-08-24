@@ -1,13 +1,13 @@
 /*===-- Windows Sockets 2 --------------------------------------*- C -*-===*//**
  *
- * \defgroup g_winsock Windows©套接字版本2
- * \ingroup g_net
+ * \defgroup gWinSock Windows 套接字 2 版
+ * \ingroup gNet
  *
- * \sa ["Windows Sockets 2"](https://msdn.microsoft.com/library/ms740673). *Microsoft® Developer Network*.
+ * \sa ["Windows Sockets 2"](https://docs.microsoft.com/windows/desktop/winsock/windows-sockets-start-page-2). *Microsoft Docs*.
  *
  * \author zhengrr
- * \version 2018-2-23
- * \since 2018-2-5
+ * \version 2018-08-24
+ * \since 2018-02-05
  * \copyright CC BY 4.0
  *
 *//*===--------------------------------------------------------------------===*/

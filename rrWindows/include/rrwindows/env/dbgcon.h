@@ -3,7 +3,7 @@
  * \file
  * \brief 调试控制台。
  *
- * \version 2018-06-29
+ * \version 2018-08-24
  * \since 2018-04-18
  * \authors zhengrr
  * \copyright The MIT License
@@ -19,51 +19,52 @@
 #include "rrwindows/env/conutil.h"
 #include "rrwindows/api.h"
 
-/**
- * \brief 分配调试控制台。
- */
+/*-Debug-Console-Basic--------------------------------------------------------*/
+
 #ifdef _DEBUG
-# define AllocDebugConsole AllocConsole
+# /** \brief 分配调试控制台。 */
+# define DcAlloc  AllocConsole
+# /** \brief 释放调试控制台。 */
+# define DcFree   FreeConsole
+# /** \brief 调试控制台放置有色字串。 */
+# define DcKPut   ConsoleColorPut
+# /** \brief 调试控制台打印有色字串。 */
+# define DcKPrint ConsoleColorPrint
+#
 #else
-# define AllocDebugConsole(...) ((void)0)
+# define DcAlloc(...)  ((void)0)
+# define DcFree(...)   ((void)0)
+# define DcKPut(...)   ((void)0)
+# define DcKPrint(...) ((void)0)
+#
 #endif
 
-/**
- * \brief 释放调试控制台。
- */
-#ifdef _DEBUG
-# define FreeDebugConsole FreeConsole
-#else
-# define FreeDebugConsole(...) ((void)0)
-#endif
-
-/**
- * \brief 调试控制台放置有色字串（Debug-Console C(K)olor Put）。
- */
-#ifdef _DEBUG
-# define DckPut ConsoleColorPut
-#else
-# define DckPut(...) ((void)0)
-#endif
-
-/**
- * \brief 调试控制台打印有色字串（Debug-Console C(K)olor Print）。
- */
-#ifdef _DEBUG
-# define DckPrint ConsoleColorPrint
-#else
-# define DckPrint(...) ((void)0)
-#endif
+/*-Debug-Console-Extended-----------------------------------------------------*/
 
 #ifdef __cplusplus
-# include "rrWindows/dtpui/winmsg/msg/syscodestr.h"
+# include "rrwindows/dtpui/syscodestr.h"
 #
-# define DckMeth(color) DckPut(color, _T(__FUNCTION__) _T("\n"))
-# define DcMeth() DckMeth(Gray)
+# define DcKMeth(color) DcKPut(color, _T(__FUNCTION__) _T("\n"))
+# define DcMeth() DcKMeth(Gray)
 #
-# define DckCmdMsg(color) DckPrint(color, _T(__FUNCTION__) _T(" %6u(%s) nC=%d(%s) pE=0x%p, pHI=0x%p\n"), nID, SystemCommandString(nID), nCode, SystemCommandNotificationString(nCode), pExtra, pHandlerInfo)
-# define DcCmdMsg() DckCmdMsg(Gray)
+# define DcKCmdMsg(color)                                                      \
+      DcKPrint(color,                                                          \
+               _T(__FUNCTION__) _T(" %6u(%s) nC=%d(%s) pE=0x%p, pHI=0x%p\n"),  \
+               nID,                                                            \
+               SystemCommandString(nID),                                       \
+               nCode,                                                          \
+               SystemCommandNotificationString(nCode),                         \
+               pExtra,                                                         \
+               pHandlerInfo)
+# define DcCmdMsg() DcKCmdMsg(Gray)
 #
-# define DckWndMsg(color) DckPrint(color, _T(__FUNCTION__) _T(" 0x%04X(%s) wP=%u, lP=%ld, pR=0x%p\n"), message, SystemMessageString(message), wParam, lParam, pResult)
-# define DcWndMsg() DckWndMsg(Gray)
+# define DcKWndMsg(color)                                                      \
+      DcKPrint(color,                                                          \
+               _T(__FUNCTION__) _T(" 0x%04X(%s) wP=%u, lP=%ld, pR=0x%p\n"),    \
+               message,                                                        \
+               SystemMessageString(message),                                   \
+               wParam,                                                         \
+               lParam,                                                         \
+               pResult)
+# define DcWndMsg() DcKWndMsg(Gray)
 #endif

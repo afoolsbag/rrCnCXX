@@ -3,7 +3,7 @@
  * \file
  * \brief 宏。
  *
- * \version 2018-08-23
+ * \version 2018-08-24
  * \since 2018-06-12
  * \authors zhengrr
  * \copyright The MIT License
@@ -49,10 +49,18 @@
 #define VAFUNC10(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, func10, ...) func10
 
 /** \brief 条件展开。 */
-#ifdef _DEBUG
-# define DEBUG_ONLY(macro) macro
-# define RELEASE_ONLY(macro) /*nothing*/
-#else
-# define DEBUG_ONLY(macro) /*nothing*/
+#ifndef DEBUG_ONLY
+# ifdef _DEBUG
+#  define DEBUG_ONLY(macro) macro
+# else
+#  define DEBUG_ONLY(macro) /*nothing*/
+# endif
+#endif
+
+#ifndef RELEASE_ONLY
+# ifdef _DEBUG
+#  define RELEASE_ONLY(macro) /*nothing*/
+# else
 # define RELEASE_ONLY(macro) macro
+# endif
 #endif

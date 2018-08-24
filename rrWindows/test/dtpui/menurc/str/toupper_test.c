@@ -1,10 +1,10 @@
 /*===-- toupper in Windows API ---------------------------------*- C -*-===*//**
  *
- * \defgroup gToUpper WindowsAPI中的`toupper`
+ * \defgroup gToUpper Windows API 中的 `toupper`
  * \ingroup gStr
  *
  * \author zhengrr
- * \version 2018-07-12
+ * \version 2018-08-24
  * \since 2018-02-23
  * \copyright The MIT License
  *

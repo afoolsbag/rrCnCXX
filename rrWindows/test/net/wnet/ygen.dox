@@ -1,11 +1,11 @@
 /*===-- Windows Networking -------------------------------------*- C -*-===*//**
  *
- * \defgroup gWNet Windows©网络
+ * \defgroup gWNet Windows 网络
  * \ingroup gNet
  *
- * \sa ["Windows Networking"](https://msdn.microsoft.com/library/aa385406). *Microsoft® Developer Network*.
+ * \sa ["Windows Networking"](https://docs.microsoft.com/windows/desktop/wnet/windows-networking-wnet-). *Microsoft Docs*.
  *
- * \version 2018-05-02
+ * \version 2018-08-24
  * \since 2018-02-23
  * \authors zhengrr
  * \copyright CC BY 4.0

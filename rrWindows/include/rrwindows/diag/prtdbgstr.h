@@ -5,7 +5,7 @@
  *
  * \sa ["OutputDebugString function"](https://msdn.microsoft.com/library/aa363362). *MSDN*.
  *
- * \version 2018-08-23
+ * \version 2018-08-24
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -26,7 +26,8 @@ WINBASEAPI
 VOID
 WINAPI
 OutputDebugStringA(
-    _In_opt_ LPCSTR lpOutputString);
+    _In_opt_ LPCSTR lpOutputString
+);
 */
 
 /*
@@ -34,7 +35,8 @@ WINBASEAPI
 VOID
 WINAPI
 OutputDebugStringW(
-    _In_opt_ LPCWSTR lpOutputString);
+    _In_opt_ LPCWSTR lpOutputString
+);
 */
 
 /*-Variadic-Print-Debug-String------------------------------------------------*/
@@ -65,6 +67,12 @@ VPrintDebugStringWma(
     _In_                          va_list CONST va
 );
 
+#ifdef _UNICODE
+# define VPrintDebugStringMa VPrintDebugStringWma
+#else
+# define VPrintDebugStringMa VPrintDebugStringAma
+#endif
+
 /**
  * \brief 变参打印调试字串（ANSI 适配，StaticBuffer 实现）。
  * \warning 预设的缓存尺寸可能不足。
@@ -88,6 +96,12 @@ VPrintDebugStringWsb(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     _In_                          va_list CONST va
 );
+
+#ifdef _UNICODE
+# define VPrintDebugStringSb VPrintDebugStringWsb
+#else
+# define VPrintDebugStringSb VPrintDebugStringAsb
+#endif
 
 #ifdef __cplusplus
 }

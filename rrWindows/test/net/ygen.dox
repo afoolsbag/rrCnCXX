@@ -3,42 +3,42 @@
  * \defgroup gNet 网络和互联网
  * \ingroup gDvlp
  *
- * \sa ["Networking and Internet"](https://msdn.microsoft.com/library/ee663286). *Microsoft® Developer Network*.
- *     + [Delivery Optimization (DO)](https://msdn.microsoft.com/library/mt493216)
- *     + [Domain Name System (DNS)](https://msdn.microsoft.com/library/ms682100)
- *     + [Dynamic Host Configuration Protocol (DHCP)](https://msdn.microsoft.com/library/aa363383)
- *     + [Fax Service](https://msdn.microsoft.com/library/ms692855)
- *     + [Get Connected Wizard API](https://msdn.microsoft.com/library/ff956214)
- *     + [HTTP Server API](https://msdn.microsoft.com/library/aa364510)
- *     + [IP Helper](https://msdn.microsoft.com/library/aa366073)
- *     + [Management Information Base](https://msdn.microsoft.com/library/aa366934)
- *     + [Message Queuing (MSMQ)](https://msdn.microsoft.com/library/ms711472)
- *     + [Multicast Address Dynamic Client Allocation Protocol (MADCAP)](https://msdn.microsoft.com/library/ms691987)
- *     + [Network List Manager](https://msdn.microsoft.com/library/aa370803)
- *     + [Network Management](https://msdn.microsoft.com/library/aa370672)
- *     + [Network Share Management](https://msdn.microsoft.com/library/bb525392)
- *     + [Peer-to-Peer](https://msdn.microsoft.com/library/aa371704)
- *     + [Quality of Service (QOS)](https://msdn.microsoft.com/library/aa374094)
- *     + [Remote Procedure Call (RPC)](https://msdn.microsoft.com/library/aa378651)
- *     + [Routing and Remote Access Service](https://msdn.microsoft.com/library/bb545679)
- *     + [Simple Network Management Protocol](https://msdn.microsoft.com/library/aa379100)
- *     + [SMB Management API](https://msdn.microsoft.com/library/hh830479)
- *     + [Telephony Application Programming Interfaces (TAPI)](https://msdn.microsoft.com/library/ms734273)
- *     + [Teredo](https://msdn.microsoft.com/library/aa965909)
- *     + [WebSocket Protocol Component API](https://msdn.microsoft.com/library/hh437448)
- *     + [Windows Filtering Platform](https://msdn.microsoft.com/library/aa366510)
- *     + [Windows Firewall Technologies](https://msdn.microsoft.com/library/aa366319)
- *     + [Windows Networking (WNet)](https://msdn.microsoft.com/library/aa385406)
- *     + [Windows Network Virtualization](https://msdn.microsoft.com/library/jj673986)
- *     + [Windows RSS Platform](https://msdn.microsoft.com/library/ms684701)
- *     + [Windows Sockets 2](https://msdn.microsoft.com/library/ms740673)
- *     + [Windows Web Services API](https://msdn.microsoft.com/library/dd430435)
- *     + [WebDAV](https://msdn.microsoft.com/library/dd408161)
- *     + [Windows HTTP Services (WinHTTP)](https://msdn.microsoft.com/library/aa384273)
- *     + [XML HTTP Request 2](https://msdn.microsoft.com/library/hh831163)
- *     + [Windows Internet (WinINet)](https://msdn.microsoft.com/library/aa385331)
+ * \sa ["Networking and Internet"](https://docs.microsoft.com/windows/desktop/networking). *Microsoft Docs*.
+ *     + Delivery Optimization (DO)
+ *     + Domain Name System (DNS)
+ *     + Dynamic Host Configuration Protocol (DHCP)
+ *     + Fax Service
+ *     + Get Connected Wizard API
+ *     + HTTP Server API
+ *     + IP Helper
+ *     + Management Information Base
+ *     + Message Queuing (MSMQ)
+ *     + Multicast Address Dynamic Client Allocation Protocol (MADCAP)
+ *     + Network List Manager
+ *     + Network Management
+ *     + Network Share Management
+ *     + Peer-to-Peer
+ *     + Quality of Service (QOS)
+ *     + Remote Procedure Call (RPC)
+ *     + Routing and Remote Access Service
+ *     + Simple Network Management Protocol
+ *     + SMB Management API
+ *     + Telephony Application Programming Interfaces (TAPI)
+ *     + Teredo
+ *     + WebSocket Protocol Component API
+ *     + Windows Filtering Platform
+ *     + Windows Firewall Technologies
+ *     + Windows Networking (WNet)
+ *     + Windows Network Virtualization
+ *     + Windows RSS Platform
+ *     + Windows Sockets 2
+ *     + Windows Web Services API
+ *     + WebDAV
+ *     + Windows HTTP Services (WinHTTP)
+ *     + XML HTTP Request 2
+ *     + Windows Internet (WinINet)
  *
- * \version 2018-04-19
+ * \version 2018-08-24
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright CC BY 4.0

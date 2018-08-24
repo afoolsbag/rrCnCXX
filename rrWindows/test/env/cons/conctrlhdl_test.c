@@ -1,10 +1,10 @@
 /*===-- Console Control Handler --------------------------------*- C -*-===*//**
  *
- * \defgroup gConCtrlHdl
+ * \defgroup gConCtrlHdl 控制台控制处理
  * \ingroup gCons
  *
  * \author zhengrr
- * \version 2018-08-22
+ * \version 2018-08-24
  * \since 2018-08-22
  * \copyright The MIT License
  *
