@@ -5,114 +5,63 @@
 
 #include <strsafe.h>
 
+#include "rrwindows/svc/memsim.h"
 #include "rrwindows/def.h"
-
-#define BUFFER_SIZE 1024
 
 RRWINDOWS_API
 VOID
 WINAPI
-VPrintDebugStringAma(
+VPrintDebugStringA(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
     _In_                         va_list CONST va)
 {
     CONST INT cnt = _vscprintf(format, va) + 1/*'\0'*/;
-    if (0 == cnt) {
-        OutputDebugStringA(FILELINEA "rrWindows foundational error: _vscprintf failed." ATFUNCNLA);
+    if (cnt < 0) {
+        OutputDebugStringA(FLCSA "rrwindows foundational error: _vscprintf failed.\n");
         return;
     }
-    CHAR *CONST buf = HeapAlloc(GetProcessHeap(), 0, cnt * sizeof(CHAR));
+    CHAR *CONST buf = HeapAllocS(cnt * sizeof(CHAR));
     if (NULL == buf) {
-        OutputDebugStringA(FILELINEA "rrWindows foundational error: HeapAlloc failed." ATFUNCNLA);
+        OutputDebugStringA(FLCSA "rrwindows foundational error: HeapAlloc failed.\n");
         return;
     }
     if (FAILED(StringCchVPrintfA(buf, cnt, format, va))) {
-        OutputDebugStringA(FILELINEA "rrWindows foundational error: StringCchVPrintfA failed." ATFUNCNLA);
+        OutputDebugStringA(FLCSA "rrwindows foundational error: StringCchVPrintfA failed.\n");
         goto return_freeheap;
     }
+
     OutputDebugStringA(buf);
 
 return_freeheap:
-    if (FALSE == HeapFree(GetProcessHeap(), 0, buf))
-        OutputDebugStringA(FILELINEA "rrWindows foundational error: HeapFree failed." ATFUNCNLA);
+    if (FALSE == HeapFreeS(buf))
+        OutputDebugStringA(FLCSA "rrwindows foundational error: HeapFree failed.\n");
 }
 
 RRWINDOWS_API
 VOID
 WINAPI
-VPrintDebugStringWma(
+VPrintDebugStringW(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     _In_                          va_list CONST va)
 {
     CONST INT cnt = _vscwprintf(format, va) + 1/*L'\0'*/;
-    if (0 == cnt) {
-        OutputDebugStringW(FILELINEW L"rrWindows foundational error: _vscwprintf failed." ATFUNCNLW);
+    if (cnt < 0) {
+        OutputDebugStringW(FLCSW L"rrwindows foundational error: _vscwprintf failed.\n");
         return;
     }
-    WCHAR *CONST buf = HeapAlloc(GetProcessHeap(), 0, cnt * sizeof(WCHAR));
+    WCHAR *CONST buf = HeapAllocS(cnt * sizeof(WCHAR));
     if (NULL == buf) {
-        OutputDebugStringW(FILELINEW L"rrWindows foundational error, HeapAlloc failed." ATFUNCNLW);
+        OutputDebugStringW(FLCSW L"rrwindows foundational error: HeapAlloc failed.\n");
         return;
     }
     if (FAILED(StringCchVPrintfW(buf, cnt, format, va))) {
-        OutputDebugStringW(FILELINEW L"rrWindows foundational error, StringCchVPrintfW failed." ATFUNCNLW);
+        OutputDebugStringW(FLCSW L"rrwindows foundational error: StringCchVPrintfW failed.\n");
         goto return_freeheap;
     }
+
     OutputDebugStringW(buf);
 
 return_freeheap:
-    if (FALSE == HeapFree(GetProcessHeap(), 0, buf))
-        OutputDebugStringW(FILELINEW L"rrWindows foundational error, HeapFree failed." ATFUNCNLW);
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-VPrintDebugStringAsb(
-    _In_z_ _Printf_format_string_ LPCSTR CONST format,
-    _In_                         va_list CONST va)
-{
-    __declspec(thread) static CHAR StaticBuffer[BUFFER_SIZE];
-
-    switch (StringCchVPrintfA(StaticBuffer, countof(StaticBuffer), format, va)) {
-    case S_OK:
-        OutputDebugStringA(StaticBuffer);
-        break;
-    case STRSAFE_E_INVALID_PARAMETER:
-        OutputDebugStringA(FILELINEA "rrWindows foundational error: StringCchVPrintfA failed with STRSAFE_E_INVALID_PARAMETER." ATFUNCNLA);
-        break;
-    case STRSAFE_E_INSUFFICIENT_BUFFER:
-        OutputDebugStringA(FILELINEA "rrWindows foundational warn: StringCchVPrintfA failed with STRSAFE_E_INSUFFICIENT_BUFFER." ATFUNCNLA);
-        OutputDebugStringA(StaticBuffer);
-        break;
-    default:
-        OutputDebugStringA(FILELINEA "rrWindows foundational error: StringCchVPrintfA failed with Unknown HRESULT." ATFUNCNLA);
-        break;
-    }
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-VPrintDebugStringWsb(
-    _In_z_ _Printf_format_string_ LPCWSTR CONST format,
-    _In_                          va_list CONST va)
-{
-    __declspec(thread) static WCHAR StaticBuffer[BUFFER_SIZE];
-
-    switch (StringCchVPrintfW(StaticBuffer, countof(StaticBuffer), format, va)) {
-    case S_OK:
-        OutputDebugStringW(StaticBuffer);
-        break;
-    case STRSAFE_E_INVALID_PARAMETER:
-        OutputDebugStringW(FILELINEW L"rrWindows foundational error: StringCchVPrintfW failed with STRSAFE_E_INVALID_PARAMETER." ATFUNCNLW);
-        break;
-    case STRSAFE_E_INSUFFICIENT_BUFFER:
-        OutputDebugStringW(FILELINEW L"rrWindows foundational warn: StringCchVPrintfW failed with STRSAFE_E_INSUFFICIENT_BUFFER." ATFUNCNLW);
-        OutputDebugStringW(StaticBuffer);
-        break;
-    default:
-        OutputDebugStringW(FILELINEW L"rrWindows foundational error: StringCchVPrintfW failed with Unknown HRESULT." ATFUNCNLW);
-        break;
-    }
+    if (FALSE == HeapFreeS(buf))
+        OutputDebugStringW(FLCSW L"rrwindows foundational error: HeapFree failed.\n");
 }

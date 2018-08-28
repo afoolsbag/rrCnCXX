@@ -5,7 +5,7 @@
  *
  * \sa ["OutputDebugString function"](https://msdn.microsoft.com/library/aa363362). *MSDN*.
  *
- * \version 2018-08-24
+ * \version 2018-08-28
  * \since 2018-05-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -39,79 +39,46 @@ OutputDebugStringW(
 );
 */
 
-/*-Variadic-Print-Debug-String------------------------------------------------*/
+/*-Print-Debug-String---------------------------------------------------------*/
 
 #ifdef __cplusplus
 extern "C" {;
 #endif
 
 /**
- * \brief 变参打印调试字串（ANSI 适配，MemoryAllocate 实现）。
+ * \brief 变参打印调试字串（ANSI 适配）。
  */
 RRWINDOWS_API
 VOID
 WINAPI
-VPrintDebugStringAma(
+VPrintDebugStringA(
     _In_z_ _Printf_format_string_ LPCSTR CONST format,
     _In_                         va_list CONST va
 );
 
 /**
- * \brief 变参打印调试字串（UNICODE 适配，MemoryAllocate 实现）。
+ * \brief 变参打印调试字串（UNICODE 适配）。
  */
 RRWINDOWS_API
 VOID
 WINAPI
-VPrintDebugStringWma(
+VPrintDebugStringW(
     _In_z_ _Printf_format_string_ LPCWSTR CONST format,
     _In_                          va_list CONST va
 );
 
 #ifdef _UNICODE
-# define VPrintDebugStringMa VPrintDebugStringWma
+# define VPrintDebugString VPrintDebugStringW
 #else
-# define VPrintDebugStringMa VPrintDebugStringAma
-#endif
-
-/**
- * \brief 变参打印调试字串（ANSI 适配，StaticBuffer 实现）。
- * \warning 预设的缓存尺寸可能不足。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-VPrintDebugStringAsb(
-    _In_z_ _Printf_format_string_ LPCSTR CONST format,
-    _In_                         va_list CONST va
-);
-
-/**
- * \brief 变参打印调试字串（UNICODE 适配，StaticBuffer 实现）。
- * \warning 预设的缓存尺寸可能不足。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-VPrintDebugStringWsb(
-    _In_z_ _Printf_format_string_ LPCWSTR CONST format,
-    _In_                          va_list CONST va
-);
-
-#ifdef _UNICODE
-# define VPrintDebugStringSb VPrintDebugStringWsb
-#else
-# define VPrintDebugStringSb VPrintDebugStringAsb
+# define VPrintDebugString VPrintDebugStringA
 #endif
 
 #ifdef __cplusplus
 }
 #endif
 
-/*-Print-Debug-String---------------------------------------------------------*/
-
 /**
  * \brief 打印调试字串（ANSI 适配）。
- * \warning 预设的缓存尺寸可能不足。
  */
 FORCEINLINE
 VOID
@@ -122,13 +89,12 @@ PrintDebugStringA(
 {
     va_list va;
     va_start(va, format);
-    VPrintDebugStringAsb(format, va);
+    VPrintDebugStringA(format, va);
     va_end(va);
 }
 
 /**
  * \brief 打印调试字串（UNICODE 适配）。
- * \warning 预设的缓存尺寸可能不足。
  */
 FORCEINLINE
 VOID
@@ -139,7 +105,7 @@ PrintDebugStringW(
 {
     va_list va;
     va_start(va, format);
-    VPrintDebugStringWsb(format, va);
+    VPrintDebugStringW(format, va);
     va_end(va);
 }
 

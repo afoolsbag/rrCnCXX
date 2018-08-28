@@ -18,7 +18,7 @@ START_TEST(TestFAttr)
 {
     WIN32_FILE_ATTRIBUTE_DATA attr;
     if (!GetFileAttributesEx(ExecutablePath(), GetFileExInfoStandard, &attr)) {
-        DpWarnFwLE(_T("GetFileAttributesEx"));
+        DpWarnFailedWithLastError(_T("GetFileAttributesEx"));
         ck_abort();
         return;
     }

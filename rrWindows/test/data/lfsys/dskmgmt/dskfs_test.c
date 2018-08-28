@@ -25,12 +25,12 @@ START_TEST(TestDskFS)
     ULARGE_INTEGER totalBytes;
     ULARGE_INTEGER freeBytes;
     if (!GetDiskFreeSpaceEx(_T("C:\\"), &availableFreeBytes, &totalBytes, &freeBytes)) {
-        DpWarnFwLE(_T("GetDiskFreeSpaceEx"));
+        DpWarnFailedWithLastError(_T("GetDiskFreeSpaceEx"));
         DpTrace(_T("444"));
         ck_abort();
         return;
     }
-    DpInfo(_T("Available free bytes %llu, total %llu, free %llu"), availableFreeBytes.QuadPart, totalBytes.QuadPart, freeBytes.QuadPart);
+    DpInfo(_T("Available free bytes %llu, total %llu, free %llu."), availableFreeBytes.QuadPart, totalBytes.QuadPart, freeBytes.QuadPart);
 }
 END_TEST
 

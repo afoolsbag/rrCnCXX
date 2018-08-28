@@ -3,7 +3,7 @@
  * \file
  * \brief 定义。
  *
- * \version 2018-08-23
+ * \version 2018-08-28
  * \since 2018-06-26
  * \authors zhengrr
  * \copyright The MIT License
@@ -16,20 +16,6 @@
 
 /*-A--------------------------------------------------------------------------*/
 
-#ifndef ATFUNCNLA
-#define ATFUNCNLA " @" __FUNCTION__ ".\n"
-#endif
-#ifndef ATFUNCNLW
-#define ATFUNCNLW L" @" EXPAND_WIDE(__FUNCTION__) L".\n"
-#endif
-#ifndef ATFUNCNL
-# ifdef _UNICODE
-#  define ATFUNCNL ATFUNCNLW
-# else
-#  define ATFUNCNL ATFUNCNLA
-# endif
-#endif
-
 /*-C--------------------------------------------------------------------------*/
 
 #ifndef countof
@@ -41,22 +27,34 @@
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
 #endif
+
 #ifndef EXIT_FAILURE
 #define EXIT_FAILURE 1
 #endif
 
 /*-F--------------------------------------------------------------------------*/
 
-#ifndef FILELINEA
-#define FILELINEA __FILE__ "(" EXPAND_STRING(__LINE__) "): "
+/**
+ * \def FLCS
+ * \brief 文件、行号、冒号、空格。\n
+ *        File-Line-Colon-Space.
+ * \details Visual Studio 支持的文件行号形式。\n
+ *          宏展开形如 `"path\\to\\source.c" "(" "666" "): "` 或对应的宽字符形式。
+ * \sa <https://docs.microsoft.com/cpp/ide/formatting-the-output-of-a-custom-build-step-or-build-event>
+ */
+
+#ifndef FLCSA
+#define FLCSA __FILE__ "(" EXPAND_STRING(__LINE__) "): "
 #endif
-#ifndef FILENAMEW
-#define FILELINEW EXPAND_WIDE(__FILE__) L"(" EXPAND_WIDE_STRING(__LINE__) L"): "
+
+#ifndef FLCSW
+#define FLCSW EXPAND_WIDE(__FILE__) L"(" EXPAND_WIDE_STRING(__LINE__) L"): "
 #endif
-#ifndef FILELINE
+
+#ifndef FLCS
 # ifdef _UNICODE
-#  define FILELINE FILELINEW
+#  define FLCS FLCSW
 # else
-#  define FILELINE FILELINEA
+#  define FLCS FLCSA
 # endif
 #endif

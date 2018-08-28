@@ -11,11 +11,11 @@
 
 START_TEST(TestPrtDbg)
 {
-    DpWarn(_T("Test DpWarn."));
-    DpWarnFwLE(_T("Test DpWarnFwLE"));
-    DpInfo(_T("Test DpInfo."));
-    DpDebug(_T("Test DpDebug."));
-    DpTrace(_T("Test DpTrace."));
+    DpWarn(_T("test DpWarn."));
+    DpWarnFailedWithLastError(_T("test DpWarnFailedWithLastError"));
+    DpInfo(_T("test DpInfo."));
+    DpDebug(_T("test DpDebug."));
+    DpTrace(_T("test DpTrace."));
     DpTraceEnter();
     DpTraceLeave();
 }
