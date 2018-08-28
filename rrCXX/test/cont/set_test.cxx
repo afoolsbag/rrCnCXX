@@ -15,7 +15,6 @@
 #include <set>
 
 #include <gtest/gtest.h>
-
 #include "rrcxx/adp.hxx"
 
 namespace rrcxx {
