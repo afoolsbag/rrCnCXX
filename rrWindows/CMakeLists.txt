@@ -7,7 +7,7 @@
 # 2016-10-12 – 2018-08-23
 # The MIT License
 
-project(rrWindows VERSION 2018.8.23 LANGUAGES C)
+project(rrWindows VERSION 2018.8.29 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
@@ -16,7 +16,7 @@ facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 add_definitions("-D_UNICODE" "-DUNICODE")
 remove_definitions("-D_MBCS")
 
-configure_file("src/ver.rc.in" "src/ver.rc" @ONLY)
+configure_file("src/cfg.h.in" "src/cfg.h" @ONLY)
 aux_source_directory_enhanced(zInclude
                               RECURSE
              SOURCE_DIRECTORY "include/"
@@ -24,11 +24,11 @@ aux_source_directory_enhanced(zInclude
 aux_source_directory_enhanced(zSrc
                               RECURSE
              SOURCE_DIRECTORY "src/"
+            SOURCE_EXTENSIONS ".rc"
                  SOURCE_GROUP "src/")
 aux_source_directory_enhanced(zGenerate
                               RECURSE
              SOURCE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src/"
-            SOURCE_EXTENSIONS ".rc"
                  SOURCE_GROUP "generate/")
 facile_add_library(    OPTION_INITIAL_ON
   TARGET_NAME_VARIABLE sRrwindowsLib
@@ -39,19 +39,20 @@ facile_add_library(    OPTION_INITIAL_ON
                        PRIVATE "src/"
                                "${CMAKE_CURRENT_BINARY_DIR}/src/")
 
-configure_file("test/ver.rc.in" "test/ver.rc" @ONLY)
+configure_file("test/cfg.h.in" "test/cfg.h" @ONLY)
 aux_source_directory_enhanced(zTest
                               RECURSE
              SOURCE_DIRECTORY "test/"
+            SOURCE_EXTENSIONS ".rc"
                  SOURCE_GROUP "test/")
 aux_source_directory_enhanced(zGenerate
                               RECURSE
              SOURCE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test/"
-            SOURCE_EXTENSIONS ".rc"
                  SOURCE_GROUP "generate/")
 facile_add_check_executable(SUBNAME "test"
                                     OPTION_INITIAL_ON
                                     ${zTest} ${zGenerate} "ygen.dox"
                 INCLUDE_DIRECTORIES PRIVATE "test/"
+                                            "${CMAKE_CURRENT_BINARY_DIR}/test/"
                      LINK_LIBRARIES ${sRrwindowsLib}
                         POST_COPIES ${sRrwindowsLib})

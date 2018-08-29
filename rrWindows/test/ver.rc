@@ -1,0 +1,40 @@
+#include "rrwindows/macro.h"
+#include "cfg.h"
+#define APSTUDIO_READONLY_SYMBOLS
+#include "winres.h"
+#undef APSTUDIO_READONLY_SYMBOLS
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(65001)
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION    RRWINDOWS_TEST_VERSION_MAJOR, RRWINDOWS_TEST_VERSION_MINOR, RRWINDOWS_TEST_VERSION_PATCH, RRWINDOWS_TEST_VERSION_TWEAK
+ PRODUCTVERSION RRCNCXX_VERSION_MAJOR, RRCNCXX_VERSION_MINOR, RRCNCXX_VERSION_PATCH, RRCNCXX_VERSION_TWEAK
+ FILEFLAGSMASK  0x0000003FL
+ FILEFLAGS      DEBUG_ONLY(VS_FF_DEBUG) RELEASE_ONLY(0x00000001L)
+ FILEOS         VOS_NT_WINDOWS32
+ FILETYPE       VFT_APP
+ FILESUBTYPE    VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "0000FDE9"
+        BEGIN
+            VALUE "CompanyName",      RRCNCXX_AUTHORS "\0"
+            VALUE "FileDescription",  RRWINDOWS_TEST_NAME "\0"
+            VALUE "FileVersion",      RRWINDOWS_TEST_VERSION "\0"
+            VALUE "InternalName",     "\0"
+            VALUE "LegalCopyright",   RRWINDOWS_TEST_LICENSE "\0"
+            VALUE "OriginalFilename", "\0"
+            VALUE "ProductName",      RRCNCXX_NAME "\0"
+            VALUE "ProductVersion",   RRCNCXX_VERSION "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0000, 0xFDE9
+    END
+END
+
+#endif
