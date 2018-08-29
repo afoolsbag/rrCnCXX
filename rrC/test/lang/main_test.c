@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLang
  *
- * \version 2018-08-07
+ * \version 2018-08-29
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright The MIT License
@@ -43,11 +43,11 @@ int main(void)
     srunner_add_suite(runner, tsuite_time());
     srunner_add_suite(runner, tsuite_type());
     srunner_run_all(runner, CK_NORMAL);
-    const int ec = srunner_ntests_failed(runner);
+    const int err = srunner_ntests_failed(runner);
     srunner_free(runner);
 
     system("TIMEOUT /T 15");
-    return ec;
+    return err;
 }
 
 /** @} */
