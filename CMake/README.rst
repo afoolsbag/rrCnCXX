@@ -41,9 +41,10 @@ reStructuredText
 + `Quick reStructuredText <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
 + `Online reStructuredText editor <http://rst.ninjs.org/>`_
 
-----
+License
+=======
 
-.. image:: https://i.creativecommons.org/l/by/4.0/88x31.png
-   :target: http://creativecommons.org/licenses/by/4.0/
+.. image:: https://licensebuttons.net/p/zero/1.0/88x31.png
+   :target: https://creativecommons.org/publicdomain/zero/1.0/
 
-本作品采用 `知识共享署名 4.0 国际许可协议 <http://creativecommons.org/licenses/by/4.0/>`_ 进行许可。
+To the extent possible under law, zhengrr has waived all copyright and related or neighboring rights to this work.
