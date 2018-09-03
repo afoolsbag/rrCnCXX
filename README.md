@@ -155,23 +155,20 @@ Integrated Development Environments
 [*Doxygen*](http://doxygen.org/)
 
 ["Doxygen Manual"](http://doxygen.org/manual). *Doxygen*.
++ [Including formulas](http://doxygen.org/manual/formulas.html)
+    + [*LaTeX*](https://latex-project.org)
+        + [*An introduction to beautiful math on Quora*](https://math-on-quora.surge.sh/)
+	    + [*Detexify LaTeX handwritten symbol recognition*](http://detexify.kirelabs.org/)
+	    + [*TexPaste: Math Pastebin with LaTeX*](http://texpaste.com/)
+    + [*Dvips*](https://tug.org/texinfohtml/dvips.html)
+    + [*GhostScript*](https://ghostscript.com)
+    + [*MathJax*](https://mathjax.org/)
 + [Configuration](http://doxygen.org/manual/config.html)
 + [Special Commands](http://doxygen.org/manual/commands.html)
-
-["Including formulas"](http://doxygen.org/manual/formulas.html). *Doxygen Manual*.
-+ [*LaTeX*](https://latex-project.org)
-    + [*An introduction to beautiful math on Quora*](https://math-on-quora.surge.sh/)
-	+ [*Detexify LaTeX handwritten symbol recognition*](http://detexify.kirelabs.org/)
-	+ [*TexPaste: Math Pastebin with LaTeX*](http://texpaste.com/)
-+ [*Dvips*](https://tug.org/texinfohtml/dvips.html)
-+ [*GhostScript*](https://ghostscript.com)
-+ [*MathJax*](https://mathjax.org/)
-
-["Graphs and diagrams"](http://doxygen.org/manual/diagrams.html). *Doxygen Manual*.
-+ [*Graphviz*](https://graphviz.gitlab.io)
-
-["\startuml"](http://doxygen.org/manual/commands.html#cmdstartuml). *Doxygen Manual*.
-+ [*PlantUML*](http://plantuml.com)
+    + [\startuml](http://doxygen.org/manual/commands.html#cmdstartuml)
+        + [*PlantUML*](http://plantuml.com)
++ [Graphs and diagrams](http://doxygen.org/manual/diagrams.html)
+    + [*Graphviz*](https://graphviz.gitlab.io)
 
 ## Vim
 
