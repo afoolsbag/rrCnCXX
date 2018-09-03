@@ -12,9 +12,11 @@ WINAPI
 GetConsoleBackGroundColor(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return Black;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return Black;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return Black;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return Black;
     return (ConsoleColor)((csbi.wAttributes & 0x00F0) >> 4);
 }
 
@@ -24,9 +26,11 @@ WINAPI
 GetConsoleForeGroundColor(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return White;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return White;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return White;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return White;
     return (ConsoleColor)(csbi.wAttributes & 0x000F);
 }
 
@@ -38,13 +42,16 @@ SetConsoleColor(
     _In_ CONST ConsoleColor foreGroundColor)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
     csbi.wAttributes &= 0xFF00;
     csbi.wAttributes |= backGroundColor << 4;
     csbi.wAttributes |= foreGroundColor;
-    if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes)) return;
+    if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes))
+        return;
 }
 
 RRWINDOWS_API
@@ -54,12 +61,15 @@ SetConsoleBackGroundColor(
     _In_ CONST ConsoleColor backGroundColor)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
     csbi.wAttributes &= 0xFF0F;
     csbi.wAttributes |= backGroundColor << 4;
-    if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes)) return;
+    if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes))
+        return;
 }
 
 RRWINDOWS_API
@@ -69,12 +79,15 @@ SetConsoleForeGroundColor(
     _In_ CONST ConsoleColor foreGroundColor)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
     csbi.wAttributes &= 0xFFF0;
     csbi.wAttributes |= foreGroundColor;
-    if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes)) return;
+    if (!SetConsoleTextAttribute(stdOutput, csbi.wAttributes))
+        return;
 }
 
 RRWINDOWS_API
@@ -85,9 +98,11 @@ ConsoleColorPutA(
     _In_z_ LPCSTR CONST        text)
 {
     CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor) SetConsoleForeGroundColor(color);
+    if (color != oldColor)
+        SetConsoleForeGroundColor(color);
     _cputs(text);
-    if (oldColor != color) SetConsoleForeGroundColor(oldColor);
+    if (oldColor != color)
+        SetConsoleForeGroundColor(oldColor);
 }
 
 RRWINDOWS_API
@@ -98,9 +113,11 @@ ConsoleColorPutW(
     _In_z_ LPCWSTR CONST        text)
 {
     CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor) SetConsoleForeGroundColor(color);
+    if (color != oldColor)
+        SetConsoleForeGroundColor(color);
     _cputws(text);
-    if (oldColor != color) SetConsoleForeGroundColor(oldColor);
+    if (oldColor != color)
+        SetConsoleForeGroundColor(oldColor);
 }
 
 RRWINDOWS_API
@@ -112,11 +129,14 @@ ConsoleColorPrintA(
     ...)
 {
     CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor) SetConsoleForeGroundColor(color);
-    va_list va; va_start(va, format);
+    if (color != oldColor)
+        SetConsoleForeGroundColor(color);
+    va_list va;
+    va_start(va, format);
     _vcprintf_s(format, va);
     va_end(va);
-    if (oldColor != color) SetConsoleForeGroundColor(oldColor);
+    if (oldColor != color)
+        SetConsoleForeGroundColor(oldColor);
 }
 
 RRWINDOWS_API
@@ -128,11 +148,14 @@ ConsoleColorPrintW(
     ...)
 {
     CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor) SetConsoleForeGroundColor(color);
-    va_list va; va_start(va, format);
+    if (color != oldColor)
+        SetConsoleForeGroundColor(color);
+    va_list va;
+    va_start(va, format);
     _vcwprintf_s(format, va);
     va_end(va);
-    if (oldColor != color) SetConsoleForeGroundColor(oldColor);
+    if (oldColor != color)
+        SetConsoleForeGroundColor(oldColor);
 }
 
 RRWINDOWS_API
@@ -141,16 +164,22 @@ WINAPI
 ClearConsoleScreenA(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
     CONST DWORD size = csbi.dwSize.X * csbi.dwSize.Y;
     CONST COORD coord = {0, 0};
     DWORD charsWritten;
-    if (!FillConsoleOutputCharacterA(stdOutput, ' ', size, coord, &charsWritten)) return;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
-    if (!FillConsoleOutputAttribute(stdOutput, csbi.wAttributes, size, coord, &charsWritten)) return;
-    if (!SetConsoleCursorPosition(stdOutput, coord)) return;
+    if (!FillConsoleOutputCharacterA(stdOutput, ' ', size, coord, &charsWritten))
+        return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
+    if (!FillConsoleOutputAttribute(stdOutput, csbi.wAttributes, size, coord, &charsWritten))
+        return;
+    if (!SetConsoleCursorPosition(stdOutput, coord))
+        return;
 }
 
 RRWINDOWS_API
@@ -159,14 +188,20 @@ WINAPI
 ClearConsoleScreenW(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
     CONST DWORD size = csbi.dwSize.X * csbi.dwSize.Y;
     CONST COORD coord = {0, 0};
     DWORD charsWritten;
-    if (!FillConsoleOutputCharacterW(stdOutput, L' ', size, coord, &charsWritten)) return;
-    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi)) return;
-    if (!FillConsoleOutputAttribute(stdOutput, csbi.wAttributes, size, coord, &charsWritten)) return;
-    if (!SetConsoleCursorPosition(stdOutput, coord)) return;
+    if (!FillConsoleOutputCharacterW(stdOutput, L' ', size, coord, &charsWritten))
+        return;
+    if (!GetConsoleScreenBufferInfo(stdOutput, &csbi))
+        return;
+    if (!FillConsoleOutputAttribute(stdOutput, csbi.wAttributes, size, coord, &charsWritten))
+        return;
+    if (!SetConsoleCursorPosition(stdOutput, coord))
+        return;
 }
