@@ -1,6 +1,6 @@
 # C & C++ in zhengrr's eyes
 
-一份为zhengrr定制化的，关于C语言、C++语言、以及相关和不那么相关技术的备忘。
+一份为 zhengrr 定制化的，关于 C 语言、C++ 语言、以及相关和不那么相关技术的备忘。
 
 > Everyone knows it's a mistake to write your whole program by hand in machine language.
 > What's less often understood is that there is a more general principle here:
@@ -10,7 +10,9 @@
 
 [*TIOBE Index*](https://tiobe.com/tiobe-index/)
 
-# References
+## References
+
+World Wide Web
 
 [*Wolfram|Alpha*](https://wolframalpha.com/)
 [*Wolfram MathWorld*](http://mathworld.wolfram.com/)
@@ -28,8 +30,7 @@
 [*开源中国*](https://oschina.net/)
 [*前端乱炖*](http://html-js.com/)
 
-## Directories
-
+Directories
 + [*The Free Dictionary*](https://thefreedictionary.com/)
 + :cn:
     + [*汉典*](http://zdic.net/)
@@ -38,13 +39,11 @@
     + [*Dictionary.com*](https://dictionary.com/) & [*Thesaurus.com*](https://thesaurus.com/)
     + [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
 
-## Characters
-
+Characters
 + [*Unicode® character table*](http://unicode-table.com/)
 + [*Emoji*](http://iemoji.com/)
 
-## Codes
-
+Codes
 + ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
     + ["ISO 8601"](https://wikipedia.org/wiki/ISO_8601). *Wikipedia*.
     + [*ISO 8601 — Date and time format*](https://iso.org/iso-8601-date-and-time-format.html)
@@ -55,7 +54,7 @@
     + [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
         + ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
 
-# Awesome
+## Guides
 
 ["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/).  *计算机书籍控*.
 + *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
@@ -63,7 +62,38 @@
 
 [free-programming-books](https://github.com/EbookFoundation/free-programming-books)
 
-## [Git](https://git-scm.com/)
+## Awesome
+
+[*awesome*](https://awesome.re/)
+
+Editors
+
+[*Emacs*](https://gnu.org/software/emacs/)
+[*Notepad++*](https://notepad-plus-plus.org)
+[*Vim*](http://vim.org/)
+[*Visual Studio Code*](https://code.visualstudio.com)
+
+Environments
+
+[*Cygwin*](http://cygwin.com/)
+[*MinGW*](http://mingw.org/)
+[*Mingw-w64*](http://mingw-w64.org/)
+
+Integrated Development Environments
+
+[*CLion*](https://jetbrains.com/clion)
+[*Understand™*](https://scitools.com)
+[*Visual Studio*](https://visualstudio.com)
+(
+[*IncrediBuild*](https://incredibuild.com)
+[*ReSharper С++*](https://jetbrains.com/resharper-cpp)
+[*Studio Styles*](https://studiostyl.es)
+[*Visual Assist*](https://wholetomato.com)
+)
+
+## Git
+
+[*Git*](https://git-scm.com/)
 
 ["Reference"](https://git-scm.com/docs). *Git*.
 + Getting and Creating Projects
@@ -104,7 +134,9 @@
 [*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
 ["Git教程"](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000). *廖雪峰的官方网站*.
 
-## [Markdown](https://daringfireball.net/markdown/)
+## Markdown
+
+[*Markdown*](https://daringfireball.net/markdown/)
 
 ["Syntax"](https://daringfireball.net/markdown/syntax). *Markdown*.
 + Block Elements
@@ -118,7 +150,9 @@
 
 ["Mastering Markdown"](https://guides.github.com/features/mastering-markdown/). *GitHub Guides*.
 
-## [Doxygen](http://doxygen.org/)
+## Doxygen
+
+[*Doxygen*](http://doxygen.org/)
 
 ["Doxygen Manual"](http://doxygen.org/manual). *Doxygen*.
 + [Configuration](http://doxygen.org/manual/config.html)
@@ -139,12 +173,7 @@
 ["\startuml"](http://doxygen.org/manual/commands.html#cmdstartuml). *Doxygen Manual*.
 + [*PlantUML*](http://plantuml.com)
 
-## Editors
-
-[*Emacs (Editor Macros)*](https://gnu.org/software/emacs/)
-[*Vim (Visual Editor Improved)*](http://vim.org/)
-[*Notepad++*](https://notepad-plus-plus.org)
-[*Visual Studio Code*](https://code.visualstudio.com)
+## Vim
 
 [*Vim Documentation*](http://vimdoc.sourceforge.net)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net)</sub>
 + [help](http://vimdoc.sourceforge.net/htmldoc/help.html)<sub> [*cmn-Hans*](http://vimcdoc.sourceforge.net/doc/help.html)</sub>
@@ -272,25 +301,6 @@ quickref
     + 禁用折叠<kbd>z</kbd><kbd>n</kbd>　启用折叠<kbd>z</kbd><kbd>N</kbd>　开关折叠<kbd>z</kbd><kbd>i</kbd>
 + More
     + 左一标签页<kbd>g</kbd><kbd>T</kbd>　某标签页<kbd>Number</kbd><kbd>g</kbd><kbd>t</kbd>　右一标签页<kbd>g</kbd><kbd>t</kbd>
-
-## Environments
-
-[*Cygwin*](http://cygwin.com/)
-[*MinGW (Minimalist GNU for Windows)*](http://mingw.org/)
-[*Mingw-w64*](http://mingw-w64.org/)
-
-## Integrated Development Environments
-
-[*Visual Studio*](https://visualstudio.com)
-+ [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
-+ [*CodeMaid*](http://codemaid.net)
-+ 2008 [*Visual Assist*](https://wholetomato.com)
-+ 2008 [*IncrediBuild*](https://incredibuild.com)
-+ [*Studio Styles*](https://studiostyl.es)
-
-[*Understand™*](https://scitools.com)
-
-[*CLion*](https://jetbrains.com/clion)
 
 ## License
 
