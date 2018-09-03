@@ -80,8 +80,8 @@
       `git rm <file(s)>`
     + [commit](https://git-scm.com/docs/git-commit)
       `git commit -m "..."`
-        + [*How to Write a Git Commit Message*](https://chris.beams.io/posts/git-commit/). 2014. Chris Beams.
         + ["Git Commit Guidelines"](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines). *Developing AngularJS*.
+        + [*How to Write a Git Commit Message*](https://chris.beams.io/posts/git-commit/). 2014. Chris Beams.
     + [reset](https://git-scm.com/docs/git-reset)
       `git reset HEAD <file(s)>`
       `git reset --hard HEAD^`
