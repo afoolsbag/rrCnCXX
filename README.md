@@ -40,8 +40,8 @@ Directories
     + [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
 
 Characters
-+ [*Unicode® character table*](http://unicode-table.com/)
-+ [*Emoji*](http://iemoji.com/)
++ [*Unicode® character table*](https://unicode-table.com/)
++ [*Emoji*](https://iemoji.com/)
 
 Codes
 + ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
@@ -70,14 +70,14 @@ Editors
 
 [*Emacs*](https://gnu.org/software/emacs/)
 [*Notepad++*](https://notepad-plus-plus.org)
-[*Vim*](http://vim.org/)
+[*Vim*](https://www.vim.org/)
 [*Visual Studio Code*](https://code.visualstudio.com)
 
 Environments
 
-[*Cygwin*](http://cygwin.com/)
+[*Cygwin*](https://cygwin.com/)
 [*MinGW*](http://mingw.org/)
-[*Mingw-w64*](http://mingw-w64.org/)
+[*Mingw-w64*](https://mingw-w64.org/)
 
 Integrated Development Environments
 
