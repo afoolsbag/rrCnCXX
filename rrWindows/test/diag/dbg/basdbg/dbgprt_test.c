@@ -12,7 +12,7 @@
 START_TEST(TestPrtDbg)
 {
     DpWarn(_T("test DpWarn."));
-    DpWarnFailedWithLastError(_T("test DpWarnFailedWithLastError"));
+    DpWarnFwLE(_T("test DpWarnFailedWithLastError"));
     DpInfo(_T("test DpInfo."));
     DpDebug(_T("test DpDebug."));
     DpTrace(_T("test DpTrace."));

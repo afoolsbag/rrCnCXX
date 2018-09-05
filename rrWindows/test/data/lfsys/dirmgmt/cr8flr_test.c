@@ -22,7 +22,7 @@ START_TEST(TestCr8Flr)
         ck_abort(); return;
     }
     if (ERROR_SUCCESS != CreateFolder(flrPath)) {
-        DpWarnFailedWithLastError(_T("CreateFolder"));
+        DpWarnFwLE(_T("CreateFolder"));
         ck_abort(); return;
     }
 }

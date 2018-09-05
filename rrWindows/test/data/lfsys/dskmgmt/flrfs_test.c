@@ -12,7 +12,7 @@ START_TEST(TestFlrFS)
 {
     CONST ULARGE_INTEGER availableFreeBytes = GetFolderFreeSpace(ExecutableDirectoryPath());
     if (0 == availableFreeBytes.QuadPart) {
-        DpWarnFailedWithLastError(TEXT("GetFolderFreeSpace"));
+        DpWarnFwLE(TEXT("GetFolderFreeSpace"));
         ck_abort();
         return;
     } else {

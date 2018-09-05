@@ -15,7 +15,7 @@ START_TEST(TestAcsShrFlr)
     CONST TCHAR usr[] = _T("username");
     CONST TCHAR pwd[] = _T("password");
     if (!ConnectSharedFolder(path, usr, pwd))
-        DpWarnFailedWithLastError(_T("ConnectSharedFolder(%s, %s, %s)"), path, usr, pwd);
+        DpWarnFwLE(_T("ConnectSharedFolder(%s, %s, %s)"), path, usr, pwd);
 }
 END_TEST
 

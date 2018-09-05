@@ -25,7 +25,7 @@
 START_TEST(TestFExists)
 {
     if (!PathFileExists(ExecutablePath())) {
-        DpWarnFailedWithLastError(_T("TraverseFolder"));
+        DpWarnFwLE(_T("TraverseFolder"));
         ck_abort();
     }
 }

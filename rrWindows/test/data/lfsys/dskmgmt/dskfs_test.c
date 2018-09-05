@@ -25,7 +25,7 @@ START_TEST(TestDskFS)
     ULARGE_INTEGER totalBytes;
     ULARGE_INTEGER freeBytes;
     if (!GetDiskFreeSpaceEx(_T("C:\\"), &availableFreeBytes, &totalBytes, &freeBytes)) {
-        DpWarnFailedWithLastError(_T("GetDiskFreeSpaceEx"));
+        DpWarnFwLE(_T("GetDiskFreeSpaceEx"));
         DpTrace(_T("444"));
         ck_abort();
         return;

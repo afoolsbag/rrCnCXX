@@ -20,7 +20,7 @@ START_TEST(TestTravFlr)
     DWORD ec = ERROR_SUCCESS;
 
     if (ERROR_SUCCESS != (ec = TraverseFolder(ExecutableDirectoryPath(), OnFileFound, FALSE))) {
-        DpWarnFailedWithLastError(_T("TraverseFolder"));
+        DpWarnFwLE(_T("TraverseFolder"));
         ck_abort(); return;
     }
 }
