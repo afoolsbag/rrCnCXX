@@ -1,0 +1,101 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "Frame.rc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "Frame.rc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDA_FRAME ACCELERATORS
+BEGIN
+    VK_F5,          ID_COMMAND_5,           VIRTKEY, NOINVERT
+    VK_F6,          ID_COMMAND_6,           VIRTKEY, NOINVERT
+    VK_F7,          ID_COMMAND_7,           VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_FRAME MENU
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)\tAlt+F4",              ID_UNDEFINED
+    END
+    MENUITEM "编辑(&E)",                      0
+    MENUITEM "视图(&V)",                      0
+    POPUP "命令(&C)"
+    BEGIN
+        MENUITEM "命令&5\tF5",                    ID_COMMAND_5
+        MENUITEM "命令&6\tF6",                    ID_COMMAND_6
+        MENUITEM "命令&7\tF7",                    ID_COMMAND_7
+    END
+    POPUP "设置(&S)"
+    BEGIN
+        MENUITEM "选项(&O)",                      ID_UNDEFINED
+    END
+    MENUITEM "工具(&T)",                      ID_UNDEFINED
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于(&A)",                      ID_UNDEFINED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_FRAME               "微软基础类库框架应用"
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+

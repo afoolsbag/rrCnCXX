@@ -1,0 +1,105 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "DdxDialog.rc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "DdxDialog.rc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DDX_DIALOG DIALOGEX 0, 0, 285, 182
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "DDX Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_BOX,12,12,48,42,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Check",IDC_CHECK_BOX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,36,39,10
+    CONTROL         "",IDC_DATE_TIME_PICKER,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,12,60,100,15
+    CONTROL         "",IDC_IP_ADDRESS,"SysIPAddress32",WS_TABSTOP,12,90,100,15
+    LISTBOX         IDC_LIST_BOX,72,12,48,40,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_MONTH_CALENDAR,"SysMonthCal32",MCS_NOTODAY | WS_TABSTOP,132,12,140,100
+    CONTROL         "Radio1",IDC_RADIO_GROUP_1_BUTTON_1,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,12,120,38,10
+    CONTROL         "Radio2",IDC_RADIO_GROUP_1_BUTTON_2,"Button",BS_AUTORADIOBUTTON,12,138,38,10
+    CONTROL         "Radio3",IDC_RADIO_GROUP_1_BUTTON_3,"Button",BS_AUTORADIOBUTTON,12,156,38,10
+    SCROLLBAR       IDC_VERTICAL_SCROLL_BAR,168,120,10,48,SBS_VERT
+    SCROLLBAR       IDC_HORIZONTAL_SCROLL_BAR,60,156,94,11
+    CONTROL         "",IDC_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,54,132,100,15
+    EDITTEXT        IDC_EDIT,192,126,78,14,ES_AUTOHSCROLL
+    LTEXT           "Static",IDC_STATIC_CONTROL,192,150,78,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DDX_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 175
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DDX_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
