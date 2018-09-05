@@ -187,9 +187,10 @@ DebugPrintW(
 /*-Debug-Print-Extended-------------------------------------------------------*/
 
 /**
- * \brief 调试打印错误：不预期的 Switch 路由。
+ * \brief 调试打印错误：不预期的 Switch 路由。\n
+ *        Debug Print Error: Unexpected Switch Route.
  */
-#define DpErrorUnexpectedSwitchRoute(expr)                                     \
+#define DpErrorUSR(expr)                                                       \
     DebugPrint(_T(__FILE__), __LINE__, DEBUG_PRINT_ERROR,                      \
                _T("Unexpected switch route with expression: ") _T(#expr) _T("=%I64d."), \
                (INT64)(expr)                                                   \
@@ -197,10 +198,10 @@ DebugPrintW(
 
 /**
  * \brief 调试打印警告：失败和最后错误。\n
- *        Failed with Last Error.
+ *        Debug Print Warning: Failed with Last Error.
  * \param desc 操作描述。
  */
-#define DpWarnFailedWithLastError(desc, ...)                                   \
+#define DpWarnFwLE(desc, ...)                                                  \
     DebugPrint(_T(__FILE__), __LINE__, DEBUG_PRINT_WARN,                       \
                desc _T(" failed with error %lu: %s"),                          \
                __VA_ARGS__, GetLastError(), LastErrorText()                    \
@@ -208,21 +209,21 @@ DebugPrintW(
 
 /**
  * \brief 调试打印警告：期望为真。\n
- *        Expect True.
+ *        Debug Print Warning: Expect True.
  * \param proc 处理，返回 `TRUE` 或 `FALSE`。
  * \since 2018-07-02
  */
 #define DpWarnExpectTrue(proc)                                                 \
-    ((proc) || (DpWarnFailedWithLastError(#proc), FALSE))
+    ((proc) || (DpWarnFwLE(_T(#proc)), FALSE))
 
  /**
   * \brief 调试打印警告：期望为假。\n
-  *        Expect False.
+  *        Debug Print Warning: Expect False.
   * \param proc 处理，返回 `TRUE` 或 `FALSE`。
   * \since 2018-07-02
   */
 #define DpWarnExpectFalse(proc)                                                \
-    ((proc) && (DpWarnFailedWithLastError(#proc), TRUE))
+    ((proc) && (DpWarnFwLE(_T(#proc)), TRUE))
 
 /**
  * \brief 调试打印调试：函数信息。
