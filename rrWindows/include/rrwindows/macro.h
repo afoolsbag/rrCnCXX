@@ -49,18 +49,58 @@
 #define VAFUNC10(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, func10, ...) func10
 
 /** \brief 条件展开。 */
-#ifndef DEBUG_ONLY
-# ifdef _DEBUG
-#  define DEBUG_ONLY(macro) macro
-# else
-#  define DEBUG_ONLY(macro) /*nothing*/
-# endif
+#ifdef DEBUG_ONLY
+# /*ignore*/
+#elif _DEBUG
+# define DEBUG_ONLY(macro) macro
+#else
+# define DEBUG_ONLY(macro) /*blank*/
 #endif
 
-#ifndef RELEASE_ONLY
-# ifdef _DEBUG
-#  define RELEASE_ONLY(macro) /*nothing*/
-# else
+#ifdef RELEASE_ONLY
+# /*ignore*/
+#elif _DEBUG
+# define RELEASE_ONLY(macro) /*blank*/
+#else
 # define RELEASE_ONLY(macro) macro
-# endif
+#endif
+
+#ifdef MBCS_ONLY
+# /*ignore*/
+#elif _MBCS
+# define MBCS_ONLY(macro) macro
+#else
+# define MBCS_ONLY(macro) /*blank*/
+#endif
+
+#ifdef NON_MBCS_ONLY
+# /*ignore*/
+#elif _MBCS
+# define NON_MBCS_ONLY(macro) /*blank*/
+#else
+# define NON_MBCS_ONLY(macro) macro
+#endif
+
+#ifdef UNICODE_ONLY
+# /*ignore*/
+#elif _UNICODE
+# define UNICODE_ONLY(macro) macro
+#else
+# define UNICODE_ONLY(macro) /*blank*/
+#endif
+
+#ifdef NON_UNICODE_ONLY
+# /*ignore*/
+#elif _UNICODE
+# define NON_UNICODE_ONLY(macro) /*blank*/
+#else
+# define NON_UNICODE_ONLY(macro) macro
+#endif
+
+#ifdef NON_MBCS_UNICODE_ONLY
+# /*ignore*/
+#elif _MBCS || _UNICODE
+# define NON_MBCS_UNICODE_ONLY(macro) /*blank*/
+#else
+# define NON_MBCS_UNICODE_ONLY(macro) macro
 #endif
