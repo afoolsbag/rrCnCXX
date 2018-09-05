@@ -10,11 +10,14 @@ WINAPI
 EnableVirtualTerminalMode(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return FALSE;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return FALSE;
     DWORD mode;
-    if (!GetConsoleMode(stdOutput, &mode)) return FALSE;
+    if (!GetConsoleMode(stdOutput, &mode))
+        return FALSE;
     mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (!SetConsoleMode(stdOutput, mode)) return FALSE;
+    if (!SetConsoleMode(stdOutput, mode))
+        return FALSE;
     return TRUE;
 }
 
@@ -25,10 +28,13 @@ WINAPI
 DisableVirtualTerminalMode(VOID)
 {
     HANDLE CONST stdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == stdOutput) return FALSE;
+    if (INVALID_HANDLE_VALUE == stdOutput)
+        return FALSE;
     DWORD mode;
-    if (!GetConsoleMode(stdOutput, &mode)) return FALSE;
+    if (!GetConsoleMode(stdOutput, &mode))
+        return FALSE;
     mode &= ~(DWORD)ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (!SetConsoleMode(stdOutput, mode)) return FALSE;
+    if (!SetConsoleMode(stdOutput, mode))
+        return FALSE;
     return TRUE;
 }
