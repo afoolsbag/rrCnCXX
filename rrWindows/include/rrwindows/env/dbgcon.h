@@ -60,7 +60,7 @@
 #
 # define DcKWndMsg(color)                                                      \
       DcKPrint(color,                                                          \
-               _T(__FUNCTION__) _T(" 0x%04X(%s) wP=%u, lP=%ld, pR=0x%p\n"),    \
+               _T(__FUNCTION__) _T(" 0x%04X(%s) wP=%I64u, lP=%I64d, pR=0x%p\n"), \
                message,                                                        \
                SystemMessageString(message),                                   \
                wParam,                                                         \
