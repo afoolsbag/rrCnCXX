@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <Windows.h>
+#include "stdafx.h"
 
 /** 产品名。 */
 #define RRCNCXX_NAME          "@PRODUCT_NAME@"

@@ -39,7 +39,7 @@ BOOL WINAPI HandlerRoutine(DWORD dwCtrlType)
     case CTRL_LOGOFF_EVENT://fall-through
     case CTRL_SHUTDOWN_EVENT: {
         rrMFC::Application * pApp = dynamic_cast<rrMFC::Application *>(AfxGetApp());
-        if (pApp && pApp->IsKindOf(RUNTIME_CLASS(rrMFC::Application)))
+        if (pApp != nullptr && pApp->IsKindOf(RUNTIME_CLASS(rrMFC::Application)))
             pApp->ExitInstance();
         break;
     }
@@ -235,7 +235,7 @@ InitInstance()
     CliWelcome();
     TCHAR buf[512] = TEXT("");
     size_t len = 0;
-    while (TRUE) {
+    for (;;) {
         _cputts(WHT("\nEnter a command: ") VTS_FGCYAB);
         _cgetts_s(buf, &len);
         CliLcl = TokenizeCommandLine(buf);
@@ -434,7 +434,7 @@ CliProgressBox() const
         std::random_device rndDev;
         std::mt19937 rndGen(rndDev());
         std::uniform_int_distribution<> rndDist(1, 6);
-        while (TRUE) {
+        for (;;) {
             current += rndDist(rndGen);
             if (100 <= current) {
                 current -= 100;

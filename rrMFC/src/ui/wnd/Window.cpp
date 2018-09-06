@@ -71,7 +71,7 @@ Window()
 }
 
 BOOL Window::
-Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext /*=NULL*/)
+Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT &rect, CWnd *pParentWnd, UINT nID, CCreateContext *pContext /*=NULL*/)
 {
     DcMeth();
     return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
@@ -85,7 +85,7 @@ CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD d
 }
 
 BOOL Window::
-CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, CONST RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam)
+CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT &rect, CWnd *pParentWnd, UINT nID, LPVOID lpParam)
 {
     DcMeth();
     return CWnd::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, lpParam);
@@ -107,7 +107,7 @@ PreCreateWindow(CREATESTRUCT &cs)
 }
 
 BOOL Window::
-OnCmdMsg(UINT nID, INT nCode, VOID *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
+OnCmdMsg(UINT nID, INT nCode, void *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
 {
     DcCmdMsg();
     return CWnd::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
@@ -120,14 +120,14 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
     return CWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID Window::
+void Window::
 DoDataExchange(CDataExchange *pDX)
 {
     CWnd::DoDataExchange(pDX);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 PostNcDestroy()
 {
     DcMeth();
@@ -154,91 +154,91 @@ OnCreate(LPCREATESTRUCT lpCreateStruct)
     return 0;
 }
 
-VOID Window::
+void Window::
 OnDestroy()
 {
     CWnd::OnDestroy();
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnNcDestroy()
 {
     CWnd::OnNcDestroy();
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnGetMinMaxInfo(MINMAXINFO *lpMMI)
 {
     DcMeth();
     CWnd::OnGetMinMaxInfo(lpMMI);
 }
 
-VOID Window::
+void Window::
 OnEnterSizeMove()
 {
     DcMeth();
     CWnd::OnEnterSizeMove();
 }
 
-VOID Window::
+void Window::
 OnMoving(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnMoving(fwSide, pRect);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnSizing(UINT fwSide, LPRECT pRect)
 {
     CWnd::OnSizing(fwSide, pRect);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnWindowPosChanging(WINDOWPOS *lpwndpos)
 {
     CWnd::OnWindowPosChanging(lpwndpos);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnExitSizeMove()
 {
     DcMeth();
     CWnd::OnExitSizeMove();
 }
 
-VOID Window::
+void Window::
 OnMove(INT x, INT y)
 {
     CWnd::OnMove(x, y);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS *lpncsp)
 {
     DcMeth();
     CWnd::OnNcCalcSize(bCalcValidRects, lpncsp);
 }
 
-VOID Window::
+void Window::
 OnSize(UINT nType, INT cx, INT cy)
 {
     CWnd::OnSize(nType, cx, cy);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
     CWnd::OnWindowPosChanged(lpwndpos);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnActivateApp(BOOL bActive, DWORD dwThreadID)
 {
     CWnd::OnActivateApp(bActive, dwThreadID);
@@ -252,14 +252,14 @@ OnNcActivate(BOOL bActive)
     return CWnd::OnNcActivate(bActive);
 }
 
-VOID Window::
+void Window::
 OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
     CWnd::OnActivate(nState, pWndOther, bMinimized);
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnNcPaint()
 {
     CWnd::OnNcPaint();
@@ -273,14 +273,14 @@ OnEraseBkgnd(CDC *pDC)
     return CWnd::OnEraseBkgnd(pDC);
 }
 
-VOID Window::
+void Window::
 OnPaint()
 {
     CWnd::OnPaint();
     DcMeth();
 }
 
-VOID Window::
+void Window::
 OnTimer(UINT_PTR nIDEvent)
 {
     DcMeth();
