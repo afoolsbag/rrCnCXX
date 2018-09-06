@@ -2,10 +2,9 @@
 
 #include "stdafx.h"
 #include "View.h"
+#include "Frame.rc.h"
 
 #include "rrwindows/rrwindows.h"
-
-#include "Frame.rc.h"
 
 namespace rrMFC {
 

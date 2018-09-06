@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "DdxDialog.h"
+#include "DdxDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT DdxDialog::IDD {IDD_DDX_DIALOG};
 
 BEGIN_MESSAGE_MAP(DdxDialog, CDialog)
     ON_CBN_SELCHANGE(IDC_COMBO_BOX, &DdxDialog::OnCbnSelchangeComboBox)
@@ -68,7 +71,7 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID DdxDialog::
+void DdxDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -114,7 +117,7 @@ DoDataExchange(CDataExchange *pDX)
     DDX_Text(pDX, IDC_STATIC_CONTROL, StaticText);
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnCbnSelchangeComboBox()
 {
     DcMeth();
@@ -122,7 +125,7 @@ OnCbnSelchangeComboBox()
     DcKPrint(White, TEXT("ComboIndex: %d, ComboText: %s.\n"), ComboIndex, static_cast<LPCTSTR>(ComboText));
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnBnClickedCheckBox()
 {
     DcMeth();
@@ -130,7 +133,7 @@ OnBnClickedCheckBox()
     DcKPrint(White, TEXT("Checked: %s.\n"), Checked ? TEXT("TRUE") : TEXT("FALSE"));
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnDtnDatetimechangeDateTimePicker(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMDATETIMECHANGE pDTChange = reinterpret_cast<LPNMDATETIMECHANGE>(pNMHDR);
@@ -140,7 +143,7 @@ OnDtnDatetimechangeDateTimePicker(NMHDR *pNMHDR, LRESULT *pResult)
     *pResult = 0;
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnIpnFieldchangedIpAddress(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
@@ -154,7 +157,7 @@ OnIpnFieldchangedIpAddress(NMHDR *pNMHDR, LRESULT *pResult)
     *pResult = 0;
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnLbnSelchangeListBox()
 {
     DcMeth();
@@ -162,7 +165,7 @@ OnLbnSelchangeListBox()
     DcKPrint(White, TEXT("ListIndex: %d, ListText: %s.\n"), ListIndex, static_cast<LPCTSTR>(ListText));
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnMcnSelchangeMonthCalendar(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMSELCHANGE pSelChange = reinterpret_cast<LPNMSELCHANGE>(pNMHDR);
@@ -172,7 +175,7 @@ OnMcnSelchangeMonthCalendar(NMHDR *pNMHDR, LRESULT *pResult)
     *pResult = 0;
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnBnClickedRadioGroup1()
 {
     DcMeth();
@@ -180,7 +183,7 @@ OnBnClickedRadioGroup1()
     DcKPrint(White, TEXT("RadioGroup1: Radio%d.\n"), 1 + RadioGroup1);
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnNMCustomdrawSlider(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
@@ -190,7 +193,7 @@ OnNMCustomdrawSlider(NMHDR *pNMHDR, LRESULT *pResult)
     *pResult = 0;
 }
 
-VOID DdxDialog::
+void DdxDialog::
 OnEnChangeEdit()
 {
     DcMeth();

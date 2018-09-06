@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "TabDialog.h"
+#include "TabDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT TabDialog::IDD {IDD_TAB_DIALOG};
 
 BEGIN_MESSAGE_MAP(TabDialog, CDialog)
     ON_NOTIFY(TCN_SELCHANGE, IDC_TAB, &TabDialog::OnTcnSelchangeTab)

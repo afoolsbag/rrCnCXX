@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "ProgressBox.h"
+#include "ProgressBox.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
@@ -14,6 +15,8 @@ namespace PrivateMessages {
 constexpr UINT Close {WM_USER + 1};
 
 }//namespace PrivateMessages
+
+const UINT ProgressBox::IDD {IDD_PROGRESS_DIALOG};
 
 IMPLEMENT_DYNAMIC(ProgressBox, CDialog)
 
@@ -71,8 +74,8 @@ UINT AFX_CDECL ProgressBox::
 ThreadWrapper(LPVOID pParam)
 {
     ProgressBox *CONST self = reinterpret_cast<ProgressBox *>(pParam);
-    if (NULL != self && self->IsKindOf(RUNTIME_CLASS(ProgressBox))) {
-        CONST UINT rv = (NULL != self->ThreadFunction) ? self->ThreadFunction(self) : EXIT_FAILURE;
+    if (nullptr != self && self->IsKindOf(RUNTIME_CLASS(ProgressBox))) {
+        CONST UINT rv = (nullptr != self->ThreadFunction) ? self->ThreadFunction(self) : EXIT_FAILURE;
         self->PostMessage(PrivateMessages::Close);
         return rv;
     } else {

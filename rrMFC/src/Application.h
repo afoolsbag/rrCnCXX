@@ -5,7 +5,7 @@
 ///
 /// \sa <https://docs.microsoft.com/cpp/mfc/controls-mfc>
 ///
-/// \version 2018-09-05
+/// \version 2018-09-06
 /// \since 2018-04-11
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <map>
 #include <vector>
 
 namespace rrMFC {
@@ -83,9 +84,9 @@ public:
 #// Operations
 public:
     /// \brief 从资料读取配置。
-    VOID ReadConfigsFromProfile();
+    void ReadConfigsFromProfile();
     /// \brief 将配置写入资料。
-    VOID WriteConfigsToProfile();
+    void WriteConfigsToProfile();
 
 #// Overridables
 public:
@@ -99,34 +100,35 @@ public:
 
     /// \brief 调用以退出应用程序或线程的该实例。
     /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cwinapp-class#exitinstance>
-    virtual INT ExitInstance() override;
+    virtual int ExitInstance() override;
 
 #// Implementation
 protected:
-    /// \brief 控制台界面：最后命令。\n
+    /// \brief 控制台界面：最后命令行。\n
     ///        Command Line Interface: Last Command Line.
     std::vector<CString>                                         CliLcl;
     /// \brief 控制台界面：出口标志。
     enum class CliExitType { Loop, Exit, Window, Frame, Dialog } CliExitFlag {CliExitType::Loop};
 
-    /// \brief 控制台界面：欢迎。
-    VOID CliWelcome() CONST;
-    /// \brief 控制台界面：未知指令。
-    VOID CliUnknownCommand() CONST;
-    /// \brief 控制台界面：帮助。
-    VOID CliHelp() CONST;
-    /// \brief 控制台界面：状态。
-    VOID CliStatus() CONST;
-    /// \brief 控制台界面：按钮。
-    VOID CliButton();
-    /// \brief 控制台界面：窗口。
-    VOID CliWindow();
-    /// \brief 控制台界面：框架。
-    VOID CliFrame();
-    /// \brief 控制台界面：对话框。
-    VOID CliDialog();
-    /// \brief 控制台界面：出口。
-    VOID CliExit();
+    void CliWelcome() const;         ///< 控制台界面：欢迎。
+    void CliUnknownCommand() const;  ///< 控制台界面：未知命令。
+    void CliHelp() const;            ///< 控制台界面：帮助。
+    void CliStatus() const;          ///< 控制台界面：状态。
+
+    void CliButtonDialog() const;  ///< 控制台界面：按钮对话框。
+    void CliEditDialog() const;    ///< 控制台界面：编辑对话框。
+    void CliListDialog() const;    ///< 控制台界面：列表对话框。
+    void CliTabDialog() const;     ///< 控制台界面：标签页对话框。
+    void CliTreeDialog() const;    ///< 控制台界面：树对话框。
+
+    void CliDdxDialog() const;
+    void CliProgressBox() const;
+    void CliPropertySheet();
+
+    void CliWindow();  ///< 控制台界面：窗口。
+    void CliFrame();   ///< 控制台界面：框架。
+    void CliDialog();  ///< 控制台界面：对话框。
+    void CliExit();    ///< 控制台界面：出口。
 
 #// Message Handlers
 protected:

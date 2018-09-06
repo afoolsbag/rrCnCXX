@@ -3,7 +3,7 @@
 /// \file
 /// \brief 按钮对话框类。
 ///
-/// \verison 2018-09-05
+/// \verison 2018-09-06
 /// \since 2018-06-01
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include "ButtonDialog.rc.h"
-
 namespace rrMFC {
 
 /// \brief 按钮对话框类。
@@ -21,12 +19,12 @@ class ButtonDialog: public CDialog {
 
 #// Constructors
 public:
-    ButtonDialog(CWnd *pParent = NULL);
+    ButtonDialog(CWnd *pParent = nullptr);
     virtual ~ButtonDialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_BUTTON_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:
@@ -36,7 +34,7 @@ public:
     virtual BOOL OnInitDialog() override;
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
-    virtual VOID DoDataExchange(CDataExchange *pDX) override;
+    virtual void DoDataExchange(CDataExchange *pDX) override;
 
 #// Implementation
 protected:
@@ -50,8 +48,8 @@ protected:
 
 #// Message Handlers
 protected:
-    afx_msg VOID OnBnClickedButton();
-    afx_msg VOID OnBnClickedMfcButton();
+    afx_msg void OnBnClickedButton();
+    afx_msg void OnBnClickedMfcButton();
 
     DECLARE_MESSAGE_MAP()
 };

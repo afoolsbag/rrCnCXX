@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "Dialog.h"
+#include "Dialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT Dialog::IDD {IDD_DIALOG};
 
 BEGIN_MESSAGE_MAP(Dialog, CDialog)
     ON_WM_CLOSE()

@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "EditDialog.h"
+#include "EditDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT EditDialog::IDD {IDD_EDIT_DIALOG};
 
 BEGIN_MESSAGE_MAP(EditDialog, CDialog)
     ON_EN_CHANGE(IDC_EDIT, &EditDialog::OnEnChangeEdit)
@@ -43,7 +46,7 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID EditDialog::
+void EditDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -51,7 +54,7 @@ DoDataExchange(CDataExchange *pDX)
     DDX_Control(pDX, IDC_EDIT, EditControl);
 }
 
-VOID EditDialog::
+void EditDialog::
 OnEnChangeEdit()
 {
     DcMeth();

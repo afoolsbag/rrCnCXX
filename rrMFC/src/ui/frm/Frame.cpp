@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "Frame.h"
+#include "Frame.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT Frame::IDR {IDR_FRAME};
 
 BEGIN_MESSAGE_MAP(Frame, CFrameWnd)
     ON_WM_CREATE()

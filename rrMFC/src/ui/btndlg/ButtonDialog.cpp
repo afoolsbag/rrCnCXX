@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "ButtonDialog.h"
+#include "ButtonDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT ButtonDialog::IDD {IDD_BUTTON_DIALOG};
 
 BEGIN_MESSAGE_MAP(ButtonDialog, CDialog)
     ON_BN_CLICKED(IDC_BUTTON, &ButtonDialog::OnBnClickedButton)
@@ -15,7 +18,7 @@ END_MESSAGE_MAP()
 #// Constructors
 
 ButtonDialog::
-ButtonDialog(CWnd *pParent /*=NULL*/)
+ButtonDialog(CWnd *pParent/*=nullptr*/)
     : CDialog(IDD, pParent)
 {
     DcMeth();
@@ -44,7 +47,7 @@ OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
     return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-VOID ButtonDialog::
+void ButtonDialog::
 DoDataExchange(CDataExchange *pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -60,13 +63,13 @@ DoDataExchange(CDataExchange *pDX)
 
 #// Message Handlers
 
-VOID ButtonDialog::
+void ButtonDialog::
 OnBnClickedButton()
 {
     DcMeth();
 }
 
-VOID ButtonDialog::
+void ButtonDialog::
 OnBnClickedMfcButton()
 {
     DcMeth();

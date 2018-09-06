@@ -2,8 +2,7 @@
 // Microsoft Visual C++ 生成的包含文件。
 // 供 DdxDialog.rc 使用
 //
-#define IDD_DDX_DIALOG                  13372
-#define IDC_UNDEFINED                   40000
+#define IDD_DDX_DIALOG                  401
 #define IDC_COMBO_BOX                   40001
 #define IDC_CHECK_BOX                   40002
 #define IDC_DATE_TIME_PICKER            40003
@@ -18,7 +17,6 @@
 #define IDC_SLIDER                      40012
 #define IDC_EDIT                        40013
 #define IDC_STATIC_CONTROL              40014
-#define IDC_RANGELAST                   49999
 #define ID_UNDEFINED                    50000
 #define ID_RANGELAST                    57343
 
@@ -26,9 +24,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        13373
+#define _APS_NEXT_RESOURCE_VALUE        501
 #define _APS_NEXT_COMMAND_VALUE         50001
 #define _APS_NEXT_CONTROL_VALUE         40015
-#define _APS_NEXT_SYMED_VALUE           13373
+#define _APS_NEXT_SYMED_VALUE           501
 #endif
 #endif

@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include "TabDialog.rc.h"
-
 namespace rrMFC {
 
 ///
@@ -28,7 +26,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDD = IDD_PAGE_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:

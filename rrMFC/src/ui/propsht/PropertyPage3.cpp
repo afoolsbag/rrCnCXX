@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "PropertyPage3.h"
+#include "PropertySheet.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT PropertyPage3::IDD {IDD_PROPERTY_PAGE_3};
 
 #// Constructors
 

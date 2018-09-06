@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "PageDialog.h"
+#include "TabDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT PageDialog::IDD {IDD_PAGE_DIALOG};
 
 #// Constructors
 

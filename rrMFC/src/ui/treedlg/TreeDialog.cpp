@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "TreeDialog.h"
+#include "TreeDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT TreeDialog::IDD {IDD_TREE_DIALOG};
 
 BEGIN_MESSAGE_MAP(TreeDialog, CDialog)
     ON_NOTIFY(NM_CLICK, IDC_TREE, &TreeDialog::OnNMClickTree)

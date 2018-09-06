@@ -3,17 +3,27 @@
 #include "stdafx.h"
 #include "Application.h"
 
+#include <random>
 #include <vector>
 #include <conio.h>
-
 #include <mstcpip.h>
 #pragma comment(lib, "ntdll.lib")
 
 #define VTS_ACRONYM
 #include "rrwindows/rrwindows.h"
 
+#include "ui/btndlg/ButtonDialog.h"
+#include "ui/ddxdlg/DdxDialog.h"
 #include "ui/dlg/Dialog.h"
+#include "ui/editdlg/EditDialog.h"
 #include "ui/frm/Frame.h"
+#include "ui/listdlg/ListDialog.h"
+#include "ui/progbox/ProgressBox.h"
+#include "ui/propsht/PropertyPage1.h"
+#include "ui/propsht/PropertyPage2.h"
+#include "ui/propsht/PropertyPage3.h"
+#include "ui/tabdlg/TabDialog.h"
+#include "ui/treedlg/TreeDialog.h"
 #include "ui/wnd/Window.h"
 
 namespace {
@@ -41,11 +51,11 @@ BOOL WINAPI HandlerRoutine(DWORD dwCtrlType)
 }
 
 /// \brief 符号化命令行（按空白符）。
-std::vector<CString> TokenizeCommandLine(CONST CString &commandLine)
+std::vector<CString> TokenizeCommandLine(const CString &commandLine)
 {
     std::vector<CString> tokens;
-    for (INT pos = 0;;) {
-        CONST CString token = commandLine.Tokenize(TEXT("\t\n\v\r "), pos);
+    for (int pos = 0;;) {
+        const CString token = commandLine.Tokenize(TEXT("\t\n\v\r "), pos);
         if (token.IsEmpty())
             break;
         else
@@ -55,33 +65,33 @@ std::vector<CString> TokenizeCommandLine(CONST CString &commandLine)
 }
 
 /// \brief 符号匹配（单匹配）。
-BOOL TokenMatches(CONST CString &command, CONST CString &target)
+bool TokenMatches(const CString &command, const CString &target)
 {
     if (!command.CompareNoCase(target))
-        return TRUE;
-    return FALSE;
+        return true;
+    return false;
 }
 
 /// \brief 符号匹配（双匹配）。
-BOOL TokenMatches(CONST CString &command, CONST CString &target, CONST CString &target2)
+bool TokenMatches(const CString &command, const CString &target, const CString &target2)
 {
     if (!command.CompareNoCase(target))
-        return TRUE;
+        return true;
     if (!command.CompareNoCase(target2))
-        return TRUE;
-    return FALSE;
+        return true;
+    return false;
 }
 
 /// \brief 符号匹配（三匹配）。
-BOOL TokenMatches(CONST CString &command, CONST CString &target, CONST CString &target2, CONST CString &target3)
+bool TokenMatches(const CString &command, const CString &target, const CString &target2, const CString &target3)
 {
     if (!command.CompareNoCase(target))
-        return TRUE;
+        return true;
     if (!command.CompareNoCase(target2))
-        return TRUE;
+        return true;
     if (!command.CompareNoCase(target3))
-        return TRUE;
-    return FALSE;
+        return true;
+    return false;
 }
 
 }//namespace
@@ -116,18 +126,18 @@ Application::
 
 #// Operations
 
-VOID Application::
+void Application::
 ReadConfigsFromProfile()
 {
-    auto CONST StrToIpaddr = [](CONST CString &str) -> DWORD {
+    auto const StrToIpaddr = [](const CString &str) -> DWORD {
         LPCTSTR terminator;
         IN_ADDR addr;
         RtlIpv4StringToAddress(str, FALSE, &terminator, &addr);
         return htonl(addr.s_addr);
     };
 
-    auto CONST StrToIpport = [](CONST CString &str) -> UINT16 {
-        return static_cast<UINT16>(_tcstoul(str, NULL, 10));
+    auto const StrToIpport = [](const CString &str) -> UINT16 {
+        return static_cast<UINT16>(_tcstoul(str, nullptr, 10));
     };
 
     Configs.ServiceIpaddr = StrToIpaddr(GetProfileString(TEXT("service"), TEXT("addr"), TEXT("127.0.0.1")));
@@ -155,7 +165,7 @@ ReadConfigsFromProfile()
 VOID Application::
 WriteConfigsToProfile()
 {
-    auto CONST IpaddrToStr = [](CONST DWORD ipaddr) -> CString {
+    auto const IpaddrToStr = [](const DWORD ipaddr) -> CString {
         IN_ADDR addr;
         addr.s_addr = ntohl(ipaddr);
         CString tmp;
@@ -164,7 +174,7 @@ WriteConfigsToProfile()
         return tmp;
     };
 
-    auto CONST IpportToStr = [](CONST UINT16 ipport) -> CString {
+    auto const IpportToStr = [](const UINT16 ipport) -> CString {
         CString tmp;
         tmp.Format(TEXT("%hu"), ipport);
         return tmp;
@@ -231,21 +241,35 @@ InitInstance()
         CliLcl = TokenizeCommandLine(buf);
         if (CliLcl.empty())
             CliUnknownCommand();
-        else if (TokenMatches(CliLcl[0], TEXT("clearscreen"), TEXT("cls")))
+        else if (TokenMatches(CliLcl[0], TEXT("ClearScreen"), TEXT("CLS")))
             CliWelcome();
-        else if (TokenMatches(CliLcl[0], TEXT("help"), TEXT("?")))
+        else if (TokenMatches(CliLcl[0], TEXT("Help"), TEXT("?")))
             CliHelp();
-        else if (TokenMatches(CliLcl[0], TEXT("status")))
+        else if (TokenMatches(CliLcl[0], TEXT("Status")))
             CliStatus();
-        else if (TokenMatches(CliLcl[0], TEXT("button"), TEXT("btn")))
-            CliButton();
-        else if (TokenMatches(CliLcl[0], TEXT("window"), TEXT("wnd")))
+        else if (TokenMatches(CliLcl[0], TEXT("ButtonDialog"), TEXT("BTNDLG"), TEXT("BTN")))
+            CliButtonDialog();
+        else if (TokenMatches(CliLcl[0], TEXT("EditDialog"), TEXT("EDITDLG"), TEXT("EDIT")))
+            CliEditDialog();
+        else if (TokenMatches(CliLcl[0], TEXT("ListDialog"), TEXT("LISTDLG"), TEXT("LIST")))
+            CliListDialog();
+        else if (TokenMatches(CliLcl[0], TEXT("TabDialog"), TEXT("TABDLG"), TEXT("TAB")))
+            CliTabDialog();
+        else if (TokenMatches(CliLcl[0], TEXT("TreeDialog"), TEXT("TREEDLG"), TEXT("TREE")))
+            CliTreeDialog();
+        else if (TokenMatches(CliLcl[0], TEXT("DdxDialog"), TEXT("DDXDLG"), TEXT("DDX")))
+            CliDdxDialog();
+        else if (TokenMatches(CliLcl[0], TEXT("ProgressBox"), TEXT("PROGBOX"), TEXT("PROG")))
+            CliProgressBox();
+        else if (TokenMatches(CliLcl[0], TEXT("PropertySheet"), TEXT("PROPSHT"), TEXT("PROP")))
+            CliPropertySheet();
+        else if (TokenMatches(CliLcl[0], TEXT("Window"), TEXT("WND")))
             CliWindow();
-        else if (TokenMatches(CliLcl[0], TEXT("frame"), TEXT("frm")))
+        else if (TokenMatches(CliLcl[0], TEXT("Frame"), TEXT("FRM")))
             CliFrame();
-        else if (TokenMatches(CliLcl[0], TEXT("dialog"), TEXT("dlg")))
+        else if (TokenMatches(CliLcl[0], TEXT("Dialog"), TEXT("DLG")))
             CliDialog();
-        else if (TokenMatches(CliLcl[0], TEXT("exit"), TEXT("close"), TEXT("quit")))
+        else if (TokenMatches(CliLcl[0], TEXT("Exit"), TEXT("Elose"), TEXT("Quit")))
             CliExit();
         else
             CliUnknownCommand();
@@ -279,7 +303,7 @@ InitInstance()
     }
 }
 
-INT Application::
+int Application::
 ExitInstance()
 {
     if (SW_HIDE != m_nCmdShow)
@@ -290,8 +314,8 @@ ExitInstance()
 
 #// Implementation
 
-VOID Application::
-CliWelcome() CONST
+void Application::
+CliWelcome() const
 {
     _cputts(VTS_ED
             WHT("\n")
@@ -312,23 +336,30 @@ CliWelcome() CONST
             WHT("Command line interface is ") GRN("enabled") WHT(".\n"));
 }
 
-VOID Application::
-CliUnknownCommand() CONST
+void Application::
+CliUnknownCommand() const
 {
     if (!CliLcl.empty())
         _tcprintf_s(WHT("The command ") CYA("%s") WHT(" is unknown. "), static_cast<LPCTSTR>(CliLcl[0]));
     _cputts(WHT("Enter ") CYA("HELP") WHT(" or ") CYA("?") WHT(" to list valid commands.\n"));
 }
 
-VOID Application::
-CliHelp() CONST
+void Application::
+CliHelp() const
 {
     _cputts(
         WHT("Commands, case insensitivity:\n")
         CYA("    CLEARSCREEN") WHT("(") CYA("CLS") WHT(")\n")
         CYA("    HELP") WHT("(") CYA("?") WHT(")\n")
         CYA("    STATUS\n")
-        CYA("    BUTTON") WHT("(") CYA("BTN") WHT(")\n")
+        CYA("    BUTTONDIALOG") WHT("(") CYA("BTNDLG") WHT(",") CYA("BTN") WHT(")\n")
+        CYA("    EDITDIALOG") WHT("(") CYA("EDITDLG") WHT(",") CYA("EDIT") WHT(")\n")
+        CYA("    LISTDIALOG") WHT("(") CYA("LISTDLG") WHT(",") CYA("LIST") WHT(")\n")
+        CYA("    TABDIALOG") WHT("(") CYA("TABDLG") WHT(",") CYA("TAB") WHT(")\n")
+        CYA("    TREEDIALOG") WHT("(") CYA("TREEDLG") WHT(",") CYA("TREE") WHT(")\n")
+        CYA("    DDXDIALOG") WHT("(") CYA("DDXDLG") WHT(",") CYA("DDX") WHT(")\n")
+        CYA("    PROGRESSBOX") WHT("(") CYA("PROGBOX") WHT(",") CYA("PROG") WHT(")\n")
+        CYA("    PROPERTYSHEET") WHT("(") CYA("PROPSHT") WHT(",") CYA("PROP") WHT(")\n")
         CYA("    WINDOW") WHT("(") CYA("WND") WHT(")\n")
         CYA("    FRAME") WHT("(") CYA("FRM") WHT(")\n")
         CYA("    DIALOG") WHT("(") CYA("DLG") WHT(")\n")
@@ -336,8 +367,8 @@ CliHelp() CONST
     );
 }
 
-VOID Application::
-CliStatus() CONST
+void Application::
+CliStatus() const
 {
     _cputts(
         WHT("Status:\n"));
@@ -345,32 +376,135 @@ CliStatus() CONST
         WHT("    Codepage input %u, output %u.\n"), GetConsoleCP(), GetConsoleOutputCP());
 }
 
-VOID Application::
-CliButton()
+void Application::
+CliButtonDialog() const
 {
-//    ButtonDialog mnDlg;
-//    mnDlg.DoModal();
+    ButtonDialog dlg;
+    dlg.DoModal();
 }
 
-VOID Application::
+void Application::
+CliEditDialog() const
+{
+    EditDialog dlg;
+    dlg.DoModal();
+}
+
+void Application::
+CliListDialog() const
+{
+    ListDialog dlg;
+    dlg.DoModal();
+}
+
+void Application::
+CliTabDialog() const
+{
+    TabDialog dlg;
+    dlg.DoModal();
+}
+
+void Application::
+CliTreeDialog() const
+{
+    TreeDialog dlg;
+    dlg.DoModal();
+}
+
+void Application::
+CliDdxDialog() const
+{
+    DdxDialog dlg;
+    dlg.DoModal();
+}
+
+void Application::
+CliProgressBox() const
+{
+    ProgressBox box;
+    box.SetThreadFunction(std::bind([](ProgressBox *const pProgBox) -> UINT {
+        pProgBox->SetTitle(TEXT("Target"));
+        pProgBox->SetTotal(TEXT("Total progress"));
+        pProgBox->SetTotal(0, 100);
+        pProgBox->SetCurrent(TEXT("Current progress"));
+        pProgBox->SetCurrent(0, 100);
+        INT total = 0;
+        INT current = 0;
+
+        std::random_device rndDev;
+        std::mt19937 rndGen(rndDev());
+        std::uniform_int_distribution<> rndDist(1, 6);
+        while (TRUE) {
+            current += rndDist(rndGen);
+            if (100 <= current) {
+                current -= 100;
+                ++total;
+            }
+            pProgBox->SetCurrent(current);
+            pProgBox->SetTotal(total);
+            if (100 <= total)
+                break;
+            Sleep(1);
+        }
+        return EXIT_SUCCESS;
+    }, std::placeholders::_1));
+    box.DoModal();
+}
+
+void Application::
+CliPropertySheet()
+{
+    ReadConfigsFromProfile();
+
+    CPropertySheet sheet(TEXT("Properties Sheet"));
+
+    PropertyPage1 page1;
+    page1.ReadFrom(Configs);
+    sheet.AddPage(&page1);
+
+    PropertyPage2 page2;
+    page2.ReadFrom(Configs);
+    sheet.AddPage(&page2);
+
+    PropertyPage3 page3;
+    page3.ReadFrom(Configs);
+    sheet.AddPage(&page3);
+
+    CONST INT_PTR result = sheet.DoModal();
+    switch (result) {
+    case IDOK:
+        page1.WriteTo(&Configs);
+        page2.WriteTo(&Configs);
+        page3.WriteTo(&Configs);
+        WriteConfigsToProfile();
+        break;
+    case IDCANCEL:
+        break;
+    default:
+        DpErrorUSR(result);
+        break;
+    }
+}
+
+void Application::
 CliWindow()
 {
     CliExitFlag = CliExitType::Window;
 }
 
-VOID Application::
+void Application::
 CliFrame()
 {
     CliExitFlag = CliExitType::Frame;
 }
 
-VOID Application::
+void Application::
 CliDialog()
 {
     CliExitFlag = CliExitType::Dialog;
 }
 
-VOID Application::
+void Application::
 CliExit()
 {
     CliExitFlag = CliExitType::Exit;

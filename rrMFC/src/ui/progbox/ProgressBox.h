@@ -14,8 +14,6 @@
 
 #include <functional>
 
-#include "ProgressBox.rc.h"
-
 namespace rrMFC {
 
 ///
@@ -28,7 +26,7 @@ class ProgressBox: public CDialog {
 public:
     ProgressBox(CWnd *pParent = NULL);
 
-    VOID SetThreadFunction(std::function<UINT(ProgressBox *CONST)> CONST func)
+    VOID SetThreadFunction(std::function<UINT(ProgressBox *const)> const func)
     {
         ThreadFunction = func;
     }
@@ -37,7 +35,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDD = IDD_PROGRESS_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:

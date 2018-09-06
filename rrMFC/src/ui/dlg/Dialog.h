@@ -3,7 +3,7 @@
 /// \file
 /// \brief 对话框类。
 ///
-/// \verison 2018-09-05
+/// \verison 2018-09-06
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -11,8 +11,6 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-
-#include "Dialog.rc.h"
 
 namespace rrMFC {
 
@@ -48,7 +46,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDD = IDD_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:

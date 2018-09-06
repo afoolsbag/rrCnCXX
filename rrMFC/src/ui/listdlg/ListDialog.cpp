@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "ListDialog.h"
+#include "ListDialog.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT ListDialog::IDD {IDD_LIST_DIALOG};
 
 BEGIN_MESSAGE_MAP(ListDialog, CDialog)
     ON_BN_CLICKED(IDC_APPEND_LAST_BUTTON, &ListDialog::OnBnClickedAppendLastButton)
@@ -153,7 +156,7 @@ OnLvnItemchangedList(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
     DcKPrint(LightYellow, TEXT("LVN_ITEMCHANGED: item(%d)subitem(%d), state(%u->%u).\n"),
-              pNMLV->iItem, pNMLV->iSubItem, pNMLV->uOldState, pNMLV->uNewState);
+             pNMLV->iItem, pNMLV->iSubItem, pNMLV->uOldState, pNMLV->uNewState);
     *pResult = 0;
 }
 
@@ -162,7 +165,7 @@ OnNMClickList(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
     DcKPrint(LightYellow, TEXT("NM_CLICK: item(%d)subitem(%d), point(%ld,%ld).\n"),
-              pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
+             pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
     *pResult = 0;
 }
 
@@ -171,7 +174,7 @@ OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
     DcKPrint(LightYellow, TEXT("NM_DBLCLK: item(%d)subitem(%d), point(%ld,%ld).\n"),
-              pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
+             pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
     *pResult = 0;
 }
 
@@ -180,7 +183,7 @@ OnNMRClickList(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
     DcKPrint(LightYellow, TEXT("NM_RCLICK: item(%d)subitem(%d), point(%ld,%ld).\n"),
-              pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
+             pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
     *pResult = 0;
 }
 
@@ -189,7 +192,7 @@ OnNMRDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
     DcKPrint(LightYellow, TEXT("NM_RDBLCLK: item(%d)subitem(%d), point(%ld,%ld).\n"),
-              pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
+             pNMItemActivate->iItem, pNMItemActivate->iSubItem, pNMItemActivate->ptAction.x, pNMItemActivate->ptAction.y);
     *pResult = 0;
 }
 

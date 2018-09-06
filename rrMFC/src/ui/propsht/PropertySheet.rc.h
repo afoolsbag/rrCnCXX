@@ -1,11 +1,10 @@
-﻿//{{NO_DEPENDENCIES}}
+//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
 // 供 PropertySheet.rc 使用
 //
-#define IDD_PROPERTY_PAGE_1             13373
-#define IDD_PROPERTY_PAGE_2             13374
-#define IDD_PROPERTY_PAGE_3             13375
-#define IDC_UNDEFINED                   40000
+#define IDD_PROPERTY_PAGE_1             403
+#define IDD_PROPERTY_PAGE_2             404
+#define IDD_PROPERTY_PAGE_3             405
 #define IDC_SERVICE_IPADDR              40001
 #define IDC_SERVICE_IPPORT              40002
 #define IDC_STRETCH_MATCHING            40011
@@ -27,7 +26,6 @@
 #define IDC_HUMAN_IPPORT                40028
 #define IDC_VEHICLE_IPADDR              40029
 #define IDC_VEHICLE_IPPORT              40030
-#define IDC_RANGELAST                   49999
 #define ID_UNDEFINED                    50000
 #define ID_RANGELAST                    57343
 
@@ -35,9 +33,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        13379
+#define _APS_NEXT_RESOURCE_VALUE        501
 #define _APS_NEXT_COMMAND_VALUE         50001
 #define _APS_NEXT_CONTROL_VALUE         40031
-#define _APS_NEXT_SYMED_VALUE           13376
+#define _APS_NEXT_SYMED_VALUE           501
 #endif
 #endif

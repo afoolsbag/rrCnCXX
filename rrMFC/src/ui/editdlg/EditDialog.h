@@ -14,8 +14,6 @@
 
 #pragma once
 
-#include "EditDialog.rc.h"
-
 namespace rrMFC {
 
 ///
@@ -25,12 +23,12 @@ class EditDialog: public CDialog {
 
 #// Constructors
 public:
-    EditDialog(CWnd *pParent = NULL);
+    EditDialog(CWnd *pParent = nullptr);
     virtual ~EditDialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_EDIT_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:
@@ -40,7 +38,7 @@ public:
     virtual BOOL OnInitDialog() override;
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
-    virtual VOID DoDataExchange(CDataExchange *pDX) override;
+    virtual void DoDataExchange(CDataExchange *pDX) override;
 
 #// Implementation
 protected:
@@ -49,7 +47,7 @@ protected:
 #// Message Handlers
 protected:
     /// \sa https://msdn.microsoft.com/library/bb761676
-    afx_msg VOID OnEnChangeEdit();
+    afx_msg void OnEnChangeEdit();
 
     DECLARE_MESSAGE_MAP()
 };

@@ -13,7 +13,6 @@
 #pragma once
 
 #include "Application.h"
-#include "PropertySheet.rc.h"
 
 namespace rrMFC {
 
@@ -29,7 +28,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDD = IDD_PROPERTY_PAGE_1 };
+    static const UINT IDD;
 
 #// Operations
 public:

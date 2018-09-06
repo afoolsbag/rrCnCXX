@@ -12,7 +12,6 @@
 
 #pragma once
 
-#include "Frame.rc.h"
 #include "View.h"
 
 namespace rrMFC {
@@ -28,7 +27,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDR = IDR_FRAME };
+    static const UINT IDR;
 
 #// Operations
 public:

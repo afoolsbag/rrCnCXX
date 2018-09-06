@@ -15,8 +15,6 @@
 
 #pragma once
 
-#include "TreeDialog.rc.h"
-
 namespace rrMFC {
 
 ///
@@ -31,7 +29,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDD = IDD_TREE_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:

@@ -15,8 +15,6 @@
 
 #pragma once
 
-#include "ListDialog.rc.h"
-
 namespace rrMFC {
 
 /// \brief 列表对话框类。
@@ -28,7 +26,7 @@ public:
 
 #// Attributes
 public:
-    enum { IDD = IDD_LIST_DIALOG };
+    static const UINT IDD;
     enum ListColumn { Id, Name, Alias };
 
 #// Operations

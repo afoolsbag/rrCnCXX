@@ -2,10 +2,13 @@
 
 #include "stdafx.h"
 #include "PropertyPage2.h"
+#include "PropertySheet.rc.h"
 
 #include "rrwindows/rrwindows.h"
 
 namespace rrMFC {
+
+const UINT PropertyPage2::IDD {IDD_PROPERTY_PAGE_2};
 
 BEGIN_MESSAGE_MAP(PropertyPage2, CPropertyPage)
     ON_NOTIFY(NM_CUSTOMDRAW, IDC_CONFIDENCE_SLIDER, &PropertyPage2::OnNMCustomdrawConfidenceSlider)

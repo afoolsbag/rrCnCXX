@@ -3,7 +3,7 @@
 /// \file
 /// \brief 数据交换对话框类。
 ///
-/// \verison 2018-06-28
+/// \verison 2018-09-06
 /// \since 2018-05-30
 /// \authors zhengrr
 /// \copyright The MIT License
@@ -11,8 +11,6 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-
-#include "DdxDialog.rc.h"
 
 namespace rrMFC {
 
@@ -23,12 +21,12 @@ class DdxDialog: public CDialog {
 
 #// Constructors
 public:
-    DdxDialog(CWnd *pParent = NULL);
+    DdxDialog(CWnd *pParent = nullptr);
     virtual ~DdxDialog() override;
 
 #// Attributes
 public:
-    enum { IDD = IDD_DDX_DIALOG };
+    static const UINT IDD;
 
 #// Operations
 public:
@@ -38,42 +36,42 @@ public:
     virtual BOOL OnInitDialog() override;
 protected:
     virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) override;
-    virtual VOID DoDataExchange(CDataExchange *pDX) override;
+    virtual void DoDataExchange(CDataExchange *pDX) override;
 
 #// Implementation
 protected:
     CComboBox      ComboBox;
     CString        ComboText;
-    INT            ComboIndex = 0;
+    INT            ComboIndex {0};
 
     CButton        CheckBox;
-    BOOL           Checked = FALSE;
+    BOOL           Checked {FALSE};
 
     CDateTimeCtrl  DateTimePicker;
-    CTime          DateTime = CTime::GetCurrentTime();
+    CTime          DateTime {CTime::GetCurrentTime()};
 
     CIPAddressCtrl IpAddressEdit;
-    DWORD          IpAddress = 0uL;
+    DWORD          IpAddress {0uL};
 
     CListBox       ListBox;
     CString        ListText;
-    INT            ListIndex = -1;
+    INT            ListIndex {-1};
 
     CMonthCalCtrl  MonthCalendar;
-    CTime          Month = CTime::GetCurrentTime();
+    CTime          Month {CTime::GetCurrentTime()};
 
     CButton        RadioGroup1Button1;
     CButton        RadioGroup1Button2;
     CButton        RadioGroup1Button3;
-    INT            RadioGroup1 = -1;
+    INT            RadioGroup1 {-1};
 
     CScrollBar     VerticalScrollBar;
-    INT            VerticalScrollPosition = 0;
+    INT            VerticalScrollPosition {0};
     CScrollBar     HorizontalScrollBar;
-    INT            HorizontalScrollPosition = 0;
+    INT            HorizontalScrollPosition {0};
 
     CSliderCtrl    Slider;
-    INT            SliderValue = 0;
+    INT            SliderValue {0};
 
     CEdit          Edit;
     CString        EditText;
@@ -83,15 +81,15 @@ protected:
 
 #// Message Handlers
 protected:
-    afx_msg VOID OnCbnSelchangeComboBox();
-    afx_msg VOID OnBnClickedCheckBox();
-    afx_msg VOID OnDtnDatetimechangeDateTimePicker(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg VOID OnIpnFieldchangedIpAddress(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg VOID OnLbnSelchangeListBox();
-    afx_msg VOID OnMcnSelchangeMonthCalendar(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg VOID OnBnClickedRadioGroup1();
-    afx_msg VOID OnNMCustomdrawSlider(NMHDR *pNMHDR, LRESULT *pResult);
-    afx_msg VOID OnEnChangeEdit();
+    afx_msg void OnCbnSelchangeComboBox();
+    afx_msg void OnBnClickedCheckBox();
+    afx_msg void OnDtnDatetimechangeDateTimePicker(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg void OnIpnFieldchangedIpAddress(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg void OnLbnSelchangeListBox();
+    afx_msg void OnMcnSelchangeMonthCalendar(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg void OnBnClickedRadioGroup1();
+    afx_msg void OnNMCustomdrawSlider(NMHDR *pNMHDR, LRESULT *pResult);
+    afx_msg void OnEnChangeEdit();
 
     DECLARE_MESSAGE_MAP()
 };
