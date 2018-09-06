@@ -5,8 +5,8 @@
 # | |   | | | | | (_| \__ \ |_) | (_| | | (_) | (_| |
 # \_|   |_|_| |_|\__,_|___/ .__/ \__,_|_|\___/ \__, |
 # zhengrr                 | |                   __/ |
-# 2018-08-04 – 2018-08-06 |_|                  |___/  Findspdlog by FIGlet doom
-# The MIT License
+# 2018-08-04 – 2018-09-06 |_|                  |___/  Findspdlog by FIGlet doom
+# The Unlicense
 
 #.rst:
 # Findspdlog
@@ -23,13 +23,13 @@
 # 提示变量：
 # ::
 #
-#    spdlog_ROOT_DIR
-#    ENV SPDLOG_ROOT
+#    spdlog_ROOT
+#    ENV spdlog_ROOT
 #
 # 预期：
 # ::
 #
-#    v spdlog_ROOT_DIR
+#    v spdlog_ROOT
 #       > bench
 #       > cmake
 #       > example
@@ -43,7 +43,7 @@ endif()
 
 # hints
 
-set(zHints "${spdlog_ROOT_DIR}" "$ENV{SPDLOG_ROOT}")
+set(zHints "${spdlog_ROOT}" "$ENV{spdlog_ROOT}")
 
 # include
 
@@ -64,9 +64,14 @@ find_package_handle_standard_args(spdlog
                       DEFAULT_MSG spdlog_INCLUDE_DIR)
 
 # hints
+
 if(spdlog_FOUND)
-  mark_as_advanced(spdlog_ROOT_DIR)
+
+  mark_as_advanced(spdlog_ROOT)
+
 else()
-  set(spdlog_ROOT_DIR "${spdlog_ROOT_DIR}" CACHE PATH "The root directory of the spdlog installation.")
-  mark_as_advanced(CLEAR spdlog_ROOT_DIR)
+
+  set(spdlog_ROOT "${spdlog_ROOT}" CACHE PATH "The root directory of the spdlog installation.")
+  mark_as_advanced(CLEAR spdlog_ROOT)
+
 endif()

@@ -3,16 +3,20 @@
 # | |_   _ _ __   __| | |    _   _  __ _
 # |  _| | | '_ \ / _` | |   | | | |/ _` |
 # | |   | | | | | (_| | |___| |_| | (_| |
-# \_|   |_|_| |_|\__,_\_____/\__,_|\__,_| FindLua by FIGlet doom
-# zhengrr
-# 2018-07-09 – 2018-07-09
-# The MIT License
+# \_|   |_|_| |_|\__,_\_____/\__,_|\__,_|
+# zhengrr          FindLua by FIGlet doom
+# 2018-07-09 – 2018-09-06
+# The Unlicense
+
+if(NOT COMMAND get_toolset_architecture_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
+endif()
 
 #.rst:
 # FindLua
 # -------
 #
-# 寻找Lua。
+# 寻找 Lua。
 #
 # 导入目标：
 # ::
@@ -29,13 +33,13 @@
 # 提示变量：
 # ::
 #
-#    Lua_ROOT_DIR
-#    ENV LUA_DIR
+#    Lua_ROOT
+#    ENV Lua_ROOT
 #
 # 预期：
 # ::
 #
-#    v Lua_ROOT_DIR
+#    v lua_root
 #       v include
 #          v lua
 #               lua.h
@@ -54,11 +58,8 @@ endif()
 
 # hints
 
-set(zHints "${Lua_ROOT_DIR}" "$ENV{LUA_DIR}")
+set(zHints "${Lua_ROOT}" "$ENV{Lua_DIR}")
 
-if(NOT COMMAND get_toolset_architecture_address_model_tag)
-  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
-endif()
 get_toolset_architecture_address_model_tag(sTag)
 
 # include
@@ -114,13 +115,13 @@ if(Lua_FOUND)
                           INTERFACE_INCLUDE_DIRECTORIES "${Lua_INCLUDE_DIRS}")
   endif()
 
-  mark_as_advanced(Lua_ROOT_DIR)
+  mark_as_advanced(Lua_ROOT)
 
 else()
 
   # hints
 
-  set(Lua_ROOT_DIR "${Lua_ROOT_DIR}" CACHE PATH "The root directory of the Lua installation.")
-  mark_as_advanced(CLEAR Lua_ROOT_DIR)
+  set(Lua_ROOT "${Lua_ROOT}" CACHE PATH "The root directory of the Lua installation.")
+  mark_as_advanced(CLEAR Lua_ROOT)
 
 endif()

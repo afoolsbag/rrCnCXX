@@ -5,14 +5,14 @@
 # | |   | | | | | (_| \ \_/ / |_) |  __/ | | | \__/\ \_/ / | | (_| | (__|   < (_| | (_| |  __/
 # \_|   |_|_| |_|\__,_|\___/| .__/ \___|_| |_|\____/\___/\_|  \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                   | |                    FindOpenCVPackage by FIGlet doom __/ |
-# 2018-06-04 – 2018-07-05   |_|                                                    |___/
-# The MIT License
+# 2018-06-04 – 2018-09-06   |_|                                                    |___/
+# The Unlicense
 
 #.rst:
 # FindOpenCVPackage
 # -----------------
 #
-# 寻找OpenCV包。
+# 寻找 OpenCV 包。
 #
 # 结果变量：
 # ::
@@ -23,8 +23,8 @@
 # 提示变量：
 # ::
 #
-#    OpenCV_ROOT_DIR
-#    ENV OPENCVDIR
+#    OpenCV_ROOT
+#    ENV OpenCV_ROOT
 #
 if(OpenCVPackage_FOUND)
   return()
@@ -32,7 +32,7 @@ endif()
 
 # hints
 
-set(zHints "${OpenCV_ROOT_DIR}" "$ENV{OPENCVDIR}")
+set(zHints "${OpenCV_ROOT}" "$ENV{OpenCV_ROOT}")
 
 # prefix
 
@@ -56,13 +56,13 @@ if(OpenCVPackage_FOUND)
     list(APPEND CMAKE_PREFIX_PATH "${OpenCVPackage_PREFIX_PATH}")
   endif()
 
-  mark_as_advanced(OpenCV_ROOT_DIR)
+  mark_as_advanced(OpenCV_ROOT)
 
 else()
 
   # hints
 
-  set(OpenCV_ROOT_DIR "${OpenCV_ROOT_DIR}" CACHE PATH "The root directory of the OpenCV installation.")
-  mark_as_advanced(CLEAR OpenCV_ROOT_DIR)
+  set(OpenCV_ROOT "${OpenCV_ROOT}" CACHE PATH "The root directory of the OpenCV installation.")
+  mark_as_advanced(CLEAR OpenCV_ROOT)
 
 endif()

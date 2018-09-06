@@ -4,17 +4,21 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-07-05
-# The MIT License
+# 2016-10-21 – 2018-09-06
+# The Unlicense
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW) #3.3+
+
+if(NOT COMMAND get_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
+endif()
 
 #.rst:
 # FindQt5Package
 # --------------
 #
-# 寻找Qt5包。
+# 寻找 Qt5 包。
 #
 # 结果变量：
 # ::
@@ -25,13 +29,13 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # 提示变量：
 # ::
 #
-#    Qt5_ROOT_DIR
+#    Qt5_ROOT
 #    ENV QTDIR[32|64]
 #
 # 预期：
 # ::
 #
-#    v qt5_root_dir
+#    v qt5_root
 #       v lib
 #          v cmake
 #             v Qt5
@@ -52,12 +56,9 @@ endif()
 
 # hints
 
-if(NOT COMMAND get_address_model_tag)
-  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
-endif()
 get_address_model_tag(sAddr)
 
-set(zHints "${Qt5_ROOT_DIR}"
+set(zHints "${Qt5_ROOT}"
            "$ENV{QTDIR${sAddr}}"
            "$ENV{QTDIR}")
 
@@ -84,13 +85,13 @@ if(Qt5Package_FOUND)
     list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
   endif()
 
-  mark_as_advanced(Qt5_ROOT_DIR)
+  mark_as_advanced(Qt5_ROOT)
 
 else()
 
   # hints
 
-  set(Qt5_ROOT_DIR "${Qt5_ROOT_DIR}" CACHE PATH "The root directory of the Qt5 installation.")
-  mark_as_advanced(CLEAR Qt5_ROOT_DIR)
+  set(Qt5_ROOT "${Qt5_ROOT}" CACHE PATH "The root directory of the Qt5 installation.")
+  mark_as_advanced(CLEAR Qt5_ROOT)
 
 endif()

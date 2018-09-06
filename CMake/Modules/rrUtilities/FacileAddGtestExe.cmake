@@ -1,6 +1,8 @@
 # zhengrr
-# 2017-12-17 – 2018-08-06
-# The MIT License
+# 2017-12-17 – 2018-09-06
+# The Unlicense
+
+cmake_policy(SET CMP0074 NEW) #3.12+
 
 if(NOT COMMAND facile_add_executable)
   include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")

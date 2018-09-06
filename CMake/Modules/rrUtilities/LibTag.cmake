@@ -1,6 +1,6 @@
 # zhengrr
-# 2018-06-06 – 2018-07-09
-# The MIT License
+# 2018-06-06 – 2018-09-06
+# The Unlicense
 
 #.rst:
 # .. command:: get_toolset_tag

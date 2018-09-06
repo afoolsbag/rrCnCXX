@@ -3,10 +3,14 @@
 # | |_   _ _ __   __| \ `--. | | | | |    _| |_ ___
 # |  _| | | '_ \ / _` |`--. \| | | | |   | | __/ _ \
 # | |   | | | | | (_| /\__/ /\ \/' / |___| | ||  __/
-# \_|   |_|_| |_|\__,_\____/  \_/\_\_____/_|\__\___| FindSQLite by FIGlet doom
-# zhengrr
-# 2018-05-23 – 2018-08-04
-# The MIT License
+# \_|   |_|_| |_|\__,_\____/  \_/\_\_____/_|\__\___|
+# zhengrr                  FindSQLite by FIGlet doom
+# 2018-05-23 – 2018-09-06
+# The Unlicense
+
+if(NOT COMMAND get_toolset_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
+endif()
 
 #.rst:
 # FindSQLite
@@ -29,13 +33,13 @@
 # 提示变量：
 # ::
 #
-#    SQLite_ROOT_DIR
-#    ENV SQLITE_DIR
+#    SQLite_ROOT
+#    ENV SQLite_ROOT
 #
 # 预期：
 # ::
 #
-#    v sqlite_root_dir
+#    v sqlite_root
 #       v include
 #          v sqlite3
 #               sqlite3.h
@@ -55,11 +59,8 @@ endif()
 
 # hints
 
-set(zHints "${SQLite_ROOT_DIR}" "$ENV{SQLITE_DIR}")
+set(zHints "${SQLite_ROOT}" "$ENV{SQLite_DIR}")
 
-if(NOT COMMAND get_toolset_tag)
-  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
-endif()
 get_toolset_tag(sTool)
 get_architecture_address_model_tag(sArAd)
 
@@ -115,13 +116,13 @@ if(SQLite_FOUND)
                           INTERFACE_INCLUDE_DIRECTORIES "${SQLite_INCLUDE_DIRS}")
   endif()
 
-  mark_as_advanced(SQLite_ROOT_DIR)
+  mark_as_advanced(SQLite_ROOT)
 
 else()
 
   # hints
 
-  set(SQLite_ROOT_DIR "${SQLite_ROOT_DIR}" CACHE PATH "The root directory of the SQLite installation.")
-  mark_as_advanced(CLEAR SQLite_ROOT_DIR)
+  set(SQLite_ROOT "${SQLite_ROOT}" CACHE PATH "The root directory of the SQLite installation.")
+  mark_as_advanced(CLEAR SQLite_ROOT)
 
 endif()

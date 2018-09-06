@@ -1,6 +1,6 @@
 # zhengrr
-# 2017-12-18 – 2018-04-11
-# The MIT License
+# 2017-12-18 – 2018-09-06
+# The Unlicense
 
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 cmake_policy(SET CMP0054 NEW) #3.1+

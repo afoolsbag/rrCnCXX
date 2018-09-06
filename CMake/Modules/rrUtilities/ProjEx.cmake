@@ -1,6 +1,6 @@
 # zhengrr
-# 2016-10-08 – 2018-07-11
-# The MIT License
+# 2016-10-08 – 2018-09-06
+# The Unlicense
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
   include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")

@@ -4,7 +4,7 @@
 # | |  | |   \__ \ | |___| |  | | (_| |   |  __/ | |_| | |_| | | | |_| |  __\__ \
 # |_|  |_|   |___/  \____|_|  |_|\__,_|_|\_\___|  \___/ \__|_|_|_|\__|_|\___|___/
 # zhengrr                                         rr's CMake Utilities by FIGlet
-# The MIT License
+# The Unlicense
 
 #.rst:
 # rrUtilities

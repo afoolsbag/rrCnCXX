@@ -4,14 +4,18 @@
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
 # |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
 # zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 2018-07-09
-# The MIT License
+# 2018-02-02 – 2018-09-06
+# The Unlicense
+
+if(NOT COMMAND get_toolset_architecture_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
+endif()
 
 #.rst:
 # FindCheck
 # ---------
 #
-# 寻找Check。
+# 寻找 Check。
 #
 # 导入目标：
 # ::
@@ -30,13 +34,13 @@
 # 提示变量：
 # ::
 #
-#    Check_ROOT_DIR
-#    ENV CHECK_DIR
+#    Check_ROOT
+#    ENV Check_ROOT
 #
 # 预期：
 # ::
 #
-#    v check_root_dir
+#    v check_root
 #       v include
 #          v check
 #               check.h
@@ -54,11 +58,7 @@ endif()
 
 # hints
 
-set(zHints "${Check_ROOT_DIR}" "$ENV{CHECK_DIR}")
-
-if(NOT COMMAND get_toolset_architecture_address_model_tag)
-  include("${CMAKE_CURRENT_LIST_DIR}/rrUtilities/LibTag.cmake")
-endif()
+set(zHints "${Check_ROOT}" "$ENV{Check_ROOT}")
 get_toolset_architecture_address_model_tag(sTag)
 
 # include
@@ -142,13 +142,13 @@ if(Check_FOUND)
                           INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
   endif()
 
-  mark_as_advanced(Check_ROOT_DIR)
+  mark_as_advanced(Check_ROOT)
 
 else()
 
   # hints
 
-  set(Check_ROOT_DIR "${Check_ROOT_DIR}" CACHE PATH "The root directory of the Check installation.")
-  mark_as_advanced(CLEAR Check_ROOT_DIR)
+  set(Check_ROOT "${Check_ROOT}" CACHE PATH "The root directory of the Check installation.")
+  mark_as_advanced(CLEAR Check_ROOT)
 
 endif()

@@ -2,16 +2,16 @@
 # |  ___(_)_ __   __| |  / \__   ___ __ ___
 # | |_  | | '_ \ / _` | / _ \ \ / | '__/ _ \
 # |  _| | | | | | (_| |/ ___ \ V /| | | (_) |
-# |_|   |_|_| |_|\__,_/_/   \_\_/ |_|  \___/  FindAvro by FIGlet
-# zhengrr
-# 2018-04-02 – 2018-07-09
-# The MIT License
+# |_|   |_|_| |_|\__,_/_/   \_\_/ |_|  \___/
+# zhengrr                  FindAvro by FIGlet
+# 2018-04-02 – 2018-09-06
+# The Unlicense
 
 #.rst:
 # FindAvro
 # --------
 #
-# 寻找Avro。
+# 寻找 Avro。
 #
 # 导入目标：
 # ::
@@ -30,13 +30,13 @@
 # 提示变量：
 # ::
 #
-#    Avro_ROOT_DIR
-#    ENV AVRO_DIR
+#    Avro_ROOT
+#    ENV Avro_ROOT
 #
 # 预期：
 # ::
 #
-#    v avro_root_dir
+#    v avro_root
 #       v bin
 #            avrogencpp.exe
 #       v include
@@ -56,7 +56,7 @@ endif()
 
 # hints
 
-set(zHints "${Avro_ROOT_DIR}" "$ENV{AVRO_DIR}")
+set(zHints "${Avro_ROOT}" "$ENV{Avro_ROOT}")
 
 # bin
 
@@ -125,13 +125,13 @@ if(Avro_FOUND)
                PROPERTIES IMPORTED_LOCATION "${Avro_AvroGenCpp_EXECUTABLE}")
   endif()
 
-  mark_as_advanced(Avro_ROOT_DIR)
+  mark_as_advanced(Avro_ROOT)
 
 else()
 
   # hints
 
-  set(Avro_ROOT_DIR "${Avro_ROOT_DIR}" CACHE PATH "The root directory of the Avro installation.")
-  mark_as_advanced(CLEAR Avro_ROOT_DIR)
+  set(Avro_ROOT "${Avro_ROOT}" CACHE PATH "The root directory of the Avro installation.")
+  mark_as_advanced(CLEAR Avro_ROOT)
 
 endif()
