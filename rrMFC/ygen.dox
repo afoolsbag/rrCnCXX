@@ -79,13 +79,13 @@
 ///
 /// ## Message                                                      {#ssMessage}
 ///
-/// | prefix | brief       | Range         |                 |               |
-/// |:------ |:----------- |:------------- | ---------------:| -------------:|
-/// |        | system      |               |     `0x0-0x3FF` |      `0-1023` |
-/// | `PM`   | private     | `WM_USER + ?` |  `0x400-0x7FFF` |  `1024-32767` |
-/// | `AM`   | application | `WM_APP + ?`  | `0x8000-0xBFFF` | `32768-49151` |
-/// | `RM`   | registered  |               | `0xC000-0xFFFF` | `49152-65535` |
-/// |        | system      |               | `0xFFFF<`       | `65535<`      |
+/// | namespace             | brief       | Range         |                 |               |
+/// |:--------------------- |:----------- |:------------- | ---------------:| -------------:|
+/// |                       | system      |               |     `0x0-0x3FF` |      `0-1023` |
+/// | `PrivateMessages`     | private     | `WM_USER + ?` |  `0x400-0x7FFF` |  `1024-32767` |
+/// | `ApplicationMessages` | application | `WM_APP + ?`  | `0x8000-0xBFFF` | `32768-49151` |
+/// | `RegisteredMessages`  | registered  |               | `0xC000-0xFFFF` | `49152-65535` |
+/// |                       | system      |               | `0xFFFF<`       | `65535<`      |
 ///
 /// ["ID Naming and Numbering Conventions"](https://docs.microsoft.com/cpp/mfc/tn020-id-naming-and-numbering-conventions). *Microsoft Docs*.
 ///
