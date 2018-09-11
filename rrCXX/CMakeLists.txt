@@ -5,10 +5,10 @@
 # | |  | |  | \__/\/ /^\ \/ /^\ \
 # |_|  |_|   \____/\/   \/\/   \/ rrCxx by FIGlet doom
 # zhengrr
-# 2016-08-01 – 2018-08-23
-# The MIT License
+# 2016-08-01 – 2018-09-11
+# The Unlicense
 
-project(rrCXX VERSION 2018.8.23 LANGUAGES CXX)
+project(rrCXX VERSION 2018.9.11 LANGUAGES CXX)
 project_extra()
 compiler_warning_level(UTF-8)
 
