@@ -78,7 +78,7 @@ public:
 
 private:
     /// \brief 线程函数。
-    void threadFunction() final;
+    void threadFunction() override final;
 
     std::map<UUID, Task> tasksInventory;  ///< 任务清单。
     std::mutex           tasksMutex;      ///< 任务互斥量。

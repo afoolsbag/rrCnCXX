@@ -9,17 +9,13 @@ namespace demov {
 
 UUID Transcoder::newTask()
 {
-    //todo: init
-    UUID uuid;
     Task task;
-    task.id = uuid;
-
+    task.id = GenerateUuid();
     {
         std::lock_guard<std::mutex> lockGuard(tasksMutex);
-        tasksInventory.insert(std::make_pair(uuid, task));
+        tasksInventory.insert(std::make_pair(task.id, task));
     }
-
-    return uuid;
+    return task.id;
 }
 
 void Transcoder::threadFunction()
@@ -46,10 +42,7 @@ void Transcoder::threadFunction()
             if (callback != nullptr)
                 callback(task);
 
-            if (task.progress < 100)
-                continue;
-
-            {
+            if (100 <= task.progress) {
                 std::lock_guard<std::mutex> lockGuard(tasksMutex);
                 it = tasksInventory.erase(it);
             }

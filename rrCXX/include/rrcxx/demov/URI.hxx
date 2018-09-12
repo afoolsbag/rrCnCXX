@@ -24,6 +24,16 @@ namespace demov {
 ///
 using URI = std::string;
 
+///
+/// \brief 统一资源命名符。
+///
+using URN = std::string;
+
+///
+/// \brief 统一资源定位符。
+///
+using URL = std::string;
+
 }//namespace demov
 }//namespace rrcxx
 
