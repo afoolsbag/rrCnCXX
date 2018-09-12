@@ -25,6 +25,11 @@ namespace demov {
 ///
 using UUID = std::array<std::uint8_t, 16>;
 
+///
+/// \brief 生成全局唯一标识符。
+///
+UUID GenerateUuid();
+
 }//namespace demov
 }//namespace rrcxx
 
