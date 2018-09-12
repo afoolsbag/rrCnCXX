@@ -59,7 +59,7 @@ public:
     inline void setCallback(const Callback &callback);
 
     /// \brief 新任务。
-    UUID newTask(const URI &source, const std::string &username, const std::string &password, const URI &target);
+    UUID newTask();
 
     /// \brief 暂停任务。
     void pauseTask(const UUID &taskId) = delete;

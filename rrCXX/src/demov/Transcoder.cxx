@@ -1,13 +1,13 @@
 /// \copyright The Unlicense
 
-#include "rrcxx/demov/Downloader.hxx"
+#include "rrcxx/demov/Transcoder.hxx"
 
 #include <random>
 
 namespace rrcxx {
 namespace demov {
 
-UUID Downloader::newTask()
+UUID Transcoder::newTask()
 {
     //todo: init
     UUID uuid;
@@ -22,7 +22,7 @@ UUID Downloader::newTask()
     return uuid;
 }
 
-void Downloader::threadFunction()
+void Transcoder::threadFunction()
 {
     using namespace std::chrono_literals;
 

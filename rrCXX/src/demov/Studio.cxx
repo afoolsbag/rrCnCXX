@@ -19,9 +19,22 @@ UUID Studio::placeOrder(const URI &rawItemUri, const std::string &username, cons
 
 void Studio::threadFunction()
 {
+    using namespace std::placeholders;
+
+    if (downloader == nullptr) {
+        downloader = std::make_shared<Downloader>();
+        downloader->setCallback(std::bind(&Studio::downloaderCallback, this, _1));
+        downloader->startService();
+    }
+
     while (threadLoopFlag) {
 
     }
+}
+
+void Studio::downloaderCallback(const Downloader::Task &tast)
+{
+
 }
 
 }//namespace demov

@@ -19,8 +19,8 @@
 #include <memory>
 #include <mutex>
 #include <string>
-#include <thread>
 
+#include "Downloader.hxx"
 #include "Order.hxx"
 #include "ServiceInterface.hxx"
 #include "URI.hxx"
@@ -60,8 +60,8 @@ private:
     /// \brief 线程函数。
     void threadFunction() final;
 
-    std::shared_ptr<Service> downloadService;   ///< 下载服务。
-    void downloadCallback();                    ///< 下载回调。
+    std::shared_ptr<Downloader> downloader {nullptr};       ///< 下载器。
+    void downloaderCallback(const Downloader::Task &tast);  ///< 下载器回调。
 
     std::shared_ptr<Service> transcodeService;  ///< 转码服务。
     void transcodeCallback();                   ///< 转码回调。
