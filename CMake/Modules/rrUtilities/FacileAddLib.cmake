@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-09-06
+# 2016-10-08 – 2018-09-12
 # The Unlicense
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -18,7 +18,7 @@ endif()
 #                                [FLAT_GROUP]
 #                                [STATIC | SHARED | MODULE]
 #                                [C90 | C99 | C11]
-#                                [CXX98 | CXX11 | CXX14 | CXX17]
+#                                [CXX98 | CXX11 | CXX14 | CXX17 | CXX20]
 #                                <source>...
 #                    [PROPERTIES <property-key property-value>...]
 #           [COMPILE_DEFINITIONS <definition>...]
@@ -42,7 +42,7 @@ function(facile_add_library)
                  FLAT_GROUP
                  STATIC SHARED MODULE
                  C90 C99 C11
-                 CXX98 CXX11 CXX14 CXX17)
+                 CXX98 CXX11 CXX14 CXX17 CXX20)
   set(zOneValKws NAME SUBNAME
                  OPTION_DESCRIPTION
                  TARGET_NAME_VARIABLE)
@@ -128,7 +128,9 @@ function(facile_add_library)
   endif()
 
   # prop CXX_STANDARD
-  if(_CXX17)
+  if(_CXX20)
+    set(zPropCxxStd CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
+  elseif(_CXX17)
     set(zPropCxxStd CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
   elseif(_CXX14)
     set(zPropCxxStd CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON)
