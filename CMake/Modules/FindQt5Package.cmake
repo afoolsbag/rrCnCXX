@@ -4,10 +4,9 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-09-06
+# 2016-10-21 – 2018-09-13
 # The Unlicense
 
-cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW) #3.3+
 
 if(NOT COMMAND get_address_model_tag)
