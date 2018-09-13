@@ -5,7 +5,7 @@
 # | |   | | | | | (_| \__ \ |_) | (_| | | (_) | (_| |
 # \_|   |_|_| |_|\__,_|___/ .__/ \__,_|_|\___/ \__, |
 # zhengrr                 | |                   __/ |
-# 2018-08-04 – 2018-09-06 |_|                  |___/  Findspdlog by FIGlet doom
+# 2018-08-04 – 2018-09-13 |_|                  |___/  Findspdlog by FIGlet doom
 # The Unlicense
 
 #.rst:
@@ -33,7 +33,10 @@
 #       > bench
 #       > cmake
 #       > example
-#       > include
+#       v include
+#          v spdlog
+#               spdlog.h
+#               ...
 #       > tests
 #         ...
 #
