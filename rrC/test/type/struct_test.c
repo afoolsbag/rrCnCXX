@@ -17,9 +17,9 @@
 
 #include <check/check.h>
 
-#include "rrC/cver.h"
+#include "rrc/adp.h"
 
-#include "test.h"
+#include "_test.h"
 
 struct point_t {
     double x, y;

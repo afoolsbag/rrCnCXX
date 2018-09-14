@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-09-06
+# 2016-10-08 – 2018-09-14
 # The Unlicense
 
 if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
@@ -19,6 +19,7 @@ endif()
 #       aux_source_directory_enhanced(
 #         <results-variable>
 #         [RECURES] [C] [CXX] [MFC] [QT] [CFG] [EXPLICIT]
+#         [MFC_PCH_NAME <mfc-pch-name>]
 #         [SOURCE_DIRECTORY <directory>]
 #         [SOURCE_BASE_MATCHES <regex>]
 #         [SOURCE_BASE_CLASHES <regex>]
@@ -31,7 +32,8 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
                  C CXX MFC QT CFG
                  EXPLICIT)
-  set(zOneValKws SOURCE_DIRECTORY
+  set(zOneValKws MFC_PCH_NAME
+                 SOURCE_DIRECTORY
                  SOURCE_BASE_MATCHES
                  SOURCE_BASE_CLASHES
                  SOURCE_GROUP)
@@ -148,7 +150,12 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
   endif()
 
   if(_MFC)
-    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/mfc$<$<CONFIG:Debug>:d>.pch")
+    if(DEFINED _MFC_PCH_NAME)
+      set(sPchName "${_MFC_PCH_NAME}")
+    else()
+      set(sPchName "mfc")
+    endif()
+    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/${sPchName}$<$<CONFIG:Debug>:d>.pch")
     foreach(sSrcFilePath ${zRslts})
       get_filename_component(sFileExt ${sSrcFilePath} NAME)
       string(TOLOWER ${sFileExt} sFileExtLwr)

@@ -46,7 +46,7 @@ aux_source_directory_enhanced(zTest
                  SOURCE_GROUP "test/")
 facile_add_gtest_executable(SUBNAME "test"
                                     OPTION_INITIAL_ON
-                              CXX17 ${zTest} "ygen.dox"
+                                    ${zTest} "ygen.dox"
                 INCLUDE_DIRECTORIES PRIVATE "test/"
                                             ${CCGSL_INCLUDE_DIRS}
                      LINK_LIBRARIES ${sRrcxxLib}

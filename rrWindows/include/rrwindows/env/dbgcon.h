@@ -21,22 +21,42 @@
 
 /*-Debug-Console-Basic--------------------------------------------------------*/
 
+/** \brief 分配调试控制台。 */
+FORCEINLINE
+BOOL
+WINAPI_INLINE
+DcAlloc(
+    VOID)
+{
 #ifdef _DEBUG
-# /** \brief 分配调试控制台。 */
-# define DcAlloc  AllocConsole
-# /** \brief 释放调试控制台。 */
-# define DcFree   FreeConsole
+    return AllocConsole();
+#else
+    return FALSE;
+#endif
+}
+
+/** \brief 释放调试控制台。 */
+FORCEINLINE
+BOOL
+WINAPI_INLINE
+DcFree(
+    VOID)
+{
+#ifdef _DEBUG
+    return FreeConsole();
+#else
+    return FALSE;
+#endif
+}
+
+#ifdef _DEBUG
 # /** \brief 调试控制台放置有色字串。 */
 # define DcKPut   ConsoleColorPut
 # /** \brief 调试控制台打印有色字串。 */
 # define DcKPrint ConsoleColorPrint
-#
 #else
-# define DcAlloc(...)  ((void)0)
-# define DcFree(...)   ((void)0)
 # define DcKPut(...)   ((void)0)
 # define DcKPrint(...) ((void)0)
-#
 #endif
 
 /*-Debug-Console-Extended-----------------------------------------------------*/
@@ -45,7 +65,7 @@
 # include "rrwindows/dtpui/syscodestr.h"
 #
 # define DcKMeth(color) DcKPut(color, _T(__FUNCTION__) _T("\n"))
-# define DcMeth() DcKMeth(Gray)
+# define DcMeth() DcKMeth(White)
 #
 # define DcKCmdMsg(color)                                                      \
       DcKPrint(color,                                                          \

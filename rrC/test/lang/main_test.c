@@ -45,8 +45,6 @@ int main(void)
     srunner_run_all(runner, CK_NORMAL);
     const int err = srunner_ntests_failed(runner);
     srunner_free(runner);
-
-    system("TIMEOUT /T 15");
     return err;
 }
 

@@ -4,16 +4,16 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-08-23
+# 2016-10-12 – 2018-09-14
 # The MIT License
 
-project(rrWindows VERSION 2018.8.29 LANGUAGES C)
+project(rrWindows VERSION 2018.9.14 LANGUAGES C)
 project_extra()
 compiler_warning_level(AS_ERROR UTF-8)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
-add_definitions("-D_UNICODE" "-DUNICODE")
+add_definitions("-D_UNICODE")
 remove_definitions("-D_MBCS")
 
 configure_file("src/cfg.h.in" "src/cfg.h" @ONLY)
@@ -32,8 +32,7 @@ aux_source_directory_enhanced(zGenerate
                  SOURCE_GROUP "generate/")
 facile_add_library(    OPTION_INITIAL_ON
   TARGET_NAME_VARIABLE sRrwindowsLib
-                       SHARED
-                       ${zInclude} ${zSrc} ${zGenerate}
+                SHARED ${zInclude} ${zSrc} ${zGenerate}
    COMPILE_DEFINITIONS PUBLIC  "-DRRWINDOWS_SHARED"
    INCLUDE_DIRECTORIES PUBLIC  "include/"
                        PRIVATE "src/"
