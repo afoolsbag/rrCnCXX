@@ -21,12 +21,12 @@
 ///
 /// # Styles                                                          {#sStyles}
 ///
-/// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
-/// [*Google C++ Style Guide*](https://google.github.io/styleguide/cppguide)<sub> [*cmn-Hans*](http://zh-google-styleguide.readthedocs.org/)</sub>
-/// [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
-/// [*SEI CERT C++ Coding Standard*](https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88046682)
-/// [*High Integrity C++ Coding Standard*](http://codingstandard.com/)
-/// [*C++ Coding Standard*](http://possibility.com/Cpp/CppCodingStandard.html)
+/// 模仿标准库（STD）和指导方针支持库（GSL）。
+///
+/// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)
+/// <sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
+///     + [Coding rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#SS-rules)
+///       <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
 ///
 /// Inherited from C Programming Styles.
 ///

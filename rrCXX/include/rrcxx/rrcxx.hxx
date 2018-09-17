@@ -1,26 +1,25 @@
-//===-- Library -------------------------------------------------*- C++ -*-===//
+//===-- rrCXX ---------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 库。
+/// \brief rrCXX
 ///
-/// \version 2018-08-23
+/// \version 2018-09-17
 /// \since 2018-01-09
 /// \authors zhengrr
-/// \copyright The MIT License
+/// \copyright The Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_LIB_HXX_
-#define RRCXX_LIB_HXX_
+#ifndef RRCXX_RRCXX_HXX_
+#define RRCXX_RRCXX_HXX_
 
 #include <cstdint>
 #include <chrono>
 
-#include "rrcxx/api.hxx"
+#include "rrcxx/apiiems.hxx"
 
 namespace rrcxx {
-namespace lib {
 
 ///
 /// \brief 库版本类型（结构体）。
@@ -35,16 +34,17 @@ struct Version {
 ///
 /// \brief 获取库版本。
 ///
-RRCXX_API Version
+RRCXX_API
+Version
 GetVersion();
 
 ///
 /// \brief 叹。
 ///
-RRCXX_API std::chrono::system_clock::time_point
+RRCXX_API
+std::chrono::system_clock::time_point
 Sigh();
 
-}//namespace lib
 }//namespace rrcxx
 
-#endif//RRCXX_LIB_HXX_
+#endif//RRCXX_RRCXX_HXX_

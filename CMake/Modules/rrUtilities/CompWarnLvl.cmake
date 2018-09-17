@@ -1,8 +1,8 @@
 # zhengrr
-# 2016-10-08 – 2018-09-06
+# 2016-10-08 – 2018-09-17
 # The Unlicense
 
-cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.3)
 cmake_policy(SET CMP0057 NEW) #3.3+
 
 #.rst:
@@ -38,8 +38,7 @@ function(compiler_warning_level)
 
   if(_HIGHEST)
     if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-      add_compile_options("-Wall")
-      add_compile_options("-Wextra")
+      add_compile_options("-Wall" "-Wextra")
     elseif(MSVC)
       add_compile_options("/Wall")
     endif()

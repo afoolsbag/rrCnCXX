@@ -5,18 +5,18 @@
 # | |  | |  | \__/\/ /^\ \/ /^\ \
 # |_|  |_|   \____/\/   \/\/   \/ rrCxx by FIGlet doom
 # zhengrr
-# 2016-08-01 – 2018-09-12
+# 2016-08-01 – 2018-09-17
 # The Unlicense
 
 cmake_policy(SET CMP0074 NEW) #3.12+
 
-project(rrCXX VERSION 2018.9.12 LANGUAGES CXX)
+project(rrCXX VERSION 2018.9.17 LANGUAGES CXX)
 project_extra()
 compiler_warning_level(UTF-8)
 
 facile_add_doxygen()
 
-configure_file("src/cfg.hxx.in" "src/cfg.hxx" @ONLY)
+configure_file("src/project.hxx.in" "src/project.hxx" @ONLY)
 aux_source_directory_enhanced(zInclude
                               RECURSE
              SOURCE_DIRECTORY "include/"
@@ -46,7 +46,7 @@ aux_source_directory_enhanced(zTest
                  SOURCE_GROUP "test/")
 facile_add_gtest_executable(SUBNAME "test"
                                     OPTION_INITIAL_ON
-                                    ${zTest} "ygen.dox"
+                              CXX17 ${zTest} "ygen.dox"
                 INCLUDE_DIRECTORIES PRIVATE "test/"
                                             ${CCGSL_INCLUDE_DIRS}
                      LINK_LIBRARIES ${sRrcxxLib}

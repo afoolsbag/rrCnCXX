@@ -1,31 +1,32 @@
-//===-- Adaptation ----------------------------------------------*- C++ -*-===//
+//===-- C++ Versiosn---------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 适配。
+/// \brief C++ 版本。
 ///
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ compiler support"](http://en.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 /// \sa ["Clang - C++17, C++14, C++11 and C++98 Status"](https://clang.llvm.org/cxx_status.html). *The LLVM Compiler Infrastructure Project*.
 /// \sa ["C++ Standards Support in GCC"](https://gcc.gnu.org/projects/cxx-status.html). *Free Software Foundation*.
 /// \sa ["Support For C++11/14/17 Features (Modern C++)"](https://msdn.microsoft.com/library/hh567368). *Microsoft Developer Network*.
+/// \sa ["C++17 Features In Visual Studio 2017 Version 15.3 Preview"](https://blogs.msdn.microsoft.com/vcblog/2017/05/10/c17-features-in-vs-2017-3/). *Visual C++ Team Blog*.
 ///
-/// \version 2018-08-23
+/// \version 2018-09-17
 /// \since 2017-12-13
 /// \authors zhengrr
-/// \copyright The MIT License
+/// \copyright The Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_ADP_HXX_
-#define RRCXX_ADP_HXX_
+#ifndef RRCXX_CXX_VERSIONS_HXX_
+#define RRCXX_CXX_VERSIONS_HXX_
 
 //-Compilers--------------------------------------------------------------------
 
 #define MKVER(v,r,p) (((v) << 24) + ((r) << 16) + (p))
 
 #ifdef __clang__
-#  define CLANG MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__)
+# define CLANG MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__)
 #endif
 
 #ifdef __GNUC__
@@ -302,8 +303,9 @@
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4259
 #define N4259 (CXX17)
 
-/// \brief Nested namespace definition (revision 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4230
+/// \brief 嵌套命名空间定义\n
+///        Nested namespace definition (revision 2)
+/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4230>
 #define N4230 (CXX17 || MKVER(6,0,0)<=GNUC || 201411<=__cpp_nested_namespace_definitions)
 
 /// \brief Removing trigraphs??!
@@ -642,4 +644,4 @@
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1653
 #define N1653 (CXX11)
 
-#endif//RRCXX_ADP_HXX_
+#endif//RRCXX_CXX_VERSIONS_HXX_
