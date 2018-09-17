@@ -511,8 +511,9 @@
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2670
 #define N2670 (CXX11)
 
-/// \brief Dynamic Initialization and Destruction with Concurrency
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660
+/// \brief 有并发的动态初始化及析构\n
+///        Dynamic Initialization and Destruction with Concurrency
+/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660>
 #define N2660 (CXX11 || MKVER(4,3,0)<=GNUC || MKVER(19,0,0)<=MSC || 200806<=__cpp_threadsafe_static_init)
 
 /// \brief Thread-Local Storage

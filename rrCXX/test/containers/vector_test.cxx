@@ -5,10 +5,10 @@
 ///
 /// \sa ["std::vector"](https://zh.cppreference.com/w/cpp/container/vector). *cppreference.com*.
 ///
-/// \version 2018-08-07
+/// \version 2018-09-17
 /// \since 2018-01-22
 /// \author zhengrr
-/// \copyright The MIT License
+/// \copyright The Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include "rrcxx/adp.hxx"
+#include "rrcxx/cxx_versions.hxx"
 
 namespace rrcxx {
 

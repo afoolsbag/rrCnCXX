@@ -17,7 +17,7 @@
 #include <gtest/gtest.h>
 #include "rrcxx/cxx_versions.hxx"
 
-namespace rrcxx {
+namespace rrcxx::test {
 
 /// @addtogroup gSet
 /// @{
@@ -45,4 +45,4 @@ TEST(set, lookup)
 
 /// @}
 
-}//namespace rrcxx
+}//namespace rrcxx::test

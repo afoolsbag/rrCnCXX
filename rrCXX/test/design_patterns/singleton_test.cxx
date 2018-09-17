@@ -3,23 +3,19 @@
 /// \defgroup gSingleton 单例模式
 /// \ingroup gDzn
 ///
-/// \version 2018-08-07
+/// \version 2018-09-17
 /// \since 2016-10-18
 /// \authors zhengrr
-/// \copyright The MIT License
+/// \copyright The Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-#include "rrcxx/adp.hxx"
-
-#if !N2660
 #include <mutex>
-#endif
 
 #include <gtest/gtest.h>
+#include "rrcxx/cxx_versions.hxx"
 
-namespace rrcxx {
-namespace dzn {
+namespace rrcxx::test {
 
 /// @addtogroup gSingleton
 /// @{
@@ -27,82 +23,76 @@ namespace dzn {
 ///
 /// \brief 饿汉单例模式。
 ///
-class EagerSingleton {
+class eager_singleton {
 private:
-    /// \brief 默认构造函数。
-    explicit EagerSingleton() = default;
+    explicit eager_singleton() = default;
 public:
-    /// \brief 复制构造函数。
-    explicit EagerSingleton(const EagerSingleton &) = delete;
-    /// \brief 复制赋值运算。
-    EagerSingleton &operator=(const EagerSingleton &) = delete;
+    explicit eager_singleton(const eager_singleton &) = delete;
+    eager_singleton &operator=(const eager_singleton &) = delete;
+    explicit eager_singleton(eager_singleton &&) = delete;
+    eager_singleton &operator=(eager_singleton &&) = delete;
+    virtual ~eager_singleton() = default;
+
     /// \brief 获取实例。
-    static EagerSingleton &Instance();
-};
-
-EagerSingleton &EagerSingleton::Instance()
-{
-    static EagerSingleton *instancePointer {};
-    if (!instancePointer) {
-        instancePointer = new EagerSingleton();
+    static eager_singleton &instance()
+    {
+        static eager_singleton *instance_owner {nullptr};
+        if (instance_owner == nullptr)
+            instance_owner = new eager_singleton;
+        return *instance_owner;
     }
-    return *instancePointer;
-}
-
-namespace {
-EagerSingleton &sInitializeEarly = EagerSingleton::Instance();
-}// namespace
+};
+/// \brief 尽早初始化。
+static eager_singleton &initialize_early = eager_singleton::instance();
 
 ///
 /// \brief 懒汉单例模式。
 ///
-class LazySingleton {
+class lazy_singleton {
 private:
-    /// \brief 默认构造函数。
-    explicit LazySingleton() = default;
+    explicit lazy_singleton() = default;
 public:
-    /// \brief 复制构造函数。
-    explicit LazySingleton(const LazySingleton &) = delete;
-    /// \brief 复制赋值运算。
-    LazySingleton &operator=(const LazySingleton &) = delete;
-    /// \brief 获取实例。
-    static LazySingleton &Instance();
-};
+    explicit lazy_singleton(const lazy_singleton &) = delete;
+    lazy_singleton &operator=(const lazy_singleton &) = delete;
+    explicit lazy_singleton(lazy_singleton &&) = delete;
+    lazy_singleton &operator=(lazy_singleton &&) = delete;
+    virtual  ~lazy_singleton() = default;
 
-LazySingleton &LazySingleton::Instance()
-{
+    /// \brief 获取实例。
+    static lazy_singleton &instance()
+    {
 #if N2660
-    static LazySingleton inst;
-    return inst;
+        static lazy_singleton instance_owner;
+        return instance_owner;
 
 #else
-    static LazySingleton *pInst {};
-    static std::mutex mutex;
-    mutex.lock();
-    {
-        if (!pInst)
-            pInst = new LazySingleton;
-    }
-    mutex.unlock();
-    return *pInst;
+        static lazy_singleton *instance_owner {nullptr};
+        static std::mutex mutex;
+        mutex.lock();
+        {
+            if (instance_owner == nullptr)
+                instance_owner = new lazy_singleton;
+        }
+        mutex.unlock();
+        return *instance_owner;
 
 #endif
+    }
 };
 
 /// \brief 单例模式。
 /// \sa \ref sCxxAndDclp
-TEST(singleton, preliminary)
+TEST(singleton, sample)
 {
-    auto &eagerSingleton1 = EagerSingleton::Instance();
-    auto &eagerSingleton2 = EagerSingleton::Instance();
-    ASSERT_EQ(&eagerSingleton1, &eagerSingleton2);
+    auto &eager_singleton_1 = eager_singleton::instance();
+    auto &eager_singleton_2 = eager_singleton::instance();
+    ASSERT_EQ(&eager_singleton_1, &eager_singleton_2);
 
-    auto &lazySingleton1 = LazySingleton::Instance();
-    auto &lazySingleton2 = LazySingleton::Instance();
-    ASSERT_EQ(&lazySingleton1, &lazySingleton2);
+    auto &lazy_singleton_1 = lazy_singleton::instance();
+    auto &lazy_singleton_2 = lazy_singleton::instance();
+    ASSERT_EQ(&lazy_singleton_1, &lazy_singleton_2);
 }
 
 /// @}
 
-}//namespace dzn
-}//namespace rrcxx
+}//namespace rrcxx::test

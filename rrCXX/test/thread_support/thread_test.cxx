@@ -8,49 +8,46 @@
 /// \authors zhengrr
 /// \copyright The Unlicense
 ///
-/// @{
-///
 //===----------------------------------------------------------------------===//
-
-#include "rrcxx/cxx_versions.hxx"
-
-#if N2497
 
 #include <thread>
 
 #include <gtest/gtest.h>
+#include "rrcxx/cxx_versions.hxx"
 
-namespace {
+namespace rrcxx::test {
 
-void thread_alpha_func()
+/// @addtogroup gThrd
+/// @{
+
+TEST(thread, test)
 {
-    std::cout << "alpha: Thread alpha are called.\n";
+#if N2497
+    using namespace std::chrono_literals;
+
+    std::cout << "main: call thread 1.\n";
+    std::thread thread_1_manager([]() {
+        std::cout << "thread 1: lalala.\n";
+        std::cout << "thread 1: sleep for 4s.\n";
+        std::this_thread::sleep_for(4s);
+        std::cout << "thread 1: awake!\n";
+    });
+
+    std::cout << "main: call thread 2.\n";
+    std::thread thread_2_manager([]() {
+        std::cout << "thread 2: yayaya.\n";
+        std::cout << "thread 2: sleep for 2s.\n";
+        std::this_thread::sleep_for(2s);
+        std::cout << "thread 2: awake!\n";
+    });
+
+    std::cout << "main: waiting for threads wawkes.\n";
+    thread_1_manager.join();
+    thread_2_manager.join();
+    std::cout << "main: threads are finished.\n";
+#endif
 }
 
-void thread_beta_func()
-{
-    std::cout << "beta: Thread beta are called.\n";
-}
+/// @}
 
-}// namespace
-
-namespace rrcxx {
-
-TEST(thrd, preliminary)
-{
-    std::cout << "main: Call ThreadAlpha.\n";
-    std::thread thread_alpha(thread_alpha_func);
-    std::cout << "main: Call ThreadBeta.\n";
-    std::thread thread_beta(thread_beta_func);
-
-    std::cout << "main: Wait for thread alpha finishes.\n";
-    thread_alpha.join();
-    std::cout << "main: Thread alpha are finished.\n";
-    std::cout << "main: Wait for thread beta finishes.\n";
-    thread_beta.join();
-    std::cout << "main: Thread beta are finished.\n";
-}
-
-}// namespace cxx
-
-#endif//CXX11
+}//namespace rrcxx::test
