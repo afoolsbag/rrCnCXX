@@ -1,0 +1,33 @@
+//===-- Containers Library --------------------------------------*- C++ -*-===//
+///
+/// \defgroup gCont 容器库
+/// \ingroup gRef
+///
+/// \sa ["容器库"](https://zh.cppreference.com/w/cpp/container). *cppreference.com*.
+///     + 顺序容器
+///         + 静态相接数组 `array`
+///         + 动态相接数组 `vector`
+///         + 双端队列 `deque`
+///         + 单链表 `forward_list`
+///         + 双链表 `list`
+///     + 关联容器
+///         + 唯一键集合 `set`
+///         + 唯一键映射 `map`
+///         + 键集合 `multiset`
+///         + 键映射 `multimap`
+///     + 无序关联容器
+///         + 唯一键散列集合 `unordered_set`（C++11）
+///         + 唯一键散列映射 `unordered_map`（C++11）
+///         + 键散列集合 `unordered_multiset`（C++11）
+///         + 键散列映射 `unordered_multimap`（C++11）
+///     + 容器适配器
+///         + 堆栈适配器 `stack`
+///         + 队列适配器 `queue`
+///         + 优先级队列适配器 `priority_queue`
+///
+/// \version 2018-09-17
+/// \since 2018-01-22
+/// \authors zhengrr
+/// \copyright CC0 1.0
+///
+//===----------------------------------------------------------------------===//

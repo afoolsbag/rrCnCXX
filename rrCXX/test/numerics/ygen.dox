@@ -5,9 +5,9 @@
 ///
 /// \sa ["数值库"](https://zh.cppreference.com/w/cpp/numeric). *cppreference.com*.
 ///
-/// \version 2018-07-31
+/// \version 2018-09-17
 /// \since 2018-01-23
 /// \author zhengrr
-/// \copyright CC BY 4.0
+/// \copyright CC0 1.0
 ///
 //===----------------------------------------------------------------------===//

@@ -1,7 +1,20 @@
-/// \copyright The MIT License
+//===-- Thread --------------------------------------------------*- C++ -*-===//
+///
+/// \defgroup gThrdSmp 线程示例
+/// \ingroup gThrd
+///
+/// \version 2018-09-17
+/// \since 2018-09-17
+/// \authors zhengrr
+/// \copyright The Unlicense
+///
+/// @{
+///
+//===----------------------------------------------------------------------===//
 
-#include "rrcxx/adp.hxx"
-#if CXX11 || MSC
+#include "rrcxx/cxx_versions.hxx"
+
+#if N2497
 
 #include <thread>
 

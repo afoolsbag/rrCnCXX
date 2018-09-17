@@ -32,9 +32,9 @@
 # endif
 #
 #elif defined _WIN32 || defined __CYGWIN__ 
-# // Windows or Cygwin
+# // Microsoft Windows or Cygwin
 # if defined _MSC_VER
-#  // Visual C++
+#  // Microsoft Visual C++
 #  define API_EXPORT __declspec(dllexport)
 #  define API_IMPORT __declspec(dllimport)
 #  define API_LOCAL

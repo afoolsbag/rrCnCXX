@@ -3,10 +3,10 @@
 /// \defgroup gMain 主函数
 /// \ingroup gLang
 ///
-/// \version 2018-08-07
+/// \version 2018-09-17
 /// \since 2016-10-12
 /// \authors zhengrr
-/// \copyright The MIT License
+/// \copyright The Unlicense
 ///
 /// @{
 ///

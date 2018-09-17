@@ -25,8 +25,8 @@
 ///
 /// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)
 /// <sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
-///     + [Coding rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#SS-rules)
-///       <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
+/// + [Coding rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#SS-rules)
+///   <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
 ///
 /// Inherited from C Programming Styles.
 ///

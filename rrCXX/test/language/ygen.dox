@@ -18,10 +18,10 @@
 ///     + 杂项
 ///     + 惯用手法
 ///
-/// \version 2018-07-31
+/// \version 2018-09-17
 /// \since 2018-01-23
 /// \author zhengrr
-/// \copyright CC BY 4.0
+/// \copyright CC0 1.0
 ///
 //===----------------------------------------------------------------------===//
 
@@ -39,9 +39,9 @@
 ///
 /// \sa <https://stackoverflow.com/questions/461449/return-statement-vs-exit-in-main>
 ///
-/// \version 2018-08-07
+/// \version 2018-09-17
 /// \since 2018-01-23
 /// \authors zhengrr
-/// \copyright CC BY 4.0
+/// \copyright CC0 1.0
 ///
 //===----------------------------------------------------------------------===//
