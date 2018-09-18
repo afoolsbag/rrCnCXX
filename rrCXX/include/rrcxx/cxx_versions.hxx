@@ -471,8 +471,9 @@
 /// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3050
 #define N3050 (CXX11)
 
-/// \brief Range-Based For Loop Wording (Without Concepts)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2930
+/// \brief 范围 for 循环\n
+///        Range-Based For Loop Wording (Without Concepts)
+/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2930>
 #define N2930 (CXX11 || MKVER(17,0,0)<=MSC)
 
 /// \brief Explicit Virtual Overrides

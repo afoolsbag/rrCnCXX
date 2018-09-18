@@ -82,7 +82,7 @@ public:
 
 /// \brief 单例模式。
 /// \sa \ref sCxxAndDclp
-TEST(singleton, sample)
+TEST(singleton, test)
 {
     auto &eager_singleton_1 = eager_singleton::instance();
     auto &eager_singleton_2 = eager_singleton::instance();
