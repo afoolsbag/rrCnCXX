@@ -20,8 +20,7 @@ namespace rrcxx::test {
 /// \addtogroup gFlowCtrl
 /// @{
 
-/// \brief 单例模式。
-/// \sa \ref sCxxAndDclp
+/// \brief `switch` 语句。
 TEST(flow_control, switch)
 {
     std::random_device random_device;
