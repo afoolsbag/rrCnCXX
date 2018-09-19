@@ -86,579 +86,600 @@
 
 //-Language-Features------------------------------------------------------------
 
-/// \brief Wording Paper, C++ extensions for Concepts
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0734r0
+/// \brief 概念
+/// \sa <http://wg21.link/p0734r0>
 #define P0734R0 (CXX20)
 
 /// \brief Fixing const-qualified pointers to members
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0704r1
+/// \sa <http://wg21.link/p0704r1>
 #define P0704R1 (CXX20)
 
 /// \brief Language support for Constructor Template Argument Deduction
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0702r1
+/// \sa <http://wg21.link/p0702r1>
 #define P0702R1 (CXX20)
 
 /// \brief Default member initializers for bit-fields (revision 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0683r1
+/// \sa <http://wg21.link/p0683r1>
 #define P0683R1 (CXX20)
 
 /// \brief Extending make_shared to Support Arrays
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0674r1
+/// \sa <http://wg21.link/p0674r1>
 #define P0674R1 (CXX20)
 
 /// \brief Utility to convert a pointer to a raw pointer
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0653r2
+/// \sa <http://wg21.link/p0653r2>
 #define P0653R2 (CXX20)
 
 /// \brief Range-based for statements with initializer
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0614r1
+/// \sa <http://wg21.link/p0614r1>
 #define P0614R1 (CXX20)
 
 /// \brief Transformation Trait remove_cvref
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0550r2
+/// \sa <http://wg21.link/p0550r2>
 #define P0550R2 (CXX20)
 
-/// \brief DR: Matching of template template-arguments excludes compatible templates
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0522r0
-#define P0522R0 (CXX17)
+/// \brief 契约
+/// \sa <http://wg21.link/p0542r5>
+#define P0542R5 (CXX20)
+
+/// \brief DR：模板模板实参的匹配排除兼容的模板
+/// \sa <http://wg21.link/p0522r0>
+#define P0522R0 (CXX17 || MKVER(19,12,0)<=MSC)
 
 /// \brief Consistent comparison
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0515r3
+/// \sa <http://wg21.link/p0515r3>
 #define P0515R3 (CXX20)
 
 /// \brief endian, Just endian
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0463r1
+/// \sa <http://wg21.link/p0463r1>
 #define P0463R1 (CXX20)
 
 /// \brief String Prefix and Suffix Checking
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0457r2
+/// \sa <http://wg21.link/p0457r2>
 #define P0457R2 (CXX20)
 
 /// \brief Familiar template syntax for generic lambdas
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0428r2
+/// \sa <http://wg21.link/p0428r2>
 #define P0428R2 (CXX20)
 
 /// \brief Constexpr for std::complex
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0415r1
+/// \sa <http://wg21.link/p0415r1>
 #define P0415R1 (CXX20)
 
 /// \brief Allow lambda capture [=, this]
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0409r2
+/// \sa <http://wg21.link/p0409r2>
 #define P0409R2 (CXX20)
 
-/// \brief Inline Variables
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0386r2
-#define P0386R2 (CXX17)
+/// \brief `inline` 变量
+/// \sa <http://wg21.link/p0386r2>
+#define P0386R2 (CXX17 || MKVER(19,12,0)<=MSC)
 
 /// \brief Designated Initialization Wording
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0329r4
+/// \sa <http://wg21.link/p0329r4>
 #define P0329R4 (CXX20)
 
 /// \brief Comma omission and comma deletion
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0306r4
+/// \sa <http://wg21.link/p0306r4>
 #define P0306R4 (CXX20)
 
-/// \brief Selection statements with initializer
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0305r1
-#define P0305R1 (CXX17)
+/// \brief `if` 和 `switch` 的初始化语句
+/// \sa <http://wg21.link/p0305r1>
+#define P0305R1 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief constexpr if: A slightly different syntax
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0292r2
-#define P0292R2 (CXX17)
+/// \brief `std::byte`
+/// \sa <http://wg21.link/p0298r3>
+#define P0298R3 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief Standard and non-standard attributes
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0283r2
-#define P0283R2 (CXX17)
+/// \brief `constexpr if` 语句
+/// \sa <http://wg21.link/p0292r2>
+#define P0292R2 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief Hexadecimal floating literals for C++
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0245r1
-#define P0245R1 (CXX17)
+/// \brief 忽略未知属性
+/// \sa <http://wg21.link/p0283r2>
+#define P0283R2 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief Proposed wording for structured bindings
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0217r3
-#define P0217R3 (CXX17)
+/// \brief 十六进制浮点字面量
+/// \sa <http://wg21.link/p0245r1?
+#define P0245R1 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief Wording for [[maybe_unused]] attribute
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0212r1
-#define P0212R1 (CXX17 || MKVER(7,0,0)<=GNUC || __has_cpp_attribute(maybe_unused))
+/// \brief `std::filesystem`
+/// \sa <http://wg21.link/p0218r1>
+#define P0218R1 (CXX17 || MKVER(19,14,0)<=MSC)
 
-/// \brief Add Constexpr Modifiers to Functions in \<algorithm\> and \<utility\> Headers
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0202r3
+/// \brief 结构化绑定
+/// \sa <http://wg21.link/p0217r3>
+#define P0217R3 (CXX17 || MKVER(19,11,0)<=MSC)
+
+/// \brief `[[maybe_unused]]` 属性
+/// \sa <http://wg21.link/p0212r1>
+#define P0212R1 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,11,0)<=MSC)
+
+/// \brief Add Constexpr Modifiers to Functions in <algorithm> and <utility> Headers
+/// \sa <http://wg21.link/p0202r3>
 #define P0202R3 (CXX20)
 
-/// \brief Pack expansions in using-declarations
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0195r2
-#define P0195R2 (CXX17)
+/// \brief `using` 声明中的包展开
+/// \sa <http://wg21.link/p0195r2>
+#define P0195R2 (CXX17 || MKVER(19,14,0)<=MSC)
 
-/// \brief Wording for [[nodiscard]] attribute
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0189r1
-#define P0189R1 (CXX17 || MKVER(7,0,0)<=GNUC || __has_cpp_attribute(nodiscard))
+/// \brief `[[nodiscard]]` 属性
+/// \sa <http://wg21.link/p0189r1>
+#define P0189R1 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,11,0)<=MSC)
 
-/// \brief Wording for [[fallthrough]] attribute
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0188r1
-#define P0188R1 (CXX17 || MKVER(7,0,0)<=GNUC || __has_cpp_attribute(fallthrough))
+/// \brief `[[fallthrough]]` 属性
+/// \sa <http://wg21.link/p0188r1>
+#define P0188R1 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,10,0)<=MSC)
 
-/// \brief Generalizing the Range-Based For Loop
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0184r0
-#define P0184R0 (CXX17 || MKVER(6,0,0)<=GNUC || 201603<=__cpp_range_based_for)
+/// \brief 基于范围 `for` 的相异 `begin` 和 `end` 类型
+/// \sa <http://wg21.link/p0184r0>
+#define P0184R0 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,10,0)<=MSC || 201603<=__cpp_range_based_for)
 
-/// \brief Wording for Constexpr Lambda
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0170r1
-#define P0170R1 (CXX17 || MKVER(7,0,0)<=GNUC || 201603<=__cpp_constexpr)
+/// \brief `constexpr` lambda 表达式
+/// \sa <http://wg21.link/p0170r1>
+#define P0170R1 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,11,0)<=MSC || 201603<=__cpp_constexpr)
 
-/// \brief Refining Expression Evaluation Order for Idiomatic C++
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0145r3
-#define P0145R3 (CXX17)
+/// \brief 硬件干涉大小
+/// \sa <http://wg21.link/p0154r1>
+#define P0154R1 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief Construction Rules for enum class Values
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0138r2
-#define P0138R2 (CXX17 || MKVER(7,0,0)<=GNUC)
+/// \brief 更严格的表达式求值顺序
+/// \sa <http://wg21.link/p0145r3>
+#define P0145R3 (CXX17 || MKVER(19,14,0)<=MSC)
 
-/// \brief Rewording inheriting constructors (core issue 1941 et al)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0136r1
-#define P0136R1 (CXX17)
+/// \brief 枚举的直接列表初始化
+/// \sa <http://wg21.link/p0138r2>
+#define P0138R2 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,11,0)<=MSC)
 
-/// \brief Declaring non-type template parameters with auto
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0127r2
-#define P0127R2 (CXX17)
+/// \brief 替换含引用成员的类对象
+/// \sa <http://wg21.link/p0137r1>
+#define P0137R1 (CXX17 || MKVER(19,14,0)<=MSC)
 
-/// \brief Template argument deduction for class templates (Rev. 6)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0091r3
-#define P0091R3 (CXX17)
+/// \brief 继承构造函数的新规定（DR1941 等）
+/// \sa <http://wg21.link/p0136r1>
+#define P0136R1 (CXX17 || MKVER(19,14,0)<=MSC)
 
-/// \brief Splicing Maps and Sets (Revision 5)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0083r3
-#define P0083R3 (CXX17)
+/// \brief 受保证的复制消除
+/// \sa <http://wg21.link/p0135r1>
+#define P0135R1 (CXX17 || MKVER(19,13,0)<=MSC)
 
-/// \brief Elementary string conversions, revision 5
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0067r5
-#define P0067R5 (CXX17)
+/// \brief 拥有 `auto` 类型的非类型模板形参
+/// \sa <http://wg21.link/p0127r2>
+#define P0127R2 (CXX17 || MKVER(19,14,0)<=MSC)
 
-/// \brief __has_include for C++17
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0061r1
-#define P0061R1 (CXX17)
+/// \brief 类模板的模板实参推导
+/// \sa <http://wg21.link/p0091r3>
+#define P0091R3 (CXX17 || MKVER(19,14,0)<=MSC)
+
+/// \brief 接合 `map` 和 `set`
+/// \sa <http://wg21.link/p0083r3>
+#define P0083R3 (CXX17 || MKVER(19,12,0)<=MSC)
+
+/// \brief 初等字符串转换
+/// \sa <http://wg21.link/p0067r5>
+#define P0067R5 (CXX17 || MKVER(19,14,0)<=MSC)
+
+/// \brief 预处理器条件中的 `__has_include`
+/// \sa <http://wg21.link/p0061r1>
+#define P0061R1 (CXX17 || MKVER(19,11,0)<=MSC)
 
 /// \brief C++ Synchronized Buffered Ostream
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0053r7
+/// \sa <http://wg21.link/p0053r7>
 #define P0053R7 (CXX20)
 
-/// \brief Unary Folds and Empty Parameter Packs (revision 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0036r0
-#define P0036R0 (CXX17 || MKVER(6,0,0)<=GNUC || 201603<=__cpp_fold_expressions)
+/// \brief 一元折叠表达式和空形参包
+/// \sa <http://wg21.link/p0036r0>
+#define P0036R0 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,12,0)<=MSC || 201603<=__cpp_fold_expressions)
 
-/// \brief Dynamic memory allocation for over-aligned data
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0035r4
-#define P0035R4 (CXX17)
+/// \brief 过对齐数据的动态内存分配
+/// \sa <http://wg21.link/p0035r4>
+#define P0035R4 (CXX17 || MKVER(19,12,0)<=MSC)
 
-/// \brief Using attribute namespaces without repetition
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0028r4
-#define P0028R4 (CXX17)
+/// \brief 使用属性命名空间而不重复
+/// \sa <http://wg21.link/p0028r4>
+#define P0028R4 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief The Parallelism TS Should be Standardized
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0024r2
-#define P0024R2 (CXX17)
+/// \brief 并行 TS 的标准化
+/// \sa <http://wg21.link/p0024r2>
+#define P0024R2 (CXX17 || MKVER(19,14,0)<=MSC)
 
 /// \brief Floating Point Atomic
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0020r6
+/// \sa <http://wg21.link/p0020r6>
 #define P0020R6 (CXX20)
 
-/// \brief Lambda Capture of *this by Value as [=,*this]
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0018r3
-#define P0018R3 (CXX17 || MKVER(7,0,0)<=GNUC || 201603<=__cpp_capture_star_this)
+/// \brief `*this` 的 lambda 捕获
+/// \sa <http://wg21.link/p0018r3?
+#define P0018R3 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,11,0)<=MSC || 201603<=__cpp_capture_star_this)
 
-/// \brief Extension to aggregate initialization
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0017r1
-#define P0017R1 (CXX17 || MKVER(7,0,0)<=GNUC || 201603<=__cpp_aggregate_bases)
+/// \brief 有基类的类的聚合初始化
+/// \sa <http://wg21.link/p0017r1>
+#define P0017R1 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,14,0)<=MSC || 201603<=__cpp_aggregate_bases)
 
-/// \brief Make exception specifications be part of the type system, version 5
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0012r1
-#define P0012R1 (CXX17)
+/// \brief 令异常规定为类型系统的一部分
+/// \sa <http://wg21.link/p0012r1>
+#define P0012R1 (CXX17 || MKVER(19,12,0)<=MSC)
 
-/// \brief Removing Deprecated Exception Specifications from C++17
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0003r5
-#define P0003R5 (CXX17)
+/// \brief 从 C++17 移除弃用的异常规定
+/// \sa <http://wg21.link/p0003r5>
+#define P0003R5 (CXX17 || MKVER(19,10,0)<=MSC)
 
-/// \brief Remove Deprecated operator++(bool)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0002r1
-#define P0002R1 (CXX17)
+/// \brief 移除弃用的 `operator++(bool)`
+/// \sa <http://wg21.link/p0002r1>
+#define P0002R1 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief Remove Deprecated Use of the register Keyword
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0001r1
-#define P0001R1 (CXX17)
+/// \brief 移除 `register` 关键字的已弃用使用
+/// \sa <http://wg21.link/p0001r1>
+#define P0001R1 (CXX17 || MKVER(19,11,0)<=MSC)
 
-/// \brief N4508: A proposal to add shared_mutex (untimed) (Revision 4)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4508
-#define N4508 (CXX17)
+/// \brief `std::shared_mutex`（无时限）
+/// \sa <http://wg21.link/n4508>
+#define N4508 (CXX17 || MKVER(19,0,0)<=MSC)
 
-/// \brief Improving pair and tuple, revision 3
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4387
-#define N4387 (CXX17)
+/// \brief 改进 `std::pair` 和 `std::tuple`
+/// \sa <http://wg21.link/n4387>
+#define N4387 (CXX17 || MKVER(19,0,0)<=MSC)
 
-/// \brief Folding expressions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4295
-#define N4295 (CXX17 || MKVER(6,0,0)<=GNUC || 201411<=__cpp_fold_expressions)
+/// \brief 折叠表达式
+/// \sa <http://wg21.link/n4295>
+#define N4295 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,12,0)<=MSC || 201411<=__cpp_fold_expressions)
 
-/// \brief Allow constant evaluation for all non-type template arguments
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4268
-#define N4268 (CXX17 || MKVER(6,0,0)<=GNUC || 201411<=__cpp_nontype_template_args )
+/// \brief 允许所有非类型模板实参的常量求值
+/// \sa <http://wg21.link/n4268>
+#define N4268 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,12,0)<=MSC || 201411<=__cpp_nontype_template_args)
 
-/// \brief Adding u8 character literals
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4267
-#define N4267 (CXX17 || MKVER(6,0,0)<=GNUC || 201411<=__cpp_unicode_characters)
+/// \brief u8 字符字面量
+/// \sa <http://wg21.link/n4267>
+#define N4267 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,0,0)<=MSC || 201411<=__cpp_unicode_characters)
 
-/// \brief Attributes for namespaces and enumerators
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4266
-#define N4266 (CXX17 || MKVER(6,0,0)<=GNUC || (201411<=__cpp_namespace_attributes&&201411<=__cpp_enumerator_attributes ))
+/// \brief 命名空间和枚举项的属性
+/// \sa <http://wg21.link/n4266>
+#define N4266 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,0,0)<=MSC || (201411<=__cpp_namespace_attributes&&201411<=__cpp_enumerator_attributes))
 
-/// \brief Wording for std::uncaught_exceptions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4259
-#define N4259 (CXX17)
+/// \brief `std::uncaught_exceptions()`
+/// \sa <http://wg21.link/n4259>
+#define N4259 (CXX17 || MKVER(19,0,0)<=MSC)
 
-/// \brief 嵌套命名空间定义（修订版二）\n
-///        Nested namespace definition (revision 2)
-/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4230>
+/// \brief 嵌套命名空间定义
+/// \sa <http://wg21.link/n4230>
 #define N4230 (CXX17 || MKVER(6,0,0)<=GNUC || 201411<=__cpp_nested_namespace_definitions)
 
-/// \brief Removing trigraphs??!
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4086
-#define N4086 (CXX17 || MKVER(5,1,0)<=GNUC)
+/// \brief 移除三标符
+/// \sa <http://wg21.link/n4086>
+#define N4086 (CXX17 || MKVER(5,1,0)<=GNUC || MKVER(16,0,0)<=MSC)
 
-/// \brief Allow typename in a template template parameter
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4051
-#define N4051 (CXX17 || MKVER(5,0,0)<=GNUC)
+/// \brief 模板模板形参中的 `typename`
+/// \sa <http://wg21.link/n4051>
+#define N4051 (CXX17 || MKVER(5,0,0)<=GNUC || MKVER(19,0,0)<=MSC)
 
-/// \brief Extending static_assert, v2
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3928
-#define N3928 (CXX17 || MKVER(6,0,0)<=GNUC || 201411<=__cpp_static_assert)
+/// \brief 无消息的 `static_assert`
+/// \sa <http://wg21.link/n3928>
+#define N3928 (CXX17 || MKVER(6,0,0)<=GNUC || MKVER(19,10,0)<=MSC || 201411<=__cpp_static_assert)
 
-/// \brief New Rules for auto deduction from braced-init-list
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3922
-#define N3922 (CXX17 || MKVER(5,0,0)<=GNUC)
+/// \brief 直接列表初始化的新 `auto` 规则
+/// \sa <http://wg21.link/n3922>
+#define N3922 (CXX17 || MKVER(5,0,0)<=GNUC || MKVER(19,0,0)<=MSC)
 
-/// \brief string_view: a non-owning reference to a string, revision 7
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2014/n3921
-#define N3921 (CXX17)
+/// \brief `std::string_view`
+/// \sa <http://wg21.link/n3921>
+#define N3921 (CXX17 || MKVER(19,10,0)<=MSC)
 
-/// \brief Single-Quotation-Mark as a Digit Separator
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3781
-#define N3781 (CXX14)
+/// \brief 单引号作为数位分隔符
+/// \sa <http://wg21.link/n3781>
+#define N3781 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief C++ Sized Deallocation
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3778
-#define N3778 (CXX14)
+/// \brief 具大小解分配
+/// \sa <http://wg21.link/n3778>
+#define N3778 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief [[deprecated]] attribute
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3760
-#define N3760 (CXX14)
+/// \brief `[[deprecated]]` 属性
+/// \sa <http://wg21.link/n3760>
+#define N3760 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Making non-modifying sequence operations more robust: Revision 2
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3671
-#define N3671 (CXX14)
+/// \brief 双范围的 `std::equal`、`std::is_permutation`、`std::mismatch`
+/// \sa <http://wg21.link/n3671>
+#define N3671 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Wording for Addressing Tuples by Type: Revision 2
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3670
-#define N3670 (CXX14)
+/// \brief `std::get<T>()`
+/// \sa <http://wg21.link/n3670>
+#define N3670 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Fixing constexpr member functions without const
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3669
-#define N3669 (CXX14)
+/// \brief 修正无 `const` 的 `constexpr` 成员函数
+/// \sa <http://wg21.link/n3669>
+#define N3669 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief exchange() utility function, revision 3
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3668
-#define N3668 (CXX14)
+/// \brief `std::exchange`
+/// \sa <http://wg21.link/n3668>
+#define N3668 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Clarifying Memory Allocation
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3664
+/// \brief 清晰化内存分配（避免、融合分配）
+/// \sa <http://wg21.link/n3664>
 #define N3664 (CXX14)
 
-/// \brief Shared locking in C++ Revision 2
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3659
-#define N3659 (CXX14)
+/// \brief `std::shared_timed_mutex`
+/// \sa <http://wg21.link/n3659>
+#define N3659 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Compile-time integer sequences
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3658
-#define N3658 (CXX14)
+/// \brief `std::integer_sequence`
+/// \sa <http://wg21.link/n3658>
+#define N3658 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Adding heterogeneous comparison lookup to associative containers (rev 4)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3657
-#define N3657 (CXX14)
+/// \brief 异相关联查找
+/// \sa <http://wg21.link/n3657>
+#define N3657 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Quoted Strings Library Proposal (Revision 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3654
-#define N3654 (CXX14)
+/// \brief `std::quoted`
+/// \sa <http://wg21.link/n3654>
+#define N3654 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Member initializers and aggregates
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3653
-#define N3653 (CXX14)
+/// \brief 成员初始化器与聚合体（NSDMI）
+/// \sa <http://wg21.link/n3653>
+#define N3653 (CXX14 || MKVER(19,10,0)<=MSC)
 
-/// \brief Relaxing constraints on constexpr functions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3652
-#define N3652 (CXX14)
+/// \brief 扩展的 `constexpr`
+/// \sa <http://wg21.link/n3652>
+#define N3652 (CXX14 || MKVER(19,10,0)<=MSC)
 
-/// \brief Variable Templates (Revision 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3651
-#define N3651 (CXX14)
+/// \brief 变量模板
+/// \sa <http://wg21.link/n3651>
+#define N3651 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Generic (Polymorphic) Lambda Expressions (Revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3649
-#define N3649 (CXX14)
+/// \brief 泛型（多态）lambda 表达式
+/// \sa <http://wg21.link/n3649>
+#define N3649 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Wording Changes for Generalized Lambda-capture
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3648
-#define N3648 (CXX14)
+/// \brief 初始化、泛化 lambda 捕获（init-capture）
+/// \sa <http://wg21.link/n3648>
+#define N3648 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Null Forward Iterators
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3644
-#define N3644 (CXX14)
+/// \brief 空向前迭代器
+/// \sa <http://wg21.link/n3644>
+#define N3644 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief User-defined Literals for Standard Library Types (part 1 - version 4)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3642
-#define N3642 (CXX14)
+/// \brief `<chrono>` 和 `<string>` 的用户定义字面量
+/// \sa <http://wg21.link/n3642>
+#define N3642 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Return type deduction for normal functions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3638
-#define N3638 (CXX14)
+/// \brief `decltype(auto)`，正常函数的返回类型推导
+/// \sa <http://wg21.link/n3638>
+#define N3638 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief An Incremental Improvement to integral_constant
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3545
-#define N3545 (CXX14)
+/// \brief 改进的 `std::integral_constant`
+/// \sa <http://wg21.link/n3545>
+#define N3545 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Binary Literals in the C++ Core Language
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3472
-#define N3472 (CXX14)
+/// \brief 二进制字面量
+/// \sa <http://wg21.link/n3472>
+#define N3472 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Constexpr Library Additions: utilities, v3
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3471
-#define N3471 (CXX14)
+/// \brief `<initializer_list>`、`<utility>` 和 `<tuple>` 的 `constexpr`
+/// \sa <http://wg21.link/n3471>
+#define N3471 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Constexpr Library Additions: containers, v2
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3470
-#define N3470 (CXX14)
+/// \brief `<array>` 的 `constexpr`
+/// \sa <http://wg21.link/n3470>
+#define N3470 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief Constexpr Library Additions: chrono, v3
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3467
-#define N3467 (CXX14)
+/// \brief `<chrono>` 的 `constexpr`
+/// \sa <http://wg21.link/n3469>
+#define N3469 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief std::result_of and SFINAE
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3462
-#define N3462 (CXX14)
+/// \brief `std::result_of` 及 `SFINAE`
+/// \sa <http://wg21.link/n3462>
+#define N3462 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief A Proposal to Tweak Certain C++ Contextual Conversions, v3
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3323
-#define N3323 (CXX14)
+/// \brief 语境转换的遣词调整
+/// \sa <http://wg21.link/n3323>
+#define N3323 (CXX14 || MKVER(18,0,0)<=MSC)
 
-/// \brief Constexpr Library Additions: complex, v2
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3302
-#define N3302 (CXX14)
+/// \brief `<complex>` 的 `constexpr`
+/// \sa <http://wg21.link/n3302>
+#define N3302 (CXX14 || MKVER(19,0,0)<=MSC)
 
-/// \brief US22/DE9 Revisited: Decltype and Call Expressions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3276
-#define N3276 (CXX11)
+/// \brief `decltype` v1.1
+/// \sa <http://wg21.link/n3276>
+#define N3276 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Follow-up on override control
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3272
-#define N3272 (CXX11)
+/// \brief `override` 与 `final` v1.0
+/// \sa <http://wg21.link/n3272>
+#define N3272 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Override control: Eliminating Attributes
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3206
-#define N3206 (CXX11)
+/// \brief `override` 与 `final` v0.9
+/// \sa <http://wg21.link/n3206>
+#define N3206 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Defining Move Special Member Functions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3053
-#define N3053 (CXX11)
+/// \brief 右值引用 v3.0
+/// \sa <http://wg21.link/n3053>
+#define N3053 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Allowing Move Constructors to Throw (Rev. 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3050
-#define N3050 (CXX11)
+/// \brief `noexcept`
+/// \sa <http://wg21.link/n3050>
+#define N3050 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief 范围 for 循环\n
-///        Range-Based For Loop Wording (Without Concepts)
-/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2930>
+/// \brief 范围 `for` 循环
+/// \sa <http://wg21.link/n2930>
 #define N2930 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Explicit Virtual Overrides
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2928
-#define N2928 (CXX11)
+/// \brief `override` 与 `final` v0.8
+/// \sa <http://wg21.link/n2928>
+#define N2928 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief New wording for C++0x Lambdas (rev. 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2927
-#define N2927 (CXX11)
+/// \brief Lambda 表达式 v1.1
+/// \sa <http://wg21.link/n2927>
+#define N2927 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Fixing a Safety Problem with Rvalue References: Proposed Wording (Revision 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2844
-#define N2844 (CXX11)
+/// \brief 右值引用 v2.0
+/// \sa <http://wg21.link/n2844>
+#define N2844 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief User-defined Literals (revision 5)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2765
-#define N2765 (CXX11)
+/// \brief 用户定义字面量
+/// \sa <http://wg22.link/n2765>
+#define N2765 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Forward declaration of enumerations (rev. 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2764
-#define N2764 (CXX11)
+/// \brief 前置 `enum` 声明
+/// \sa <http://wg21.link/n2764>
+#define N2764 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Towards support for attributes in C++ (Revision 6)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2761
-#define N2761 (CXX11)
+/// \brief 属性
+/// \sa <http://wg21.link/n2761>
+#define N2761 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Non-static data member initializers
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2756
+/// \brief 非静态数据成员初始化器
+/// \sa <http://wg21.link/n2756>
 #define N2756 (CXX11 || MKVER(4,7,0)<=GNUC || MKVER(18,0,0)<=MSC || 200809<=__cpp_nsdmi)
 
-/// \brief Initializer List proposed wording
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2672
-#define N2672 (CXX11)
+/// \brief 初始化器列表
+/// \sa <http://wg21.link/n2672>
+#define N2672 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief Minimal Support for Garbage Collection and Reachability-Based Leak Detection (revised)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2670
+/// \brief 动态指针安全性（GC 接口）
+/// \sa <http://wg21.link/n2670>
 #define N2670 (CXX11)
 
-/// \brief 有并发的动态初始化及析构\n
-///        Dynamic Initialization and Destruction with Concurrency
-/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660>
+/// \brief 有并发的动态初始化及析构
+/// \sa <http://wg21.link/n2660>
 #define N2660 (CXX11 || MKVER(4,3,0)<=GNUC || MKVER(19,0,0)<=MSC || 200806<=__cpp_threadsafe_static_init)
 
-/// \brief Thread-Local Storage
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2659
-#define N2659 (CXX11)
+/// \brief 线程局域存储
+/// \sa <http://wg21.link/n2659>
+#define N2659 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Constness of Lambda Functions (Revision 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2658
-#define N2658 (CXX11)
+/// \brief Lambda 表达式 v1.0
+/// \sa <http://wg21.link/n2658>
+#define N2658 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Local and Unnamed Types as Template Arguments
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2657
-#define N2657 (CXX11)
+/// \brief 局部及无名类型作为模板形参
+/// \sa <http://wg21.link/n2657>
+#define N2657 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Extending Variadic Template Template Parameters (Revision 1)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2555
-#define N2555 (CXX11)
+/// \brief 变长模板 v1.0
+/// \sa <http://wg21.link/n2555>
+#define N2555 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief Lambda Expressions and Closures: Wording for Monomorphic Lambdas (Revision 4)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2550
-#define N2550 (CXX11)
+/// \brief Lambda 表达式 v0.9
+/// \sa <http://wg21.link/n2550>
+#define N2550 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Unrestricted Unions (Revision 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2544
-#define N2544 (CXX11)
+/// \brief 无限制的联合体
+/// \sa <http://wg21.link/n2544>
+#define N2544 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief New Function Declarator Syntax Wording
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2541
+/// \brief 尾随的函数返回类型
+/// \sa <http://wg21.link/n2541>
 #define N2541 (CXX11 || MKVER(4,4,0)<=GNUC || MKVER(16,0,0)<=MSC)
 
-/// \brief Inheriting Constructors (revision 5)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2540
-#define N2540 (CXX11)
+/// \brief 继承的构造函数
+/// \sa <http://wg21.link/n2540>
+#define N2540 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Namespace Association ("inline namespace")
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2535
+/// \brief 内联命名空间
+/// \sa <http://wg21.link/n2535>
 #define N2535 (CXX11 || MKVER(4,3,0)<=GNUC || MKVER(19,0,0)<=MSC)
 
-/// \brief Multi-threading Library for Standard C++ (Revision 1)
-/// \sa <http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2497>
+/// \brief Thread Library Working Draft
+/// \sa <http://wg21.link/n2497>
 #define N2497 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Raw and Unicode String Literals; Unified Proposal (Rev. 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2442
-#define N2442 (CXX11)
+/// \brief 原始和 Unicode 字符串字面量
+/// \sa <http://wg21.link/n2442>
+#define N2442 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Extending move semantics to *this (revised wording)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2439
-#define N2439 (CXX11)
+/// \brief 引用限定符
+/// \sa <http://wg21.link/n2439>
+#define N2439 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Explicit Conversion Operator Draft Working Paper (revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2437
-#define N2437 (CXX11)
+/// \brief 显式转换运算符
+/// \sa <http://wg21.link/n2437>
+#define N2437 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief A name for the null pointer: nullptr (revision 4)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2431
-#define N2431 (CXX11)
+/// \brief `nullptr`
+/// \sa <http://wg21.link/n2431>
+#define N2431 (CXX11 || MKVER(16.0.0)<=MSC)
 
-/// \brief C++ Atomic Types and Operations
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2427
-#define N2427 (CXX11)
+/// \brief 原子操作
+/// \sa <http://wg21.link/n2427>
+#define N2427 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Strongly Typed Enums (revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2347
-#define N2347 (CXX11)
+/// \brief 强类型 `enum`
+/// \sa <http://wg21.link/n2347>
+#define N2347 (CXX11 || MKVER(17,0,0)<=MSC)
 
-/// \brief Defaulted and Deleted Functions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2346
-#define N2346 (CXX11)
+/// \brief 默认化和被删除的函数
+/// \sa <http://wg21.link/n2346>
+#define N2346 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief Decltype (revision 7): proposed wording
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2343
-#define N2343 (CXX11)
+/// \brief `decltype` v1.0
+/// \sa <http://wg21.link/n2343>
+#define N2343 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Adding Alignment Support to the C++ Programming Language / Wording
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2341
-#define N2341 (CXX11)
+/// \brief `alignas` 和 `alignof`
+/// \sa <http://wg21.link/n2341>
+#define N2341 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Templates Aliases (Revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2258
-#define N2258 (CXX11)
+/// \brief 模板别名
+/// \sa <http://wg21.link/n2258>
+#define N2258 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief New Character Types in C++
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2249
-#define N2249 (CXX11)
+/// \brief 新字符类型
+/// \sa <http://wg21.link/n2249>
+#define N2249 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief Proposed Wording for Variadic Templates (Revision 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2242
-#define N2242 (CXX11)
+/// \brief 变长模板 v0.9
+/// \sa <http://wg21.link/n2242>
+#define N2242 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief Generalized Constant Expressions — Revision 5
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2235
-#define N2235 (CXX11)
+/// \brief `constexpr`
+/// \sa <http://wg21.link/n2235>
+#define N2235 (CXX11 || MKVER(19,0,0)<=MSC)
 
-/// \brief A Proposal to Add an Rvalue Reference to the C++ Language
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2118
-#define N2118 (CXX11)
+/// \brief 右值引用 v1.0
+/// \sa <http://wg21.link/n2118>
+#define N2118 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Iostream manipulators for convenient extraction and insertion of monetary values
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2072
-#define N2072 (CXX11)
+/// \brief 金额、时间及十六进制浮点 I/O 操纵符：金额
+/// \sa <http://wg21.link/n2072>
+#define N2072 (CXX11 || MKVER(3,8,0)<=CLANG || MKVER(5,0,0)<=GNUC || MKVER(19,0,0)<=MSC)
 
-/// \brief Iostream manipulators for convenient extraction and insertion of struct tm objects
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2071
-#define N2071 (CXX11)
+/// \brief 金额、时间及十六进制浮点 I/O 操纵符：时间
+/// \sa <http://wg21.link/n2071>
+#define N2071 (CXX11 || MKVER(3,8,0)<=CLANG || MKVER(5,0,0)<=GNUC || MKVER(19,0,0)<=MSC)
 
-/// \brief Adding "extern template" (version 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1987
-#define N1987 (CXX11)
+/// \brief `extern template`
+/// \sa <http://wg21.link/n1987>
+#define N1987 (CXX11 || MKVER(12,0,0)<=MSC)
 
-/// \brief Delegating Constructors (revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1986
-#define N1986 (CXX11)
+/// \brief 委托构造函数
+/// \sa <http://wg21.link/n1986>
+#define N1986 (CXX11 || MKVER(18,0,0)<=MSC)
 
-/// \brief Deducing the type of variable from its initializer expression
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1984
-#define N1984 (CXX11 || MKVER(4,4,0)<=GNUC || MKVER(19,0,0)<=MSC)
+/// \brief `auto` v1.0
+/// \sa <http://wg21.link/n1984>
+#define N1984 (CXX11 || MKVER(4,4,0)<=GNUC || MKVER(16,0,0)<=MSC)
 
-/// \brief Draft Technical Report on C++ Library Extensions
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1836
-#define N1836 (CXX11)
+/// \brief 类型特性
+/// \sa <http://wg21.link/n1836>
+#define N1836 (CXX11 || MKVER(14,0,0)<=MSC)
 
-/// \brief Adding the long long type to C++ (Revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1811
-#define N1811 (CXX11)
+/// \brief `long long`
+/// \sa <http://wg21.link/n1811>
+#define N1811 (CXX11 || MKVER(14,0,0)<=MSC)
 
-/// \brief Extended friend Declarations (Rev. 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1791
-#define N1791 (CXX11)
+/// \brief 扩展的 `friend` 声明
+/// \sa <http://wg21.link/n1791>
+#define N1791 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Right Angle Brackets (Revision 2)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1757
-#define N1757 (CXX11)
+/// \brief 右角括号
+/// \sa <http://wg21.link/n1757>
+#define N1757 (CXX11 || MKVER(14,0,0)<=MSC)
 
-/// \brief A Proposal to Restore Multi-declarator auto Declarations
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1737
+/// \brief A Proposal to Restore Multi-declarator Declarations
+/// \sa <http://wg21.link/n1737>
 #define N1737 (MKVER(4,4,0)<=GNUC)
 
-/// \brief Proposal to Add Static Assertions to the Core Language (Revision 3)
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1720
-#define N1720 (CXX11)
+/// \brief `static_assert`
+/// \sa <http://wg21.link/n1720>
+#define N1720 (CXX11 || MKVER(16,0,0)<=MSC)
 
-/// \brief Working draft changes for C99 preprocessor synchronization
-/// \sa http://open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1653
-#define N1653 (CXX11)
+/// \brief C99 预处理器
+/// \sa <http://wg21.link/n1653>
+#define N1653 (CXX11 || MKVER(19,0,0)<=MSC)
 
 #endif//RRCXX_CXX_VERSIONS_HXX_
