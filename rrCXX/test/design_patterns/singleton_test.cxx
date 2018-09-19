@@ -17,7 +17,7 @@
 
 namespace rrcxx::test {
 
-/// @addtogroup gSingleton
+/// \addtogroup gSingleton
 /// @{
 
 ///
