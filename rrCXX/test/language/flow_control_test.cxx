@@ -10,7 +10,9 @@
 ///
 //===----------------------------------------------------------------------===//
 
+#include <cstdlib>
 #include <random>
+#include <gsl/gsl>
 
 #include <gtest/gtest.h>
 #include "rrcxx/cxx_versions.hxx"
@@ -21,6 +23,7 @@ namespace rrcxx::test {
 /// @{
 
 /// \brief `switch` 语句。
+/// \sa <https://zh.cppreference.com/w/cpp/language/switch>
 TEST(flow_control, switch)
 {
     std::random_device random_device;
@@ -49,6 +52,27 @@ TEST(flow_control, switch)
         throw std::logic_error("Unexpected switch routing.");
     }
 #endif
+}
+
+/// \brief `goto` 语句。
+/// \sa <https://zh.cppreference.com/w/cpp/language/goto>
+TEST(flow_control, goto)
+{
+    const auto memory {std::malloc(sizeof(std::byte))};
+    if (memory == nullptr)
+        FAIL();
+    goto exit;
+exit:
+    std::free(memory);
+}
+
+/// \brief `gsl::finally`
+TEST(flow_control, gsl_finally)
+{
+    const auto memory {std::malloc(sizeof(std::byte))};
+    if (memory == nullptr)
+        FAIL();
+    const auto memory_defer {gsl::finally([memory] { std::free(memory); })};
 }
 
 /// @}

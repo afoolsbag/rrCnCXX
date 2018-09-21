@@ -16,6 +16,8 @@ compiler_warning_level(UTF-8)
 
 facile_add_doxygen()
 
+find_package(CCGSL)
+
 configure_file("src/project.hxx.in" "src/project.hxx" @ONLY)
 aux_source_directory_enhanced(zInclude
                               RECURSE
@@ -36,9 +38,8 @@ facile_add_library(    OPTION_INITIAL_ON
    COMPILE_DEFINITIONS PUBLIC  "-DRRCXX_SHARED"
    INCLUDE_DIRECTORIES PUBLIC  "include/"
                        PRIVATE "src/"
-                               "${CMAKE_CURRENT_BINARY_DIR}/src/")
-
-find_package(CCGSL)
+                               "${CMAKE_CURRENT_BINARY_DIR}/src/"
+                               ${CCGSL_INCLUDE_DIRS})
 
 aux_source_directory_enhanced(zTest
                               RECURSE

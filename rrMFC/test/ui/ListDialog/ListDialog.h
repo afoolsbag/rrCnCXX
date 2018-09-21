@@ -6,7 +6,7 @@
 /// \sa <https://docs.microsoft.com/cpp/mfc/using-clistctrl>
 /// \sa <https://docs.microsoft.com/cpp/mfc/reference/clistctrl-class>
 ///
-/// \verison 2018-09-14
+/// \verison 2018-09-19
 /// \since 2017-04-04
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -51,24 +51,28 @@ protected:
 
 #// Message Handlers
 protected:
+    /// \brief LVN_GETDISPINFO
+    /// \sa <https://docs.microsoft.com/windows/desktop/Controls/lvn-getdispinfo>
+    afx_msg void OnLvnGetdispinfoList(NMHDR *pNMHDR, LRESULT *pResult);
+
     /// \brief LVN_ITEMCHANGED
-    /// \sa https://msdn.microsoft.com/library/bb774845
+    /// \sa <https://docs.microsoft.com/windows/desktop/Controls/lvn-itemchanged>
     afx_msg void OnLvnItemchangedList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_CLICK
-    /// \sa https://msdn.microsoft.com/library/bb774863
+    /// \sa <https://docs.microsoft.com/windows/desktop/Controls/nm-click-list-view>
     afx_msg void OnNMClickList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_DBLCLK
-    /// \sa https://msdn.microsoft.com/library/bb774867
+    /// \sa <https://docs.microsoft.com/windows/desktop/Controls/nm-dblclk-list-view>
     afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_RCLICK
-    /// \sa https://msdn.microsoft.com/library/bb774873
+    /// \sa <https://docs.microsoft.com/windows/desktop/Controls/nm-rclick-list-view>
     afx_msg void OnNMRClickList(NMHDR *pNMHDR, LRESULT *pResult);
 
     /// \brief NM_RDBLCLK
-    /// \sa https://msdn.microsoft.com/library/bb774875
+    /// \sa <https://docs.microsoft.com/windows/desktop/Controls/nm-rdblclk-list-view>
     afx_msg void OnNMRDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 
     afx_msg void OnBnClickedAppendLastButton();

@@ -14,6 +14,7 @@ const unsigned ListDialog::IDD {IDD_LIST_DIALOG};
 BEGIN_MESSAGE_MAP(ListDialog, CDialog)
     ON_BN_CLICKED(IDC_APPEND_LAST_BUTTON, &ListDialog::OnBnClickedAppendLastButton)
     ON_BN_CLICKED(IDC_DELETE_FIRST_BUTTON, &ListDialog::OnBnClickedDeleteFirstButton)
+    ON_NOTIFY(LVN_GETDISPINFO, IDC_LIST, &ListDialog::OnLvnGetdispinfoList)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST, &ListDialog::OnLvnItemchangedList)
     ON_NOTIFY(NM_CLICK, IDC_LIST, &ListDialog::OnNMClickList)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST, &ListDialog::OnNMDblclkList)
@@ -45,17 +46,19 @@ OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    {
-        ListControl.SetExtendedStyle(ListControl.GetExtendedStyle()
-                                     | LVS_EX_DOUBLEBUFFER
-                                     | LVS_EX_FULLROWSELECT
-                                     | LVS_EX_GRIDLINES
-                                     | LVS_EX_HEADERDRAGDROP);
+    ListControl.SetExtendedStyle(ListControl.GetExtendedStyle()
+                                 | LVS_EX_DOUBLEBUFFER
+                                 | LVS_EX_FULLROWSELECT
+                                 | LVS_EX_GRIDLINES
+                                 | LVS_EX_HEADERDRAGDROP);
 
-        ListControl.InsertColumn(ListColumn::Id, TEXT("ID"), LVCFMT_LEFT, 100);
-        ListControl.InsertColumn(ListColumn::Name, TEXT("NAME"), LVCFMT_LEFT, 100);
-        ListControl.InsertColumn(ListColumn::Alias, TEXT("ALIAS"), LVCFMT_LEFT, 100);
-    }
+    ListControl.SetBkColor(RGB(0x80, 0x80, 0x80));
+    ListControl.SetTextColor(RGB(0xFF, 0xFF, 0xFF));
+    ListControl.SetTextBkColor(ListControl.GetBkColor());
+
+    ListControl.InsertColumn(Id, TEXT("ID"), LVCFMT_LEFT, 100);
+    ListControl.InsertColumn(Name, TEXT("NAME"), LVCFMT_LEFT, 100);
+    ListControl.InsertColumn(Alias, TEXT("ALIAS"), LVCFMT_LEFT, 100);
 
     return TRUE;
 }
@@ -150,6 +153,14 @@ OnBnClickedDeleteFirstButton()
         SelectListItem(0);
     }
     ListControl.SetRedraw(TRUE);
+}
+
+void ListDialog::
+OnLvnGetdispinfoList(NMHDR *pNMHDR, LRESULT *pResult)
+{
+    NMLVDISPINFO *pDispInfo = reinterpret_cast<NMLVDISPINFO*>(pNMHDR);
+    DcMeth();
+    *pResult = 0;
 }
 
 void ListDialog::

@@ -3,7 +3,7 @@
 /// \file
 /// \brief 窗口类。
 ///
-/// \verison 2018-09-14
+/// \verison 2018-09-20
 /// \since 2018-04-27
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -17,7 +17,7 @@ namespace Test {
 
 ///
 /// \brief 窗口类。
-/// \sa https://docs.microsoft.com/cpp/mfc/reference/cwnd-class
+/// \sa <https://docs.microsoft.com/cpp/mfc/reference/cwnd-class>
 ///
 class Window: public CWnd {
 

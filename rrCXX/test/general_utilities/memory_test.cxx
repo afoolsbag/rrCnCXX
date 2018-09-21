@@ -10,9 +10,22 @@
 ///         + 共享指针的弱引用 `weak_ptr`（C++11）
 ///         + 自动指针 `auto_ptr`
 ///
-/// \version 2018-07-31
+/// \version 2018-09-20
 /// \since 2018-01-23
 /// \author zhengrr
-/// \copyright The MIT License
+/// \copyright The Unlicense
 ///
 //===----------------------------------------------------------------------===//
+
+#include <gsl/gsl>
+
+#include <gtest/gtest.h>
+
+namespace rrcxx::test {
+
+/// \addtogroup gMem
+/// @{
+
+/// @}
+
+}//namespace rrcxx::test

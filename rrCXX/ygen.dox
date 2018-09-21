@@ -21,39 +21,14 @@
 ///
 /// # Styles                                                          {#sStyles}
 ///
-/// 模仿标准库（STD）和指导方针支持库（GSL）。
+/// + 标准库（`std`）和指导方针支持库（`gsl`）风格命名；
+/// + K&R 和 Stroustrup 风格布局；
+/// + `.hxx` 和 `.cxx` 风格后缀。
 ///
 /// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)
 /// <sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
 /// + [Coding rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#SS-rules)
 ///   <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
-///
-/// Inherited from C Programming Styles.
-///
-/// ## Naming                                                        {#ssNaming}
-///
-/// | Entity Kinds        | Preview                         |
-/// |:------------------- |:------------------------------- |
-/// | folder              | `all_lower`                     |
-/// | file                | `all_lower` or `PascalCase`     |
-/// | macro               | `ALL_UPPER`                     |
-/// | namespace           | `all_lower`                     |
-/// | typedef             | `PascalCase`                    |
-/// | struct/class        | `PascalCase`                    |
-/// | struct/class field  | `camelCase`                     |
-/// | struct/class method | `camelCase`                     |
-/// | enum                | `PascalCase`                    |
-/// | enumerator          | `PascalCase`                    |
-/// | union               | `PascalCase`                    |
-/// | union member        | `camelCase`                     |
-/// | global function     | `PascalCase`                    |
-/// | static method       | `PascalCase`                    |
-/// | variable            | `camelCase` specifier inherited |
-///
-/// ## Formatting                                                {#ssFormatting}
-///
-/// `.hxx` `.cxx`
-/// 2 Spaces
 ///
 /// # Guides                                                          {#sGuides}
 ///
