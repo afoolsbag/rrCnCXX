@@ -44,9 +44,11 @@ struct item_base {
 
 /// \brief 远端物项。
 struct remote_item: item_base {
+    static constexpr auto static_type {type::remote};
+
     enum class type type() const final
     {
-        return type::remote;
+        return static_type;
     }
 
     ~remote_item() final = default;
@@ -57,9 +59,11 @@ struct remote_item: item_base {
 
 /// \brief 本地物项。
 struct local_item: item_base {
+    static constexpr auto static_type {type::local};
+
     enum class type type() const final
     {
-        return type::local;
+        return static_type;
     }
 
     ~local_item() final = default;
@@ -67,9 +71,11 @@ struct local_item: item_base {
 
 /// \brief 规则物项。
 struct regular_item: item_base {
+    static constexpr auto static_type {type::regular};
+
     enum class type type() const final
     {
-        return type::regular;
+        return static_type;
     }
 
     ~regular_item() final = default;
@@ -77,9 +83,11 @@ struct regular_item: item_base {
 
 /// \brief 标签物项。
 struct labeled_item: item_base {
+    static constexpr auto static_type {type::labeled};
+
     enum class type type() const final
     {
-        return type::labeled;
+        return static_type;
     }
 
     ~labeled_item() final = default;

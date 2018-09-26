@@ -47,6 +47,7 @@ struct process_base {
         failed_out_of_storage,          ///< 失败：存储不足。
         failed_out_of_memory,           ///< 失败：内存不足。
         failed_out_of_graphics_memory,  ///< 失败：显存不足。
+        failed_mismatched_format,       ///< 失败：不匹配的格式。
         failed_unsupported_format,      ///< 失败：不支持的格式。
     };
 
@@ -60,17 +61,15 @@ struct process_base {
     status            status;        ///< 状态。
     double            progress;      ///< 进度。
     std::vector<uuid> product_ids;   ///< 产品。
-
-
-
-    uuid              retry_process;  ///< 重试工序。
 };
 
 /// \brief 下载工序。
 struct download_process: process_base {
+    static constexpr auto static_type {type::download};
+
     enum class type type() const final
     {
-        return type::download;
+        return static_type;
     }
 
     ~download_process() final = default;
@@ -78,9 +77,11 @@ struct download_process: process_base {
 
 /// \brief 转码工序。
 struct transcode_process: process_base {
+    static constexpr auto static_type {type::transcode};
+
     enum class type type() const final
     {
-        return type::transcode;
+        return static_type;
     }
 
     ~transcode_process() final = default;
@@ -88,16 +89,25 @@ struct transcode_process: process_base {
 
 /// \brief 识别工序。
 struct recognize_process: process_base {
+    /// \brief 阶段。
+    enum class stage {
+        qndvna_transcode,    ///< QnDvna 转码。
+        ffmpeg_transcode,    ///< FFmpeg 转码。
+        traverse_transcode,  ///< 遍历转码。
+    };
+
+    static constexpr auto static_type {type::recognize};
+
     enum class type type() const final
     {
-        return type::recognize;
+        return static_type;
     }
 
     ~recognize_process() final = default;
 
-    video_compression_format vc;   ///< 视频编码。
-    audio_compression_format ac;   ///< 音频编码。
-    containers_format        fmt;  ///< 包装格式。
+    stage stage {stage::qndvna_transcode};  ///< 转码方式、阶段。
+
+    std::vector<multimedia_format> possible_format_list;
 };
 
 }//namespace rrcxx::prototypes::igcf2

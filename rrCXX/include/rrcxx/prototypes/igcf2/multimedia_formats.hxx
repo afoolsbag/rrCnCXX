@@ -18,6 +18,9 @@ namespace rrcxx::prototypes::igcf2 {
 
 /// \brief 视频压缩格式。
 enum class video_compression_format {
+    unknown,
+    null,
+
     /// ISO/IEC 11172 (MPEG-1) - Part 2: Video
     mpeg1,
     /// ISO/IEC 13818 (MEPG-2) - Part 2: Video
@@ -48,6 +51,9 @@ enum class video_compression_format {
 
 /// \brief 音频压缩格式。
 enum class audio_compression_format {
+    unknown,
+    null,
+
     /// ISO/IEC 11172 (MPEG-1) - Part 3: Audio - Layer I\n
     /// ISO/IEC 13818 (MPEG-2) - Part 3: Audio - Layer I
     mp1,
@@ -104,6 +110,9 @@ enum class audio_compression_format {
 
 /// \brief 图像压缩格式。
 enum class image_compressing_format {
+    unknown,
+    null,
+
     /// ISO/IEC 10918 (Joint photographic experts group)
     jpg,
     /// ISO/IEC 15444 (JPEG 2000)
@@ -117,6 +126,9 @@ enum class image_compressing_format {
 
 /// \brief 容器格式。
 enum class containers_format {
+    unknown,
+    null,
+
     /// ISO/IEC 11172 (MPEG-1) - Part 3: Audio - Elementary stream\n
     /// ISO/IEC 13818 (MPEG-2) - Part 2: Video - Elementary stream
     es,
@@ -136,6 +148,18 @@ enum class containers_format {
     /// ISO/IEC 23008 (MPEG-H) - Part 1: MPEG media transport
     mmt,
 };
+
+struct multimedia_format {
+    video_compression_format video_coding;
+    audio_compression_format audio_coding;
+    image_compressing_format image_coding;
+    containers_format package_format;
+};
+
+namespace multimedia_formats {
+constexpr multimedia_format hikvision {video_compression_format::unknown, audio_compression_format::unknown, image_compressing_format::null, containers_format::unknown};
+constexpr multimedia_format dahua {video_compression_format::unknown, audio_compression_format::unknown, image_compressing_format::null, containers_format::unknown};
+}
 
 }//namespace rrcxx::prototypes::igcf2
 
