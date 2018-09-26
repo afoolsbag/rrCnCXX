@@ -57,10 +57,10 @@ uuid order::insert_item(std::unique_ptr<item_type> &&derived_ptr)
     static_assert(std::is_base_of<item_base, item_type>::value);
 
     const uuid uuid {derived_ptr->id};
-    auto base_ptr {std::unique_ptr<item_base>(derived_ptr.release())};
+    std::unique_ptr<item_base> base_ptr {derived_ptr.release()};
     auto pair {std::make_pair(uuid, std::move(base_ptr))};
     {
-        std::lock_guard<std::mutex> lock_guard(items_mutex);
+        std::lock_guard<std::mutex> lock_guard {items_mutex};
         items.insert(std::move(pair));
     }
     return uuid;

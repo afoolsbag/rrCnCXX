@@ -3,7 +3,14 @@
 /// \defgroup gDzn 设计模式
 /// \ingroup gRef
 ///
-/// \version 2018-09-17
+/// 创建模式
+/// + 抽象工厂
+/// + 生成器
+/// + 工厂方法
+/// 结构模式
+/// 行为模式
+///
+/// \version 2018-09-26
 /// \since 2018-01-29
 /// \authors zhengrr
 /// \copyright CC0 1.0

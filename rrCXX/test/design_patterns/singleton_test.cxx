@@ -1,9 +1,9 @@
 //===-- Singleton -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gSingleton 单例模式
+/// \defgroup gSingleton 单例
 /// \ingroup gDzn
 ///
-/// \version 2018-09-17
+/// \version 2018-09-26
 /// \since 2016-10-18
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -20,9 +20,9 @@ namespace rrcxx::test {
 /// \addtogroup gSingleton
 /// @{
 
-///
-/// \brief 饿汉单例模式。
-///
+// eager singleton
+
+/// \brief 饿汉单例。
 class eager_singleton {
 private:
     explicit eager_singleton() = default;
@@ -45,9 +45,9 @@ public:
 /// \brief 尽早初始化。
 static eager_singleton &initialize_early = eager_singleton::instance();
 
-///
-/// \brief 懒汉单例模式。
-///
+// lazy singleton
+
+/// \brief 懒汉单例。
 class lazy_singleton {
 private:
     explicit lazy_singleton() = default;
@@ -80,7 +80,7 @@ public:
     }
 };
 
-/// \brief 单例模式。
+/// \brief 单例。
 /// \sa \ref sCxxAndDclp
 TEST(singleton, test)
 {

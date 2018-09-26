@@ -1,0 +1,71 @@
+//===-- Abstract Factory ----------------------------------------*- C++ -*-===//
+///
+/// \defgroup gAbstractFactory 抽象工厂
+/// \ingroup gDzn
+///
+/// 抽象工厂设计模式：
+///
+/// 意图提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。
+///
+/// > + 它分离了具体的类
+/// > + 它使得易于交换产品系列
+/// > + 它有利于产品的一致性
+/// > + 难以支持新种类的产品
+///
+/// \version 2018-09-26
+/// \since 2018-09-26
+/// \authors zhengrr
+/// \copyright The Unlicense
+///
+//===----------------------------------------------------------------------===//
+
+#include <iostream>
+#include <memory>
+
+#include <gtest/gtest.h>
+
+namespace rrcxx::test {
+
+/// \addtogroup gAbstractFactory
+/// @{
+
+// abstract
+
+/// \brief 抽象产品 A。
+class abstract_product_a {
+public:
+    virtual ~abstract_product_a() = default;
+};
+
+/// \brief 抽象工厂。
+class abstract_factory {
+public:
+    virtual ~abstract_factory() = default;
+    virtual std::unique_ptr<abstract_product_a> create_product_a() = 0;
+};
+
+// concrete
+
+/// \brief 具体产品 A 系列 1。
+class concrete_product_a_series_1: public abstract_product_a {};
+
+/// \brief 具体工厂系列 1。
+class concrete_factory_series_1: public abstract_factory {
+public:
+    std::unique_ptr<abstract_product_a> create_product_a() final
+    {
+        std::unique_ptr<abstract_product_a> product {std::make_unique<concrete_product_a_series_1>().release()};
+        return product;
+    }
+};
+
+/// \brief 抽象工厂。
+TEST(abstract_factory, test)
+{
+    std::unique_ptr<abstract_factory> factory {std::make_unique<concrete_factory_series_1>().release()};
+    auto product_a {factory->create_product_a()};
+}
+
+/// @}
+
+}//namespace rrcxx::test
