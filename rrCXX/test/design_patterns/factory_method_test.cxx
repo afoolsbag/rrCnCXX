@@ -10,7 +10,7 @@
 /// > + 为子类提供挂钩
 /// > + 连接平行的类层次
 ///
-/// \version 2018-09-26
+/// \version 2018-09-27
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -27,8 +27,6 @@ namespace rrcxx::test {
 /// \addtogroup gFactoryMethod
 /// @{
 
-// abstract
-
 /// \brief 产品（接口）。
 class product {};
 
@@ -39,25 +37,22 @@ public:
     virtual std::unique_ptr<product> create_product() = 0;
 };
 
-// concrete
+/// \brief 具体产品。
+class concrete_product: public product {};
 
-/// \brief 具体产品类别 1。
-class concrete_product_type_1: public product {};
-
-/// \brief 具体创建者类别 1。
-class concrete_creator_type_1: public creator {
+/// \brief 具体创建者。
+class concrete_creator: public creator {
 public:
     std::unique_ptr<product> create_product() final
     {
-        std::unique_ptr<product> product {std::make_unique<concrete_product_type_1>()};
-        return product;
+        return std::make_unique<concrete_product>();
     }
 };
 
 /// \brief 生成器。
 TEST(factory_method, test)
 {
-    std::unique_ptr<creator> creator {std::make_unique<concrete_creator_type_1>()};
+    std::unique_ptr<creator> creator {std::make_unique<concrete_creator>()};
     auto product {creator->create_product()};
 }
 

@@ -3,13 +3,24 @@
 /// \defgroup gSingleton 单例
 /// \ingroup gDzn
 ///
-/// \version 2018-09-26
+/// 单例设计模式：
+///
+/// 意图保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+///
+/// > + 对唯一实例的受控访问
+/// > + 缩小命名空间
+/// > + 允许对操作和表示的精化
+/// > + 允许可变数目的实例
+/// > + 比类操作更灵活
+///
+/// \version 2018-09-27
 /// \since 2016-10-18
 /// \authors zhengrr
 /// \copyright The Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
+#include <memory>
 #include <mutex>
 
 #include <gtest/gtest.h>
@@ -24,7 +35,7 @@ namespace rrcxx::test {
 
 /// \brief 饿汉单例。
 class eager_singleton {
-private:
+protected:
     explicit eager_singleton() = default;
 public:
     explicit eager_singleton(const eager_singleton &) = delete;
@@ -36,9 +47,9 @@ public:
     /// \brief 获取实例。
     static eager_singleton &instance()
     {
-        static eager_singleton *instance_owner {nullptr};
+        static std::unique_ptr<eager_singleton> instance_owner {nullptr};
         if (instance_owner == nullptr)
-            instance_owner = new eager_singleton;
+            instance_owner = std::make_unique<eager_singleton>();
         return *instance_owner;
     }
 };
@@ -49,7 +60,7 @@ static eager_singleton &initialize_early = eager_singleton::instance();
 
 /// \brief 懒汉单例。
 class lazy_singleton {
-private:
+protected:
     explicit lazy_singleton() = default;
 public:
     explicit lazy_singleton(const lazy_singleton &) = delete;
@@ -66,12 +77,12 @@ public:
         return instance_owner;
 
 #else
-        static lazy_singleton *instance_owner {nullptr};
+        static std::unique_ptr<lazy_singleton> instance_owner {nullptr};
         static std::mutex mutex;
         mutex.lock();
         {
             if (instance_owner == nullptr)
-                instance_owner = new lazy_singleton;
+                instance_owner = std::make_unique<lazy_singleton>();
         }
         mutex.unlock();
         return *instance_owner;

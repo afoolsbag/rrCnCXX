@@ -3,14 +3,10 @@
 /// \defgroup gDzn 设计模式
 /// \ingroup gRef
 ///
-/// 创建模式
-/// + 抽象工厂
-/// + 生成器
-/// + 工厂方法
-/// 结构模式
-/// 行为模式
+/// \sa ["设计模式"](https://zh.wikipedia.org/wiki/设计模式_(计算机)). *Wikipedia*.
+/// \sa ["反面模式"](https://zh.wikipedia.org/wiki/反面模式). *Wikipedia*.
 ///
-/// \version 2018-09-26
+/// \version 2018-09-27
 /// \since 2018-01-29
 /// \authors zhengrr
 /// \copyright CC0 1.0

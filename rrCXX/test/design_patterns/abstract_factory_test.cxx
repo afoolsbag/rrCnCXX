@@ -12,7 +12,7 @@
 /// > + 它有利于产品的一致性
 /// > + 难以支持新种类的产品
 ///
-/// \version 2018-09-26
+/// \version 2018-09-27
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -29,41 +29,36 @@ namespace rrcxx::test {
 /// \addtogroup gAbstractFactory
 /// @{
 
-// abstract
-
-/// \brief 抽象产品 A。
-class abstract_product_a {
+/// \brief 抽象产品。
+class abstract_product {
 public:
-    virtual ~abstract_product_a() = default;
+    virtual ~abstract_product() = default;
 };
 
 /// \brief 抽象工厂。
 class abstract_factory {
 public:
     virtual ~abstract_factory() = default;
-    virtual std::unique_ptr<abstract_product_a> create_product_a() = 0;
+    virtual std::unique_ptr<abstract_product> create_product() = 0;
 };
 
-// concrete
+/// \brief 具体产品。
+class concrete_product: public abstract_product {};
 
-/// \brief 具体产品 A 系列 1。
-class concrete_product_a_series_1: public abstract_product_a {};
-
-/// \brief 具体工厂系列 1。
-class concrete_factory_series_1: public abstract_factory {
+/// \brief 具体工厂。
+class concrete_factory: public abstract_factory {
 public:
-    std::unique_ptr<abstract_product_a> create_product_a() final
+    std::unique_ptr<abstract_product> create_product() final
     {
-        std::unique_ptr<abstract_product_a> product {std::make_unique<concrete_product_a_series_1>().release()};
-        return product;
+        return std::make_unique<concrete_product>();
     }
 };
 
 /// \brief 抽象工厂。
 TEST(abstract_factory, test)
 {
-    std::unique_ptr<abstract_factory> factory {std::make_unique<concrete_factory_series_1>().release()};
-    auto product_a {factory->create_product_a()};
+    std::unique_ptr<abstract_factory> factory {std::make_unique<concrete_factory>().release()};
+    auto product_a {factory->create_product()};
 }
 
 /// @}
