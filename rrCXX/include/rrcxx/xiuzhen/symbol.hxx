@@ -86,28 +86,34 @@ constexpr x8gua dui {yang + yang + yin};    ///< 兌（☱）。
 constexpr x8gua qian {yang + yang + yang};  ///< 乾（☰）。
 
 /// \brief 伏羲八卦。
-/// \details [1] [0] [4]\n
-///          [2] [~] [5]\n
-///          [3] [7] [6]
+/// \details 兑乾巽　☱☰☴　６７３\n
+///          离　坎　☲☯☵　５　２\n
+///          震坤艮　☳☷☶　４０１
 constexpr std::array<x8gua, 8> fuxi8 {
     qian, dui, li, zhen, xun, kan, gen, kun
 };
 
-/// \brief 连山八卦（夏易）
-/// \see fuxi8
+/// \brief 连山八卦（神农，夏易）。
+/// \details 坤艮离　☷☶☲　０１５\n
+///          巽　震　☴☯☳　３　４\n
+///          坎兑乾　☵☱☰　２６７
 constexpr std::array<x8gua, 8> lianshan8 {
     gen, kun, xun, kan, li, zhen, qian, dui
 };
 
-/// \brief 归藏八卦（商易）
-/// \see fuxi8
+/// \brief 归藏八卦（轩辕，商易）。
+/// \details 艮坤震　☶☷☳　１０４\n
+///          坎　离　☵☯☲　２　５\n
+///          巽乾兑　☴☰☱　３７６
 constexpr std::array<x8gua, 8> guicang8 {
     kun, gen, kan, xun, zhen, li, dui, qian
 };
 
-/// \brief 姬昌八卦（周易）。
-/// \see fuxi8
-constexpr std::array<x8gua, 8> jichang8 {
+/// \brief 文王八卦（姬昌，周易）。
+/// \details 巽离坤　☴☲☷　３５０\n
+///          震　兑　☳☯☱　４　６\n
+///          艮坎乾　☶☵☰　１２７
+constexpr std::array<x8gua, 8> wenwang8 {
     li, xun, zhen, gen, kun, dui, qian, kan
 };
 
@@ -188,8 +194,8 @@ constexpr std::array<x64gua, 64> fuxi64 {
     tai, daxu, xu, xiaoxu, dazhuang, dayou, guai, qian64
 };
 
-/// \brief 姬昌六十四卦。
-constexpr std::array<x64gua, 64> jichang64 {
+/// \brief 文王六十四卦。
+constexpr std::array<x64gua, 64> wenwang64 {
     qian64, kun64, zhun, meng, xu, song,
     shi, bi3, xiaoxu, lvtz, tai, pi,
     tongren, dayou, qian1, yu, sui, gu,
