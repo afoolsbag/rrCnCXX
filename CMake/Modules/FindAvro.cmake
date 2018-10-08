@@ -11,45 +11,57 @@
 # FindAvro
 # --------
 #
-# 寻找 Avro。
+# Find the `Apache Avro <https://avro.apache.org/>`_ headers and libraries.
 #
-# 导入目标：
-# ::
+# IMPORTED Targets
+# ^^^^^^^^^^^^^^^^
+# This module defines the following :prop_tgt:`IMPORTED` targets:
 #
-#    Avro::Avro
-#    Avro::AvroGenCpp
+# ``Avro::Avro``
+#   The Avro library, if found.
 #
-# 结果变量：
-# ::
+# ``Avro::AvroGenCpp``
+#   The AvroGenCpp executable, if found.
 #
-#    Avro_FOUND
-#    Avro_AvroGenCpp_EXECUTABLE
-#    Avro_INCLUDE_DIRS
-#    Avro_LIBRARIES
+# Result Variables
+# ^^^^^^^^^^^^^^^^
 #
-# 提示变量：
-# ::
+# This module defines the following variables:
 #
-#    Avro_ROOT
-#    ENV Avro_ROOT
+# ``Avro_FOUND``
+#   Found the Apache Avro data serialization system.
 #
-# 预期：
-# ::
+# ``Avro_INCLUDE_DIRS``
+#   The directory containing the Avro headers.
 #
-#    v avro_root
+# ``Avro_LIBRARIES``
+#   The Avro libraries.
+#
+# ``Avro_AvroGenCpp_EXECUTABLE``
+#   The path to the AvroGenCpp executable.
+#
+# Cache variables
+# ^^^^^^^^^^^^^^^
+#
+# The following cache variables may also be set:
+#
+# ``Avro_ROOT``
+#   The root directory of the Avro installation (may also be set as an environment variable)::
+#
+#     v Avro_ROOT
 #       v bin
-#            avrogencpp.exe
+#           avrogencpp.exe
 #       v include
-#          v avro
-#             > buffer
-#               AvroParse.hh
-#               AvroSerialize.hh
-#               AvroTraits.hh
-#               ...
+#         v avro
+#           > buffer
+#             AvroParse.hh
+#             AvroSerialize.hh
+#             AvroTraits.hh
+#             ...
 #       v lib
-#            avrocpp.dll
-#            avrocpp.lib
-#
+#           avrocpp.dll
+#           avrocpp.lib
+
 if(Avro_FOUND)
   return()
 endif()
