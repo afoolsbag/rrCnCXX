@@ -50,7 +50,7 @@ public:
 };
 
 /// \brief 生成器。
-TEST(factory_method, test)
+TEST(design_patterns, factory_method)
 {
     std::unique_ptr<creator> creator {std::make_unique<concrete_creator>()};
     auto product {creator->create_product()};

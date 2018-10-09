@@ -6,7 +6,7 @@
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ 编译器支持情况表"](https://zh.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 ///
-/// \version 2018-09-17
+/// \version 2018-10-08
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -179,8 +179,12 @@
 #define P0283R2 (CXX17 || MKVER(19,11,0)<=MSC)
 
 /// \brief 十六进制浮点字面量
-/// \sa <http://wg21.link/p0245r1?
+/// \sa <http://wg21.link/p0245r1>
 #define P0245R1 (CXX17 || MKVER(19,11,0)<=MSC)
+
+/// \brief `std::any` 和 `std::optional`
+/// \sa <http://wg21.link/p0220r1>
+#define P0220R1 (CXX17 || MKVER(19,10,0)<=MSC)
 
 /// \brief `std::filesystem`
 /// \sa <http://wg21.link/p0218r1>
@@ -249,6 +253,10 @@
 /// \brief 类模板的模板实参推导
 /// \sa <http://wg21.link/p0091r3>
 #define P0091R3 (CXX17 || MKVER(19,14,0)<=MSC)
+
+/// \brief `std::variant`
+/// \sa <http://wg21.link/p0088r3>
+#define P0088R3 (CXX17 || MKVER(19,10,0)<=MSC)
 
 /// \brief 接合 `map` 和 `set`
 /// \sa <http://wg21.link/p0083r3>

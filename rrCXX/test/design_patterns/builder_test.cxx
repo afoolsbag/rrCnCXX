@@ -57,7 +57,7 @@ class concrete_builder: public builder {
 };
 
 /// \brief 生成器。
-TEST(builder, test)
+TEST(design_patterns, builder)
 {
     std::unique_ptr<builder> builder {std::make_unique<concrete_builder>().release()};
     std::unique_ptr<director> director {std::make_unique<class director>()};

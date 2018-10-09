@@ -47,7 +47,7 @@ public:
 };
 
 /// \brief 生成器。
-TEST(prototype, test)
+TEST(design_patterns, prototype)
 {
     const std::unique_ptr<prototype> prototype {std::make_unique<concrete_prototype>()};
     auto clone {prototype->clone()};

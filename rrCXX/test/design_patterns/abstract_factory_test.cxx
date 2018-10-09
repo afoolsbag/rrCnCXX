@@ -55,7 +55,7 @@ public:
 };
 
 /// \brief 抽象工厂。
-TEST(abstract_factory, test)
+TEST(design_patterns, abstract_factory)
 {
     std::unique_ptr<abstract_factory> factory {std::make_unique<concrete_factory>().release()};
     auto product_a {factory->create_product()};

@@ -28,16 +28,16 @@ TEST(thread, test)
     std::cout << "main: call thread 1.\n";
     std::thread thread_1_manager([]() {
         std::cout << "thread 1: lalala.\n";
-        std::cout << "thread 1: sleep for 4s.\n";
-        std::this_thread::sleep_for(4s);
+        std::cout << "thread 1: sleep for 400ms.\n";
+        std::this_thread::sleep_for(400ms);
         std::cout << "thread 1: awake!\n";
     });
 
     std::cout << "main: call thread 2.\n";
     std::thread thread_2_manager([]() {
         std::cout << "thread 2: yayaya.\n";
-        std::cout << "thread 2: sleep for 2s.\n";
-        std::this_thread::sleep_for(2s);
+        std::cout << "thread 2: sleep for 200ms.\n";
+        std::this_thread::sleep_for(200ms);
         std::cout << "thread 2: awake!\n";
     });
 

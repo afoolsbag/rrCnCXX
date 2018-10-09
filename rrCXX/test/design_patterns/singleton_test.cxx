@@ -49,11 +49,12 @@ public:
     {
         static std::unique_ptr<eager_singleton> instance_owner {nullptr};
         if (instance_owner == nullptr)
-            instance_owner = std::make_unique<eager_singleton>();
+            instance_owner = std::unique_ptr<eager_singleton>(new eager_singleton);
         return *instance_owner;
     }
 };
 /// \brief 尽早初始化。
+[[maybe_unused]]
 static eager_singleton &initialize_early = eager_singleton::instance();
 
 // lazy singleton
@@ -72,7 +73,7 @@ public:
     /// \brief 获取实例。
     static lazy_singleton &instance()
     {
-#if N2660
+#if !N2660
         static lazy_singleton instance_owner;
         return instance_owner;
 
@@ -82,7 +83,7 @@ public:
         mutex.lock();
         {
             if (instance_owner == nullptr)
-                instance_owner = std::make_unique<lazy_singleton>();
+                instance_owner = std::unique_ptr<lazy_singleton>(new lazy_singleton);
         }
         mutex.unlock();
         return *instance_owner;
@@ -93,7 +94,7 @@ public:
 
 /// \brief 单例。
 /// \sa \ref sCxxAndDclp
-TEST(singleton, test)
+TEST(design_patterns, singleton)
 {
     auto &eager_singleton_1 = eager_singleton::instance();
     auto &eager_singleton_2 = eager_singleton::instance();
