@@ -2,6 +2,6 @@ module rrIce
 {
     interface HelloWorldService
     {
-        void HelloWorld(string str);
+        void putHelloWorld(string str);
     }
 }
