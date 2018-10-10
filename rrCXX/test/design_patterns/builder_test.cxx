@@ -11,7 +11,7 @@
 /// > + 它将构造代码和表示代码分开
 /// > + 它使你可对构造过程进行更精细的控制
 ///
-/// \version 2018-09-27
+/// \version 2018-10-10
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <memory>
+using namespace std;
 
 #include <gtest/gtest.h>
 
@@ -36,7 +37,7 @@ class builder {
 public:
     virtual ~builder() = default;
     virtual void build_part() {}
-    virtual std::unique_ptr<product> get_product() { return std::make_unique<product>(current_product); }
+    virtual unique_ptr<product> get_product() { return make_unique<product>(current_product); }
 private:
     product current_product;
 };
@@ -44,7 +45,7 @@ private:
 /// \brief 导向器。
 class director {
 public:
-    std::unique_ptr<product> create_product(std::unique_ptr<builder> &builder)
+    unique_ptr<product> create_product(unique_ptr<builder> &builder)
     {
         builder->build_part();
         return builder->get_product();
@@ -59,8 +60,8 @@ class concrete_builder: public builder {
 /// \brief 生成器。
 TEST(design_patterns, builder)
 {
-    std::unique_ptr<builder> builder {std::make_unique<concrete_builder>().release()};
-    std::unique_ptr<director> director {std::make_unique<class director>()};
+    unique_ptr<builder> builder {make_unique<concrete_builder>().release()};
+    unique_ptr<director> director {make_unique<class director>()};
     auto product = director->create_product(builder);
 }
 

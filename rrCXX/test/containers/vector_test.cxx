@@ -5,7 +5,7 @@
 ///
 /// \sa ["std::vector"](https://zh.cppreference.com/w/cpp/container/vector). *cppreference.com*.
 ///
-/// \version 2018-09-18
+/// \version 2018-10-10
 /// \since 2018-01-22
 /// \author zhengrr
 /// \copyright The Unlicense
@@ -13,7 +13,9 @@
 //===----------------------------------------------------------------------===//
 
 #include <vector>
+using namespace std;
 #include <gsl/gsl>
+using namespace gsl;
 
 #include <gtest/gtest.h>
 #include "rrcxx/cxx_versions.hxx"
@@ -26,7 +28,7 @@ namespace rrcxx::test {
 /// \brief 向量的遍历
 TEST(vector, traverse)
 {
-    const std::vector<int> numbers {9, 5, 2, 7};
+    const vector<int> numbers {9, 5, 2, 7};
 
 #if N2930
     int sum1 {};
@@ -41,7 +43,7 @@ TEST(vector, traverse)
     ASSERT_EQ(sum2, 23);
 
     int sum3 {};
-    for (gsl::index i {}; i < numbers.size(); ++i)
+    for (index i {}; i < numbers.size(); ++i)
         sum3 += numbers[i];
     ASSERT_EQ(sum3, 23);
 }

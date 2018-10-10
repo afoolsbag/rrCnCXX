@@ -13,7 +13,7 @@
 /// > + 允许可变数目的实例
 /// > + 比类操作更灵活
 ///
-/// \version 2018-09-27
+/// \version 2018-10-10
 /// \since 2016-10-18
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -22,6 +22,7 @@
 
 #include <memory>
 #include <mutex>
+using namespace std;
 
 #include <gtest/gtest.h>
 #include "rrcxx/cxx_versions.hxx"
@@ -47,9 +48,9 @@ public:
     /// \brief 获取实例。
     static eager_singleton &instance()
     {
-        static std::unique_ptr<eager_singleton> instance_owner {nullptr};
+        static unique_ptr<eager_singleton> instance_owner {nullptr};
         if (instance_owner == nullptr)
-            instance_owner = std::unique_ptr<eager_singleton>(new eager_singleton);
+            instance_owner = unique_ptr<eager_singleton>(new eager_singleton);
         return *instance_owner;
     }
 };
@@ -78,12 +79,12 @@ public:
         return instance_owner;
 
 #else
-        static std::unique_ptr<lazy_singleton> instance_owner {nullptr};
-        static std::mutex mutex;
+        static unique_ptr<lazy_singleton> instance_owner {nullptr};
+        static mutex mutex;
         mutex.lock();
         {
             if (instance_owner == nullptr)
-                instance_owner = std::unique_ptr<lazy_singleton>(new lazy_singleton);
+                instance_owner = unique_ptr<lazy_singleton>(new lazy_singleton);
         }
         mutex.unlock();
         return *instance_owner;

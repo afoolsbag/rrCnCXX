@@ -12,7 +12,7 @@
 /// > + 它有利于产品的一致性
 /// > + 难以支持新种类的产品
 ///
-/// \version 2018-09-27
+/// \version 2018-10-10
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -21,6 +21,7 @@
 
 #include <iostream>
 #include <memory>
+using namespace std;
 
 #include <gtest/gtest.h>
 
@@ -39,7 +40,7 @@ public:
 class abstract_factory {
 public:
     virtual ~abstract_factory() = default;
-    virtual std::unique_ptr<abstract_product> create_product() = 0;
+    virtual unique_ptr<abstract_product> create_product() = 0;
 };
 
 /// \brief 具体产品。
@@ -48,16 +49,16 @@ class concrete_product: public abstract_product {};
 /// \brief 具体工厂。
 class concrete_factory: public abstract_factory {
 public:
-    std::unique_ptr<abstract_product> create_product() final
+    unique_ptr<abstract_product> create_product() final
     {
-        return std::make_unique<concrete_product>();
+        return make_unique<concrete_product>();
     }
 };
 
 /// \brief 抽象工厂。
 TEST(design_patterns, abstract_factory)
 {
-    std::unique_ptr<abstract_factory> factory {std::make_unique<concrete_factory>().release()};
+    unique_ptr<abstract_factory> factory {make_unique<concrete_factory>().release()};
     auto product_a {factory->create_product()};
 }
 

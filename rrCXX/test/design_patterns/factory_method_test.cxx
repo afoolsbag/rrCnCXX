@@ -10,7 +10,7 @@
 /// > + 为子类提供挂钩
 /// > + 连接平行的类层次
 ///
-/// \version 2018-09-27
+/// \version 2018-10-10
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -19,6 +19,7 @@
 
 #include <iostream>
 #include <memory>
+using namespace std;
 
 #include <gtest/gtest.h>
 
@@ -34,7 +35,7 @@ class product {};
 class creator {
 public:
     virtual ~creator() = default;
-    virtual std::unique_ptr<product> create_product() = 0;
+    virtual unique_ptr<product> create_product() = 0;
 };
 
 /// \brief 具体产品。
@@ -43,16 +44,16 @@ class concrete_product: public product {};
 /// \brief 具体创建者。
 class concrete_creator: public creator {
 public:
-    std::unique_ptr<product> create_product() final
+    unique_ptr<product> create_product() final
     {
-        return std::make_unique<concrete_product>();
+        return make_unique<concrete_product>();
     }
 };
 
 /// \brief 生成器。
 TEST(design_patterns, factory_method)
 {
-    std::unique_ptr<creator> creator {std::make_unique<concrete_creator>()};
+    unique_ptr<creator> creator {make_unique<concrete_creator>()};
     auto product {creator->create_product()};
 }
 

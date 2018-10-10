@@ -3,7 +3,7 @@
 /// \defgroup gFlowCtrl 流控制
 /// \ingroup gLang
 ///
-/// \version 2018-09-19
+/// \version 2018-10-10
 /// \since 2018-09-19
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -12,7 +12,9 @@
 
 #include <cstdlib>
 #include <random>
+using namespace std;
 #include <gsl/gsl>
+using namespace gsl;
 
 #include <gtest/gtest.h>
 #include "rrcxx/cxx_versions.hxx"
@@ -26,11 +28,11 @@ namespace rrcxx::test {
 /// \sa <https://zh.cppreference.com/w/cpp/language/switch>
 TEST(flow_control, switch)
 {
-    std::random_device random_device;
-    std::default_random_engine random_engine(random_device());
-    const std::uniform_int_distribution<> uniform_distribution(1, 6);
+    random_device rdev;
+    default_random_engine reng(rdev());
+    const uniform_int_distribution<> rdis(1, 6);
 
-    const auto condition {uniform_distribution(random_engine)};
+    const auto condition {rdis(reng)};
 
 #if P0188R1
     switch (condition) {
@@ -49,30 +51,31 @@ TEST(flow_control, switch)
         // do something
         break;
     default:
-        throw std::logic_error("Unexpected switch routing.");
+        throw logic_error("Unexpected switch routing.");
     }
 #endif
 }
 
 /// \brief `goto` 语句。
+/// \remarks NR.6: 请勿如此：把所有清理操作放在函数末尾并使用 `goto exit`
 /// \sa <https://zh.cppreference.com/w/cpp/language/goto>
 TEST(flow_control, goto)
 {
-    const auto memory {std::malloc(sizeof(std::byte))};
+    const auto memory {malloc(sizeof(int))};
     if (memory == nullptr)
         FAIL();
     goto exit;
 exit:
-    std::free(memory);
+    free(memory);
 }
 
 /// \brief `gsl::finally`
 TEST(flow_control, gsl_finally)
 {
-    const auto memory {std::malloc(sizeof(std::byte))};
+    const auto memory {malloc(sizeof(int))};
     if (memory == nullptr)
         FAIL();
-    const auto memory_defer {gsl::finally([memory] { std::free(memory); })};
+    const auto memory_defer {finally([&memory] { free(memory); })};
 }
 
 /// @}

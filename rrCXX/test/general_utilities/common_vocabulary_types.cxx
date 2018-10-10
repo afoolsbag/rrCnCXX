@@ -6,7 +6,7 @@
 /// \sa "通用词汇类型". *cppreference.com*.
 /// + [`std::variant`](https://zh.cppreference.com/w/cpp/utility/variant)
 ///
-/// \version 2018-10-08
+/// \version 2018-10-10
 /// \since 2018-10-08
 /// \author zhengrr
 /// \copyright The Unlicense
@@ -17,6 +17,7 @@
 #include <optional>
 #include <tuple>
 #include <variant>
+using namespace std;
 
 #include <gtest/gtest.h>
 #include "rrcxx/cxx_versions.hxx"
@@ -30,12 +31,12 @@ namespace rrcxx::test {
 TEST(common_vocabulary_types, any)
 {
 #if P0220R1
-    std::any any;
+    any any;
     ASSERT_FALSE(any.has_value());
 
     any = 1;
-    [[maybe_unused]] const auto cast_int {std::any_cast<int>(any)};
-    ASSERT_THROW([[maybe_unused]] const auto failed {std::any_cast<double>(any)}, std::bad_any_cast);
+    [[maybe_unused]] const auto cast_int {any_cast<int>(any)};
+    ASSERT_THROW([[maybe_unused]] const auto failed {any_cast<double>(any)}, bad_any_cast);
 
     any.reset();
     ASSERT_FALSE(any.has_value());
@@ -46,11 +47,11 @@ TEST(common_vocabulary_types, any)
 TEST(common_vocabulary_types, optional)
 {
 #if P0220R1
-    const auto create {[](const bool notnull) -> std::optional<int> {
+    const auto create {[](const bool notnull) -> optional<int> {
         if (notnull)
             return 666;
         else
-            return std::nullopt;
+            return nullopt;
     }};
 
     const auto notnull {create(true)};
@@ -58,26 +59,26 @@ TEST(common_vocabulary_types, optional)
     ASSERT_EQ(*notnull, 666);
 
     const auto null {create(false)};
-    ASSERT_FALSE(create(false));
+    ASSERT_FALSE(null);
 #endif
 }
 
 /// \brief 元组包装器。
 TEST(common_vocabulary_types, tuple)
 {
-    const auto get_two_zero {[]() -> std::tuple<int, double> {
-        return std::make_tuple(0, 0.0);
+    const auto get_two_zero {[]() -> tuple<int, double> {
+        return make_tuple(0, 0.0);
     }};
 
     // C++98
     const auto cxx98 {get_two_zero()};
-    [[maybe_unused]] const auto cxx98int {std::get<0>(cxx98)};
-    [[maybe_unused]] const auto cxx98double {std::get<1>(cxx98)};
+    [[maybe_unused]] const auto cxx98int {get<0>(cxx98)};
+    [[maybe_unused]] const auto cxx98double {get<1>(cxx98)};
 
     // C++11
     int cxx11int;
     double cxx11double;
-    std::tie(cxx11int, cxx11double) = get_two_zero();
+    tie(cxx11int, cxx11double) = get_two_zero();
 
 #if P0217R3
     // C++17
@@ -89,13 +90,13 @@ TEST(common_vocabulary_types, tuple)
 TEST(common_vocabulary_types, variant)
 {
 #if P0088R3
-    std::variant<int, double> variant {0};
-    [[maybe_unused]] const auto as_int {std::get<int>(variant)};
+    variant<int, double> variant {0};
+    [[maybe_unused]] const auto as_int {get<int>(variant)};
 
     variant = 0.0;
-    [[maybe_unused]] const auto as_double {std::get<double>(variant)};
+    [[maybe_unused]] const auto as_double {get<double>(variant)};
 
-    ASSERT_THROW([[maybe_unused]] const auto failed {std::get<int>(variant)}, std::bad_variant_access);
+    ASSERT_THROW([[maybe_unused]] const auto failed {get<int>(variant)}, bad_variant_access);
 #endif
 }
 

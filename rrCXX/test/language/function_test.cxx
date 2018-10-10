@@ -3,7 +3,7 @@
 /// \defgroup gFunc 函数
 /// \ingroup gLang
 ///
-/// \version 2018-09-20
+/// \version 2018-10-10
 /// \since 2018-09-20
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include <gsl/gsl>
+using namespace gsl;
 
 namespace rrcxx::test {
 
