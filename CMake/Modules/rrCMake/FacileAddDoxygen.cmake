@@ -1,6 +1,8 @@
 # zhengrr
-# 2016-10-08 – 2018-09-06
+# 2016-10-08 – 2018-10-11
 # The Unlicense
+
+include_guard()
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW) #3.3+
@@ -8,35 +10,32 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 # .rst
 # .. command:: facile_add_doxygen
 #
-#    便捷加入Doxygen文档（目标）：
-#    ::
+#   便捷添加 Doxygen 目标到项目::
 #
-#       facile_add_doxygen(
-#         [JAVADOC_AUTOBRIEF]
-#         [OPTIMIZE_OUTPUT_FOR_C]
-#       )
+#     facile_add_doxygen(
+#                        [JAVADOC_AUTOBRIEF]
+#                        [OPTIMIZE_OUTPUT_FOR_C]
+#     )
 #
-#    缓存：
-#    ::
+#   缓存::
 #
-#       DOXYGEN_DOT_PATH
-#       DOXYGEN_PLANTUML_JAR_PATH
+#     DOXYGEN_DOT_PATH
+#     DOXYGEN_PLANTUML_JAR_PATH
 #
-#    约定：
+#   约定::
 #
-#    :NAME:             ``<PROJECT_NAME>``
-#    :option:           ``<NAME_UPPER>_GENERATE_DOCUMENTATION``
-#    :doxygen_add_docs: ``<NAME_LOWER>_documentation``
-#    :input:            ``<PROJECT_SOURCE_DIR>`` and ``<PROJECT_BINARY_DIR>``
-#    :output:           ``<PROJECT_BINARY_DIR>/doxygen``
-#    :more doxygen cfg: see code
-#    :install:          to ``docs/<NAME>``
+#     :NAME:             ``<PROJECT_NAME>``
+#     :option:           ``<NAME_UPPER>_GENERATE_DOCUMENTATION``
+#     :doxygen_add_docs: ``<NAME_LOWER>_documentation``
+#     :input:            ``<PROJECT_SOURCE_DIR>`` and ``<PROJECT_BINARY_DIR>``
+#     :output:           ``<PROJECT_BINARY_DIR>/doxygen``
+#     :more doxygen cfg: see code
+#     :install:          to ``docs/<NAME>``
 #
-#    参见：
+#   参见：
 #
-#    + `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen>`_. *CMake Documentation*.
-#    + `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
-#
+#     - `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen>`_. *CMake Documentation*.
+#     - `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
 function(facile_add_doxygen)
   set(zOptKws    JAVADOC_AUTOBRIEF
                  OPTIMIZE_OUTPUT_FOR_C)

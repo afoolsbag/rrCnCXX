@@ -1,17 +1,20 @@
 # zhengrr
-# 2017-12-17 – 2018-09-06
+# 2017-12-17 – 2018-10-11
 # The Unlicense
+
+include_guard()
 
 cmake_policy(SET CMP0074 NEW) #3.12+
 
-if(NOT COMMAND facile_add_executable)
-  include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
+if(NOT COMMAND add_executable_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/AddExeEx.cmake")
 endif()
 
 # .rst
 # .. command:: facile_add_gtest_executable
 #
-#    以``facile_add_executable``命令为基础，额外约定了若干缺省参数，并启用测试。
+#   便捷添加 GTest 目标到项目，
+#   以 ``add_executable_ex`` 命令为基础，额外约定了若干缺省参数，并启用测试。
 #
 function(facile_add_gtest_executable)
   set(zOptKws)
@@ -26,11 +29,11 @@ function(facile_add_gtest_executable)
   endif()
 
   enable_testing()
-  facile_add_executable(
-     OPTION_DESCRIPTION "Build executable with GTest (requires GTest)."
-   TARGET_NAME_VARIABLE sTgtName
-                        ${_UNPARSED_ARGUMENTS}
-         LINK_LIBRARIES GTest::GTest)
+  add_executable_ex(
+      OPTION_DESCRIPTION "Build executable with GTest (requires GTest)."
+    TARGET_NAME_VARIABLE sTgtName
+                         ${_UNPARSED_ARGUMENTS}
+          LINK_LIBRARIES GTest::GTest)
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

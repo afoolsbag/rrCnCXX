@@ -1,38 +1,46 @@
 # zhengrr
-# 2017-12-18 – 2018-09-06
+# 2017-12-18 – 2018-10-11
 # The Unlicense
+
+include_guard()
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW) #3.3+
 
-if(NOT COMMAND facile_add_subdirectory)
-  include("${CMAKE_CURRENT_LIST_DIR}/FacileAddSubdir.cmake")
+if(NOT COMMAND add_subdirectory_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/AddSubdirEx.cmake")
 endif()
 
 # .rst
 # .. command:: aux_add_subdirectories
 #
-#    搜寻并加入子目录到构建：
-#    ::
+#   查找目录中的所有子目录，并尝试添加到构建::
 #
-#       aux_add_subdirectories([WITH_OPTION]
-#                  [PRIORITIES <sub-directory>...]
-#       )
-#
+#     aux_add_subdirectories(
+#                            [WITH_OPTION]
+#                            [OPTION_INITIAL_ON]
+#                [PRIORITIES <sub-directory>...]
+#     )
 function(aux_add_subdirectories)
-  set(zOptKws    WITH_OPTION)
+  set(zOptKws    WITH_OPTION
+                 OPTION_INITIAL_ON)
   set(zOneValKws)
   set(zMutValKws PRIORITIES)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
-    return()
   endif()
 
   if(_WITH_OPTION)
-    set(sOpt)
+    set(_WITH_OPTION WITH_OPTION)
   else()
-    set(sOpt WITHOUT_OPTION)
+    set(_WITH_OPTION)
+  endif()
+
+  if(_OPTION_INITIAL_ON)
+    set(_OPTION_INITIAL_ON OPTION_INITIAL_ON)
+  else()
+    set(_OPTION_INITIAL_ON)
   endif()
 
   set(sDir "${CMAKE_CURRENT_LIST_DIR}")
@@ -45,7 +53,7 @@ function(aux_add_subdirectories)
     endif()
     foreach(sSubDir ${_PRIORITIES})
       if(NOT sSubDir IN_LIST zRelFiles)
-        message(WARNING "A priority-subdirectory is invalid: ${sSubDir}.")
+        message(WARNING "A priority-sub-directory doesn't exist: ${sSubDir}.")
       endif()
     endforeach()
     list(INSERT zRelFiles 0 ${_PRIORITIES})
@@ -59,6 +67,6 @@ function(aux_add_subdirectories)
     if(NOT EXISTS "${sDir}/${sRelDir}/CMakeLists.txt")
       continue()
     endif()
-    facile_add_subdirectory("${sRelDir}" ${sOpt})
+    add_subdirectory_ex("${sRelDir}" ${_WITH_OPTION} ${_OPTION_INITIAL_ON})
   endforeach()
 endfunction()

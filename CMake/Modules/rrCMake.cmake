@@ -15,6 +15,8 @@ include_guard()
 #
 # zhengrr's CMake Utilities.
 
+#.res:
+# .. command:: rrcmake_include_module_files
 function(rrcmake_include_module_files)
   file(GLOB zModuleFiles "${CMAKE_CURRENT_LIST_DIR}/rrCMake/*.cmake")
   foreach(sModuleFile IN LISTS zModuleFiles)

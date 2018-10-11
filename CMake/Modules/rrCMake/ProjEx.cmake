@@ -1,34 +1,30 @@
 # zhengrr
-# 2016-10-08 – 2018-09-06
+# 2016-10-08 – 2018-10-11
 # The Unlicense
 
-if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
-endif()
+include_guard()
 
-if(NOT COMMAND check_name_with_c_identifier_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCId.cmake")
+if(NOT COMMAND check_name_with_c_rules OR
+   NOT COMMAND check_name_with_cmake_rules)
+  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
 endif()
 
 # .rst
 # .. command:: project_extra
 #
-#    额外设置若干变量：
-#    ::
+#   附加若干变量::
 #
-#       project_extra(
-#         [AUTHORS <author>...]
-#         [LICENSE license]
-#       )
+#     project_extra(
+#                   [AUTHORS <author>...]
+#                   [LICENSE license]
+#     )
 #
-#    影响：
-#    ::
+#   影响::
 #
-#       PROJECT_NAME_UPPER
-#       PROJECT_NAME_LOWER
-#       PROJECT_AUTHORS
-#       PROJECT_LICENSE
-#
+#     PROJECT_NAME_UPPER
+#     PROJECT_NAME_LOWER
+#     PROJECT_AUTHORS
+#     PROJECT_LICENSE
 function(project_extra)
   set(zOptKws)
   set(zOneValKws LICENSE)
@@ -36,22 +32,27 @@ function(project_extra)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
-    return()
+  endif()
+
+  check_name_with_c_rules("${PROJECT_NAME}" sPassed)
+  if(NOT sPassed)
+    message(WARNING "PROJECT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
+  endif()
+
+  check_name_with_cmake_rules("${PROJECT_NAME}" sPassed)
+  if(NOT sPassed)
+    message(WARNING "PROJECT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
   endif()
 
   string(TOUPPER "${PROJECT_NAME}" sProjNameUpr)
   string(TOLOWER "${PROJECT_NAME}" sProjNameLwr)
 
-  if(DEFINED _AUTHORS)
-    set(zAuthors ${_AUTHORS})
-  else()
-    set(zAuthors ${PRODUCT_AUTHORS})
+  if(NOT DEFINED _AUTHORS)
+    set(_AUTHORS ${PRODUCT_AUTHORS})
   endif()
 
-  if(DEFINED _LICENSE)
-    set(sLicense "${_LICENSE}")
-  else()
-    set(sLicense "${PRODUCT_LICENSE}")
+  if(NOT DEFINED _LICENSE)
+    set(_LICENSE "${PRODUCT_LICENSE}")
   endif()
 
   set(PROJECT_NAME_UPPER      "${projNameUpr}" PARENT_SCOPE)
@@ -68,16 +69,6 @@ function(project_extra)
   if(NOT "${PROJECT_VERSION_TWEAK}")
     set(PROJECT_VERSION_TWEAK 0                PARENT_SCOPE)
   endif()
-  set(PROJECT_AUTHORS         ${zAuthors}      PARENT_SCOPE)
-  set(PROJECT_LICENSE         "${sLicense}"    PARENT_SCOPE)
-
-  check_name_with_cmake_recommend_variable_rules("${PROJECT_NAME}" sCkPassed)
-  if(NOT sCkPassed)
-    message(WARNING "PROJECT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
-  endif()
-
-  check_name_with_c_identifier_rules("${PROJECT_NAME}" sCkPassed)
-  if(NOT sCkPassed)
-    message(WARNING "PROJECT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
-  endif()
+  set(PROJECT_AUTHORS         ${_AUTHORS}      PARENT_SCOPE)
+  set(PROJECT_LICENSE         "${_LICENSE}"    PARENT_SCOPE)
 endfunction()

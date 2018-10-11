@@ -1,43 +1,45 @@
 # zhengrr
-# 2016-10-08 – 2018-09-12
+# 2016-10-08 – 2018-10-11
 # The Unlicense
 
-if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
+include_guard()
+
+if(NOT COMMAND check_name_with_cmake_rules)
+  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
 endif()
 
 # .rst
-# .. command:: facile_add_library
+# .. command:: add_library_ex
 #
-#    便捷加入库文件（目标）：
-#    ::
+#   添加库目标到项目（附加功能）::
 #
-#       facile_add_library([NAME <full-name> | SUBNAME <sub-name>]
-#            [OPTION_DESCRIPTION <option-description>] [OPTION_INITIAL_ON]
-#          [TARGET_NAME_VARIABLE <target-name-variable>]
-#                                [FLAT_GROUP]
-#                                [STATIC | SHARED | MODULE]
-#                                [C90 | C99 | C11]
-#                                [CXX98 | CXX11 | CXX14 | CXX17 | CXX20]
-#                                <source>...
-#                    [PROPERTIES <property-key property-value>...]
-#           [COMPILE_DEFINITIONS <definition>...]
-#           [INCLUDE_DIRECTORIES <directory>...]
-#                [LINK_LIBRARIES <library>...]
-#              [COMPILE_FEATURES <feature>...]
-#               [COMPILE_OPTIONS <option>...]
-#                   [POST_COPIES <copies>...])
+#     add_library_ex(   [NAME <full-name> | SUBNAME <sub-name>]
+#         [OPTION_DESCRIPTION <option-description>]
+#                             [OPTION_INITIAL_ON]
+#       [TARGET_NAME_VARIABLE <target-name-variable>]
+#                             [FLAT_GROUP]
+#                             [STATIC|SHARED|MODULE]
+#                             [C90|C99|C11]
+#                             [CXX98|CXX11|CXX14|CXX17|CXX20]
+#                             <source>...
+#                 [PROPERTIES <property-key property-value>...]
+#        [COMPILE_DEFINITIONS <definition>...]
+#        [INCLUDE_DIRECTORIES <directory>...]
+#             [LINK_LIBRARIES <library>...]
+#           [COMPILE_FEATURES <feature>...]
+#            [COMPILE_OPTIONS <option>...]
+#                [POST_COPIES <copies>...]
+#     )
 #
-#    约定：
+#   约定
 #
-#    :NAME:         ``<full-name>`` or ``<PROJECT_NAME>_<sub-name>`` or ``<PROJECT_NAME>``
-#    :option:       ``<NAME_UPPER>_COMPILE_<STATIC|SHARED|MODULE>_LIBRARY``
-#    :source_group: to ``\\``
-#    :add_library:  ``<NAME_LOWER>_<static|shared|module>_library``
-#    :output:       ``<NAME>[d]``
-#    :install:      to ``lib``
-#
-function(facile_add_library)
+#   :NAME:         ``<full-name>`` or ``<PROJECT_NAME>_<sub-name>`` or ``<PROJECT_NAME>``
+#   :option:       ``<NAME_UPPER>_COMPILE_<STATIC|SHARED|MODULE>_LIBRARY``
+#   :source_group: to ``\\``
+#   :add_library:  ``<NAME_LOWER>_<static|shared|module>_library``
+#   :output:       ``<NAME>[d]``
+#   :install:      to ``lib``
+function(add_library_ex)
   set(zOptKws    OPTION_INITIAL_ON
                  FLAT_GROUP
                  STATIC SHARED MODULE
@@ -84,9 +86,9 @@ function(facile_add_library)
   # target name
   set(sTgtName "${sNameLwr}_${sTypeLwr}_library")
   if(DEFINED _TARGET_NAME_VARIABLE)
-    check_name_with_cmake_recommend_variable_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
+    check_name_with_cmake_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
     if(NOT sCkPassed)
-      message(WARNING "The variable name not meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
+      message(WARNING "The variable name isn't meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
     endif()
     set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
   endif()

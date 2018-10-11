@@ -5,12 +5,12 @@
 # | |  | | _| || (_|  __/
 # |_|  |_| \___/\___\___| rrIce by FIGlet doom
 # zhengrr
-# 2018-03-21 – 2018-10-10
+# 2018-03-21 – 2018-10-11
 # The MIT License
 
-project(rrIce VERSION 2018.10.10 LANGUAGES CXX)
+project(rrIce VERSION 2018.10.11 LANGUAGES CXX)
 project_extra()
-compiler_warning_level(AS_ERROR UTF-8)
+compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 facile_add_doxygen()
 

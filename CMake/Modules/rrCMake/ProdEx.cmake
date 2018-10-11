@@ -1,43 +1,39 @@
 # zhengrr
-# 2016-10-08 – 2018-09-06
+# 2016-10-08 – 2018-10-11
 # The Unlicense
 
-if(NOT COMMAND check_name_with_cmake_recommend_variable_rules )
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
-endif()
+include_guard()
 
-if(NOT COMMAND check_name_with_c_identifier_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCId.cmake")
+if(NOT COMMAND check_name_with_c_rules OR
+   NOT COMMAND check_name_with_cmake_rules)
+  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
 endif()
 
 # .rst
 # .. command:: product_extra
 #
-#    额外设置若干变量：
-#    ::
+#   附加若干变量::
 #
-#       product_extra(
-#         [AUTHORS <author>...]
-#         [LICENSE <license>]
-#       )
+#     product_extra(
+#                   [AUTHORS <author>...]
+#                   [LICENSE <license>]
+#     )
 #
-#    影响：
-#    ::
+#   影响::
 #
-#       PRODUCT_NAME
-#       PRODUCT_NAME_UPPER
-#       PRODUCT_NAME_LOWER
-#       PRODUCT_SOURCE_DIR
-#       PRODUCT_BINARY_DIR
-#       PRODUCT_VERSION
-#       PRODUCT_VERSION_MAJRO
-#       PRODUCT_VERSION_MINOR
-#       PRODUCT_VERSION_PATCH
-#       PRODUCT_VERSION_TWEAK
-#       PRODUCT_DESCRIPTION
-#       PRODUCT_AUTHORS
-#       PRODUCT_LICENSE
-#
+#     PRODUCT_NAME
+#     PRODUCT_NAME_UPPER
+#     PRODUCT_NAME_LOWER
+#     PRODUCT_SOURCE_DIR
+#     PRODUCT_BINARY_DIR
+#     PRODUCT_VERSION
+#     PRODUCT_VERSION_MAJRO
+#     PRODUCT_VERSION_MINOR
+#     PRODUCT_VERSION_PATCH
+#     PRODUCT_VERSION_TWEAK
+#     PRODUCT_DESCRIPTION
+#     PRODUCT_AUTHORS
+#     PRODUCT_LICENSE
 function(product_extra)
   set(zOptKws)
   set(zOneValKws LICENSE)
@@ -45,7 +41,16 @@ function(product_extra)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
-    return()
+  endif()
+
+  check_name_with_c_rules("${PROJECT_NAME}" sPassed)
+  if(NOT sPassed)
+    message(WARNING "PRODUCT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
+  endif()
+
+  check_name_with_cmake_rules("${PROJECT_NAME}" sPassed)
+  if(NOT sPassed)
+    message(WARNING "PRODUCT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
   endif()
 
   string(TOUPPER "${PROJECT_NAME}" sProjNameUpr)
@@ -80,14 +85,4 @@ function(product_extra)
   set(PRODUCT_DESCRIPTION     "${PROJECT_DESCRIPTION}"   PARENT_SCOPE)
   set(PRODUCT_AUTHORS         ${_AUTHORS}                PARENT_SCOPE)
   set(PRODUCT_LICENSE         "${_LICENSE}"              PARENT_SCOPE)
-
-  check_name_with_cmake_recommend_variable_rules("${PROJECT_NAME}" sCkPassed)
-  if(NOT sCkPassed)
-    message(WARNING "PRODUCT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
-  endif()
-
-  check_name_with_c_identifier_rules("${PROJECT_NAME}" sCkPassed)
-  if(NOT sCkPassed)
-    message(WARNING "PRODUCT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
-  endif()
 endfunction()

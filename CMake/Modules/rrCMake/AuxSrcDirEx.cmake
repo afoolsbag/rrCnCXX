@@ -1,34 +1,31 @@
 # zhengrr
-# 2016-10-08 – 2018-09-14
+# 2016-10-08 – 2018-10-11
 # The Unlicense
 
-if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
-endif()
+include_guard()
 
-if(NOT COMMAND check_name_with_file_extension_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameFExt.cmake")
+if(NOT COMMAND check_name_with_cmake_rules OR
+   NOT COMMAND check_name_with_fext_rules)
+  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
 endif()
 
 # .rst
-# .. command:: aux_source_directory_enhanced
+# .. command:: aux_source_directory_ex
 #
-#    搜寻目录下指定文件（增强版）：
-#    ::
+#   查找目录中的所有源文件（附加功能）::
 #
-#       aux_source_directory_enhanced(
-#         <results-variable>
-#         [RECURES] [C] [CXX] [MFC] [QT] [CFG] [EXPLICIT]
-#         [MFC_PCH_NAME <mfc-pch-name>]
-#         [SOURCE_DIRECTORY <directory>]
-#         [SOURCE_BASE_MATCHES <regex>]
-#         [SOURCE_BASE_CLASHES <regex>]
-#         [SOURCE_EXTENSIONS <extension>...]
-#         [SOURCE_PROPERTIES <property-key property-value>...]
-#         [SOURCE_GROUP <group-folder>]
-#       )
+#     aux_source_directory_ex(<results-variable>
+#                             [RECURES] [C] [CXX] [MFC] [QT] [CFG] [EXPLICIT]
+#               [MFC_PCH_NAME <mfc-pch-name>]
+#           [SOURCE_DIRECTORY <directory>]
+#        [SOURCE_BASE_MATCHES <regex>]
+#        [SOURCE_BASE_CLASHES <regex>]
+#          [SOURCE_EXTENSIONS <extension>...]
+#          [SOURCE_PROPERTIES <property-key property-value>...]
+#               [SOURCE_GROUP <group-folder>]
+#     )
 #
-function(aux_source_directory_enhanced _RESULTS_VARIABLE)
+function(aux_source_directory_ex _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
                  C CXX MFC QT CFG
                  EXPLICIT)
@@ -56,8 +53,8 @@ function(aux_source_directory_enhanced _RESULTS_VARIABLE)
     message(WARNING "The path isn't directory: ${_SOURCE_DIRECTORY}.")
   endif()
 
-  check_name_with_cmake_recommend_variable_rules("${_RESULTS_VARIABLE}" sCkPassed)
-  if(NOT sCkPassed)
+  check_name_with_cmake_rules("${_RESULTS_VARIABLE}" sPassed)
+  if(NOT sPassed)
     message(WARNING "The variable isn't meet CMake recommend variable rules: ${_RESULTS_VARIABLE}.")
   endif()
 

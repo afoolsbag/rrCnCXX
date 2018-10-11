@@ -1,18 +1,20 @@
 # zhengrr
-# 2018-02-02 – 2018-09-06
+# 2018-02-02 – 2018-10-11
 # The Unlicense
+
+include_guard()
 
 cmake_policy(SET CMP0074 NEW) #3.12+
 
-if(NOT COMMAND facile_add_executable)
-  include("${CMAKE_CURRENT_LIST_DIR}/FacileAddExe.cmake")
+if(NOT COMMAND add_executable_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/AddExeEx.cmake")
 endif()
 
 # .rst
 # .. command:: facile_add_check_executable
 #
-#    以``facile_add_executable``命令为基础，额外约定了若干缺省参数，并启用测试。
-#
+#   便捷添加 Check 目标到项目，
+#   以 ``add_executable_ex`` 命令为基础，额外约定了若干缺省参数，并启用测试。
 function(facile_add_check_executable)
   set(zOptKws)
   set(zOneValKws TARGET_NAME_VARIABLE)
@@ -25,11 +27,11 @@ function(facile_add_check_executable)
   endif()
 
   enable_testing()
-  facile_add_executable(
-     OPTION_DESCRIPTION "Build executable with Check (requires Check)."
-   TARGET_NAME_VARIABLE sTgtName
-                        ${_UNPARSED_ARGUMENTS}
-         LINK_LIBRARIES Check::Check Check::Compat)
+  add_executable_ex(
+      OPTION_DESCRIPTION "Build executable with Check (requires Check)."
+    TARGET_NAME_VARIABLE sTgtName
+                         ${_UNPARSED_ARGUMENTS}
+          LINK_LIBRARIES Check::Check Check::Compat)
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

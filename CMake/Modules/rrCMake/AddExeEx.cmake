@@ -1,63 +1,45 @@
 # zhengrr
-# 2017-12-18 – 2018-09-12
+# 2017-12-18 – 2018-10-11
 # The Unlicense
 
-if(NOT COMMAND check_name_with_cmake_recommend_variable_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkNameCmakeVar.cmake")
+include_guard()
+
+if(NOT COMMAND check_name_with_cmake_rules)
+  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
 endif()
 
 # .rst
-# .. command:: facile_add_executable
+# .. command:: add_executable_ex
 #
-#    便捷加入可执行文件（目标）：
-#    ::
+#   添加可执行目标到项目（附加功能）::
 #
-#       facile_add_executable([NAME <full-name> | SUBNAME <sub-name>]
-#               [OPTION_DESCRIPTION <option-description>] [OPTION_INITIAL_ON]
-#             [TARGET_NAME_VARIABLE <target-name-variable>]
-#                                   [FLAT_GROUP]
-#                                   [WIN32]
-#                                   [C90 | C99 | C11]
-#                                   [CXX98 | CXX11 | CXX14 | CXX17 | CXX20]
-#                                   <source>...
-#                       [PROPERTIES <property-key property-value>...]
-#              [COMPILE_DEFINITIONS <definition>...]
-#              [INCLUDE_DIRECTORIES <directory>...]
-#                   [LINK_LIBRARIES <library>...]
-#                 [COMPILE_FEATURES <feature>...]
-#                  [COMPILE_OPTIONS <option>...]
-#                      [POST_COPIES <copies>...]
-#       )
+#     add_executable_ex([NAME <full-name> | SUBNAME <sub-name>]
+#         [OPTION_DESCRIPTION <option-description>]
+#                             [OPTION_INITIAL_ON]
+#       [TARGET_NAME_VARIABLE <target-name-variable>]
+#                             [FLAT_GROUP]
+#                             [WIN32]
+#                             [C90|C99|C11]
+#                             [CXX98|CXX11|CXX14|CXX17|CXX20]
+#                             <source>...
+#                 [PROPERTIES <property-key property-value>...]
+#        [COMPILE_DEFINITIONS <definition>...]
+#        [INCLUDE_DIRECTORIES <directory>...]
+#             [LINK_LIBRARIES <library>...]
+#           [COMPILE_FEATURES <feature>...]
+#            [COMPILE_OPTIONS <option>...]
+#                [POST_COPIES <copies>...]
+#     )
 #
-#    约定：
+#   约定
 #
-#    :NAME:           ``<full-name>`` or ``<PROJECT_NAME>_<sub-name>`` or ``<PROJECT_NAME>``
-#    :option:         ``<NAME_UPPER>_COMPILE_EXECUTABLE``
-#    :source_group:   to ``\\``
-#    :add_executable: ``<NAME_LOWER>_executable``
-#    :output:         ``<NAME>[d]``
-#    :install:        to ``bin``
-#
-#    参见：
-#
-#    + `CMake Documentation <https://cmake.org/cmake/help/latest/>`_
-#       + `cmake_parse_arguments <https://cmake.org/cmake/help/latest/command/cmake_parse_arguments>`_.
-#       + `option <https://cmake.org/cmake/help/latest/command/option>`_
-#       + `source_group <https://cmake.org/cmake/help/latest/command/source_group>`_
-#
-#       + `add_executable <https://cmake.org/cmake/help/latest/command/add_executable>`_
-#       + `set_target_properties <https://cmake.org/cmake/help/latest/command/set_target_properties>`_
-#       + `target_compile_definitions <https://cmake.org/cmake/help/latest/command/target_compile_definitions>`_
-#       + `target_include_directories <https://cmake.org/cmake/help/latest/command/target_include_directories>`_
-#       + `target_link_libraries <https://cmake.org/cmake/help/latest/command/target_link_libraries>`_
-#       + `target_compile_features <https://cmake.org/cmake/help/latest/command/target_compile_features>`_
-#       + `target_compile_options <https://cmake.org/cmake/help/latest/command/target_compile_options>`_
-#
-#       + `WIN32_EXECUTABLE <https://cmake.org/cmake/help/latest/prop_tgt/WIN32_EXECUTABLE>`_
-#       + `C_STANDARD <https://cmake.org/cmake/help/latest/prop_tgt/C_STANDARD>`_
-#       + `CXX_STANDARD <https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD>`_
-#
-function(facile_add_executable)
+#   :NAME:           ``<full-name>`` or ``<PROJECT_NAME>_<sub-name>`` or ``<PROJECT_NAME>``
+#   :option:         ``<NAME_UPPER>_COMPILE_EXECUTABLE``
+#   :source_group:   to ``\\``
+#   :add_executable: ``<NAME_LOWER>_executable``
+#   :output:         ``<NAME>[d]``
+#   :install:        to ``bin``
+function(add_executable_ex)
   set(zOptKws    OPTION_INITIAL_ON
                  FLAT_GROUP
                  WIN32
@@ -89,9 +71,9 @@ function(facile_add_executable)
   # target name
   set(sTgtName "${sNameLwr}_executable")
   if(DEFINED _TARGET_NAME_VARIABLE)
-    check_name_with_cmake_recommend_variable_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
+    check_name_with_cmake_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
     if(NOT sCkPassed)
-      message(WARNING "The variable name not meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
+      message(WARNING "The variable name isn't meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
     endif()
     set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
   endif()
