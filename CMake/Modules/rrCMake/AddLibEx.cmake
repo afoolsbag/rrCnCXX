@@ -19,6 +19,7 @@ endif()
 #       [NAME_SUFFIX          <name-suffix>]
 #       [STATIC | SHARED | MODULE]
 #       [EXCLUDE_FROM_ALL]
+#       <source>...
 #
 #       [WITH_OPTION]
 #       [OPTION_NAME_PREFIX   <option-name-prefix>]
