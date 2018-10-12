@@ -5,10 +5,10 @@
 # | |  | | _| || (_|  __/
 # |_|  |_| \___/\___\___| rrIce by FIGlet doom
 # zhengrr
-# 2018-03-21 – 2018-10-11
+# 2018-03-21 – 2018-10-12
 # The MIT License
 
-project(rrIce VERSION 2018.10.11 LANGUAGES CXX)
+project(rrIce VERSION 2018.10.12 LANGUAGES CXX)
 project_extra()
 compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
@@ -23,4 +23,5 @@ if(NOT Ice_FOUND)
   set(Ice_HOME "${Ice_HOME}" CACHE PATH "The root directory of the ICE installation.")
 endif()
 
-aux_add_subdirectories()
+aux_add_subdirectories(WITH_OPTION
+    OPTION_NAME_PREFIX "${PROJECT_NAME}")

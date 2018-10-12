@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-10-11
+# 2017-12-18 – 2018-10-12
 # The Unlicense
 
 include_guard()
@@ -18,13 +18,16 @@ endif()
 #
 #     aux_add_subdirectories(
 #                            [WITH_OPTION]
+#                            [OPTION_NAME_PREFIX option-name-prefix]
+#                            [OPTION_NAME_SUFFIX option-name-suffix]
 #                            [OPTION_INITIAL_ON]
 #                [PRIORITIES <sub-directory>...]
 #     )
 function(aux_add_subdirectories)
   set(zOptKws    WITH_OPTION
                  OPTION_INITIAL_ON)
-  set(zOneValKws)
+  set(zOneValKws OPTION_NAME_PREFIX
+                 OPTION_NAME_SUFFIX)
   set(zMutValKws PRIORITIES)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
@@ -35,6 +38,14 @@ function(aux_add_subdirectories)
     set(_WITH_OPTION WITH_OPTION)
   else()
     set(_WITH_OPTION)
+  endif()
+
+  if(DEFINED _OPTION_NAME_PREFIX)
+    set(_OPTION_NAME_PREFIX OPTION_NAME_PREFIX "${_OPTION_NAME_PREFIX}")
+  endif()
+
+  if(DEFINED _OPTION_NAME_SUFFIX)
+    set(_OPTION_NAME_SUFFIX OPTION_NAME_SUFFIX "${_OPTION_NAME_SUFFIX}")
   endif()
 
   if(_OPTION_INITIAL_ON)
@@ -67,6 +78,6 @@ function(aux_add_subdirectories)
     if(NOT EXISTS "${sDir}/${sRelDir}/CMakeLists.txt")
       continue()
     endif()
-    add_subdirectory_ex("${sRelDir}" ${_WITH_OPTION} ${_OPTION_INITIAL_ON})
+    add_subdirectory_ex("${sRelDir}" ${_WITH_OPTION} ${_OPTION_NAME_PREFIX} ${_OPTION_NAME_SUFFIX} ${_OPTION_INITIAL_ON})
   endforeach()
 endfunction()
