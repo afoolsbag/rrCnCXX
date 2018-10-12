@@ -13,12 +13,16 @@ endif()
 #
 #   添加子目录到构建（附加功能）::
 #
-#     add_subdirectory_ex(<source-directory> [binary-directory] [EXCLUDE_FROM_ALL]
-#                         [WITH_OPTION]
-#                         [OPTION_NAME_PREFIX option-name-prefix]
-#                         [OPTION_NAME        option-name]         default: ${SOURCE_DIRECTORY_UPPER}
-#                         [OPTION_NAME_SUFFIX option-name-suffix]
-#                         [OPTION_INITIAL_ON]
+#     add_subdirectory_ex(
+#       <source-directory>
+#       [<binary-directory>]
+#       [EXCLUDE_FROM_ALL]
+#
+#       [WITH_OPTION]
+#       [OPTION_NAME_PREFIX <option-name-prefix>]
+#       [OPTION_NAME        <option-name>]         default: "${SOURCE_DIRECTORY_UPPER}"
+#       [OPTION_NAME_SUFFIX <option-name-suffix>]
+#       [OPTION_INITIAL_ON]
 #     )
 function(add_subdirectory_ex _SOURCE_DIRECTORY)
   set(zOptKws    EXCLUDE_FROM_ALL
@@ -45,33 +49,16 @@ function(add_subdirectory_ex _SOURCE_DIRECTORY)
   endif()
 
   if(_WITH_OPTION)
-    if(DEFINED _OPTION_NAME_PREFIX)
-      string(TOUPPER "${_OPTION_NAME_PREFIX}" _OPTION_NAME_PREFIX)
-      set(_OPTION_NAME_PREFIX "${_OPTION_NAME_PREFIX}_")
-    endif()
-
     if(NOT DEFINED _OPTION_NAME)
-      check_name_with_cmake_rules("${_SOURCE_DIRECTORY}" sPassed)
-      if(NOT sPassed)
-        message(WARNING "The directory name isn't meet CMake recommend variable rules: ${_SOURCE_DIRECTORY}.")
-      endif()
       string(TOUPPER "${_SOURCE_DIRECTORY}" _OPTION_NAME)
     endif()
-
-    if(DEFINED _OPTION_NAME_SUFFIX)
-      string(TOUPPER "${_OPTION_NAME_SUFFIX}" _OPTION_NAME_SUFFIX)
-      set(_OPTION_NAME_SUFFIX "_${_OPTION_NAME_SUFFIX}")
-    endif()
-
     set(vOptName "${_OPTION_NAME_PREFIX}${_OPTION_NAME}${_OPTION_NAME_SUFFIX}")
+    check_name_with_cmake_rules("${vOptName}" WARNING)
     option(${vOptName} "Sub-directory ${_SOURCE_DIRECTORY}." ${_OPTION_INITIAL_ON})
-
-  else()
-    set(vOptName TRUE)
-
+    if(NOT ${vOptName})
+      return()
+    endif()
   endif()
 
-  if(${vOptName})
-    add_subdirectory("${_SOURCE_DIRECTORY}" ${_BINARY_DIRECTORY} ${_EXCLUDE_FROM_ALL})
-  endif()
+  add_subdirectory("${_SOURCE_DIRECTORY}" ${_BINARY_DIRECTORY} ${_EXCLUDE_FROM_ALL})
 endfunction()
