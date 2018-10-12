@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2018-10-11
+# 2017-12-18 – 2018-10-12
 # The Unlicense
 
 include_guard()
@@ -13,104 +13,134 @@ endif()
 #
 #   添加可执行目标到项目（附加功能）::
 #
-#     add_executable_ex([NAME <full-name> | SUBNAME <sub-name>]
-#         [OPTION_DESCRIPTION <option-description>]
-#                             [OPTION_INITIAL_ON]
+#     add_executable_ex(
+#       [NAME_PREFIX          <name-prefix>]           default: NAME ? "${PROJECT_NAME}_" : "${PROJECT_NAME}"
+#       [NAME                 <name>]
+#       [NAME_SUFFIX          <name-suffix>]
+#       [WIN32] [MACOSX_BUNDLE]
+#       [EXCLUDE_FROM_ALL]
+#       <source>...
+#
+#       [WITH_OPTION]
+#       [OPTION_NAME_PREFIX   <option-name-prefix>]
+#       [OPTION_NAME          <option-name>]           default: "${FULL_NAME_UPPER}"
+#       [OPTION_NAME_SUFFIX   <option-name-suffix>]    default: "_COMPILE_EXECUTABLE"
+#       [OPTION_DESCRIPTION   <option-description>]    default: "Build ${FULL_NAME} executable."
+#       [OPTION_INITIAL_ON]
+#
+#       [FLAT_GROUP]
+#
+#       [TARGET_NAME_PREFIX   <target-name-prefix>]
+#       [TARGET_NAME          <target-name>]           default: "${FULL_NAME_LOWER}"
+#       [TARGET_NAME_SUFFIX   <target-name-suffix>]    default: "_executable"
 #       [TARGET_NAME_VARIABLE <target-name-variable>]
-#                             [FLAT_GROUP]
-#                             [WIN32]
-#                             [C90|C99|C11]
-#                             [CXX98|CXX11|CXX14|CXX17|CXX20]
-#                             <source>...
-#                 [PROPERTIES <property-key property-value>...]
-#        [COMPILE_DEFINITIONS <definition>...]
-#        [INCLUDE_DIRECTORIES <directory>...]
-#             [LINK_LIBRARIES <library>...]
-#           [COMPILE_FEATURES <feature>...]
-#            [COMPILE_OPTIONS <option>...]
-#                [POST_COPIES <copies>...]
+#
+#       [C90 | C99 | C11]
+#       [CXX98 | CXX11 | CXX14 | CXX17 | CXX20]
+#       [PROPERTIES           <property-key property-value>...]
+#
+#       [COMPILE_DEFINITIONS  <INTERFACE|PUBLIC|PRIVATE> <definition>...]
+#       [COMPILE_FEATURES     <INTERFACE|PUBLIC|PRIVATE> <feature>...]
+#       [COMPILE_OPTIONS      <INTERFACE|PUBLIC|PRIVATE> <option>...]
+#       [INCLUDE_DIRECTORIES  <INTERFACE|PUBLIC|PRIVATE> <directory>...]
+#       [LINK_DIRECTORIES     <INTERFACE|PUBLIC|PRIVATE> <directory>...]
+#       [LINK_LIBRARIES       <INTERFACE|PUBLIC|PRIVATE> <library>...]
+#       [LINK_OPTIONS         <INTERFACE|PUBLIC|PRIVATE> <option>...]
+#       [POST_COPIES          <copies>...]
 #     )
-#
-#   约定
-#
-#   :NAME:           ``<full-name>`` or ``<PROJECT_NAME>_<sub-name>`` or ``<PROJECT_NAME>``
-#   :option:         ``<NAME_UPPER>_COMPILE_EXECUTABLE``
-#   :source_group:   to ``\\``
-#   :add_executable: ``<NAME_LOWER>_executable``
-#   :output:         ``<NAME>[d]``
-#   :install:        to ``bin``
 function(add_executable_ex)
-  set(zOptKws    OPTION_INITIAL_ON
+  set(zOptKws    WIN32 MACOSX_BUNDLE
+                 EXCLUDE_FROM_ALL
+                 WITH_OPTION
+                 OPTION_INITIAL_ON
                  FLAT_GROUP
-                 WIN32
                  C90 C99 C11
                  CXX98 CXX11 CXX14 CXX17 CXX20)
-  set(zOneValKws NAME SUBNAME
+  set(zOneValKws NAME_PREFIX
+                 NAME
+                 NAME_SUFFIX
+                 OPTION_NAME_PREFIX
+                 OPTION_NAME
+                 OPTION_NAME_SUFFIX
                  OPTION_DESCRIPTION
+                 TARGET_NAME_PREFIX
+                 TARGET_NAME
+                 TARGET_NAME_SUFFIX
                  TARGET_NAME_VARIABLE)
   set(zMutValKws PROPERTIES
                  COMPILE_DEFINITIONS
-                 INCLUDE_DIRECTORIES
-                 LINK_LIBRARIES
                  COMPILE_FEATURES
                  COMPILE_OPTIONS
+                 INCLUDE_DIRECTORIES
+                 LINK_DIRECTORIES
+                 LINK_LIBRARIES
+                 LINK_OPTIONS
                  POST_COPIES)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
+  set(_SOURCE ${_UNPARSED_ARGUMENTS})
 
-  # name
-  if(DEFINED _NAME)
-    set(sName "${_NAME}")
-  elseif(DEFINED _SUBNAME)
-    set(sName "${PROJECT_NAME}_${_SUBNAME}")
-  else()
-    set(sName "${PROJECT_NAME}")
-  endif()
-  string(TOUPPER "${sName}" sNameUpr)
-  string(TOLOWER "${sName}" sNameLwr)
-
-  # target name
-  set(sTgtName "${sNameLwr}_executable")
-  if(DEFINED _TARGET_NAME_VARIABLE)
-    check_name_with_cmake_rules("${_TARGET_NAME_VARIABLE}" sCkPassed)
-    if(NOT sCkPassed)
-      message(WARNING "The variable name isn't meet CMake recommend variable rules: ${_TARGET_NAME_VARIABLE}.")
+  if(NOT DEFINED _NAME_PREFIX)
+    if(DEFINED _NAME)
+      set(_NAME_PREFIX "${PROJECT_NAME}_")
+    else()
+      set(_NAME_PREFIX "${PROJECT_NAME}")
     endif()
+  endif()
+  set(sName "${_NAME_PREFIX}${_NAME}${_NAME_SUFFIX}")
+
+  if(_WIN32)
+    set(_WIN32 WIN32)
+  else()
+    set(_WIN32)
+  endif()
+
+  if(_MACOSX_BUNDLE)
+    set(_MACOSX_BUNDLE MACOSX_BUNDLE)
+  else()
+    set(_MACOSX_BUNDLE)
+  endif()
+
+  if(_EXCLUDE_FROM_ALL)
+    set(_EXCLUDE_FROM_ALL EXCLUDE_FROM_ALL)
+  else()
+    set(_EXCLUDE_FROM_ALL)
+  endif()
+
+  if(_WITH_OPTION)
+    if(NOT DEFINED _OPTION_NAME)
+      string(TOUPPER "${sName}" _OPTION_NAME)
+    endif()
+    if(NOT DEFINED _OPTION_NAME_SUFFIX)
+      set(_OPTION_NAME_SUFFIX "_COMPILE_EXECUTABLE")
+    endif()
+    set(vOptName "${_OPTION_NAME_PREFIX}${_OPTION_NAME}${_OPTION_NAME_SUFFIX}")
+    check_name_with_cmake_rules("${vOptName}" WARNING)
+    if(NOT DEFINED _OPTION_DESCRIPTION)
+      set(_OPTION_DESCRIPTION "Build ${sName} executable.")
+    endif()
+    option(${vOptName} "${_OPTION_DESCRIPTION}" ${_OPTION_INITIAL_ON})
+    if(NOT ${vOptName})
+      return()
+    endif()
+  endif()
+
+  if(_FLAT_GROUP)
+    source_group("\\" FILES ${_SOURCE})
+  endif()
+
+  if(NOT DEFINED _TARGET_NAME)
+    string(TOLOWER "${sName}" _TARGET_NAME)
+  endif()
+  if(NOT DEFINED _TARGET_NAME_SUFFIX)
+    set(_TARGET_NAME_SUFFIX "_executable")
+  endif()
+  set(sTgtName "${_TARGET_NAME_PREFIX}${_TARGET_NAME}${_TARGET_NAME_SUFFIX}")
+  check_name_with_cmake_rules("${sTgtName}" WARNING)
+  if(DEFINED _TARGET_NAME_VARIABLE)
+    check_name_with_cmake_rules("${_TARGET_NAME_VARIABLE}" WARNING)
     set(${_TARGET_NAME_VARIABLE} "${sTgtName}" PARENT_SCOPE)
   endif()
 
-  # option
-  set(vOptName "${sNameUpr}_COMPILE_EXECUTABLE")
-
-  if(_OPTION_INITIAL_ON)
-    set(sOptInit ON)
-  else()
-    set(sOptInit)
-  endif()
-
-  if(DEFINED _OPTION_DESCRIPTION)
-    set(sOptDesc "${_OPTION_DESCRIPTION}")
-  else()
-    set(sOptDesc "Build executable.")
-  endif()
-
-  option(${vOptName} "${sOptDesc}" ${sOptInit})
-  if(NOT ${vOptName})
-    return()
-  endif()
-
-  # source_group
-  if(_FLAT_GROUP)
-    source_group("\\" FILES ${_UNPARSED_ARGUMENTS})
-  endif()
-
-  # prop WIN32
-  if(_WIN32)
-    set(sWin32 "WIN32")
-  else()
-    set(sWin32)
-  endif()
-
-  # prop C_STANDARD
   if(_C11)
     set(zPropCStd C_STANDARD 11 C_STANDARD_REQUIRED ON)
   elseif(_C99)
@@ -121,7 +151,6 @@ function(add_executable_ex)
     set(zPropCStd)
   endif()
 
-  # prop CXX_STANDARD
   if(_CXX20)
     set(zPropCxxStd CXX_STANDARD 20 CXX_STANDARD_REQUIRED ON)
   elseif(_CXX17)
@@ -133,11 +162,10 @@ function(add_executable_ex)
   elseif(_CXX98)
     set(zPropCxxStd CXX_STANDARD 98 CXX_STANDARD_REQUIRED ON)
   else()
-    set(zPropertyCxxStd)
+    set(zPropCxxStd)
   endif()
 
-  # add_executable
-  add_executable("${sTgtName}" ${sWin32} ${_UNPARSED_ARGUMENTS})
+  add_executable("${sTgtName}" ${_WIN32} ${_MACOSX_BUNDLE} ${_EXCLUDE_FROM_ALL} ${_SOURCE})
   set_target_properties("${sTgtName}"
              PROPERTIES ${zPropCStd}
                         ${zPropCxxStd}
@@ -145,7 +173,6 @@ function(add_executable_ex)
                         DEBUG_POSTFIX "d"
                         CLEAN_DIRECT_OUTPUT ON)
 
-  # set_target_properties
   if(DEFINED _PROPERTIES)
     list(LENGTH _PROPERTIES sLen)
     if(sLen EQUAL 0)
@@ -154,37 +181,14 @@ function(add_executable_ex)
     set_target_properties("${sTgtName}" PROPERTIES ${_PROPERTIES})
   endif()
 
-  # target_compile_definitions
   if(DEFINED _COMPILE_DEFINITIONS)
     list(LENGTH _COMPILE_DEFINITIONS sLen)
     if(sLen EQUAL 0)
       message(WARNING "Keyword COMPILE_DEFINITIONS is used, but without value.")
     endif()
-    list(REMOVE_DUPLICATES _COMPILE_DEFINITIONS)
     target_compile_definitions("${sTgtName}" ${_COMPILE_DEFINITIONS})
   endif()
 
-  # target_include_directories
-  if(DEFINED _INCLUDE_DIRECTORIES)
-    list(LENGTH _INCLUDE_DIRECTORIES sLen)
-    if(sLen EQUAL 0)
-      message(WARNING "Keyword INCLUDE_DIRECTORIES is used, but without value.")
-    endif()
-    list(REMOVE_DUPLICATES _INCLUDE_DIRECTORIES)
-    target_include_directories("${sTgtName}" ${_INCLUDE_DIRECTORIES})
-  endif()
-
-  # target_link_libraries
-  if(DEFINED _LINK_LIBRARIES)
-    list(LENGTH _LINK_LIBRARIES sLen)
-    if(sLen EQUAL 0)
-      message(WARNING "Keyword LINK_LIBRARIES is used, but without value.")
-    endif()
-    list(REMOVE_DUPLICATES _LINK_LIBRARIES)
-    target_link_libraries("${sTgtName}" ${_LINK_LIBRARIES})
-  endif()
-
-  # target_compile_features
   if(DEFINED _COMPILE_FEATURES)
     list(LENGTH _COMPILE_FEATURES sLen)
     if(sLen EQUAL 0)
@@ -193,7 +197,6 @@ function(add_executable_ex)
     target_compile_features("${sTgtName}" ${_COMPILE_FEATURES})
   endif()
 
-  # target_compile_options
   if(DEFINED _COMPILE_OPTIONS)
     list(LENGTH _COMPILE_OPTIONS sLen)
     if(sLen EQUAL 0)
@@ -202,7 +205,38 @@ function(add_executable_ex)
     target_compile_options("${sTgtName}" ${_COMPILE_OPTIONS})
   endif()
 
-  # POST_COPIES
+  if(DEFINED _INCLUDE_DIRECTORIES)
+    list(LENGTH _INCLUDE_DIRECTORIES sLen)
+    if(sLen EQUAL 0)
+      message(WARNING "Keyword INCLUDE_DIRECTORIES is used, but without value.")
+    endif()
+    target_include_directories("${sTgtName}" ${_INCLUDE_DIRECTORIES})
+  endif()
+
+  if(DEFINED _LINK_LIBRARIES)
+    list(LENGTH _LINK_LIBRARIES sLen)
+    if(sLen EQUAL 0)
+      message(WARNING "Keyword LINK_LIBRARIES is used, but without value.")
+    endif()
+    target_link_libraries("${sTgtName}" ${_LINK_LIBRARIES})
+  endif()
+
+  if(DEFINED _LINK_DIRECTORIES)
+    list(LENGTH _LINK_DIRECTORIES sLen)
+    if(sLen EQUAL 0)
+      message(WARNING "Keyword LINK_DIRECTORIES is used, but without value.")
+    endif()
+    target_link_directories("${sTgtName}" ${_LINK_DIRECTORIES})
+  endif()
+
+  if(DEFINED _LINK_OPTIONS)
+    list(LENGTH _LINK_OPTIONS sLen)
+    if(sLen EQUAL 0)
+      message(WARNING "Keyword LINK_OPTIONS is used, but without value.")
+    endif()
+    target_link_options("${sTgtName}" ${_LINK_OPTIONS})
+  endif()
+
   if(DEFINED _POST_COPIES)
     list(LENGTH _POST_COPIES sLen)
     if(sLen EQUAL 0)
@@ -226,6 +260,5 @@ function(add_executable_ex)
     endforeach()
   endif()
 
-  # install
   install(TARGETS "${sTgtName}" DESTINATION "bin")
 endfunction()
