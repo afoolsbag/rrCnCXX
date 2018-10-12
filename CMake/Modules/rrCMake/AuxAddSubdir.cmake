@@ -17,11 +17,11 @@ endif()
 #   查找目录中的所有子目录，并尝试添加到构建::
 #
 #     aux_add_subdirectories(
-#                            [WITH_OPTION]
-#                            [OPTION_NAME_PREFIX option-name-prefix]
-#                            [OPTION_NAME_SUFFIX option-name-suffix]
-#                            [OPTION_INITIAL_ON]
-#                [PRIORITIES <sub-directory>...]
+#       [WITH_OPTION]
+#       [OPTION_NAME_PREFIX <option-name-prefix>]
+#       [OPTION_NAME_SUFFIX <option-name-suffix>]
+#       [OPTION_INITIAL_ON]
+#       [PRIORITIES         <sub-directory>...]
 #     )
 function(aux_add_subdirectories)
   set(zOptKws    WITH_OPTION
