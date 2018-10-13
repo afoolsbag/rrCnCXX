@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-11
+# 2016-10-08 – 2018-10-13
 # The Unlicense
 
 include_guard()
@@ -13,55 +13,79 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #   便捷添加 Doxygen 目标到项目::
 #
 #     facile_add_doxygen(
-#                        [JAVADOC_AUTOBRIEF]
-#                        [OPTIMIZE_OUTPUT_FOR_C]
+#       [WITH_OPTION]
+#       [OPTION_NAME_PREFIX <option-name-prefix>]
+#       [OPTION_NAME        <option-name>]           default: "${PROJECT_NAME_UPPER}"
+#       [OPTION_NAME_SUFFUX <option-name-suffix>]    default: "_GENERATE_DOCUMENTATION"
+#       [OPTION_DESCRIPTION <option-description>]    default: "Generate documentation (requires Doxygen)."
+#       [OPTION_INITIAL_ON]
+#
+#       [TARGET_NAME_PREFIX   <target-name-prefix>]
+#       [TARGET_NAME          <target-name>]         default: "${PROJECT_NAME_LOWER}"
+#       [TARGET_NAME_SUFFIX   <target-name-suffix>]  default: "_documentation"
+#
+#       [JAVADOC_AUTOBRIEF]
+#       [OPTIMIZE_OUTPUT_FOR_C]
 #     )
 #
-#   缓存::
+#   缓存：
 #
-#     DOXYGEN_DOT_PATH
-#     DOXYGEN_PLANTUML_JAR_PATH
+#   ``DOXYGEN_DOT_PATH``
 #
-#   约定::
-#
-#     :NAME:             ``<PROJECT_NAME>``
-#     :option:           ``<NAME_UPPER>_GENERATE_DOCUMENTATION``
-#     :doxygen_add_docs: ``<NAME_LOWER>_documentation``
-#     :input:            ``<PROJECT_SOURCE_DIR>`` and ``<PROJECT_BINARY_DIR>``
-#     :output:           ``<PROJECT_BINARY_DIR>/doxygen``
-#     :more doxygen cfg: see code
-#     :install:          to ``docs/<NAME>``
+#   ``DOXYGEN_PLANTUML_JAR_PATH``
 #
 #   参见：
 #
-#     - `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen>`_. *CMake Documentation*.
-#     - `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
+#   - `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen>`_. *CMake Documentation*.
+#   - `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
 function(facile_add_doxygen)
-  set(zOptKws    JAVADOC_AUTOBRIEF
+  set(zOptKws    WITH_OPTION
+                 OPTION_INITIAL_ON
+                 JAVADOC_AUTOBRIEF
                  OPTIMIZE_OUTPUT_FOR_C)
-  set(zOneValKws)
+  set(zOneValKws OPTION_NAME_PREFIX
+                 OPTION_NAME
+                 OPTION_NAME_SUFFUX
+                 OPTION_DESCRIPTION
+                 TARGET_NAME_PREFIX
+                 TARGET_NAME
+                 TARGET_NAME_SUFFIX)
   set(zMutValKws)
   cmake_parse_arguments(PARSE_ARGV 0 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
-    message(FATAL_ERROR "Unexpected arguments \"${_UNPARSED_ARGUMENTS}\".")
-    return()
+    message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
   endif()
 
-  set(sName "${PROJECT_NAME}")
-  string(TOUPPER "${sName}" sNameUpr)
-  string(TOLOWER "${sName}" sNameLwr)
+  if(_WITH_OPTION)
+    if(NOT DEFINED _OPTION_NAME)
+      string(TOUPPER "${PROJECT_NAME}" _OPTION_NAME)
+    endif()
+    if(NOT DEFINED _OPTION_NAME_SUFFIX)
+      set(_OPTION_NAME_SUFFIX "_GENERATE_DOCUMENTATION")
+    endif()
+    set(vOptName "${_OPTION_NAME_PREFIX}${_OPTION_NAME}${_OPTION_NAME_SUFFIX}")
+    check_name_with_cmake_rules("${vOptName}" WARNING)
+    if(NOT DEFINED _OPTION_DESCRIPTION)
+      set(_OPTION_DESCRIPTION "Generate documentation (requires Doxygen).")
+    endif()
+    option(${vOptName} "${_OPTION_DESCRIPTION}" ${_OPTION_INITIAL_ON})
+    if(NOT ${vOptName})
+      return()
+    endif()
+  endif()
 
-  # option
-  set(vOptName "${sNameUpr}_GENERATE_DOCUMENTATION")
+  if(NOT DEFINED _TARGET_NAME)
+    string(TOLOWER "${PROJECT_NAME}" _TARGET_NAME)
+  endif()
+  if(NOT DEFINED _TARGET_NAME_SUFFIX)
+    set(_TARGET_NAME_SUFFIX "_documentation")
+  endif()
+  set(sTgtName "${_TARGET_NAME_PREFIX}${_TARGET_NAME}${_TARGET_NAME_SUFFIX}")
+  check_name_with_cmake_rules("${sTgtName}" WARNING)
 
   find_package(Doxygen OPTIONAL_COMPONENTS dot)
   if(NOT DOXYGEN_FOUND)
     message(WARNING "Doxygen is needed to generate doxygen documentation.")
-  endif()
-
-  option(${vOptName} "Generate documentation (requires Doxygen)." ${DOXYGEN_FOUND})
-  if(NOT ${vOptName})
-    return()
   endif()
 
   # Doxygen Configuration
@@ -119,15 +143,11 @@ function(facile_add_doxygen)
   #           PLANTUML_JAR_PATH     http://doxygen.org/manual/config.html#cfg_plantuml_jar_path
   set(DOXYGEN_PLANTUML_JAR_PATH     "" CACHE FILEPATH "The path where java can find the plantuml.jar file.")
 
-  # doxygen
-  set(sTgtName "${sNameLwr}_documentation")
-
-  doxygen_add_docs(   "${sTgtName}"
-                      "${PROJECT_SOURCE_DIR}"
-                      "${PROJECT_BINARY_DIR}"
+  doxygen_add_docs(
+    "${sTgtName}"
+    "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}"
     WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-              COMMENT "Generating documentation with Doxygen.")
+    COMMENT           "Generating documentation with Doxygen.")
 
-  # install
-  install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen" DESTINATION "docs/${sName}")
+  install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen" DESTINATION "docs/${PROJECT_NAME}")
 endfunction()

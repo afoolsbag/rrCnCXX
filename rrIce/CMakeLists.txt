@@ -14,7 +14,8 @@ compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 facile_add_doxygen()
 
-find_package(Ice
+find_package(
+  Ice
   COMPONENTS Ice++11
              IceDiscovery++11
              IceLocatorDiscovery++11
@@ -23,5 +24,6 @@ if(NOT Ice_FOUND)
   set(Ice_HOME "${Ice_HOME}" CACHE PATH "The root directory of the ICE installation.")
 endif()
 
-aux_add_subdirectories(WITH_OPTION
-    OPTION_NAME_PREFIX "${PROJECT_NAME}")
+aux_add_subdirectories(
+  WITH_OPTION
+  OPTION_NAME_PREFIX "${PROJECT_NAME_UPPER}_")

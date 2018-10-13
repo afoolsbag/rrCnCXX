@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-11
+# 2016-10-08 – 2018-10-12
 # The Unlicense
 
 include_guard()
@@ -43,16 +43,8 @@ function(product_extra)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
   endif()
 
-  check_name_with_c_rules("${PROJECT_NAME}" sPassed)
-  if(NOT sPassed)
-    message(WARNING "PRODUCT_NAME isn't meet C identifier rules: ${PROJECT_NAME}.")
-  endif()
-
-  check_name_with_cmake_rules("${PROJECT_NAME}" sPassed)
-  if(NOT sPassed)
-    message(WARNING "PRODUCT_NAME isn't meet CMake recommend variable rules: ${PROJECT_NAME}.")
-  endif()
-
+  check_name_with_c_rules("${PROJECT_NAME}" WARNING)
+  check_name_with_cmake_rules("${PROJECT_NAME}" WARNING)
   string(TOUPPER "${PROJECT_NAME}" sProjNameUpr)
   string(TOLOWER "${PROJECT_NAME}" sProjNameLwr)
 

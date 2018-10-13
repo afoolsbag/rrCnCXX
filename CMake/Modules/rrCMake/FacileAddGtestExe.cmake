@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-17 – 2018-10-11
+# 2017-12-17 – 2018-10-13
 # The Unlicense
 
 include_guard()
@@ -15,7 +15,6 @@ endif()
 #
 #   便捷添加 GTest 目标到项目，
 #   以 ``add_executable_ex`` 命令为基础，额外约定了若干缺省参数，并启用测试。
-#
 function(facile_add_gtest_executable)
   set(zOptKws)
   set(zOneValKws TARGET_NAME_VARIABLE)
@@ -30,10 +29,10 @@ function(facile_add_gtest_executable)
 
   enable_testing()
   add_executable_ex(
-      OPTION_DESCRIPTION "Build executable with GTest (requires GTest)."
+    OPTION_DESCRIPTION   "Build executable with GTest (requires GTest)."
     TARGET_NAME_VARIABLE sTgtName
-                         ${_UNPARSED_ARGUMENTS}
-          LINK_LIBRARIES GTest::GTest)
+    ${_UNPARSED_ARGUMENTS}
+    LINK_LIBRARIES       GTest::GTest)
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)

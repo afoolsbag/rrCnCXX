@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-12
+# 2016-10-08 – 2018-10-13
 # The Unlicense
 
 include_guard()
@@ -173,13 +173,14 @@ function(add_library_ex)
   endif()
 
   add_library("${sTgtName}" ${sType} ${_EXCLUDE_FROM_ALL} ${_SOURCE})
-  set_target_properties("${sTgtName}"
-             PROPERTIES ${zPropCStd}
-                        ${zPropCxxStd}
-                        ${zPropPrefix}
-                        OUTPUT_NAME "${sName}"
-                        DEBUG_POSTFIX "d"
-                        CLEAN_DIRECT_OUTPUT ON)
+  set_target_properties(
+    "${sTgtName}"
+    PROPERTIES ${zPropCStd}
+               ${zPropCxxStd}
+               ${zPropPrefix}
+               OUTPUT_NAME         "${sName}"
+               DEBUG_POSTFIX       "d"
+               CLEAN_DIRECT_OUTPUT ON)
 
   if(DEFINED _PROPERTIES)
     list(LENGTH _PROPERTIES sLen)
@@ -253,15 +254,17 @@ function(add_library_ex)
     list(REMOVE_DUPLICATES _POST_COPIES)
     foreach(sCopy ${_POST_COPIES})
       if(TARGET "${sCopy}")
-        add_custom_command(TARGET ${sTgtName} POST_BUILD
-                          COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                                  $<TARGET_FILE:${sCopy}>
-                                  $<TARGET_FILE_DIR:${sTgtName}>)
+        add_custom_command(
+          TARGET  ${sTgtName} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                  $<TARGET_FILE:${sCopy}>
+                  $<TARGET_FILE_DIR:${sTgtName}>)
       elseif(EXISTS "${sCopy}")
-        add_custom_command(TARGET ${sTgtName} POST_BUILD
-                          COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                                  ${sCopy}
-                                  $<TARGET_FILE_DIR:${sTgtName}>)
+        add_custom_command(
+          TARGET  ${sTgtName} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                  ${sCopy}
+                  $<TARGET_FILE_DIR:${sTgtName}>)
       else()
         message(WARNING "A post-copy-item is invalid: ${sCopy}.")
       endif()

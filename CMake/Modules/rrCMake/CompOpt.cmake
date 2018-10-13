@@ -20,7 +20,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #       [WARNING_AS_ERROR]
 #     )
 #
-#   参见
+#   参见：
 #
 #   - `CMAKE_<LANG>_FLAGS <https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS>`_
 #   - `add_compile_options <https://cmake.org/cmake/help/latest/command/add_compile_options.html>`_

@@ -33,7 +33,6 @@ endif()
 #
 #       [MFC_PCH_NAME <mfc-pch-name>]
 #     )
-#
 function(aux_source_directory_ex _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
                  EXPLICIT

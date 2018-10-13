@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-02-02 – 2018-10-11
+# 2018-02-02 – 2018-10-13
 # The Unlicense
 
 include_guard()
@@ -28,10 +28,11 @@ function(facile_add_check_executable)
 
   enable_testing()
   add_executable_ex(
-      OPTION_DESCRIPTION "Build executable with Check (requires Check)."
+    OPTION_DESCRIPTION   "Build executable with Check (requires Check)."
     TARGET_NAME_VARIABLE sTgtName
-                         ${_UNPARSED_ARGUMENTS}
-          LINK_LIBRARIES Check::Check Check::Compat)
+    ${_UNPARSED_ARGUMENTS}
+    LINK_LIBRARIES       Check::Check
+                         Check::Compat)
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)
