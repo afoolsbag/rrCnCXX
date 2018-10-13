@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-11
+# 2016-10-08 – 2018-10-13
 # The Unlicense
 
 include_guard()
@@ -14,172 +14,147 @@ endif()
 #
 #   查找目录中的所有源文件（附加功能）::
 #
-#     aux_source_directory_ex(<results-variable>
-#                             [RECURES] [C] [CXX] [MFC] [QT] [CFG] [EXPLICIT]
-#               [MFC_PCH_NAME <mfc-pch-name>]
-#           [SOURCE_DIRECTORY <directory>]
-#        [SOURCE_BASE_MATCHES <regex>]
-#        [SOURCE_BASE_CLASHES <regex>]
-#          [SOURCE_EXTENSIONS <extension>...]
-#          [SOURCE_PROPERTIES <property-key property-value>...]
-#               [SOURCE_GROUP <group-folder>]
+#     aux_source_directory_ex(
+#       <results-variable>
+#       [DIRECTORY    <directory>]     default: "${CMAKE_CURRENT_LIST_DIR}"
+#
+#       [RECURES]
+#
+#       [EXPLICIT]
+#       [C] [CXX] [MFC] [QT] [CFG]
+#       [EXTENSIONS   <extension>...]
+#
+#       [BASE_MATCHES <regex>]
+#       [BASE_CLASHES <regex>]
+#
+#       [GROUP_ROOT   <group-root>]
+#
+#       [PROPERTIES   <property-key property-value>...]
+#
+#       [MFC_PCH_NAME <mfc-pch-name>]
 #     )
 #
 function(aux_source_directory_ex _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
-                 C CXX MFC QT CFG
-                 EXPLICIT)
-  set(zOneValKws MFC_PCH_NAME
-                 SOURCE_DIRECTORY
-                 SOURCE_BASE_MATCHES
-                 SOURCE_BASE_CLASHES
-                 SOURCE_GROUP)
-  set(zMutValKws SOURCE_EXTENSIONS
-                 SOURCE_PROPERTIES)
+                 EXPLICIT
+                 C CXX MFC QT CFG)
+  set(zOneValKws DIRECTORY
+                 BASE_MATCHES
+                 BASE_CLASHES
+                 GROUP_ROOT
+                 MFC_PCH_NAME)
+  set(zMutValKws EXTENSIONS
+                 PROPERTIES)
   cmake_parse_arguments(PARSE_ARGV 1 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
   if(DEFINED _UNPARSED_ARGUMENTS)
     message(FATAL_ERROR "Unexpected arguments: ${_UNPARSED_ARGUMENTS}.")
-    return()
   endif()
 
-  if(NOT DEFINED _SOURCE_DIRECTORY)
-    set(sSrcDir "${CMAKE_CURRENT_LIST_DIR}")
-  elseif(NOT IS_ABSOLUTE "${_SOURCE_DIRECTORY}")
-    set(sSrcDir "${CMAKE_CURRENT_LIST_DIR}/${_SOURCE_DIRECTORY}")
-  else()
-    set(sSrcDir "${_SOURCE_DIRECTORY}")
-  endif()
-  if(NOT IS_DIRECTORY "${sSrcDir}")
-    message(WARNING "The path isn't directory: ${_SOURCE_DIRECTORY}.")
-  endif()
+  check_name_with_cmake_rules("${_RESULTS_VARIABLE}" WARNING)
 
-  check_name_with_cmake_rules("${_RESULTS_VARIABLE}" sPassed)
-  if(NOT sPassed)
-    message(WARNING "The variable isn't meet CMake recommend variable rules: ${_RESULTS_VARIABLE}.")
+  if(NOT DEFINED _DIRECTORY)
+    set(_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}")
+  elseif(NOT IS_ABSOLUTE "${_DIRECTORY}")
+    set(_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/${_DIRECTORY}")
+  endif()
+  if(NOT IS_DIRECTORY "${_DIRECTORY}")
+    message(WARNING "The path isn't directory: ${_DIRECTORY}.")
   endif()
 
   if(_RECURSE)
-    set(sRecurse "GLOB_RECURSE")
+    set(_RECURSE GLOB_RECURSE)
   else()
-    set(sRecurse "GLOB")
+    set(_RECURSE GLOB)
   endif()
 
-  if(_EXPLICIT)
-    set(zLangs)
-  else()
-    get_property(zLangs GLOBAL PROPERTY ENABLED_LANGUAGES)
+  get_property(zLangs GLOBAL PROPERTY ENABLED_LANGUAGES)
+  set(zExts)
+  if(_C OR ((NOT _EXPLICIT) AND (C IN_LIST zLangs)))
+    list(APPEND zExts ".h"   ".c"   ".inl")
   endif()
-  set(zSrcExts)
-  if(C IN_LIST zLangs OR _C)
-    list(APPEND zSrcExts ".h" ".c" ".inl")
-  endif()
-  if(CXX IN_LIST zLangs OR _CXX)
-    list(APPEND zSrcExts ".hpp" ".cpp" ".hh"  ".cc"  ".hxx" ".cxx" ".hp"  ".cp"
-                         ".HPP" ".CPP" ".H"   ".C"   ".h++" ".c++" ".h"   ".inl")
+  if(_CXX OR ((NOT _EXPLICIT) AND (CXX IN_LIST zLangs)))
+    list(APPEND zExts ".hpp" ".cpp" ".hh"  ".cc"  ".hxx" ".cxx" ".hp"  ".cp"
+                      ".HPP" ".CPP" ".H"   ".C"   ".h++" ".c++" ".h"   ".inl")
   endif()
   if(_MFC)
-    list(APPEND zSrcExts ".h"   ".cpp"
-                         ".rc"  ".rc2" ".bmp" ".cur" ".ico")
+    list(APPEND zExts ".h"   ".cpp"
+                      ".rc"  ".rc2" ".bmp" ".cur" ".ico")
   endif()
   if(_QT)
-    list(APPEND zSrcExts ".h"   ".cpp"
-                         ".ui")
+    list(APPEND zExts ".h"   ".cpp"
+                      ".ui")
   endif()
-  if(NOT _EXPLICIT OR _CFG)
-    list(APPEND zSrcExts ".in"  ".dox")
+  if(_CFG OR (NOT _EXPLICIT))
+    list(APPEND zExts ".in"  ".dox")
   endif()
-  if(DEFINED _SOURCE_EXTENSIONS)
-    foreach(sSrcExt ${_SOURCE_EXTENSIONS})
-      check_name_with_file_extension_rules("${sSrcExt}" sCkPassed)
-      if(NOT sCkPassed)
-        message(SEND_ERROR "Undesirable extension: ${sSrcExt}.")
-        continue()
-      endif()
-      list(APPEND zSrcExts "${sSrcExt}")
+  if(DEFINED _EXTENSIONS)
+    foreach(sExt ${_EXTENSIONS})
+      check_name_with_fext_rules("${sExt}" SEND_ERROR)
+      list(APPEND zExts "${sExt}")
     endforeach()
   endif()
-  list(REMOVE_DUPLICATES zSrcExts)
+  list(REMOVE_DUPLICATES zExts)
 
-  if(DEFINED _SOURCE_GROUP)
-    set(sSrcGrp "${_SOURCE_GROUP}")
-  else()
-    set(sSrcGrp)
-  endif()
+  set(zResults)
+  foreach(sExt ${zExts})
+    file(${_RECURSE} zExtFiles "${_DIRECTORY}/*${sExt}")
+    foreach(sExtFile ${zExtFiles})
 
-  set(zRslts)
-  foreach(sSrcExt ${zSrcExts})
-    file(${sRecurse} zSrcFilePaths "${sSrcDir}/*${sSrcExt}")
-    foreach(sSrcFilePath ${zSrcFilePaths})
-
-      # check valid by regex
-      if (DEFINED _SOURCE_BASE_MATCHES OR DEFINED _SOURCE_BASE_CLASHES)
-        get_filename_component(sSrcFileName "${sSrcFilePath}" NAME)
-        if (NOT sSrcFileName MATCHES "${sSrcExt}$")
+      if (DEFINED _BASE_MATCHES OR DEFINED _BASE_CLASHES)
+        get_filename_component(sExtFileName "${sExtFile}" NAME)
+        string(REGEX REPLACE "${sExt}$" "" sExtFileBase "${sExtFileName}")
+        if(DEFINED _BASE_MATCHES AND (NOT sExtFileBase MATCHES "${_BASE_MATCHES}"))
           continue()
         endif()
-        string(REGEX REPLACE "${sSrcExt}$" "" sSrcFileBase "${sSrcFileName}")
-
-        # matches
-        if(DEFINED _SOURCE_BASE_MATCHES AND NOT sSrcFileBase MATCHES "${_SOURCE_BASE_MATCHES}")
+        if(DEFINED _BASE_CLASHES AND sExtFileBase MATCHES "${_BASE_CLASHES}")
           continue()
         endif()
-
-        # clashes
-        if(DEFINED _SOURCE_BASE_CLASHES AND sSrcFileBase MATCHES "${_SOURCE_BASE_CLASHES}")
-          continue()
-        endif()
-
       endif()
 
-	  # piece group name
-      get_filename_component(sSrcFileDir "${sSrcFilePath}" DIRECTORY)
-      file(RELATIVE_PATH sSrcFileRelDir "${sSrcDir}" "${sSrcFileDir}")
-      string(REPLACE "/" "\\\\" sSrcFileGrp "${sSrcGrp}${sSrcFileRelDir}")
+      get_filename_component(sExtFileDir "${sExtFile}" DIRECTORY)
+      file(RELATIVE_PATH sExtFileRelDir "${_DIRECTORY}" "${sExtFileDir}")
+      string(REPLACE "/" "\\\\" sExtFileGrp "${_GROUP_ROOT}${sExtFileRelDir}")
 
-	  # append & group
-      list(APPEND zRslts "${sSrcFilePath}")
-      source_group("${sSrcFileGrp}" FILES "${sSrcFilePath}")
+      list(APPEND zResults "${sExtFile}")
+      source_group("${sExtFileGrp}" FILES "${sExtFile}")
 
     endforeach()
   endforeach()
-  if(zRslts)
-    list(REMOVE_DUPLICATES zRslts)
+  if(zResults)
+    list(REMOVE_DUPLICATES zResults)
+  endif()
+
+  if(DEFINED _PROPERTIES)
+    list(LENGTH _PROPERTIES sLen)
+    if(sLen EQUAL 0)
+      message(WARNING "Keyword PROPERTIES is used, but without value.")
+    endif()
+    set_source_files_properties(${zResults} PROPERTIES ${_PROPERTIES})
   endif()
 
   if(_MFC)
-    if(DEFINED _MFC_PCH_NAME)
-      set(sPchName "${_MFC_PCH_NAME}")
-    else()
-      set(sPchName "mfc")
+    if(NOT DEFINED _MFC_PCH_NAME)
+      set(_MFC_PCH_NAME "mfc")
     endif()
-    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/${sPchName}$<$<CONFIG:Debug>:d>.pch")
-    foreach(sSrcFilePath ${zRslts})
-      get_filename_component(sFileExt ${sSrcFilePath} NAME)
-      string(TOLOWER ${sFileExt} sFileExtLwr)
-      if(NOT sFileExtLwr MATCHES ".*\.cpp$")
+    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/${_MFC_PCH_NAME}$<$<CONFIG:Debug>:d>.pch")
+    foreach(sFile ${zResults})
+      if(NOT sFile MATCHES ".*\.cpp$")
         continue()
       endif()
-      get_filename_component(sFileName ${sSrcFilePath} NAME)
-      string(TOLOWER ${sFileName} sFileNameLwr)
-      if(sFileNameLwr STREQUAL "stdafx.cpp")
-        set_source_files_properties(${sSrcFilePath}
-                         PROPERTIES COMPILE_FLAGS  "/Yc\"stdafx.h\" /Fp\"${sPch}\""
-                                    OBJECT_OUTPUTS "${sPch}")
+      get_filename_component(sFileName "${sFile}" NAME)
+      if(sFileName STREQUAL "stdafx.cpp")
+        set_source_files_properties(
+          ${sFile}
+          PROPERTIES COMPILE_FLAGS  "/Yc\"stdafx.h\" /Fp\"${sPch}\""
+                     OBJECT_OUTPUTS "${sPch}")
       else()
-        set_source_files_properties(${sSrcFilePath}
-                         PROPERTIES COMPILE_FLAGS  "/Yu\"stdafx.h\" /FI\"stdafx.h\" /Fp\"${sPch}\""
-                                    OBJECT_DEPENDS "${sPch}")
+        set_source_files_properties(
+          ${sFile}
+          PROPERTIES COMPILE_FLAGS  "/Yu\"stdafx.h\" /FI\"stdafx.h\" /Fp\"${sPch}\""
+                     OBJECT_DEPENDS "${sPch}")
       endif()
     endforeach()
   endif()
 
-  if(DEFINED _SOURCE_PROPERTIES)
-    list(LENGTH _SOURCE_PROPERTIES sLen)
-    if(sLen EQUAL 0)
-      message(WARNING "Keyword SOURCE_PROPERTIES is used, but without value.")
-    endif()
-    set_source_files_properties(${zRslts} PROPERTIES ${_SOURCE_PROPERTIES})
-  endif()
-
-  set(${_RESULTS_VARIABLE} ${zRslts} PARENT_SCOPE)
+  set(${_RESULTS_VARIABLE} ${zResults} PARENT_SCOPE)
 endfunction()
