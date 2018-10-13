@@ -138,10 +138,12 @@ function(facile_add_doxygen)
   # Configuration options related to the dot tool
   #           DOT_PATH              http://doxygen.org/manual/config.html#cfg_dot_path
   set(DOXYGEN_DOT_PATH              "" CACHE FILEPATH "The path where the dot tool can be found.")
+  mark_as_advanced(DOXYGEN_DOT_PATH)
   # NO        UML_LOOK              http://doxygen.org/manual/config.html#cfg_uml_look
   set(DOXYGEN_UML_LOOK              YES)
   #           PLANTUML_JAR_PATH     http://doxygen.org/manual/config.html#cfg_plantuml_jar_path
   set(DOXYGEN_PLANTUML_JAR_PATH     "" CACHE FILEPATH "The path where java can find the plantuml.jar file.")
+  mark_as_advanced(DOXYGEN_PLANTUML_JAR_PATH)
 
   doxygen_add_docs(
     "${sTgtName}"
