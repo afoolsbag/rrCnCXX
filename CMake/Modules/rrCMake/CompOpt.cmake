@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-11
+# 2016-10-08 – 2018-10-13
 # The Unlicense
 
 include_guard()
@@ -13,11 +13,11 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #   调整编译配置::
 #
 #     compile_option(
-#                    [ANALYZE]
-#                    [HIGHEST_WARNING_LEVEL]
-#                    [MULTIPLE_PROCESSES]
-#                    [UTF-8]
-#                    [WARNING_AS_ERROR]
+#       [ANALYZE]
+#       [HIGHEST_WARNING_LEVEL]
+#       [MULTIPLE_PROCESSES]
+#       [UTF-8]
+#       [WARNING_AS_ERROR]
 #     )
 #
 #   参见
