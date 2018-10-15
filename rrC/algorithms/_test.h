@@ -1,18 +1,16 @@
 #pragma once
-#ifndef RRC_ALGO_TEST_H_
-#define RRC_ALGO_TEST_H_
+#ifndef RRC_ALGORITHMS_TEST_H_
+#define RRC_ALGORITHMS_TEST_H_
 
 #include <check/check.h>
 
-extern TCase *tcase_bsrch(void);
-extern TCase *tcase_qsort(void);
+extern TCase *tc_algorithms(void);
 
-inline Suite *tsuite_algo(void)
+inline Suite *ts_algorithms(void)
 {
-    Suite *tsuite = suite_create("algo");
-    suite_add_tcase(tsuite, tcase_bsrch());
-    suite_add_tcase(tsuite, tcase_qsort());
-    return tsuite;
+    Suite *const ts = suite_create("algorithms");
+    suite_add_tcase(ts, tc_algorithms());
+    return ts;
 }
 
-#endif/*RRC_ALGO_TEST_H_*/
+#endif/*RRC_ALGORITHMS_TEST_H_*/

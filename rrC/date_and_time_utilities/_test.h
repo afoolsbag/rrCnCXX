@@ -1,22 +1,16 @@
 #pragma once
-#ifndef RRC_TIME_TEST_H_
-#define RRC_TIME_TEST_H_
+#ifndef RRC_DATE_AND_TIME_UTILITIES_TEST_H_
+#define RRC_DATE_AND_TIME_UTILITIES_TEST_H_
 
 #include <check/check.h>
 
-TCase *tcase_caltm(void);
-TCase *tcase_clktm(void);
-TCase *tcase_epotm(void);
-TCase *tcase_spectm(void);
+extern TCase *tc_date_and_time_utilities(void);
 
-inline Suite *tsuite_time(void)
+inline Suite *ts_date_and_time_utilities(void)
 {
-    Suite *tsuite = suite_create("time");
-    suite_add_tcase(tsuite, tcase_caltm());
-    suite_add_tcase(tsuite, tcase_clktm());
-    suite_add_tcase(tsuite, tcase_epotm());
-    suite_add_tcase(tsuite, tcase_spectm());
-    return tsuite;
+    Suite *const ts = suite_create("date_and_time_utilities");
+    suite_add_tcase(ts, tc_date_and_time_utilities());
+    return ts;
 }
 
-#endif/*RRC_TIME_TEST_H_*/
+#endif/*RRC_DATE_AND_TIME_UTILITIES_TEST_H_*/

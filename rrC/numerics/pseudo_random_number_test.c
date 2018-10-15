@@ -5,10 +5,10 @@
  *
  * \sa ["Pseudo-random number generation"](http://en.cppreference.com/w/c/numeric/random). *cppreference.com*.
  *
- * \version 2018-04-25
+ * \version 2018-10-15
  * \since 2016-10-10
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -26,23 +26,23 @@
  *         
  * \returns 生成的伪随机数，范围在 [0, RAND_MAX]。
  */
-static int genprn(void)
+static int generate_pseudo_random_number(void)
 {
     srand((unsigned)time(NULL));
     return rand();
 }
 
-START_TEST(test_genpr)
+START_TEST(tf_generate_pseudo_random_number)
 {
-    genprn();
+    generate_pseudo_random_number();
 }
 END_TEST
 
 /** @} */
 
-TCase *tcase_prn(void)
+TCase *tc_pseudo_random_number(void)
 {
-    TCase *tcase = tcase_create("prn");
-    tcase_add_test(tcase, test_genpr);
-    return tcase;
+    TCase *const tc = tcase_create("pseudo_random_number");
+    tcase_add_test(tc, tf_generate_pseudo_random_number);
+    return tc;
 }

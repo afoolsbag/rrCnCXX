@@ -22,9 +22,9 @@
  *         + [String examination](http://en.cppreference.com/w/c/string/wide#String_examination)
  *         + [Wide character array manipulation](http://en.cppreference.com/w/c/string/wide#Character_array_manipulation)
  *
- * \version 2018-04-21
+ * \version 2018-10-15
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright CC0 1.0
  *
 *//*===--------------------------------------------------------------------===*/

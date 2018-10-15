@@ -3,7 +3,7 @@
 /// \defgroup gThrdSmp 线程示例
 /// \ingroup gThrd
 ///
-/// \version 2018-09-17
+/// \version 2018-10-15
 /// \since 2018-09-17
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -11,9 +11,11 @@
 //===----------------------------------------------------------------------===//
 
 #include <thread>
+using namespace std;
 
 #include <gtest/gtest.h>
-#include "rrcxx/cxx_versions.hxx"
+
+#include "cxx_versions.hxx"
 
 namespace rrcxx::test {
 
@@ -23,28 +25,28 @@ namespace rrcxx::test {
 TEST(thread, test)
 {
 #if N2497
-    using namespace std::chrono_literals;
+    using namespace chrono_literals;
 
-    std::cout << "main: call thread 1.\n";
-    std::thread thread_1_manager([]() {
-        std::cout << "thread 1: lalala.\n";
-        std::cout << "thread 1: sleep for 400ms.\n";
-        std::this_thread::sleep_for(400ms);
-        std::cout << "thread 1: awake!\n";
+    cout << "main: call thread 1.\n";
+    thread thread_1_manager([]() {
+        cout << "thread 1: lalala.\n";
+        cout << "thread 1: sleep for 400ms.\n";
+        this_thread::sleep_for(400ms);
+        cout << "thread 1: awake!\n";
     });
 
-    std::cout << "main: call thread 2.\n";
-    std::thread thread_2_manager([]() {
-        std::cout << "thread 2: yayaya.\n";
-        std::cout << "thread 2: sleep for 200ms.\n";
-        std::this_thread::sleep_for(200ms);
-        std::cout << "thread 2: awake!\n";
+    cout << "main: call thread 2.\n";
+    thread thread_2_manager([]() {
+        cout << "thread 2: yayaya.\n";
+        cout << "thread 2: sleep for 200ms.\n";
+        this_thread::sleep_for(200ms);
+        cout << "thread 2: awake!\n";
     });
 
-    std::cout << "main: waiting for threads wawkes.\n";
+    cout << "main: waiting for threads wawkes.\n";
     thread_1_manager.join();
     thread_2_manager.join();
-    std::cout << "main: threads are finished.\n";
+    cout << "main: threads are finished.\n";
 #endif
 }
 

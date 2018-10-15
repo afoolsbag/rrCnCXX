@@ -6,7 +6,7 @@
 /// \sa "通用词汇类型". *cppreference.com*.
 /// + [`std::variant`](https://zh.cppreference.com/w/cpp/utility/variant)
 ///
-/// \version 2018-10-10
+/// \version 2018-10-15
 /// \since 2018-10-08
 /// \author zhengrr
 /// \copyright The Unlicense
@@ -20,7 +20,8 @@
 using namespace std;
 
 #include <gtest/gtest.h>
-#include "rrcxx/cxx_versions.hxx"
+
+#include "cxx_versions.hxx"
 
 namespace rrcxx::test {
 

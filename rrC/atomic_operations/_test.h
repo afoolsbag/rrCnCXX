@@ -1,16 +1,16 @@
 #pragma once
-#ifndef RRC_ATOM_TEST_H_
-#define RRC_ATOM_TEST_H_
+#ifndef RRC_ATOMIC_OPERATIONS_TEST_H_
+#define RRC_ATOMIC_OPERATIONS_TEST_H_
 
 #include <check/check.h>
 
-TCase *tcase_atom(void);
+extern TCase *tc_atomic_operations(void);
 
-inline Suite *tsuite_atom(void)
+inline Suite *ts_atomic_operations(void)
 {
-    Suite *tsuite = suite_create("atom");
-    suite_add_tcase(tsuite, tcase_atom());
-    return tsuite;
+    Suite *const ts = suite_create("atomic_operations");
+    suite_add_tcase(ts, tc_atomic_operations());
+    return ts;
 }
 
-#endif/*RRC_ATOM_TEST_H_*/
+#endif/*RRC_ATOMIC_OPERATIONS_TEST_H_*/

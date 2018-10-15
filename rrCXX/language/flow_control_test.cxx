@@ -3,7 +3,7 @@
 /// \defgroup gFlowCtrl 流控制
 /// \ingroup gLang
 ///
-/// \version 2018-10-10
+/// \version 2018-10-15
 /// \since 2018-09-19
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -17,7 +17,8 @@ using namespace std;
 using namespace gsl;
 
 #include <gtest/gtest.h>
-#include "rrcxx/cxx_versions.hxx"
+
+#include "cxx_versions.hxx"
 
 namespace rrcxx::test {
 

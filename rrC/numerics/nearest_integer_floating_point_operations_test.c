@@ -1,14 +1,14 @@
 /*===-- Nearest Integer Floating-Point Operations --------------*- C -*-===*//**
  *
- * \defgroup gRnd 四舍五入
+ * \defgroup gRnd 临近整数的浮点运算
  * \ingroup gNumr
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/math>
  *
- * \version 2018-07-10
+ * \version 2018-10-15
  * \since 2018-07-10
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -16,18 +16,18 @@
 #include <math.h>
 
 #include <check/check.h>
-#include "rrc/adp.h"
 
 #include "_test.h"
+#include "c_versions.h"
 
 /**
  * \brief 四舍五入。
- *        以远离0方向取整。
+ *        以远离 0 方向取整。
  * \sa <https://zh.cppreference.com/w/c/numeric/math/round>
  */
 START_TEST(test_round)
 {
-#if RRC_C99 || RRC_MSC
+#if C99 || MSC
 
     ck_assert_float_eq(roundf(6.4f), 6.0f);
     ck_assert_double_eq(round(6.5), 7.0);
@@ -47,9 +47,9 @@ END_TEST;
 
 /** @} */
 
-TCase *tcase_rnd(void)
+TCase *tc_nearest_integer_floating_point_operations(void)
 {
-    TCase *tcase = tcase_create("rnd");
-    tcase_add_test(tcase, test_round);
-    return tcase;
+    TCase *const tc = tcase_create("nearest_integer_floating_point_operations");
+    tcase_add_test(tc, test_round);
+    return tc;
 }

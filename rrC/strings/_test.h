@@ -1,20 +1,20 @@
 #pragma once
-#ifndef RRC_STR_TEST_H_
-#define RRC_STR_TEST_H_
+#ifndef RRC_STRINGS_TEST_H_
+#define RRC_STRINGS_TEST_H_
 
 #include <check/check.h>
 
-TCase *tcase_bstr_cnv(void);
-TCase *tcase_bstr_exam(void);
-TCase *tcase_bstr_man(void);
+extern TCase *tc_byte_strings_conversion(void);
+extern TCase *tc_byte_strings_examination(void);
+extern TCase *tc_byte_strings_manipulation(void);
 
-inline Suite *tsuite_str(void)
+inline Suite *ts_strings(void)
 {
-    Suite *tsuite = suite_create("str");
-    suite_add_tcase(tsuite, tcase_bstr_cnv());
-    suite_add_tcase(tsuite, tcase_bstr_exam());
-    suite_add_tcase(tsuite, tcase_bstr_man());
-    return tsuite;
+    Suite *const ts = suite_create("strings");
+    suite_add_tcase(ts, tc_byte_strings_conversion());
+    suite_add_tcase(ts, tc_byte_strings_examination());
+    suite_add_tcase(ts, tc_byte_strings_manipulation());
+    return ts;
 }
 
-#endif/*RRC_STR_TEST_H_*/
+#endif/*RRC_STRINGS_TEST_H_*/

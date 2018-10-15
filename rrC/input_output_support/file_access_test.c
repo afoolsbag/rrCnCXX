@@ -1,48 +1,43 @@
 /*===-- File Access --------------------------------------------*- C -*-===*//**
  *
- * \defgroup gFAcs 文件访问
- * \ingroup gIo
+ * \defgroup gFileAccess 文件访问
+ * \ingroup gIO
  *
  * \sa ["File access"](http://en.cppreference.com/w/c/io#File_access). *cppreference.com*.
  *
- * \version 2018-04-25
+ * \version 2018-10-15
  * \since 2016-11-14
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
 
-#define __STDC_WANT_LIB_EXT1__ 1
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 #include <check/check.h>
-#include "rrc/adp.h"
 
 #include "_test.h"
+#include "c_versions.h"
 
 /**
  * \brief 打开文件。
  *        File Open.
  * \sa <http://en.cppreference.com/w/c/io/fopen>
  */
-START_TEST(test_fopen)
+START_TEST(tf_fopen)
 {
+#if LIB_EXT1
+    FILE *fp;
+    fopen_s(&fp, "hello.txt", "a+");
+#else
     FILE *fp = fopen("hello.txt", "a+");
-    if (NULL == fp) {
-        fprintf(stderr, "file open failed.\n");
+#endif
+    if (!fp) {
+        ck_abort_msg("File Open Failed");
         return;
     }
     fclose(fp);
-}
-END_TEST;
-
-START_TEST(test_fopen_s)
-{
-#if LIB_EXT1
-
-#endif/*LIB_EXT1*/
 }
 END_TEST;
 
@@ -51,28 +46,18 @@ END_TEST;
  *        File Re-open.
  * \sa <http://en.cppreference.com/w/c/io/freopen>
  */
-START_TEST(test_freopen)
+START_TEST(tf_freopen)
 {
 
-}
-END_TEST;
-
-START_TEST(test_freopen_s)
-{
-#if RRC_LIB_EXT1
-
-#endif
 }
 END_TEST;
 
 /** @} */
 
-TCase *tcase_facs(void)
+TCase *tc_file_access(void)
 {
-    TCase *tcase = tcase_create("facs");
-    tcase_add_test(tcase, test_fopen);
-    tcase_add_test(tcase, test_fopen_s);
-    tcase_add_test(tcase, test_freopen);
-    tcase_add_test(tcase, test_freopen_s);
-    return tcase;
+    TCase *const tc = tcase_create("file_access");
+    tcase_add_test(tc, tf_fopen);
+    tcase_add_test(tc, tf_freopen);
+    return tc;
 }

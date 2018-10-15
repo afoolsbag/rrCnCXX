@@ -1,49 +1,49 @@
 /*===-- Character ----------------------------------------------*- C -*-===*//**
  *
  * \defgroup gChar 字符
- * \ingroup gType
+ * \ingroup gLang
  *
  * \sa <https://zh.cppreference.com/w/c/language/arithmetic_types#Character_types>
  * \sa <https://zh.cppreference.com/w/c/language/character_constant>
  * \sa <https://zh.cppreference.com/w/c/language/escape>
  *
- * \version 2018-07-11
+ * \version 2018-10-15
  * \since 2016-10-09
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include "rrc/adp.h"
-#if RRC_C11
-# include <uchar.h>
-#endif
-#if RRC_C95
-# include <wchar.h>
-#endif
-
 #include <check/check.h>
 
 #include "_test.h"
+#include "c_versions.h"
 
-START_TEST(test_char)
+#if C11
+# include <uchar.h>
+#endif
+#if C95
+# include <wchar.h>
+#endif
+
+START_TEST(tf_char)
 {
-    char ch = 'z';
+    const char ch = 'z';
     ck_assert_int_eq(ch, '\172');  /* Octal */
     ck_assert_int_eq(ch, '\x7a');  /* Hexadecimal */
 
-    wchar_t wch = L'喵';
+    const wchar_t wch = L'喵';
     ck_assert_int_eq(wch, L'\u55B5');
 }
 END_TEST;
 
-static char hex_digit_to_char(const int hexint)
+static char hex_digit_to_char(const int hex)
 {
-    return "0123456789ABCDEF"[hexint % 16];
+    return "0123456789ABCDEF"[hex % 16];
 }
 
-START_TEST(test_hex_digit_to_char)
+START_TEST(tf_hex_digit_to_char)
 {
     ck_assert_int_eq(hex_digit_to_char(0x7), '7');
     ck_assert_int_eq(hex_digit_to_char(0xA), 'A');
@@ -53,12 +53,12 @@ END_TEST;
 
 /** @} */
 
-TCase *tcase_char(void)
+TCase *tc_character(void)
 {
-    TCase *tcase = tcase_create("char");
+    TCase *const tc = tcase_create("character");
 
-    tcase_add_test(tcase, test_char);
-    tcase_add_test(tcase, test_hex_digit_to_char);
+    tcase_add_test(tc, tf_char);
+    tcase_add_test(tc, tf_hex_digit_to_char);
 
-    return tcase;
+    return tc;
 }

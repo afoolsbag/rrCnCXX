@@ -6,7 +6,7 @@
  * \version 2018-08-29
  * \since 2016-10-09
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -15,14 +15,15 @@
 
 #include <check/check.h>
 
-#include "algo/_test.h"
-#include "atom/_test.h"
-#include "io/_test.h"
-#include "mem/_test.h"
-#include "numr/_test.h"
-#include "str/_test.h"
-#include "time/_test.h"
-#include "type/_test.h"
+#include "algorithms/_test.h"
+#include "atomic_operations/_test.h"
+#include "date_and_time_utilities/_test.h"
+#include "dynamic_memory_management/_test.h"
+#include "input_output_support/_test.h"
+#include "language/_test.h"
+#include "numerics/_test.h"
+#include "strings/_test.h"
+#include "type_support/_test.h"
 
 /**
  * \brief 主函数。
@@ -33,18 +34,19 @@
  */
 int main(void)
 {
-    SRunner *runner = srunner_create(NULL);
-    srunner_add_suite(runner, tsuite_algo());
-    srunner_add_suite(runner, tsuite_atom());
-    srunner_add_suite(runner, tsuite_io());
-    srunner_add_suite(runner, tsuite_mem());
-    srunner_add_suite(runner, tsuite_numr());
-    srunner_add_suite(runner, tsuite_str());
-    srunner_add_suite(runner, tsuite_time());
-    srunner_add_suite(runner, tsuite_type());
-    srunner_run_all(runner, CK_NORMAL);
-    const int err = srunner_ntests_failed(runner);
-    srunner_free(runner);
+    SRunner *const tr = srunner_create(NULL);
+    srunner_add_suite(tr, ts_algorithms());
+    srunner_add_suite(tr, ts_atomic_operations());
+    srunner_add_suite(tr, ts_date_and_time_utilities());
+    srunner_add_suite(tr, ts_dynamic_memory_management());
+    srunner_add_suite(tr, ts_input_output_support());
+    srunner_add_suite(tr, ts_language());
+    srunner_add_suite(tr, ts_numerics());
+    srunner_add_suite(tr, ts_strings());
+    srunner_add_suite(tr, ts_type_support());
+    srunner_run_all(tr, CK_NORMAL);
+    const int err = srunner_ntests_failed(tr);
+    srunner_free(tr);
     return err;
 }
 

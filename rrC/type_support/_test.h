@@ -1,20 +1,13 @@
 #pragma once
-#ifndef RRC_TYPE_TEST_H_
-#define RRC_TYPE_TEST_H_
+#ifndef RRC_TYPE_SUPPORT_TEST_H_
+#define RRC_TYPE_SUPPORT_TEST_H_
 
 #include <check/check.h>
 
-TCase *tcase_array(void);
-TCase *tcase_char(void);
-TCase *tcase_struct(void);
-
-inline Suite *tsuite_type(void)
+inline Suite *ts_type_support(void)
 {
-    Suite *tsuite = suite_create("type");
-    suite_add_tcase(tsuite, tcase_array());
-    suite_add_tcase(tsuite, tcase_char());
-    suite_add_tcase(tsuite, tcase_struct());
-    return tsuite;
+    Suite *const ts = suite_create("type_support");
+    return ts;
 }
 
-#endif/*RRC_TYPE_TEST_H_*/
+#endif/*RRC_TYPE_SUPPORT_TEST_H_*/

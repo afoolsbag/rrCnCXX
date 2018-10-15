@@ -10,9 +10,9 @@
  *     + [Fixed width integer types](http://en.cppreference.com/w/c/types/integer)
  *     + [Numeric limits](http://en.cppreference.com/w/c/types/limits)
  *
- * \version 2018-04-21
+ * \version 2018-10-15
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright CC BY 4.0
+ * \copyright CC0 1.0
  *
 *//*===--------------------------------------------------------------------===*/

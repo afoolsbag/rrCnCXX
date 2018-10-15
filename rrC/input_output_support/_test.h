@@ -1,16 +1,16 @@
 #pragma once
-#ifndef RRC_IO_TEST_H_
-#define RRC_IO_TEST_H_
+#ifndef RRC_INPUT_OUTPUT_SUPPORT_TEST_H_
+#define RRC_INPUT_OUTPUT_SUPPORT_TEST_H_
 
 #include <check/check.h>
 
-TCase *tcase_facs(void);
+extern TCase *tc_file_access(void);
 
-inline Suite *tsuite_io(void)
+inline Suite *ts_input_output_support(void)
 {
-    Suite *ste = suite_create("io");
-    suite_add_tcase(ste, tcase_facs());
-    return ste;
+    Suite *const ts = suite_create("input_output_support");
+    suite_add_tcase(ts, tc_file_access());
+    return ts;
 }
 
-#endif/*RRC_IO_TEST_H_*/
+#endif/*RRC_INPUT_OUTPUT_SUPPORT_TEST_H_*/

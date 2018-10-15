@@ -5,22 +5,22 @@
  *
  * \sa ["String examination"](https://zh.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.
  *
- * \version 2018-07-11
+ * \version 2018-10-15
  * \since 2018-01-05
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#define __STDC_WANT_LIB_EXT1__ 1
 #include <string.h>
 
 #include <check/check.h>
-#include "rrc/adp.h"
-#include "rrc/def.h"
 
 #include "_test.h"
+#include "c_versions.h"
+
+#define countof(array) (sizeof(array) / sizeof((array)[0]))
 
 /**
  * \brief 字符串长度。
@@ -29,7 +29,7 @@
  * \sa <https://zh.cppreference.com/w/c/string/byte/strlen>
  * \sa <http://cplusplus.com/reference/cstring/strlen/>
  */
-START_TEST(test_strlen)
+START_TEST(tf_strlen)
 {
     ck_assert_int_eq(strlen("zhengrr"), 7);
 
@@ -48,7 +48,7 @@ END_TEST;
  * \sa <http://cplusplus.com/reference/cstring/strcmp/>
  * \sa <http://cplusplus.com/reference/cstring/strncmp/>
  */
-START_TEST(test_strcmp)
+START_TEST(tf_strcmp)
 {
     ck_assert_int_lt(strcmp("1993ZhengRr", "1993zhengrr"), 0);
     ck_assert_int_eq(strncmp("1993ZhengRr", "1993zhengrr", 4), 0);
@@ -62,22 +62,22 @@ END_TEST;
  * \sa <https://zh.cppreference.com/w/c/string/byte/strpbrk>
  * \sa <http://cplusplus.com/reference/cstring/strpbrk/>
  */
-START_TEST(test_strpbrk)
+START_TEST(tf_strpbrk)
 {
     const char src[] = "My life for Aiur!";
-    ck_assert(strpbrk(src, "\t\n\v\r") == src + 2);
+    ck_assert(strpbrk(src, "\t\n\v\r ") == src + 2);
 }
 END_TEST;
 
 /** @} */
 
-TCase *tcase_bstr_exam(void)
+TCase *tc_byte_strings_examination(void)
 {
-    TCase *tcase = tcase_create("bstr_exam");
+    TCase *const tc = tcase_create("byte_strings_examination");
 
-    tcase_add_test(tcase, test_strlen);
-    tcase_add_test(tcase, test_strcmp);
-    tcase_add_test(tcase, test_strpbrk);
+    tcase_add_test(tc, tf_strlen);
+    tcase_add_test(tc, tf_strcmp);
+    tcase_add_test(tc, tf_strpbrk);
 
-    return tcase;
+    return tc;
 }

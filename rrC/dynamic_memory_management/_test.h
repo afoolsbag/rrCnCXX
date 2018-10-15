@@ -1,16 +1,16 @@
 #pragma once
-#ifndef RRC_MEM_TEST_H_
-#define RRC_MEM_TEST_H_
+#ifndef RRC_DYNAMIC_MEMORY_MANAGEMENT_TEST_H_
+#define RRC_DYNAMIC_MEMORY_MANAGEMENT_TEST_H_
 
 #include <check/check.h>
 
-TCase *tcase_mem(void);
+extern TCase *tc_dynamic_memory_management(void);
 
-inline Suite *tsuite_mem(void)
+inline Suite *ts_dynamic_memory_management(void)
 {
-    Suite *tsuite = suite_create("mem");
-    suite_add_tcase(tsuite, tcase_mem());
-    return tsuite;
+    Suite *const ts = suite_create("dynamic_memory_management");
+    suite_add_tcase(ts, tc_dynamic_memory_management());
+    return ts;
 }
 
-#endif/*RRC_MEM_TEST_H_*/
+#endif/*RRC_DYNAMIC_MEMORY_MANAGEMENT_TEST_H_*/

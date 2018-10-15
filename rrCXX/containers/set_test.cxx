@@ -5,7 +5,7 @@
 ///
 /// \sa ["std::set"](https://zh.cppreference.com/w/cpp/container/set). *cppreference.com*.
 ///
-/// \version 2018-10-10
+/// \version 2018-10-15
 /// \since 2018-06-21
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -16,7 +16,8 @@
 using namespace std;
 
 #include <gtest/gtest.h>
-#include "rrcxx/cxx_versions.hxx"
+
+#include "cxx_versions.hxx"
 
 namespace rrcxx::test {
 

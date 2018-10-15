@@ -4,15 +4,15 @@
  * \ingroup gRef
  *
  * \sa ["数值"](http://zh.cppreference.com/w/c/numeric). *cppreference.com*.
- *     + [常用数学函数](http://zh.cppreference.com/w/c/numeric/math)
- *     + [浮点环境](http://zh.cppreference.com/w/c/numeric/fenv)
- *     + [伪随机数生成](http://zh.cppreference.com/w/c/numeric/random)
- *     + [复数算术](http://zh.cppreference.com/w/c/numeric/complex)
- *     + [泛型数学](http://zh.cppreference.com/w/c/numeric/tgmath)
+ *     *   常用数学函数
+ *     *   浮点环境
+ *     *   伪随机数生成
+ *     *   复数算术
+ *     *   泛型数学
  *
- * \version 2018-07-10
+ * \version 2018-10-15
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright CC BY 4.0
+ * \copyright CC0 1.0
  *
 *//*===--------------------------------------------------------------------===*/
