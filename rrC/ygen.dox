@@ -10,57 +10,19 @@
  * [*C18*](https://iso.org/standard/74528.html) (2017)
  * [*C11*](https://iso.org/standard/57853.html) (2011)
  * [*C99*](https://iso.org/standard/29237.html) (1999)
+ * *C95*
  * [*C90*](https://iso.org/standard/17782.html) (1990)
  * *ANSI C* (1989)
  * *K&R C* (1978)
  * *C* (1972)
  *
- * ["C (programming language) Uses"](https://wikipedia.org/wiki/C_(programming_language)#Uses). *Wikipedia*.
- * ["Why does C programming suck?"](https://quora.com/Why-does-C-programming-suck). *Quora*.
- *
  * # References                                                   {#sReferences}
  *
- * ["C and C++ Language Syntax Reference"](https://cprogramming.com/reference). *Cprogramming.com*.
- * ["C Language Reference"](https://docs.microsoft.com/cpp/c-language/c-language-reference). *Microsoft Docs*.
- * ["C reference"](http://cppreference.com/w/c). *cppreference.com*.
- * [*comp.lang.c Frequently Asked Questions*](http://c-faq.com/)
- * [*The GNU C Reference Manual*](https://gnu.org/software/gnu-c-manual/gnu-c-manual.html)
-
+ * ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
+ *
  * # Styles                                                           {#sStyles}
  *
- * [*GNU Coding Standards*](https://gnu.org/prep/standards/standards.html)
  * [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
- * [*NGINX coding style*](https://nginx.com/resources/wiki/start/topics/examples/coding_style)
- * [*PostgreSQL Coding Conventions*](https://postgresql.org/docs/current/static/source.html)
- * [*SEI CERT C Coding Standard*](https://wiki.sei.cmu.edu/confluence/display/c)
- *
- * ## Naming                                                         {#ssNaming}
- *
- * 对于数据，倾向于紧凑的命名：`name_t itemname;` / `name_t nameof(id_t id);`
- *
- * 对于指令，倾向于明确的命名：`errno_t cut_off_power_of(device_t device);`
- *
- * | Entity Kinds | Preview       |  | l/g          | a/r/t/s/e      | c-v                  | Preview         |
- * |:------------ |:------------- |  |:------------ |:-------------- |:-------------------- | ---------------:|
- * | folder       | `all_lower`   |  | local        | [`auto`]       | [`const`]            |     `all_lower` |
- * | file         | `all_lower`   |  | local        | [`auto`]       | [`const`] `volatile` |   `v_all_lower` |
- * | macro        | `ALL_UPPER`   |  | local        | `register`     |                      |   `r_all_lower` |
- * | typedef      | `all_lower_t` |  | local        | `thread_local` |                      |   `t_all_lower` |
- * | struct       | `all_lower_t` |  | local/global | `static`       |                      |   `s_all_lower` |
- * | struct field | `all_lower`   |  | local/global | `static`       | `const`              |     `ALL_UPPER` |
- * | enum         | `all_lower_t` |  | local/global | `static`       | [`const`] `volatile` |  `sv_all_lower` |
- * | enumerator   | `ALL_UPPER`   |  | global       | [`extern`]     |                      |   `g_all_lower` |
- * | union        | `all_lower_t` |  | global       | [`extern`]     | `const`              |     `ALL_UPPER` |
- * | union member | `all_lower`   |  | global       | [`extern`]     | [`const`] `volatile` |  `gv_all_lower` |
- * | function     | `all_lower`   |  |              |                |                      |                 |
- *
- * ## Formatting                                                 {#ssFormatting}
- *
- * `.h` `.c`
- * UTF-8
- * 80 columns × 24 lines
- * 1 tab (8 characters)
- * K&R (functions are special)
  *
  * # Guides                                                           {#sGuides}
  *
@@ -95,7 +57,35 @@
  *   this work.
  * </p>
  *
- * \version 2018-09-21
+ * \version 2018-10-15
+ * \since 2018-01-23
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/
+
+/*===-- C Reference --------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gRef C 参考手册
+ *
+ * \sa ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
+ *     + 语言
+ *     + 头文件
+ *     + 类型支持
+ *     + 程序工具
+ *     + 变参数函数
+ *     + 错误处理
+ *     + 动态内存管理
+ *     + 日期和时间工具
+ *     + 字符串库
+ *     + 算法
+ *     + 数值
+ *     + 输入、输出支持
+ *     + 本地化支持
+ *     + 原子操作库
+ *     + 线程支持库
+ *
+ * \version 2018-10-15
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC0 1.0

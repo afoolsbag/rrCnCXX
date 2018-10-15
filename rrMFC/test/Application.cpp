@@ -70,9 +70,7 @@ std::vector<CString> TokenizeCommandLine(const CString &commandLine)
 /// \brief 符号匹配（单匹配）。
 bool TokenMatches(const CString &command, const CString &target)
 {
-    if (!command.CompareNoCase(target))
-        return true;
-    return false;
+    return !command.CompareNoCase(target);
 }
 
 /// \brief 符号匹配（双匹配）。

@@ -1,8 +1,10 @@
 # zhengrr
-# 2016-10-08 – 2018-10-13
+# 2016-10-08 – 2018-10-15
 # The Unlicense
 
 include_guard()
+
+cmake_minimum_required(VERSION 3.13)
 
 if(NOT COMMAND check_name_with_cmake_rules)
   include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")

@@ -7,8 +7,7 @@ execute_process(
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_executable_ex(
-  NAME_PREFIX                 "echo_"
-  NAME                        "client"
+  NAME "echo_client"
   "client.cpp"
   "service.ice"
   "${CMAKE_CURRENT_BINARY_DIR}/service.h"
@@ -21,8 +20,7 @@ add_executable_ex(
                               Ice::IceSSL++11)
 
 add_executable_ex(
-  NAME_PREFIX                 "echo_"
-  NAME                        "server"
+  NAME "echo_server"
   "server.cpp"
   "service.ice"
   "${CMAKE_CURRENT_BINARY_DIR}/service.h"

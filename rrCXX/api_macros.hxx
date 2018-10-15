@@ -1,11 +1,11 @@
-//===-- Application Programming Interface Import/Export Macros --*- C++ -*-===//
+//===-- Application Programming Interface Macros ----------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 应用程序接口导入、导出宏。
+/// \brief 应用程序接口宏。
 /// \details ELF（Executable and Linkable Format）格式缺省导出符号，
 ///          PE（Portable Executable）格式缺省隐藏符号。\n
 ///
-/// \version 2018-09-17
+/// \version 2018-10-15
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -13,8 +13,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_APIIEMS_HXX_
-#define RRCXX_APIIEMS_HXX_
+#ifndef RRCXX_API_MACROS_HXX_
+#define RRCXX_API_MACROS_HXX_
 
 #if defined __unix__ || defined __linux__
 # // UNIX or Linux
@@ -63,4 +63,4 @@
 # define RRCXX_API
 #endif
 
-#endif//RRCXX_APIIEMS_HXX_
+#endif//RRCXX_API_MACROS_HXX_

@@ -4,12 +4,12 @@
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/
 # zhengrr                           rrWindows by FIGlet
-# 2016-10-12 – 2018-09-14
-# The MIT License
+# 2016-10-12 – 2018-10-13
+# The Unlicense
 
-project(rrWindows VERSION 2018.9.14 LANGUAGES C)
+project(rrWindows VERSION 2018.10.13 LANGUAGES C)
 project_extra()
-compiler_warning_level(AS_ERROR UTF-8)
+compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
@@ -17,41 +17,47 @@ add_definitions("-D_UNICODE")
 remove_definitions("-D_MBCS")
 
 configure_file("src/cfg.h.in" "src/cfg.h" @ONLY)
-aux_source_directory_enhanced(zInclude
-                              RECURSE
-             SOURCE_DIRECTORY "include/"
-                 SOURCE_GROUP "include/")
-aux_source_directory_enhanced(zSrc
-                              RECURSE
-             SOURCE_DIRECTORY "src/"
-            SOURCE_EXTENSIONS ".rc"
-                 SOURCE_GROUP "src/")
-aux_source_directory_enhanced(zGenerate
-                              RECURSE
-             SOURCE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src/"
-                 SOURCE_GROUP "generate/")
-facile_add_library(    OPTION_INITIAL_ON
+aux_source_directory_ex(
+  zInclude
+  DIRECTORY  "include/"
+  RECURSE
+  GROUP_ROOT "include/")
+aux_source_directory_ex(
+  zSrc
+  DIRECTORY  "src/"
+  RECURSE
+  EXTENSIONS ".rc"
+  GROUP_ROOT "src/")
+aux_source_directory_ex(
+  zGenerate
+  DIRECTORY  "${CMAKE_CURRENT_BINARY_DIR}/src/"
+  RECURSE
+  GROUP_ROOT "generate/")
+add_library_ex(
+  SHARED
+  ${zInclude} ${zSrc} ${zGenerate}
   TARGET_NAME_VARIABLE sRrwindowsLib
-                SHARED ${zInclude} ${zSrc} ${zGenerate}
-   COMPILE_DEFINITIONS PUBLIC  "-DRRWINDOWS_SHARED"
-   INCLUDE_DIRECTORIES PUBLIC  "include/"
+  COMPILE_DEFINITIONS  PUBLIC  "-DRRWINDOWS_SHARED"
+  INCLUDE_DIRECTORIES  PUBLIC  "include/"
                        PRIVATE "src/"
                                "${CMAKE_CURRENT_BINARY_DIR}/src/")
 
 configure_file("test/cfg.h.in" "test/cfg.h" @ONLY)
-aux_source_directory_enhanced(zTest
-                              RECURSE
-             SOURCE_DIRECTORY "test/"
-            SOURCE_EXTENSIONS ".rc"
-                 SOURCE_GROUP "test/")
-aux_source_directory_enhanced(zGenerate
-                              RECURSE
-             SOURCE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test/"
-                 SOURCE_GROUP "generate/")
-facile_add_check_executable(SUBNAME "test"
-                                    OPTION_INITIAL_ON
-                                    ${zTest} ${zGenerate} "ygen.dox"
-                INCLUDE_DIRECTORIES PRIVATE "test/"
-                                            "${CMAKE_CURRENT_BINARY_DIR}/test/"
-                     LINK_LIBRARIES ${sRrwindowsLib}
-                        POST_COPIES ${sRrwindowsLib})
+aux_source_directory_ex(
+  zTest
+  DIRECTORY  "test/"
+  RECURSE
+  EXTENSIONS ".rc"
+  GROUP_ROOT "test/")
+aux_source_directory_ex(
+  zGenerate
+  DIRECTORY  "${CMAKE_CURRENT_BINARY_DIR}/test/"
+  RECURSE
+  GROUP_ROOT "generate/")
+facile_add_check_executable(
+  NAME "test"
+  ${zTest} ${zGenerate} "ygen.dox"
+  INCLUDE_DIRECTORIES PRIVATE "test/"
+                              "${CMAKE_CURRENT_BINARY_DIR}/test/"
+  LINK_LIBRARIES      PRIVATE ${sRrwindowsLib}
+  POST_COPIES         ${sRrwindowsLib})

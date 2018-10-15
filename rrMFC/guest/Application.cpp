@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Application.h"
 
-#include "rrwindows/dbgcon.h"
+#include "rrwindows/rrwindows.h"
 
 #include "ui/GuestDialog.h"
 

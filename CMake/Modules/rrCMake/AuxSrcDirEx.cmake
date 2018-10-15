@@ -30,8 +30,7 @@ endif()
 #       [GROUP_ROOT   <group-root>]
 #
 #       [PROPERTIES   <property-key property-value>...]
-#
-#       [MFC_PCH_NAME <mfc-pch-name>]
+#       [MFC_PCH_BASE <mfc-pch-name>]
 #     )
 function(aux_source_directory_ex _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
@@ -41,7 +40,7 @@ function(aux_source_directory_ex _RESULTS_VARIABLE)
                  BASE_MATCHES
                  BASE_CLASHES
                  GROUP_ROOT
-                 MFC_PCH_NAME)
+                 MFC_PCH_BASE)
   set(zMutValKws EXTENSIONS
                  PROPERTIES)
   cmake_parse_arguments(PARSE_ARGV 1 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
@@ -132,10 +131,10 @@ function(aux_source_directory_ex _RESULTS_VARIABLE)
   endif()
 
   if(_MFC)
-    if(NOT DEFINED _MFC_PCH_NAME)
-      set(_MFC_PCH_NAME "mfc")
+    if(NOT DEFINED _MFC_PCH_BASE)
+      set(_MFC_PCH_BASE "mfc")
     endif()
-    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/${_MFC_PCH_NAME}$<$<CONFIG:Debug>:d>.pch")
+    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/${_MFC_PCH_BASE}$<$<CONFIG:Debug>:d>.pch")
     foreach(sFile ${zResults})
       if(NOT sFile MATCHES ".*\.cpp$")
         continue()

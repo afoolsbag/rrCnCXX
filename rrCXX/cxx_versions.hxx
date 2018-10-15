@@ -6,7 +6,7 @@
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ 编译器支持情况表"](https://zh.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 ///
-/// \version 2018-10-08
+/// \version 2018-10-15
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -79,6 +79,10 @@
 /// \brief ISO/IEC 14882:2011
 /// \sa <https://iso.org/standard/50372.html>
 #define CXX11 (201103L<=__cplusplus)
+
+/// \brief ISO/IEC 14882:2003
+/// \sa <https://iso.org/standard/38110.html>
+#define CXX03 CXX98
 
 /// \brief ISO/IEC 14882:1998
 /// \sa <https://iso.org/standard/25845.html>

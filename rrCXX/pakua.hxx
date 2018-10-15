@@ -1,9 +1,9 @@
-//===-- Symbol --------------------------------------------------*- C++ -*-===//
+//===-- Pa Kua --------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 符号。
+/// \brief 八卦。
 ///
-/// \version 2018-09-27
+/// \version 2018-10-15
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -11,12 +11,12 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_SYMBOL_HXX_
-#define RRCXX_SYMBOL_HXX_
+#ifndef RRCXX_PAKUA_HXX_
+#define RRCXX_PAKUA_HXX_
 
 #include <array>
 
-namespace rrcxx::xiuzhen::symbol {
+namespace rrcxx::pagua {
 
 /// \brief 爻。
 enum class yao {
@@ -209,82 +209,6 @@ constexpr std::array<x64gua, 64> wenwang64 {
     zhongfu, xiaoguo, jiji, weiji
 };
 
-// alias
+}//namespace rrcxx::pagua
 
-constexpr auto &earth {kun};
-constexpr auto &mountain {gen};
-constexpr auto &water {kan};
-constexpr auto &wind {kun};
-constexpr auto &thunder {zhen};
-constexpr auto &flame {li};
-constexpr auto &lake {dui};
-constexpr auto &heaven {qian};
-
-constexpr auto &field {kun64};
-constexpr auto &stripping {bo};
-constexpr auto &grouping {bi3};
-constexpr auto &viewing {guan};
-constexpr auto &providing_for {yu};
-constexpr auto &prospering {jin};
-constexpr auto &clustering {cui};
-constexpr auto &obstruction {pi};
-constexpr auto &humbling {qian1};
-constexpr auto &bound {gen64};
-constexpr auto &limping {jian3};
-constexpr auto &infiltrating {jian4};
-constexpr auto &small_exceeding {xiaoguo};
-constexpr auto &sojourning {lvhs};
-constexpr auto &conjoining {xian};
-constexpr auto &retiring {dun};
-constexpr auto &leading {shi};
-constexpr auto &enveloping {meng};
-constexpr auto &gorge {kan64};
-constexpr auto &dispersing {huan};
-constexpr auto &taking_apart {jie4};
-constexpr auto &not_yet_fording {weiji};
-constexpr auto &confining {kun4};
-constexpr auto &arguing {song};
-constexpr auto &ascending {sheng};
-constexpr auto &correcting {gu};
-constexpr auto &welling {jing};
-constexpr auto &ground {xun64};
-constexpr auto &persevering {heng};
-constexpr auto &holding {ding};
-constexpr auto &great_exceeding {daguo};
-constexpr auto &coupling {gou};
-constexpr auto &returning {fu};
-constexpr auto &swallowing {yi2};
-constexpr auto &sprouting {zhun};
-constexpr auto &augmenting {yi4};
-constexpr auto &shake {zhen64};
-constexpr auto &gnawing_bite {shihe};
-constexpr auto &following {sui};
-constexpr auto &without_embroiling {wuwang};
-constexpr auto &darkening_of_the_light {mingyi};
-constexpr auto &adorning {bi4};
-constexpr auto &already_fording {jiji};
-constexpr auto &dwelling_people {jiaren};
-constexpr auto &abounding {feng};
-constexpr auto &radiance {li64};
-constexpr auto &skinning {ge};
-constexpr auto &concording_people {tongren};
-constexpr auto &nearing {lin};
-constexpr auto &diminishing {sun};
-constexpr auto &articulating {jie2};
-constexpr auto &center_returning {zhongfu};
-constexpr auto &converting_the_maiden {guimei};
-constexpr auto &polarising {kui};
-constexpr auto &open {dui64};
-constexpr auto &treading {lvtz};
-constexpr auto &pervading {tai};
-constexpr auto &great_accumulating {daxu};
-constexpr auto &attending {xu};
-constexpr auto &small_accumulating {xiaoxu};
-constexpr auto &great_invigorating {dazhuang};
-constexpr auto &great_possessing {dayou};
-constexpr auto &displacement {guai};
-constexpr auto &force {qian64};
-
-}//namespace rrcxx::xiuzhen::symbol
-
-#endif//RRCXX_SYMBOL_HXX_
+#endif//RRCXX_PAGUA_HXX_
