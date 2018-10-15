@@ -1,29 +1,39 @@
-/*===-- Adaptation ---------------------------------------------*- C -*-===*//**
+/*===-- C Versions ---------------------------------------------*- C -*-===*//**
  *
  * \file
- * \brief 适配。
+ * \brief C 版本。
  *
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki)
  *
- * \version 2018-08-23
+ * \version 2018-10-15
  * \since 2018-01-05
  * \authors zhengrr
- * \copyright The MIT License
+ * \copyright The Unlicense
  *
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_ADP_H_
-#define RRC_ADP_H_
+#ifndef RRC_C_VERSIONS_H_
+#define RRC_C_VERSIONS_H_
 
 /*-Compilers------------------------------------------------------------------*/
 
-#define MKVER(v,r,p) (((v) << 24) + ((r) << 16) + (p))
+/** \brief 构造版本。\n
+ *         Make Version.
+ *  \details 形如 `0xVVRRPPPP`。
+ *  \param v 主版本（version/major）
+ *  \param r 次版本（revision/minor)
+ *  \param p 补丁版本（patch） */
+#define MKVER(v, r, p) (((v) << 24) + ((r) << 16) + (p))
 
+/** \def CLANG
+ *  \brief Clang identification and version. */
 #ifdef __clang__
 #  define CLANG MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__)
 #endif
 
+/** \def GNUC
+ *  \brief GNU C/C++ identification and version. */
 #ifdef __GNUC__
 # ifdef __GNUC_PATCHLEVEL__
 #  define GNUC MKVER(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
@@ -32,25 +42,29 @@
 # endif
 #endif
 
+/** \def MSC
+  * \brief Microsoft Visual C++ identification and version. */
 #ifdef _MSC_VER
 # if 1400 <= _MSC_VER
+#  // from 8.0 (2005), VVRRPPPPP
 #  define MSC MKVER(_MSC_FULL_VER / 10000000, (_MSC_FULL_VER % 10000000) / 100000, _MSC_FULL_VER % 100000)
 # elif 1200 <= _MSC_VER
+#  // from 6.0, VVRRPPPP
 #  define MSC MKVER(_MSC_FULL_VER / 1000000, (_MSC_FULL_VER % 1000000) / 10000, _MSC_FULL_VER % 10000)
 # else
+#  // earlier, VVRR
 #  define MSC MKVER(_MSC_VER / 100, _MSC_VER % 100, 0)
 # endif
 #endif
 
 /*-Language-Standards---------------------------------------------------------*/
 
-#if !defined(__STDC__) && !defined(_MSC_VER)
+#if ! defined __STDC__ && ! defined MSC
 # error A C compiler is required.
 #endif
 
 /** \brief ISO/IEC 9899:2018
  *  \sa <https://iso.org/standard/74528.html> */
-#define C18 (201710L<=__STDC_VERSION__)
 #define C17 (201710L<=__STDC_VERSION__)
 
 /** \brief ISO/IEC 9899:2011
@@ -64,13 +78,9 @@
 /** \brief ISO/IEC 9899:1990/Amd 1:1995
  *  \sa <https://iso.org/standard/23909.html> */
 #define C95 (199410L<=__STDC_VERSION__)
-#define C94 (199410L<=__STDC_VERSION__)
 
-/** \brief ISO/IEC 9899:1990
+/** \brief ANSI X3.159-1989 or ISO/IEC 9899:1990
  *  \sa <https://iso.org/standard/17782.html> */
-#define C90 (__STDC__)
-
-/** \brief ANSI X3.159-1989 */
 #define C89 (__STDC__)
 
 /*-Language-Features----------------------------------------------------------*/
@@ -118,4 +128,4 @@
 
 #define VLC               (C11 && !__STDC_NO_VLA__)
 
-#endif/*RRC_ADP_H_*/
+#endif/*RRC_C_VERSIONS_H_*/

@@ -47,13 +47,13 @@
 /// \brief Microsoft Visual C++ identification and version.
 #ifdef _MSC_VER
 # if 1400 <= _MSC_VER
-#  // From 8.0 (2005), VVRRPPPPP
+#  // from 8.0 (2005), VVRRPPPPP
 #  define MSC MKVER(_MSC_FULL_VER / 10000000, (_MSC_FULL_VER % 10000000) / 100000, _MSC_FULL_VER % 100000)
 # elif 1200 <= _MSC_VER
-#  // From 6.0, VVRRPPPP
+#  // from 6.0, VVRRPPPP
 #  define MSC MKVER(_MSC_FULL_VER / 1000000, (_MSC_FULL_VER % 1000000) / 10000, _MSC_FULL_VER % 10000)
 # else
-#  // Earlier, VVRR
+#  // earlier, VVRR
 #  define MSC MKVER(_MSC_VER / 100, _MSC_VER % 100, 0)
 # endif
 #endif
