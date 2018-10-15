@@ -31,45 +31,32 @@ World Wide Web
 [*前端乱炖*](http://html-js.com/)
 
 Directories
-
 *   [*The Free Dictionary*](https://thefreedictionary.com/)
 *   :cn:
-
     *   [*汉典*](http://zdic.net/)
-
 *   :gb:
-
     *   [*Abbreviations.com*](https://abbreviations.com/) & [*All Acronyms Dictionary*](https://allacronyms.com/)
     *   [*Dictionary.com*](https://dictionary.com/) & [*Thesaurus.com*](https://thesaurus.com/)
     *   [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
 
 Characters
-
 *   [*Unicode® character table*](https://unicode-table.com/)
 *   [*Emoji*](https://iemoji.com/)
 
 Codes
-
 *   ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
-
     *   ["ISO 8601"](https://wikipedia.org/wiki/ISO_8601). *Wikipedia*.
     *   [*ISO 8601 — Date and time format*](https://iso.org/iso-8601-date-and-time-format.html)
-
 *   ["Country Code"](https://wikipedia.org/wiki/Country_code). *Wikipedia*.
-
     *   [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html)
-
 * ["Language Code"](https://wikipedia.org/wiki/Language_code). *Wikipedia*.
-
     *   [*ISO 639 — Language codes*](https://iso.org/iso-639-language-codes.html)
     *   [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
-
         *   ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
 
 ## Guides
 
 ["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/).  *计算机书籍控*.
-
 *   *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
 *   *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
