@@ -1,7 +1,7 @@
 //===-- Program Options -----------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Boost Program Options
+/// \brief Program Options
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/program_options.html>
 ///
 /// \version 2018-10-15
@@ -17,8 +17,10 @@ using namespace std;
 #include <gsl/gsl>
 using namespace gsl;
 
-#include <gtest/gtest.h>
 #include <boost/program_options.hpp>
+#include <gtest/gtest.h>
+
+namespace rrboost::test {
 
 TEST(program_options, first_step)
 {
@@ -56,3 +58,5 @@ TEST(program_options, first_step)
 
     }
 }
+
+}//namespace rrboost::test
