@@ -32,7 +32,7 @@ function(facile_add_gtest_executable)
     OPTION_DESCRIPTION   "Build executable with GTest (requires GTest)."
     TARGET_NAME_VARIABLE sTgtName
     ${_UNPARSED_ARGUMENTS}
-    LINK_LIBRARIES       GTest::GTest)
+    LINK_LIBRARIES       GTest::Main)
   add_test(NAME "${sTgtName}" COMMAND "${sTgtName}")
 
   if(DEFINED _TARGET_NAME_VARIABLE)
