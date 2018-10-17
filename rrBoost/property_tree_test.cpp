@@ -4,7 +4,7 @@
 /// \brief Property Tree
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/property_tree.html>
 ///
-/// \version 2018-10-15
+/// \version 2018-10-17
 /// \since 2018-10-15
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -23,17 +23,14 @@ namespace rrboost::test {
 
 TEST(property_tree, with_xml)
 {
-    using namespace filesystem;
-    using namespace boost::property_tree;
-
     struct log_settings {
         string      file {"log.txt"s};
         int         level {0};
         set<string> modules {"m1"s, "m2"s, "m3"s};
         void load(const string &config_file)
         {
-            ptree tree;
-            read_xml(config_file, tree);
+            boost::property_tree::ptree tree;
+            boost::property_tree::read_xml(config_file, tree);
             file = tree.get("log.file", "log.txt");
             level = tree.get("log.level", 0);
             for (const auto &pair : tree.get_child("log.modules"))
@@ -41,12 +38,12 @@ TEST(property_tree, with_xml)
         }
         void save(const string &config_file)
         {
-            ptree tree;
+            boost::property_tree::ptree tree;
             tree.put("log.file", file);
             tree.put("log.level", level);
             for (const auto &module : modules)
                 tree.add("log.modules.module", module);
-            write_xml(config_file, tree);
+            boost::property_tree::write_xml(config_file, tree);
         }
     };
 

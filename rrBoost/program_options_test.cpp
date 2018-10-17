@@ -4,7 +4,7 @@
 /// \brief Program Options
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/program_options.html>
 ///
-/// \version 2018-10-16
+/// \version 2018-10-17
 /// \since 2018-04-02
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -24,19 +24,18 @@ namespace rrboost::test {
 
 TEST(program_options, first_step)
 {
-    using namespace boost::program_options;
     const char *const argv[] {"siii", "xiaa", "yiii", "--help", "--compression", "1.1"};
     span<const czstring<>> args {argv};
 
     try {
-        options_description desc("Allowed options");
+        boost::program_options::options_description desc("Allowed options");
         desc.add_options()
             ("help,h", "this message")
-            ("compression", value<double>(), "set compression level");
+            ("compression", boost::program_options::value<double>(), "set compression level");
 
-        variables_map vars;
-        store(parse_command_line(args.size(), argv, desc), vars);
-        notify(vars);
+        boost::program_options::variables_map vars;
+        boost::program_options::store(parse_command_line(args.size(), argv, desc), vars);
+        boost::program_options::notify(vars);
 
         if (vars.count("help")) {
             cout << desc << "\n";

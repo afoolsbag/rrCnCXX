@@ -4,7 +4,7 @@
 /// \brief Lexical Cast
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/boost_lexical_cast.html>
 ///
-/// \version 2018-10-16
+/// \version 2018-10-17
 /// \since 2018-10-15
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -18,15 +18,13 @@ namespace rrboost::test {
 
 TEST(lexical_cast, string_2_number)
 {
-    using namespace boost;
-
     try {
-        lexical_cast<short>("32767");
-    } catch (const bad_lexical_cast &e) {
+        boost::lexical_cast<short>("32767");
+    } catch (const boost::bad_lexical_cast &e) {
         FAIL() << e.what();
     }
 
-    ASSERT_THROW(lexical_cast<uint8_t>("32768"), bad_lexical_cast);
+    ASSERT_THROW(boost::lexical_cast<uint8_t>("32768"), boost::bad_lexical_cast);
 }
 
 }//namespace rrboost::test
