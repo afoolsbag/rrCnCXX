@@ -11,9 +11,6 @@
 ///
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
-using namespace std;
-
 #include <boost/lexical_cast.hpp>
 #include <gtest/gtest.h>
 
@@ -26,8 +23,7 @@ TEST(lexical_cast, string_2_number)
     try {
         lexical_cast<short>("32767");
     } catch (const bad_lexical_cast &e) {
-        cerr << e.what() << "\n";
-        FAIL();
+        FAIL() << e.what();
     }
 
     ASSERT_THROW(lexical_cast<uint8_t>("32768"), bad_lexical_cast);

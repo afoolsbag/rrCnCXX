@@ -4,7 +4,7 @@
 /// \brief Program Options
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/program_options.html>
 ///
-/// \version 2018-10-15
+/// \version 2018-10-16
 /// \since 2018-04-02
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -49,12 +49,10 @@ TEST(program_options, first_step)
         }
 
     } catch (const exception &e) {
-        cerr << "error: " << e.what() << "\n";
-        FAIL();
+        FAIL() << e.what();
 
     } catch (...) {
-        cerr << "Exception of unknown type.\n";
-        FAIL();
+        FAIL() << "Exception of unknown type.";
 
     }
 }

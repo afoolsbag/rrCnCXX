@@ -1,19 +1,13 @@
-/// \copyright The MIT License
+/// \copyright The Unlicense
 
 #include <gtest/gtest.h>
 #include <spdlog/spdlog.h>
 
-int main(int argc, char *argv[])
-{
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
-
-namespace rrspdlog {
+namespace rrspdlog::test {
 
 constexpr char PATTERN[] {"%C-%m-%d %H:%M:%S.%e p%P t%t %l: %v"};
 
-TEST(main, basicLogger)
+TEST(spdlog, basicLogger)
 {
     try {
         const auto logger = spdlog::basic_logger_mt("basic logger", "logs/basic.log");
@@ -38,7 +32,7 @@ TEST(main, basicLogger)
     SUCCEED();
 }
 
-TEST(main, multiSink)
+TEST(spdlog, multiSink)
 {
     try {
         std::vector<spdlog::sink_ptr> sinks;
@@ -67,4 +61,4 @@ TEST(main, multiSink)
     SUCCEED();
 }
 
-}//namespace rrspdlog
+}//namespace rrspdlog::test
