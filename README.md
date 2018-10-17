@@ -12,21 +12,21 @@
 
 ## 参考
 
-[*Wolfram|Alpha*](https://wolframalpha.com/)
-[*Wolfram MathWorld*](http://mathworld.wolfram.com/)
+/ [*Wolfram|Alpha*](https://wolframalpha.com/)
+/ [*Wolfram MathWorld*](http://mathworld.wolfram.com/)
 
-[*36氪*](https://36kr.com/)
-[*CodeProject*](https://codeproject.com/)
-[*DevDocs*](https://devdocs.io/)
-[*Hacker News*](https://news.ycombinator.com/)
-[*InfoQ*](https://infoq.com/)
-[*ITeye*](http://iteye.com/)
-[*OverAPI.com*](http://overapi.com/)
-[*SegmentFault*](https://segmentfault.com/)
-[*Stack Overflow*](https://stackoverflow.com/)
-[*V2EX*](https://v2ex.com/)
-[*开源中国*](https://oschina.net/)
-[*前端乱炖*](http://html-js.com/)
+/ [*36氪*](https://36kr.com/)
+/ [*CodeProject*](https://codeproject.com/)
+/ [*DevDocs*](https://devdocs.io/)
+/ [*Hacker News*](https://news.ycombinator.com/)
+/ [*InfoQ*](https://infoq.com/)
+/ [*ITeye*](http://iteye.com/)
+/ [*OverAPI.com*](http://overapi.com/)
+/ [*SegmentFault*](https://segmentfault.com/)
+/ [*Stack Overflow*](https://stackoverflow.com/)
+/ [*V2EX*](https://v2ex.com/)
+/ [*开源中国*](https://oschina.net/)
+/ [*前端乱炖*](http://html-js.com/)
 
 词典
 *   [*The Free Dictionary*](https://thefreedictionary.com/)
@@ -54,7 +54,7 @@
 
 ## 指南
 
-["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/).  *计算机书籍控*.
+["程序员必读书籍"](http://bestcbooks.com/recommend/most-influential-book/). *计算机书籍控*.
 *   *The Mythical Man-Month: Essays on Software Engineering*. 1st ed. 1975; 2nd ed. 1995. Frederick Brooks.
 *   *Code Complete*. 1st ed. 1993; 2nd ed. 2004. Steve McConnell.
 
@@ -66,27 +66,27 @@
 
 编辑器
 
-[*Emacs*](https://gnu.org/software/emacs/)
-[*Notepad++*](https://notepad-plus-plus.org)
-[*Vim*](https://www.vim.org/)
-[*Visual Studio Code*](https://code.visualstudio.com)
+/ [*Emacs*](https://gnu.org/software/emacs/)
+/ [*Notepad++*](https://notepad-plus-plus.org)
+/ [*Vim*](https://www.vim.org/)
+/ [*Visual Studio Code*](https://code.visualstudio.com)
 
 系统环境
 
-[*Cygwin*](https://cygwin.com/)
-[*MinGW*](http://mingw.org/)
-[*Mingw-w64*](https://mingw-w64.org/)
+/ [*Cygwin*](https://cygwin.com/)
+/ [*MinGW*](http://mingw.org/)
+/ [*Mingw-w64*](https://mingw-w64.org/)
 
 集成开发环境
 
-[*CLion*](https://jetbrains.com/clion)
-[*Understand™*](https://scitools.com)
-[*Visual Studio*](https://visualstudio.com)
+/ [*CLion*](https://jetbrains.com/clion)
+/ [*Understand™*](https://scitools.com)
+/ [*Visual Studio*](https://visualstudio.com)
 (
-[*IncrediBuild*](https://incredibuild.com)
-[*ReSharper С++*](https://jetbrains.com/resharper-cpp)
-[*Studio Styles*](https://studiostyl.es)
-[*Visual Assist*](https://wholetomato.com)
+/ [*IncrediBuild*](https://incredibuild.com)
+/ [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
+/ [*Studio Styles*](https://studiostyl.es)
+/ [*Visual Assist*](https://wholetomato.com)
 )
 
 ## Git
@@ -128,9 +128,9 @@
 *   Administration
     *   [reflog](https://git-scm.com/docs/git-reflog)
 
-[*Try Git*](https://try.github.io/)
-[*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
-["Git教程"](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000). *廖雪峰的官方网站*.
+/ [*Try Git*](https://try.github.io/)
+/ [*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
+/ ["Git教程"](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000). *廖雪峰的官方网站*.
 
 ## Markdown
 
@@ -309,6 +309,5 @@ quickref
   To the extent possible under law,
   <span resource="[_:publisher]" rel="dct:publisher">
     <span property="dct:title">zhengrr</span></span>
-  has waived all copyright and related or neighboring rights to
-  this work.
+  has waived all copyright and related or neighboring rights to this work.
 </p>

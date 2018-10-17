@@ -7,42 +7,42 @@
  *
  * [*ISO/IEC JTC1/SC22/WG14 - C*](http://open-std.org/jtc1/sc22/wg14/)
  *
- * [*C18*](https://iso.org/standard/74528.html) (2017)
- * [*C11*](https://iso.org/standard/57853.html) (2011)
- * [*C99*](https://iso.org/standard/29237.html) (1999)
- * *C95*
- * [*C90*](https://iso.org/standard/17782.html) (1990)
- * *ANSI C* (1989)
- * *K&R C* (1978)
- * *C* (1972)
+ * / [*C18*](https://iso.org/standard/74528.html) (2017)
+ * / [*C11*](https://iso.org/standard/57853.html) (2011)
+ * / [*C99*](https://iso.org/standard/29237.html) (1999)
+ * / *C95*
+ * / [*C90*](https://iso.org/standard/17782.html) (1990)
+ * / *ANSI C* (1989)
+ * / *K&R C* (1978)
+ * / *C* (1972)
  *
- * # References                                                   {#sReferences}
+ * # 参考                                                         {#sReferences}
  *
  * ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
  *
- * # Styles                                                           {#sStyles}
+ * # 风格                                                             {#sStyles}
  *
  * [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
  *
- * # Guides                                                           {#sGuides}
+ * # 指南                                                             {#sGuides}
  *
- * *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
- * *C Programming: A Modern Approach.* 1st ed. 1996; [2nd ed.](http://knking.com/books/c2) 2008. K. N. King.
- * *C Traps and Pitfalls*. 1989. Andrew Koenig.
- * *Expert C Programming: Deep C Secrets*. 1994. Peter van der Linden.
- * [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf). 1989. Eric. S. Roberts.
- * *Pointers on C*. 1997. Kenneth Reek.
- * [*The C Library Reference Guide*](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide). 1997. Eric Huss.
- * *The C Programming Language*. 1st ed. 1978; 2nd ed. 1988. Brian Kernighan; Dennis Ritchie.
- * *The Standard C Library*. 1992. P. J. Plauger.
+ * / *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
+ * / [*The C Library Reference Guide*](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide). 1997. Eric Huss.
+ * / *C Programming: A Modern Approach.* 1st ed. 1996; [2nd ed.](http://knking.com/books/c2) 2008. K. N. King.
+ * / *The C Programming Language*. 1st ed. 1978; 2nd ed. 1988. Brian Kernighan; Dennis Ritchie.
+ * / *C Traps and Pitfalls*. 1989. Andrew Koenig.
+ * / *Expert C Programming: Deep C Secrets*. 1994. Peter van der Linden.
+ * / [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf). 1989. Eric. S. Roberts.
+ * / *Pointers on C*. 1997. Kenneth Reek.
+ * / *The Standard C Library*. 1992. P. J. Plauger.
  *
  * # Awesome                                                         {#sAwesome}
  *
  * [*Awesome C*](https://notabug.org/koz.ross/awesome-c)
  *
- * [*Check*](https://libcheck.github.io/check)
+ * / [*Check*](https://libcheck.github.io/check)
  *
- * # License                                                         {#sLicense}
+ * # 许可                                                            {#sLicense}
  *
  * <p xmlns:dct="https://purl.org/dc/terms/">
  *   <a rel="license"
@@ -53,11 +53,10 @@
  *   To the extent possible under law,
  *   <span resource="[_:publisher]" rel="dct:publisher">
  *     <span property="dct:title">zhengrr</span></span>
- *   has waived all copyright and related or neighboring rights to
- *   this work.
+ *   has waived all copyright and related or neighboring rights to this work.
  * </p>
  *
- * \version 2018-10-15
+ * \version 2018-10-17
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC0 1.0
@@ -66,26 +65,26 @@
 
 /*===-- C Reference --------------------------------------------*- C -*-===*//**
  *
- * \defgroup gRef C 参考手册
+ * \defgroup gReference C 参考手册
  *
  * \sa ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
- *     + 语言
- *     + 头文件
- *     + 类型支持
- *     + 程序工具
- *     + 变参数函数
- *     + 错误处理
- *     + 动态内存管理
- *     + 日期和时间工具
- *     + 字符串库
- *     + 算法
- *     + 数值
- *     + 输入、输出支持
- *     + 本地化支持
- *     + 原子操作库
- *     + 线程支持库
+ *     *   语言
+ *     *   头文件
+ *     *   类型支持
+ *     *   程序工具
+ *     *   变参数函数
+ *     *   错误处理
+ *     *   动态内存管理
+ *     *   日期和时间工具
+ *     *   字符串库
+ *     *   算法
+ *     *   数值
+ *     *   输入、输出支持
+ *     *   本地化支持
+ *     *   原子操作库
+ *     *   线程支持库
  *
- * \version 2018-10-15
+ * \version 2018-10-17
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC0 1.0

@@ -7,44 +7,43 @@
 ///
 /// [*Standard C++*](https://isocpp.org)
 ///
-/// *C++20*
-/// [*C++17*](https://iso.org/standard/68564.html) (2017)
-/// [*C++14*](https://iso.org/standard/64029.html) (2014)
-/// [*C++11*](https://iso.org/standard/50372.html) (2011)
-/// [*C++03*](https://iso.org/standard/38110.html) (2003)
-/// [*C++98*](https://iso.org/standard/25845.html) (1998)
-/// *C++* (1983)
+/// / *C++20*
+/// / [*C++17*](https://iso.org/standard/68564.html) (2017)
+/// / [*C++14*](https://iso.org/standard/64029.html) (2014)
+/// / [*C++11*](https://iso.org/standard/50372.html) (2011)
+/// / [*C++03*](https://iso.org/standard/38110.html) (2003)
+/// / [*C++98*](https://iso.org/standard/25845.html) (1998)
+/// / *C++* (1983)
 ///
-/// # References                                                  {#sReferences}
+/// # 参考                                                        {#sReferences}
 ///
 /// ["C++ 参考手册"](https://zh.cppreference.com/w/cpp). *cppreference.com*.
 /// [*cplusplus.com*](http://cplusplus.com)
 ///
-/// # Styles                                                          {#sStyles}
+/// # 风格                                                            {#sStyles}
 ///
-/// + 标准库（`std`）和指导方针支持库（`gsl`）风格命名；
-/// + K&R 和 Stroustrup 风格布局；
-/// + `.hxx` 和 `.cxx` 风格后缀。
+/// 标准库（`std`）和指导方针支持库（`gsl`）风格命名；
+/// K&R 和 Stroustrup 风格布局；
+/// `.hxx` 和 `.cxx` 风格后缀。
 ///
 /// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)
 /// <sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
 /// + [Coding rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#SS-rules)
 ///   <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
 ///
-/// # Guides                                                          {#sGuides}
+/// # 指南                                                            {#sGuides}
 ///
-/// [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
-/// ["C++必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
-///
-/// *Effective C++*
+/// / [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
+/// / ["C++ 必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
+/// / *Effective C++*
 ///
 /// # Awesome                                                        {#sAwesome}
 ///
 /// [*Awesome C++*](https://fffaraz.github.io/awesome-cpp/)
 ///
-/// [*Google Test*](https://github.com/google/googletest)
+/// / [*Google Test*](https://github.com/google/googletest)
 ///
-/// # License                                                        {#sLicense}
+/// # 许可                                                           {#sLicense}
 ///
 /// <p xmlns:dct="https://purl.org/dc/terms/">
 ///   <a rel="license"
@@ -55,11 +54,10 @@
 ///   To the extent possible under law,
 ///   <span resource="[_:publisher]" rel="dct:publisher">
 ///     <span property="dct:title">zhengrr</span></span>
-///   has waived all copyright and related or neighboring rights to
-///   this work.
+///   has waived all copyright and related or neighboring rights to this work.
 /// </p>
 ///
-/// \version 2018-10-15
+/// \version 2018-10-17
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0 1.0
@@ -68,29 +66,29 @@
 
 //===-- C++ Reference -------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gRef C++ 参考手册
+/// \defgroup gReference C++ 参考手册
 ///
 /// \sa ["C++ 参考手册"](https://zh.cppreference.com/w/cpp). *cppreference.com*.
-///     + 语言
-///     + 头文件
-///     + 具名要求
-///     + 语言支持库
-///     + 概念库（C++20）
-///     + 诊断库
-///     + 通用工具库
-///     + 字符串库
-///     + 容器库
-///     + 迭代器库
-///     + 算法库
-///     + 数值库
-///     + 输入、输出库
-///     + 本地化库
-///     + 正则表达式库（C++11）
-///     + 原子操作库（C++11）
-///     + 线程支持库（C++11）
-///     + 文件系统库（C++17）
+///     *   语言
+///     *   头文件
+///     *   具名要求
+///     *   语言支持库
+///     *   概念库（C++20）
+///     *   诊断库
+///     *   通用工具库
+///     *   字符串库
+///     *   容器库
+///     *   迭代器库
+///     *   算法库
+///     *   数值库
+///     *   输入、输出库
+///     *   本地化库
+///     *   正则表达式库（C++11）
+///     *   原子操作库（C++11）
+///     *   线程支持库（C++11）
+///     *   文件系统库（C++17）
 ///
-/// \version 2018-10-15
+/// \version 2018-10-17
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0 1.0
