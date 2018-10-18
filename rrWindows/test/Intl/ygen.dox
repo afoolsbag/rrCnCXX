@@ -1,0 +1,20 @@
+/*===-- Internationalization for Windows Applications ----------*- C -*-===*//**
+ *
+ * \defgroup gIntl Windows 应用程序国际化
+ * \ingroup gDevelop
+ *
+ * \sa ["Internationalization for Windows Applications"](https://docs.microsoft.com/windows/desktop/Intl/). *Microsoft Docs*.
+ *     *   Getting Started with International Windows Development
+ *     *   Globalization Services
+ *     *   Input Method Manager
+ *     *   International Fonts and Text Display
+ *     *   Multilingual User Interface
+ *     *   Unicode and Character Sets
+ *     *   Security Considerations: International Features
+ *
+ * \version 2018-10-18
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/

@@ -12,7 +12,10 @@
 
 #pragma once
 
-/** \brief API */
+/**
+ * \def RRWINDOWS_API
+ * \brief 自适应导入、导出宏。
+ */
 #ifdef RRWINDOWS_SHARED
 # ifdef RRWINDOWS_EXPORTS
 #  define RRWINDOWS_API __declspec(dllexport)
@@ -23,20 +26,106 @@
 #  define RRWINDOWS_API
 #endif
 
-/** \brief 宏展开。 */
+/**
+ * \brief 间接展开。
+ */
 #define EXPAND(macro) macro
 
-/** \brief 宏展开为字符串。 */
-#define STRING(unquoted) #unquoted
-#define EXPAND_STRING(macro) STRING(macro)
+/**
+ * \def DEBUG_ONLY
+ * \brief 条件展开。
+ */
+#ifndef DEBUG_ONLY
+# ifdef _DEBUG
+#  define DEBUG_ONLY(macro) macro
+# else
+#  define DEBUG_ONLY(macro)
+# endif
+#endif
 
-/** \brief 宏展开为宽字符串。 */
-#define WIDE_STRING(unquoted) L#unquoted
-#define EXPAND_WIDE_STRING(macro) WIDE_STRING(macro)
+/**
+ * \def RELEASE_ONLY
+ * \brief 条件展开。
+ */
+#ifndef RELEASE_ONLY
+# ifdef _DEBUG
+#  define RELEASE_ONLY(macro)
+# else
+#  define RELEASE_ONLY(macro) macro
+# endif
+#endif
 
-/** \brief 字符串宏展开为宽字符串。 */
-#define WIDE(string) L##string
-#define EXPAND_WIDE(macro) WIDE(macro)
+/**
+ * \def ANSI_ONLY
+ * \brief 条件展开。
+ */
+#ifndef ANSI_ONLY
+# if defined _MBCS || defined _UNICODE
+#  define ANSI_ONLY(macro)
+# else
+#  define ANSI_ONLY(macro) macro
+# endif
+#endif
+
+/**
+ * \def ANSI_NONE
+ * \brief 条件展开。
+ */
+#ifndef ANSI_NONE
+# if defined _MBCS || defined _UNICODE
+#  define ANSI_NONE(macro) macro
+# else
+#  define ANSI_NONE(macro)
+# endif
+#endif
+
+/**
+ * \def MBCS_ONLY
+ * \brief 条件展开。
+ */
+#ifndef MBCS_ONLY
+# ifdef _MBCS
+#  define MBCS_ONLY(macro) macro
+# else
+#  define MBCS_ONLY(macro)
+# endif
+#endif
+
+/**
+ * \def MBCS_NONE
+ * \brief 条件展开。
+ */
+#ifndef MBCS_NONE
+# ifdef _MBCS
+#  define MBCS_NONE(macro)
+# else
+#  define MBCS_NONE(macro) macro
+# endif
+#endif
+
+/**
+ * \def UNICODE_ONLY
+ * \brief 条件展开。
+ */
+#ifndef UNICODE_ONLY
+# ifdef _UNICODE
+#  define UNICODE_ONLY(macro) macro
+# else
+#  define UNICODE_ONLY(macro)
+# endif
+#endif
+
+/**
+ * \def UNICODE_NONE
+ * \brief 条件展开。
+ */
+#ifndef UNICODE_NONE
+# ifdef _UNICODE
+#  define UNICODE_NONE(macro)
+# else
+#  define UNICODE_NONE(macro) macro
+# endif
+#endif
 
 /** \brief 不支持的参数数目。 */
 #define VABAN UnsupportedNumberOfParamaters
@@ -58,60 +147,3 @@
 #define VAFUNC9(_1, _2, _3, _4, _5, _6, _7, _8, _9, func9, ...) func9
 /** \brief 变参宏函数（1-10参数）。 */
 #define VAFUNC10(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, func10, ...) func10
-
-/** \brief 条件展开。 */
-#ifdef DEBUG_ONLY
-# /*ignore*/
-#elif _DEBUG
-# define DEBUG_ONLY(macro) macro
-#else
-# define DEBUG_ONLY(macro) /*blank*/
-#endif
-
-#ifdef RELEASE_ONLY
-# /*ignore*/
-#elif _DEBUG
-# define RELEASE_ONLY(macro) /*blank*/
-#else
-# define RELEASE_ONLY(macro) macro
-#endif
-
-#ifdef MBCS_ONLY
-# /*ignore*/
-#elif _MBCS
-# define MBCS_ONLY(macro) macro
-#else
-# define MBCS_ONLY(macro) /*blank*/
-#endif
-
-#ifdef NON_MBCS_ONLY
-# /*ignore*/
-#elif _MBCS
-# define NON_MBCS_ONLY(macro) /*blank*/
-#else
-# define NON_MBCS_ONLY(macro) macro
-#endif
-
-#ifdef UNICODE_ONLY
-# /*ignore*/
-#elif _UNICODE
-# define UNICODE_ONLY(macro) macro
-#else
-# define UNICODE_ONLY(macro) /*blank*/
-#endif
-
-#ifdef NON_UNICODE_ONLY
-# /*ignore*/
-#elif _UNICODE
-# define NON_UNICODE_ONLY(macro) /*blank*/
-#else
-# define NON_UNICODE_ONLY(macro) macro
-#endif
-
-#ifdef NON_MBCS_UNICODE_ONLY
-# /*ignore*/
-#elif _MBCS || _UNICODE
-# define NON_MBCS_UNICODE_ONLY(macro) /*blank*/
-#else
-# define NON_MBCS_UNICODE_ONLY(macro) macro
-#endif

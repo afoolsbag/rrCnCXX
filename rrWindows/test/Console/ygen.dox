@@ -1,0 +1,13 @@
+/*===-- Consoles -----------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gConsole 控制台
+ * \ingroup gDevelop
+ *
+ * \sa ["Consoles"](https://docs.microsoft.com/windows/console/). *Microsoft Docs*.
+ *
+ * \version 2018-10-18
+ * \since 2018-05-03
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/
