@@ -1,0 +1,13 @@
+/*===-- Dynamic-Link Libraries ---------------------------------*- C -*-===*//**
+ *
+ * \defgroup gDLL 动态链接库
+ * \ingroup gSystemServices
+ *
+ * \sa ["Dynamic-Link Libraries"](https://docs.microsoft.com/windows/desktop/Dlls/). *Microsoft Docs*.
+ *
+ * \version 2018-10-18
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/

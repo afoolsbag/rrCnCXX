@@ -4,7 +4,7 @@
 
 #include <check/check.h>
 
-extern TCase *tc_dynamic_memory_management(void);
+TCase *tc_dynamic_memory_management(void);
 
 inline Suite *ts_dynamic_memory_management(void)
 {

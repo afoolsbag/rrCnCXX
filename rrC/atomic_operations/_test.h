@@ -4,7 +4,7 @@
 
 #include <check/check.h>
 
-extern TCase *tc_atomic_operations(void);
+TCase *tc_atomic_operations(void);
 
 inline Suite *ts_atomic_operations(void)
 {

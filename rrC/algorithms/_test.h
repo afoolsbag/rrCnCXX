@@ -4,7 +4,7 @@
 
 #include <check/check.h>
 
-extern TCase *tc_algorithms(void);
+TCase *tc_algorithms(void);
 
 inline Suite *ts_algorithms(void)
 {

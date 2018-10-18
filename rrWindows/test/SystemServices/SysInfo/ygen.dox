@@ -1,0 +1,19 @@
+/*===-- Windows System Information -----------------------------*- C -*-===*//**
+ *
+ * \defgroup gSysInfo Windows系统信息
+ * \ingroup gSystemServices
+ *
+ * \sa ["Windows System Information"](https://docs.microsoft.com/windows/desktop/SysInfo/). *Microsoft Docs*
+ *     *   Handles and Objects
+ *     *   Registry
+ *     *   System Information
+ *     *   Time
+ *     *   Time Provider
+ *     *   WaaS Assessment Platform
+ *
+ * \version 2018-10-18
+ * \since 2018-02-05
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/

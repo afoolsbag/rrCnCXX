@@ -4,16 +4,16 @@
 # | |  | |  | |  | |  _|| |___
 # |_|  |_|  |_|  |_|_|   \____| rrMFC by FIGlet
 # zhengrr
-# 2017-12-08 – 2018-10-13
+# 2017-12-08 – 2018-10-17
 # The Unlicense
 
-set(sRrwindowsLib "rrwindows_shared_library")
-
-project(rrMFC VERSION 2018.10.13 LANGUAGES CXX)
-project_extra()
+project(rrMFC VERSION 2018.10.17 LANGUAGES CXX)
+project_more()
 compile_option(UTF-8 WARNING_AS_ERROR)
 
 facile_add_doxygen()
+
+set(sRrwindowsLib "rrwindows_shared_library")
 
 add_definitions("-D_AFXDLL")
 set(CMAKE_MFC_FLAG 2)
@@ -31,7 +31,8 @@ aux_source_directory_ex(
 aux_source_directory_ex(
   zTest
   DIRECTORY    "test/"
-  RECURSE MFC
+  RECURSE
+  MFC
   GROUP_ROOT   "test/"
   MFC_PCH_BASE "test")
 aux_source_directory_ex(

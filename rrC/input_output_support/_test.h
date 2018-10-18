@@ -4,7 +4,7 @@
 
 #include <check/check.h>
 
-extern TCase *tc_file_access(void);
+TCase *tc_file_access(void);
 
 inline Suite *ts_input_output_support(void)
 {

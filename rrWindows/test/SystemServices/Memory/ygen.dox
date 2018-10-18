@@ -1,0 +1,13 @@
+/*===-- Memory Management --------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gMemory 内存管理
+ * \ingroup gSystemServices
+ *
+ * \sa ["Memory Management"](https://docs.microsoft.com/windows/desktop/Memory/). *Microsoft Docs*.
+ *
+ * \version 2018-10-18
+ * \since 2018-07-13
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/

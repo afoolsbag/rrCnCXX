@@ -4,7 +4,7 @@
 
 #include <check/check.h>
 
-extern TCase *tc_date_and_time_utilities(void);
+TCase *tc_date_and_time_utilities(void);
 
 inline Suite *ts_date_and_time_utilities(void)
 {

@@ -4,9 +4,9 @@
 
 #include <check/check.h>
 
-extern TCase *tc_array(void);
-extern TCase *tc_character(void);
-extern TCase *tc_structure(void);
+TCase *tc_array(void);
+TCase *tc_character(void);
+TCase *tc_structure(void);
 
 inline Suite *ts_language(void)
 {

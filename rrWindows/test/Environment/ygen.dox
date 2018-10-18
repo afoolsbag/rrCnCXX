@@ -1,0 +1,19 @@
+/*===-- Desktop Environment ------------------------------------*- C -*-===*//**
+ *
+ * \defgroup gEnvironment 桌面环境
+ * \ingroup gDevelop
+ *
+ * \sa ["Desktop Environment"](https://docs.microsoft.com/windows/desktop/user-interface). *Microsoft Docs*.
+ *     *   Windows Shell
+ *     *   Windows Property System
+ *     *   Windows Search
+ *     *   Window Stations and Desktops
+ *     *   Windows Help
+ *     *   Consoles
+ *
+ * \version 2018-10-18
+ * \since 2018-04-27
+ * \authors zhengrr
+ * \copyright CC0 1.0
+ *
+*//*===--------------------------------------------------------------------===*/

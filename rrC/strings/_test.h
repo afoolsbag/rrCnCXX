@@ -4,9 +4,9 @@
 
 #include <check/check.h>
 
-extern TCase *tc_byte_strings_conversion(void);
-extern TCase *tc_byte_strings_examination(void);
-extern TCase *tc_byte_strings_manipulation(void);
+TCase *tc_byte_strings_conversion(void);
+TCase *tc_byte_strings_examination(void);
+TCase *tc_byte_strings_manipulation(void);
 
 inline Suite *ts_strings(void)
 {

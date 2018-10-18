@@ -4,8 +4,8 @@
 
 #include <check/check.h>
 
-extern TCase *tc_nearest_integer_floating_point_operations(void);
-extern TCase *tc_pseudo_random_number(void);
+TCase *tc_nearest_integer_floating_point_operations(void);
+TCase *tc_pseudo_random_number(void);
 
 inline Suite *ts_numerics(void)
 {
