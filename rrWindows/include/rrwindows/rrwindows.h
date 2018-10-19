@@ -3,7 +3,7 @@
  * \file
  * \brief 包含文件汇总。
  *
- * \version 2018-10-18
+ * \version 2018-10-19
  * \since 2018-08-08
  * \authors zhengrr
  * \copyright The Unlicense
@@ -15,3 +15,4 @@
 #include "rrwindows/macros.h"
 
 #include "rrwindows/FileIO/DirectoryManagement.h"
+#include "rrwindows/MenuRc/Strings.h"

@@ -19,7 +19,7 @@
 #include <tchar.h>
 
 #include <check/check.h>
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrwindows/rrwindows.h"
 
 #include "_test.h"
 

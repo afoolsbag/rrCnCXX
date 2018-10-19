@@ -6,8 +6,8 @@
 #include <strsafe.h>
 
 RRWINDOWS_API
-_Success_(return != FALSE)
-BOOL
+_Success_(return > 0)
+size_t
 StringAllocCatA(
     _In_     PCSTR CONST src1,
     _In_     PCSTR CONST src2,
@@ -19,7 +19,7 @@ StringAllocCatA(
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
     size_t length2;
@@ -28,44 +28,44 @@ StringAllocCatA(
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
-    CONST size_t size = length1 + length2 + 1;
+    CONST size_t count = length1 + length2 + 1;
 
-    PSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, size * sizeof(CHAR));
+    PSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, count * sizeof(CHAR));
     if (!heap) {
         SetLastError(ERROR_OUTOFMEMORY);
         *dest = NULL;
-        return FALSE;
+        return 0;
     }
 
     {
-        CONST HRESULT hr = StringCchCopyA(heap, size, src1);
+        CONST HRESULT hr = StringCchCopyA(heap, count, src1);
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             HeapFree(GetProcessHeap(), 0, heap);
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
     {
-        CONST HRESULT hr = StringCchCatA(heap, size, src2);
+        CONST HRESULT hr = StringCchCatA(heap, count, src2);
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             HeapFree(GetProcessHeap(), 0, heap);
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
 
     *dest = heap;
-    return TRUE;
+    return count;
 }
 
 RRWINDOWS_API
-_Success_(return != FALSE)
-BOOL
+_Success_(return > 0)
+size_t
 StringAllocCatW(
     _In_     PCWSTR CONST src1,
     _In_     PCWSTR CONST src2,
@@ -77,7 +77,7 @@ StringAllocCatW(
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
     size_t length2;
@@ -86,44 +86,44 @@ StringAllocCatW(
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
-    CONST size_t size = length1 + length2 + 1;
+    CONST size_t count = length1 + length2 + 1;
 
-    PWSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, size * sizeof(WCHAR));
+    PWSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, count * sizeof(WCHAR));
     if (!heap) {
         SetLastError(ERROR_OUTOFMEMORY);
         *dest = NULL;
-        return FALSE;
+        return 0;
     }
 
     {
-        CONST HRESULT hr = StringCchCopyW(heap, size, src1);
+        CONST HRESULT hr = StringCchCopyW(heap, count, src1);
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             HeapFree(GetProcessHeap(), 0, heap);
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
     {
-        CONST HRESULT hr = StringCchCatW(heap, size, src2);
+        CONST HRESULT hr = StringCchCatW(heap, count, src2);
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             HeapFree(GetProcessHeap(), 0, heap);
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
 
     *dest = heap;
-    return TRUE;
+    return count;
 }
 
 RRWINDOWS_API
-_Success_(return != FALSE)
-BOOL
+_Success_(return > 0)
+size_t
 StringAllocCopyA(
     _In_     PCSTR CONST src,
     _Outptr_ PSTR *CONST dest)
@@ -134,35 +134,35 @@ StringAllocCopyA(
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
-    CONST size_t size = length + 1;
+    CONST size_t count = length + 1;
 
-    PSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, size * sizeof(CHAR));
+    PSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, count * sizeof(CHAR));
     if (!heap) {
         SetLastError(ERROR_OUTOFMEMORY);
         *dest = NULL;
-        return FALSE;
+        return 0;
     }
 
     {
-        CONST HRESULT hr = StringCchCopyA(heap, size, src);
+        CONST HRESULT hr = StringCchCopyA(heap, count, src);
         if (FAILED(hr)) {
             SetLastError(HRESULT_CODE(hr));
             HeapFree(GetProcessHeap(), 0, heap);
             *dest = NULL;
-            return FALSE;
+            return 0;
         }
     }
 
     *dest = heap;
-    return TRUE;
+    return count;
 }
 
 RRWINDOWS_API
-_Success_(return != FALSE)
-BOOL
+_Success_(return > 0)
+size_t
 StringAllocCopyW(
     _In_     PCWSTR CONST src,
     _Outptr_ PWSTR *CONST dest)
@@ -172,25 +172,25 @@ StringAllocCopyW(
     if (FAILED(hr1)) {
         SetLastError(HRESULT_CODE(hr1));
         *dest = NULL;
-        return FALSE;
+        return 0;
     }
-    CONST size_t size = length + 1;
+    CONST size_t count = length + 1;
 
-    PWSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, size * sizeof(WCHAR));
+    PWSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, count * sizeof(WCHAR));
     if (!heap) {
         SetLastError(ERROR_OUTOFMEMORY);
         *dest = NULL;
-        return FALSE;
+        return 0;
     }
 
-    CONST HRESULT hr2 = StringCchCopyW(heap, size, src);
+    CONST HRESULT hr2 = StringCchCopyW(heap, count, src);
     if (FAILED(hr2)) {
         SetLastError(HRESULT_CODE(hr2));
         HeapFree(GetProcessHeap(), 0, heap);
         *dest = NULL;
-        return FALSE;
+        return 0;
     }
 
     *dest = heap;
-    return TRUE;
+    return count;
 }

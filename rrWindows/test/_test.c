@@ -11,7 +11,9 @@
 
 /**
  * \remarks
+ * 控制台应用入口：\n
  * INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[]);\n
+ * 桌面应用入口：\n
  * INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PTSTR lpCmdLine, INT nCmdShow);
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])

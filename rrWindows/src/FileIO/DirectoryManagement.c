@@ -9,6 +9,8 @@
 #pragma comment(lib, "ShLwApi.lib")
 #include <strsafe.h>
 
+#include "rrwindows/MenuRc/Strings.h"
+
 static
 _Success_(return != FALSE)
 BOOL
@@ -16,54 +18,32 @@ WINAPI
 CreateDirectoryRecursivelyW_Internal(
     _In_z_ LPCWSTR CONST path)
 {
-    BOOL result = TRUE;
-
     if (PathFileExistsW(path))
         return TRUE;
 
-    size_t length;
-    {
-        CONST HRESULT hr = StringCchLengthW(path, STRSAFE_MAX_CCH, &length);
-        if (FAILED(hr)) {
-            SetLastError(HRESULT_CODE(hr));
-            return FALSE;
-        }
-    }
-    CONST size_t size = length + 1;
-    LPWSTR CONST parent = HeapAlloc(GetProcessHeap(), 0, size * sizeof(WCHAR));
-    if (!parent) {
-        SetLastError(ERROR_OUTOFMEMORY);
+    PWSTR parent = NULL;
+    const size_t count = StringAllocCopyW(path, &parent);
+    if (!count)
         return FALSE;
-    }
+
     {
-        CONST HRESULT hr = StringCchCopyW(parent, size, path);
-        if (FAILED(hr)) {
-            SetLastError(HRESULT_CODE(hr));
-            result = FALSE;
-            goto exit_free_parent;
-        }
-    }
-    {
-        CONST HRESULT hr = PathCchRemoveFileSpec(parent, size);
+        CONST HRESULT hr = PathCchRemoveFileSpec(parent, count);
         if (FAILED(hr)) {
             SetLastError(ERROR_INVALID_PARAMETER);
-            result = FALSE;
-            goto exit_free_parent;
+            HeapFree(GetProcessHeap(), 0, parent);
+            return FALSE;
         }
     }
 
     if (!CreateDirectoryRecursivelyW_Internal(parent)) {
-        result = FALSE;
-        goto exit_free_parent;
+        HeapFree(GetProcessHeap(), 0, parent);
+        return FALSE;
     }
+    HeapFree(GetProcessHeap(), 0, parent);
 
     if (!CreateDirectoryW(path, NULL))
-        result = FALSE;
-
-exit_free_parent:
-    if (!HeapFree(GetProcessHeap(), 0, parent))
-        result = FALSE;
-    return result;
+        return FALSE;
+    return TRUE;
 }
 
 RRWINDOWS_API
