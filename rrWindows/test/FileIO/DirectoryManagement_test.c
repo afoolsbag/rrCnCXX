@@ -15,10 +15,6 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#include <Shlwapi.h>
-#pragma comment(lib, "ShLwApi.lib")
-#include <strsafe.h>
-#include <tchar.h>
 
 #include <check/check.h>
 

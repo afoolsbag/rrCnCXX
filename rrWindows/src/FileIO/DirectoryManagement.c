@@ -16,7 +16,7 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 CreateDirectoryRecursivelyW_Internal(
-    _In_z_ LPCWSTR CONST path)
+    _In_z_ PCWSTR CONST path)
 {
     if (PathFileExistsW(path))
         return TRUE;
@@ -51,7 +51,7 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 CreateDirectoryRecursivelyW(
-    _In_z_ LPCWSTR CONST path)
+    _In_z_ PCWSTR CONST path)
 {
     PWSTR tmp = NULL;
     CONST HRESULT hr = PathAllocCanonicalize(path, PATHCCH_ALLOW_LONG_PATHS, &tmp);

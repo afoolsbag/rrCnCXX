@@ -4,7 +4,7 @@
  * \brief 目录管理。
  *
  * \version 2018-10-18
- * \since 2018-06-05
+ * \since 2018-06-01
  * \authors zhengrr
  * \copyright The Unlicense
  *
@@ -32,7 +32,7 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 CreateDirectoryRecursivelyW(
-    _In_z_ LPCWSTR CONST path
+    _In_z_ PCWSTR CONST path
 );
 
 #ifdef __cplusplus

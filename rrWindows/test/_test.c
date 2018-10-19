@@ -6,6 +6,7 @@
 
 #include <check/check.h>
 
+#include "Debug/_test.h"
 #include "FileIO/_test.h"
 #include "MenuRc/_test.h"
 
@@ -23,6 +24,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     UNREFERENCED_PARAMETER(envp);
 
     SRunner *CONST tr = srunner_create(NULL);
+    srunner_add_suite(tr, tsDebug());
     srunner_add_suite(tr, tsFileIO());
     srunner_add_suite(tr, tsMenuRc());
     srunner_run_all(tr, CK_NORMAL);

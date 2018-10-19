@@ -8,6 +8,7 @@
 RRWINDOWS_API
 _Success_(return > 0)
 size_t
+WINAPI
 StringAllocCatA(
     _In_     PCSTR CONST src1,
     _In_     PCSTR CONST src2,
@@ -66,6 +67,7 @@ StringAllocCatA(
 RRWINDOWS_API
 _Success_(return > 0)
 size_t
+WINAPI
 StringAllocCatW(
     _In_     PCWSTR CONST src1,
     _In_     PCWSTR CONST src2,
@@ -124,6 +126,7 @@ StringAllocCatW(
 RRWINDOWS_API
 _Success_(return > 0)
 size_t
+WINAPI
 StringAllocCopyA(
     _In_     PCSTR CONST src,
     _Outptr_ PSTR *CONST dest)
@@ -163,6 +166,7 @@ StringAllocCopyA(
 RRWINDOWS_API
 _Success_(return > 0)
 size_t
+WINAPI
 StringAllocCopyW(
     _In_     PCWSTR CONST src,
     _Outptr_ PWSTR *CONST dest)

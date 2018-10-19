@@ -14,5 +14,6 @@
 
 #include "rrwindows/macros.h"
 
+#include "rrwindows/Debug/ErrorHandling.h"
 #include "rrwindows/FileIO/DirectoryManagement.h"
 #include "rrwindows/MenuRc/Strings.h"

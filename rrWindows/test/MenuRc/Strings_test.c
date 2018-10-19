@@ -15,7 +15,6 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#include <strsafe.h>
 #include <tchar.h>
 
 #include <check/check.h>
@@ -51,7 +50,7 @@ END_TEST
 
 TCase *tcStrings(void)
 {
-    TCase *const tc = tcase_create("DirectoryManagement");
+    TCase *const tc = tcase_create("Strings");
     tcase_add_test(tc, tfStringAllocCat);
     tcase_add_test(tc, tfStringAllocCopy);
     return tc;
