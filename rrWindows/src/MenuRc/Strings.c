@@ -127,6 +127,162 @@ RRWINDOWS_API
 _Success_(return > 0)
 size_t
 WINAPI
+StringAllocCat3A(
+    _In_     PCSTR CONST src1,
+    _In_     PCSTR CONST src2,
+    _In_     PCSTR CONST src3,
+    _Outptr_ PSTR *CONST dest)
+{
+    size_t length1;
+    {
+        CONST HRESULT hr = StringCchLengthA(src1, STRSAFE_MAX_CCH, &length1);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            *dest = NULL;
+            return 0;
+        }
+    }
+    size_t length2;
+    {
+        CONST HRESULT hr = StringCchLengthA(src2, STRSAFE_MAX_CCH, &length2);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            *dest = NULL;
+            return 0;
+        }
+    }
+    size_t length3;
+    {
+        CONST HRESULT hr = StringCchLengthA(src3, STRSAFE_MAX_CCH, &length3);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            *dest = NULL;
+            return 0;
+        }
+    }
+    CONST size_t count = length1 + length2 + length3 + 1;
+
+    PSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, count * sizeof(CHAR));
+    if (!heap) {
+        SetLastError(ERROR_OUTOFMEMORY);
+        *dest = NULL;
+        return 0;
+    }
+
+    {
+        CONST HRESULT hr = StringCchCopyA(heap, count, src1);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            HeapFree(GetProcessHeap(), 0, heap);
+            *dest = NULL;
+            return 0;
+        }
+    }
+    {
+        CONST HRESULT hr = StringCchCatA(heap, count, src2);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            HeapFree(GetProcessHeap(), 0, heap);
+            *dest = NULL;
+            return 0;
+        }
+    }
+    {
+        CONST HRESULT hr = StringCchCatA(heap, count, src3);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            HeapFree(GetProcessHeap(), 0, heap);
+            *dest = NULL;
+            return 0;
+        }
+    }
+
+    *dest = heap;
+    return count;
+}
+
+RRWINDOWS_API
+_Success_(return > 0)
+size_t
+WINAPI
+StringAllocCat3W(
+    _In_     PCWSTR CONST src1,
+    _In_     PCWSTR CONST src2,
+    _In_     PCWSTR CONST src3,
+    _Outptr_ PWSTR *CONST dest)
+{
+    size_t length1;
+    {
+        CONST HRESULT hr = StringCchLengthW(src1, STRSAFE_MAX_CCH, &length1);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            *dest = NULL;
+            return 0;
+        }
+    }
+    size_t length2;
+    {
+        CONST HRESULT hr = StringCchLengthW(src2, STRSAFE_MAX_CCH, &length2);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            *dest = NULL;
+            return 0;
+        }
+    }
+    size_t length3;
+    {
+        CONST HRESULT hr = StringCchLengthW(src3, STRSAFE_MAX_CCH, &length3);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            *dest = NULL;
+            return 0;
+        }
+    }
+    CONST size_t count = length1 + length2 + length3 + 1;
+
+    PWSTR CONST heap = HeapAlloc(GetProcessHeap(), 0, count * sizeof(WCHAR));
+    if (!heap) {
+        SetLastError(ERROR_OUTOFMEMORY);
+        *dest = NULL;
+        return 0;
+    }
+
+    {
+        CONST HRESULT hr = StringCchCopyW(heap, count, src1);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            HeapFree(GetProcessHeap(), 0, heap);
+            *dest = NULL;
+            return 0;
+        }
+    }
+    {
+        CONST HRESULT hr = StringCchCatW(heap, count, src2);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            HeapFree(GetProcessHeap(), 0, heap);
+            *dest = NULL;
+            return 0;
+        }
+    }
+    {
+        CONST HRESULT hr = StringCchCatW(heap, count, src3);
+        if (FAILED(hr)) {
+            SetLastError(HRESULT_CODE(hr));
+            HeapFree(GetProcessHeap(), 0, heap);
+            *dest = NULL;
+            return 0;
+        }
+    }
+
+    *dest = heap;
+    return count;
+}
+
+RRWINDOWS_API
+_Success_(return > 0)
+size_t
+WINAPI
 StringAllocCopyA(
     _In_     PCSTR CONST src,
     _Outptr_ PSTR *CONST dest)

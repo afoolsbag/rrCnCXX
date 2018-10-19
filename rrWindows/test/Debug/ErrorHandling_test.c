@@ -24,7 +24,7 @@
 START_TEST(tfErrorMessage)
 {
     PTSTR msg = NULL;
-    ck_assert(ErrorMessage(6L, &msg));
+    ck_assert(ErrorMessageAlloc(6L, &msg));
     LocalFree(msg);
 }
 END_TEST

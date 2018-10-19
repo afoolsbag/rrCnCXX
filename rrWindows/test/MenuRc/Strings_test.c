@@ -30,7 +30,7 @@ START_TEST(tfStringAllocCat)
 
     PTSTR dest = NULL;
     ck_assert(StringAllocCat(src1, src2, &dest));
-    ck_assert_int_eq(CompareString(LOCALE_USER_DEFAULT, 0, dest, -1, full, -1), CSTR_EQUAL);
+    ck_assert_int_eq(CompareStringInvariant(dest, full), CSTR_EQUAL);
     HeapFree(GetProcessHeap(), 0, dest);
 }
 END_TEST
@@ -41,7 +41,7 @@ START_TEST(tfStringAllocCopy)
 
     PTSTR dest = NULL;
     ck_assert(StringAllocCopy(src, &dest));
-    ck_assert_int_eq(CompareString(LOCALE_USER_DEFAULT, 0, dest, -1, src, -1), CSTR_EQUAL);
+    ck_assert_int_eq(CompareStringInvariant(dest, src), CSTR_EQUAL);
     HeapFree(GetProcessHeap(), 0, dest);
 }
 END_TEST

@@ -16,4 +16,6 @@
 
 #include "rrwindows/Debug/ErrorHandling.h"
 #include "rrwindows/FileIO/DirectoryManagement.h"
+#include "rrwindows/Intl/NationalLanguageSupport.h"
+#include "rrwindows/Intl/UnicodeAndCharacterSets.h"
 #include "rrwindows/MenuRc/Strings.h"

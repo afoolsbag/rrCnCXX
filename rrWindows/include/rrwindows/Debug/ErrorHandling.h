@@ -20,10 +20,10 @@ extern "C" {;
 #endif
 
 /**
- * \brief 错误消息（ANSI 适配）。
+ * \brief 错误消息分配（ANSI 适配）。
  * \param[in]  err 错误码。
  * \param[out] msg 局部字符串指针。
- * \returns `+` 成功，值为局部字符串的字符数 +1；\n
+ * \returns `+` 成功，值为局部字符串的缓存尺寸（以字符为单位）；\n
  *          `0` 失败，调用 `GetLastError` 获取扩展信息。
  * \post 若函数成功，当局部字符串不再使用时，调用者有责任调用 `LocalFree` 释放资源。
  */
@@ -31,7 +31,7 @@ FORCEINLINE
 _Success_(return > 0)
 DWORD
 WINAPI_INLINE
-ErrorMessageA(
+ErrorMessageAllocA(
     _In_     CONST DWORD err,
     _Outptr_ PSTR *CONST msg)
 {
@@ -45,10 +45,10 @@ ErrorMessageA(
 }
 
 /**
- * \brief 错误消息（UNICODE 适配）。
+ * \brief 错误消息分配（UNICODE 适配）。
  * \param[in]  err 错误码。
  * \param[out] msg 局部字符串指针。
- * \returns `+` 成功，值为局部字符串的字符数 +1；\n
+ * \returns `+` 成功，值为局部字符串的缓存尺寸（以宽字符为单位）；\n
  *          `0` 失败，调用 `GetLastError` 获取扩展信息。
  * \post 若函数成功，当局部字符串不再使用时，调用者有责任调用 `LocalFree` 释放资源。
  */
@@ -56,7 +56,7 @@ FORCEINLINE
 _Success_(return > 0)
 DWORD
 WINAPI_INLINE
-ErrorMessageW(
+ErrorMessageAllocW(
     _In_     CONST DWORD  err,
     _Outptr_ PWSTR *CONST msg)
 {
@@ -70,9 +70,9 @@ ErrorMessageW(
 }
 
 #ifdef _UNICODE
-# define ErrorMessage ErrorMessageW
+# define ErrorMessageAlloc ErrorMessageAllocW
 #else
-# define ErrorMessage ErrorMessageA
+# define ErrorMessageAlloc ErrorMessageAllocA
 #endif
 
 #ifdef __cplusplus
