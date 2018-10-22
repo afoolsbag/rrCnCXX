@@ -4,7 +4,7 @@
 # | |  | |  | |_) | (_) | (_) \__ | |_
 # |_|  |_|  |____/ \___/ \___/|___/\__| rrBoost by FIGlet
 # zhengrr
-# 2016-10-27 – 2018-10-15
+# 2016-10-27 – 2018-10-22
 # The Unlicense
 
 cmake_policy(SET CMP0074 NEW) #3.12+
@@ -15,7 +15,7 @@ compile_option(MULTIPLE_PROCESSES UTF-8)
 
 facile_add_doxygen()
 
-find_package(CCGSL)
+find_package(CGSL)
 find_package(Boost)
 if(NOT Boost_FOUND)
   set(BOOST_ROOT "${BOOST_ROOT}" CACHE PATH "The root directory of the Boost installation.")
@@ -27,6 +27,6 @@ facile_add_gtest_executable(
   ${zSource}
   CXX17
   INCLUDE_DIRECTORIES PRIVATE "./"
-                              ${CCGSL_INCLUDE_DIRS}
-                              ${Boost_INCLUDE_DIRS}
-  LINK_DIRECTORIES    PRIVATE ${Boost_LIBRARY_DIRS})
+  LINK_DIRECTORIES    PRIVATE ${Boost_LIBRARY_DIRS}
+  LINK_LIBRARIES      PRIVATE CGSL::CGSL
+                              Boost::boost)

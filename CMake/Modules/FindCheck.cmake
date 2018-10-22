@@ -2,9 +2,9 @@
 # |  ___(_)_ __   __| |/ ___| |__   ___  ___| | __
 # | |_  | | '_ \ / _` | |   | '_ \ / _ \/ __| |/ /
 # |  _| | | | | | (_| | |___| | | |  __| (__|   <
-# |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\
-# zhengrr                      FindCheck by FIGlet
-# 2018-02-02 – 2018-09-06
+# |_|   |_|_| |_|\__,_|\____|_| |_|\___|\___|_|\_\ FindCheck by FIGlet
+# zhengrr
+# 2018-02-02 – 2018-10-22
 # The Unlicense
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -15,140 +15,146 @@ endif()
 # FindCheck
 # ---------
 #
-# 寻找 Check。
+# Find the `Check <https://libcheck.github.io/check/>`_ headers and libraries.
 #
-# 导入目标：
-# ::
+# IMPORTED Targets
+# ^^^^^^^^^^^^^^^^
 #
-#    Check::Check
-#    Check::Compat
+# ``Check::Check``
+#   The Check library, if found.
 #
-# 结果变量：
-# ::
+# ``Check::Compat``
+#   The Compat library, if found.
 #
-#    Check_FOUND
-#    Check_INCLUDE_DIRS
-#    Check_LIBRARIES_RELEASE
-#    Check_LIBRARIES_DEBUG
+# Result Variables
+# ^^^^^^^^^^^^^^^^
 #
-# 提示变量：
-# ::
+# This module defines the following :prop_tgt:`IMPORTED` targets:
 #
-#    Check_ROOT
-#    ENV Check_ROOT
+# ``Check_FOUND``
+#   Found the Check.
 #
-# 预期：
-# ::
+# ``Check_INCLUDE_DIRS``
+#   The directory containing the Check headers.
 #
-#    v check_root
+# ``Check_LIBRARIES_RELEASE``
+#   The Check release build libraries.
+#   
+# ``Check_LIBRARIES_DEBUG``
+#   The Check debug build libraries.
+#
+# Result Variables
+# ^^^^^^^^^^^^^^^^
+#
+# This module defines the following variables:
+#
+# ``Check_ROOT_DIR``
+#   The root directory of the Check installation (may also be set as an environment variable)::
+#
+#     v Check_ROOT_DIR
 #       v include
-#          v check
-#               check.h
-#               check_stdint.h
-#               libcompat.h
+#         v check
+#             check.h
+#             check_stdint.h
+#             libcompat.h
 #       v lib
-#          > vc141x32d
-#          > ...
-#            check.lib
-#            compat.lib
-#
+#         > vc141x32d
+#         > ...
+#           check.lib
+#           compat.lib
+
 if(Check_FOUND)
   return()
 endif()
 
 # hints
-
-set(zHints "${Check_ROOT}" "$ENV{Check_ROOT}")
-get_toolset_architecture_address_model_tag(sTag)
+set(zHints "${Check_ROOT_DIR}" "$ENV{Check_ROOT_DIR}")
 
 # include
-
-find_path(Check_INCLUDE_DIR
-          NAMES "check/check.h"
-          HINTS ${zHints}
+find_path(
+  Check_INCLUDE_DIR
+  NAMES         "check/check.h"
+  HINTS         ${zHints}
   PATH_SUFFIXES "include"
-                NO_DEFAULT_PATH)
+  NO_DEFAULT_PATH)
 mark_as_advanced(Check_INCLUDE_DIR)
 
 set(Check_INCLUDE_DIRS ${Check_INCLUDE_DIR})
-mark_as_advanced(Check_INCLUDE_DIRS)
 
 # lib
-
+get_toolset_architecture_address_model_tag(sTag)
 set(zRelPathSufs "lib/${sTag}")
-set(zDbgPathSufs "lib/${sTag}d"
-                 ${zRelPathSufs})
+set(zDbgPathSufs "lib/${sTag}d" ${zRelPathSufs})
 
-find_library(Check_check_LIBRARY_RELEASE
-          NAMES "check"
-          HINTS ${zHints}
+find_library(
+  Check_Check_LIBRARY_RELEASE
+  NAMES         "check"
+  HINTS         ${zHints}
   PATH_SUFFIXES ${zRelPathSufs}
-                NO_DEFAULT_PATH)
-mark_as_advanced(Check_check_LIBRARY_RELEASE)
-find_library(Check_check_LIBRARY_DEBUG
-          NAMES "check"
-          HINTS ${zHints}
+  NO_DEFAULT_PATH)
+mark_as_advanced(Check_Check_LIBRARY_RELEASE)
+find_library(
+  Check_Check_LIBRARY_DEBUG
+  NAMES         "check"
+  HINTS         ${zHints}
   PATH_SUFFIXES ${zDbgPathSufs}
-                NO_DEFAULT_PATH)
-mark_as_advanced(Check_check_LIBRARY_DEBUG)
+  NO_DEFAULT_PATH)
+mark_as_advanced(Check_Check_LIBRARY_DEBUG)
 
-find_library(Check_compat_LIBRARY_RELEASE
-          NAMES "compat"
-          HINTS ${zHints}
+find_library(
+  Check_Compat_LIBRARY_RELEASE
+  NAMES         "compat"
+  HINTS         ${zHints}
   PATH_SUFFIXES ${zRelPathSufs}
-                NO_DEFAULT_PATH)
-mark_as_advanced(Check_compat_LIBRARY_RELEASE)
-find_library(Check_compat_LIBRARY_DEBUG
-          NAMES "compat"
-          HINTS ${zHints}
+  NO_DEFAULT_PATH)
+mark_as_advanced(Check_Compat_LIBRARY_RELEASE)
+find_library(
+  Check_Compat_LIBRARY_DEBUG
+  NAMES         "compat"
+  HINTS         ${zHints}
   PATH_SUFFIXES ${zDbgPathSufs}
-                NO_DEFAULT_PATH)
-mark_as_advanced(Check_compat_LIBRARY_DEBUG)
+  NO_DEFAULT_PATH)
+mark_as_advanced(Check_Compat_LIBRARY_DEBUG)
 
-set(Check_LIBRARIES_RELEASE ${Check_check_LIBRARY_RELEASE}
-                            ${Check_compat_LIBRARY_RELEASE})
-mark_as_advanced(Check_LIBRARIES_RELEASE)
-set(Check_LIBRARIES_DEBUG ${Check_check_LIBRARY_DEBUG}
-                          ${Check_compat_LIBRARY_DEBUG})
-mark_as_advanced(Check_LIBRARIES_DEBUG)
+set(Check_LIBRARIES_RELEASE ${Check_Check_LIBRARY_RELEASE}
+                            ${Check_Compat_LIBRARY_RELEASE})
+set(Check_LIBRARIES_DEBUG ${Check_Check_LIBRARY_DEBUG}
+                          ${Check_Compat_LIBRARY_DEBUG})
 
 # package
-
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(Check
-                      DEFAULT_MSG Check_check_LIBRARY_RELEASE
-                                  Check_INCLUDE_DIR
-                                  Check_check_LIBRARY_DEBUG
-                                  Check_compat_LIBRARY_RELEASE
-                                  Check_compat_LIBRARY_DEBUG)
+find_package_handle_standard_args(
+  Check
+  DEFAULT_MSG
+  Check_Check_LIBRARY_RELEASE
+  Check_INCLUDE_DIR
+  Check_Check_LIBRARY_DEBUG
+  Check_Compat_LIBRARY_RELEASE
+  Check_Compat_LIBRARY_DEBUG)
 
 if(Check_FOUND)
-
   # targets
-
   if(NOT TARGET Check::Check)
     add_library(Check::Check STATIC IMPORTED)
-    set_target_properties(Check::Check
-               PROPERTIES IMPORTED_LOCATION_RELEASE "${Check_check_LIBRARY_RELEASE}"
-                          IMPORTED_LOCATION_DEBUG "${Check_check_LIBRARY_DEBUG}"
-                          INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
+    set_target_properties(
+      Check::Check
+      PROPERTIES IMPORTED_LOCATION_RELEASE     "${Check_Check_LIBRARY_RELEASE}"
+                 IMPORTED_LOCATION_DEBUG       "${Check_Check_LIBRARY_DEBUG}"
+                 INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIRS}")
   endif()
-
   if(NOT TARGET Check::Compat)
     add_library(Check::Compat STATIC IMPORTED)
-    set_target_properties(Check::Compat
-               PROPERTIES IMPORTED_LOCATION_RELEASE "${Check_compat_LIBRARY_RELEASE}"
-                          IMPORTED_LOCATION_DEBUG "${Check_compat_LIBRARY_DEBUG}"
-                          INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
+    set_target_properties(
+      Check::Compat
+      PROPERTIES IMPORTED_LOCATION_RELEASE     "${Check_Compat_LIBRARY_RELEASE}"
+                 IMPORTED_LOCATION_DEBUG       "${Check_Compat_LIBRARY_DEBUG}"
+                 INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
   endif()
-
-  mark_as_advanced(Check_ROOT)
+  mark_as_advanced(Check_ROOT_DIR)
 
 else()
-
   # hints
-
-  set(Check_ROOT "${Check_ROOT}" CACHE PATH "The root directory of the Check installation.")
-  mark_as_advanced(CLEAR Check_ROOT)
+  set(Check_ROOT_DIR "${Check_ROOT_DIR}" CACHE PATH "The root directory of the Check installation.")
+  mark_as_advanced(CLEAR Check_ROOT_DIR)
 
 endif()

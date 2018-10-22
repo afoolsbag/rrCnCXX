@@ -5,7 +5,7 @@
 # | |  | |  | \__/\/ /^\ \/ /^\ \
 # |_|  |_|   \____/\/   \/\/   \/ rrCxx by FIGlet doom
 # zhengrr
-# 2016-08-01 – 2018-10-15
+# 2016-08-01 – 2018-10-22
 # The Unlicense
 
 cmake_policy(SET CMP0074 NEW) #3.12+
@@ -16,7 +16,7 @@ compile_option(MULTIPLE_PROCESSES UTF-8)
 
 facile_add_doxygen()
 
-find_package(CCGSL)
+find_package(CGSL)
 aux_source_directory_ex(zSource RECURSE)
 configure_file("project.hxx.in" "project.hxx" @ONLY)
 aux_source_directory_ex(
@@ -29,4 +29,4 @@ facile_add_gtest_executable(
   CXX17
   INCLUDE_DIRECTORIES PRIVATE "./"
                               "${CMAKE_CURRENT_BINARY_DIR}/"
-                              ${CCGSL_INCLUDE_DIRS})
+  LINK_LIBRARIES      PRIVATE CGSL::CGSL)

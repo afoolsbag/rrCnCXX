@@ -5,76 +5,86 @@
 # | |   | | | | | (_| \__ \ |_) | (_| | | (_) | (_| |
 # \_|   |_|_| |_|\__,_|___/ .__/ \__,_|_|\___/ \__, |
 # zhengrr                 | |                   __/ |
-# 2018-08-04 – 2018-09-13 |_|                  |___/  Findspdlog by FIGlet doom
+# 2018-08-04 – 2018-10-22 |_|                  |___/  Findspdlog by FIGlet doom
 # The Unlicense
 
 #.rst:
 # Findspdlog
 # ----------
 #
-# 寻找 spdlog。
+# Find the `spdlog <https://github.com/gabime/spdlog>`_ headers.
 #
-# 结果变量：
-# ::
+# IMPORTED Targets
+# ^^^^^^^^^^^^^^^^
 #
-#    spdlog_FOUND
-#    spdlog_INCLUDE_DIRS
+# This module defines the following :prop_tgt:`IMPORTED` targets:
 #
-# 提示变量：
-# ::
+# ``spdlog::spdlog``
+#   The spdlog library, if found.
 #
-#    spdlog_ROOT
-#    ENV spdlog_ROOT
+# Result Variables
+# ^^^^^^^^^^^^^^^^
 #
-# 预期：
-# ::
+# This module defines the following variables:
 #
-#    v spdlog_ROOT
-#       > bench
-#       > cmake
-#       > example
+# ``spdlog_FOUND``
+#   Found the spdlog.
+#
+# ``spdlog_INCLUDE_DIRS``
+#   The directory containing the spdlog headers.
+#
+# Cache variables
+# ^^^^^^^^^^^^^^^
+#
+# The following cache variables may also be set:
+#
+# ``spdlog_ROOT_DIR``
+#   The root directory of the spdlog installation (may also be set as an environment variable)::
+#
+#     v spdlog_ROOT_DIR
 #       v include
-#          v spdlog
-#               spdlog.h
-#               ...
-#       > tests
-#         ...
-#
+#         v spdlog
+#             spdlog.h
+#             ...
+
 if(spdlog_FOUND)
   return()
 endif()
 
 # hints
-
-set(zHints "${spdlog_ROOT}" "$ENV{spdlog_ROOT}")
+set(zHints "${spdlog_ROOT_DIR}" "$ENV{spdlog_ROOT_DIR}")
 
 # include
-
-find_path(spdlog_INCLUDE_DIR
-          NAMES "spdlog/spdlog.h"
-          HINTS ${zHints}
+find_path(
+  spdlog_INCLUDE_DIR
+  NAMES         "spdlog/spdlog.h"
+  HINTS         ${zHints}
   PATH_SUFFIXES "include"
-                NO_DEFAULT_PATH)
+  NO_DEFAULT_PATH)
 mark_as_advanced(spdlog_INCLUDE_DIR)
 
 set(spdlog_INCLUDE_DIRS ${spdlog_INCLUDE_DIR})
-mark_as_advanced(spdlog_INCLUDE_DIRS)
 
 # package
-
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(spdlog
-                      DEFAULT_MSG spdlog_INCLUDE_DIR)
-
-# hints
+find_package_handle_standard_args(
+  spdlog
+  DEFAULT_MSG
+  spdlog_INCLUDE_DIR)
 
 if(spdlog_FOUND)
-
-  mark_as_advanced(spdlog_ROOT)
+  # target
+  if(NOT TARGET spdlog::spdlog)
+    add_library(spdlog::spdlog INTERFACE IMPORTED)
+    set_target_properties(
+      spdlog::spdlog
+      PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${spdlog_INCLUDE_DIRS}")
+  endif()
+  mark_as_advanced(spdlog_ROOT_DIR)
 
 else()
-
-  set(spdlog_ROOT "${spdlog_ROOT}" CACHE PATH "The root directory of the spdlog installation.")
-  mark_as_advanced(CLEAR spdlog_ROOT)
+  # hints
+  set(spdlog_ROOT_DIR "${spdlog_ROOT_DIR}" CACHE PATH "The root directory of the spdlog installation.")
+  mark_as_advanced(CLEAR spdlog_ROOT_DIR)
 
 endif()
