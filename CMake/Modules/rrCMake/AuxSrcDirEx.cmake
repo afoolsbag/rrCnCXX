@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-13
+# 2016-10-08 – 2018-10-23
 # The Unlicense
 
 include_guard()
@@ -80,7 +80,7 @@ function(aux_source_directory_ex _RESULTS_VARIABLE)
   endif()
   if(_QT)
     list(APPEND zExts ".h"   ".cpp"
-                      ".ui")
+                      ".qml" ".qrc" ".ui")
   endif()
   if(_CFG OR (NOT _EXPLICIT))
     list(APPEND zExts ".in"  ".dox")
