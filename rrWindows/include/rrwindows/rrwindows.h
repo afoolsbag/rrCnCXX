@@ -3,7 +3,7 @@
  * \file
  * \brief 包含文件汇总。
  *
- * \version 2018-10-19
+ * \version 2018-10-22
  * \since 2018-08-08
  * \authors zhengrr
  * \copyright The Unlicense
@@ -15,6 +15,7 @@
 #include "rrwindows/macros.h"
 
 #include "rrwindows/Debug/ErrorHandling.h"
+#include "rrwindows/Dlls/DynamicLinkLibrary.h"
 #include "rrwindows/FileIO/DirectoryManagement.h"
 #include "rrwindows/Intl/NationalLanguageSupport.h"
 #include "rrwindows/Intl/UnicodeAndCharacterSets.h"

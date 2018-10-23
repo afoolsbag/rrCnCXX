@@ -5,7 +5,7 @@
  *
  * \sa ["Error Handling"](https://docs.microsoft.com/zh-cn/windows/desktop/Debug/error-handling). *Microsoft Docs*.
  *
- * \version 2018-10-19
+ * \version 2018-10-23
  * \since 2018-01-15
  * \authors zhengrr
  * \copyright The Unlicense
@@ -21,11 +21,11 @@
 #include "_test.h"
 #include "rrwindows/rrwindows.h"
 
-START_TEST(tfErrorMessage)
+START_TEST(tfAllocErrorMessage)
 {
-    PTSTR msg = NULL;
-    ck_assert(ErrorMessageAlloc(6L, &msg));
-    LocalFree(msg);
+    PCTSTR CONST msg = AllocErrorMessage(ERROR_SUCCESS);
+    ck_assert(msg);
+    LocalFree((HLOCAL)msg);
 }
 END_TEST
 
@@ -34,6 +34,6 @@ END_TEST
 TCase *tcErrorHandling(void)
 {
     TCase *const tc = tcase_create("ErrorHandling");
-    tcase_add_test(tc, tfErrorMessage);
+    tcase_add_test(tc, tfAllocErrorMessage);
     return tc;
 }

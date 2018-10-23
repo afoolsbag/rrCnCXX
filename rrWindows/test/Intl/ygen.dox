@@ -6,6 +6,10 @@
  * \sa ["Internationalization for Windows Applications"](https://docs.microsoft.com/windows/desktop/Intl/). *Microsoft Docs*.
  *     *   Getting Started with International Windows Development
  *     *   Globalization Services
+ *         *   Extended Linguistic Services
+ *         *   International Components for Unicode (ICU)
+ *         *   Spell Checking API
+ *         *   National Language Support
  *     *   Input Method Manager
  *     *   International Fonts and Text Display
  *     *   Multilingual User Interface

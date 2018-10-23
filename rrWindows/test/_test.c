@@ -7,8 +7,11 @@
 #include <check/check.h>
 
 #include "Debug/_test.h"
+#include "Dlls/_test.h"
 #include "FileIO/_test.h"
+#include "Intl/_test.h"
 #include "MenuRc/_test.h"
+#include "SysInfo/_test.h"
 
 /**
  * \remarks
@@ -25,8 +28,11 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 
     SRunner *CONST tr = srunner_create(NULL);
     srunner_add_suite(tr, tsDebug());
+    srunner_add_suite(tr, tsDlls());
     srunner_add_suite(tr, tsFileIO());
+    srunner_add_suite(tr, tsIntl());
     srunner_add_suite(tr, tsMenuRc());
+    srunner_add_suite(tr, tsSysInfo());
     srunner_run_all(tr, CK_NORMAL);
     CONST INT err = srunner_ntests_failed(tr);
     srunner_free(tr);

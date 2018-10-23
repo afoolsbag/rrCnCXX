@@ -5,7 +5,7 @@
  *
  * \sa ["Strings"](https://docs.microsoft.com/zh-cn/windows/desktop/menurc/strings). *Microsoft Docs*.
  *
- * \version 2018-10-18
+ * \version 2018-10-23
  * \since 2018-10-18
  * \authors zhengrr
  * \copyright The Unlicense
@@ -22,27 +22,48 @@
 
 #include "_test.h"
 
+static CONST TCHAR Head[] = _T("Head");
+static CONST TCHAR Body[] = _T("Body");
+static CONST TCHAR Tail[] = _T("Tail");
+static CONST TCHAR HeadTail[] = _T("HeadTail");
+static CONST TCHAR HeadBodyTail[] = _T("HeadBodyTail");
+static CONST TCHAR ToBeOrNot[] = _T("To be, or not to be, that is the question.");
+
 START_TEST(tfStringAllocCat)
 {
-    static CONST TCHAR src1[] = _T("head");
-    static CONST TCHAR src2[] = _T("tail");
-    static CONST TCHAR full[] = _T("headtail");
+    PCTSTR CONST tmp = StringAllocCat(Head, Tail);
+    ck_assert(tmp);
+    ck_assert(CompareStringInvariant(tmp, HeadTail) == CSTR_EQUAL);
+    HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
+}
+END_TEST
 
-    PTSTR dest = NULL;
-    ck_assert(StringAllocCat(src1, src2, &dest));
-    ck_assert_int_eq(CompareStringInvariant(dest, full), CSTR_EQUAL);
-    HeapFree(GetProcessHeap(), 0, dest);
+START_TEST(tfStringAllocCat3)
+{
+    PCTSTR CONST tmp = StringAllocCat3(Head, Body, Tail);
+    ck_assert(tmp);
+    ck_assert(CompareStringInvariant(tmp, HeadBodyTail) == CSTR_EQUAL);
+    HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
+}
+END_TEST
+
+START_TEST(tfStringAllocCopy_Const)
+{
+    SIZE_T count;
+    PCTSTR CONST tmp = StringAllocCopy_Count(ToBeOrNot, &count);
+    ck_assert(tmp);
+    ck_assert(count);
+    ck_assert(CompareStringInvariant(tmp, ToBeOrNot) == CSTR_EQUAL);
+    HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
 }
 END_TEST
 
 START_TEST(tfStringAllocCopy)
 {
-    static CONST TCHAR src[] = _T("To be, or not to be, that is the question.");
-
-    PTSTR dest = NULL;
-    ck_assert(StringAllocCopy(src, &dest));
-    ck_assert_int_eq(CompareStringInvariant(dest, src), CSTR_EQUAL);
-    HeapFree(GetProcessHeap(), 0, dest);
+    PCTSTR CONST tmp = StringAllocCopy(ToBeOrNot);
+    ck_assert(tmp);
+    ck_assert(CompareStringInvariant(tmp, ToBeOrNot) == CSTR_EQUAL);
+    HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
 }
 END_TEST
 
@@ -52,6 +73,8 @@ TCase *tcStrings(void)
 {
     TCase *const tc = tcase_create("Strings");
     tcase_add_test(tc, tfStringAllocCat);
+    tcase_add_test(tc, tfStringAllocCat3);
+    tcase_add_test(tc, tfStringAllocCopy_Const);
     tcase_add_test(tc, tfStringAllocCopy);
     return tc;
 }

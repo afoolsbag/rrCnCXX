@@ -20,11 +20,11 @@ WINAPI
 CreateDirectoryRecursivelyA(
     _In_z_ PCSTR CONST path)
 {
-    PWSTR tmp = NULL;
-    if (!MultiByteAllocWideChar(CP_ACP, path, &tmp))
+    PCWSTR CONST tmp = MultiByteAllocWideChar(CP_ACP, path);
+    if (!tmp)
         return FALSE;
     CONST BOOL result = CreateDirectoryRecursivelyW(tmp);
-    HeapFree(GetProcessHeap(), 0, tmp);
+    HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
     return result;
 }
 
@@ -38,9 +38,9 @@ CreateDirectoryRecursivelyW_Internal(
     if (PathFileExistsW(path))
         return TRUE;
 
-    PWSTR parent = NULL;
-    const size_t count = StringAllocCopyW(path, &parent);
-    if (!count)
+    SIZE_T count;
+    PWSTR CONST parent = StringAllocCopy_CountW(path, &count);
+    if (!parent)
         return FALSE;
 
     {
@@ -88,11 +88,11 @@ WINAPI
 RemoveDirectoryTraverselyA(
     _In_z_ PCSTR CONST path)
 {
-    PWSTR tmp = NULL;
-    if (!MultiByteAllocWideChar(CP_ACP, path, &tmp))
+    PCWSTR CONST tmp = MultiByteAllocWideChar(CP_ACP, path);
+    if (!tmp)
         return FALSE;
     CONST BOOL result = RemoveDirectoryTraverselyW(tmp);
-    HeapFree(GetProcessHeap(), 0, tmp);
+    HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
     return result;
 }
 
@@ -106,11 +106,11 @@ RemoveDirectoryTraverselyW_Internal(
     WIN32_FIND_DATAW data;
     HANDLE handle = INVALID_HANDLE_VALUE;
     {
-        PWSTR wildcard = NULL;
-        if (!StringAllocCatW(path, L"\\*", &wildcard))
+        PCWSTR CONST wildcard = StringAllocCatW(path, L"\\*");
+        if (!wildcard)
             return FALSE;
         handle = FindFirstFileW(wildcard, &data);
-        HeapFree(GetProcessHeap(), 0, wildcard);
+        HeapFree(GetProcessHeap(), 0, (PVOID)wildcard);
     }
     if (handle == INVALID_HANDLE_VALUE) {
         if (GetLastError() != ERROR_NO_MORE_FILES)
@@ -120,23 +120,17 @@ RemoveDirectoryTraverselyW_Internal(
         return TRUE;
     }
     do {
-        PWSTR item = NULL;
-        if (!StringAllocCat3W(path, L"\\", data.cFileName, &item)) {
-            FindClose(handle);
-            return FALSE;
-        }
-        if (!(data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-            CONST BOOL result = DeleteFileW(item);
-            HeapFree(GetProcessHeap(), 0, item);
-            if (!result) {
+        if (CompareStringInvariantW(data.cFileName, L".") != CSTR_EQUAL && CompareStringInvariantW(data.cFileName, L"..") != CSTR_EQUAL) {
+            PCWSTR CONST item = StringAllocCat3W(path, L"\\", data.cFileName);
+            if (!item) {
                 FindClose(handle);
                 return FALSE;
             }
-        } else if (CompareStringInvariantW(item, L".") == CSTR_EQUAL || CompareStringInvariantW(item, L"..") == CSTR_EQUAL) {
-            HeapFree(GetProcessHeap(), 0, item);
-        } else {
-            CONST BOOL result = RemoveDirectoryTraverselyW_Internal(item);
-            HeapFree(GetProcessHeap(), 0, item);
+            CONST BOOL result =
+                data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ?
+                RemoveDirectoryTraverselyW_Internal(item) :
+                DeleteFileW(item);
+            HeapFree(GetProcessHeap(), 0, (PVOID)item);
             if (!result) {
                 FindClose(handle);
                 return FALSE;

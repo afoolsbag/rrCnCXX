@@ -8,17 +8,6 @@
  *             *   Getting Started Developing User Interfaces for Windows Applications
  *             *   Windows User Experience Interaction Guidelines
  *             *   Internationalization for Windows Applications
- *                 *   Getting Started with International Windows Development
- *                 *   Globalization Services
- *                     *   Extended Linguistic Services
- *                     *   International Components for Unicode (ICU)
- *                     *   Spell Checking API
- *                     *   National Language Support
- *                 *   Input Method Manager
- *                 *   International Fonts and Text Display
- *                 *   Multilingual User Interface
- *                 *   Unicode and Character Sets
- *                 *   Security Considerations: International Features
  *             *   Accessibility
  *             *   User Interaction
  *             *   Windows and Messages
@@ -152,7 +141,7 @@
  *     *   [Develop with server technologies](https://docs.microsoft.com/windows/desktop/server-and-system-technologies)
  *     *   [Windows certification](https://docs.microsoft.com/windows/desktop/win_cert)
  *
- * \version 2018-10-19
+ * \version 2018-10-23
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC0 1.0
