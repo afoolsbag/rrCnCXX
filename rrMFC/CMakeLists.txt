@@ -13,8 +13,6 @@ compile_option(UTF-8 WARNING_AS_ERROR)
 
 facile_add_doxygen()
 
-set(sRrwindowsLib "rrwindows_shared_library")
-
 add_definitions("-D_AFXDLL")
 set(CMAKE_MFC_FLAG 2)
 add_definitions("-D_UNICODE")
