@@ -4,12 +4,7 @@
 #include "Dialog.h"
 #include "Dialog.rc.h"
 
-#include "rrwindows/rrwindows.h"
-
 namespace rrMFC {
-namespace Test {
-
-const unsigned Dialog::IDD {IDD_DIALOG};
 
 BEGIN_MESSAGE_MAP(Dialog, CDialog)
     ON_WM_CLOSE()
@@ -28,105 +23,75 @@ BEGIN_MESSAGE_MAP(Dialog, CDialog)
     ON_BN_CLICKED(IDHELP, &Dialog::OnBnClickedHelp)
 END_MESSAGE_MAP()
 
-#// Constructors
-
-Dialog::
-Dialog(CWnd *pParent /*=nullptr*/)
-    : CDialog(IDD, pParent)
-{
-    DcMeth();
-}
+// Constructors
 
 BOOL Dialog::
 Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd /*=NULL*/)
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     return CDialog::Create(lpszTemplateName, pParentWnd);
 }
 
 BOOL Dialog::
 Create(unsigned nIDTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     return CDialog::Create(nIDTemplate, pParentWnd);
 }
 
 BOOL Dialog::
 CreateIndirect(LPCDLGTEMPLATE lpDialogTemplate, CWnd *pParentWnd /*=NULL*/, void *lpDialogInit /*=NULL*/)
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     return CDialog::CreateIndirect(lpDialogTemplate, pParentWnd, lpDialogInit);
 }
 
 BOOL Dialog::
 CreateIndirect(HGLOBAL hDialogTemplate, CWnd *pParentWnd /*=NULL*/)
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     return CDialog::CreateIndirect(hDialogTemplate, pParentWnd);
 }
 
 INT_PTR Dialog::
 DoModal()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     return CDialog::DoModal();
 }
 
-Dialog::
-~Dialog()
-{
-    DcMeth();
-}
+// Attributes
 
-#// Overridables
+const unsigned Dialog::IDD {IDD_DIALOG};
+
+// Overridables
 
 BOOL Dialog::
 OnInitDialog()
 {
     CDialog::OnInitDialog();
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     return TRUE;
-}
-
-BOOL Dialog::
-OnCmdMsg(unsigned nID, int nCode, void *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo)
-{
-    DcCmdMsg();
-    return CDialog::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
-}
-
-BOOL Dialog::
-OnWndMsg(unsigned message, WPARAM wParam, LPARAM lParam, LRESULT *pResult)
-{
-    DcWndMsg();
-    return CDialog::OnWndMsg(message, wParam, lParam, pResult);
 }
 
 void Dialog::
 PreInitDialog()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     CDialog::PreInitDialog();
-}
-
-void Dialog::
-DoDataExchange(CDataExchange *pDX)
-{
-    CDialog::DoDataExchange(pDX);
-    DcMeth();
 }
 
 void Dialog::
 OnOK()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     CDialog::OnOK();
 }
 
 void Dialog::
 OnCancel()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     CDialog::OnCancel();
 }
 
@@ -135,72 +100,71 @@ OnCancel()
 void Dialog::
 OnClose()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     CDialog::OnClose();
 }
 
 void Dialog::
 OnBnClickedOk()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     CDialog::OnOK();
 }
 
 void Dialog::
 OnBnClickedCancel()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     CDialog::OnCancel();
 }
 
 void Dialog::
 OnBnClickedAbort()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDABORT);
 }
 
 void Dialog::
 OnBnClickedRetry()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDRETRY);
 }
 
 void Dialog::
 OnBnClickedIgnore()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDIGNORE);
 }
 
 void Dialog::
 OnBnClickedYes()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDYES);
 }
 
 void Dialog::
 OnBnClickedNo()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDNO);
 }
 
 void Dialog::
 OnBnClickedClose()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDCLOSE);
 }
 
 void Dialog::
 OnBnClickedHelp()
 {
-    DcMeth();
+    TRACE(__FUNCTION__ "\n");
     EndDialog(IDHELP);
 }
 
-}//namespace Test
 }//namespace rrMFC

@@ -60,7 +60,7 @@ Window()
         AfxGetApp()->LoadStandardIcon(IDI_WINLOGO)
     );
 
-    CreateEx(0, windowClassName, TEXT("Window"),
+    CreateEx(0, windowClassName, _T("微软基础类库窗口应用"),
              WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME,
              CW_USEDEFAULT, CW_USEDEFAULT, 400, 300,
              NULL, NULL);

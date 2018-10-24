@@ -3,7 +3,7 @@
 /// \file
 /// \brief 对话框类。
 ///
-/// \verison 2018-09-14
+/// \verison 2018-10-24
 /// \since 2018-04-04
 /// \authors zhengrr
 /// \copyright The Unlicense
@@ -13,15 +13,16 @@
 #pragma once
 
 namespace rrMFC {
-namespace Test {
 
 /// \brief 对话框类。
 /// \sa https://docs.microsoft.com/cpp/mfc/reference/cdialog-class
 class Dialog: public CDialog {
 
-#// Constructors
+// Constructors
 public:
-    Dialog(CWnd *pParent = nullptr);
+    explicit Dialog(CWnd *pParent = nullptr)
+        : CDialog(IDD, pParent)
+    {}
 
     /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#create>
     BOOL Create(LPCTSTR lpszTemplateName, CWnd *pParentWnd = NULL) final;
@@ -38,28 +39,17 @@ public:
     /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#domodal>
     INT_PTR DoModal() final;
 
-    ~Dialog() final;
-
-#// Attributes
+// Attributes
 public:
     static const unsigned IDD;
 
-#// Operations
-public:
-
-#// Overridables
+// Overridables
 public:
     /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#oninitdialog>
     BOOL OnInitDialog() final;
 
-    BOOL OnCmdMsg(unsigned nID, int nCode, void *pExtra, AFX_CMDHANDLERINFO *pHandlerInfo) final;
-
 protected:
-    BOOL OnWndMsg(unsigned message, WPARAM wParam, LPARAM lParam, LRESULT *pResult) final;
-
     void PreInitDialog() final;
-
-    void DoDataExchange(CDataExchange *pDX) final;
 
     /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#onok>
     void OnOK() final;
@@ -67,10 +57,7 @@ protected:
     /// \sa <https://docs.microsoft.com/cpp/mfc/reference/cdialog-class#oncancel>
     void OnCancel() final;
 
-#// Implementation
-protected:
-
-#// Message Handlers
+// Message Handlers
 protected:
     afx_msg void OnClose();
 
@@ -90,5 +77,4 @@ protected:
     DECLARE_MESSAGE_MAP()
 };
 
-}//namespace Test
 }//namespace rrMFC
