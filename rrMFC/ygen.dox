@@ -7,32 +7,14 @@
 ///
 /// [Microsoft Foundation Classes (MFC)](https://docs.microsoft.com/cpp/mfc)
 ///
-/// # References                                                  {#sReferences}
+/// # 参考                                                        {#sReferences}
 ///
 /// [MFC Debugging Techniques](https://docs.microsoft.com/visualstudio/debugger/mfc-debugging-techniques). *Microsoft Docs*.
 ///
-/// # Programming Styles                                   {#sProgrammingStyles}
+/// # 风格                                                 {#sProgrammingStyles}
 ///
 /// ["Framework Design Guidelines"](https://docs.microsoft.com/dotnet/standard/design-guidelines). *Microsoft Docs*.
 /// ["Why use prefixes on member variables in C++ classes"](https://stackoverflow.com/questions/1228161). *Stack Overflow*.
-///
-/// Inherited from CXX Programming Styles.
-///
-/// ## Naming                                                        {#ssNaming}
-///
-/// | Entity Kinds   | Preview       |
-/// |:-------------- |:------------- |
-/// | folder         | `all_lower`   |
-/// | file           | `all_lower`   |
-/// | macro          | `ALL_UPPER`   |
-/// | local variable | `camelCase`   |
-/// | other          | `PascalCase`  |
-///
-/// ## Formatting                                                {#ssFormatting}
-///
-/// Visual Studio Default
-/// `.h` `.cpp`
-/// UTF-8
 ///
 /// ## resource.h                                                 {#ssResourceH}
 ///
@@ -89,12 +71,13 @@
 ///
 /// ["ID Naming and Numbering Conventions"](https://docs.microsoft.com/cpp/mfc/tn020-id-naming-and-numbering-conventions). *Microsoft Docs*.
 ///
-/// # Guides                                                          {#sGuides}
+/// # 指南                                                            {#sGuides}
 ///
 /// *Programming Windows with MFC*. Jeff Prosise.
 /// ["MFC Tutorial"](https://www.tutorialspoint.com/mfc/). *Tutorials Point*.
 ///
-/// # License                                                        {#sLicense}
+/// # 许可                                                           {#sLicense}
+///
 /// <p xmlns:dct="https://purl.org/dc/terms/">
 ///   <a rel="license"
 ///      href="https://creativecommons.org/publicdomain/zero/1.0/">
@@ -104,11 +87,10 @@
 ///   To the extent possible under law,
 ///   <span resource="[_:publisher]" rel="dct:publisher">
 ///     <span property="dct:title">zhengrr</span></span>
-///   has waived all copyright and related or neighboring rights to
-///   this work.
+///   has waived all copyright and related or neighboring rights to this work.
 /// </p>
 ///
-/// \version 2018-09-05
+/// \version 2018-10-24
 /// \since 2018-02-05
 /// \authors zhengrr
 /// \copyright CC0 1.0
@@ -120,63 +102,63 @@
 /// \defgroup gMFC 微软基础类（库）
 ///
 /// \sa ["Microsoft Foundation Class"](https://docs.microsoft.com/cpp/mfc). *Microsoft Docs*.
-///     + [Concepts](https://docs.microsoft.com/cpp/mfc/mfc-concepts)
-///         + [General MFC Topics](https://docs.microsoft.com/cpp/mfc/general-mfc-topics)
-///             + [Using the MFC Source Files](https://docs.microsoft.com/cpp/mfc/using-the-mfc-source-files)
-///             + [MFC Library Versions](https://docs.microsoft.com/cpp/mfc/mfc-library-versions)
-///             + [Using the Classes to Write Applications for Windows](https://docs.microsoft.com/cpp/mfc/using-the-classes-to-write-applications-for-windows)
-///             + [Building on the Framework](https://docs.microsoft.com/cpp/mfc/building-on-the-framework)
-///             + [CWinApp: The Application Class](https://docs.microsoft.com/cpp/mfc/cwinapp-the-application-class)
-///             + [Document Templates and the Document/View Creation Process](https://docs.microsoft.com/cpp/mfc/document-templates-and-the-document-view-creation-process)
-///             + [Managing the State Data of MFC Modules](https://docs.microsoft.com/cpp/mfc/managing-the-state-data-of-mfc-modules)
-///             + [Idle Loop Processing](https://docs.microsoft.com/cpp/mfc/idle-loop-processing)
-///             + [Support for Activation Contexts in the MFC Module State](https://docs.microsoft.com/cpp/mfc/support-for-activation-contexts-in-the-mfc-module-state)
-///             + [Isolation of the MFC Common Controls Library](https://docs.microsoft.com/cpp/mfc/isolation-of-the-mfc-common-controls-library)
-///             + [Build Requirements for Windows Vista Common Controls](https://docs.microsoft.com/cpp/mfc/build-requirements-for-windows-vista-common-controls)
-///             + [How to: Add Restart Manager Support](https://docs.microsoft.com/cpp/mfc/how-to-add-restart-manager-support)
-///             + [Dynamic Layout](https://docs.microsoft.com/cpp/mfc/dynamic-layout)
-///         + [Using CObject](https://docs.microsoft.com/cpp/mfc/using-cobject)
-///         + [Collections](https://docs.microsoft.com/cpp/mfc/collections)
-///             + ["Why STL containers are preferred over MFC containers?"](https://stackoverflow.com/questions/1348078). *Stack Overflow*.
-///         + [Date and Time](https://docs.microsoft.com/cpp/atl-mfc-shared/date-and-time)
-///         + [Files](https://docs.microsoft.com/cpp/mfc/files-in-mfc)
-///         + [Memory Management (MFC)](https://docs.microsoft.com/cpp/mfc/memory-management)
-///         + [Message Handling and Mapping](https://docs.microsoft.com/cpp/mfc/message-handling-and-mapping)
-///         + [Serialization](https://docs.microsoft.com/cpp/mfc/serialization-in-mfc)
-///         + ["User Interface Elements (MFC)"](https://docs.microsoft.com/cpp/mfc/user-interface-elements-mfc). *Microsoft Docs*.
-///             + [ActiveX Controls](https://docs.microsoft.com/cpp/mfc/activex-controls)
-///             + [Clipboard](https://docs.microsoft.com/cpp/mfc/clipboard)
-///             + [Controls](https://docs.microsoft.com/cpp/mfc/controls-mfc)
-///             + [Control Bars](https://docs.microsoft.com/cpp/mfc/control-bars)
-///             + [Dialog Bars](https://docs.microsoft.com/cpp/mfc/dialog-bars)
-///             + [Dialog Boxes](https://docs.microsoft.com/cpp/mfc/dialog-boxes)
-///             + [Document/View Architecture](https://docs.microsoft.com/cpp/mfc/document-view-architecture)
-///             + [Form Views](https://docs.microsoft.com/cpp/mfc/form-views-mfc)
-///             + [HTML Help: Context-Sensitive Help for Your Programs](https://docs.microsoft.com/cpp/mfc/html-help-context-sensitive-help-for-your-programs)
-///             + [MDI Tabbed Groups](https://docs.microsoft.com/cpp/mfc/mdi-tabbed-groups)
-///             + [Menus](https://docs.microsoft.com/cpp/mfc/menus-mfc)
-///             + [OLE](https://docs.microsoft.com/cpp/mfc/ole-mfc)
-///             + [Printing and Print Preview](https://docs.microsoft.com/cpp/mfc/printing-and-print-preview)
-///             + [Property Sheets](https://docs.microsoft.com/cpp/mfc/property-sheets-mfc)
-///             + [Ribbon Designer (MFC)](https://docs.microsoft.com/cpp/mfc/ribbon-designer-mfc)
-///             + [Status Bars](https://docs.microsoft.com/cpp/mfc/status-bars)
-///             + [Tool Tips](https://docs.microsoft.com/cpp/mfc/tool-tips)
-///             + [Toolbars](https://docs.microsoft.com/cpp/mfc/toolbars)
-///             + [Visualization Manager](https://docs.microsoft.com/cpp/mfc/visualization-manager)
-///             + [Windows](https://docs.microsoft.com/cpp/mfc/windows)
-///             + [Hierarchy Chart](https://docs.microsoft.com/cpp/mfc/hierarchy-chart)
-///     + [Class Overview](https://docs.microsoft.com/cpp/mfc/class-library-overview)
-///     + [Walkthroughs](https://docs.microsoft.com/cpp/mfc/walkthroughs-mfc)
-///     + [Technical Notes](https://docs.microsoft.com/cpp/mfc/mfc-technical-notes)
-///     + [Customization for MFC](https://docs.microsoft.com/cpp/mfc/customization-for-mfc)
-///     + [Classes](https://docs.microsoft.com/cpp/mfc/reference/mfc-classes)
-///     + [Internal Classes](https://docs.microsoft.com/cpp/mfc/reference/internal-classes)
-///     + [Macros and Globals](https://docs.microsoft.com/cpp/mfc/reference/mfc-macros-and-globals)
-///     + [Structures, Styles, Callbacks, and Message Maps](https://docs.microsoft.com/cpp/mfc/reference/structures-styles-callbacks-and-message-maps)
-///     + [MFC Wizards and Dialog Boxes](https://docs.microsoft.com/cpp/mfc/reference/mfc-wizards-and-dialog-boxes)
-///     + [Working with Resource Files](https://docs.microsoft.com/cpp/windows/working-with-resource-files)
+///     *   [Concepts](https://docs.microsoft.com/cpp/mfc/mfc-concepts)
+///         *   [General MFC Topics](https://docs.microsoft.com/cpp/mfc/general-mfc-topics)
+///             *   [Using the MFC Source Files](https://docs.microsoft.com/cpp/mfc/using-the-mfc-source-files)
+///             *   [MFC Library Versions](https://docs.microsoft.com/cpp/mfc/mfc-library-versions)
+///             *   [Using the Classes to Write Applications for Windows](https://docs.microsoft.com/cpp/mfc/using-the-classes-to-write-applications-for-windows)
+///             *   [Building on the Framework](https://docs.microsoft.com/cpp/mfc/building-on-the-framework)
+///             *   [CWinApp: The Application Class](https://docs.microsoft.com/cpp/mfc/cwinapp-the-application-class)
+///             *   [Document Templates and the Document/View Creation Process](https://docs.microsoft.com/cpp/mfc/document-templates-and-the-document-view-creation-process)
+///             *   [Managing the State Data of MFC Modules](https://docs.microsoft.com/cpp/mfc/managing-the-state-data-of-mfc-modules)
+///             *   [Idle Loop Processing](https://docs.microsoft.com/cpp/mfc/idle-loop-processing)
+///             *   [Support for Activation Contexts in the MFC Module State](https://docs.microsoft.com/cpp/mfc/support-for-activation-contexts-in-the-mfc-module-state)
+///             *   [Isolation of the MFC Common Controls Library](https://docs.microsoft.com/cpp/mfc/isolation-of-the-mfc-common-controls-library)
+///             *   [Build Requirements for Windows Vista Common Controls](https://docs.microsoft.com/cpp/mfc/build-requirements-for-windows-vista-common-controls)
+///             *   [How to: Add Restart Manager Support](https://docs.microsoft.com/cpp/mfc/how-to-add-restart-manager-support)
+///             *   [Dynamic Layout](https://docs.microsoft.com/cpp/mfc/dynamic-layout)
+///         *   [Using CObject](https://docs.microsoft.com/cpp/mfc/using-cobject)
+///         *   [Collections](https://docs.microsoft.com/cpp/mfc/collections)
+///             *   ["Why STL containers are preferred over MFC containers?"](https://stackoverflow.com/questions/1348078). *Stack Overflow*.
+///         *   [Date and Time](https://docs.microsoft.com/cpp/atl-mfc-shared/date-and-time)
+///         *   [Files](https://docs.microsoft.com/cpp/mfc/files-in-mfc)
+///         *   [Memory Management (MFC)](https://docs.microsoft.com/cpp/mfc/memory-management)
+///         *   [Message Handling and Mapping](https://docs.microsoft.com/cpp/mfc/message-handling-and-mapping)
+///         *   [Serialization](https://docs.microsoft.com/cpp/mfc/serialization-in-mfc)
+///         *   ["User Interface Elements (MFC)"](https://docs.microsoft.com/cpp/mfc/user-interface-elements-mfc). *Microsoft Docs*.
+///             *   [ActiveX Controls](https://docs.microsoft.com/cpp/mfc/activex-controls)
+///             *   [Clipboard](https://docs.microsoft.com/cpp/mfc/clipboard)
+///             *   [Controls](https://docs.microsoft.com/cpp/mfc/controls-mfc)
+///             *   [Control Bars](https://docs.microsoft.com/cpp/mfc/control-bars)
+///             *   [Dialog Bars](https://docs.microsoft.com/cpp/mfc/dialog-bars)
+///             *   [Dialog Boxes](https://docs.microsoft.com/cpp/mfc/dialog-boxes)
+///             *   [Document/View Architecture](https://docs.microsoft.com/cpp/mfc/document-view-architecture)
+///             *   [Form Views](https://docs.microsoft.com/cpp/mfc/form-views-mfc)
+///             *   [HTML Help: Context-Sensitive Help for Your Programs](https://docs.microsoft.com/cpp/mfc/html-help-context-sensitive-help-for-your-programs)
+///             *   [MDI Tabbed Groups](https://docs.microsoft.com/cpp/mfc/mdi-tabbed-groups)
+///             *   [Menus](https://docs.microsoft.com/cpp/mfc/menus-mfc)
+///             *   [OLE](https://docs.microsoft.com/cpp/mfc/ole-mfc)
+///             *   [Printing and Print Preview](https://docs.microsoft.com/cpp/mfc/printing-and-print-preview)
+///             *   [Property Sheets](https://docs.microsoft.com/cpp/mfc/property-sheets-mfc)
+///             *   [Ribbon Designer (MFC)](https://docs.microsoft.com/cpp/mfc/ribbon-designer-mfc)
+///             *   [Status Bars](https://docs.microsoft.com/cpp/mfc/status-bars)
+///             *   [Tool Tips](https://docs.microsoft.com/cpp/mfc/tool-tips)
+///             *   [Toolbars](https://docs.microsoft.com/cpp/mfc/toolbars)
+///             *   [Visualization Manager](https://docs.microsoft.com/cpp/mfc/visualization-manager)
+///             *   [Windows](https://docs.microsoft.com/cpp/mfc/windows)
+///             *   [Hierarchy Chart](https://docs.microsoft.com/cpp/mfc/hierarchy-chart)
+///     *   [Class Overview](https://docs.microsoft.com/cpp/mfc/class-library-overview)
+///     *   [Walkthroughs](https://docs.microsoft.com/cpp/mfc/walkthroughs-mfc)
+///     *   [Technical Notes](https://docs.microsoft.com/cpp/mfc/mfc-technical-notes)
+///     *   [Customization for MFC](https://docs.microsoft.com/cpp/mfc/customization-for-mfc)
+///     *   [Classes](https://docs.microsoft.com/cpp/mfc/reference/mfc-classes)
+///     *   [Internal Classes](https://docs.microsoft.com/cpp/mfc/reference/internal-classes)
+///     *   [Macros and Globals](https://docs.microsoft.com/cpp/mfc/reference/mfc-macros-and-globals)
+///     *   [Structures, Styles, Callbacks, and Message Maps](https://docs.microsoft.com/cpp/mfc/reference/structures-styles-callbacks-and-message-maps)
+///     *   [MFC Wizards and Dialog Boxes](https://docs.microsoft.com/cpp/mfc/reference/mfc-wizards-and-dialog-boxes)
+///     *   [Working with Resource Files](https://docs.microsoft.com/cpp/windows/working-with-resource-files)
 ///
-/// \version 2018-09-04
+/// \version 2018-10-24
 /// \since 2018-04-08
 /// \authors zhengrr
 /// \copyright CC0 1.0
