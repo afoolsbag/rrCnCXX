@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window/Window.h"
+#include "Window.h"
 
 namespace rrMFC {
 

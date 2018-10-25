@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-23
+# 2016-10-08 – 2018-10-25
 # The Unlicense
 
 include_guard()
@@ -30,7 +30,9 @@ endif()
 #       [GROUP_ROOT   <group-root>]
 #
 #       [PROPERTIES   <property-key property-value>...]
-#       [MFC_PCH_BASE <mfc-pch-name>]
+#       [PCH_NAME     <pch-name>]      default: MFC ? "mfc" : NULL
+#       [PCH_HEADER]  <pch-header>]    default: MFC ? "stdafx.h" : NULL
+#       [PCH_SOURCE]  <pch-source>]    default: MFC ? "stdafx.cpp" : NULL
 #     )
 function(aux_source_directory_ex _RESULTS_VARIABLE)
   set(zOptKws    RECURSE
@@ -40,7 +42,9 @@ function(aux_source_directory_ex _RESULTS_VARIABLE)
                  BASE_MATCHES
                  BASE_CLASHES
                  GROUP_ROOT
-                 MFC_PCH_BASE)
+                 PCH_NAME
+                 PCH_HEADER
+                 PCH_SOURCE)
   set(zMutValKws EXTENSIONS
                  PROPERTIES)
   cmake_parse_arguments(PARSE_ARGV 1 "" "${zOptKws}" "${zOneValKws}" "${zMutValKws}")
@@ -77,6 +81,15 @@ function(aux_source_directory_ex _RESULTS_VARIABLE)
   if(_MFC)
     list(APPEND zExts ".h"   ".cpp"
                       ".rc"  ".rc2" ".bmp" ".cur" ".ico")
+    if(NOT DEFINED _PCH_NAME)
+      set(_PCH_NAME "mfc")
+    endif()
+    if(NOT DEFINED _PCH_HEADER)
+      set(_PCH_HEADER "stdafx.h")
+    endif()
+    if(NOT DEFINED _PCH_SOURCE)
+      set(_PCH_SOURCE "stdafx.cpp")
+    endif()
   endif()
   if(_QT)
     list(APPEND zExts ".h"   ".cpp"
@@ -130,26 +143,23 @@ function(aux_source_directory_ex _RESULTS_VARIABLE)
     set_source_files_properties(${zResults} PROPERTIES ${_PROPERTIES})
   endif()
 
-  if(_MFC)
-    if(NOT DEFINED _MFC_PCH_BASE)
-      set(_MFC_PCH_BASE "mfc")
-    endif()
-    set(sPch "${CMAKE_CURRENT_BINARY_DIR}/${_MFC_PCH_BASE}$<$<CONFIG:Debug>:d>.pch")
+  if(_PCH_NAME AND _PCH_HEADER AND _PCH_SOURCE)
+    set(sPchFile "${CMAKE_CURRENT_BINARY_DIR}/${_PCH_NAME}$<$<CONFIG:Debug>:d>.pch")
     foreach(sFile ${zResults})
-      if(NOT sFile MATCHES ".*\.cpp$")
+      if(NOT sFile MATCHES ".*\\.(c|cpp|cc|cxx|cp|CPP|C|c\\+\\+)$")
         continue()
       endif()
       get_filename_component(sFileName "${sFile}" NAME)
-      if(sFileName STREQUAL "stdafx.cpp")
+      if(sFileName STREQUAL _PCH_SOURCE)
         set_source_files_properties(
           ${sFile}
-          PROPERTIES COMPILE_FLAGS  "/Yc\"stdafx.h\" /Fp\"${sPch}\""
-                     OBJECT_OUTPUTS "${sPch}")
+          PROPERTIES COMPILE_FLAGS  "/Yc\"${_PCH_HEADER}\" /Fp\"${sPchFile}\""
+                     OBJECT_OUTPUTS "${sPchFile}")
       else()
         set_source_files_properties(
           ${sFile}
-          PROPERTIES COMPILE_FLAGS  "/Yu\"stdafx.h\" /FI\"stdafx.h\" /Fp\"${sPch}\""
-                     OBJECT_DEPENDS "${sPch}")
+          PROPERTIES COMPILE_FLAGS  "/Yu\"${_PCH_HEADER}\" /FI\"${_PCH_HEADER}\" /Fp\"${sPchFile}\""
+                     OBJECT_DEPENDS "${sPchFile}")
       endif()
     endforeach()
   endif()

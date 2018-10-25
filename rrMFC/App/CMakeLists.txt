@@ -5,7 +5,6 @@ configure_file("version.h.in" "version.h" @ONLY)
 aux_source_directory_ex(
   zGenerated
   DIRECTORY  "${CMAKE_CURRENT_BINARY_DIR}/"
-  MFC
   GROUP_ROOT "generated/")
 add_executable_ex(
   NAME "App"
