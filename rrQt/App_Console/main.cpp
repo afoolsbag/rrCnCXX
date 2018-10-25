@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    qInfo() << "hello, world";
+    qInfo() << QObject::tr("hello, world");
 
     QTimer::singleShot(1000, &app, &QCoreApplication::quit);
 
