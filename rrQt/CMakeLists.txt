@@ -4,10 +4,10 @@
 # | |  | |  | |_| | |_
 # |_|  |_|   \__\_\\__| rrQt by FIGlet
 # zhengrr
-# 2016-06-28 – 2018-10-22
+# 2016-06-28 – 2018-10-24
 # The Unlicense
 
-project(rrQt VERSION 2018.10.22 LANGUAGES CXX)
+project(rrQt VERSION 2018.10.24 LANGUAGES CXX)
 project_more()
 compile_option(UTF-8)
 
@@ -19,6 +19,19 @@ find_package(
   COMPONENTS Core Gui Widgets
              Quick
              Test)
+
+aux_source_directory_ex(
+  zTest
+  DIRECTORY  "test/"
+  RECURSE
+  QT
+  GROUP_ROOT "test/")
+facile_add_gtest_executable(
+  NAME "test"
+  "ygen.dox" ${zTest}
+  CXX17
+  INCLUDE_DIRECTORIES PRIVATE "test/")
+
 
 aux_add_subdirectories(
   WITH_OPTION

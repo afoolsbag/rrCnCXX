@@ -1,0 +1,13 @@
+//===-- Qt All Modules ------------------------------------------*- C++ -*-===//
+//!
+//! \defgroup gAll 所有组件
+//!
+//! \sa ["All Modules"](https://doc.qt.io/qt-5/qtmodules.html). *Qt Documentation*.
+//!     *   [Qt Core](https://doc.qt.io/qt-5/qtcore-index.html)
+//!
+//! \version 2018-10-24
+//! \since 2018-07-05
+//! \authors zhengrr
+//! \copyright CC0 1.0
+//!
+//===----------------------------------------------------------------------===//
