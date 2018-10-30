@@ -73,9 +73,10 @@
 
 系统环境
 
-/ [*Cygwin*](https://cygwin.com/)
-/ [*MinGW*](http://mingw.org/)
+/ [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
+/ [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
 / [*Mingw-w64*](https://mingw-w64.org/)
+/ [*MSYS2*](https://www.msys2.org/ "Minimal System")
 
 集成开发环境
 

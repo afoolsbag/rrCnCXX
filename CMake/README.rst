@@ -3,8 +3,8 @@ CMake
 
 `CMake <https://cmake.org>`_
 
-References
-----------
+参考
+----
 
 `CMake Reference Documentation <https://cmake.org/cmake/help/latest/>`_
 
@@ -24,8 +24,8 @@ References
 
 - `Useful variables <https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Useful-Variables>`_
 
-Styles
-------
+风格
+----
 
 变量名
 
@@ -47,6 +47,11 @@ Styles
 
 - 取列表变量的值避免括上引号（``${zStrsVar}``），除非刻意将列表字符串化
 
+C++ Archive Network
+-------------------
+
+`C++ Archive Network <https://cppan.org/>`_
+
 reStructuredText
 ----------------
 
@@ -58,8 +63,8 @@ reStructuredText
 
 - `Online reStructuredText editor <http://rst.ninjs.org/>`_
 
-License
--------
+许可
+----
 
 .. image:: https://licensebuttons.net/p/zero/1.0/88x31.png
    :target: https://creativecommons.org/publicdomain/zero/1.0/
