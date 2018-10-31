@@ -47,10 +47,12 @@ CMake
 
 - 取列表变量的值避免括上引号（``${zStrsVar}``），除非刻意将列表字符串化
 
-C++ Archive Network
--------------------
+Conan
+-----
 
-`C++ Archive Network <https://cppan.org/>`_
+`Conan <https://conan.io/>`_
+
+`CMake-Conan <https://github.com/conan-io/cmake-conan>`_
 
 reStructuredText
 ----------------

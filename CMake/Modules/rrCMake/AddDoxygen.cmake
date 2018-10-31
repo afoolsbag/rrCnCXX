@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-10-13
+# 2016-10-08 – 2018-10-31
 # The Unlicense
 
 include_guard()
@@ -7,11 +7,11 @@ include_guard()
 cmake_policy(SET CMP0057 NEW) #3.3+
 
 # .rst
-# .. command:: facile_add_doxygen
+# .. command:: add_doxygen
 #
-#   便捷添加 Doxygen 目标到项目::
+#   添加 Doxygen 目标到项目::
 #
-#     facile_add_doxygen(
+#     add_doxygen(
 #       [WITH_OPTION]
 #       [OPTION_NAME_PREFIX <option-name-prefix>]
 #       [OPTION_NAME        <option-name>]           default: "${PROJECT_NAME_UPPER}"
@@ -37,7 +37,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 #   - `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen>`_. *CMake Documentation*.
 #   - `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
-function(facile_add_doxygen)
+function(add_doxygen)
   set(zOptKws    WITH_OPTION
                  OPTION_INITIAL_ON
                  JAVADOC_AUTOBRIEF
@@ -82,7 +82,7 @@ function(facile_add_doxygen)
   set(sTgtName "${_TARGET_NAME_PREFIX}${_TARGET_NAME}${_TARGET_NAME_SUFFIX}")
   check_name_with_cmake_rules("${sTgtName}" WARNING)
 
-  find_package(Doxygen OPTIONAL_COMPONENTS dot)
+  find_package(Doxygen OPTIONAL_COMPONENTS)
   if(NOT DOXYGEN_FOUND)
     message(WARNING "Doxygen is needed to generate doxygen documentation.")
   endif()

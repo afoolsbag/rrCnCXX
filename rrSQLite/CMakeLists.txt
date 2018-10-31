@@ -5,20 +5,23 @@
 # | |  | |  /\__/ /\ \/' / |___| | ||  __/
 # |_|  |_|  \____/  \_/\_\_____/_|\__\___| rrSQLite by FIGlet doom
 # zhengrr
-# 2018-05-23 – 2018-08-29
-# The MIT License
+# 2018-05-23 – 2018-10-31
+# The Unlicense
 
-project(rrSQLite VERSION 2018.8.29 LANGUAGES C)
-project_extra()
-compiler_warning_level(HIGHEST UTF-8)
+project(rrSQLite VERSION 2018.10.31 LANGUAGES C)
+project_more()
+compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8)
 
-facile_add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
+add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
-find_package(SQLite)
-
-aux_source_directory_enhanced(zTest RECURSE)
-facile_add_check_executable(SUBNAME "test"
-                                    OPTION_INITIAL_ON
-                                    ${zTest}
-                     LINK_LIBRARIES SQLite::SQLite
-                        POST_COPIES SQLite::SQLite)
+conan_cmake_run(
+  REQUIRES sqlite3/3.21.0@bincrafters/stable
+  BASIC_SETUP CMAKE_TARGETS)
+find_package(Check)
+aux_source_directory_ex(zTest)
+add_executable_ex(
+  NAME "test" ${zTest}
+  INCLUDE_DIRECTORIES PRIVATE "./"
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::sqlite3
+                              Check::Check
+                              Check::Compat)

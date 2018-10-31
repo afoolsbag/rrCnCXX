@@ -6,23 +6,24 @@
 # |_|  |_|  |___/ .__/ \__,_|_|\___/ \__, |
 #               | |                   __/ |
 # zhengrr       |_|                  |___/  rrspdlog by FIGlet doom
-# 2018-08-04 – 2018-10-16
+# 2018-08-04 – 2018-10-31
 # The Unlicense
 
 cmake_policy(SET CMP0074 NEW) #3.12+
 
-project(rrspdlog VERSION 2108.10.16 LANGUAGES CXX)
+project(rrspdlog VERSION 2108.10.31 LANGUAGES CXX)
 project_more()
 compile_option(MULTIPLE_PROCESSES UTF-8)
 
-facile_add_doxygen()
+add_doxygen()
 
-find_package(spdlog)
-
-aux_source_directory_ex(zSource RECURSE)
-facile_add_gtest_executable(
-  NAME "test"
-  ${zSource}
-  CXX17
+conan_cmake_run(
+  REQUIRES spdlog/0.17.0@bincrafters/stable
+           gtest/1.8.1@bincrafters/stable
+  BASIC_SETUP CMAKE_TARGETS)
+aux_source_directory_ex(zTest)
+add_executable_ex(
+  NAME "test" ${zTest} CXX17
   INCLUDE_DIRECTORIES PRIVATE "./"
-                              ${spdlog_INCLUDE_DIRS})
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::spdlog
+                              CONAN_PKG::gtest)
