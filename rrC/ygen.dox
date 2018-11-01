@@ -41,6 +41,18 @@
  * [*Awesome C*](https://notabug.org/koz.ross/awesome-c)
  *
  * / [*Check*](https://libcheck.github.io/check)
+ * / [*FFmpeg*](https://ffmpeg.org/)
+ * / [*libhdfs*](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/LibHdfs.html)
+ * / [*librdkafka*](https://github.com/edenhill/librdkafka)
+ * / [*libuv*](https://libuv.org/)
+ * / [*hiredis*](https://github.com/redis/hiredis)
+ * / [*OpenAL*](https://openal.org/)
+ * / [*OpenCL*](https://khronos.org/opencl/)
+ * / [*OpenGL*](https://opengl.org/)
+ * / [*OpenSSL*](https://openssl.org/)
+ * / [*POSIX*](https://wikipedia.org/wiki/POSIX)
+ * / [*rabbitmq-c*](https://github.com/alanxz/rabbitmq-c)
+ * / [*zlib*](https://zlib.net/)
  *
  * # 许可                                                            {#sLicense}
  *
@@ -56,7 +68,7 @@
  *   has waived all copyright and related or neighboring rights to this work.
  * </p>
  *
- * \version 2018-10-17
+ * \version 2018-11-01
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC0 1.0
