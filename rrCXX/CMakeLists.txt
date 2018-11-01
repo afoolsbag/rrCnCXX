@@ -24,7 +24,7 @@ aux_source_directory_ex(zSource RECURSE)
 configure_file("project.hxx.in" "project.hxx" @ONLY)
 aux_source_directory_ex(zGenerated DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/" GROUP_ROOT "generated/")
 add_executable_ex(
-  NAME "test" ${zSource} ${zGenerated} CXX17
+  ${zSource} ${zGenerated} CXX17
   INCLUDE_DIRECTORIES PRIVATE "./"
                               "${CMAKE_CURRENT_BINARY_DIR}/"
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gsl_microsoft

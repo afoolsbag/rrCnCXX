@@ -14,11 +14,12 @@
 
 #include <iostream>
 #include <string>
+using namespace std;
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-namespace rropencv {
+namespace rrOpenCV {
 
 /// @addtogroup gBlending
 /// @{
@@ -50,63 +51,57 @@ cv::Mat Blend(const cv::Mat &img1, const double ratio1, const cv::Mat &img2)
 
 namespace {
 
-struct UserData {
-    const cv::Mat &inpImg1;
-    const cv::Mat &inpImg2;
-    cv::Mat &rsltImg;
-    const std::string &wndName;
-
-    UserData() = delete;
-};
-
-void OnTrackbarChange(int pos, void *userdata)
-{
-    auto const data = reinterpret_cast<UserData *>(userdata);
-    data->rsltImg = rropencv::Blend(data->inpImg1, pos / 100., data->inpImg2);
-    cv::imshow(data->wndName, data->rsltImg);
-}
 
 }// namespace
 
 int main(int argc, char *argv[])
 {
     if (argc != 3) {
-        std::cout << "Incorrect number of arguments." << "\n"
-            << "Usage: " << argv[0] << " <image1 path> <image2 path>" << std::endl;
-        std::system("TIMEOUT /T 15");
+        cout << "Incorrect number of arguments.\n"
+            << "Usage: " << argv[0] << " <image1 path> <image2 path>\n";
         return EXIT_FAILURE;
     }
 
-    const cv::Mat inpImg1 = cv::imread(argv[1]);
-    if (inpImg1.empty()) {
-        std::cout << "Can't open image \"" << argv[1] << "\"." << std::endl;
-        std::system("TIMEOUT /T 15");
+    const cv::Mat img1 = cv::imread(argv[1]);
+    if (img1.empty()) {
+        cout << "Can't open image " << argv[1] << ".\n";
         return EXIT_FAILURE;
     }
 
-    const cv::Mat inpImg2 = cv::imread(argv[2]);
-    if (inpImg2.empty()) {
-        std::cout << "Can't open image \"" << argv[2] << "\"." << std::endl;
-        std::system("TIMEOUT /T 15");
+    const cv::Mat img2 = cv::imread(argv[2]);
+    if (img2.empty()) {
+        cout << "Can't open image " << argv[2] << ".\n";
         return EXIT_FAILURE;
     }
 
-    if (inpImg1.rows != inpImg2.rows ||
-        inpImg1.cols != inpImg2.cols ||
-        inpImg1.type() != inpImg2.type()) {
-        std::cout << "The two images do not match." << std::endl;
-        std::system("TIMEOUT /T 15");
+    if (img1.rows != img2.rows || img1.cols != img2.cols || img1.type() != img2.type()) {
+        cout << "The two images aren't matched.\n";
         return EXIT_FAILURE;
     }
 
-    const std::string wndName = "Blend Image";
-    cv::namedWindow(wndName);
+    const string window_name = "Blend Image";
+    cv::namedWindow(window_name);
 
-    cv::Mat rsltImg;
-    UserData data {inpImg1, inpImg2, rsltImg, wndName};
+    cv::Mat img3;
+    UserData data {img1, img2, img3, window_name};
+    struct UserData {
+        const cv::Mat &inpImg1;
+        const cv::Mat &inpImg2;
+        cv::Mat &rsltImg;
+        const std::string &wndName;
 
-    const std::string trkbarName = "Ratio1";
-    cv::createTrackbar(trkbarName, wndName, nullptr, 100, OnTrackbarChange, &data);
+        UserData() = delete;
+    };
+
+    void OnTrackbarChange(int pos, void *userdata)
+    {
+        auto const data = reinterpret_cast<UserData *>(userdata);
+        data->rsltImg = rrOpenCV::Blend(data->inpImg1, pos / 100., data->inpImg2);
+        cv::imshow(data->wndName, data->rsltImg);
+    }
+
+    const std::string trackbar_name = "Ratio1";
+    cv::createTrackbar(trackbar_name, window_name, nullptr, 100, OnTrackbarChange, &data);
 
     OnTrackbarChange(0, &data);
     cv::waitKey();

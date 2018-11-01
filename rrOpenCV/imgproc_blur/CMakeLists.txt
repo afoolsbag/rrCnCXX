@@ -1,5 +1,6 @@
-aux_source_directory_enhanced(zSrc RECURSE)
-facile_add_executable(SUBNAME "Blur"
-                              ${zSrc}
-          INCLUDE_DIRECTORIES PRIVATE ${OpenCV_INCLUDE_DIRS}
-               LINK_LIBRARIES opencv_core)
+aux_source_directory_ex(zSource)
+add_executable_ex(
+  NAME "ImgProc_Blur" ${zSource}
+  INCLUDE_DIRECTORIES PRIVATE ${OpenCV_INCLUDE_DIRS}
+  LINK_LIBRARIES      PRIVATE opencv_core
+  POST_COPIES                 opencv_core)

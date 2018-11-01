@@ -17,13 +17,13 @@ add_doxygen()
 
 conan_cmake_run(
   REQUIRES boost/1.68.0@conan/stable
-           gtest/1.8.1@bincrafters/stable
            gsl_microsoft/2.0.0@bincrafters/stable
+           gtest/1.8.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS)
 aux_source_directory_ex(zSource RECURSE)
 add_executable_ex(
   NAME "test" ${zSource} CXX17
   INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::gsl_microsoft)
+                              CONAN_PKG::gtest
                               CONAN_PKG::boost
-                              CONAN_PKG::gsl_microsoft)
