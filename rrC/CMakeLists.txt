@@ -1,11 +1,9 @@
-#             ____
-#  _ __ _ __ / ___|
-# | '__| '__| |
-# | |  | |  | |___
-# |_|  |_|   \____| rrC by FIGlet
-# zhengrr
-# 2016-08-01 – 2018-10-31
-# The Unlicense
+#            _____
+#           /  __ \
+#  _ __ _ __| /  \/
+# | '__| '__| |     zhengrr
+# | |  | |  | \__/\ 2016-08-01 – 2018-11-06
+# |_|  |_|   \____/ The Unlicense
 
 project(rrC VERSION 2018.10.31 LANGUAGES C)
 project_more()

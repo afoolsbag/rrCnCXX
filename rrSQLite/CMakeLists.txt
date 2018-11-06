@@ -22,6 +22,6 @@ aux_source_directory_ex(zTest)
 add_executable_ex(
   NAME "test" ${zTest}
   INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::sqlite3
-                              Check::Check
-                              Check::Compat)
+  LINK_LIBRARIES      PRIVATE Check::Check
+                              Check::Compat
+                              CONAN_PKG::sqlite3)

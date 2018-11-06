@@ -1,11 +1,9 @@
-#             ____        ____
-#  _ __ _ __ / ___|_ __  / _____  ___  __
-# | '__| '__| |   | '_ \| |   \ \/ \ \/ /
-# | |  | |  | |___| | | | |___ >  < >  <
-# |_|  |_|   \____|_| |_|\____/_/\_/_/\_\ rrCnCxx by FIGlet
-# zhengrr
-# 2016-06-28 – 2018-10-31
-# The Unlicense
+#            _____       _____ __   ____   __
+#           /  __ \     /  __ \\ \ / /\ \ / /
+#  _ __ _ __| /  \/_ __ | /  \/ \ V /  \ V /
+# | '__| '__| |   | '_ \| |     /   \  /   \  zhengrr
+# | |  | |  | \__/\ | | | \__/\/ /^\ \/ /^\ \ 2016-06-28 – 2018-11-06
+# |_|  |_|   \____/_| |_|\____/\/   \/\/   \/ The Unlicense
 
 cmake_minimum_required(VERSION 3.9.6)
 
@@ -23,4 +21,4 @@ product_more(AUTHORS "zhengrr" LICENSE "The Unlicense")
 
 aux_add_subdirectories(WITH_OPTION)
 
-install(FILES "LICENSE.txt" DESTINATION ".")
+install(FILES "UNLICENSE.txt" DESTINATION ".")

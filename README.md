@@ -42,7 +42,7 @@
 *   [*Emoji*](https://iemoji.com/)
 
 代码
-*   ["ASCII Figlet Generator"](https://www.askapache.com/online-tools/figlet-ascii/)
+*   ["ASCII Figlet Generator"](https://www.askapache.com/online-tools/figlet-ascii/). *AskApache*
 *   ["Country Code"](https://wikipedia.org/wiki/Country_code). *Wikipedia*.
     *   [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html)
 *   ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
@@ -52,6 +52,7 @@
     *   [*ISO 639 — Language codes*](https://iso.org/iso-639-language-codes.html)
     *   [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
         *   ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
+*   ["SPDX License List"](https://spdx.org/licenses/). *Software Package Data Exchange*.
 
 ## 指南
 
