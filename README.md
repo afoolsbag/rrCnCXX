@@ -42,12 +42,13 @@
 *   [*Emoji*](https://iemoji.com/)
 
 代码
+*   ["ASCII Figlet Generator"](https://www.askapache.com/online-tools/figlet-ascii/)
+*   ["Country Code"](https://wikipedia.org/wiki/Country_code). *Wikipedia*.
+    *   [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html)
 *   ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
     *   ["ISO 8601"](https://wikipedia.org/wiki/ISO_8601). *Wikipedia*.
     *   [*ISO 8601 — Date and time format*](https://iso.org/iso-8601-date-and-time-format.html)
-*   ["Country Code"](https://wikipedia.org/wiki/Country_code). *Wikipedia*.
-    *   [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html)
-* ["Language Code"](https://wikipedia.org/wiki/Language_code). *Wikipedia*.
+*   ["Language Code"](https://wikipedia.org/wiki/Language_code). *Wikipedia*.
     *   [*ISO 639 — Language codes*](https://iso.org/iso-639-language-codes.html)
     *   [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
         *   ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
@@ -64,21 +65,15 @@
 
 [*awesome*](https://awesome.re/)
 
-编辑器
-
 / [*Emacs*](https://gnu.org/software/emacs/)
 / [*Notepad++*](https://notepad-plus-plus.org)
 / [*Vim*](https://www.vim.org/)
 / [*Visual Studio Code*](https://code.visualstudio.com)
 
-系统环境
-
 / [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
 / [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
 / [*Mingw-w64*](https://mingw-w64.org/)
 / [*MSYS2*](https://www.msys2.org/ "Minimal System")
-
-集成开发环境
 
 / [*CLion*](https://jetbrains.com/clion)
 / [*Understand™*](https://scitools.com)
@@ -300,6 +295,10 @@ quickref
     *   左一标签页<kbd>g</kbd><kbd>T</kbd>　某标签页<kbd>Number</kbd><kbd>g</kbd><kbd>t</kbd>　右一标签页<kbd>g</kbd><kbd>t</kbd>
 
 ## 许可
+
+项目采用 Unlicense 许可；
+
+文档采用 CC0-1.0 许可：
 
 <p xmlns:dct="https://purl.org/dc/terms/">
   <a rel="license"
