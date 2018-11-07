@@ -42,7 +42,7 @@
 *   [*Emoji*](https://iemoji.com/)
 
 代码
-*   ["ASCII Figlet Generator"](https://www.askapache.com/online-tools/figlet-ascii/). *AskApache*
+*   ["ASCII Figlet Generator"](https://www.askapache.com/online-tools/figlet-ascii/). *AskApache*.
 *   ["Country Code"](https://wikipedia.org/wiki/Country_code). *Wikipedia*.
     *   [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html)
 *   ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
@@ -297,9 +297,7 @@ quickref
 
 ## 许可
 
-项目采用 Unlicense 许可；
-
-文档采用 CC0-1.0 许可：
+项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
 
 <p xmlns:dct="https://purl.org/dc/terms/">
   <a rel="license"

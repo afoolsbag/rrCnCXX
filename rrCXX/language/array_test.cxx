@@ -3,7 +3,7 @@
 /// \defgroup gArr 数组类型
 /// \ingroup gLang
 ///
-/// \version 2018-10-10
+/// \version 2018-11-06
 /// \since 2018-10-08
 /// \author zhengrr
 /// \copyright The Unlicense
@@ -43,7 +43,7 @@ TEST(array, raw_array)
 TEST(array, std_array)
 {
     static constexpr array<const int, 6> std_array {1, 2, 3, 4, 5, 6};
-    for (index i {0}; i < std_array.size(); ++i) {
+    for (index i {0}; i < static_cast<index>(std_array.size()); ++i) {
         ASSERT_EQ(std_array[i], i + 1);     // 不进行边界检查，不安全。
         ASSERT_EQ(std_array.at(i), i + 1);  // 进行边界检查，安全。
     }

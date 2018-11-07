@@ -52,9 +52,10 @@
  * / [*OpenSSL*](https://openssl.org/)
  * / [*POSIX*](https://wikipedia.org/wiki/POSIX)
  * / [*rabbitmq-c*](https://github.com/alanxz/rabbitmq-c)
- * / [*zlib*](https://zlib.net/)
  *
  * # 许可                                                            {#sLicense}
+ *
+ * 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
  *
  * <p xmlns:dct="https://purl.org/dc/terms/">
  *   <a rel="license"
@@ -68,10 +69,10 @@
  *   has waived all copyright and related or neighboring rights to this work.
  * </p>
  *
- * \version 2018-11-01
+ * \version 2018-11-06
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright CC0-1.0
  *
 *//*===--------------------------------------------------------------------===*/
 
@@ -99,6 +100,6 @@
  * \version 2018-10-17
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright CC0-1.0
  *
 *//*===--------------------------------------------------------------------===*/

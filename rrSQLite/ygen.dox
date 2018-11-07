@@ -5,14 +5,48 @@
  *
  * # SQLite                                                           {#sSQLite}
  *
- * [*SQLite*](https://sqlite.org/)
+ * / [*SQLite*](https://sqlite.org/)
  *
- * ___
- * <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+ * # 参考                                                         {#sReferences}
  *
- * \version 2018-08-29
+ * *   Structured Query Language
+ *     *   [SQL:1987](https://iso.org/standard/16661.html)
+ *     *   [SQL:1989](https://iso.org/standard/16662.html)
+ *     *   [SQL:1992](https://iso.org/standard/16663.html)
+ *     *   [SQL:1999](https://iso.org/standard/26196.html)
+ *     *   [SQL:2003](https://iso.org/standard/34132.html)
+ *     *   [SQL:2006](https://iso.org/standard/38647.html)
+ *     *   [SQL:2008](https://iso.org/standard/45498.html)
+ *     *   [SQL:2011](https://iso.org/standard/53681.html)
+ *     *   [SQL:2016](https://iso.org/standard/63555.html)
+ *
+ * # 风格                                                             {#sStyles}
+ *
+ * [*SQL Style Guide*](https://sqlstyle.guide). Simon Holywell.
+ *
+ * # Awesome                                                         {#sAwesome}
+ *
+ * [*DataGrip*](https://jetbrains.com/datagrip)
+ *
+ * # 许可                                                            {#sLicense}
+ *
+ * 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
+ *
+ * <p xmlns:dct="https://purl.org/dc/terms/">
+ *   <a rel="license"
+ *      href="https://creativecommons.org/publicdomain/zero/1.0/">
+ *     <img src="https://licensebuttons.net/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+ *   </a>
+ *   <br />
+ *   To the extent possible under law,
+ *   <span resource="[_:publisher]" rel="dct:publisher">
+ *     <span property="dct:title">zhengrr</span></span>
+ *   has waived all copyright and related or neighboring rights to this work.
+ * </p>
+ *
+ * \version 2018-11-07
  * \since 2018-05-23
  * \authors zhengrr
- * \copyright CC BY 4.0
+ * \copyright CC0-1.0
  *
 *//*===--------------------------------------------------------------------===*/

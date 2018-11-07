@@ -2,19 +2,21 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2018-11-06
-# |_|  |_|   \____/ The Unlicense
+# | |  | |  | \__/\ 2016-08-01 – 2018-11-07
+# |_|  |_|   \____/ Unlicense
 
-project(rrC VERSION 2018.10.31 LANGUAGES C)
+project(rrC VERSION 2018.11.6 LANGUAGES C)
 project_more()
 compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
 find_package(Check)
-configure_file("project.h.in" "project.h" @ONLY)
+
 aux_source_directory_ex(zSource RECURSE)
+configure_file("project.h.in" "project.h" @ONLY)
 aux_source_directory_ex(zGenerated DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/" GROUP_ROOT "generated/")
+
 add_executable_ex(
   ${zSource} ${zGenerated} C11
   INCLUDE_DIRECTORIES PRIVATE "./"

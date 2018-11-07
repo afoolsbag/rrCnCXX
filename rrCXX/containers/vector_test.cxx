@@ -5,7 +5,7 @@
 ///
 /// \sa ["std::vector"](https://zh.cppreference.com/w/cpp/container/vector). *cppreference.com*.
 ///
-/// \version 2018-10-15
+/// \version 2018-11-06
 /// \since 2018-01-22
 /// \author zhengrr
 /// \copyright The Unlicense
@@ -44,7 +44,7 @@ TEST(vector, traverse)
     ASSERT_EQ(sum2, 23);
 
     int sum3 {};
-    for (index i {}; i < numbers.size(); ++i)
+    for (index i {}; i < static_cast<index>(numbers.size()); ++i)
         sum3 += numbers[i];
     ASSERT_EQ(sum3, 23);
 }
