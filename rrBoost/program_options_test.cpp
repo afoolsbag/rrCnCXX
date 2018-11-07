@@ -4,10 +4,10 @@
 /// \brief Program Options
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/program_options.html>
 ///
-/// \version 2018-10-17
+/// \version 2018-11-07
 /// \since 2018-04-02
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
@@ -34,8 +34,8 @@ TEST(program_options, first_step)
             ("compression", boost::program_options::value<double>(), "set compression level");
 
         boost::program_options::variables_map vars;
-        boost::program_options::store(parse_command_line(args.size(), argv, desc), vars);
-        boost::program_options::notify(vars);
+        store(parse_command_line(static_cast<int>(args.size()), argv, desc), vars);
+        notify(vars);
 
         if (vars.count("help")) {
             cout << desc << "\n";
