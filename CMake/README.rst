@@ -68,6 +68,8 @@ reStructuredText
 许可
 ----
 
+项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
+
 .. image:: https://licensebuttons.net/p/zero/1.0/88x31.png
    :target: https://creativecommons.org/publicdomain/zero/1.0/
 

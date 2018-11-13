@@ -2,7 +2,7 @@
 #           /  __ \     /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/_ __ | /  \/ \ V /  \ V /
 # | '__| '__| |   | '_ \| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\ | | | \__/\/ /^\ \/ /^\ \ 2016-06-28 – 2018-11-06
+# | |  | |  | \__/\ | | | \__/\/ /^\ \/ /^\ \ 2016-06-28 – 2018-11-12
 # |_|  |_|   \____/_| |_|\____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.9.6)
@@ -17,7 +17,7 @@ endif()
 include("${CMAKE_BINARY_DIR}/conan.cmake")
 
 project(rrCnCxx VERSION 2018.11.07 LANGUAGES NONE)
-product_more(AUTHORS "zhengrr" LICENSE "The Unlicense")
+product_more(AUTHORS "zhengrr" LICENSE "Unlicense")
 
 aux_add_subdirectories(WITH_OPTION)
 
