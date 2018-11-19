@@ -3,10 +3,10 @@
  * \file
  * \brief 动态链接库。
  *
- * \version 2018-10-23
+ * \version 2018-11-19
  * \since 2018-05-08
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
 **//*===-------------------------------------------------------------------===*/
 

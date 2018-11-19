@@ -1,4 +1,4 @@
-/** \copyright The Unlicense */
+/** \copyright Unlicense */
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -6,6 +6,7 @@
 
 #include <check/check.h>
 
+#include "Console/_test.h"
 #include "Debug/_test.h"
 #include "Dlls/_test.h"
 #include "FileIO/_test.h"
@@ -27,6 +28,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     UNREFERENCED_PARAMETER(envp);
 
     SRunner *CONST tr = srunner_create(NULL);
+    srunner_add_suite(tr, tsConsole());
     srunner_add_suite(tr, tsDebug());
     srunner_add_suite(tr, tsDlls());
     srunner_add_suite(tr, tsFileIO());

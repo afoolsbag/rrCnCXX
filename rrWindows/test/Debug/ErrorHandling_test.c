@@ -1,14 +1,14 @@
 /*===-- Error Handling -----------------------------------------*- C -*-===*//**
  *
- * \defgroup gErrorHandling 错误处理。
+ * \defgroup gErrorHandling 错误处理
  * \ingroup gDebug
  *
  * \sa ["Error Handling"](https://docs.microsoft.com/zh-cn/windows/desktop/Debug/error-handling). *Microsoft Docs*.
  *
- * \version 2018-10-23
+ * \version 2018-11-19
  * \since 2018-01-15
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
