@@ -3,6 +3,116 @@
 /// \defgroup gDesignPatterns 设计模式
 /// \ingroup gReference
 ///
+/// # PlantUML 示例
+///
+/// ## 类的表示（Class representation）
+///
+/// \startuml
+///   class class {
+///     - private_field
+///     # protected_field
+///     ~ package_field
+///     + public_field
+///     field_with_type : int
+///     {static} static_field
+///     {field} force_field()
+///
+///     - private_method()
+///     # protected_method()
+///     ~ package_method()
+///     + public_method()
+///     method_with_type() : void
+///     {static} static_method()
+///     {abstract} abstract_method()
+///     {method} force_method
+///   }
+///
+///   abstract abstract {
+///   }
+///
+///   enum enum {
+///   }
+///
+///   interface interface {
+///   }
+///
+///   annotation annotation
+/// \enduml
+///
+/// ## 依赖（Dependency）
+///
+/// \startuml
+///   class A
+///   class B
+///
+///   A .> B : dependency
+/// \enduml
+///
+/// 类 A 的某个方法，使用了类 B 作为参数或返回。
+///
+/// ## 关联（Association）
+///
+/// \startuml
+///   class A
+///   class B
+///
+///   A -> B : association
+/// \enduml
+///
+/// 类 A 保留了类 B 的引用。
+///
+/// \startuml
+///   class "课程" as student
+///   class "学生" as course
+///   class "注册" as enrollment
+///
+///   student "0..*" - "1..*" course
+///   (student, course) .. enrollment
+/// \enduml
+///
+/// 学生和课程通过注册进行关联。
+///
+/// ## 聚合（Aggregation）
+///
+/// \startuml
+///   class "池塘" as pond
+///   class "鸭子" as duck
+///
+///   pond "0..1" o- "0..*" duck : aggregation
+/// \enduml
+///
+/// 一片池塘可以有若干鸭子，一只鸭子可能存在于一片池塘。
+///
+/// ## 组成（Composition）
+///
+/// \startuml
+///   class "汽车" as car
+///   class "化油器" as carburetor
+///
+///   car "0..1" *- "1..1" carburetor : composition
+/// \enduml
+///
+/// 一辆汽车有且仅有一部化油器，一部化油器最多属于一辆汽车（化油器可单独存在）。
+///
+/// ## 实现（Realization/Implementation）
+///
+/// \startuml
+///   interface "接口" as interface_class
+///   class "实现" as implementation_class
+///
+///   interface_class <|.. implementation_class : realization/implementation
+/// \enduml
+///
+/// ## 泛化、继承（Generalization/Inheritance）
+///
+/// \startuml
+///   class "基类" as base_class
+///   class "派生类" as derived_class
+///
+///   base_class <|-- derived_class : generalization/inheritance
+/// \enduml
+///
+/// \sa <https://modeling-languages.com/best-uml-cheatsheets-and-reference-guides/>
 /// \sa ["设计模式"](https://zh.wikipedia.org/wiki/设计模式). *Wikipedia*.
 /// \sa ["反面模式"](https://zh.wikipedia.org/wiki/反面模式). *Wikipedia*.
 ///

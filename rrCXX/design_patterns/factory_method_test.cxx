@@ -11,11 +11,23 @@
 /// > + 连接平行的类层次
 ///
 /// \startuml
-///   Class01 <|-- Class02
-///   Class03 *-- Class04
-///   Class05 o-- Class06
-///   Class07 .. Class08
-///   Class09 -- Class10
+///   interface creator {
+///     + {abstract} factory_method() : product
+///   }
+///   interface product
+///
+///   creator .> product : factory_method()
+///
+///   class concrete_creator {
+///     + factory_method() : product
+///   }
+///
+///   class concrete_product
+///
+///   concrete_creator .> concrete_product : factory_method()
+///
+///   creator <|.. concrete_creator
+///   product <|.. concrete_product
 /// \enduml
 ///
 /// \version 2018-11-22

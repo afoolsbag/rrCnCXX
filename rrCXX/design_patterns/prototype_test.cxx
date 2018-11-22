@@ -13,6 +13,18 @@
 /// > + 减少子类的构造
 /// > + 用类动态配置应用
 ///
+/// \startuml
+///   interface prototype {
+///     + {abstract} clone()
+///   }
+///
+///   class concrete_propttype {
+///     + clone()
+///   }
+///
+///   prototype <|.. concrete_propttype
+/// \enduml
+///
 /// \version 2018-11-22
 /// \since 2018-09-27
 /// \authors zhengrr

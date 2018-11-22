@@ -12,6 +12,46 @@
 /// > + 它有利于产品的一致性
 /// > + 难以支持新种类的产品
 ///
+/// \startuml
+///   interface abstract_factory {
+///     + {abstract} create_product1() : product1
+///     + {abstract} create_product2() : product2
+///   }
+///   interface product1
+///   interface product2
+///
+///   abstract_factory .left.> product1 : create_product1()
+///   abstract_factory .right.> product2 : create_product2()
+///
+///   class concrete1_factory {
+///     + create_product1() : product1
+///     + create_product2() : product2
+///   }
+///   class concrete1_product1
+///   class concrete1_product2
+///
+///   concrete1_factory .left.> concrete1_product1 : create_product1()
+///   concrete1_factory .right.> concrete1_product2 : create_product2()
+///
+///   class concrete2_factory {
+///     + create_product1() : product1
+///     + create_product2() : product2
+///   }
+///   class concrete2_product1
+///   class concrete2_product2
+///
+///   concrete2_factory .left.> concrete2_product1 : create_product1()
+///   concrete2_factory .right.> concrete2_product2 : create_product2()
+///
+///   abstract_factory <|.. concrete1_factory
+///   product1 <|.. concrete1_product1
+///   product2 <|.. concrete1_product2
+///
+///   abstract_factory <|... concrete2_factory
+///   product1 <|... concrete2_product1
+///   product2 <|... concrete2_product2
+/// \enduml
+///
 /// \version 2018-11-22
 /// \since 2018-09-26
 /// \authors zhengrr
@@ -21,11 +61,12 @@
 
 #include <iostream>
 #include <memory>
-using namespace std;
 
 #include <gtest/gtest.h>
 
-namespace rrcxx::test {
+using namespace std;
+
+namespace rrcxx {
 
 /// \addtogroup gAbstractFactory
 /// @{
@@ -58,7 +99,7 @@ public:
 /// \brief 抽象工厂。
 TEST(design_patterns, abstract_factory)
 {
-    unique_ptr<abstract_factory> factory {make_unique<concrete_factory>().release()};
+    unique_ptr<abstract_factory> factory {make_unique<concrete_factory>()};
     auto product_a {factory->create_product()};
 }
 

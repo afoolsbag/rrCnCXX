@@ -11,6 +11,33 @@
 /// > + 它将构造代码和表示代码分开
 /// > + 它使你可对构造过程进行更精细的控制
 ///
+/// \startuml
+///   class director
+///   class complex_product
+///   interface builder {
+///     + {abstract} build_part_a()
+///     + {abstract} build_part_b()
+///   }
+///
+///   director -left-> builder
+///   director .right.> complex_product
+///
+///   class builder1 {
+///     + build_part_a()
+///     + build_part_b()
+///   }
+///
+///   builder <|.. builder1
+///
+///   class builder2 {
+///     + build_part_a()
+///     + build_part_b()
+///   }
+///
+///   builder <|.. builder2
+///
+/// \enduml
+///
 /// \version 2018-11-22
 /// \since 2018-09-26
 /// \authors zhengrr
@@ -61,7 +88,7 @@ class concrete_builder: public builder {
 /// \brief 生成器。
 TEST(design_patterns, builder)
 {
-    unique_ptr<builder> builder {make_unique<concrete_builder>().release()};
+    unique_ptr<builder> builder {make_unique<concrete_builder>()};
     unique_ptr<director> director {make_unique<class director>()};
     auto product = director->create_product(builder);
 }

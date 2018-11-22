@@ -13,6 +13,14 @@
 /// > *   允许可变数目的实例
 /// > *   比类操作更灵活
 ///
+/// \startuml
+///   class singleton {
+///     - instance : singleton
+///     - singleton()
+///     + get_instance() : singleton
+///   }
+/// \enduml
+///
 /// \version 2018-11-22
 /// \since 2016-10-18
 /// \authors zhengrr

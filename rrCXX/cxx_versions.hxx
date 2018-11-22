@@ -6,10 +6,10 @@
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ 编译器支持情况表"](https://zh.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2017-12-13
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
@@ -202,7 +202,7 @@
 /// \sa <http://wg21.link/p0212r1>
 #define P0212R1 (CXX17 || MKVER(7,0,0)<=GNUC || MKVER(19,11,0)<=MSC)
 
-/// \brief Add Constexpr Modifiers to Functions in <algorithm> and <utility> Headers
+/// \brief Add Constexpr Modifiers to Functions in `<algorithm>` and `<utility>` Headers
 /// \sa <http://wg21.link/p0202r3>
 #define P0202R3 (CXX20)
 
