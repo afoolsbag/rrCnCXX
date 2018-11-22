@@ -1,26 +1,27 @@
 //===-- Pointer -------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gPtr 指针
-/// \ingroup gLang
+/// \defgroup gPointer 指针
+/// \ingroup gLanguage
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-09-20
-/// \author zhengrr
-/// \copyright The Unlicense
+/// \authors zhengrr
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <memory>
 #include <thread>
-using namespace std;
 #include <gsl/gsl>
-using namespace gsl;
 
 #include <gtest/gtest.h>
 
-namespace rrcxx::test {
+using namespace std;
+using namespace gsl;
 
-/// \addtogroup gPtr
+namespace rrcxx {
+
+/// \addtogroup gPointer
 /// @{
 
 /// \brief 裸指针。
@@ -103,4 +104,4 @@ TEST(pointer, gsl_not_null)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

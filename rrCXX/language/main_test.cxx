@@ -1,17 +1,22 @@
 //===-- Main Function -------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gMain 主函数
-/// \ingroup gLang
+/// \ingroup gLanguage
 ///
-/// \version 2018-10-16
+/// \version 2018-11-22
 /// \since 2016-10-12
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 /// @{
 //===----------------------------------------------------------------------===//
 
 #include <gtest/gtest.h>
+
+namespace rrcxx {
+
+/// \addtogroup gMain
+/// @{
 
 /// \brief 入口点（主函数）。
 ///
@@ -28,3 +33,5 @@ int entry_point(int argc, char *argv[])
 }
 
 /// @}
+
+}//namespace rrcxx

@@ -1,27 +1,27 @@
 //===-- Set -----------------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gSet 集合
-/// \ingroup gCont
+/// \ingroup gContainers
 ///
 /// \sa ["std::set"](https://zh.cppreference.com/w/cpp/container/set). *cppreference.com*.
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2018-06-21
 /// \authors zhengrr
-/// \copyright The Unlicense
-///
+/// \copyright Unlicense
 //===----------------------------------------------------------------------===//
 
 #include <set>
-using namespace std;
 
 #include <gtest/gtest.h>
 
 #include "cxx_versions.hxx"
 
-namespace rrcxx::test {
+using namespace std;
 
-/// @addtogroup gSet
+namespace rrcxx {
+
+/// \addtogroup gSet
 /// @{
 
 /// \brief 集合的查找。
@@ -47,4 +47,4 @@ TEST(set, lookup)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

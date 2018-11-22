@@ -1,29 +1,27 @@
 //===-- Array Type ----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gArr 数组类型
-/// \ingroup gLang
+/// \defgroup gArray 数组类型
+/// \ingroup gLanguage
 ///
-/// \version 2018-11-06
+/// \version 2018-11-22
 /// \since 2018-10-08
 /// \author zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <array>
-using namespace std;
 #include <gsl/gsl>
-using namespace gsl;
 
 #include <gtest/gtest.h>
 
-namespace rrcxx::test {
+using namespace std;
+using namespace gsl;
 
-/// \addtogroup gArr
+namespace rrcxx {
+
+/// \addtogroup gArray
 /// @{
-
-namespace {
-}//namespace
 
 /// \brief 原始数组。
 /// \remarks ES.107: 不要对下标使用 `unsigned`，优先使用 `gsl::index`
@@ -90,4 +88,4 @@ TEST(array, gsl_zstring)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

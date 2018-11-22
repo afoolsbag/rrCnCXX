@@ -1,7 +1,7 @@
 //===-- Abstract Factory ----------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gAbstractFactory 抽象工厂
-/// \ingroup gDzn
+/// \ingroup gDesignPatterns
 ///
 /// 抽象工厂设计模式：
 ///
@@ -12,10 +12,10 @@
 /// > + 它有利于产品的一致性
 /// > + 难以支持新种类的产品
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-09-26
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
@@ -64,4 +64,4 @@ TEST(design_patterns, abstract_factory)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

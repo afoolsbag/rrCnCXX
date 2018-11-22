@@ -1,15 +1,15 @@
 //===-- Design Patterns -----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gDzn 设计模式
-/// \ingroup gRef
+/// \defgroup gDesignPatterns 设计模式
+/// \ingroup gReference
 ///
-/// \sa ["设计模式"](https://zh.wikipedia.org/wiki/设计模式_(计算机)). *Wikipedia*.
+/// \sa ["设计模式"](https://zh.wikipedia.org/wiki/设计模式). *Wikipedia*.
 /// \sa ["反面模式"](https://zh.wikipedia.org/wiki/反面模式). *Wikipedia*.
 ///
-/// \version 2018-09-27
+/// \version 2018-11-22
 /// \since 2018-01-29
 /// \authors zhengrr
-/// \copyright CC0 1.0
+/// \copyright CC0-1.0
 ///
 //===----------------------------------------------------------------------===//
 
@@ -34,9 +34,9 @@
 ///
 /// \sa ["C++ 和 DCLP 的风险"](http://blog.jobbole.com/86392). *伯乐在线*.
 ///
-/// \version 2018-09-17
+/// \version 2018-11-20
 /// \since 2018-01-23
 /// \authors zhengrr
-/// \copyright CC0 1.0
+/// \copyright CC0-1.0
 ///
 //===----------------------------------------------------------------------===//

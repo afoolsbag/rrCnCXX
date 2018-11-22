@@ -1,7 +1,7 @@
 //===-- Prototype -----------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gPrototype 原型
-/// \ingroup gDzn
+/// \ingroup gDesignPatterns
 ///
 /// 原型设计模式：
 ///
@@ -13,20 +13,21 @@
 /// > + 减少子类的构造
 /// > + 用类动态配置应用
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-09-27
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
 #include <memory>
-using namespace std;
 
 #include <gtest/gtest.h>
 
-namespace rrcxx::test {
+using namespace std;
+
+namespace rrcxx {
 
 /// \addtogroup gPrototype
 /// @{
@@ -56,4 +57,4 @@ TEST(design_patterns, prototype)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

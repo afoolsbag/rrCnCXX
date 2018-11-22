@@ -1,13 +1,13 @@
 //===-- Numerics library ----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gNumr 数值库
-/// \ingroup gRef
+/// \defgroup gNumerics 数值库
+/// \ingroup gReference
 ///
 /// \sa ["数值库"](https://zh.cppreference.com/w/cpp/numeric). *cppreference.com*.
 ///
-/// \version 2018-09-17
+/// \version 2018-11-22
 /// \since 2018-01-23
-/// \author zhengrr
-/// \copyright CC0 1.0
+/// \authors zhengrr
+/// \copyright CC0-1.0
 ///
 //===----------------------------------------------------------------------===//

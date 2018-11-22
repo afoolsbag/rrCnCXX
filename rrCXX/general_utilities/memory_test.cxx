@@ -1,35 +1,35 @@
 //===-- Dynamic Memory Management -------------------------------*- C++ -*-===//
 ///
-/// \defgroup gMem 动态内存管理
-/// \ingroup gGen
+/// \defgroup gMemory 动态内存管理
+/// \ingroup gGeneralUtilities
 ///
 /// \sa gPtr
 /// \sa ["动态内存管理"](https://zh.cppreference.com/w/cpp/memory). *cppreference.com*.
-///     + 智能指针
-///         + 独占指针 `unique_ptr`（C++11）
-///         + 共享指针 `shared_ptr`（C++11）
-///         + 共享指针的弱引用 `weak_ptr`（C++11）
-///         + 自动指针 `auto_ptr`
+///     *   智能指针
+///         *   独占指针 `unique_ptr`（C++11）
+///         *   共享指针 `shared_ptr`（C++11）
+///         *   共享指针的弱引用 `weak_ptr`（C++11）
+///         *   自动指针 `auto_ptr`
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-01-23
-/// \author zhengrr
-/// \copyright The Unlicense
+/// \authors zhengrr
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <thread>
 #include <memory>
-using namespace std;
 
 #include <gtest/gtest.h>
 
-namespace rrcxx::test {
+using namespace std;
 
-/// \addtogroup gMem
+namespace rrcxx {
+
+/// \addtogroup gMemory
 /// @{
-
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

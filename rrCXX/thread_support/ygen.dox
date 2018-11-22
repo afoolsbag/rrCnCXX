@@ -1,20 +1,20 @@
 //===-- Thread Support Library ----------------------------------*- C++ -*-===//
 ///
-/// \defgroup gThrd 线程支持库
-/// \ingroup gRef
+/// \defgroup gThread 线程支持库
+/// \ingroup gReference
 ///
 /// \sa ["线程支持库"](https://zh.cppreference.com/w/cpp/thread). *cppreference.com*.
 ///
-/// \version 2018-09-17
+/// \version 2018-11-22
 /// \since 2016-11-07
-/// \author zhengrr
-/// \copyright CC0 1.0
+/// \authors zhengrr
+/// \copyright CC0-1.0
 ///
 //===----------------------------------------------------------------------===//
 
 //===-- Thread Support Library Topics ---------------------------*- C++ -*-===//
 ///
-/// \page pThrd 线程支持库议题
+/// \page gThread 线程支持库议题
 /// \tableofcontents
 ///
 /// _____________________________
@@ -31,9 +31,9 @@
 ///
 /// \sa <https://stackoverflow.com/questions/213907/c-stdendl-vs-n>
 ///
-/// \version 2018-09-17
+/// \version 2018-11-22
 /// \since 2018-01-23
 /// \authors zhengrr
-/// \copyright CC0 1.0
+/// \copyright CC0-1.0
 ///
 //===----------------------------------------------------------------------===//

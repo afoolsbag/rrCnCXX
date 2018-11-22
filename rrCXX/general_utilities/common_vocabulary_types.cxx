@@ -1,15 +1,15 @@
 //===-- Common Vocabulary Types ---------------------------------*- C++ -*-===//
 ///
-/// \defgroup gCmnVocTypes 通用词汇类型
-/// \ingroup gGen
+/// \defgroup gCommonVocabularyTypes 通用词汇类型
+/// \ingroup gGeneralUtilities
 ///
 /// \sa "通用词汇类型". *cppreference.com*.
-/// + [`std::variant`](https://zh.cppreference.com/w/cpp/utility/variant)
+///     *   [`std::variant`](https://zh.cppreference.com/w/cpp/utility/variant)
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2018-10-08
-/// \author zhengrr
-/// \copyright The Unlicense
+/// \authors zhengrr
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
@@ -17,15 +17,16 @@
 #include <optional>
 #include <tuple>
 #include <variant>
-using namespace std;
 
 #include <gtest/gtest.h>
 
 #include "cxx_versions.hxx"
 
-namespace rrcxx::test {
+using namespace std;
 
-/// \addtogroup gCmnVocTypes
+namespace rrcxx {
+
+/// \addtogroup gCommonVocabularyTypes
 /// @{
 
 /// \brief 任意包装器。
@@ -103,4 +104,4 @@ TEST(common_vocabulary_types, variant)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

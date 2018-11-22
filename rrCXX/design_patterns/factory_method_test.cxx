@@ -1,7 +1,7 @@
 //===-- Factory Method ------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gFactoryMethod 工厂方法
-/// \ingroup gDzn
+/// \ingroup gDesignPatterns
 ///
 /// 工厂方法设计模式：
 ///
@@ -10,20 +10,29 @@
 /// > + 为子类提供挂钩
 /// > + 连接平行的类层次
 ///
-/// \version 2018-10-10
+/// \startuml
+///   Class01 <|-- Class02
+///   Class03 *-- Class04
+///   Class05 o-- Class06
+///   Class07 .. Class08
+///   Class09 -- Class10
+/// \enduml
+///
+/// \version 2018-11-22
 /// \since 2018-09-26
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
 #include <memory>
-using namespace std;
 
 #include <gtest/gtest.h>
 
-namespace rrcxx::test {
+using namespace std;
+
+namespace rrcxx {
 
 /// \addtogroup gFactoryMethod
 /// @{
@@ -59,4 +68,4 @@ TEST(design_patterns, factory_method)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

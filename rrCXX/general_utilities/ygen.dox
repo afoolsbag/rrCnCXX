@@ -1,18 +1,18 @@
 //===-- General-Purpose Utilities -------------------------------*- C++ -*-===//
 ///
-/// \defgroup gGen 通用工具库
-/// \ingroup gRef
+/// \defgroup gGeneralUtilities 通用工具库
+/// \ingroup gReference
 ///
 /// \sa ["工具库"](https://zh.cppreference.com/w/cpp/utility). *cppreference.com*.
-///     + 语言支持
-///         + 动态内存管理
-///     + 通用工具
-///         + 日期和时间
-///         + `optional`、`variant` 与 `any`
+///     *   语言支持
+///         *   动态内存管理
+///     *   通用工具
+///         *   日期和时间
+///         *   `optional`、`variant` 和 `any`
 ///
-/// \version 2018-09-17
+/// \version 2018-11-22
 /// \since 2018-01-23
 /// \authors zhengrr
-/// \copyright CC0 1.0
+/// \copyright CC0-1.0
 ///
 //===----------------------------------------------------------------------===//

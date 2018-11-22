@@ -1,7 +1,7 @@
 //===-- Builder -------------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gBuilder 生成器
-/// \ingroup gDzn
+/// \ingroup gDesignPatterns
 ///
 /// 生成器设计模式：
 ///
@@ -11,18 +11,19 @@
 /// > + 它将构造代码和表示代码分开
 /// > + 它使你可对构造过程进行更精细的控制
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-09-26
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
 #include <memory>
-using namespace std;
 
 #include <gtest/gtest.h>
+
+using namespace std;
 
 namespace rrcxx::test {
 
@@ -67,4 +68,4 @@ TEST(design_patterns, builder)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

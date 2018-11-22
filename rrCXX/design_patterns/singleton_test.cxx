@@ -1,7 +1,7 @@
 //===-- Singleton -----------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gSingleton 单例
-/// \ingroup gDzn
+/// \ingroup gDesignPatterns
 ///
 /// 单例设计模式：
 ///
@@ -13,22 +13,23 @@
 /// > *   允许可变数目的实例
 /// > *   比类操作更灵活
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2016-10-18
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <memory>
 #include <mutex>
-using namespace std;
 
 #include <gtest/gtest.h>
 
 #include "cxx_versions.hxx"
 
-namespace rrcxx::test {
+using namespace std;
+
+namespace rrcxx {
 
 /// \addtogroup gSingleton
 /// @{
@@ -109,4 +110,4 @@ TEST(design_patterns, singleton)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

@@ -4,10 +4,10 @@
 /// \brief 项目信息。
 /// \details 名称、版本、作者、版权等信息。
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2017-01-12
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
@@ -16,6 +16,7 @@
 #define RRCXX_PROJECT_HXX_
 
 #include <cstdint>
+
 using namespace std;
 
 /// 产品名。

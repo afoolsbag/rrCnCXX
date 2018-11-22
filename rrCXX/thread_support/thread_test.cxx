@@ -1,25 +1,26 @@
 //===-- Thread --------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gThrdSmp 线程示例
-/// \ingroup gThrd
+/// \defgroup gThreadSimple 线程示例
+/// \ingroup gThread
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2018-09-17
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <thread>
-using namespace std;
 
 #include <gtest/gtest.h>
 
 #include "cxx_versions.hxx"
 
-namespace rrcxx::test {
+using namespace std;
 
-/// @addtogroup gThrd
+namespace rrcxx {
+
+/// @addtogroup gThread
 /// @{
 
 TEST(thread, test)
@@ -52,4 +53,4 @@ TEST(thread, test)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

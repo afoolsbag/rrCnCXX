@@ -1,20 +1,20 @@
 //===-- Classes -------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gCls 类
-/// \ingroup gLang
+/// \defgroup gClasses 类
+/// \ingroup gLanguage
 ///
-/// \sa gMem
+/// \sa gMemory
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-10-09
-/// \author zhengrr
-/// \copyright The Unlicense
+/// \authors zhengrr
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-namespace rrcxx::test {
+namespace rrcxx {
 
-/// \addtogroup gCls
+/// \addtogroup gClasses
 /// @{
 
 /// \brief 特殊成员函数（special member functions）类。
@@ -82,4 +82,4 @@ public:
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

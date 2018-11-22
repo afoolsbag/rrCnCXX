@@ -1,29 +1,29 @@
 //===-- Vector --------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gVec 向量
-/// \ingroup gCont
+/// \defgroup gVector 向量
+/// \ingroup gContainers
 ///
 /// \sa ["std::vector"](https://zh.cppreference.com/w/cpp/container/vector). *cppreference.com*.
 ///
-/// \version 2018-11-06
+/// \version 2018-11-22
 /// \since 2018-01-22
-/// \author zhengrr
-/// \copyright The Unlicense
-///
+/// \authors zhengrr
+/// \copyright Unlicense
 //===----------------------------------------------------------------------===//
 
 #include <vector>
-using namespace std;
 #include <gsl/gsl>
-using namespace gsl;
 
 #include <gtest/gtest.h>
 
 #include "cxx_versions.hxx"
 
-namespace rrcxx::test {
+using namespace std;
+using namespace gsl;
 
-/// @addtogroup gVec
+namespace rrcxx {
+
+/// \addtogroup gVector
 /// @{
 
 /// \brief 向量的遍历
@@ -51,4 +51,4 @@ TEST(vector, traverse)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

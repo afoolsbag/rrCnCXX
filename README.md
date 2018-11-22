@@ -67,9 +67,9 @@
 [*awesome*](https://awesome.re/)
 
 / [*Emacs*](https://gnu.org/software/emacs/)
-/ [*Notepad++*](https://notepad-plus-plus.org)
+/ [*Notepad++*](https://notepad-plus-plus.org/)
 / [*Vim*](https://www.vim.org/)
-/ [*Visual Studio Code*](https://code.visualstudio.com)
+/ [*Visual Studio Code*](https://code.visualstudio.com/)
 
 / [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
 / [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
@@ -77,15 +77,17 @@
 / [*MSYS2*](https://www.msys2.org/ "Minimal System")
 
 / [*CLion*](https://jetbrains.com/clion)
-/ [*Understand™*](https://scitools.com)
-/ [*Visual Studio*](https://visualstudio.com)
+/ [*Understand™*](https://scitools.com/)
+/ [*Visual Studio*](https://visualstudio.com/)
 (
-/ [*IncrediBuild*](https://incredibuild.com)
+/ [*IncrediBuild*](https://incredibuild.com/)
 / [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
-/ [*Studio Styles*](https://studiostyl.es)
-/ [*Visual Assist*](https://wholetomato.com)
+/ [*Studio Styles*](https://studiostyl.es/)
+/ [*Visual Assist*](https://wholetomato.com/)
 )
 
+/ [*Ettercap*](https://www.ettercap-project.org/)
+/ [*FastCopy*](https://fastcopy.jp/)
 / [*iPerf*](https://iperf.fr/)
 / [*Wireshark*](https://wireshark.org/)
 

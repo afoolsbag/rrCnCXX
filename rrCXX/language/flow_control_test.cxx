@@ -1,28 +1,29 @@
 //===-- Flow Control --------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gFlowCtrl 流控制
-/// \ingroup gLang
+/// \defgroup gFlowControl 流控制
+/// \ingroup gLanguage
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2018-09-19
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <cstdlib>
 #include <random>
-using namespace std;
 #include <gsl/gsl>
-using namespace gsl;
 
 #include <gtest/gtest.h>
 
 #include "cxx_versions.hxx"
 
-namespace rrcxx::test {
+using namespace std;
+using namespace gsl;
 
-/// \addtogroup gFlowCtrl
+namespace rrcxx {
+
+/// \addtogroup gFlowControl
 /// @{
 
 /// \brief `switch` 语句。
@@ -81,4 +82,4 @@ TEST(flow_control, gsl_finally)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx

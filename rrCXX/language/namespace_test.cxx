@@ -1,22 +1,31 @@
 //===-- Namespace -----------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gNamespace 命名空间
-/// \ingroup gLang
+/// \ingroup gLanguage
 ///
-/// \version 2018-10-15
+/// \version 2018-11-22
 /// \since 2018-09-17
 /// \authors zhengrr
-/// \copyright The Unlicense
-///
-/// @{
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include "cxx_versions.hxx"
 
+namespace rrcxx {
+
+/// \addtogroup gNamespace
+/// @{
+
 #if N4230
-namespace rrcxx::test {
+
+/// \brief 嵌套命名空间
+namespace outer::inner {
+
 }//namespace rrcxx::test
+
 #endif
 
 /// @}
+
+}//namespace rrcxx

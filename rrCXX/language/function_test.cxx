@@ -1,21 +1,22 @@
 //===-- Function ------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gFunc 函数
-/// \ingroup gLang
+/// \defgroup gFunction 函数
+/// \ingroup gLanguage
 ///
-/// \version 2018-10-10
+/// \version 2018-11-22
 /// \since 2018-09-20
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <gsl/gsl>
+
 using namespace gsl;
 
-namespace rrcxx::test {
+namespace rrcxx {
 
-/// \addtogroup gFunc
+/// \addtogroup gFunction
 /// @{
 
 /// \brief 带前置和后置条件的函数。
@@ -33,4 +34,4 @@ static int area(const int width, const int height)
 
 /// @}
 
-}//namespace rrcxx::test
+}//namespace rrcxx
