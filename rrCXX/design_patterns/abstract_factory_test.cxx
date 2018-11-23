@@ -13,46 +13,44 @@
 /// > + 难以支持新种类的产品
 ///
 /// \startuml
-///   interface abstract_factory {
-///     + {abstract} create_product1() : product1
-///     + {abstract} create_product2() : product2
+///   interface "文档创建器" as document_creator {
+///     + {abstract} create_letter() : letter
+///     + {abstract} create_resume() : resume
 ///   }
-///   interface product1
-///   interface product2
+///   interface "信件" as letter
+///   interface "简历" as resume
 ///
-///   abstract_factory .left.> product1 : create_product1()
-///   abstract_factory .right.> product2 : create_product2()
-///
-///   class concrete1_factory {
-///     + create_product1() : product1
-///     + create_product2() : product2
+///   class "花哨风文档创建器" as fancy_document_creator {
+///     + create_letter() : letter
+///     + create_resume() : resume
 ///   }
-///   class concrete1_product1
-///   class concrete1_product2
+///   class "花哨风信件" as fancy_letter
+///   class "花哨风简历" as fancy_resume
 ///
-///   concrete1_factory .left.> concrete1_product1 : create_product1()
-///   concrete1_factory .right.> concrete1_product2 : create_product2()
-///
-///   class concrete2_factory {
-///     + create_product1() : product1
-///     + create_product2() : product2
+///   class "现代风文档创建器" as modern_document_creator {
+///     + create_letter() : letter
+///     + create_resume() : resume
 ///   }
-///   class concrete2_product1
-///   class concrete2_product2
+///   class "现代风信件" as modern_letter
+///   class "现代风简历" as modern_resume
 ///
-///   concrete2_factory .left.> concrete2_product1 : create_product1()
-///   concrete2_factory .right.> concrete2_product2 : create_product2()
+///   document_creator .l> letter : create_letter()
+///   document_creator .r> resume : create_resume()
 ///
-///   abstract_factory <|.. concrete1_factory
-///   product1 <|.. concrete1_product1
-///   product2 <|.. concrete1_product2
+///   fancy_document_creator .u.|> document_creator
+///   fancy_letter .u.|> letter
+///   fancy_resume .u.|> resume
+///   fancy_document_creator .l> fancy_letter : create_letter()
+///   fancy_document_creator .r> fancy_resume : create_resume()
 ///
-///   abstract_factory <|... concrete2_factory
-///   product1 <|... concrete2_product1
-///   product2 <|... concrete2_product2
+///   modern_document_creator .u..|> document_creator
+///   modern_letter .u..|> letter
+///   modern_resume .u..|> resume
+///   modern_document_creator .l> modern_letter : create_letter()
+///   modern_document_creator .r> modern_resume : create_resume()
 /// \enduml
 ///
-/// \version 2018-11-22
+/// \version 2018-11-23
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright Unlicense

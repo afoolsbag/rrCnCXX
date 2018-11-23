@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-11-20
+# 2016-10-08 – 2018-11-23
 # Unlicense
 
 include_guard()
@@ -139,7 +139,7 @@ function(add_doxygen)
   set(DOXYGEN_DOT_PATH              "$ENV{GRAPHVIZ_DOT}" CACHE FILEPATH "The path where the dot tool can be found.")
   mark_as_advanced(DOXYGEN_DOT_PATH)
   # NO        UML_LOOK              http://doxygen.org/manual/config.html#cfg_uml_look
-  set(DOXYGEN_UML_LOOK              YES)
+  set(DOXYGEN_UML_LOOK              NO)
   #           PLANTUML_JAR_PATH     http://doxygen.org/manual/config.html#cfg_plantuml_jar_path
   set(DOXYGEN_PLANTUML_JAR_PATH     "$ENV{PLANTUML}" CACHE FILEPATH "The path where java can find the plantuml.jar file.")
   mark_as_advanced(DOXYGEN_PLANTUML_JAR_PATH)

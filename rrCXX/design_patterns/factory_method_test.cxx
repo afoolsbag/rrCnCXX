@@ -11,23 +11,30 @@
 /// > + 连接平行的类层次
 ///
 /// \startuml
-///   interface creator {
-///     + {abstract} factory_method() : product
+///   interface "按钮工厂" as button_factory {
+///     + {abstract} create_button() : button
 ///   }
-///   interface product
+///   interface "按钮" as button
 ///
-///   creator .> product : factory_method()
-///
-///   class concrete_creator {
-///     + factory_method() : product
+///   class "Win 风格按钮工厂" as win_button_factory {
+///     + create_button() : button
 ///   }
+///   class "Win 风格按钮" as win_button
 ///
-///   class concrete_product
+///   class "Mac 风格按钮工厂" as mac_button_factory {
+///     + create_button() : button
+///   }
+///   class "Mac 风格按钮" as mac_button
 ///
-///   concrete_creator .> concrete_product : factory_method()
+///   button_factory .> button : create_button()
 ///
-///   creator <|.. concrete_creator
-///   product <|.. concrete_product
+///   win_button_factory .u.|> button_factory
+///   win_button .u.|> button
+///   win_button_factory .> win_button
+///
+///   mac_button_factory .u..|> button_factory
+///   mac_button .u..|> button
+///   mac_button_factory .> mac_button
 /// \enduml
 ///
 /// \version 2018-11-22

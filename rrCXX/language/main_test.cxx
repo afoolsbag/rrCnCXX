@@ -8,7 +8,6 @@
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
-/// @{
 //===----------------------------------------------------------------------===//
 
 #include <gtest/gtest.h>

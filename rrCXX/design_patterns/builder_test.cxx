@@ -12,29 +12,35 @@
 /// > + 它使你可对构造过程进行更精细的控制
 ///
 /// \startuml
-///   class director
-///   class complex_product
-///   interface builder {
-///     + {abstract} build_part_a()
-///     + {abstract} build_part_b()
+///   class "服务员" as waiter
+///   abstract "披萨生成器" as pizza_builder {
+///     + {abstract} build_dough()
+///     + {abstract} build_sauce()
+///     + {abstract} build_topping()
+///     + get_pizza()
+///   }
+///   class "披萨" as pizza {
+///     + dough
+///     + sauce
+///     + topping 
 ///   }
 ///
-///   director -left-> builder
-///   director .right.> complex_product
-///
-///   class builder1 {
-///     + build_part_a()
-///     + build_part_b()
+///   class "夏威夷披萨生成器" as hawaiian_pizza_builder {
+///     + build_dough()
+///     + build_sauce()
+///     + build_topping()
 ///   }
 ///
-///   builder <|.. builder1
-///
-///   class builder2 {
-///     + build_part_a()
-///     + build_part_b()
+///   class "辣披萨生成器" as spicy_pizza_builder {
+///     + build_dough()
+///     + build_sauce()
+///     + build_topping()
 ///   }
 ///
-///   builder <|.. builder2
+///   waiter -> pizza_builder
+///   pizza_builder .> pizza
+///   hawaiian_pizza_builder -u-|> pizza_builder
+///   spicy_pizza_builder -u-|> pizza_builder
 ///
 /// \enduml
 ///
