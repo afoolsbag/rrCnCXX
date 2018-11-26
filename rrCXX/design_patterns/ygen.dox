@@ -3,120 +3,12 @@
 /// \defgroup gDesignPatterns 设计模式
 /// \ingroup gReference
 ///
-/// # PlantUML 示例
+/// \ref pDesignPatterns
 ///
-/// ## 类的表示（Class representation）
-///
-/// \startuml
-///   class class {
-///     - private_field
-///     # protected_field
-///     ~ package_field
-///     + public_field
-///     field_with_type : int
-///     {static} static_field
-///     {field} force_field()
-///
-///     - private_method()
-///     # protected_method()
-///     ~ package_method()
-///     + public_method()
-///     method_with_type() : void
-///     {static} static_method()
-///     {abstract} abstract_method()
-///     {method} force_method
-///   }
-///
-///   abstract abstract {
-///   }
-///
-///   enum enum {
-///   }
-///
-///   interface interface {
-///   }
-///
-///   annotation annotation
-/// \enduml
-///
-/// ## 依赖（Dependency）
-///
-/// \startuml
-///   class A
-///   class B
-///
-///   A .> B : dependency
-/// \enduml
-///
-/// 类 A 的某个方法，使用了类 B 作为参数或返回。
-///
-/// ## 关联（Association）
-///
-/// \startuml
-///   class A
-///   class B
-///
-///   A -> B : association
-/// \enduml
-///
-/// 类 A 保留了类 B 的引用。
-///
-/// \startuml
-///   class "课程" as student
-///   class "学生" as course
-///   class "注册" as enrollment
-///
-///   student "0..*" - "1..*" course
-///   (student, course) .. enrollment
-/// \enduml
-///
-/// 学生和课程通过注册进行关联。
-///
-/// ## 聚合（Aggregation）
-///
-/// \startuml
-///   class "池塘" as pond
-///   class "鸭子" as duck
-///
-///   pond "0..1" o- "0..*" duck : aggregation
-/// \enduml
-///
-/// 一片池塘可以有若干鸭子，一只鸭子可能存在于一片池塘。
-///
-/// ## 组成（Composition）
-///
-/// \startuml
-///   class "汽车" as car
-///   class "化油器" as carburetor
-///
-///   car "0..1" *- "1..1" carburetor : composition
-/// \enduml
-///
-/// 一辆汽车有且仅有一部化油器，一部化油器最多属于一辆汽车（化油器可单独存在）。
-///
-/// ## 实现（Realization/Implementation）
-///
-/// \startuml
-///   interface "接口" as interface_class
-///   class "实现" as implementation_class
-///
-///   interface_class <|.. implementation_class : realization/implementation
-/// \enduml
-///
-/// ## 泛化、继承（Generalization/Inheritance）
-///
-/// \startuml
-///   class "基类" as base_class
-///   class "派生类" as derived_class
-///
-///   base_class <|-- derived_class : generalization/inheritance
-/// \enduml
-///
-/// \sa <https://modeling-languages.com/best-uml-cheatsheets-and-reference-guides/>
 /// \sa ["设计模式"](https://zh.wikipedia.org/wiki/设计模式). *Wikipedia*.
 /// \sa ["反面模式"](https://zh.wikipedia.org/wiki/反面模式). *Wikipedia*.
 ///
-/// \version 2018-11-22
+/// \version 2018-11-26
 /// \since 2018-01-29
 /// \authors zhengrr
 /// \copyright CC0-1.0
@@ -125,11 +17,201 @@
 
 //===-- Design Patterns Topics ----------------------------------*- C++ -*-===//
 ///
-/// \page pDzn 设计模式议题
+/// \page pDesignPatterns 设计模式议题
 /// \tableofcontents
 ///
-/// ____________________
-/// \section sCxxAndDclp C++ 和 DCLP 的风险
+/// \ref gDesignPatterns
+///
+/// ___
+/// # 统一建模语言                                                       {#sUML}
+///
+/// \startuml
+///   card "UML 2.5 图表" as diagram
+///
+///   card "结构图" as structure_diagram
+///   card "行为图" as behaviour_diagram
+///   diagram <-u- structure_diagram
+///   diagram <-d- behaviour_diagram
+///
+///   together {
+///     card "类图" as class_diagram
+///     card "对象图" as object_diagram
+///     card "包图" as package_diagram
+///     card "复合结构图" as composite_structure_diagram
+///     card "组件图" as component_diagram
+///     card "部署图" as deployment_diagram
+///     card "剖面图" as profile_diagram
+///   }
+///   structure_diagram <-u- class_diagram
+///   structure_diagram <-u- object_diagram
+///   structure_diagram <-u- package_diagram
+///   structure_diagram <-u- composite_structure_diagram
+///   structure_diagram <-u- component_diagram
+///   structure_diagram <-u- deployment_diagram
+///   structure_diagram <-u- profile_diagram
+///
+///   card "模型图" as model_diagram
+///   package_diagram <-u- model_diagram
+///
+///   card "内部结构图" as internal_structure_diagram
+///   card "协作用例图" as collaboration_use_diagram
+///   composite_structure_diagram <-u- internal_structure_diagram
+///   composite_structure_diagram <-u- collaboration_use_diagram
+///
+///   card "表现图" as manifestation_diagram
+///   component_diagram <-u- manifestation_diagram
+///   deployment_diagram <-u- manifestation_diagram
+///
+///   card "网络架构图" as network_architecture_diagram
+///   deployment_diagram <-u- network_architecture_diagram
+///
+///   together {
+///     card "用例图" as usecase_diagram
+///     card "信息流动图" as information_flow_diagram
+///     card "活动图" as activity_diagram
+///     card "状态机图" as state_machine_diagram
+///     card "交互图" as interaction_diagram
+///   }
+///   behaviour_diagram <-d- usecase_diagram
+///   behaviour_diagram <-d- information_flow_diagram
+///   class_diagram <-d- information_flow_diagram
+///   behaviour_diagram <-d- activity_diagram
+///   behaviour_diagram <-d- state_machine_diagram
+///   behaviour_diagram <-d- interaction_diagram
+///
+///   card "行为状态机图" as behavioral_state_machine_diagram
+///   state_machine_diagram <-d- behavioral_state_machine_diagram
+///
+///   card "转移状态机图" as protocol_state_machine_diagram
+///   behavioral_state_machine_diagram <-d- protocol_state_machine_diagram
+///
+///   together {
+///     card "时序图" as sequence_diagram
+///     card "通信图" as communication_diagram
+///     card "计时图" as timing_diagram
+///     card "交互概述图" as interaction_overview_diagram
+///   }
+///   interaction_diagram <-d- sequence_diagram
+///   interaction_diagram <-d- communication_diagram
+///   interaction_diagram <-d- timing_diagram
+///   interaction_diagram <-d- interaction_overview_diagram
+///   activity_diagram <-d- interaction_overview_diagram
+/// \enduml
+///
+/// \sa <https://www.uml-diagrams.org/uml-25-diagrams.html>
+///
+/// ## 类图                                                    {#ssClassDiagram}
+///
+/// \startuml
+///   class "类" as class {
+///     - 私有字段
+///     # 保护字段
+///     ~ 包内字段
+///     + 公开字段
+///     {static} 静态字段
+///     {field} 明确为字段的项()
+///     - 私有方法()
+///     # 保护方法()
+///     ~ 包内方法()
+///     + 公开方法()
+///     {static} 静态方法()
+///     {abstract} 抽象方法()
+///     {method} 明确为方法的项
+///   }
+///
+///   together {
+///     abstract "抽象" as abstract
+///     annotation "注解" as annotation
+///     enum "枚举" as enum
+///     interface "接口" as interface
+///   }
+///
+///   class -[hidden]- abstract
+///   class -[hidden]- annotation
+///   class -[hidden]- enum
+///   class -[hidden]- interface
+/// \enduml
+///
+/// \startuml
+///   class A
+///   class B
+///   A .> B : 依赖（Dependency）\n临时调用
+///
+///   class C
+///   class D
+///   C -> D : 关联（Association）\n持有引用
+///
+///   class E
+///   class F
+///   E "1" o- "*" F : 聚合（Aggregation）\n容纳独立对象
+///
+///   class G
+///   class H
+///   G "1" *- "4" H : 组成（Composition）\n生存同步对象
+///
+///   class I
+///   class J
+///   class K
+///   I "1..*" - "1..*" J
+///   (I, J) .. K : 关联（Association）\n通过关联类进行关联
+///
+///   A -[hidden]- E
+///   C -[hidden]- G
+/// \enduml
+///
+/// \startuml
+///   interface "接口" as interface
+///   class "实现" as implementation
+///   interface <|.. implementation : 实现（Realization/Implementation）
+///
+///   class "基类" as base
+///   class "派生类" as derived
+///   base <|-- derived : 泛化、继承（Generalization/Inheritance）
+/// \enduml
+///
+/// ## 对象图                                                {#ssObjectDiagram}
+///
+/// \startuml
+///   object "对象" as object {
+///     uuid
+///     name = "rua"
+///   }
+/// \enduml
+///
+/// ## 组件图                                             {#ssComponentDiagram}
+///
+/// \startuml
+///   [组件] as component
+///   () "接口" as interface
+///   interface - component
+/// \enduml
+///
+/// ## 部署图                                            {#ssDeploymentDiagram}
+///
+/// ## 用例图                                               {#ssUseCaseDiagram}
+///
+/// ## 活动图                                              {#ssActivityDiagram}
+///
+/// \startuml
+///   start
+///   :开始;
+///   if (俄罗斯轮盘) then (GG)
+///     :当场去世;
+///     end
+///   else (……)
+///     :下一关;
+///   endif
+///   stop
+/// \enduml
+///
+/// ## 状态图                                          {#ssStateMachineDiagram}
+///
+/// ## 时序图                                              {#ssSequenceDiagram}
+///
+/// ## 计时图                                                {#ssTimingDiagram}
+///
+/// ___
+/// # C++ 和 DCLP 的风险                                         {#sCxxAndDclp}
 ///
 /// 若非必要，建议使用提前初始化单例模式，其无需互斥锁；
 /// 若有必要，延迟初始化应直接用锁，而非双重检查锁，且在调用时善用变量缓存，减少访问。
@@ -144,7 +226,8 @@
 ///
 /// \sa ["C++ 和 DCLP 的风险"](http://blog.jobbole.com/86392). *伯乐在线*.
 ///
-/// \version 2018-11-20
+/// ___
+/// \version 2018-11-26
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0
