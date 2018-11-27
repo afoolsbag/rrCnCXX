@@ -3,17 +3,22 @@
 /// \defgroup gArray 数组类型
 /// \ingroup gLanguage
 ///
-/// \version 2018-11-22
+/// \version 2018-11-27
 /// \since 2018-10-08
 /// \author zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
+#pragma warning(push)
+#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
+
 #include <array>
 #include <gsl/gsl>
 
 #include <gtest/gtest.h>
+
+#pragma warning(pop)
 
 using namespace std;
 using namespace gsl;
@@ -42,8 +47,8 @@ TEST(array, std_array)
 {
     static constexpr array<const int, 6> std_array {1, 2, 3, 4, 5, 6};
     for (index i {0}; i < static_cast<index>(std_array.size()); ++i) {
-        ASSERT_EQ(std_array[i], i + 1);     // 不进行边界检查，不安全。
-        ASSERT_EQ(std_array.at(i), i + 1);  // 进行边界检查，安全。
+        ASSERT_EQ(std_array[static_cast<size_t>(i)], i + 1);     // 不进行边界检查，不安全。
+        ASSERT_EQ(std_array.at(static_cast<size_t>(i)), i + 1);  // 进行边界检查，安全。
     }
     for (const auto &e : std_array)
         ASSERT_GE(e, 0);
@@ -80,8 +85,8 @@ TEST(array, gsl_zstring)
 {
     static constexpr char string[] {"hello, world"};
 
-    const auto count {[](not_null<czstring<>> str)->index {
-        return strlen(str);
+    const auto count {[](const not_null<czstring<>> &str) -> index {
+        return static_cast<index>(strlen(str));
     }};
     ASSERT_EQ(count(not_null {string}), 12);
 }

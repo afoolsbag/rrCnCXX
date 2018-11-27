@@ -8,7 +8,7 @@
  * \version 2018-10-15
  * \since 2018-06-20
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
@@ -18,6 +18,8 @@
 #include <check/check.h>
 
 #include "_test.h"
+
+#pragma warning(disable: 4100)
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
 

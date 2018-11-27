@@ -3,10 +3,10 @@
  * \defgroup gMain 主函数
  * \ingroup gLang
  *
- * \version 2018-08-29
+ * \version 2018-11-27
  * \since 2016-10-09
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/

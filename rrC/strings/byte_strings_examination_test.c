@@ -5,10 +5,10 @@
  *
  * \sa ["String examination"](https://zh.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2018-01-05
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -19,6 +19,8 @@
 
 #include "_test.h"
 #include "c_versions.h"
+
+#pragma warning(disable: 4100)
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
 

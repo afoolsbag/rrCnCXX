@@ -5,10 +5,10 @@
  *
  * \sa ["C 内存管理库"](http://zh.cppreference.com/w/c/memory). *cppreference.com*.
  *
- * \version 2018-07-10
+ * \version 2018-11-27
  * \since 2016-12-02
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
@@ -19,6 +19,8 @@
 #include <check/check.h>
 
 #include "_test.h"
+
+#pragma warning(disable: 4100)
 
 /**
  * \brief 分配内存。

@@ -6,7 +6,7 @@
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ 编译器支持情况表"](https://zh.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 ///
-/// \version 2018-11-22
+/// \version 2018-11-27
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -29,39 +29,42 @@
 
 /// \def CLANG
 /// \brief Clang identification and version.
-#ifdef __clang__
-# define CLANG MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#if (!defined(__clang__))
+#define CLANG (0)
+#else
+#define CLANG (MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__))
 #endif
 
 /// \def GNUC
 /// \brief GNU C/C++ identification and version.
-#ifdef __GNUC__
-# ifdef __GNUC_PATCHLEVEL__
-#  define GNUC MKVER(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
-# else
-#  define GNUC MKVER(__GNUC__, __GNUC_MINOR__, 0)
-# endif
+#if (!defined(__GNUC__))
+#define GNUC (0)
+#elif (defined(__GNUC_PATCHLEVEL__))
+#define GNUC (MKVER(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__))
+#else
+#define GNUC (MKVER(__GNUC__, __GNUC_MINOR__, 0))
 #endif
 
 /// \def MSC
 /// \brief Microsoft Visual C++ identification and version.
-#ifdef _MSC_VER
-# if 1400 <= _MSC_VER
-#  // from 8.0 (2005), VVRRPPPPP
-#  define MSC MKVER(_MSC_FULL_VER / 10000000, (_MSC_FULL_VER % 10000000) / 100000, _MSC_FULL_VER % 100000)
-# elif 1200 <= _MSC_VER
-#  // from 6.0, VVRRPPPP
-#  define MSC MKVER(_MSC_FULL_VER / 1000000, (_MSC_FULL_VER % 1000000) / 10000, _MSC_FULL_VER % 10000)
-# else
-#  // earlier, VVRR
-#  define MSC MKVER(_MSC_VER / 100, _MSC_VER % 100, 0)
-# endif
+#if (!defined(_MSC_VER))
+#define MSC (0)
+#elif (1400 <= _MSC_VER)
+#define MSC (MKVER(_MSC_FULL_VER / 10000000, (_MSC_FULL_VER % 10000000) / 100000, _MSC_FULL_VER % 100000))
+#elif (1200 <= _MSC_VER)
+#define MSC (MKVER(_MSC_FULL_VER / 1000000, (_MSC_FULL_VER % 1000000) / 10000, _MSC_FULL_VER % 10000))
+#else
+#define MSC (MKVER(_MSC_VER / 100, _MSC_VER % 100, 0))
 #endif
 
 //-Language-Standards-----------------------------------------------------------
 
 #ifndef __cplusplus
-# error A C++ compiler is required.
+#error A C++ compiler is required.
+#endif
+
+#ifndef __cpp_nested_namespace_definitions
+#define __cpp_nested_namespace_definitions (0)
 #endif
 
 /// \brief C++20
@@ -82,7 +85,7 @@
 
 /// \brief ISO/IEC 14882:2003
 /// \sa <https://iso.org/standard/38110.html>
-#define CXX03 CXX98
+#define CXX03 (199711L<=__cplusplus)
 
 /// \brief ISO/IEC 14882:1998
 /// \sa <https://iso.org/standard/25845.html>

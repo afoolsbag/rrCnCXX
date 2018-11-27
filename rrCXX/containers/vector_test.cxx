@@ -5,16 +5,22 @@
 ///
 /// \sa ["std::vector"](https://zh.cppreference.com/w/cpp/container/vector). *cppreference.com*.
 ///
-/// \version 2018-11-22
+/// \version 2018-11-27
 /// \since 2018-01-22
 /// \authors zhengrr
 /// \copyright Unlicense
+///
 //===----------------------------------------------------------------------===//
+
+#pragma warning(push)
+#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
 
 #include <vector>
 #include <gsl/gsl>
 
 #include <gtest/gtest.h>
+
+#pragma warning(pop)
 
 #include "cxx_versions.hxx"
 
@@ -45,7 +51,7 @@ TEST(vector, traverse)
 
     int sum3 {};
     for (index i {}; i < static_cast<index>(numbers.size()); ++i)
-        sum3 += numbers[i];
+        sum3 += numbers[static_cast<size_t>(i)];
     ASSERT_EQ(sum3, 23);
 }
 

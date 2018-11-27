@@ -5,10 +5,10 @@
  *
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki)
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2018-01-05
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
 **//*===-------------------------------------------------------------------===*/
 
@@ -28,39 +28,92 @@
 
 /** \def CLANG
  *  \brief Clang identification and version. */
-#ifdef __clang__
-#  define CLANG MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#if (!defined(__clang__))
+#define CLANG (0)
+#else
+#define CLANG (MKVER(__clang_major__, __clang_minor__, __clang_patchlevel__))
 #endif
 
 /** \def GNUC
  *  \brief GNU C/C++ identification and version. */
-#ifdef __GNUC__
-# ifdef __GNUC_PATCHLEVEL__
-#  define GNUC MKVER(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
-# else
-#  define GNUC MKVER(__GNUC__, __GNUC_MINOR__, 0)
-# endif
+#if (!defined(__GNUC__))
+#define GNUC (0)
+#elif (defined(__GNUC_PATCHLEVEL__))
+#define GNUC (MKVER(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__))
+#else
+#define GNUC (MKVER(__GNUC__, __GNUC_MINOR__, 0))
 #endif
 
 /** \def MSC
   * \brief Microsoft Visual C++ identification and version. */
-#ifdef _MSC_VER
-# if 1400 <= _MSC_VER
-#  // from 8.0 (2005), VVRRPPPPP
-#  define MSC MKVER(_MSC_FULL_VER / 10000000, (_MSC_FULL_VER % 10000000) / 100000, _MSC_FULL_VER % 100000)
-# elif 1200 <= _MSC_VER
-#  // from 6.0, VVRRPPPP
-#  define MSC MKVER(_MSC_FULL_VER / 1000000, (_MSC_FULL_VER % 1000000) / 10000, _MSC_FULL_VER % 10000)
-# else
-#  // earlier, VVRR
-#  define MSC MKVER(_MSC_VER / 100, _MSC_VER % 100, 0)
-# endif
+#if (!defined(_MSC_VER))
+#define MSC (0)
+#elif (1400 <= _MSC_VER)
+#define MSC (MKVER(_MSC_FULL_VER / 10000000, (_MSC_FULL_VER % 10000000) / 100000, _MSC_FULL_VER % 100000))
+#elif (1200 <= _MSC_VER)
+#define MSC (MKVER(_MSC_FULL_VER / 1000000, (_MSC_FULL_VER % 1000000) / 10000, _MSC_FULL_VER % 10000))
+#else
+#define MSC (MKVER(_MSC_VER / 100, _MSC_VER % 100, 0))
 #endif
 
 /*-Language-Standards---------------------------------------------------------*/
 
-#if ! defined __STDC__ && ! defined MSC
-# error A C compiler is required.
+#ifdef MSC
+#define __STDC__                   (0)
+#define __STDC_VERSION__           (0)
+#endif
+
+#ifndef __STDC__
+#error A C compiler is required.
+#endif
+
+#ifndef __STDC_ALLOC_LIB__
+#define __STDC_ALLOC_LIB__         (0)
+#endif
+#ifndef __STDC_ANALYZABLE__
+#define __STDC_ANALYZABLE__        (0)
+#endif
+#ifndef __STDC_IEC_599_
+#define __STDC_IEC_599_            (0)
+#endif
+#ifndef __STDC_IEC_559_COMPLEX__
+#define __STDC_IEC_559_COMPLEX__   (0)
+#endif
+#ifndef __STDC_NO_ATOMICS__
+#define __STDC_NO_ATOMICS__        (0)
+#endif
+#ifndef __STDC_NO_COMPLEX__
+#define __STDC_NO_COMPLEX__        (0)
+#endif
+#ifndef __STDC_IEC_60559_BFP__
+#define __STDC_IEC_60559_BFP__     (0)
+#endif
+#ifndef __STDC_IEC_60559_COMPLEX__
+#define __STDC_IEC_60559_COMPLEX__ (0)
+#endif
+#ifndef __STDC_IEC_60559_FUNCS__
+#define __STDC_IEC_60559_FUNCS__   (0)
+#endif
+#ifndef __STDC_ISO_10646__
+#define __STDC_ISO_10646__         (0)
+#endif
+#ifndef __STDC_LIB_EXT1__
+#define __STDC_LIB_EXT1__          (0)
+#endif
+#ifndef __STDC_MB_MIGHT_NEQ_WC__
+#define __STDC_MB_MIGHT_NEQ_WC__   (0)
+#endif
+#ifndef __STDC_NO_THREADS__
+#define __STDC_NO_THREADS__        (0)
+#endif
+#ifndef __STDC_UTF_16__
+#define __STDC_UTF_16__            (0)
+#endif
+#ifndef __STDC_UTF_32__
+#define __STDC_UTF_32__            (0)
+#endif
+#ifndef __STDC_NO_VLA__
+#define __STDC_NO_VLA__            (0)
 #endif
 
 /** \brief ISO/IEC 9899:2018

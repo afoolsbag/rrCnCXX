@@ -5,20 +5,27 @@
  *
  * \sa ["日期和时间工具"](https://zh.cppreference.com/w/c/chrono). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2016-12-02
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
+
+#pragma warning(push)
+#pragma warning(disable: 4820)
 
 #include <time.h>
 
 #include <check/check.h>
 
+#pragma warning(pop)
+
 #include "_test.h"
 #include "c_versions.h"
+
+#pragma warning(disable: 4100)
 
 /**
  * \brief 日历时间。
@@ -57,6 +64,7 @@ START_TEST(tf_time_t)
     time_t end;
     time(&end);
     const double costs = difftime(start, end);
+    (void)costs;
 }
 END_TEST;
 
@@ -72,6 +80,7 @@ START_TEST(tf_clock_t)
     const clock_t start = clock();
     const clock_t end = clock();
     const double costs = (start - end) / (double)CLOCKS_PER_SEC;
+    (void)costs;
 }
 END_TEST;
 

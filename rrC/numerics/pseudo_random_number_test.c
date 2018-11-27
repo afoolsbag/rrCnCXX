@@ -5,20 +5,27 @@
  *
  * \sa ["Pseudo-random number generation"](http://en.cppreference.com/w/c/numeric/random). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2016-10-10
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
+
+#pragma warning(push)
+#pragma warning(disable: 4820)
 
 #include <stdlib.h>
 #include <time.h>
 
 #include <check/check.h>
 
+#pragma warning(pop)
+
 #include "_test.h"
+
+#pragma warning(disable: 4100)
 
 /**
  * \brief 依据当前时间生成伪随机数。

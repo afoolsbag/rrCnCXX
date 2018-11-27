@@ -7,10 +7,10 @@
  * \sa <https://zh.cppreference.com/w/c/language/character_constant>
  * \sa <https://zh.cppreference.com/w/c/language/escape>
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2016-10-09
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -26,6 +26,8 @@
 #if C95
 # include <wchar.h>
 #endif
+
+#pragma warning(disable: 4100)
 
 START_TEST(tf_char)
 {

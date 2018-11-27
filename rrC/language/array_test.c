@@ -6,10 +6,10 @@
  * \sa ["Array declaration"](http://en.cppreference.com/w/c/language/array). *cppreference.com*.
  * \sa ["Array initialization"](http://en.cppreference.com/w/c/language/array_initialization). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2016-10-09
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -18,6 +18,8 @@
 
 #include "_test.h"
 #include "c_versions.h"
+
+#pragma warning(disable: 4100)
 
 /**
  * \brief 复合字面量、匿名数组。

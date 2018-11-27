@@ -11,19 +11,12 @@
 ///         *   共享指针的弱引用 `weak_ptr`（C++11）
 ///         *   自动指针 `auto_ptr`
 ///
-/// \version 2018-11-22
+/// \version 2018-11-27
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
-
-#include <thread>
-#include <memory>
-
-#include <gtest/gtest.h>
-
-using namespace std;
 
 namespace rrcxx {
 

@@ -6,12 +6,16 @@
 /// \sa "通用词汇类型". *cppreference.com*.
 ///     *   [`std::variant`](https://zh.cppreference.com/w/cpp/utility/variant)
 ///
-/// \version 2018-11-22
+/// \version 2018-11-27
 /// \since 2018-10-08
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
+
+#pragma warning(push)
+#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
+#pragma warning(disable: 4582)
 
 #include <any>
 #include <optional>
@@ -19,6 +23,8 @@
 #include <variant>
 
 #include <gtest/gtest.h>
+
+#pragma warning(pop)
 
 #include "cxx_versions.hxx"
 
@@ -38,10 +44,17 @@ TEST(common_vocabulary_types, any)
 
     any = 1;
     [[maybe_unused]] const auto cast_int {any_cast<int>(any)};
-    ASSERT_THROW([[maybe_unused]] const auto failed {any_cast<double>(any)}, bad_any_cast);
 
     any.reset();
     ASSERT_FALSE(any.has_value());
+
+    any = true;
+    try {
+        [[maybe_unused]] const auto failed {any_cast<double>(any)};
+    } catch (const bad_any_cast &) {
+        SUCCEED();
+    }
+
 #endif
 }
 
@@ -98,7 +111,11 @@ TEST(common_vocabulary_types, variant)
     variant = 0.0;
     [[maybe_unused]] const auto as_double {get<double>(variant)};
 
-    ASSERT_THROW([[maybe_unused]] const auto failed {get<int>(variant)}, bad_variant_access);
+    try {
+        [[maybe_unused]] const auto failed {get<int>(variant)};
+    } catch (const bad_variant_access &) {
+        SUCCEED();
+    }
 #endif
 }
 

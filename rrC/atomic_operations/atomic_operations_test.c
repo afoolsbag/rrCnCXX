@@ -5,10 +5,10 @@
  *
  * \sa ["原子操作库"](https://zh.cppreference.com/w/c/atomic). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
@@ -21,6 +21,8 @@
 #if ATOMICS
 # include <stdatomic.h>
 #endif
+
+#pragma warning(disable: 4100)
 
 START_TEST(tf_atomic_int)
 {

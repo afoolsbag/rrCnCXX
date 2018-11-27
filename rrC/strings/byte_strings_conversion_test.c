@@ -5,10 +5,10 @@
  *
  * \sa ["Conversions to numeric formats"](https://zh.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2018-02-03
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
@@ -22,6 +22,8 @@
 
 #include "_test.h"
 #include "c_versions.h"
+
+#pragma warning(disable: 4100)
 
 #define static_assert _STATIC_ASSERT
 

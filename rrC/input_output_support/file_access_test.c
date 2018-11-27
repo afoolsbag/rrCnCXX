@@ -5,10 +5,10 @@
  *
  * \sa ["File access"](http://en.cppreference.com/w/c/io#File_access). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-11-27
  * \since 2016-11-14
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
@@ -19,6 +19,8 @@
 
 #include "_test.h"
 #include "c_versions.h"
+
+#pragma warning(disable: 4100)
 
 /**
  * \brief 打开文件。

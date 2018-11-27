@@ -2,14 +2,15 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2018-11-07
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2018-11-27
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
-project(rrCXX VERSION 2018.11.6 LANGUAGES CXX)
+project(rrCXX VERSION 2018.11.27 LANGUAGES CXX)
 project_more()
-compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen()
+
 
 conan_cmake_run(
   REQUIRES gsl_microsoft/2.0.0@bincrafters/stable

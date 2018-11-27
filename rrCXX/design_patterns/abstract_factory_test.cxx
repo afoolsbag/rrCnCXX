@@ -3,64 +3,79 @@
 /// \defgroup gAbstractFactory 抽象工厂
 /// \ingroup gDesignPatterns
 ///
-/// 抽象工厂设计模式：
-///
-/// 意图提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。
-///
-/// > + 它分离了具体的类
-/// > + 它使得易于交换产品系列
-/// > + 它有利于产品的一致性
-/// > + 难以支持新种类的产品
+/// 为一个产品族提供了统一的创建接口。当需要这个产品族的某一系列的时候，可以从抽象工厂中选出相应的系列创建一个具体的工厂类。
 ///
 /// \startuml
-///   interface "文档创建器" as document_creator {
-///     + {abstract} create_letter() : letter
-///     + {abstract} create_resume() : resume
+///   class "客户" as client
+///
+///   interface "图形界面工厂" as gui_factory {
+///     + {abstract} create_button() : button
+///     + {abstract} create_border() : border
 ///   }
-///   interface "信件" as letter
-///   interface "简历" as resume
-///
-///   class "花哨风文档创建器" as fancy_document_creator {
-///     + create_letter() : letter
-///     + create_resume() : resume
+///   interface "按钮" as button {
+///     + {abstract} paint() : void
 ///   }
-///   class "花哨风信件" as fancy_letter
-///   class "花哨风简历" as fancy_resume
-///
-///   class "现代风文档创建器" as modern_document_creator {
-///     + create_letter() : letter
-///     + create_resume() : resume
+///   interface "边框" as border {
+///     + {abstract} paint() : void
 ///   }
-///   class "现代风信件" as modern_letter
-///   class "现代风简历" as modern_resume
 ///
-///   document_creator .l> letter : create_letter()
-///   document_creator .r> resume : create_resume()
+///   class "Windows 工厂" as windows_factory {
+///     + create_button() : button
+///     + create_border() : border
+///   }
+///   class "Windows 按钮" as windows_button {
+///     + paint() : void
+///   }
+///   class "Windows 边框" as windows_border {
+///     + paint() : void
+///   }
 ///
-///   fancy_document_creator .u.|> document_creator
-///   fancy_letter .u.|> letter
-///   fancy_resume .u.|> resume
-///   fancy_document_creator .l> fancy_letter : create_letter()
-///   fancy_document_creator .r> fancy_resume : create_resume()
+///   class "MacOSX 工厂" as macosx_factory {
+///     + create_button() : button
+///     + create_border() : border
+///   }
+///   class "MacOSX 按钮" as macosx_button {
+///     + paint() : void
+///   }
+///   class "MacOSX 边框" as macosx_border {
+///     + paint() : void
+///   }
 ///
-///   modern_document_creator .u..|> document_creator
-///   modern_letter .u..|> letter
-///   modern_resume .u..|> resume
-///   modern_document_creator .l> modern_letter : create_letter()
-///   modern_document_creator .r> modern_resume : create_resume()
+///   client --> gui_factory
+///   client --> button
+///   client --> border
+///
+///   gui_factory <|.. windows_factory
+///   button <|.. windows_button
+///   border <|.. windows_border
+///   windows_factory .> windows_button : create_button()
+///   windows_factory .l> windows_border : create_border()
+///
+///   gui_factory <|... macosx_factory
+///   button <|... macosx_button
+///   border <|... macosx_border
+///   macosx_factory .> macosx_button : create_button()
+///   macosx_factory .l> macosx_border : create_border()
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2018-11-27
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
+#pragma warning(push)
+#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
+#pragma warning(disable: 5039)
+
 #include <iostream>
 #include <memory>
+#include <Windows.h>
 
 #include <gtest/gtest.h>
+
+#pragma warning(pop)
 
 using namespace std;
 
@@ -69,36 +84,127 @@ namespace rrcxx {
 /// \addtogroup gAbstractFactory
 /// @{
 
-/// \brief 抽象产品。
-class abstract_product {
+/// \brief 按钮。
+class button {
 public:
-    virtual ~abstract_product() = default;
+    explicit button() = default;
+    explicit button(const button &) = default;
+    explicit button(button &&) noexcept = default;
+    virtual ~button() = default;
+    button &operator=(const button &) = default;
+    button &operator=(button &&) noexcept = default;
+
+    virtual void paint() const = 0;
 };
 
-/// \brief 抽象工厂。
-class abstract_factory {
+/// \brief 边框。
+class border {
 public:
-    virtual ~abstract_factory() = default;
-    virtual unique_ptr<abstract_product> create_product() = 0;
+    explicit border() = default;
+    explicit border(const border &) = default;
+    explicit border(border &&) noexcept = default;
+    virtual ~border() = default;
+    border &operator=(const border &) = default;
+    border &operator=(border &&) noexcept = default;
+
+    virtual void paint() const = 0;
 };
 
-/// \brief 具体产品。
-class concrete_product: public abstract_product {};
-
-/// \brief 具体工厂。
-class concrete_factory: public abstract_factory {
+/// \brief 图形界面工厂。
+class gui_factory {
 public:
-    unique_ptr<abstract_product> create_product() final
+    explicit gui_factory() = default;
+    explicit gui_factory(const gui_factory &) = default;
+    explicit gui_factory(gui_factory &&) noexcept = default;
+    virtual ~gui_factory() = default;
+    gui_factory &operator=(const gui_factory &) = default;
+    gui_factory &operator=(gui_factory &&) noexcept = default;
+
+    virtual unique_ptr<button> create_button() const = 0;
+    virtual unique_ptr<border> create_border() const = 0;
+};
+
+/// \brief Windows 按钮。
+class windows_button: public button {
+public:
+    void paint() const override
     {
-        return make_unique<concrete_product>();
+        cout << u8"Windows Button\n";
+    }
+};
+
+/// \brief Windows 边框。
+class windows_border: public border {
+public:
+    void paint() const override
+    {
+        cout << u8"Windows Border\n";
+    }
+};
+
+/// \brief Windows 工厂。
+class windows_factory: public gui_factory {
+public:
+    unique_ptr<button> create_button() const override
+    {
+        return make_unique<windows_button>();
+    }
+
+    unique_ptr<border> create_border() const override
+    {
+        return make_unique<windows_border>();
+    }
+};
+
+/// \brief MacOSX 按钮。
+class macosx_button: public button {
+public:
+    void paint() const override
+    {
+        cout << u8"MacOSX Button\n";
+    }
+};
+
+/// \brief MacOSX 边框。
+class macosx_border: public border {
+public:
+    void paint() const override
+    {
+        cout << u8"MacOSX Border\n";
+    }
+};
+
+/// \brief MacOSX 工厂。
+class macosx_factory: public gui_factory {
+public:
+    unique_ptr<button> create_button() const override
+    {
+        return make_unique<macosx_button>();
+    }
+
+    unique_ptr<border> create_border() const override
+    {
+        return make_unique<macosx_border>();
     }
 };
 
 /// \brief 抽象工厂。
 TEST(design_patterns, abstract_factory)
 {
-    unique_ptr<abstract_factory> factory {make_unique<concrete_factory>()};
-    auto product_a {factory->create_product()};
+    {
+        const unique_ptr<gui_factory> factory {make_unique<windows_factory>()};
+        const auto button {factory->create_button()};
+        const auto border {factory->create_border()};
+        button->paint();
+        border->paint();
+    }
+    {
+        const unique_ptr<gui_factory> factory {make_unique<macosx_factory>()};
+        const auto button {factory->create_button()};
+        const auto border {factory->create_border()};
+        button->paint();
+        border->paint();
+    }
 }
 
 /// @}
