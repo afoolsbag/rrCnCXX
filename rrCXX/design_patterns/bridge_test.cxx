@@ -4,12 +4,12 @@
 /// \ingroup gDesignPatterns
 ///
 /// \startuml
-///   interface "形状" as shape {
-///     - drawer : drawing
-///     + {abstract} draw()
-///   }
-///   interface "绘制" as drawing {
+///   interface "绘制器" as drawer {
 ///     + {abstract} draw_to_device()
+///   }
+///   interface "形状" as shape {
+///     - drawer : drawer
+///     + {abstract} draw()
 ///   }
 ///
 ///   class "圆形" as circle {
@@ -18,26 +18,26 @@
 ///   }
 ///
 ///   class "矩形" as rectangle {
-///     - drawer : drawing
+///     - drawer : drawer
 ///     + draw()
 ///   }
 ///
-///   class "绘制到设备 1" as device1_drawing {
+///   class "设备 1 绘制器" as device1_drawer {
 ///     + draw_to_device()
 ///   }
 ///
-///   class "绘制到设备 2" as device2_drawing {
+///   class "设备 2 绘制器" as device2_drawer {
 ///     + draw_to_device()
 ///   }
 ///
-///   shape o- drawing
-///   circle .r.|> shape
-///   rectangle .u.|> shape
-///   device1_drawing .l.|> drawing
-///   device2_drawing .d.|> drawing
+///   shape o- drawer
+///   shape <|.. circle
+///   shape <|.. rectangle
+///   drawing <|.. device1_drawer
+///   drawing <|.. device2_drawer
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2018-11-27
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense

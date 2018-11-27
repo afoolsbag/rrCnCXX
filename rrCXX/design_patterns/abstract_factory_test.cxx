@@ -67,11 +67,9 @@
 
 #pragma warning(push)
 #pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
-#pragma warning(disable: 5039)
 
 #include <iostream>
 #include <memory>
-#include <Windows.h>
 
 #include <gtest/gtest.h>
 
@@ -80,6 +78,7 @@
 using namespace std;
 
 namespace rrcxx {
+namespace abstract_factory {
 
 /// \addtogroup gAbstractFactory
 /// @{
@@ -129,7 +128,7 @@ class windows_button: public button {
 public:
     void paint() const override
     {
-        cout << u8"Windows Button\n";
+        cout << "Windows Button\n";
     }
 };
 
@@ -138,7 +137,7 @@ class windows_border: public border {
 public:
     void paint() const override
     {
-        cout << u8"Windows Border\n";
+        cout << "Windows Border\n";
     }
 };
 
@@ -161,7 +160,7 @@ class macosx_button: public button {
 public:
     void paint() const override
     {
-        cout << u8"MacOSX Button\n";
+        cout << "MacOSX Button\n";
     }
 };
 
@@ -170,7 +169,7 @@ class macosx_border: public border {
 public:
     void paint() const override
     {
-        cout << u8"MacOSX Border\n";
+        cout << "MacOSX Border\n";
     }
 };
 
@@ -188,9 +187,18 @@ public:
     }
 };
 
+/// @}
+
+}//namespace abstract_factory
+
+/// \addtogroup gAbstractFactory
+/// @{
+
 /// \brief 抽象工厂。
 TEST(design_patterns, abstract_factory)
 {
+    using namespace abstract_factory;
+
     {
         const unique_ptr<gui_factory> factory {make_unique<windows_factory>()};
         const auto button {factory->create_button()};
