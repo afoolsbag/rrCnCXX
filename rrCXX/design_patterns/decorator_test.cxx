@@ -6,6 +6,8 @@
 /// 向某个对象动态地添加更多的功能。修饰模式是除类继承外另一种扩展功能的方法。
 ///
 /// \startuml
+///   title 修饰模式（Decorator Pattern）
+///
 ///   interface "智械" as omnic {
 ///     + {abstract} self_introduction()
 ///     + {abstract} attack()
@@ -39,9 +41,16 @@
 ///   module o-- omnic
 ///   module <|-- cannon_module
 ///   module <|-- shield_module
+///
+///   legend
+///     元件（Component）：智械
+///     修饰（Decorator）：模块
+///     具体元件（ConcreteComponent）：小不点儿
+///     具体修饰（ConcreteDecorator）：机炮模块、护盾模块
+///   endlegend
 /// \enduml
 ///
-/// \version 2018-11-27
+/// \version 2018-11-28
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense

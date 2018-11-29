@@ -1,17 +1,19 @@
-#             ___  _
-#  _ __ _ __ / _ \| |_
+#            _____ _
+#           |  _  | |
+#  _ __ _ __| | | | |_
 # | '__| '__| | | | __| zhengrr
-# | |  | |  | |_| | |_  2016-06-28 – 2018-11-12
-# |_|  |_|   \__\_\\__| Unlicense
+# | |  | |  \ \/' / |_  2016-06-28 – 2018-11-28
+# |_|  |_|   \_/\_\\__| Unlicense
 
-project(rrQt VERSION 2018.11.12 LANGUAGES CXX)
+project(rrQt VERSION 2018.11.28 LANGUAGES CXX)
 project_more()
 compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen()
 
 find_package(Qt5Package)
-find_package(Qt5 COMPONENTS Core Gui Widgets Quick Test)
+find_package(Qt5 COMPONENTS Core Gui LinguistTools Quick Test Widgets)
+set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "generated")
 conan_cmake_run(
   REQUIRES gtest/1.8.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS)

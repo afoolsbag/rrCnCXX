@@ -10,9 +10,9 @@
 //! # 参考                                                        {#sReferences}
 //!
 //! [*Qt Documentation*](https://doc.qt.io)
-//! + [All Modules](https://doc.qt.io/qt-5/qtmodules.html)
-//! + [Qt Reference Pages](http://doc.qt.io/qt-5/reference-overview.html)
-//!     + [QDoc Manual](https://doc.qt.io/qt-5/qdoc-index.html)
+//! *   [All Modules](https://doc.qt.io/qt-5/qtmodules.html)
+//! *   [Qt Reference Pages](http://doc.qt.io/qt-5/reference-overview.html)
+//!     *   [QDoc Manual](https://doc.qt.io/qt-5/qdoc-index.html)
 //!
 //! [*Qi Wiki*](https://wiki.qt.io)
 //!
@@ -23,6 +23,8 @@
 //! ["QML Coding Conventions"](http://doc.qt.io/qt-5/qml-codingconventions.html). *Qt Documentation*.
 //!
 //! # 许可                                                           {#sLicense}
+//!
+//! 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
 //!
 //! <p xmlns:dct="https://purl.org/dc/terms/">
 //!   <a rel="license"
@@ -36,9 +38,9 @@
 //!   has waived all copyright and related or neighboring rights to this work.
 //! </p>
 //!
-//! \version 2018-10-24
+//! \version 2018-11-28
 //! \sinve 2016-02-14
 //! \authors zhengrr
-//! \copyright CC0 1.0
+//! \copyright CC0-1.0
 //!
 //===----------------------------------------------------------------------===//

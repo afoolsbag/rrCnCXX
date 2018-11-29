@@ -4,9 +4,9 @@
 //! \brief Qt 小部件应用程序入口。
 //!
 //! \author zhengrr
-//! \version 2018-10-25
+//! \version 2018-11-28
 //! \sinve 2016-02-14
-//! \copyright The Unlicense
+//! \copyright Unlicense
 //!
 //===----------------------------------------------------------------------===//
 

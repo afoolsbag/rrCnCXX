@@ -6,6 +6,8 @@
 /// 为一个产品族提供了统一的创建接口。当需要这个产品族的某一系列的时候，可以从抽象工厂中选出相应的系列创建一个具体的工厂类。
 ///
 /// \startuml
+///   title 抽象工厂模式（Abstract Factory Pattern）
+///
 ///   class "客户" as client
 ///
 ///   interface "图形界面工厂" as gui_factory {
@@ -56,9 +58,16 @@
 ///   border <|... macosx_border
 ///   macosx_factory .> macosx_button : create_button()
 ///   macosx_factory .l> macosx_border : create_border()
+///
+///   legend
+///     抽象工厂（AbstractFactory）：图形界面工厂
+///     抽象产品（AbstractProduct）：按钮、边框
+///     具体工厂（ConcreteFactory）：Windows 工厂、MacOSX 工厂
+///     具体产品（ConcreteProduct）：Windows 按钮、Windows 边框、MacOSX 按钮、MacOSX 边框
+///   endlegend
 /// \enduml
 ///
-/// \version 2018-11-27
+/// \version 2018-11-28
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright Unlicense

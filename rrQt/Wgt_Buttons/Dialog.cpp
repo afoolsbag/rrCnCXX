@@ -2,12 +2,11 @@
 #include "ui_Dialog.h"
 
 Dialog::Dialog(QWidget *parent):
-    QWidget(parent), ui(new Ui::Dialog)
+    QWidget {parent},
+    ui {new Ui::Dialog}
 {
     ui->setupUi(this);
-
-    connect(ui->showDebugPanel, &QCheckBox::toggled,
-            ui->debugPanel, &QPlainTextEdit::setVisible);
+    this->setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
 }
 
 Dialog::~Dialog()
@@ -111,4 +110,10 @@ void Dialog::on_dialogButtonBox_rejected()
     ui->debugPanel->appendPlainText(
         QString("%1()").arg(__func__)
     );
+}
+
+void Dialog::on_showDebugPanel_toggled(bool checked)
+{
+    ui->debugPanel->setVisible(checked);
+    adjustSize();
 }

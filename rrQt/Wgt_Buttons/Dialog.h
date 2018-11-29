@@ -38,6 +38,8 @@ private slots:
     void on_dialogButtonBox_helpRequested();
     void on_dialogButtonBox_rejected();
 
+    void on_showDebugPanel_toggled(bool checked);
+
 private:
     Ui::Dialog *ui;
 };

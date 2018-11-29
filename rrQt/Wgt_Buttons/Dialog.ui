@@ -7,25 +7,24 @@
     <x>0</x>
     <y>0</y>
     <width>686</width>
-    <height>236</height>
+    <height>243</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>按钮小部件</string>
   </property>
   <layout class="QHBoxLayout" name="dialogLayout">
    <item>
-    <widget class="QPlainTextEdit" name="debugPanel">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QFrame" name="widgetPanel">
      <layout class="QVBoxLayout" name="widgetPanelLayout">
       <item>
-       <layout class="QGridLayout" name="EW_layout">
+       <layout class="QGridLayout" name="WN_layout">
         <item row="0" column="0">
          <widget class="QGroupBox" name="pushButtonGroupBox">
           <property name="title">
@@ -145,7 +144,7 @@
        </layout>
       </item>
       <item>
-       <spacer name="EC_spacer">
+       <spacer name="WC_spacer">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
@@ -158,16 +157,40 @@
        </spacer>
       </item>
       <item>
-       <widget class="QCheckBox" name="showDebugPanel">
-        <property name="text">
-         <string>显示调试面板</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="WS_layout">
+        <item>
+         <spacer name="WSW_spacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="showDebugPanel">
+          <property name="text">
+           <string>显示调试面板</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="debugPanel">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>
@@ -181,8 +204,6 @@
   <tabstop>radioButton3</tabstop>
   <tabstop>checkBox</tabstop>
   <tabstop>commandLinkButton</tabstop>
-  <tabstop>showDebugPanel</tabstop>
-  <tabstop>debugPanel</tabstop>
  </tabstops>
  <resources/>
  <connections/>

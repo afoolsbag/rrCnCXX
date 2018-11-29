@@ -1,6 +1,6 @@
 # zhengrr
-# 2017-12-18 – 2018-10-15
-# The Unlicense
+# 2017-12-18 – 2018-11-29
+# Unlicense
 
 include_guard()
 
@@ -249,18 +249,16 @@ function(add_executable_ex)
     foreach(sCopy ${_POST_COPIES})
       if(TARGET "${sCopy}")
         add_custom_command(
-          TARGET  ${sTgtName}
-          POST_BUILD
-          COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                  $<TARGET_FILE:${sCopy}>
-                  $<TARGET_FILE_DIR:${sTgtName}>)
+          TARGET ${sTgtName} POST_BUILD
+          COMMAND "${CMAKE_COMMAND}" "-E" "copy_if_different"
+                  "$<TARGET_FILE:${sCopy}>"
+                  "$<TARGET_FILE_DIR:${sTgtName}>")
       elseif(EXISTS "${sCopy}")
         add_custom_command(
-          TARGET  ${sTgtName}
-          POST_BUILD
-          COMMAND ${CMAKE_COMMAND} -E copy_if_different
-                  ${sCopy}
-                  $<TARGET_FILE_DIR:${sTgtName}>)
+          TARGET ${sTgtName} POST_BUILD
+          COMMAND "${CMAKE_COMMAND}" "-E" "copy_if_different"
+                  "${sCopy}"
+                  "$<TARGET_FILE_DIR:${sTgtName}>")
       else()
         message(WARNING "A post-copy-item is invalid: ${sCopy}.")
       endif()

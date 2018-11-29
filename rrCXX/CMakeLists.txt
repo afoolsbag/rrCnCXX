@@ -11,7 +11,6 @@ compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen()
 
-
 conan_cmake_run(
   REQUIRES gsl_microsoft/2.0.0@bincrafters/stable
            gtest/1.8.1@bincrafters/stable

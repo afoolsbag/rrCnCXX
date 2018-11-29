@@ -11,7 +11,6 @@ compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen(OPTIMIZE_OUTPUT_FOR_C)
 
-
 find_package(Check)
 
 aux_source_directory_ex(zSource RECURSE)
