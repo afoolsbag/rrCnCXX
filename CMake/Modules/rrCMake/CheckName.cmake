@@ -1,6 +1,6 @@
 # zhengrr
-# 2017-12-18 – 2018-10-12
-# The Unlicense
+# 2017-12-18 – 2018-12-29
+# Unlicense
 
 include_guard()
 

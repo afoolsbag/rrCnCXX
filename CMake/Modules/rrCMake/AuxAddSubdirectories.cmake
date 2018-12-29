@@ -1,6 +1,6 @@
 # zhengrr
-# 2017-12-18 – 2018-10-12
-# The Unlicense
+# 2017-12-18 – 2018-12-29
+# Unlicense
 
 include_guard()
 
@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW) #3.3+
 
 if(NOT COMMAND add_subdirectory_ex)
-  include("${CMAKE_CURRENT_LIST_DIR}/AddSubdirEx.cmake")
+  include("${CMAKE_CURRENT_LIST_DIR}/AddSubdirectoryEx.cmake")
 endif()
 
 # .rst

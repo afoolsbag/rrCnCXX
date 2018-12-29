@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-11-29
+# 2016-10-08 – 2018-12-29
 # Unlicense
 
 include_guard()
@@ -7,7 +7,7 @@ include_guard()
 cmake_minimum_required(VERSION 3.13)
 
 if(NOT COMMAND check_name_with_cmake_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
+  include("${CMAKE_CURRENT_LIST_DIR}/CheckName.cmake")
 endif()
 
 # .rst

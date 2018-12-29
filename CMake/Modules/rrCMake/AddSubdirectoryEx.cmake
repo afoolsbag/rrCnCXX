@@ -1,11 +1,11 @@
 # zhengrr
-# 2017-12-18 – 2018-10-12
-# The Unlicense
+# 2017-12-18 – 2018-12-29
+# Unlicense
 
 include_guard()
 
 if(NOT COMMAND check_name_with_cmake_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CkName.cmake")
+  include("${CMAKE_CURRENT_LIST_DIR}/CheckName.cmake")
 endif()
 
 # .rst
