@@ -5,7 +5,7 @@
  *
  * \sa ["Pseudo-random number generation"](http://en.cppreference.com/w/c/numeric/random). *cppreference.com*.
  *
- * \version 2018-11-27
+ * \version 2018-12-29
  * \since 2016-10-10
  * \authors zhengrr
  * \copyright Unlicense
@@ -14,7 +14,7 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma warning(push)
-#pragma warning(disable: 4820)
+#pragma warning(disable: 4820 4668)
 
 #include <stdlib.h>
 #include <time.h>

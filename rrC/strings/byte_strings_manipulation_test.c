@@ -13,9 +13,14 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#pragma warning(push)
+#pragma warning(disable: 4668)
+
 #include <string.h>
 
 #include <check/check.h>
+
+#pragma warning(pop)
 
 #include "_test.h"
 #include "c_versions.h"

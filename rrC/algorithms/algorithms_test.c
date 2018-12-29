@@ -5,7 +5,7 @@
  *
  * \sa ["算法"](https://zh.cppreference.com/w/c/algorithm). *cppreference.com*.
  *
- * \version 2018-10-15
+ * \version 2018-12-29
  * \since 2018-06-20
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,9 +13,14 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
+#pragma warning(push)
+#pragma warning(disable: 4668)
+
 #include <stdlib.h>
 
 #include <check/check.h>
+
+#pragma warning(pop)
 
 #include "_test.h"
 

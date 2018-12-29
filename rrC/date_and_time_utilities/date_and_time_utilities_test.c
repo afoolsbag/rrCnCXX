@@ -14,7 +14,7 @@
 *//*===--------------------------------------------------------------------===*/
 
 #pragma warning(push)
-#pragma warning(disable: 4820)
+#pragma warning(disable: 4668 4820)
 
 #include <time.h>
 

@@ -13,10 +13,15 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
+#pragma warning(push)
+#pragma warning(disable: 4668)
+
 #include <stdint.h>
 #include <stdlib.h>
 
 #include <check/check.h>
+
+#pragma warning(pop)
 
 #include "_test.h"
 

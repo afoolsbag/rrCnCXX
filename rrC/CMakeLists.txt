@@ -21,5 +21,5 @@ add_executable_ex(
   ${zSource} ${zGenerated} C11
   INCLUDE_DIRECTORIES PRIVATE "./"
                               "${CMAKE_CURRENT_BINARY_DIR}/"
-  LINK_LIBRARIES      PRIVATE Check::Check
-                              Check::Compat)
+  LINK_LIBRARIES      PRIVATE Check::check
+                              Check::compat)

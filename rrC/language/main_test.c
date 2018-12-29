@@ -11,9 +11,14 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#pragma warning(push)
+#pragma warning(disable: 4668)
+
 #include <stdlib.h>
 
 #include <check/check.h>
+
+#pragma warning(pop)
 
 #include "algorithms/_test.h"
 #include "atomic_operations/_test.h"

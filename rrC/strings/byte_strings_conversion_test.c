@@ -13,12 +13,17 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#pragma warning(push)
+#pragma warning(disable: 4668)
+
 #include <assert.h>
 #include <float.h>
 #include <inttypes.h>
 #include <stdlib.h>
 
 #include <check/check.h>
+
+#pragma warning(pop)
 
 #include "_test.h"
 #include "c_versions.h"
