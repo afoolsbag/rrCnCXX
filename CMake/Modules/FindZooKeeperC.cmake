@@ -8,6 +8,10 @@
 # 2018-12-29 ¨C 2018-12-29                                |_|
 # Unlicense
 
+if(NOT COMMAND get_toolset_architecture_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/LibraryTag.cmake")
+endif()
+
 #.rst:
 # FindZooKeeperC
 # --------------
@@ -41,8 +45,11 @@
 # ``ZooKeeperC_INCLUDE_DIRS``
 #   The directory containing the ZooKeeper C client headers.
 #
-# ``ZooKeeperC_LIBRARIES``
-#   The ZooKeeper C client libraries.
+# ``ZooKeeperC_LIBRARIES_RELEASE``
+#   The ZooKeeper C client release build libraries.
+#
+# ``ZooKeeperC_LIBRARIES_DEBUG``
+#   The ZooKeeper C client debug build libraries.
 #
 # ``ZooKeeperC_cli_EXECUTABLE``
 #   The path to the ZooKeeper C client cli executable.
@@ -63,8 +70,10 @@
 #             zookeeper.h
 #             ...
 #       v lib
+#         > vc141x32d
+#         > ...
+#           hashtable.lib
 #           zookeeper.lib
-#           ...
 
 if(ZooKeeperC_FOUND)
   return()
@@ -94,15 +103,47 @@ mark_as_advanced(ZooKeeperC_INCLUDE_DIR)
 set(ZooKeeperC_INCLUDE_DIRS ${ZooKeeperC_INCLUDE_DIR})
 
 # lib
+get_toolset_architecture_address_model_tag(sTag)
+set(zRelPathSufs "lib/${sTag}"
+                 "lib")
+set(zDbgPathSufs "lib/${sTag}d"
+                 "lib/${sTag}"
+                 "lib")
+
 find_library(
-  ZooKeeperC_zookeeper_LIBRARY
+  ZooKeeperC_hashtable_LIBRARY_RELEASE
+  NAMES         "hashtable"
+  HINTS         ${zHints}
+  PATH_SUFFIXES ${zRelPathSufs}
+  NO_DEFAULT_PATH)
+mark_as_advanced(ZooKeeperC_hashtable_LIBRARY_RELEASE)
+find_library(
+  ZooKeeperC_hashtable_LIBRARY_DEBUG
+  NAMES         "hashtable"
+  HINTS         ${zHints}
+  PATH_SUFFIXES ${zDbgPathSufs}
+  NO_DEFAULT_PATH)
+mark_as_advanced(ZooKeeperC_hashtable_LIBRARY_DEBUG)
+
+find_library(
+  ZooKeeperC_zookeeper_LIBRARY_RELEASE
   NAMES         "zookeeper"
   HINTS         ${zHints}
-  PATH_SUFFIXES "lib"
+  PATH_SUFFIXES ${zRelPathSufs}
   NO_DEFAULT_PATH)
-mark_as_advanced(ZooKeeperC_zookeeper_LIBRARY)
+mark_as_advanced(ZooKeeperC_zookeeper_LIBRARY_RELEASE)
+find_library(
+  ZooKeeperC_zookeeper_LIBRARY_DEBUG
+  NAMES         "zookeeper"
+  HINTS         ${zHints}
+  PATH_SUFFIXES ${zDbgPathSufs}
+  NO_DEFAULT_PATH)
+mark_as_advanced(ZooKeeperC_zookeeper_LIBRARY_DEBUG)
 
-set(ZooKeeperC_LIBRARIES ${ZooKeeperC_zookeeper_LIBRARY})
+set(ZooKeeperC_LIBRARIES_RELEASE ${ZooKeeperC_hashtable_LIBRARY_RELEASE}
+                                 ${ZooKeeperC_zookeeper_LIBRARY_RELEASE})
+set(ZooKeeperC_LIBRARIES_DEBUG ${ZooKeeperC_hashtable_LIBRARY_DEBUG}
+                               ${ZooKeeperC_zookeeper_LIBRARY_DEBUG})
 
 # package
 include(FindPackageHandleStandardArgs)
@@ -111,15 +152,27 @@ find_package_handle_standard_args(
   DEFAULT_MSG
   ZooKeeperC_ROOT_DIR
   ZooKeeperC_INCLUDE_DIR
-  ZooKeeperC_zookeeper_LIBRARY)
+  ZooKeeperC_hashtable_LIBRARY_RELEASE
+  ZooKeeperC_hashtable_LIBRARY_DEBUG
+  ZooKeeperC_zookeeper_LIBRARY_RELEASE
+  ZooKeeperC_zookeeper_LIBRARY_DEBUG)
 
 if(ZooKeeperC_FOUND)
   # targets
+  if(NOT TARGET ZooKeeperC::hashtable)
+    add_library(ZooKeeperC::hashtable STATIC IMPORTED)
+    set_target_properties(
+      ZooKeeperC::hashtable
+      PROPERTIES IMPORTED_LOCATION_RELEASE     "${ZooKeeperC_hashtable_LIBRARY_RELEASE}"
+                 IMPORTED_LOCATION_DEBUG       "${ZooKeeperC_hashtable_LIBRARY_DEBUG}"
+                 INTERFACE_INCLUDE_DIRECTORIES "${ZooKeeperC_INCLUDE_DIRS}")
+  endif()
   if(NOT TARGET ZooKeeperC::zookeeper)
     add_library(ZooKeeperC::zookeeper STATIC IMPORTED)
     set_target_properties(
       ZooKeeperC::zookeeper
-      PROPERTIES IMPORTED_LOCATION             "${ZooKeeperC_zookeeper_LIBRARY}"
+      PROPERTIES IMPORTED_LOCATION_RELEASE     "${ZooKeeperC_zookeeper_LIBRARY_RELEASE}"
+                 IMPORTED_LOCATION_DEBUG       "${ZooKeeperC_zookeeper_LIBRARY_DEBUG}"
                  INTERFACE_INCLUDE_DIRECTORIES "${ZooKeeperC_INCLUDE_DIRS}")
   endif()
   mark_as_advanced(ZooKeeperC_ROOT_DIR)
