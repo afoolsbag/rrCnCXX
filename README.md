@@ -89,6 +89,7 @@
 / [*Ettercap*](https://www.ettercap-project.org/)
 / [*FastCopy*](https://fastcopy.jp/)
 / [*iPerf*](https://iperf.fr/)
+/ [*Rapid Environment Editor*](https://rapidee.com/)
 / [*Wireshark*](https://wireshark.org/)
 
 ## Git
