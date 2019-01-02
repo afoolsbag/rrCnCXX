@@ -52,6 +52,7 @@
  * / [*OpenSSL*](https://openssl.org/)
  * / [*POSIX*](https://wikipedia.org/wiki/POSIX)
  * / [*rabbitmq-c*](https://github.com/alanxz/rabbitmq-c)
+ * / [*ZooKeeper*](https://zookeeper.apache.org/)
  *
  * # 许可                                                            {#sLicense}
  *
