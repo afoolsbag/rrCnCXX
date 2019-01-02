@@ -11,7 +11,7 @@ endif()
 #.rst:
 # .. command:: get_toolset_tag
 #
-#   获取工具集标签：::
+#   获取工具集标签::
 #
 #     get_toolset_tag(<result-variable>)
 #
