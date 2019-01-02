@@ -2,10 +2,10 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2018-11-27
+# | |  | |  | \__/\ 2016-08-01 – 2019-01-02
 # |_|  |_|   \____/ Unlicense
 
-project(rrC VERSION 2018.11.27 LANGUAGES C)
+project(rrC VERSION 2019.01.02 LANGUAGES C)
 project_more()
 compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
@@ -21,5 +21,4 @@ add_executable_ex(
   ${zSource} ${zGenerated} C11
   INCLUDE_DIRECTORIES PRIVATE "./"
                               "${CMAKE_CURRENT_BINARY_DIR}/"
-  LINK_LIBRARIES      PRIVATE Check::check
-                              Check::compat)
+  LINK_LIBRARIES      PRIVATE Check::check)

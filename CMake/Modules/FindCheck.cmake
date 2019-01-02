@@ -118,14 +118,6 @@ find_package_handle_standard_args(
 
 if(Check_FOUND)
   # targets
-  if(NOT TARGET Check::check)
-    add_library(Check::check STATIC IMPORTED)
-    set_target_properties(
-      Check::check
-      PROPERTIES IMPORTED_LOCATION_DEBUG       "${Check_check_LIBRARY_DEBUG}"
-                 IMPORTED_LOCATION_RELEASE     "${Check_check_LIBRARY_RELEASE}"
-                 INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
-  endif()
   if(NOT TARGET Check::compat)
     add_library(Check::compat STATIC IMPORTED)
     set_target_properties(
@@ -134,6 +126,19 @@ if(Check_FOUND)
                  IMPORTED_LOCATION_RELEASE     "${Check_compat_LIBRARY_RELEASE}"
                  INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
   endif()
+
+  if(NOT TARGET Check::check)
+    add_library(Check::check STATIC IMPORTED)
+    set_target_properties(
+      Check::check
+      PROPERTIES IMPORTED_LOCATION_DEBUG       "${Check_check_LIBRARY_DEBUG}"
+                 IMPORTED_LOCATION_RELEASE     "${Check_check_LIBRARY_RELEASE}"
+                 INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
+    target_link_libraries(
+      Check::check
+      INTERFACE Check::compat)
+  endif()
+
   mark_as_advanced(Check_ROOT_DIR)
 
 else()

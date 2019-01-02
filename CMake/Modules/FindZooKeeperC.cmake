@@ -5,7 +5,7 @@
 # | |   | | | | | (_| |./ /__| (_) | (_) | |\  \  __/  __/ |_) |  __/ |  | \__/\
 # \_|   |_|_| |_|\__,_|\_____/\___/ \___/\_| \_/\___|\___| .__/ \___|_|   \____/
 # zhengrr                                                | |
-# 2018-12-29 ¨C 2019-01-02                                |_|
+# 2018-12-29 â€“ 2019-01-02                                |_|
 # Unlicense
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -141,6 +141,7 @@ if(ZooKeeperC_FOUND)
       ZooKeeperC::cli
       PROPERTIES IMPORTED_LOCATION "${ZooKeeperC_cli_EXECUTABLE}")
   endif()
+
   if(NOT TARGET ZooKeeperC::hashtable)
     add_library(ZooKeeperC::hashtable STATIC IMPORTED)
     set_target_properties(
@@ -149,6 +150,7 @@ if(ZooKeeperC_FOUND)
                  IMPORTED_LOCATION_RELEASE     "${ZooKeeperC_hashtable_LIBRARY_RELEASE}"
                  INTERFACE_INCLUDE_DIRECTORIES "${ZooKeeperC_INCLUDE_DIR}")
   endif()
+
   if(NOT TARGET ZooKeeperC::zookeeper)
     add_library(ZooKeeperC::zookeeper STATIC IMPORTED)
     set_target_properties(
@@ -156,7 +158,15 @@ if(ZooKeeperC_FOUND)
       PROPERTIES IMPORTED_LOCATION_DEBUG       "${ZooKeeperC_zookeeper_LIBRARY_DEBUG}"
                  IMPORTED_LOCATION_RELEASE     "${ZooKeeperC_zookeeper_LIBRARY_RELEASE}"
                  INTERFACE_INCLUDE_DIRECTORIES "${ZooKeeperC_INCLUDE_DIR}")
+    target_compile_options(
+      ZooKeeperC::zookeeper
+      INTERFACE $<IF:$<CONFIG:Debug>,/MTd,/MT>)
+    target_link_libraries(
+      ZooKeeperC::zookeeper
+      INTERFACE WS2_32
+                ZooKeeperC::hashtable)
   endif()
+
   mark_as_advanced(ZooKeeperC_ROOT_DIR)
 
 else()
