@@ -42,6 +42,7 @@
  *
  * / [*Check*](https://libcheck.github.io/check)
  * / [*FFmpeg*](https://ffmpeg.org/)
+ * / [*Kafka*](https://kafka.apache.org/)
  * / [*libhdfs*](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/LibHdfs.html)
  * / [*librdkafka*](https://github.com/edenhill/librdkafka)
  * / [*libuv*](https://libuv.org/)
@@ -52,6 +53,7 @@
  * / [*OpenSSL*](https://openssl.org/)
  * / [*POSIX*](https://wikipedia.org/wiki/POSIX)
  * / [*rabbitmq-c*](https://github.com/alanxz/rabbitmq-c)
+ * / [*Visual Leak Detector*](https://kinddragon.github.io/vld/)
  * / [*ZooKeeper*](https://zookeeper.apache.org/)
  *
  * # 许可                                                            {#sLicense}
