@@ -2,6 +2,24 @@
  *
  * \defgroup gDevelop 开发视窗桌面应用程序
  *
+ * **目录结构说明**
+ *
+ * `root\include\rrwindows`、`root\src` 和 `root\test` 的目录结构相同：
+ *
+ * *   目录按 Microsoft Docs 中 Desktop and technologies 的再级章节 URL 命名。
+ *
+ *     如 ... / `Desktop and technologies` / `Desktop App User Interface` / `Internationalization for Windows Applications`，
+ *     其 URL 为 `https://docs.microsoft.com/windows/desktop/Intl/international-support`，
+ *     取其中的 `Intl` 为作为目录名。
+ *
+ * *   文件按 Microsoft Docs 中的最终章节名命名。
+ *
+ *     如 ... / `Internationalization for Windows Applications` / `Unicode and Character Sets`，
+ *     其章节名为 `Unicode and Character Sets`，取 `UnicodeAndCharacterSets` 作为文件名。
+ *
+ *     又如 ... / `Internationalization for Windows Applications` / `Globalization Services` / `National Language Support`，
+ *     其章节名为 `National Language Support`，取 `NationalLanguageSupport` 作为文件名。
+ *
  * \sa ["Develop desktop applications"](https://docs.microsoft.com/windows/desktop/). *Microsoft Docs*.
  *     *   [Desktop app technologies](https://docs.microsoft.com/windows/desktop/desktop-app-technologies)
  *         *   Desktop app UI
@@ -141,7 +159,7 @@
  *     *   [Develop with server technologies](https://docs.microsoft.com/windows/desktop/server-and-system-technologies)
  *     *   [Windows certification](https://docs.microsoft.com/windows/desktop/win_cert)
  *
- * \version 2018-11-19
+ * \version 2019-01-03
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC0-1.0

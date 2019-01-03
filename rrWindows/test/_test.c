@@ -12,14 +12,15 @@
 #include "FileIO/_test.h"
 #include "Intl/_test.h"
 #include "MenuRc/_test.h"
+#include "Sync/_test.h"
 #include "SysInfo/_test.h"
 
 /**
  * \remarks
  * 控制台应用入口：\n
- * INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[]);\n
+ * `INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[]);`\n
  * 桌面应用入口：\n
- * INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PTSTR lpCmdLine, INT nCmdShow);
+ * `INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PTSTR lpCmdLine, INT nCmdShow);`
  */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
@@ -34,6 +35,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(tr, tsFileIO());
     srunner_add_suite(tr, tsIntl());
     srunner_add_suite(tr, tsMenuRc());
+    srunner_add_suite(tr, tsSync());
     srunner_add_suite(tr, tsSysInfo());
     srunner_run_all(tr, CK_NORMAL);
     CONST INT err = srunner_ntests_failed(tr);

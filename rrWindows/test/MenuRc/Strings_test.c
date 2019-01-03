@@ -3,12 +3,12 @@
  * \defgroup gStrings 字符串
  * \ingroup gMenuRc
  *
- * \sa ["Strings"](https://docs.microsoft.com/zh-cn/windows/desktop/menurc/strings). *Microsoft Docs*.
+ * \sa ["Strings"](https://docs.microsoft.com/windows/desktop/menurc/strings). *Microsoft Docs*.
  *
- * \version 2018-10-23
+ * \version 2019-01-03
  * \since 2018-10-18
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/

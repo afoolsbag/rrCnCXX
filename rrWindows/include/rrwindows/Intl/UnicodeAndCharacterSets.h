@@ -3,10 +3,10 @@
  * \file
  * \brief 统一码与字符集。
  *
- * \version 2018-10-23
+ * \version 2019-01-03
  * \since 2018-01-11
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
 **//*===-------------------------------------------------------------------===*/
 
