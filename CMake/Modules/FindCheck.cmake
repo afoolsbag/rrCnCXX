@@ -2,7 +2,7 @@
 # |  ___(_)         | /  __ \ |             | |
 # | |_   _ _ __   __| | /  \/ |__   ___  ___| | __
 # |  _| | | '_ \ / _` | |   | '_ \ / _ \/ __| |/ / zhengrr
-# | |   | | | | | (_| | \__/\ | | |  __/ (__|   <  2018-02-02 – 2019-01-02
+# | |   | | | | | (_| | \__/\ | | |  __/ (__|   <  2018-02-02 – 2019-01-03
 # \_|   |_|_| |_|\__,_|\____/_| |_|\___|\___|_|\_\ Unlicense
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -109,10 +109,9 @@ include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
   Check
   DEFAULT_MSG
-  Check_ROOT_DIR
+  Check_check_LIBRARY_RELEASE
   Check_INCLUDE_DIR
   Check_check_LIBRARY_DEBUG
-  Check_check_LIBRARY_RELEASE
   Check_compat_LIBRARY_DEBUG
   Check_compat_LIBRARY_RELEASE)
 

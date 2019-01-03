@@ -5,7 +5,7 @@
 # | |   | | | | | (_| |./ /__| (_) | (_) | |\  \  __/  __/ |_) |  __/ |  | \__/\
 # \_|   |_|_| |_|\__,_|\_____/\___/ \___/\_| \_/\___|\___| .__/ \___|_|   \____/
 # zhengrr                                                | |
-# 2018-12-29 – 2019-01-02                                |_|
+# 2018-12-29 – 2019-01-03                                |_|
 # Unlicense
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -126,12 +126,11 @@ include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
   ZooKeeperC
   DEFAULT_MSG
-  ZooKeeperC_ROOT_DIR
+  ZooKeeperC_zookeeper_LIBRARY_RELEASE
   ZooKeeperC_INCLUDE_DIR
   ZooKeeperC_hashtable_LIBRARY_DEBUG
   ZooKeeperC_hashtable_LIBRARY_RELEASE
-  ZooKeeperC_zookeeper_LIBRARY_DEBUG
-  ZooKeeperC_zookeeper_LIBRARY_RELEASE)
+  ZooKeeperC_zookeeper_LIBRARY_DEBUG)
 
 if(ZooKeeperC_FOUND)
   # targets
