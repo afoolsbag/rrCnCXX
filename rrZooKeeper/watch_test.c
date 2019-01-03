@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 
-#define USE_STATIC_LIB
 #include <zookeeper/zookeeper.h>
 
 static const char *ztype(int state)

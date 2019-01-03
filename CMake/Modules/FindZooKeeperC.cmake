@@ -157,6 +157,10 @@ if(ZooKeeperC_FOUND)
       PROPERTIES IMPORTED_LOCATION_DEBUG       "${ZooKeeperC_zookeeper_LIBRARY_DEBUG}"
                  IMPORTED_LOCATION_RELEASE     "${ZooKeeperC_zookeeper_LIBRARY_RELEASE}"
                  INTERFACE_INCLUDE_DIRECTORIES "${ZooKeeperC_INCLUDE_DIR}")
+    target_compile_definitions(
+      ZooKeeperC::zookeeper
+      INTERFACE "USE_STATIC_LIB"
+    )
     target_compile_options(
       ZooKeeperC::zookeeper
       INTERFACE $<IF:$<CONFIG:Debug>,/MTd,/MT>)

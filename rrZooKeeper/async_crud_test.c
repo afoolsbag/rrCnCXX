@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#define USE_STATIC_LIB
 #include <zookeeper/zookeeper.h>
 
 void on_acreate_completion(int rc, const char *value, const void *data)

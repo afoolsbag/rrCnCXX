@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#define USE_STATIC_LIB
 #include <zookeeper/zookeeper.h>
 
 int main()
