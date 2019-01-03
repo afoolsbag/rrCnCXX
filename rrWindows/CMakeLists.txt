@@ -1,4 +1,4 @@
-#          __        ___           _
+﻿#          __        ___           _
 #  _ __ _ _\ \      / (_)_ __   __| | _____      _____
 # | '__| '__\ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __| zhengrr
 # | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-01-03
@@ -20,7 +20,7 @@ aux_source_directory_ex(zGenerated DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src/" 
 
 add_library_ex(
   SHARED ${zInclude} ${zSrc} ${zGenerated} TARGET_NAME_VARIABLE sRrwindowsLib C11
-  COMPILE_DEFINITIONS PUBLIC  "-DRRWINDOWS_SHARED"
+  COMPILE_DEFINITIONS PUBLIC  "RRWINDOWS_SHARED"
   INCLUDE_DIRECTORIES PUBLIC  "include/"
                       PRIVATE "src/"
                               "${CMAKE_CURRENT_BINARY_DIR}/src/")
