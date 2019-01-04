@@ -5,10 +5,10 @@
  *
  * \sa ["Dynamic-Link Libraries"](https://docs.microsoft.com/windows/desktop/Dlls/). *Microsoft Docs*.
  *
- * \version 2018-10-23
+ * \version 2019-01-03
  * \since 2018-02-05
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
 

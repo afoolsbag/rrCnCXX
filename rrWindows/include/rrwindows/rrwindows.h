@@ -3,7 +3,7 @@
  * \file
  * \brief 包含文件汇总。
  *
- * \version 2018-11-19
+ * \version 2019-01-04
  * \since 2018-08-08
  * \authors zhengrr
  * \copyright Unlicense
@@ -21,3 +21,4 @@
 #include "rrwindows/Intl/NationalLanguageSupport.h"
 #include "rrwindows/Intl/UnicodeAndCharacterSets.h"
 #include "rrwindows/MenuRc/Strings.h"
+#include "WinSock/WindowsSockets2.h"

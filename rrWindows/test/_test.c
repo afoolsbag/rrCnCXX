@@ -14,6 +14,7 @@
 #include "MenuRc/_test.h"
 #include "Sync/_test.h"
 #include "SysInfo/_test.h"
+#include "WinSock/_test.h"
 
 /**
  * \remarks
@@ -37,6 +38,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(tr, tsMenuRc());
     srunner_add_suite(tr, tsSync());
     srunner_add_suite(tr, tsSysInfo());
+    srunner_add_suite(tr, tsWinSock());
     srunner_run_all(tr, CK_NORMAL);
     CONST INT err = srunner_ntests_failed(tr);
     srunner_free(tr);

@@ -110,6 +110,7 @@ KillExecutableW(
 #else
 # define KillExecutable KillExecutableA
 #endif
+
 #ifdef __cplusplus
 }
 #endif
