@@ -5,11 +5,12 @@
  *
  * \sa ["Dynamic-Link Libraries"](https://docs.microsoft.com/windows/desktop/Dlls/). *Microsoft Docs*.
  *
- * \version 2019-01-03
+ * \version 2019-01-04
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright Unlicense
  *
+ * @{
 *//*===--------------------------------------------------------------------===*/
 
 #define WIN32_LEAN_AND_MEAN

@@ -12,19 +12,22 @@
 #include "FileIO/_test.h"
 #include "Intl/_test.h"
 #include "MenuRc/_test.h"
+#include "Services/_test.h"
 #include "Sync/_test.h"
 #include "SysInfo/_test.h"
 #include "WinSock/_test.h"
 
-/**
- * \remarks
- * 控制台应用入口：\n
- * `INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[]);`\n
- * 桌面应用入口：\n
- * `INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PTSTR lpCmdLine, INT nCmdShow);`
- */
+#ifndef EXIT_SUCCESS
+#define EXIT_SUCCESS 0
+#endif
+
+/* 控制台应用入口 */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
+#ifdef TEST_SERVICE
+    return ServiceProgramMain(argc, argv, envp);
+#endif
+
     UNREFERENCED_PARAMETER(argc);
     UNREFERENCED_PARAMETER(argv);
     UNREFERENCED_PARAMETER(envp);
@@ -43,4 +46,10 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     CONST INT err = srunner_ntests_failed(tr);
     srunner_free(tr);
     return err;
+}
+
+/* 桌面应用入口 */
+INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PTSTR lpCmdLine, INT nCmdShow)
+{
+    return EXIT_SUCCESS;
 }

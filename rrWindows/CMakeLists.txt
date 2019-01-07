@@ -1,10 +1,10 @@
-﻿#          __        ___           _
+#          __        ___           _
 #  _ __ _ _\ \      / (_)_ __   __| | _____      _____
 # | '__| '__\ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __| zhengrr
-# | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-01-03
+# | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-01-04
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/ Unlicense
 
-project(rrWindows VERSION 2019.01.03 LANGUAGES C)
+project(rrWindows VERSION 2019.1.4 LANGUAGES C)
 project_more()
 compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
