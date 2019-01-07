@@ -24,8 +24,8 @@
 /* 控制台应用入口 */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-#ifdef TEST_SERVICE
-    return ServiceProgramMain(argc, argv, envp);
+#ifndef TEST_SERVICE
+    return TheServiceMain(argc, argv, envp);
 #endif
 
     UNREFERENCED_PARAMETER(argc);

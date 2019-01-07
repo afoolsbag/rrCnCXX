@@ -5,122 +5,24 @@
 
 #include <check/check.h>
 
-/**
- * \brief 程序入口。
- */
-INT
-WINAPI
-ServiceProgramMain(
-    INT argc,
-    TCHAR *argv[],
-    TCHAR *envp[]
-);
+/** \brief 程序入口。 */
+INT WINAPI TheServiceMain(INT argc, TCHAR *argv[], TCHAR *envp[]);
 
-/**
- * \brief 服务安装。
- */
-VOID
-WINAPI
-ServiceInstall(VOID);
+/** \brief 服务工具。 */
+VOID WINAPI TheServiceTool(CONST INT type);
 
-/**
- * \brief 服务卸载。
- */
-VOID
-WINAPI
-ServiceRemove(VOID);
+/** \brief 服务入口。 */
+VOID WINAPI TheServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors);
+/** \brief 控制回调。 */
+VOID WINAPI TheServiceCtrlHandler(DWORD dwControl);
 
-/**
- * \brief 服务启动。
- */
-VOID
-WINAPI
-ServiceStart(VOID);
+/** \brief 报告服务状态。 */
+VOID WINAPI ReportTheServiceStatus(CONST DWORD currentState, CONST DWORD win32ExitCode, CONST DWORD waitHint);
 
-/**
- * \brief 服务停止。
- */
-VOID
-WINAPI
-ServiceStop(VOID);
-
-/**
- * \brief 服务暂停。
- */
-VOID
-WINAPI
-ServicePause(VOID);
-
-/**
- * \brief 服务继续。
- */
-VOID
-WINAPI
-ServiceContinue(VOID);
-
-/**
- * \brief 服务重启。
- */
-VOID
-WINAPI
-ServiceRestart(VOID);
-
-/**
- * \brief 服务入口。
- */
-VOID
-WINAPI
-ServiceMain(
-    DWORD dwNumServicesArgs,
-    LPTSTR *lpServiceArgVectors
-);
-
-/**
- * \brief 报告状态。
- */
-VOID
-WINAPI
-ServiceReportStatus(
-    CONST DWORD dwCurrentState,
-    CONST DWORD dwWin32ExitCode,
-    CONST DWORD dwWaitHint
-);
-
-/**
- * \brief 控制回调。
- */
-VOID
-WINAPI
-ServiceCtrlHandler(
-    DWORD dwControl
-);
-
-/**
- * \brief 打印失败。
- */
-VOID
-WINAPI
-ServicePrintFailing(
-    PTSTR CONST functionName,
-    CONST DWORD errorCode);
-
-/**
- * \brief 报告失败事件。
- */
-VOID
-WINAPI
-ServiceReportFailingEvent(
-    PTSTR CONST functionName,
-    CONST DWORD errorCode);
-
-/**
- * \brief 报告事件。
- */
-VOID
-WINAPI
-ServiceReportEvent(
-    CONST WORD  type,
-    PTSTR CONST message);
+/** \brief 报告失败事件。 */
+VOID WINAPI ReportTheServiceFailingEvent(PTSTR CONST functionName, CONST DWORD errorCode);
+/** \brief 报告服务事件。 */
+VOID WINAPI ReportTheServiceEvent(CONST WORD type, PTSTR CONST message);
 
 TCase *tcServices(void);
 

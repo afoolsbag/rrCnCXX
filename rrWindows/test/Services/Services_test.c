@@ -30,53 +30,58 @@
 #define EXIT_FAILURE 1
 #endif
 
-static PCTSTR CONST ServiceName = _T("rrWindowsService");
-static PCTSTR CONST ServiceDisplay = _T("zhengrr's Windows Service");
-static PCTSTR CONST ServiceDescription = _T("zhengrr（测试用）的 Windows 服务。");
+enum TheServiceToolType {
+    Install,  /**< 安装 */
+    Remove,   /**< 卸载 */
+    Start,    /**< 启动 */
+    Stop,     /**< 停止 */
+    Pause,    /**< 暂停 */
+    Continue, /**< 恢复 */
+};
 
-INT
-WINAPI
-ServiceProgramMain(
-    INT argc,
-    TCHAR *argv[],
-    TCHAR *envp[])
+static PCTSTR CONST TheServiceName = _T("rrWindowsService");
+static PCTSTR CONST TheServiceDisplay = _T("zhengrr's Windows Service");
+static PCTSTR CONST TheServiceDescription = _T("zhengrr（测试用）的 Windows 服务。");
+
+INT WINAPI TheServiceMain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
     UNREFERENCED_PARAMETER(envp);
 
     if (argc == 2) {
 
         if (CompareString_Simplify(argv[1], _T("install")) == CSTR_EQUAL) {
-            ServiceInstall();
+            TheServiceTool(Install);
             return EXIT_SUCCESS;
         }
 
         if (CompareString_Simplify(argv[1], _T("remove")) == CSTR_EQUAL) {
-            ServiceRemove();
+            TheServiceTool(Remove);
             return EXIT_SUCCESS;
         }
 
         if (CompareString_Simplify(argv[1], _T("start")) == CSTR_EQUAL) {
-            ServiceStart();
+            TheServiceTool(Start);
             return EXIT_SUCCESS;
         }
 
         if (CompareString_Simplify(argv[1], _T("stop")) == CSTR_EQUAL) {
-            ServiceStop();
+            TheServiceTool(Stop);
             return EXIT_SUCCESS;
         }
 
         if (CompareString_Simplify(argv[1], _T("pause")) == CSTR_EQUAL) {
-            ServicePause();
+            TheServiceTool(Pause);
             return EXIT_SUCCESS;
         }
 
         if (CompareString_Simplify(argv[1], _T("continue")) == CSTR_EQUAL) {
-            ServiceContinue();
+            TheServiceTool(Continue);
             return EXIT_SUCCESS;
         }
 
         if (CompareString_Simplify(argv[1], _T("restart")) == CSTR_EQUAL) {
-            ServiceRestart();
+            TheServiceTool(Stop);
+            TheServiceTool(Start);
             return EXIT_SUCCESS;
         }
 
@@ -86,292 +91,154 @@ ServiceProgramMain(
 
     SERVICE_TABLE_ENTRY table[] =
     {
-        {(PWSTR)ServiceName, ServiceMain},
-        {       NULL,        NULL}
+        {(PTSTR)TheServiceName, TheServiceEntry},
+        {       NULL,           NULL}
     };
 
     if (!StartServiceCtrlDispatcher(table)) {
-        ServiceReportFailingEvent(_T("StartServiceCtrlDispatcher"), GetLastError());
+        ReportTheServiceFailingEvent(_T("StartServiceCtrlDispatcher"), GetLastError());
         return EXIT_FAILURE;
     }
 
     return EXIT_SUCCESS;
 }
 
-VOID
-WINAPI
-ServiceInstall(VOID)
+VOID WINAPI TheServiceTool(CONST INT type)
 {
-    _tprintf(_T("Installing %s service...\n"), ServiceDisplay);
+    SC_HANDLE serviceCM = NULL;
+    SC_HANDLE service = NULL;
 
-    TCHAR path[MAX_PATH];
-    if (!GetModuleFileName(NULL, path, MAX_PATH)) {
-        ServicePrintFailing(_T("GetModuleFileName"), GetLastError());
-        return;
+    switch (type) {
+    case Install:  _tprintf(_T("Installing %s service...\n"), TheServiceDisplay); break;
+    case Start:    _tprintf(_T("Starting %s service...\n"),   TheServiceDisplay); break;
+    case Stop:     _tprintf(_T("Stopping %s service...\n"),   TheServiceDisplay); break;
+    case Pause:    _tprintf(_T("Pausing %s service...\n"),    TheServiceDisplay); break;
+    case Continue: _tprintf(_T("Continuing %s service...\n"), TheServiceDisplay); break;
+    case Remove:   _tprintf(_T("Removing %s service...\n"),   TheServiceDisplay); break;
+    default:       _putts(_T("Unexpected switch-case routing.\n"));               break;
     }
 
-    SC_HANDLE CONST serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+    serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
     if (!serviceCM) {
-        ServicePrintFailing(_T("OpenSCManager"), GetLastError());
-        return;
+        _tprintf(_T("OpenSCManager failed, errorCode=%lu.\n"), GetLastError());
+        goto exit;
     }
 
-    SC_HANDLE CONST service = CreateService(
-        serviceCM, ServiceName, ServiceDisplay,
-        SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
-        path, NULL, NULL, NULL, NULL, NULL);
-    if (!service) {
-        ServicePrintFailing(_T("CreateService"), GetLastError());
+    if (type == Install) {
+        TCHAR path[MAX_PATH];
+        if (!GetModuleFileName(NULL, path, MAX_PATH)) {
+            _tprintf(_T("GetModuleFileName failed, errorCode=%lu.\n"), GetLastError());
+            goto exit;
+        }
+
+        service = CreateService(
+            serviceCM, TheServiceName, TheServiceDisplay,
+            SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
+            path, NULL, NULL, NULL, NULL, NULL);
+        if (!service) {
+            _tprintf(_T("CreateService failed, errorCode=%lu.\n"), GetLastError());
+            goto exit;
+        }
+
+        SERVICE_DESCRIPTION sd = {(PTSTR)TheServiceDescription};
+        ChangeServiceConfig2(service, SERVICE_CONFIG_DESCRIPTION, &sd);
+
+    } else if (type == Remove) {
+        service = OpenService(serviceCM, TheServiceName, DELETE);
+        if (!service) {
+            _tprintf(_T("OpenService failed, errorCode=%lu.\n"), GetLastError());
+            goto exit;
+        }
+
+        if (!DeleteService(service)) {
+            _tprintf(_T("DeleteService failed, errorCode=%lu.\n"), GetLastError());
+            goto exit;
+        }
+
+    } else {
+        service = OpenService(serviceCM, TheServiceName, GENERIC_EXECUTE);
+        if (!service) {
+            _tprintf(_T("OpenService failed, errorCode=%lu.\n"), GetLastError());
+            goto exit;
+        }
+
+        SERVICE_STATUS status;
+
+        switch (type) {
+        case Start:
+            if (!StartService(service, 0, NULL)) {
+                _tprintf(_T("StartService failed, errorCode=%lu.\n"), GetLastError());
+                goto exit;
+            }
+            break;
+
+        case Stop:
+            if (!ControlService(service, SERVICE_CONTROL_STOP, &status)) {
+                _tprintf(_T("ControlService failed, errorCode=%lu.\n"), GetLastError());
+                goto exit;
+            }
+            break;
+
+        case Pause:
+            if (!ControlService(service, SERVICE_CONTROL_PAUSE, &status)) {
+                _tprintf(_T("ControlService failed, errorCode=%lu.\n"), GetLastError());
+                goto exit;
+            }
+            break;
+
+        case Continue:
+            if (!ControlService(service, SERVICE_CONTROL_CONTINUE, &status)) {
+                _tprintf(_T("ControlService failed, errorCode=%lu.\n"), GetLastError());
+                goto exit;
+            }
+            break;
+
+        default:
+            _putts(_T("Unexpected switch-case routing.\n"));
+            break;
+        }
+    }
+
+    switch (type) {
+    case Install:  _putts(_T("Service installed successfully.\n")); break;
+    case Start:    _putts(_T("Service started successfully.\n"));   break;
+    case Stop:     _putts(_T("Service stopped successfully.\n"));   break;
+    case Pause:    _putts(_T("Service paused successfully.\n"));    break;
+    case Continue: _putts(_T("Service continued successfully.\n")); break;
+    case Remove:   _putts(_T("Service removed successfully.\n"));   break;
+    default:       _putts(_T("Unexpected switch-case routing.\n")); break;
+    }
+
+exit:
+    if (service)
+        CloseServiceHandle(service);
+    if (serviceCM)
         CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    SERVICE_DESCRIPTION sd = {(PWSTR)ServiceDescription};
-    ChangeServiceConfig2(service, SERVICE_CONFIG_DESCRIPTION, &sd);
-
-    _putts(_T("Service installed successfully.\n"));
-    CloseServiceHandle(service);
-    CloseServiceHandle(serviceCM);
 }
 
-VOID
-WINAPI
-ServiceRemove(VOID)
-{
-    _tprintf(_T("Removing %s service...\n"), ServiceDisplay);
+static SERVICE_STATUS_HANDLE TheServiceStatusHandle = NULL;
 
-    SC_HANDLE CONST serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
-    if (!serviceCM) {
-        ServicePrintFailing(_T("OpenSCManager"), GetLastError());
-        return;
-    }
+static BOOL TheServiceStopFlag = FALSE;
+static BOOL TheServicePauseFlag = FALSE;
 
-    SC_HANDLE CONST service = OpenService(serviceCM, ServiceName, DELETE);
-    if (!service) {
-        ServicePrintFailing(_T("OpenService"), GetLastError());
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    if (!DeleteService(service)) {
-        ServicePrintFailing(_T("DeleteService"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    _putts(_T("Service removed successfully.\n"));
-    CloseServiceHandle(service);
-    CloseServiceHandle(serviceCM);
-}
-
-VOID
-WINAPI
-ServiceStart(VOID)
-{
-    _tprintf(_T("Starting %s service...\n"), ServiceDisplay);
-
-    SC_HANDLE CONST serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
-    if (!serviceCM) {
-        ServicePrintFailing(_T("OpenSCManager"), GetLastError());
-        return;
-    }
-
-    SC_HANDLE CONST service = OpenService(serviceCM, ServiceName, DELETE);
-    if (!service) {
-        ServicePrintFailing(_T("OpenService"), GetLastError());
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    SERVICE_STATUS status;
-    if (!QueryServiceStatus(service, &status)) {
-        ServicePrintFailing(_T("QueryServiceStatus"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    if (status.dwCurrentState != SERVICE_STOPPED)
-        return;
-
-    if (!StartService(service, 0, NULL)) {
-        ServicePrintFailing(_T("StartService"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    _putts(_T("Service started successfully.\n"));
-    CloseServiceHandle(service);
-    CloseServiceHandle(serviceCM);
-}
-
-VOID
-WINAPI
-ServiceStop(VOID)
-{
-    _tprintf(_T("Stopping %s service...\n"), ServiceDisplay);
-
-    SC_HANDLE CONST serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
-    if (!serviceCM) {
-        ServicePrintFailing(_T("OpenSCManager"), GetLastError());
-        return;
-    }
-
-    SC_HANDLE CONST service = OpenService(serviceCM, ServiceName, DELETE);
-    if (!service) {
-        ServicePrintFailing(_T("OpenService"), GetLastError());
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    SERVICE_STATUS status;
-    if (!QueryServiceStatus(service, &status)) {
-        ServicePrintFailing(_T("QueryServiceStatus"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    if (status.dwCurrentState == SERVICE_STOPPED || status.dwCurrentState == SERVICE_STOP_PENDING)
-        return;
-
-    if (!ControlService(service, SERVICE_CONTROL_STOP, NULL)) {
-        ServicePrintFailing(_T("ControlService"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    _putts(_T("Service stopped successfully.\n"));
-    CloseServiceHandle(service);
-    CloseServiceHandle(serviceCM);
-}
-
-VOID
-WINAPI
-ServicePause(VOID)
-{
-    _tprintf(_T("Pausing %s service...\n"), ServiceDisplay);
-
-    SC_HANDLE CONST serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
-    if (!serviceCM) {
-        ServicePrintFailing(_T("OpenSCManager"), GetLastError());
-        return;
-    }
-
-    SC_HANDLE CONST service = OpenService(serviceCM, ServiceName, DELETE);
-    if (!service) {
-        ServicePrintFailing(_T("OpenService"), GetLastError());
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    SERVICE_STATUS status;
-    if (!QueryServiceStatus(service, &status)) {
-        ServicePrintFailing(_T("QueryServiceStatus"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    if (status.dwCurrentState != SERVICE_RUNNING)
-        return;
-
-    if (!ControlService(service, SERVICE_CONTROL_PAUSE, NULL)) {
-        ServicePrintFailing(_T("ControlService"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    _putts(_T("Service paused successfully.\n"));
-    CloseServiceHandle(service);
-    CloseServiceHandle(serviceCM);
-}
-
-VOID
-WINAPI
-ServiceContinue(VOID)
-{
-    _tprintf(_T("Continuing %s service...\n"), ServiceDisplay);
-
-    SC_HANDLE CONST serviceCM = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
-    if (!serviceCM) {
-        ServicePrintFailing(_T("OpenSCManager"), GetLastError());
-        return;
-    }
-
-    SC_HANDLE CONST service = OpenService(serviceCM, ServiceName, DELETE);
-    if (!service) {
-        ServicePrintFailing(_T("OpenService"), GetLastError());
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    SERVICE_STATUS status;
-    if (!QueryServiceStatus(service, &status)) {
-        ServicePrintFailing(_T("QueryServiceStatus"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    if (status.dwCurrentState != SERVICE_PAUSED)
-        return;
-
-    if (!ControlService(service, SERVICE_CONTROL_CONTINUE, NULL)) {
-        ServicePrintFailing(_T("ControlService"), GetLastError());
-        CloseServiceHandle(service);
-        CloseServiceHandle(serviceCM);
-        return;
-    }
-
-    _putts(_T("Service continued successfully.\n"));
-    CloseServiceHandle(service);
-    CloseServiceHandle(serviceCM);
-}
-
-VOID
-WINAPI
-ServiceRestart(VOID)
-{
-    _tprintf(_T("Restarting %s service...\n"), ServiceDisplay);
-
-    ServiceStop();
-    ServiceStart();
-
-    _putts(_T("Service restarted successfully.\n"));
-}
-
-static SERVICE_STATUS_HANDLE ServiceStatusHandle = NULL;
-
-static BOOL ServiceStopFlag = FALSE;
-static BOOL ServicePauseFlag = FALSE;
-
-VOID
-WINAPI
-ServiceMain(
-    DWORD dwNumServicesArgs,
-    LPTSTR *lpServiceArgVectors)
+VOID WINAPI TheServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors)
 {
     UNREFERENCED_PARAMETER(dwNumServicesArgs);
     UNREFERENCED_PARAMETER(lpServiceArgVectors);
 
     static CONST DWORD SleepCycle = 1 * 1000;
 
-    ServiceStatusHandle = RegisterServiceCtrlHandler(ServiceName, ServiceCtrlHandler);
-    if (!ServiceStatusHandle) {
-        ServiceReportFailingEvent(_T("RegisterServiceCtrlHandler"), GetLastError());
+    TheServiceStatusHandle = RegisterServiceCtrlHandler(TheServiceName, TheServiceCtrlHandler);
+    if (!TheServiceStatusHandle) {
+        ReportTheServiceFailingEvent(_T("RegisterServiceCtrlHandler"), GetLastError());
         return;
     }
 
-    ServiceReportStatus(SERVICE_START_PENDING, NO_ERROR, 3000);
-    ServiceReportStatus(SERVICE_RUNNING, NO_ERROR, 0);
+    ReportTheServiceStatus(SERVICE_START_PENDING, NO_ERROR, 3000);
+    ReportTheServiceStatus(SERVICE_RUNNING, NO_ERROR, 0);
 
-    while (!ServiceStopFlag) {
-        if (ServicePauseFlag) {
+    while (!TheServiceStopFlag) {
+        if (TheServicePauseFlag) {
             Sleep(SleepCycle);
             continue;
         }
@@ -385,61 +252,26 @@ ServiceMain(
     }
 }
 
-VOID
-WINAPI
-ServiceReportStatus(
-    CONST DWORD currentState,
-    CONST DWORD win32ExitCode,
-    CONST DWORD waitHint)
-{
-    static SERVICE_STATUS ServiceStatus = {.dwServiceType = SERVICE_WIN32_OWN_PROCESS, .dwServiceSpecificExitCode = 0};
-    static DWORD CheckPoint = 1;
-
-    if (currentState)
-        ServiceStatus.dwCurrentState = currentState;
-
-    if (ServiceStatus.dwCurrentState == SERVICE_RUNNING || ServiceStatus.dwCurrentState == SERVICE_PAUSED)
-        ServiceStatus.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_SHUTDOWN;
-    else
-        ServiceStatus.dwControlsAccepted = 0;
-
-    ServiceStatus.dwWin32ExitCode = win32ExitCode;
-
-    if (ServiceStatus.dwCurrentState == SERVICE_STOPPED ||
-        ServiceStatus.dwCurrentState == SERVICE_RUNNING ||
-        ServiceStatus.dwCurrentState == SERVICE_PAUSED)
-        ServiceStatus.dwCheckPoint = 0;
-    else
-        ServiceStatus.dwCheckPoint = CheckPoint++;
-
-    ServiceStatus.dwWaitHint = waitHint;
-
-    SetServiceStatus(ServiceStatusHandle, &ServiceStatus);
-}
-
-VOID
-WINAPI
-ServiceCtrlHandler(
-    DWORD dwControl)
+VOID WINAPI TheServiceCtrlHandler(DWORD dwControl)
 {
     switch (dwControl) {
     case SERVICE_CONTROL_STOP:
     case SERVICE_CONTROL_SHUTDOWN:
-        ServiceReportStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);
-        ServiceStopFlag = TRUE;
-        ServiceReportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+        ReportTheServiceStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);
+        TheServiceStopFlag = TRUE;
+        ReportTheServiceStatus(SERVICE_STOPPED, NO_ERROR, 0);
         break;
 
     case SERVICE_CONTROL_PAUSE:
-        ServiceReportStatus(SERVICE_PAUSE_PENDING, NO_ERROR, 0);
-        ServicePauseFlag = TRUE;
-        ServiceReportStatus(SERVICE_PAUSED, NO_ERROR, 0);
+        ReportTheServiceStatus(SERVICE_PAUSE_PENDING, NO_ERROR, 0);
+        TheServicePauseFlag = TRUE;
+        ReportTheServiceStatus(SERVICE_PAUSED, NO_ERROR, 0);
         break;
 
     case SERVICE_CONTROL_CONTINUE:
-        ServiceReportStatus(SERVICE_CONTINUE_PENDING, NO_ERROR, 0);
-        ServicePauseFlag = FALSE;
-        ServiceReportStatus(SERVICE_RUNNING, NO_ERROR, 0);
+        ReportTheServiceStatus(SERVICE_CONTINUE_PENDING, NO_ERROR, 0);
+        TheServicePauseFlag = FALSE;
+        ReportTheServiceStatus(SERVICE_RUNNING, NO_ERROR, 0);
         break;
 
     case SERVICE_CONTROL_INTERROGATE:
@@ -450,42 +282,47 @@ ServiceCtrlHandler(
     }
 }
 
-VOID
-WINAPI
-ServicePrintFailing(
-    PTSTR CONST functionName,
-    CONST DWORD errorCode)
+VOID WINAPI ReportTheServiceStatus(CONST DWORD currentState, CONST DWORD win32ExitCode, CONST DWORD waitHint)
 {
-    PCTSTR CONST errorMessage = AllocErrorMessage(errorCode);
-    _tprintf(_T("Function %s failed: %s\n"), functionName, errorMessage);
-    LocalFree((HLOCAL)errorMessage);
+    static SERVICE_STATUS ServiceStatus = {.dwServiceType = SERVICE_WIN32_OWN_PROCESS, .dwServiceSpecificExitCode = 0};
+    static DWORD CheckPoint = 1;
+
+    ServiceStatus.dwCurrentState = currentState;
+
+    if (currentState == SERVICE_RUNNING || currentState == SERVICE_PAUSED)
+        ServiceStatus.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_SHUTDOWN;
+    else
+        ServiceStatus.dwControlsAccepted = 0;
+
+    ServiceStatus.dwWin32ExitCode = win32ExitCode;
+
+    if (currentState == SERVICE_STOPPED || currentState == SERVICE_RUNNING || currentState == SERVICE_PAUSED)
+        ServiceStatus.dwCheckPoint = 0;
+    else
+        ServiceStatus.dwCheckPoint = CheckPoint++;
+
+    ServiceStatus.dwWaitHint = waitHint;
+
+    SetServiceStatus(TheServiceStatusHandle, &ServiceStatus);
 }
 
-VOID
-WINAPI
-ServiceReportFailingEvent(
-    PTSTR CONST functionName,
-    CONST DWORD errorCode)
+VOID WINAPI ReportTheServiceFailingEvent(PTSTR CONST functionName, CONST DWORD errorCode)
 {
     TCHAR buffer[MAX_PATH];
 
     PCTSTR CONST errorMessage = AllocErrorMessage(errorCode);
-    StringCchPrintf(buffer, ARRAYSIZE(buffer), _T("Function %s failed: %s\n"), functionName, errorMessage);
+    StringCchPrintf(buffer, ARRAYSIZE(buffer), _T("%s failed: %s\n"), functionName, errorMessage);
     LocalFree((HLOCAL)errorMessage);
 
-    ServiceReportEvent(EVENTLOG_ERROR_TYPE, buffer);
+    ReportTheServiceEvent(EVENTLOG_ERROR_TYPE, buffer);
 }
 
-VOID
-WINAPI
-ServiceReportEvent(
-    CONST WORD  type,
-    PTSTR CONST message)
+VOID WINAPI ReportTheServiceEvent(CONST WORD type, PTSTR CONST message)
 {
-    HANDLE CONST eventSource = RegisterEventSource(NULL, ServiceName);
+    HANDLE CONST eventSource = RegisterEventSource(NULL, TheServiceName);
     if (eventSource) {
         PCTSTR strings[2];
-        strings[0] = ServiceName;
+        strings[0] = TheServiceName;
         strings[1] = message;
 
         ReportEvent(eventSource,
