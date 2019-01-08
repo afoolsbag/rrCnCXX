@@ -275,6 +275,7 @@ StringCchLength_SimplifyW(
 #else
 # define StringCchLength_Simplify StringCchLength_SimplifyA
 #endif
+
 #ifdef __cplusplus
 }
 #endif

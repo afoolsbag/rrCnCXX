@@ -24,7 +24,7 @@
 /* 控制台应用入口 */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-#ifndef TEST_SERVICE
+#ifdef TEST_SERVICE
     return TheServiceMain(argc, argv, envp);
 #endif
 

@@ -3,7 +3,7 @@
  * \file
  * \brief 进程和线程。
  *
- * \version 2019-01-03
+ * \version 2019-01-08
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright Unlicense
@@ -36,10 +36,10 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableA(
-    _In_z_     LPCSTR CONST path,
-    _In_opt_z_ LPCSTR CONST command,
-    _In_opt_z_ LPCSTR CONST startIn,
-    _In_        CONST BOOL  show
+    _In_z_     PCSTR CONST path,
+    _In_opt_z_ PCSTR CONST command,
+    _In_opt_z_ PCSTR CONST startIn,
+    _In_       CONST BOOL  show
 );
 
 /**
@@ -57,10 +57,10 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableW(
-    _In_z_     LPCWSTR CONST path,
-    _In_opt_z_ LPCWSTR CONST command,
-    _In_opt_z_ LPCWSTR CONST startIn,
-    _In_         CONST BOOL  show
+    _In_z_     PCWSTR CONST path,
+    _In_opt_z_ PCWSTR CONST command,
+    _In_opt_z_ PCWSTR CONST startIn,
+    _In_        CONST BOOL  show
 );
 
 #ifdef _UNICODE
@@ -84,7 +84,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableA(
-    _In_z_ CONST LPCSTR exeName
+    _In_z_ CONST PCSTR exeName
 );
 
 /**
@@ -102,7 +102,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableW(
-    _In_z_ CONST LPCWSTR exeName
+    _In_z_ CONST PCWSTR exeName
 );
 
 #ifdef _UNICODE

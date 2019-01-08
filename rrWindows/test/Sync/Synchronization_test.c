@@ -5,7 +5,7 @@
  *
  * \sa ["Synchronization"](https://docs.microsoft.com/windows/desktop/Sync/). *Microsoft Docs*.
  *
- * \version 2019-01-03
+ * \version 2019-01-08
  * \since 2018-02-05
  * \authors zhengrr
  * \copyright Unlicense
@@ -19,10 +19,10 @@
 
 #include "_test.h"
 
-static CONST TCHAR MutexName[] = _T("rrWindowsTest");
-
 START_TEST(tfSingletonProcess)
 {
+    static CONST TCHAR MutexName[] = _T("rrWindowsTest");
+
     if (OpenMutex(MUTEX_ALL_ACCESS, FALSE, MutexName))
         return;
     CreateMutex(NULL, FALSE, MutexName);

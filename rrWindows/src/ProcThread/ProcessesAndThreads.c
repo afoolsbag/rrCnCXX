@@ -17,12 +17,12 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableA(
-    _In_z_     LPCSTR CONST path,
-    _In_opt_z_ LPCSTR CONST command,
-    _In_opt_z_ LPCSTR CONST startIn,
-    _In_        CONST BOOL  show)
+    _In_z_     PCSTR CONST path,
+    _In_opt_z_ PCSTR CONST command,
+    _In_opt_z_ PCSTR CONST startIn,
+    _In_       CONST BOOL  show)
 {
-    LPSTR cmdBuf;
+    PSTR cmdBuf = NULL;
     if (command) {
         CONST size_t cmdBufCnt = 1/*' '*/ + StringCchLength_SimplifyA(command) + 1/*'\0'*/;
         cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(CHAR));
@@ -37,8 +37,6 @@ RunExecutableA(
             SetLastError(HRESULT_CODE(hr));
             return FALSE;
         }
-    } else {
-        cmdBuf = NULL;
     }
 
     STARTUPINFOA startupInfo;
@@ -67,12 +65,12 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableW(
-    _In_z_ LPCWSTR CONST path,
-    _In_z_ LPCWSTR CONST command,
-    _In_z_ LPCWSTR CONST startIn,
-    _In_     CONST BOOL  show)
+    _In_z_     PCWSTR CONST path,
+    _In_opt_z_ PCWSTR CONST command,
+    _In_opt_z_ PCWSTR CONST startIn,
+    _In_        CONST BOOL  show)
 {
-    LPWSTR cmdBuf;
+    PWSTR cmdBuf = NULL;
     if (command) {
         CONST size_t cmdBufCnt = 1/*L' '*/ + StringCchLength_SimplifyW(command) + 1/*L'\0'*/;
         cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(WCHAR));
@@ -87,8 +85,6 @@ RunExecutableW(
             SetLastError(HRESULT_CODE(hr));
             return FALSE;
         }
-    } else {
-        cmdBuf = NULL;
     }
 
     STARTUPINFOW startupInfo;
@@ -117,7 +113,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableA(
-    _In_z_ CONST LPCSTR exeName)
+    _In_z_ CONST PCSTR exeName)
 {
     INT cnt = 0;
 
@@ -158,7 +154,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableW(
-    _In_z_ CONST LPCWSTR exeName)
+    _In_z_ CONST PCWSTR exeName)
 {
     INT cnt = 0;
 
