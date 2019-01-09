@@ -155,7 +155,7 @@ VOID WINAPI TheServiceTool(CONST INT type)
             goto exit;
         }
 
-    } else {
+    } else /* Start, Stop, Pause or Continue */ {
         service = OpenService(serviceCM, TheServiceName, GENERIC_EXECUTE);
         if (!service) {
             _tprintf(_T("OpenService failed, errorCode=%lu.\n"), GetLastError());

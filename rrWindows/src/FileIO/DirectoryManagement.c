@@ -3,8 +3,10 @@
 #define RRWINDOWS_EXPORTS
 #include "rrwindows/FileIO/DirectoryManagement.h"
 
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
 #include <PathCch.h>
 #pragma comment(lib, "pathcch.lib")
+#endif
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 #include <strsafe.h>
@@ -44,12 +46,16 @@ CreateDirectoryRecursivelyW_Internal(
         return FALSE;
 
     {
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
         CONST HRESULT hr = PathCchRemoveFileSpec(parent, count);
         if (FAILED(hr)) {
             SetLastError(ERROR_INVALID_PARAMETER);
             HeapFree(GetProcessHeap(), 0, parent);
             return FALSE;
         }
+#else
+        PathRemoveFileSpecW(parent);
+#endif
     }
 
     if (!CreateDirectoryRecursivelyW_Internal(parent)) {
@@ -70,6 +76,7 @@ WINAPI
 CreateDirectoryRecursivelyW(
     _In_z_ PCWSTR CONST path)
 {
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
     PWSTR tmp = NULL;
     CONST HRESULT hr = PathAllocCanonicalize(path, PATHCCH_ALLOW_LONG_PATHS, &tmp);
     if (FAILED(hr)) {
@@ -79,6 +86,11 @@ CreateDirectoryRecursivelyW(
     CONST BOOL result = CreateDirectoryRecursivelyW_Internal(tmp);
     LocalFree(tmp);
     return result;
+#else
+    WCHAR tmp[MAX_PATH];
+    PathCanonicalizeW(tmp, path);
+    return CreateDirectoryRecursivelyW_Internal(tmp);
+#endif
 }
 
 RRWINDOWS_API
@@ -152,6 +164,7 @@ WINAPI
 RemoveDirectoryTraverselyW(
     _In_z_ PCWSTR CONST path)
 {
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
     PWSTR tmp = NULL;
     CONST HRESULT hr = PathAllocCanonicalize(path, PATHCCH_ALLOW_LONG_PATHS, &tmp);
     if (FAILED(hr)) {
@@ -161,4 +174,9 @@ RemoveDirectoryTraverselyW(
     CONST BOOL result = RemoveDirectoryTraverselyW_Internal(tmp);
     LocalFree(tmp);
     return result;
+#else
+    WCHAR tmp[MAX_PATH];
+    PathCanonicalizeW(tmp, path);
+    return RemoveDirectoryTraverselyW_Internal(tmp);
+#endif
 }

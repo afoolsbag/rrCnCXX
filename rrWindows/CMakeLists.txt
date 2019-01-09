@@ -20,7 +20,7 @@ aux_source_directory_ex(zGenerated DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/src/" 
 
 add_library_ex(
   SHARED ${zInclude} ${zSrc} ${zGenerated} TARGET_NAME_VARIABLE sRrwindowsLib C11
-  COMPILE_DEFINITIONS PUBLIC  "RRWINDOWS_SHARED"
+  COMPILE_DEFINITIONS PUBLIC  "RRWINDOWS_SHARED" "_WIN32_WINNT=0x0601"
   INCLUDE_DIRECTORIES PUBLIC  "include/"
                       PRIVATE "src/"
                               "${CMAKE_CURRENT_BINARY_DIR}/src/")

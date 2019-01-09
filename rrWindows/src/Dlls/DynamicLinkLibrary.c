@@ -3,8 +3,10 @@
 #define RRWINDOWS_EXPORTS
 #include "rrwindows/Dlls/DynamicLinkLibrary.h"
 
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
 #include <PathCch.h>
 #pragma comment(lib, "pathcch.lib")
+#endif
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 
@@ -89,12 +91,16 @@ AllocExecutableDirectoryPathW(VOID)
     PWSTR CONST path = AllocExecutablePath_CountW(&count);
     if (!path)
         return NULL;
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
     CONST HRESULT hr = PathCchRemoveFileSpec(path, count);
     if (FAILED(hr)) {
         SetLastError(HRESULT_CODE(hr));
         HeapFree(GetProcessHeap(), 0, path);
         return NULL;
     }
+#else
+    PathRemoveFileSpecW(path);
+#endif
     return path;
 }
 
@@ -177,12 +183,16 @@ AllocExecutableBaseNameW(VOID)
 {
     SIZE_T count = 0;
     PWSTR CONST name = AllocExecutableName_CountW(&count);
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
     CONST HRESULT hr = PathCchRemoveExtension(name, count);
     if (FAILED(hr)) {
         SetLastError(HRESULT_CODE(hr));
         HeapFree(GetProcessHeap(), 0, name);
         return NULL;
     }
+#else
+    PathRemoveExtensionW(name);
+#endif
     return name;
 }
 
@@ -213,12 +223,16 @@ AllocExecutableExtensionNameW(VOID)
     if (!path)
         return NULL;
     PCWSTR ext = NULL;
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
     CONST HRESULT hr = PathCchFindExtension(path, count, &ext);
     if (FAILED(hr)) {
         SetLastError(HRESULT_CODE(hr));
         HeapFree(GetProcessHeap(), 0, (PVOID)path);
         return NULL;
     }
+#else
+    ext = PathFindExtensionW(path);
+#endif
     PCWSTR CONST heap = StringAllocCopyW(ext);
     HeapFree(GetProcessHeap(), 0, (PVOID)path);
 
@@ -251,11 +265,15 @@ AllocInitializationPathW(VOID)
     PWSTR CONST path = AllocExecutablePath_CountW(&count);
     if (!path)
         return NULL;
+#if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
     CONST HRESULT hr = PathCchRenameExtension(path, count, L".ini");
     if (FAILED(hr)) {
         SetLastError(HRESULT_CODE(hr));
         HeapFree(GetProcessHeap(), 0, (PVOID)path);
         return NULL;
     }
+#else
+    PathRenameExtensionW(path, L".ini");
+#endif
     return path;
 }

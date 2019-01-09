@@ -37,7 +37,7 @@ CountProcessesByExecutableA(
 );
 
 /**
- * \brief 按可执行文件名计数进程（UNICODE 适配）。
+ * \brief 按可执行文件计数进程（UNICODE 适配）。
  *
  * \param executableName 可执行文件名，如 `foobar.exe`。
  * \returns `(-, 0)` 失败，调用 `GetLastError()` 获取扩展错误信息；\n

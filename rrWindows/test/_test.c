@@ -13,6 +13,7 @@
 #include "Intl/_test.h"
 #include "MenuRc/_test.h"
 #include "Services/_test.h"
+#include "Shell/_test.h"
 #include "Sync/_test.h"
 #include "SysInfo/_test.h"
 #include "WinSock/_test.h"
@@ -39,6 +40,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(tr, tsFileIO());
     srunner_add_suite(tr, tsIntl());
     srunner_add_suite(tr, tsMenuRc());
+    srunner_add_suite(tr, tsShell());
     srunner_add_suite(tr, tsSync());
     srunner_add_suite(tr, tsSysInfo());
     srunner_add_suite(tr, tsWinSock());
