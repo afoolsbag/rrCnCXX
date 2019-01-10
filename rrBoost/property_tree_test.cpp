@@ -4,22 +4,23 @@
 /// \brief Property Tree
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/property_tree.html>
 ///
-/// \version 2018-10-17
+/// \version 2018-01-10
 /// \since 2018-10-15
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <set>
 #include <string>
-using namespace std;
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <gtest/gtest.h>
 
-namespace rrboost::test {
+using namespace std;
+
+namespace rrboost {
 
 TEST(property_tree, with_xml)
 {
@@ -52,4 +53,4 @@ TEST(property_tree, with_xml)
     settings.load("config.xml");
 }
 
-}//namespace rrboost::test
+}//namespace rrboost

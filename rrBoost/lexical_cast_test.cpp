@@ -4,17 +4,17 @@
 /// \brief Lexical Cast
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/boost_lexical_cast.html>
 ///
-/// \version 2018-10-17
+/// \version 2019-01-10
 /// \since 2018-10-15
 /// \authors zhengrr
-/// \copyright The Unlicense
+/// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
 #include <boost/lexical_cast.hpp>
 #include <gtest/gtest.h>
 
-namespace rrboost::test {
+namespace rrboost {
 
 TEST(lexical_cast, string_2_number)
 {
@@ -27,4 +27,4 @@ TEST(lexical_cast, string_2_number)
     ASSERT_THROW(boost::lexical_cast<uint8_t>("32768"), boost::bad_lexical_cast);
 }
 
-}//namespace rrboost::test
+}//namespace rrboost

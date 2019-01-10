@@ -4,7 +4,7 @@
 /// \brief Program Options
 /// \sa <https://boost.org/doc/libs/1_68_0/doc/html/program_options.html>
 ///
-/// \version 2018-11-07
+/// \version 2018-01-10
 /// \since 2018-04-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -13,14 +13,15 @@
 
 #include <cstdlib>
 #include <iostream>
-using namespace std;
 #include <gsl/gsl>
-using namespace gsl;
 
 #include <boost/program_options.hpp>
 #include <gtest/gtest.h>
 
-namespace rrboost::test {
+using namespace std;
+using namespace gsl;
+
+namespace rrboost {
 
 TEST(program_options, first_step)
 {
@@ -56,4 +57,4 @@ TEST(program_options, first_step)
     }
 }
 
-}//namespace rrboost::test
+}//namespace rrboost

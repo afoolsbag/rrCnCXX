@@ -4,7 +4,7 @@
 /// \brief Asio
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_asio.html>
 ///
-/// \version 2019-01-09
+/// \version 2019-01-10
 /// \since 2019-01-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -26,7 +26,7 @@ using namespace std;
 
 #pragma warning(pop)
 
-namespace rrboost::test {
+namespace rrboost {
 
 /// cout (with) leader milliseconds
 static inline ostream &coutlms()
@@ -204,4 +204,4 @@ TEST(asio, udp)
     client.join();
 }
 
-}//namespace rrboost::test
+}//namespace rrboost

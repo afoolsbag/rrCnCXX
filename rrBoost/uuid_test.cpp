@@ -4,7 +4,7 @@
 /// \brief Universally Unique Identifier
 /// \sa <https://boost.org/doc/libs/1_68_0/libs/uuid/doc/index.html>
 ///
-/// \version 2018-11-07
+/// \version 2019-01-10
 /// \since 2018-10-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -15,7 +15,7 @@
 #include <boost/uuid/uuid.hpp>
 #include <gtest/gtest.h>
 
-namespace rrboost::test {
+namespace rrboost {
 
 TEST(uuid, first_step)
 {
@@ -23,4 +23,4 @@ TEST(uuid, first_step)
     const auto uuid {gen()};
 }
 
-}//namespace rrboost::test
+}//namespace rrboost

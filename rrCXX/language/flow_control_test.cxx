@@ -3,7 +3,7 @@
 /// \defgroup gFlowControl 流控制
 /// \ingroup gLanguage
 ///
-/// \version 2018-11-27
+/// \version 2019-01-10
 /// \since 2018-09-19
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -63,26 +63,74 @@ TEST(flow_control, switch)
 #endif
 }
 
-/// \brief `goto` 语句。
-/// \remarks NR.6: 请勿如此：把所有清理操作放在函数末尾并使用 `goto exit`
+/// \brief `goto` 语句和 `goto finished` 技巧。
+/// \remarks ES.76: 避免 goto
 /// \sa <https://zh.cppreference.com/w/cpp/language/goto>
-TEST(flow_control, goto)
+TEST(flow_control, goto_finished)
 {
-    const auto memory {malloc(sizeof(int))};
-    if (memory == nullptr)
-        FAIL();
-    goto exit;
+    constexpr int imax {10};
+    constexpr int jmax {10};
+    constexpr int kmax {10};
+
+    for (int i = 0; i < imax; ++i) {
+        for (int j = 0; j < jmax; ++j) {
+            for (int k = 0; k < kmax; ++k) {
+                if (i + j + k == 21)
+                    goto finished;
+            }
+        }
+    }
+finished:
+
+    return;
+}
+
+/// \brief `goto exit` 技巧。
+/// \remarks NR.6: 请勿如此：把所有清理操作放在函数末尾并使用 `goto exit`
+TEST(flow_control, goto_exit)
+{
+    void *tmp1 {nullptr};
+    void *tmp2 {nullptr};
+    void *tmp3 {nullptr};
+
+    tmp1 = malloc(sizeof(int));
+    if (!tmp1)
+        goto exit;
+    tmp2 = malloc(sizeof(int));
+    if (!tmp2)
+        goto exit;
+
+    tmp3 = malloc(sizeof(int));
+    if (!tmp3)
+        goto exit;
+
 exit:
-    free(memory);
+    if (tmp1)
+        free(tmp1);
+    if (tmp2)
+        free(tmp2);
+    if (tmp3)
+        free(tmp3);
 }
 
 /// \brief `gsl::finally`
+/// \remarks 替代 `goto exit` 技巧。
 TEST(flow_control, gsl_finally)
 {
-    const auto memory {malloc(sizeof(int))};
-    if (memory == nullptr)
-        FAIL();
-    const auto memory_defer {finally([&memory] { free(memory); })};
+    const auto tmp1 {malloc(sizeof(int))};
+    if (!tmp1)
+        return;
+    const auto tmp1_final_action {finally([&tmp1] { free(tmp1); })};
+
+    const auto tmp2 {malloc(sizeof(int))};
+    if (!tmp2)
+        return;
+    const auto tmp2_final_action {finally([&tmp2] { free(tmp2); })};
+
+    const auto tmp3 {malloc(sizeof(int))};
+    if (!tmp3)
+        return;
+    const auto tmp3_final_action {finally([&tmp3] { free(tmp3); })};
 }
 
 /// @}
