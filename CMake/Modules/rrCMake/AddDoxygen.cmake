@@ -92,7 +92,7 @@ function(add_doxygen)
   # Project related configuration options
   # YES       FULL_PATH_NAMES       http://doxygen.org/manual/config.html#cfg_full_path_names
   #           STRIP_FROM_PATH       http://doxygen.org/manual/config.html#cfg_strip_from_path
-  set(DOXYGEN_STRIP_FROM_PATH       "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
+  set(DOXYGEN_STRIP_FROM_PATH       "${PROJECT_SOURCE_DIR}")
   # NO        JAVADOC_AUTOBRIEF     http://doxygen.org/manual/config.html#cfg_javadoc_autobrief
   set(DOXYGEN_JAVADOC_AUTOBRIEF     ${_JAVADOC_AUTOBRIEF})
   # NO        OPTIMIZE_OUTPUT_FOR_C http://doxygen.org/manual/config.html#cfg_optimize_output_for_c
@@ -146,7 +146,7 @@ function(add_doxygen)
 
   doxygen_add_docs(
     "${sTgtName}"
-    "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}"
+    "${PROJECT_SOURCE_DIR}"
     WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
     COMMENT           "Generating documentation with Doxygen.")
 
