@@ -1,15 +1,19 @@
-/// \copyright The Unlicense
+/// \copyright Unlicense
 
 #include <memory>
 #include <vector>
-using namespace std;
 
 #include <gtest/gtest.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/daily_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
+
+using namespace std;
 
 namespace rrspdlog::test {
 
-constexpr char pattern[] {"%C-%m-%d %H:%M:%S.%e p%P t%t %l: %v"};
+constexpr char pattern[] {"%^[%C%m%d|%H:%M:%S.%e|%L] %v @p%Pt%t%$"};
 
 TEST(spdlog, basic_logger)
 {
@@ -25,12 +29,12 @@ TEST(spdlog, basic_logger)
     {
         const auto logger = spdlog::get("basic logger");
         ASSERT_TRUE(logger);
-        logger->trace("Trace message");
-        logger->debug("Debug message");
-        logger->info("Info message");
-        logger->warn("Warn message");
-        logger->error("Error message");
-        logger->critical("Critical message");
+        logger->trace("Trace message.");
+        logger->debug("Debug message.");
+        logger->info("Info message.");
+        logger->warn("Warn message.");
+        logger->error("Error message.");
+        logger->critical("Critical message.");
     }
 }
 
@@ -38,7 +42,7 @@ TEST(spdlog, multi_sink)
 {
     try {
         vector<spdlog::sink_ptr> sinks;
-        sinks.push_back(make_shared<spdlog::sinks::stdout_sink_st>());
+        sinks.push_back(make_shared<spdlog::sinks::stdout_color_sink_st>());
         sinks.push_back(make_shared<spdlog::sinks::daily_file_sink_st>("logs/daily.log", 0, 0));
         const auto logger = make_shared<spdlog::logger>("combined logger", sinks.begin(), sinks.end());
         logger->set_pattern(pattern);
@@ -52,12 +56,12 @@ TEST(spdlog, multi_sink)
     {
         const auto logger = spdlog::get("combined logger");
         ASSERT_TRUE(logger);
-        logger->trace("Trace message");
-        logger->debug("Debug message");
-        logger->info("Info message");
-        logger->warn("Warn message");
-        logger->error("Error message");
-        logger->critical("Critical message");
+        logger->trace("Trace message.");
+        logger->debug("Debug message.");
+        logger->info("Info message.");
+        logger->warn("Warn message.");
+        logger->error("Error message.");
+        logger->critical("Critical message.");
     }
 }
 
