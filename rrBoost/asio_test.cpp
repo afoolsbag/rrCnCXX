@@ -1,10 +1,12 @@
-//===-- Asio --------------------------------------------------*- C++ -*-===//
+//===-- Asio ----------------------------------------------------*- C++ -*-===//
 ///
 /// \file
 /// \brief Asio
+///
+/// \sa [Boost.Asio C++ 网络编程](https://gitbook.com/book/mmoaay/boost-asio-cpp-network-programming-chinese)
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_asio.html>
 ///
-/// \version 2019-01-10
+/// \version 2019-01-11
 /// \since 2019-01-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -22,117 +24,154 @@
 #include <gtest/gtest.h>
 #include <boost/thread/xtime.hpp>
 
-using namespace std;
-
 #pragma warning(pop)
 
-namespace rrboost {
+#define USE_EXCEPTION
 
-/// cout (with) leader milliseconds
-static inline ostream &coutlms()
+using namespace std;
+
+template <typename T>
+void tag(const T &label) noexcept
 {
-    return cout
-        << "At "
-        << chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now().time_since_epoch()).count()
-        << "ms, ";
+    const auto now {chrono::steady_clock::now()};
+    const auto since_epoch_mss {chrono::duration_cast<chrono::milliseconds>(now.time_since_epoch())};
+
+    cout << "[" << since_epoch_mss.count() << "ms] " << label << "\n";
 }
+
+namespace rrboost {
 
 TEST(asio, wait)
 {
     using namespace chrono_literals;
 
-    boost::asio::io_context ioctx;
+    boost::asio::io_context io;
 
-    coutlms() << "before the timer construction.\n";
-    boost::asio::steady_timer timer(ioctx, 10ms);
-    timer.wait();
-    coutlms() << "after the timer.wait.\n";
+    boost::asio::steady_timer timer(io, 10ms);
+    tag("waiting...");
+
+#if 1  // exception style
+    try {
+        timer.wait();
+    } catch (const boost::system::system_error &e) {
+        cerr << e.what() << endl;
+    }
+#else  // error code style
+    boost::system::error_code ec;
+    timer.wait(ec);
+    if (ec)
+        cerr << system_error(ec).what() << endl;
+#endif
+    tag("timeout.");
 }
 
-/// 异步 Asio 使用硬件中断实现回调，除回调线程外，不阻塞其他线程。
 TEST(asio, async_wait)
 {
     using namespace chrono_literals;
 
-    boost::asio::io_context ioctx;
+    boost::asio::io_context io;
 
-    coutlms() << "before the timer construction.\n";
-    boost::asio::steady_timer timer(ioctx, chrono::steady_clock::now() + 10ms);
-    timer.async_wait([](const boost::system::error_code &/*e*/) {
-        coutlms() << "in the timer callback.\n";
+    const auto now {chrono::steady_clock::now()};
+    boost::asio::steady_timer timer1(io, now + 10ms);
+    timer1.async_wait([](const boost::system::error_code &/*e*/) {
+        tag("timer1 timeout and callback.");
     });
-    coutlms() << "after the timer.async_wait.\n";
+    boost::asio::steady_timer timer2(io, now + 20ms);
+    timer2.async_wait([](const boost::system::error_code &/*e*/) {
+        tag("timer2 timeout and callback.");
+    });
+    tag("waiting...");
 
-    ioctx.run();
-    coutlms() << "after the ioctx.run.\n";
+    io.run();
+    tag("io run return.");
 }
 
-TEST(asio, async_wait_with_arg)
+TEST(asio, async_wait_arg)
 {
     using namespace chrono_literals;
 
     const auto callback {[](const boost::system::error_code &/*e*/, const string &arg) -> void {
-        cout << "Time out with \"" << arg << "\" from async_wait_with_arg callback.\n";
+        tag(arg);
     }};
 
-    boost::asio::io_context ioctx;
+    boost::asio::io_context io;
 
-    boost::asio::steady_timer timer(ioctx, 10ms);
-    timer.async_wait(boost::bind<void>(callback, boost::asio::placeholders::error, "aoishigure"));
+    boost::asio::steady_timer timer(io, 10ms);
+    timer.async_wait(boost::bind<void>(callback, boost::asio::placeholders::error, "Aoi Shigure"));
 
-    ioctx.run();
+    io.run();
 }
 
 TEST(asio, tcp)
 {
+    namespace asio = boost::asio;
+    using asio::ip::address;
+    using asio::ip::tcp;
+
     thread server([] {
         try {
-            boost::asio::io_context io;
+            asio::io_context io;
 
-            boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 49152);
-            boost::asio::ip::tcp::acceptor acceptor(io, endpoint);
+            tcp::endpoint listening_ep(tcp::v4(), 49152);
+            tcp::acceptor acceptor(io, listening_ep);
 
             while (true) {
-                boost::asio::ip::tcp::socket socket(io);
+                tcp::socket socket(io);
                 acceptor.accept(socket);
 
-                string message = "Message from tcp server.";
+                // read from client
+                array<char, 1024> buf;
+                const auto len = socket.read_some(asio::buffer(buf));
+                cout.write(buf.data(), len) << "\n";
 
-                boost::asio::write(socket, boost::asio::buffer(message));
+                // write to client
+                socket.write_some(asio::buffer("TCP server: Hello, TCP client."));
+
+                // disconnect
                 break;
             }
 
         } catch (const exception &e) {
-            cerr << "tcp server: " << e.what() << endl;
+            cerr << "TCP server: " << e.what() << endl;
 
         }
     });
 
     thread client([] {
         try {
-            boost::asio::io_context ioctx;
-            
-            boost::asio::ip::tcp::resolver resolver(ioctx);
-            const auto server_eps {resolver.resolve("127.0.0.1", "49152")};
+            asio::io_context io;
 
-            boost::asio::ip::tcp::socket socket(ioctx);
-            boost::asio::connect(socket, server_eps);
+#if 1  // ip address
+            const tcp::endpoint server_ep(address::from_string("127.0.0.1"), 49152);
 
-            array<char, 128> buf;
+            tcp::socket socket(io);
+            socket.connect(server_ep);
+#else  // domain name
+            tcp::resolver resolver(io);
+            const auto server_eps {resolver.resolve("localhost", "49152")};
+
+            tcp::socket socket(io);
+            asio::connect(socket, server_eps);
+#endif
+            // write to server
+            socket.write_some(asio::buffer("TCP client: Hello, TCP server."));
+
+            // read from server
+            array<char, 1024> buf;
             while (true) {
-                boost::system::error_code ec;
-                const size_t len = socket.read_some(boost::asio::buffer(buf), ec);
-
-                if (ec == boost::asio::error::eof)
-                    break;
-                if (ec)
-                    throw system_error(ec);
-
-                cout.write(buf.data(), len) << endl;
+                try {
+                    const auto len = socket.read_some(asio::buffer(buf));
+                    cout.write(buf.data(), len);
+                } catch (const boost::system::system_error &e) {
+                    if (e.code() == asio::error::eof)
+                        break;
+                    throw;
+                }
             }
+            cout << "\n";
 
         } catch (const exception &e) {
-            cerr << "tcp client: " << e.what() << endl;
+            cerr << "TCP client: " << e.what() << endl;
 
         }
     });
@@ -143,59 +182,50 @@ TEST(asio, tcp)
 
 TEST(asio, udp)
 {
+    namespace asio = boost::asio;
+    using asio::ip::address;
+    using asio::ip::udp;
+
     thread server([] {
         try {
-            boost::asio::io_context ioctx;
+            asio::io_context io;
 
-            boost::asio::ip::udp::endpoint listening_ep(boost::asio::ip::udp::v4(), 49152);
-            boost::asio::ip::udp::socket socket(ioctx, listening_ep);
+            udp::endpoint listening_ep(udp::v4(), 49152);
+            udp::socket socket(io, listening_ep);
 
-            array<char, 128> buf;
+            array<char, 65535> buf;
             while (true) {
+                udp::endpoint remote_ep;
+                const auto len = socket.receive_from(asio::buffer(buf), remote_ep);
+                cout.write(buf.data(), len) << "\n";
 
-                boost::system::error_code ec;
-                boost::asio::ip::udp::endpoint remote_ep;
-                const size_t len = socket.receive_from(boost::asio::buffer(buf), remote_ep);
-
-                if (ec == boost::asio::error::eof)
-                    break;
-                if (ec)
-                    throw system_error(ec);
-
-                cout.write(buf.data(), len) << endl;
-
-                const string msg {"Message from udp server."};
-                socket.send_to(boost::asio::buffer(msg), remote_ep);
-
+                socket.send_to(asio::buffer("UDP server: Hello, UDP client."), remote_ep);
                 break;
             }
 
         } catch (const exception &e) {
-            cerr << e.what() << endl;
+            cerr << "UDP server: " << e.what() << endl;
 
         }
     });
 
     thread client([] {
         try {
-            boost::asio::io_context io;
+            asio::io_context io;
 
-            boost::asio::ip::udp::resolver resolver(io);
-            const auto server_eps = resolver.resolve("127.0.0.1", "49152");
+            udp::socket socket(io);
+            socket.open(udp::v4());
 
-            boost::asio::ip::udp::socket socket(io);
-            socket.open(boost::asio::ip::udp::v4());
+            const udp::endpoint server_receiver_ep(address::from_string("127.0.0.1"), 49152);
+            socket.send_to(asio::buffer("UDP client: Hello, UDP server."), server_receiver_ep);
 
-            const string msg{"Message from udp client."};
-            socket.send_to(boost::asio::buffer(msg), *server_eps.begin());
-
-            boost::array<char, 128> buf;
-            boost::asio::ip::udp::endpoint sender_ep;
-            size_t len = socket.receive_from(boost::asio::buffer(buf), sender_ep);
-            cout.write(buf.data(), len) << endl;
+            array<char, 65535> buf;
+            udp::endpoint server_sender_ep;
+            const auto len = socket.receive_from(asio::buffer(buf), server_sender_ep);
+            cout.write(buf.data(), len) << "\n";
 
         } catch (const exception &e) {
-            cerr << e.what() << endl;
+            cerr << "UDP client: " << e.what() << endl;
 
         }
     });
