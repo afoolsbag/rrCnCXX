@@ -11,12 +11,20 @@
 ///
 //===----------------------------------------------------------------------===//
 
+#include <iostream>
+
+#include <boost/format.hpp>
 #include <gtest/gtest.h>
+
+using namespace std;
 
 namespace rrboost {
 
 TEST(format, first_step)
 {
+    using boost::format;
+
+    cout << format("Hello, %1%.\n") % "Aoi";
 }
 
 }//namespace rrboost
