@@ -2,10 +2,10 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2018-11-27
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-01-14
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
-project(rrCXX VERSION 2018.11.27 LANGUAGES CXX)
+project(rrCXX VERSION 2019.01.14 LANGUAGES CXX)
 project_more()
 compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
@@ -17,12 +17,8 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS)
 
 aux_source_directory_ex(zSource RECURSE)
-configure_file("project.hxx.in" "project.hxx" @ONLY)
-aux_source_directory_ex(zGenerated DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/" GROUP_ROOT "generated/")
-
 add_executable_ex(
   ${zSource} ${zGenerated} CXX17
   INCLUDE_DIRECTORIES PRIVATE "./"
-                              "${CMAKE_CURRENT_BINARY_DIR}/"
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gsl_microsoft
                               CONAN_PKG::gtest)

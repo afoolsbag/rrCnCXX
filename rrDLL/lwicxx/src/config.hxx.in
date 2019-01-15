@@ -1,10 +1,10 @@
-//===-- Project -------------------------------------------------*- C++ -*-===//
+//===-- Configuration -------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 项目信息。
+/// \brief 配置。
 /// \details 名称、版本、作者、版权等信息。
 ///
-/// \version 2018-11-22
+/// \version 2019-01-15
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRCXX_PROJECT_HXX_
-#define RRCXX_PROJECT_HXX_
+#ifndef RRDLL_LWICXX_CONFIG_HXX_
+#define RRDLL_LWICXX_CONFIG_HXX_
 
 #include <cstdint>
 
@@ -36,7 +36,7 @@ using namespace std;
 /// 产品许可。
 #define PRODUCT_LICENSE       "@PRODUCT_LICENSE@"
 
-namespace rrcxx::product {
+namespace rrdll::lwicxx::product {
 
 /// 产品名。
 constexpr char name[] {PRODUCT_NAME};
@@ -55,7 +55,7 @@ constexpr char authors[] {PRODUCT_AUTHORS};
 /// 产品许可。
 constexpr char license[] {PRODUCT_LICENSE};
 
-}//namespace rrcxx::product
+}//namespace rrdll::lwicxx::product
 
 /// 项目名。
 #define PROJECT_NAME          "@PROJECT_NAME@"
@@ -74,7 +74,7 @@ constexpr char license[] {PRODUCT_LICENSE};
 /// 项目许可。
 #define PROJECT_LICENSE       "@PROJECT_LICENSE@"
 
-namespace rrcxx::project {
+namespace rrdll::lwicxx::project {
 
 /// 项目名。
 constexpr char name[] {PROJECT_NAME};
@@ -93,6 +93,6 @@ constexpr char authors[] {PROJECT_AUTHORS};
 /// 项目许可。
 constexpr char license[] {PROJECT_LICENSE};
 
-}//namespace rrcxx::project
+}//namespace rrdll::lwicxx::project
 
-#endif//RRCXX_PROJECT_HXX_
+#endif//RRDLL_LWICXX_CONFIG_HXX_

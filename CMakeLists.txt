@@ -16,7 +16,7 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 include("${CMAKE_BINARY_DIR}/conan.cmake")
 
-project(rrCnCxx VERSION 2018.11.07 LANGUAGES NONE)
+project(rrCnCxx VERSION 2019.01.14 LANGUAGES NONE)
 product_more(AUTHORS "zhengrr" LICENSE "Unlicense")
 
 aux_add_subdirectories(WITH_OPTION)
