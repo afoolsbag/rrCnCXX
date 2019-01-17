@@ -45,6 +45,7 @@
 /// / [*CGAL*](https://cgal.org/)
 /// / [*DirectX*](https://docs.microsoft.com/windows/desktop/directx)
 /// / [*Google Test*](https://github.com/google/googletest)
+/// / [*JRTPLIB*](https://github.com/j0r1/JRTPLIB)
 /// / [*LIVE555*](http://live555.com/)
 /// / [*Unreal Engine*](https://unrealengine.com/)
 ///
@@ -64,7 +65,7 @@
 ///   has waived all copyright and related or neighboring rights to this work.
 /// </p>
 ///
-/// \version 2019-01-04
+/// \version 2019-01-17
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0
