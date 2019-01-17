@@ -28,31 +28,34 @@
 / [*开源中国*](https://oschina.net/)
 / [*前端乱炖*](http://html-js.com/)
 
-词典
-*   [*The Free Dictionary*](https://thefreedictionary.com/)
-*   :cn:
-    *   [*汉典*](http://zdic.net/)
-*   :gb:
-    *   [*Abbreviations.com*](https://abbreviations.com/) & [*All Acronyms Dictionary*](https://allacronyms.com/)
-    *   [*Dictionary.com*](https://dictionary.com/) & [*Thesaurus.com*](https://thesaurus.com/)
-    *   [*Cambridge*](https://dictionary.cambridge.org/), [*Longman*](https://ldoceonline.com/), [*Oxford*](https://en.oxforddictionaries.com/) & [*Merriam-Webster*](https://merriam-webster.com/)
+*词典*
+/ [*Abbreviations.com*](https://abbreviations.com/)
+/ [*All Acronyms Dictionary*](https://allacronyms.com/)
+/ [*Cambridge*](https://dictionary.cambridge.org/)
+/ [*Dictionary.com*](https://dictionary.com/)
+/ [*Longman*](https://ldoceonline.com/)
+/ [*Merriam-Webster*](https://merriam-webster.com/)
+/ [*Oxford*](https://en.oxforddictionaries.com/)
+/ [*The Free Dictionary*](https://thefreedictionary.com/)
+/ [*Thesaurus.com*](https://thesaurus.com/)
+/ [*汉典*](http://zdic.net/)
 
-字符
-*   [*Unicode® character table*](https://unicode-table.com/)
-*   [*Emoji*](https://iemoji.com/)
+*字符*
+/ [*Emoji*](https://iemoji.com/)
+/ [*Unicode® character table*](https://unicode-table.com/)
 
-代码
-*   ["ASCII Figlet Generator"](https://www.askapache.com/online-tools/figlet-ascii/). *AskApache*.
-*   ["Country Code"](https://wikipedia.org/wiki/Country_code). *Wikipedia*.
-    *   [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html)
-*   ["Date and Time"](https://ewikipedia.org/wiki/Date_and_time_representation_by_country). *Wikipedia*.
-    *   ["ISO 8601"](https://wikipedia.org/wiki/ISO_8601). *Wikipedia*.
-    *   [*ISO 8601 — Date and time format*](https://iso.org/iso-8601-date-and-time-format.html)
-*   ["Language Code"](https://wikipedia.org/wiki/Language_code). *Wikipedia*.
-    *   [*ISO 639 — Language codes*](https://iso.org/iso-639-language-codes.html)
-    *   [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
-        *   ["Language subtag lookup app"](https://r12a.github.io/app-subtags/). *r12a.io*.
-*   ["SPDX License List"](https://spdx.org/licenses/). *Software Package Data Exchange*.
+*代码*
+/ [*ASCII Figlet Generator*](https://www.askapache.com/online-tools/figlet-ascii/)
+/ [*Country Code*](https://wikipedia.org/wiki/Country_code) (
+    / [*ISO 3166 — Country Codes*](https://iso.org/iso-3166-country-codes.html) )
+/ [*Date and Time*](https://ewikipedia.org/wiki/Date_and_time_representation_by_country) (
+    / [*ISO 8601*](https://wikipedia.org/wiki/ISO_8601)
+    / [*ISO 8601 — Date and time format*](https://iso.org/iso-8601-date-and-time-format.html) )
+/ ["Language Code"](https://wikipedia.org/wiki/Language_code) (
+    / [*ISO 639 — Language codes*](https://iso.org/iso-639-language-codes.html)
+    / [*BCP 47 — Tags for Identifying Languages*](https://tools.ietf.org/html/bcp47)
+    / [*Language subtag lookup app*](https://r12a.github.io/app-subtags/) )
+/ [*SPDX License List*](https://spdx.org/licenses/)
 
 ## 指南
 
@@ -66,26 +69,28 @@
 
 [*awesome*](https://awesome.re/)
 
+*编辑*
 / [*Emacs*](https://gnu.org/software/emacs/)
 / [*Notepad++*](https://notepad-plus-plus.org/)
 / [*Vim*](https://www.vim.org/)
 / [*Visual Studio Code*](https://code.visualstudio.com/)
 
+*环境*
 / [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
 / [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
 / [*Mingw-w64*](https://mingw-w64.org/)
 / [*MSYS2*](https://www.msys2.org/ "Minimal System")
 
+*开发*
 / [*CLion*](https://jetbrains.com/clion)
 / [*Understand™*](https://scitools.com/)
-/ [*Visual Studio*](https://visualstudio.com/)
-(
-/ [*IncrediBuild*](https://incredibuild.com/)
-/ [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
-/ [*Studio Styles*](https://studiostyl.es/)
-/ [*Visual Assist*](https://wholetomato.com/)
-)
+/ [*Visual Studio*](https://visualstudio.com/) (
+    / [*IncrediBuild*](https://incredibuild.com/)
+    / [*ReSharper С++*](https://jetbrains.com/resharper-cpp)
+    / [*Studio Styles*](https://studiostyl.es/)
+    / [*Visual Assist*](https://wholetomato.com/) )
 
+*工具*
 / [*Ettercap*](https://www.ettercap-project.org/)
 / [*FastCopy*](https://fastcopy.jp/)
 / [*iPerf*](https://iperf.fr/)
