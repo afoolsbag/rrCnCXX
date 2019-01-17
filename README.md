@@ -91,10 +91,16 @@
     / [*Visual Assist*](https://wholetomato.com/) )
 
 *工具*
+/ [*DebugView*](https://docs.microsoft.com/sysinternals/downloads/debugview)
+/ [*Dependency Walker*](http://dependencywalker.com)
 / [*Ettercap*](https://www.ettercap-project.org/)
 / [*FastCopy*](https://fastcopy.jp/)
 / [*iPerf*](https://iperf.fr/)
+/ [*Process Explorer*](https://docs.microsoft.com/sysinternals/downloads/process-explorer)
 / [*Rapid Environment Editor*](https://rapidee.com/)
+/ [*Visual Leak Detector*](https://kinddragon.github.io/vld/)
+/ [*WinDbg*](http://windbg.org/)
+/ [*Windows Sysinternals*](https://docs.microsoft.com/sysinternals/)
 / [*Wireshark*](https://wireshark.org/)
 
 ## Git

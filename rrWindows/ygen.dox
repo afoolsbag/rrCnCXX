@@ -28,15 +28,7 @@
  *
  * # Awesome                                                         {#sAwesone}
  *
- * *   [*Dependency Walker*](http://dependencywalker.com)
- * *   [*FastCopy*](https://fastcopy.jp/)
- * *   [*WinDbg*](http://windbg.org/)
- * *   [*Windows Sysinternals*](https://docs.microsoft.com/sysinternals/)
- *     *   Process Utilities
- *         *   [Process Explorer](https://docs.microsoft.com/sysinternals/downloads/process-explorer)
- *     *   Miscellaneous
- *         *   [BgInfo](https://docs.microsoft.com/sysinternals/downloads/bginfo)
- *         *   [DebugView](https://docs.microsoft.com/sysinternals/downloads/debugview)
+ * [Awesome Windows](https://github.com/Awesome-Windows/Awesome)
  *
  * # 许可                                                            {#sLicense}
  *
@@ -54,7 +46,7 @@
  *   has waived all copyright and related or neighboring rights to this work.
  * </p>
  *
- * \version 2018-11-19
+ * \version 2019-01-17
  * \since 2018-01-22
  * \authors zhengrr
  * \copyright CC0-1.0
