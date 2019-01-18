@@ -6,7 +6,7 @@
 /// \sa [Boost.Asio C++ 网络编程](https://gitbook.com/book/mmoaay/boost-asio-cpp-network-programming-chinese)
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_asio.html>
 ///
-/// \version 2019-01-11
+/// \version 2019-01-17
 /// \since 2019-01-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -25,8 +25,6 @@
 #include <boost/thread/xtime.hpp>
 
 #pragma warning(pop)
-
-#define USE_EXCEPTION
 
 using namespace std;
 
