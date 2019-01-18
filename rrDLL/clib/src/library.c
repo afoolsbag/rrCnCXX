@@ -1,19 +1,13 @@
 /** copyright Unlicense */
 
-#define RRDLL_LWIC_EXPORTS
-#include "lwic/library.h"
-
-#include <string.h>
+#define CLIB_EXPORTS
+#include "clib/library.h"
 
 #include "config.h"
 
-EXTERN_C
-RRDLL_LWIC_API
-rrdll_lwic_version_t
-APIENTRY
-rrdll_lwic_version(void)
+CLIB_DECORATING CLIB_IMEXPORT clib_version_t CLIB_CALLING clib_version(void)
 {
-    rrdll_lwic_version_t v;
+    clib_version_t v;
     v.major = (int)project_version_major;
     v.minor = (int)project_version_minor;
     v.patch = (int)project_version_patch;

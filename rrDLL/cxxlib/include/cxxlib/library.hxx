@@ -26,7 +26,7 @@
 ///
 /// \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
 ///
-/// \version 2019-01-15
+/// \version 2019-01-18
 /// \since 2018-01-09
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -34,47 +34,23 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRDLL_LWICXX_LIBRARY_HXX_
-#define RRDLL_LWICXX_LIBRARY_HXX_
+#ifndef CXXLIB_LIBRARY_HXX_
+#define CXXLIB_LIBRARY_HXX_
 
-#include "lwicxx/api_macros.hxx"
+#include "cxxlib/api_macros.hxx"
 
-typedef enum rrdll_lwicxx_error_code_t_ {
-    rrdll_lwicxx_success = 0,
-    rrdll_lwicxx_invalid_handle = 0x6,
-    rrdll_lwicxx_invalid_parameter = 0x57,
-}rrdll_lwicxx_error_code_t;
+typedef enum cxxlib_error_code_t_ {
+    cxxlib_success = 0,
+    cxxlib_invalid_handle = 0x6,
+    cxxlib_invalid_parameter = 0x57,
+} cxxlib_error_code_t;
 
-typedef void *rrdll_lwicxx_handle_t;
+typedef void *cxxlib_handle_t;
 
-EXTERN_C
-RRDLL_LWICXX_API
-rrdll_lwicxx_error_code_t
-APIENTRY
-rrdll_lwicxx_construct(rrdll_lwicxx_handle_t *pout);
+CXXLIB_DECORATING CXXLIB_IMEXPORT cxxlib_error_code_t CXXLIB_CALLING cxxlib_construct(cxxlib_handle_t *out);
+CXXLIB_DECORATING CXXLIB_IMEXPORT cxxlib_error_code_t CXXLIB_CALLING cxxlib_plus(cxxlib_handle_t handle, int n);
+CXXLIB_DECORATING CXXLIB_IMEXPORT cxxlib_error_code_t CXXLIB_CALLING cxxlib_minus(cxxlib_handle_t handle, int n);
+CXXLIB_DECORATING CXXLIB_IMEXPORT cxxlib_error_code_t CXXLIB_CALLING cxxlib_equals(cxxlib_handle_t handle, int *out);
+CXXLIB_DECORATING CXXLIB_IMEXPORT cxxlib_error_code_t CXXLIB_CALLING cxxlib_destruct(cxxlib_handle_t handle);
 
-EXTERN_C
-RRDLL_LWICXX_API
-rrdll_lwicxx_error_code_t
-APIENTRY
-rrdll_lwicxx_plus(rrdll_lwicxx_handle_t handle, int n);
-
-EXTERN_C
-RRDLL_LWICXX_API
-rrdll_lwicxx_error_code_t
-APIENTRY
-rrdll_lwicxx_minus(rrdll_lwicxx_handle_t handle, int n);
-
-EXTERN_C
-RRDLL_LWICXX_API
-rrdll_lwicxx_error_code_t
-APIENTRY
-rrdll_lwicxx_equals(rrdll_lwicxx_handle_t handle, int *pout);
-
-EXTERN_C
-RRDLL_LWICXX_API
-rrdll_lwicxx_error_code_t
-APIENTRY
-rrdll_lwicxx_destruct(rrdll_lwicxx_handle_t handle);
-
-#endif//RRDLL_LWICXX_LIBRARY_HXX_
+#endif//CXXLIB_LIBRARY_HXX_
