@@ -72,8 +72,10 @@
 *编辑*
 / [*Emacs*](https://gnu.org/software/emacs/)
 / [*Notepad++*](https://notepad-plus-plus.org/)
+/ [*UltraEdit*](https://ultraedit.com/)
 / [*Vim*](https://www.vim.org/)
 / [*Visual Studio Code*](https://code.visualstudio.com/)
+/ [*WinHex*](http://winhex.com/winhex/)
 
 *环境*
 / [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
