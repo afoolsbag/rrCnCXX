@@ -12,7 +12,6 @@
 ///
 //===----------------------------------------------------------------------===//
 
-#include <filesystem>
 #include <fstream>
 
 #include <opencv2/opencv.hpp>
@@ -27,7 +26,7 @@ struct Userdata {
 };
 
 void onMouseChange(int event, int x, int y, int flags, void *userdata);
-void writeExp(const experimental::filesystem::path &path, const cv::Mat &img, const cv::Point &pt1, const cv::Point &pt2);
+void writeExp(const string &path, const cv::Mat &img, const cv::Point &pt1, const cv::Point &pt2);
 
 int main(int argc, char *argv[])
 {
@@ -76,16 +75,16 @@ void onMouseChange(int event, int x, int y, int flags, void *userdata)
     case cv::EVENT_LBUTTONUP:
         holding = false;
         writeExp(data.path, data.buf, pt1, pt2);
+        exit(EXIT_SUCCESS);
         break;
     default:
         break;
     }
 }
 
-void writeExp(const experimental::filesystem::path &path, const cv::Mat &img, const cv::Point &pt1, const cv::Point &pt2)
+void writeExp(const string &path, const cv::Mat &img, const cv::Point &pt1, const cv::Point &pt2)
 {
-    auto expPath {path};
-    expPath.replace_extension(".exp");
+    const auto expPath {path + ".exp"};
 
     const int32_t quadbyte1 {4};
     const float quadbyte2 {min(pt1.x, pt2.x) / static_cast<float>(img.cols)};
