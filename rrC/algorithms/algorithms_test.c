@@ -5,7 +5,7 @@
  *
  * \sa ["算法"](https://zh.cppreference.com/w/c/algorithm). *cppreference.com*.
  *
- * \version 2018-12-29
+ * \version 2019-01-28
  * \since 2018-06-20
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,18 +13,11 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
-#pragma warning(push)
-#pragma warning(disable: 4668)
-
 #include <stdlib.h>
 
 #include <check/check.h>
 
-#pragma warning(pop)
-
 #include "_test.h"
-
-#pragma warning(disable: 4100)
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
 

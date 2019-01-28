@@ -5,7 +5,7 @@
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/math>
  *
- * \version 2018-11-27
+ * \version 2019-01-28
  * \since 2018-07-10
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,19 +13,12 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#pragma warning(push)
-#pragma warning(disable: 4668)
-
 #include <math.h>
 
 #include <check/check.h>
 
-#pragma warning(pop)
-
 #include "_test.h"
 #include "c_versions.h"
-
-#pragma warning(disable: 4100)
 
 /**
  * \brief 四舍五入。

@@ -2,12 +2,12 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2019-01-17
+# | |  | |  | \__/\ 2016-08-01 – 2019-01-28
 # |_|  |_|   \____/ Unlicense
 
-project(rrC VERSION 2019.01.17 LANGUAGES C)
+project(rrC VERSION 2019.01.28 LANGUAGES C)
 project_more()
-compile_option(HIGHEST_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
 

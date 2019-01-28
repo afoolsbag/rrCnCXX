@@ -6,15 +6,13 @@
  * \sa ["Conversions to numeric formats"](https://zh.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
  *
  * \version 2018-11-27
+ * \version 2019-01-28
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright Unlicense
  *
  * @{
 **//*===-------------------------------------------------------------------===*/
-
-#pragma warning(push)
-#pragma warning(disable: 4668)
 
 #include <assert.h>
 #include <float.h>
@@ -23,12 +21,8 @@
 
 #include <check/check.h>
 
-#pragma warning(pop)
-
 #include "_test.h"
 #include "c_versions.h"
-
-#pragma warning(disable: 4100)
 
 #define static_assert _STATIC_ASSERT
 

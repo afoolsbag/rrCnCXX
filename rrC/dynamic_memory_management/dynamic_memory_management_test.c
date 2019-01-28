@@ -5,7 +5,7 @@
  *
  * \sa ["C 内存管理库"](http://zh.cppreference.com/w/c/memory). *cppreference.com*.
  *
- * \version 2018-11-27
+ * \version 2019-01-28
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,19 +13,12 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
-#pragma warning(push)
-#pragma warning(disable: 4668)
-
 #include <stdint.h>
 #include <stdlib.h>
 
 #include <check/check.h>
 
-#pragma warning(pop)
-
 #include "_test.h"
-
-#pragma warning(disable: 4100)
 
 /**
  * \brief 分配内存。

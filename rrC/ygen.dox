@@ -84,6 +84,11 @@
  *
  * \defgroup gReference C 参考手册
  *
+ * **目录结构说明**
+ *
+ * *   目录按 cppreference.com 中 C reference 的顶级章节命名。
+ * *   文件按 cppreference.com 中的最终章节命名。
+ *
  * \sa ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
  *     *   语言
  *     *   头文件
@@ -101,7 +106,7 @@
  *     *   原子操作库
  *     *   线程支持库
  *
- * \version 2018-10-17
+ * \version 2019-01-28
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC0-1.0

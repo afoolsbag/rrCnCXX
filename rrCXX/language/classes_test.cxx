@@ -5,7 +5,7 @@
 ///
 /// \sa gMemory
 ///
-/// \version 2018-11-22
+/// \version 2019-01-28
 /// \since 2018-10-09
 /// \authors zhengrr
 /// \copyright Unlicense

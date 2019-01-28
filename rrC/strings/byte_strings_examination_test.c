@@ -5,7 +5,7 @@
  *
  * \sa ["String examination"](https://zh.cppreference.com/w/c/string/byte#String_examination). *cppreference.com*.
  *
- * \version 2018-11-27
+ * \version 2019-01-28
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,19 +13,12 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#pragma warning(push)
-#pragma warning(disable: 4668)
-
 #include <string.h>
 
 #include <check/check.h>
 
-#pragma warning(pop)
-
 #include "_test.h"
 #include "c_versions.h"
-
-#pragma warning(disable: 4100)
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
 

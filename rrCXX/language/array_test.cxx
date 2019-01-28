@@ -3,22 +3,17 @@
 /// \defgroup gArray 数组类型
 /// \ingroup gLanguage
 ///
-/// \version 2018-11-27
+/// \version 2019-01-28
 /// \since 2018-10-08
 /// \author zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-#pragma warning(push)
-#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
-
 #include <array>
 #include <gsl/gsl>
 
 #include <gtest/gtest.h>
-
-#pragma warning(pop)
 
 using namespace std;
 using namespace gsl;

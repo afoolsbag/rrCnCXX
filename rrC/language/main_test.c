@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLang
  *
- * \version 2018-11-27
+ * \version 2019-01-28
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -11,14 +11,9 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#pragma warning(push)
-#pragma warning(disable: 4668)
-
 #include <stdlib.h>
 
 #include <check/check.h>
-
-#pragma warning(pop)
 
 #include "algorithms/_test.h"
 #include "atomic_operations/_test.h"

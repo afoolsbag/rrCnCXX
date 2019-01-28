@@ -67,55 +67,6 @@
 #error A C compiler is required.
 #endif
 
-#ifndef __STDC_ALLOC_LIB__
-#define __STDC_ALLOC_LIB__         (0)
-#endif
-#ifndef __STDC_ANALYZABLE__
-#define __STDC_ANALYZABLE__        (0)
-#endif
-#ifndef __STDC_IEC_599_
-#define __STDC_IEC_599_            (0)
-#endif
-#ifndef __STDC_IEC_559_COMPLEX__
-#define __STDC_IEC_559_COMPLEX__   (0)
-#endif
-#ifndef __STDC_NO_ATOMICS__
-#define __STDC_NO_ATOMICS__        (0)
-#endif
-#ifndef __STDC_NO_COMPLEX__
-#define __STDC_NO_COMPLEX__        (0)
-#endif
-#ifndef __STDC_IEC_60559_BFP__
-#define __STDC_IEC_60559_BFP__     (0)
-#endif
-#ifndef __STDC_IEC_60559_COMPLEX__
-#define __STDC_IEC_60559_COMPLEX__ (0)
-#endif
-#ifndef __STDC_IEC_60559_FUNCS__
-#define __STDC_IEC_60559_FUNCS__   (0)
-#endif
-#ifndef __STDC_ISO_10646__
-#define __STDC_ISO_10646__         (0)
-#endif
-#ifndef __STDC_LIB_EXT1__
-#define __STDC_LIB_EXT1__          (0)
-#endif
-#ifndef __STDC_MB_MIGHT_NEQ_WC__
-#define __STDC_MB_MIGHT_NEQ_WC__   (0)
-#endif
-#ifndef __STDC_NO_THREADS__
-#define __STDC_NO_THREADS__        (0)
-#endif
-#ifndef __STDC_UTF_16__
-#define __STDC_UTF_16__            (0)
-#endif
-#ifndef __STDC_UTF_32__
-#define __STDC_UTF_32__            (0)
-#endif
-#ifndef __STDC_NO_VLA__
-#define __STDC_NO_VLA__            (0)
-#endif
-
 /** \brief ISO/IEC 9899:2018
  *  \sa <https://iso.org/standard/74528.html> */
 #define C17 (201710L<=__STDC_VERSION__)

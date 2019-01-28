@@ -5,7 +5,7 @@
  *
  * \sa ["原子操作库"](https://zh.cppreference.com/w/c/atomic). *cppreference.com*.
  *
- * \version 2018-12-29
+ * \version 2019-01-28
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,12 +13,7 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
-#pragma warning(push)
-#pragma warning(disable: 4668)
-
 #include <check/check.h>
-
-#pragma warning(pop)
 
 #include "_test.h"
 #include "c_versions.h"

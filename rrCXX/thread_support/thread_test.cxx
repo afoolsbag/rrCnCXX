@@ -3,22 +3,16 @@
 /// \defgroup gThreadSimple 线程示例
 /// \ingroup gThread
 ///
-/// \version 2018-11-27
+/// \version 2019-01-28
 /// \since 2018-09-17
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-#pragma warning(push)
-#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
-#pragma warning(disable: 5039)
-
 #include <thread>
 
 #include <gtest/gtest.h>
-
-#pragma warning(pop)
 
 #include "cxx_versions.hxx"
 

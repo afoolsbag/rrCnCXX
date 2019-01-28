@@ -3,23 +3,18 @@
 /// \defgroup gFlowControl 流控制
 /// \ingroup gLanguage
 ///
-/// \version 2019-01-10
+/// \version 2019-01-28
 /// \since 2018-09-19
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-#pragma warning(push)
-#pragma warning(disable: 4514 4571 4623 4625 4626 4668 4710 4774 4820 5026 5027)
-
 #include <cstdlib>
 #include <random>
 #include <gsl/gsl>
 
 #include <gtest/gtest.h>
-
-#pragma warning(pop)
 
 #include "cxx_versions.hxx"
 

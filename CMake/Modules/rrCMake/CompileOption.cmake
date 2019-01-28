@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-12-29
+# 2016-10-08 – 2019-01-28
 # Unlicense
 
 include_guard()
@@ -14,7 +14,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 #     compile_option(
 #       [ANALYZE]
-#       [HIGHEST_WARNING_LEVEL]
+#       [HIGHEST_WARNING_LEVEL | RECOMMENDED_WARNING_LEVEL]
 #       [MULTIPLE_PROCESSES]
 #       [UTF-8]
 #       [WARNING_AS_ERROR]
@@ -33,6 +33,7 @@ function(compile_option)
   set(zOptKws    ANALYZE
                  HIGHEST_WARNING_LEVEL
                  MULTIPLE_PROCESSES
+                 RECOMMENDED_WARNING_LEVEL
                  UTF-8
                  WARNING_AS_ERROR)
   set(zOneValKws)
@@ -53,6 +54,12 @@ function(compile_option)
       add_compile_options("-Wall" "-Wextra")
     elseif(MSVC)
       add_compile_options("/Wall")
+    endif()
+  elseif(_RECOMMENDED_WARNING_LEVEL)
+    if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+      add_compile_options("-Wall")
+    elseif(MSVC)
+      add_compile_options("/W4")
     endif()
   endif()
 
