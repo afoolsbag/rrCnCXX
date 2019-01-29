@@ -15,15 +15,16 @@
 
 #include <check/check.h>
 
-#include "algorithms/_test.h"
-#include "atomic_operations/_test.h"
-#include "date_and_time_utilities/_test.h"
-#include "dynamic_memory_management/_test.h"
-#include "input_output_support/_test.h"
+#include "algorithm/_test.h"
+#include "atomic/_test.h"
+#include "chrono/_test.h"
+
+#include "io/_test.h"
 #include "language/_test.h"
-#include "numerics/_test.h"
-#include "strings/_test.h"
-#include "type_support/_test.h"
+#include "memory/_test.h"
+#include "numeric/_test.h"
+#include "string/_test.h"
+#include "types/_test.h"
 
 /**
  * \brief 主函数。
@@ -35,15 +36,18 @@
 int main(void)
 {
     SRunner *const tr = srunner_create(NULL);
-    srunner_add_suite(tr, ts_algorithms());
-    srunner_add_suite(tr, ts_atomic_operations());
-    srunner_add_suite(tr, ts_date_and_time_utilities());
-    srunner_add_suite(tr, ts_dynamic_memory_management());
-    srunner_add_suite(tr, ts_input_output_support());
+    srunner_add_suite(tr, ts_algorithm());
+    srunner_add_suite(tr, ts_atomic());
+    srunner_add_suite(tr, ts_chrono());
+
+    //TODO: 等待重构
+    srunner_add_suite(tr, ts_io());
     srunner_add_suite(tr, ts_language());
+    srunner_add_suite(tr, ts_memory());
     srunner_add_suite(tr, ts_numerics());
     srunner_add_suite(tr, ts_strings());
     srunner_add_suite(tr, ts_type_support());
+
     srunner_run_all(tr, CK_NORMAL);
     const int err = srunner_ntests_failed(tr);
     srunner_free(tr);

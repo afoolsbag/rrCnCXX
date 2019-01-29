@@ -1,18 +1,3 @@
-/*===-- Algorithms ---------------------------------------------*- C -*-===*//**
- *
- * \defgroup gAlgo 算法
- * \ingroup gRef
- *
- * \sa ["算法"](https://zh.cppreference.com/w/c/algorithm). *cppreference.com*.
- *
- * \version 2019-01-28
- * \since 2018-06-20
- * \authors zhengrr
- * \copyright Unlicense
- *
- * @{
-*//*===--------------------------------------------------------------------===*/
-
 #include <stdlib.h>
 
 #include <check/check.h>
@@ -27,6 +12,11 @@ static int cmp(const void *lhs, const void *rhs)
     const int r = *(const int *)rhs;
     return (l > r) - (l < r);
 }
+
+/**
+ * \addtogroup gAlgorithm
+ * @{
+ */
 
 /**
  * \brief 快速排序。
@@ -73,11 +63,13 @@ START_TEST(tf_bsearch)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
-TCase *tc_algorithms(void)
+TCase *tc_algorithm(void)
 {
-    TCase *const tc = tcase_create("algorithms");
+    TCase *const tc = tcase_create("algorithm");
     tcase_add_test(tc, tf_qsort);
     tcase_add_test(tc, tf_bsearch);
     return tc;

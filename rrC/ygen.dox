@@ -86,8 +86,13 @@
  *
  * **目录结构说明**
  *
- * *   目录按 cppreference.com 中 C reference 的顶级章节命名。
- * *   文件按 cppreference.com 中的最终章节命名。
+ * *   目录按 cppreference.com 中 C reference 的顶级章节 URL 命名。
+ *
+ *     如 `cppreference.com` / `C reference` / `File input/output`，
+ *     其 URL 为 `https://en.cppreference.com/w/c/io`
+ *     取其中的 `io` 作为目录名。
+ *
+ * *   文件按需求划分。
  *
  * \sa ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
  *     *   语言
