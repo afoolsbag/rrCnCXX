@@ -1,13 +1,13 @@
-#include <stdlib.h>
-
-#include <check/check.h>
-
-#include "_test.h"
-
 /**
  * \addtogroup gMemory
  * @{
  */
+
+#include <stdlib.h>
+
+#include <check/check.h>
+
+#include "ts_memory.h"
 
 /**
  * \brief 内存分配（Memory Allocate）

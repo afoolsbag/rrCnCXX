@@ -17,7 +17,7 @@
 
 #include <check/check.h>
 
-#include "_test.h"
+#include "ts_io.h"
 #include "c_versions.h"
 
 /**

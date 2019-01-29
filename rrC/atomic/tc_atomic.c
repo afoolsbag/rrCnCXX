@@ -1,3 +1,8 @@
+/**
+ * \addtogroup gAtomic
+ * @{
+ */
+
 #include "c_versions.h"
 #if ATOMICS
 #include <stdatomic.h>
@@ -5,12 +10,7 @@
 
 #include <check/check.h>
 
-#include "_test.h"
-
-/**
- * \addtogroup gAtomic
- * @{
- */
+#include "ts_atomic.h"
 
 START_TEST(tf_atomic_int)
 {

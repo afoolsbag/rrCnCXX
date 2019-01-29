@@ -17,7 +17,7 @@
 
 #include <check/check.h>
 
-#include "_test.h"
+#include "ts_string.h"
 #include "c_versions.h"
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))

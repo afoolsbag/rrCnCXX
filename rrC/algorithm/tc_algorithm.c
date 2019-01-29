@@ -1,8 +1,13 @@
+/**
+ * \addtogroup gAlgorithm
+ * @{
+ */
+
 #include <stdlib.h>
 
 #include <check/check.h>
 
-#include "_test.h"
+#include "ts_algorithm.h"
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
 
@@ -14,13 +19,7 @@ static int cmp(const void *lhs, const void *rhs)
 }
 
 /**
- * \addtogroup gAlgorithm
- * @{
- */
-
-/**
- * \brief 快速排序。
- *        Quick Sort.
+ * \brief 快速排序（Quick Sort）
  * \details 对一个范围内的拥有一定未指定类型的元素排序。
  * \remark 虽然名字是快速排序，但实际上 C 标准没有限定其实现方式。
  *
@@ -40,8 +39,7 @@ START_TEST(tf_qsort)
 END_TEST;
 
 /**
- * \brief 二分查找。
- *        Binary Search.
+ * \brief 二分查找（Binary Search）
  * \details 在未指定类型的数组中搜索一个元素。
  * \remark 虽然名字是二分查找，但实际上 C 标准没有限定其实现方式。
  *

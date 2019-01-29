@@ -1,9 +1,9 @@
 /*===-- Main Function ------------------------------------------*- C -*-===*//**
  *
  * \defgroup gMain 主函数
- * \ingroup gLang
+ * \ingroup gLanguage
  *
- * \version 2019-01-28
+ * \version 2019-01-29
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -15,16 +15,15 @@
 
 #include <check/check.h>
 
-#include "algorithm/_test.h"
-#include "atomic/_test.h"
-#include "chrono/_test.h"
-
-#include "io/_test.h"
-#include "language/_test.h"
-#include "memory/_test.h"
-#include "numeric/_test.h"
-#include "string/_test.h"
-#include "types/_test.h"
+#include "algorithm/ts_algorithm.h"
+#include "atomic/ts_atomic.h"
+#include "chrono/ts_chrono.h"
+#include "io/ts_io.h"
+#include "language/ts_language.h"
+#include "memory/ts_memory.h"
+#include "numeric/ts_numeric.h"
+#include "string/ts_string.h"
+#include "types/ts_types.h"
 
 /**
  * \brief 主函数。
@@ -39,12 +38,10 @@ int main(void)
     srunner_add_suite(tr, ts_algorithm());
     srunner_add_suite(tr, ts_atomic());
     srunner_add_suite(tr, ts_chrono());
-
-    //TODO: 等待重构
     srunner_add_suite(tr, ts_io());
     srunner_add_suite(tr, ts_language());
     srunner_add_suite(tr, ts_memory());
-    srunner_add_suite(tr, ts_numerics());
+    srunner_add_suite(tr, ts_numeric());
     srunner_add_suite(tr, ts_strings());
     srunner_add_suite(tr, ts_type_support());
 
@@ -54,4 +51,6 @@ int main(void)
     return err;
 }
 
-/** @} */
+/**
+ * @}
+ */

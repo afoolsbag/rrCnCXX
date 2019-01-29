@@ -1,7 +1,7 @@
 /*===-- Nearest Integer Floating-Point Operations --------------*- C -*-===*//**
  *
- * \defgroup gRnd 临近整数的浮点运算
- * \ingroup gNumr
+ * \defgroup gNearest 临近整数的浮点运算
+ * \ingroup gNumeric
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/math>
  *
@@ -17,18 +17,13 @@
 
 #include <check/check.h>
 
-#include "_test.h"
-#include "c_versions.h"
+#include "ts_numeric.h"
 
 /**
- * \brief 四舍五入。
- *        以远离 0 方向取整。
- * \sa <https://zh.cppreference.com/w/c/numeric/math/round>
+ * \brief 四舍五入，以远离 0 方向取整。
  */
-START_TEST(test_round)
+START_TEST(tf_round)
 {
-#if C99 || MSC
-
     ck_assert_float_eq(roundf(6.4f), 6.0f);
     ck_assert_double_eq(round(6.5), 7.0);
     ck_assert_ldouble_eq(roundl(6.6L), 7.0L);
@@ -40,16 +35,16 @@ START_TEST(test_round)
     ck_assert_int_eq(llroundf(6.4f), 6LL);
     ck_assert_int_eq(llround(6.5), 7LL);
     ck_assert_int_eq(llroundl(6.6L), 7LL);
-
-#endif
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
-TCase *tc_nearest_integer_floating_point_operations(void)
+TCase *tc_math_nearest(void)
 {
-    TCase *const tc = tcase_create("nearest_integer_floating_point_operations");
-    tcase_add_test(tc, test_round);
+    TCase *const tc = tcase_create("math_nearest");
+    tcase_add_test(tc, tf_round);
     return tc;
 }

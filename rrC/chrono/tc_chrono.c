@@ -1,16 +1,16 @@
+/**
+ * \addtogroup gChrono
+ * @{
+ */
+
 #include <stdio.h>
 #include <time.h>
 
 #include <check/check.h>
 
-#include "_test.h"
+#include "ts_chrono.h"
 
 #define countof(array) (sizeof(array) / sizeof((array)[0]))
-
-/**
- * \addtogroup gChrono
- * @{
- */
 
 /**
  * \brief POSIX 时间

@@ -17,7 +17,8 @@
 
 #include <check/check.h>
 
-#include "_test.h"
+#include "ts_language.h"
+
 #include "c_versions.h"
 
 struct point_t {
