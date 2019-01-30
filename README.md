@@ -69,6 +69,22 @@
 
 [*awesome*](https://awesome.re/)
 
+*壳层*
+/ [*SS64*](https://ss64.com/ "参考")
+/ [*Bash*](https://gnu.org/software/bash/)
+/ [*KornShell*](http://kornshell.com/)
+/ [*PowerShell*](https://microsoft.com/powershell)
+/ [*PuTTY*](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
+/ [*SecureCRT*](https://vandyke.com/products/securecrt/)
+/ [*Xshell*](https://netsarang.com/en/xshell/)
+/ [*Zsh*](https://zsh.org/)
+
+*环境*
+/ [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
+/ [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
+/ [*Mingw-w64*](https://mingw-w64.org/)
+/ [*MSYS2*](https://www.msys2.org/ "Minimal System")
+
 *编辑*
 / [*Emacs*](https://gnu.org/software/emacs/)
 / [*Notepad++*](https://notepad-plus-plus.org/)
@@ -76,12 +92,6 @@
 / [*Vim*](https://www.vim.org/)
 / [*Visual Studio Code*](https://code.visualstudio.com/)
 / [*WinHex*](http://winhex.com/winhex/)
-
-*环境*
-/ [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
-/ [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
-/ [*Mingw-w64*](https://mingw-w64.org/)
-/ [*MSYS2*](https://www.msys2.org/ "Minimal System")
 
 *开发*
 / [*CLion*](https://jetbrains.com/clion)
@@ -92,11 +102,15 @@
     / [*Studio Styles*](https://studiostyl.es/)
     / [*Visual Assist*](https://wholetomato.com/) )
 
-*工具*
+*嗅探*
+/ [*bettercap*](https://bettercap.org/)
+/ [*dsniff*](https://monkey.org/~dugsong/dsniff/)
+/ [*Ettercap*](https://ettercap-project.org/)
+
+*未分类*
 / [*AutoHotkey*](https://autohotkey.com/)
 / [*DebugView*](https://docs.microsoft.com/sysinternals/downloads/debugview)
 / [*Dependency Walker*](http://dependencywalker.com)
-/ [*Ettercap*](https://www.ettercap-project.org/)
 / [*FastCopy*](https://fastcopy.jp/)
 / [*iPerf*](https://iperf.fr/)
 / [*Process Explorer*](https://docs.microsoft.com/sysinternals/downloads/process-explorer)
