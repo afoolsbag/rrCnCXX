@@ -45,7 +45,7 @@ TEST(vector, traverse)
     ASSERT_EQ(sum2, 23);
 
     int sum3 {};
-    for (index i {}; i < static_cast<index>(numbers.size()); ++i)
+    for (gsl::index i {}; i < static_cast<gsl::index>(numbers.size()); ++i)
         sum3 += numbers[static_cast<size_t>(i)];
     ASSERT_EQ(sum3, 23);
 }

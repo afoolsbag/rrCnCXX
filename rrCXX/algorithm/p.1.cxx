@@ -30,8 +30,8 @@ TEST(p1, find)
     const int tgt {3};
 
     // 不太好
-    index t = -1;
-    for (index i = 0; i < static_cast<index>(val.size()); ++i) {
+    gsl::index t = -1;
+    for (gsl::index i = 0; i < static_cast<gsl::index>(val.size()); ++i) {
         if (val[static_cast<size_t>(i)] == tgt) {
             t = i;
             break;

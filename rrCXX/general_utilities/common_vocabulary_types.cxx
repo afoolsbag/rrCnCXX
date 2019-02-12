@@ -92,6 +92,8 @@ TEST(common_vocabulary_types, tuple)
 #if P0217R3
     // C++17
     const auto [cxx17int, cxx17double] {get_two_zero()};
+    (void)cxx17int;
+    (void)cxx17double;
 #endif
 }
 

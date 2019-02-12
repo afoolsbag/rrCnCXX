@@ -74,7 +74,6 @@ public:
     virtual unique_ptr<product> get_product() { return make_unique<product>(current_product); }
 private:
     product current_product;
-	byte paddings[7] {};
 };
 
 /// \brief 导向器。

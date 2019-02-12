@@ -30,11 +30,16 @@ namespace rrcxx {
 /// \sa <https://zh.cppreference.com/w/cpp/language/switch>
 TEST(flow_control, switch)
 {
-    random_device rdev;
-    default_random_engine reng(rdev());
-    const uniform_int_distribution<> rdis(1, 6);
+    random_device dev;
+    default_random_engine eng(dev());
 
-    const auto condition {rdis(reng)};
+#if _MSC_VER
+    const uniform_int_distribution<> dis(1, 6);
+#else
+    uniform_int_distribution<> dis(1, 6);
+#endif
+
+    const auto condition {dis(eng)};
 
 #if P0188R1
     switch (condition) {
