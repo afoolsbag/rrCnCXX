@@ -13,7 +13,7 @@
 
 #include <stdlib.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "algorithm/ts_algorithm.h"
 #include "atomic/ts_atomic.h"

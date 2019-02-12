@@ -33,13 +33,13 @@
 #ifndef RRC_STRINGS_TEST_H_
 #define RRC_STRINGS_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_byte_strings_conversion(void);
 TCase *tc_byte_strings_examination(void);
 TCase *tc_byte_strings_manipulation(void);
 
-inline Suite *ts_strings(void)
+static inline Suite *ts_strings(void)
 {
     Suite *const ts = suite_create("strings");
     suite_add_tcase(ts, tc_byte_strings_conversion());

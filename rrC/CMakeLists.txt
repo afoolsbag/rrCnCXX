@@ -2,15 +2,19 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2019-01-28
+# | |  | |  | \__/\ 2016-08-01 – 2019-02-12
 # |_|  |_|   \____/ Unlicense
 
-project(rrC VERSION 2019.01.28 LANGUAGES C)
+project(rrC VERSION 2019.02.12 LANGUAGES C)
 project_more()
 compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
 
+list(APPEND CMAKE_PREFIX_PATH "/usr/local/cmake")
+if(3.12 VERSION_LESS CMAKE_VERSION)
+  cmake_policy(SET CMP0074 NEW)
+endif()
 find_package(Check)
 
 aux_source_directory_ex(zSource RECURSE)

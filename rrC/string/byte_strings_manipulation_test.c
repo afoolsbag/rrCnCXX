@@ -13,9 +13,10 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <string.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_string.h"
 #include "c_versions.h"
@@ -30,11 +31,7 @@ START_TEST(tf_strcpy)
     char dst[8] = "";
     const char src[] = "zhengrr";
 
-#if LIB_EXT1
-    strcpy_s(dst, countof(dst), src);
-#else
     strcpy(dst, src);
-#endif
 
     ck_assert_str_eq(src, dst);
 }
@@ -42,18 +39,15 @@ END_TEST;
 
 /** \brief String n copy.
  *  \details 从一个字符串复制一定数量的字符到另一个。
+ *  \note 不建议使用。
  *  \sa <http://en.cppreference.com/w/c/string/byte/strncpy> */
 START_TEST(tf_strncpy)
 {
     char dst[8] = "";
     const char src[] = "zhengrr";
 
-#if LIB_EXT1
-    strncpy_s(dst, countof(dst), src, countof(dst) - 1);
-#else
     strncpy(dst, src, countof(dst) - 1);
     dst[countof(dst) - 1] = '\0';
-#endif
 
     ck_assert_str_eq(src, dst);
 }

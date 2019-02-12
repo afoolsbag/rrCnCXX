@@ -15,7 +15,7 @@
 
 #include <string.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_string.h"
 #include "c_versions.h"

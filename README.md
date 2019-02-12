@@ -65,6 +65,9 @@
 
 [free-programming-books](https://github.com/EbookFoundation/free-programming-books)
 
+/ [Visual C++ for Linux Development](https://blogs.msdn.microsoft.com/vcblog/2016/03/30/visual-c-for-linux-development/)
+/ [Targeting the Windows Subsystem for Linux from Visual Studio](https://blogs.msdn.microsoft.com/vcblog/2017/02/08/targeting-windows-subsystem-for-linux-from-visual-studio/)
+
 ## Awesome
 
 [*awesome*](https://awesome.re/)
@@ -76,6 +79,7 @@
 / [*PowerShell*](https://microsoft.com/powershell)
 / [*PuTTY*](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
 / [*SecureCRT*](https://vandyke.com/products/securecrt/)
+/ [*WinSCP*](https://winscp.net/)
 / [*Xshell*](https://netsarang.com/en/xshell/)
 / [*Zsh*](https://zsh.org/)
 
@@ -162,6 +166,10 @@
 / [*Try Git*](https://try.github.io/)
 / [*Pro Git*. 2nd ed.](https://git-scm.com/book/en/v2)<sub> [*cmn-Hans*](https://git-scm.com/book/zh/v2)</sub>. 2014. Scott Chacon; Ben Straub.
 / ["Git教程"](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000). *廖雪峰的官方网站*.
+
+## Jupyter
+
+[*Jupyter*](https://jupyter.org/)
 
 ## Markdown
 

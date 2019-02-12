@@ -4,18 +4,21 @@
  */
 
 #include "c_versions.h"
-#if ATOMICS
+
+#if FEATURE_ATOMICS
 #include <stdatomic.h>
 #endif
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_atomic.h"
 
 START_TEST(tf_atomic_int)
 {
-#if ATOMICS
-    atomic_int aint;
+#if FEATURE_ATOMICS
+    atomic_int aint = 0;
+    ++aint;
+    (void)aint;
 #endif
 }
 END_TEST;

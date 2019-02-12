@@ -4,7 +4,7 @@
 
 include_guard()
 
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.10)
 
 if(NOT COMMAND check_name_with_cmake_rules)
   include("${CMAKE_CURRENT_LIST_DIR}/CheckName.cmake")

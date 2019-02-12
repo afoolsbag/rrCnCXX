@@ -16,11 +16,11 @@
 #ifndef RRC_ALGORITHM_TEST_H_
 #define RRC_ALGORITHM_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_algorithm(void);
 
-inline Suite *ts_algorithm(void)
+static inline Suite *ts_algorithm(void)
 {
     Suite *const ts = suite_create("algorithm");
     suite_add_tcase(ts, tc_algorithm());

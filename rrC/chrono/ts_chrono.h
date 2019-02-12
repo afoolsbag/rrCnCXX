@@ -16,11 +16,11 @@
 #ifndef RRC_CHRONO_TEST_H_
 #define RRC_CHRONO_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_chrono(void);
 
-inline Suite *ts_chrono(void)
+static inline Suite *ts_chrono(void)
 {
     Suite *const ts = suite_create("chrono");
     suite_add_tcase(ts, tc_chrono());

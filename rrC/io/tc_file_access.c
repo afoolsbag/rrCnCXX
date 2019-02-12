@@ -13,12 +13,12 @@
  * @{
 *//*===--------------------------------------------------------------------===*/
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_io.h"
-#include "c_versions.h"
 
 /**
  * \brief 打开文件。
@@ -27,12 +27,7 @@
  */
 START_TEST(tf_fopen)
 {
-#if LIB_EXT1
-    FILE *fp;
-    fopen_s(&fp, "hello.txt", "a+");
-#else
     FILE *fp = fopen("hello.txt", "a+");
-#endif
     if (!fp) {
         ck_abort_msg("File Open Failed");
         return;

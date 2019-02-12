@@ -14,7 +14,7 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_language.h"
 #include "c_versions.h"
@@ -26,7 +26,7 @@
  */
 START_TEST(tf_array_compound_literals)
 {
-#if C99
+#if STANDARD_C99
     int *p = (int[]) { 0, 1, 2 };  /* pointer to compound literals */
     ck_assert_int_eq(p[0], 0);
     ck_assert_int_eq(p[0], 0);

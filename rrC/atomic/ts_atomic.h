@@ -16,11 +16,11 @@
 #ifndef RRC_ATOMIC_TEST_H_
 #define RRC_ATOMIC_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_atomic(void);
 
-inline Suite *ts_atomic(void)
+static inline Suite *ts_atomic(void)
 {
     Suite *const ts = suite_create("atomic");
     suite_add_tcase(ts, tc_atomic());

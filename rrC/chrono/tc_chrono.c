@@ -3,14 +3,13 @@
  * @{
  */
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <time.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_chrono.h"
-
-#define countof(array) (sizeof(array) / sizeof((array)[0]))
 
 /**
  * \brief POSIX 时间
@@ -27,8 +26,7 @@ START_TEST(tf_time_t)
 
     /* 另一种书写风格 */
     time_t t2;
-    time(&t2);
-    ck_assert(t2 != -1);
+    ck_assert(time(&t2) != -1);
 
     /* 俩时间之差，以秒为单位 */
     const double inr = difftime(t2, t1);
@@ -43,37 +41,70 @@ END_TEST;
 START_TEST(tf_struct_tm)
 {
     /* 设置时间结构体，将其重整并返回对应的 POSIX 时间 */
-    struct tm love;
-    memset(&love, 0x00, sizeof love);
-    love.tm_year = 1992 - 1900;
-    love.tm_mon = 6 - 1;
-    love.tm_mday = 25;
-    const time_t to = mktime(&love);
+    time_t t0;
+    {
+        struct tm t0s;
+        memset(&t0s, 0x00, sizeof t0s);
+        t0s.tm_year = 1992 - 1900;
+        t0s.tm_mon = 6 - 1;
+        t0s.tm_mday = 25;
+
+        t0 = mktime(&t0s);
+        ck_assert(t0 != -1);
+    }
 
     /* 获取当前时间，并转换为对应的时间结构体，值为协调世界时 */
-    const time_t t1 = time(NULL);
     struct tm t1s;
-    gmtime_s(&t1s, &t1);
+    {
+        const time_t t1 = time(NULL);
+        ck_assert(t1 != -1);
+
+        const struct tm *const tmp = gmtime(&t1);
+        ck_assert(tmp);
+
+        t1s = *tmp;
+    }
 
     /* 获取当前时间，并转换为对应的时间结构体，值为本地时 */
-    const time_t t2 = time(NULL);
     struct tm t2s;
-    localtime_s(&t2s, &t2);
+    {
+        const time_t t2 = time(NULL);
+        ck_assert(t2 != -1);
+
+        const struct tm *const tmp = localtime(&t2);
+        ck_assert(tmp);
+
+        t2s = *tmp;
+    }
 
     /* 时间结构体转换为字符串 */
-    char buf1[20];
-    strftime(buf1, countof(buf1), "%Y-%m-%dT%H:%M:%S", &t1s);
-    printf("t1: %s\n", buf1);
+    {
+        char buf[20];
+        ck_assert(0 < strftime(buf, sizeof buf, "%Y-%m-%dT%H:%M:%S", &t1s));
+        ck_assert(0 < printf("t1: %s\n", buf));
+    }
 
-    /* 或者简单地 */
-    char buf2[26];
-    asctime_s(buf2, countof(buf2), &t2s);
-    printf("t2: %s", buf2);
+    /* 或者简单地使用默认格式 */
+    {
+        char buf[26];
 
-    /* 又或 */
-    char buf3[26];
-    ctime_s(buf3, countof(buf3), &to);
-    printf("to: %s", buf3);
+        char *tmp = asctime(&t2s);
+        ck_assert(strlen(tmp) + 1 <= sizeof buf);
+        strcpy(buf, tmp);
+
+        ck_assert(0 < printf("t2: %s", buf));
+    }
+
+    /* 又或直接从 POSIX 时间转换为默认格式 */
+    {
+        char buf[26];
+
+        char *tmp = ctime(&t0);
+        ck_assert(strlen(tmp) + 1 <= sizeof buf);
+        strcpy(buf, tmp);
+
+        ck_assert(0 < printf("t0: %s", buf));
+    }
 }
 END_TEST;
 
@@ -97,7 +128,7 @@ END_TEST;
 START_TEST(tf_timespec)
 {
     struct timespec spec;
-    timespec_get(&spec, TIME_UTC);
+    ck_assert(0 < timespec_get(&spec, TIME_UTC));
 }
 END_TEST;
 

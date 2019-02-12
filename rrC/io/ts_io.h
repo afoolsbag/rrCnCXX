@@ -16,11 +16,11 @@
 #ifndef RRC_IO_TEST_H_
 #define RRC_IO_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_file_access(void);
 
-inline Suite *ts_io(void)
+static inline Suite *ts_io(void)
 {
     Suite *const ts = suite_create("io");
     suite_add_tcase(ts, tc_file_access());

@@ -5,11 +5,9 @@
 
 #include <stdlib.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_algorithm.h"
-
-#define countof(array) (sizeof(array) / sizeof((array)[0]))
 
 static int cmp(const void *lhs, const void *rhs)
 {
@@ -27,14 +25,14 @@ static int cmp(const void *lhs, const void *rhs)
  */
 START_TEST(tf_qsort)
 {
-    int data[] = {3, 0, 2, 1};
+    int data[] = {5, 3, 2, 1, 6, 8, 0, 4, 9, 7};
+    const size_t size = sizeof data[0];
+    const size_t count = sizeof data / sizeof data[0];
 
-    qsort(data, countof(data), sizeof data[0], cmp);
+    qsort(data, count, size, cmp);
 
-    ck_assert_int_eq(data[0], 0);
-    ck_assert_int_eq(data[1], 1);
-    ck_assert_int_eq(data[2], 2);
-    ck_assert_int_eq(data[3], 3);
+    for (size_t i = 0; i < count; ++i)
+        ck_assert_int_eq(data[i], i);
 }
 END_TEST;
 
@@ -49,13 +47,16 @@ END_TEST;
  */
 START_TEST(tf_bsearch)
 {
-    const int data[] = {0, 1, 2, 3};
-    const int key = 2;
+    const int data[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    const size_t size = sizeof data[0];
+    const size_t count = sizeof data / sizeof data[0];
 
-    const int *const rst = bsearch(&key, data, countof(data), sizeof data[0], cmp);
+    const int key = 6;
+
+    const int *const rst = bsearch(&key, data, count, size, cmp);
 
     if (rst)
-        ck_assert_int_eq(*rst, 2);
+        ck_assert_int_eq(*rst, 6);
     else
         ck_abort();
 }

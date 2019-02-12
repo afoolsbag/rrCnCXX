@@ -16,11 +16,11 @@
 #ifndef RRC_MEMORY_TEST_H_
 #define RRC_MEMORY_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_memory(void);
 
-inline Suite *ts_memory(void)
+static inline Suite *ts_memory(void)
 {
     Suite *const ts = suite_create("memory");
     suite_add_tcase(ts, tc_memory());

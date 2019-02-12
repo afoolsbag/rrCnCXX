@@ -15,7 +15,7 @@
 
 #include <math.h>
 
-#include <check/check.h>
+#include <check.h>
 
 #include "ts_numeric.h"
 

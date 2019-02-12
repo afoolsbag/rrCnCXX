@@ -21,12 +21,12 @@
 #ifndef RRC_NUMERIC_TEST_H_
 #define RRC_NUMERIC_TEST_H_
 
-#include <check/check.h>
+#include <check.h>
 
 TCase *tc_math_nearest(void);
 TCase *tc_random(void);
 
-inline Suite *ts_numeric(void)
+static inline Suite *ts_numeric(void)
 {
     Suite *const ts = suite_create("numeric");
     suite_add_tcase(ts, tc_math_nearest());
