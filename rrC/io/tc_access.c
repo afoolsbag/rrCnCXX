@@ -94,7 +94,9 @@ START_TEST(tf_temporary_name)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_access(void)
 {

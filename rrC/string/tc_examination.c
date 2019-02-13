@@ -60,7 +60,9 @@ START_TEST(tf_strpbrk)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_string_examination(void)
 {

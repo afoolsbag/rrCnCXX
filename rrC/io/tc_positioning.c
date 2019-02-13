@@ -26,7 +26,9 @@ START_TEST(tf_xxx)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_positioning(void)
 {

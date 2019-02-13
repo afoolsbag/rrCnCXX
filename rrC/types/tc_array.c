@@ -35,7 +35,9 @@ START_TEST(tf_array_compound_literals)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_array(void)
 {

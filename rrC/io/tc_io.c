@@ -92,7 +92,9 @@ START_TEST(tf_formatted_io)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_io(void)
 {

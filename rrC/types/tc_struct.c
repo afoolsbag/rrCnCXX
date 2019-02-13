@@ -39,7 +39,9 @@ START_TEST(tf_struct_compound_literals)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_structure(void)
 {

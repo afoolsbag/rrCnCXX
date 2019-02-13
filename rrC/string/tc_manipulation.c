@@ -73,7 +73,9 @@ START_TEST(tf_strcat)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_string_manipulation(void)
 {

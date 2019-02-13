@@ -67,7 +67,9 @@ START_TEST(tf_hex_digit_to_char)
 }
 END_TEST;
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_character(void)
 {

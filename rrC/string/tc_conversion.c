@@ -155,7 +155,9 @@ END_TEST;
 #pragma warning(pop)
 #endif
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tc_string_conversion(void)
 {
