@@ -1,31 +1,38 @@
 /*===-- Type Support -------------------------------------------*- C -*-===*//**
  *
- * \defgroup gType 类型支持
- * \ingroup gRef
+ * \defgroup gTypes 类型支持
+ * \ingroup gReference
  *
- * \sa ["Type support"](http://en.cppreference.com/w/c/types). *cppreference.com*.
- *     + [Fundamental types defined by the language](http://en.cppreference.com/w/c/language/types)
- *     + Additional basic types and convenience macros
- *     + [Boolean type support](http://en.cppreference.com/w/c/types/boolean)
- *     + [Fixed width integer types](http://en.cppreference.com/w/c/types/integer)
- *     + [Numeric limits](http://en.cppreference.com/w/c/types/limits)
+ * \sa ["类型支持"](http://zh.cppreference.com/w/c/types). *cppreference.com*.
+ *     *   语言定义的基础类型
+ *     *   附加基本类型及便利宏
+ *     *   布尔类型支持
+ *     *   定宽整数类型
+ *     *   数值极限
  *
- * \version 2018-10-15
+ * \version 2019-02-13
  * \since 2018-01-23
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_TYPE_SUPPORT_TEST_H_
-#define RRC_TYPE_SUPPORT_TEST_H_
+#ifndef RRC_TS_TYPES_H_
+#define RRC_TS_TYPES_H_
 
 #include <check.h>
 
+TCase *tc_array(void);
+TCase *tc_character(void);
+TCase *tc_structure(void);
+
 static inline Suite *ts_type_support(void)
 {
-    Suite *const ts = suite_create("type_support");
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tc_array());
+    suite_add_tcase(ts, tc_character());
+    suite_add_tcase(ts, tc_structure());
     return ts;
 }
 

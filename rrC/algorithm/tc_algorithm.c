@@ -54,11 +54,8 @@ START_TEST(tf_bsearch)
     const int key = 6;
 
     const int *const rst = bsearch(&key, data, count, size, cmp);
-
-    if (rst)
-        ck_assert_int_eq(*rst, 6);
-    else
-        ck_abort();
+    ck_assert(rst);
+    ck_assert_int_eq(*rst, 6);
 }
 END_TEST;
 
@@ -68,7 +65,7 @@ END_TEST;
 
 TCase *tc_algorithm(void)
 {
-    TCase *const tc = tcase_create("algorithm");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_qsort);
     tcase_add_test(tc, tf_bsearch);
     return tc;

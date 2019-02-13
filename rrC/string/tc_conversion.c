@@ -1,12 +1,9 @@
-/*===-- Byte String Conversions to Numeric Formats -------------*- C -*-===*//**
+/*===-- String Conversion --------------------------------------*- C -*-===*//**
  *
- * \defgroup gBStrCnv 空终止字节字符串：转换成数值格式
- * \ingroup gStr
+ * \defgroup gStringConversion 字符串转换
+ * \ingroup gString
  *
- * \sa ["Conversions to numeric formats"](https://zh.cppreference.com/w/c/string/byte#Conversions_to_numeric_formats). *cppreference.com*.
- *
- * \version 2018-11-27
- * \version 2019-01-28
+ * \version 2019-02-13
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright Unlicense
@@ -25,14 +22,13 @@
 #include "ts_string.h"
 #include "c_versions.h"
 
-#ifdef _MSC_VER
+#if NORMALIZED_MSC_VERSION
 #pragma warning(push)
 #pragma warning(disable: 4127)
 #endif
 
 /**
- * \brief 将字节字符串转换成整数值。
- *        ASCII to Integer.
+ * \brief ASCII 字符串到整值（ASCII to Integer）
  *
  * \sa <https://zh.cppreference.com/w/c/string/byte/atoi>
  */
@@ -60,8 +56,7 @@ START_TEST(tf_atoi)
 END_TEST;
 
 /**
- * \brief 将字节字符串转换成浮点值
- *        ASCII to Floating.
+ * \brief ASCII 字符串到浮点值（ASCII to Floating）
  *
  * \sa <https://zh.cppreference.com/w/c/string/byte/atof>
  */
@@ -75,8 +70,7 @@ START_TEST(tf_atof)
 END_TEST;
 
 /**
- * \brief 将字节字符串转换成整数值。
- *        String to Integer.
+ * \brief 字符串到整值（String to Integer）
  *
  * \sa <https://zh.cppreference.com/w/c/string/byte/strtol>
  * \sa <https://zh.cppreference.com/w/c/string/byte/strtoul>
@@ -125,8 +119,7 @@ START_TEST(tf_strtoi)
 END_TEST;
 
 /**
- * \brief 将字节字符串转换成浮点值。
- *        String to Floating.
+ * \brief 字符串到浮点值（String to Floating）
  *
  * \sa <https://zh.cppreference.com/w/c/string/byte/strtof>
  */
@@ -158,21 +151,18 @@ START_TEST(tf_strtof)
 }
 END_TEST;
 
-#ifdef _MSC_VER
-#pragma warning( pop )
+#if NORMALIZED_MSC_VERSION
+#pragma warning(pop)
 #endif
 
 /** @} */
 
-TCase *tc_byte_strings_conversion(void)
+TCase *tc_string_conversion(void)
 {
-    TCase *const tc = tcase_create("byte_strings_conversion");
-
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_atoi);
     tcase_add_test(tc, tf_atof);
-
     tcase_add_test(tc, tf_strtoi);
     tcase_add_test(tc, tf_strtof);
-
     return tc;
 }

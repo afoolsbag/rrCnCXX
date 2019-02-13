@@ -5,7 +5,7 @@
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/math>
  *
- * \version 2019-01-28
+ * \version 2019-02-13
  * \since 2018-07-10
  * \authors zhengrr
  * \copyright Unlicense
@@ -44,7 +44,7 @@ END_TEST;
 
 TCase *tc_math_nearest(void)
 {
-    TCase *const tc = tcase_create("math_nearest");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_round);
     return tc;
 }

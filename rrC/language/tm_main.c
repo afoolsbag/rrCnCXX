@@ -42,7 +42,7 @@ int main(void)
     srunner_add_suite(tr, ts_language());
     srunner_add_suite(tr, ts_memory());
     srunner_add_suite(tr, ts_numeric());
-    srunner_add_suite(tr, ts_strings());
+    srunner_add_suite(tr, ts_string());
     srunner_add_suite(tr, ts_type_support());
 
     srunner_run_all(tr, CK_NORMAL);

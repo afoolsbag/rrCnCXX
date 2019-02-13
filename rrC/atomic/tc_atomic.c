@@ -29,7 +29,7 @@ END_TEST;
 
 TCase *tc_atomic(void)
 {
-    TCase *const tc = tcase_create("atomic");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_atomic_int);
     return tc;
 }

@@ -5,7 +5,7 @@
  *
  * \sa ["C 内存管理库"](https://zh.cppreference.com/w/c/memory). *cppreference.com*.
  *
- * \version 2019-01-28
+ * \version 2019-02-13
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright Unlicense
@@ -13,8 +13,8 @@
 *//*===--------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRC_MEMORY_TEST_H_
-#define RRC_MEMORY_TEST_H_
+#ifndef RRC_TS_MEMORY_H_
+#define RRC_TS_MEMORY_H_
 
 #include <check.h>
 
@@ -22,9 +22,9 @@ TCase *tc_memory(void);
 
 static inline Suite *ts_memory(void)
 {
-    Suite *const ts = suite_create("memory");
+    Suite *const ts = suite_create(__func__);
     suite_add_tcase(ts, tc_memory());
     return ts;
 }
 
-#endif/*RRC_MEMORY_TEST_H_*/
+#endif/*RRC_TS_MEMORY_H_*/

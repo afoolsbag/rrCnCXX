@@ -3,9 +3,9 @@
  * \defgroup gRandom 伪随机数
  * \ingroup gNumeric
  *
- * \sa ["伪随机数生成"](http://zh.cppreference.com/w/c/numeric/random). *cppreference.com*.
+ * \sa <http://zh.cppreference.com/w/c/numeric/random>
  *
- * \version 2019-01-29
+ * \version 2019-02-13
  * \since 2016-10-10
  * \authors zhengrr
  * \copyright Unlicense
@@ -47,7 +47,7 @@ END_TEST;
 
 TCase *tc_random(void)
 {
-    TCase *const tc = tcase_create("random");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_pseudo_random_number);
     return tc;
 }

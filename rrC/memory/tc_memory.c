@@ -3,6 +3,7 @@
  * @{
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 
 #include <check.h>
@@ -16,8 +17,8 @@ START_TEST(tf_malloc)
 {
     char *p = malloc(666 * sizeof(char));
     if (!p) {
-        ck_abort_msg("Not enough memory");
-        return;
+        perror("malloc failed");
+        ck_abort();
     }
 
     /* 使用分配到的空间 */
@@ -34,8 +35,8 @@ START_TEST(tf_calloc)
 {
     char *p = calloc(666, sizeof(char));
     if (!p) {
-        ck_abort_msg("Not enough memory");
-        return;
+        perror("calloc failed");
+        ck_abort();
     }
 
     ck_assert_int_eq(*p, 0);
@@ -55,8 +56,8 @@ START_TEST(tf_realloc)
     /* 第一次请求分配 233 字节的空间 */
     char *p = realloc(NULL, 233 * sizeof(char));
     if (!p) {
-        ck_abort_msg("Not enough memory");
-        return;
+        perror("realloc failed");
+        ck_abort();
     }
 
     /* 并指定前四个字节 */
@@ -71,8 +72,8 @@ START_TEST(tf_realloc)
     p = realloc(bak, 666 * sizeof(uint8_t));
     if (!p) {
         free(bak);
-        ck_abort_msg("Not enough memory");
-        return;
+        perror("realloc failed");
+        ck_abort();
     }
     bak = NULL;
 
@@ -91,7 +92,7 @@ END_TEST;
 
 TCase *tc_memory(void)
 {
-    TCase *const tc = tcase_create("memory");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_malloc);
     tcase_add_test(tc, tf_calloc);
     tcase_add_test(tc, tf_realloc);

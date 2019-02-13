@@ -138,7 +138,7 @@ END_TEST;
 
 TCase *tc_chrono(void)
 {
-    TCase *const tc = tcase_create("chrono");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_struct_tm);
     tcase_add_test(tc, tf_time_t);
     tcase_add_test(tc, tf_clock_t);
