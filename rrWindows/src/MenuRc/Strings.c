@@ -1,4 +1,6 @@
-/** \copyright Unlicense */
+/**
+ * \copyright Unlicense
+ */
 
 #define RRWINDOWS_EXPORTS
 #include "rrwindows/MenuRc/Strings.h"
