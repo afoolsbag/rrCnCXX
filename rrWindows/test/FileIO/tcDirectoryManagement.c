@@ -17,10 +17,10 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsFileIO.h"
 
 CONST TCHAR Sub1[] = _T("\\sub");
 CONST TCHAR Sub3[] = _T("\\sub\\to\\here");
@@ -53,11 +53,13 @@ START_TEST(tfRemoveDirectoryTraversely)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcDirectoryManagement(void)
 {
-    TCase *const tc = tcase_create("DirectoryManagement");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfCreateDirectoryRecursively);
     tcase_add_test(tc, tfRemoveDirectoryTraversely);
     return tc;

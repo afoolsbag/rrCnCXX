@@ -1,27 +1,11 @@
-/*===-- Services -----------------------------------------------*- C -*-===*//**
- *
- * \defgroup gServices 服务
- * \ingroup gDevelop
- *
- * \sa ["Services"](https://docs.microsoft.com/windows/desktop/Services/services). *Microsoft Docs*.
- *     *   [The Complete Service Sample](https://docs.microsoft.com/windows/desktop/Services/the-complete-service-sample)
- *
- * \version 2019-01-04
- * \since 2019-01-04
- * \authors zhengrr
- * \copyright Unlicense
- *
- * @{
-*//*===--------------------------------------------------------------------===*/
-
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsServices.h"
 
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
@@ -29,6 +13,11 @@
 #ifndef EXIT_FAILURE
 #define EXIT_FAILURE 1
 #endif
+
+/**
+ * \addtogroup gServices
+ * @{
+ */
 
 enum TheServiceToolType {
     Install,  /**< 安装 */
@@ -89,11 +78,14 @@ INT WINAPI TheServiceMain(INT argc, TCHAR *argv[], TCHAR *envp[])
         return EXIT_FAILURE;
     }
 
+#pragma warning(push)
+#pragma warning(disable: 4204)
     SERVICE_TABLE_ENTRY table[] =
     {
         {(PTSTR)TheServiceName, TheServiceEntry},
         {       NULL,           NULL}
     };
+#pragma warning(pop)
 
     if (!StartServiceCtrlDispatcher(table)) {
         ReportTheServiceFailingEvent(_T("StartServiceCtrlDispatcher"), GetLastError());
@@ -140,7 +132,10 @@ VOID WINAPI TheServiceTool(CONST INT type)
             goto exit;
         }
 
+#pragma warning(push)
+#pragma warning(disable: 4204)
         SERVICE_DESCRIPTION sd = {(PTSTR)TheServiceDescription};
+#pragma warning(pop)
         ChangeServiceConfig2(service, SERVICE_CONFIG_DESCRIPTION, &sd);
 
     } else if (type == Remove) {
@@ -334,10 +329,12 @@ VOID WINAPI ReportTheServiceEvent(CONST WORD type, PTSTR CONST message)
     }
 }
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcServices(void)
 {
-    TCase *const tc = tcase_create("Services");
+    TCase *const tc = tcase_create(__func__);
     return tc;
 }

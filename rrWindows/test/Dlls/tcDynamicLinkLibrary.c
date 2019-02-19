@@ -1,25 +1,15 @@
-/*===-- Dynamic-Link Libraries ---------------------------------*- C -*-===*//**
- *
- * \defgroup gDlls 动态链接库
- * \ingroup gDevelop
- *
- * \sa ["Dynamic-Link Libraries"](https://docs.microsoft.com/windows/desktop/Dlls/). *Microsoft Docs*.
- *
- * \version 2019-01-04
- * \since 2018-02-05
- * \authors zhengrr
- * \copyright Unlicense
- *
- * @{
-*//*===--------------------------------------------------------------------===*/
-
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsDlls.h"
+
+/**
+ * \addtogroup gDlls
+ * @{
+ */
 
 START_TEST(tfAllocExecutablePath)
 {
@@ -69,11 +59,13 @@ START_TEST(tfAllocInitializationPath)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcDynamicLinkLibrary(void)
 {
-    TCase *const tc = tcase_create("DynamicLinkLibrary");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfAllocExecutablePath);
     tcase_add_test(tc, tfAllocExecutableDirectoryPath);
     tcase_add_test(tc, tfAllocExecutableName);

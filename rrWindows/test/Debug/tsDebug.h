@@ -12,9 +12,22 @@
  *     *   Wait Chain Traversal
  *     *   Intel AVX
  *
- * \version 2018-10-18
+ * \version 2019-02-19
  * \since 2018-02-05
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
+
+#pragma once
+
+#include <check.h>
+
+TCase *tcErrorHandling(void);
+
+inline Suite *tsDebug(void)
+{
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tcErrorHandling());
+    return ts;
+}

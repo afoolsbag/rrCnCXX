@@ -17,10 +17,10 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsIntl.h"
 
 static CONST CHAR  Utf8[] = "你好，世界";
 static CONST WCHAR Unicode[] = L"你好，世界";
@@ -53,11 +53,13 @@ START_TEST(tfMultiByteAllocMultiByte)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcUnicodeAndCharacterSets(void)
 {
-    TCase *const tc = tcase_create("UnicodeAndCharacterSets");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfMultiByteAllocWideChar);
     tcase_add_test(tc, tfWideCharAllocMultiByte);
     tcase_add_test(tc, tfMultiByteAllocMultiByte);

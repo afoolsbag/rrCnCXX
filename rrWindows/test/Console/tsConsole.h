@@ -5,9 +5,22 @@
  *
  * \sa ["Consoles"](https://docs.microsoft.com/windows/console/). *Microsoft Docs*.
  *
- * \version 2018-11-19
+ * \version 2019-02-19
  * \since 2018-05-03
  * \authors zhengrr
- * \copyright CC0-1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
+
+#pragma once
+
+#include <check.h>
+
+TCase *tcConsoleVirtualTerminalSequences(void);
+
+inline Suite *tsConsole(void)
+{
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tcConsoleVirtualTerminalSequences());
+    return ts;
+}

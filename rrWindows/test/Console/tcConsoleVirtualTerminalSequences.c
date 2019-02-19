@@ -17,10 +17,10 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsConsole.h"
 
 START_TEST(tfAllocErrorMessage)
 {
@@ -35,11 +35,13 @@ START_TEST(tfAllocErrorMessage)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcConsoleVirtualTerminalSequences(void)
 {
-    TCase *const tc = tcase_create("ConsoleVirtualTerminalSequences");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfAllocErrorMessage);
     return tc;
 }

@@ -14,9 +14,22 @@
  *     *   Version Information
  *     *   Resource Compiler
  *
- * \version 2018-10-18
+ * \version 2019-02-19
  * \since 2018-02-23
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
+
+#pragma once
+
+#include <check.h>
+
+TCase *tcStrings(void);
+
+inline Suite *tsMenuRc(void)
+{
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tcStrings());
+    return ts;
+}

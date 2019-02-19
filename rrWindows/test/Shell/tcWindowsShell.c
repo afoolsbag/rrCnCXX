@@ -1,18 +1,3 @@
-/*===-- Windows Shell ------------------------------------------*- C -*-===*//**
- *
- * \defgroup gShell Windows 壳
- * \ingroup gDevelop
- *
- * \sa ["Windows Shell"](https://docs.microsoft.com/windows/desktop/shell/shell-entry). *Microsoft Docs*.
- *
- * \version 2019-01-08
- * \since 2018-05-08
- * \authors zhengrr
- * \copyright Unlicense
- *
- * @{
-*//*===--------------------------------------------------------------------===*/
-
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -26,10 +11,15 @@
 
 #include <VersionHelpers.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsShell.h"
+
+/**
+ * \addtogroup gShell
+ * @{
+ */
 
 START_TEST(tfPathCchRemoveFileSpec)
 {
@@ -64,11 +54,13 @@ START_TEST(tfPathCchRemoveFileSpec)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcWindowsShell(void)
 {
-    TCase *const tc = tcase_create("WindowsShell");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfPathCchRemoveFileSpec);
     return tc;
 }

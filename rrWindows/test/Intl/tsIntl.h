@@ -16,9 +16,24 @@
  *     *   Unicode and Character Sets
  *     *   Security Considerations: International Features
  *
- * \version 2018-10-18
+ * \version 2019-02-19
  * \since 2018-02-05
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
+
+#pragma once
+
+#include <check.h>
+
+TCase *tcNationalLanguageSupport(void);
+TCase *tcUnicodeAndCharacterSets(void);
+
+inline Suite *tsIntl(void)
+{
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tcNationalLanguageSupport());
+    suite_add_tcase(ts, tcUnicodeAndCharacterSets());
+    return ts;
+}

@@ -11,9 +11,22 @@
  *     *   Time Provider
  *     *   WaaS Assessment Platform
  *
- * \version 2018-10-18
+ * \version 2019-02-19
  * \since 2018-02-05
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
+
+#pragma once
+
+#include <check.h>
+
+TCase *tcRegistry(void);
+
+inline Suite *tsSysInfo(void)
+{
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tcRegistry());
+    return ts;
+}

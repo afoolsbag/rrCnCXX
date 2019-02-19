@@ -8,6 +8,19 @@
  * \version 2018-10-18
  * \since 2018-02-05
  * \authors zhengrr
- * \copyright CC0 1.0
+ * \copyright Unlicense
  *
 *//*===--------------------------------------------------------------------===*/
+
+#pragma once
+
+#include <check.h>
+
+TCase *tcProcessesAndThreads(void);
+
+inline Suite *tsProcThread(void)
+{
+    Suite *const ts = suite_create(__func__);
+    suite_add_tcase(ts, tcProcessesAndThreads());
+    return ts;
+}

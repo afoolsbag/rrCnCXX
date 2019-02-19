@@ -16,10 +16,10 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsDebug.h"
 
 START_TEST(tfAllocErrorMessage)
 {
@@ -29,11 +29,13 @@ START_TEST(tfAllocErrorMessage)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcErrorHandling(void)
 {
-    TCase *const tc = tcase_create("ErrorHandling");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfAllocErrorMessage);
     return tc;
 }

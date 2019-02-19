@@ -17,10 +17,10 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsIntl.h"
 
 static CONST TCHAR Str1[] = _T("1234567");
 static CONST TCHAR Str2[] = _T("1234567");
@@ -43,11 +43,13 @@ START_TEST(tfCompareStringUserDefault)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcNationalLanguageSupport(void)
 {
-    TCase *const tc = tcase_create("NationalLanguageSupport");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfCompareStringInvariant);
     tcase_add_test(tc, tfCompareStringSystemDefault);
     tcase_add_test(tc, tfCompareStringUserDefault);

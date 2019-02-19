@@ -17,10 +17,10 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
-#include "rrwindows/rrwindows.h"
+#include <check.h>
 
-#include "_test.h"
+#include "rrwindows/rrwindows.h"
+#include "tsMenuRc.h"
 
 static CONST TCHAR Head[] = _T("Head");
 static CONST TCHAR Body[] = _T("Body");
@@ -67,11 +67,13 @@ START_TEST(tfStringAllocCopy)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcStrings(void)
 {
-    TCase *const tc = tcase_create("Strings");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfStringAllocCat);
     tcase_add_test(tc, tfStringAllocCat3);
     tcase_add_test(tc, tfStringAllocCopy_Const);

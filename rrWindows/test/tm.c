@@ -4,19 +4,20 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "Console/_test.h"
-#include "Debug/_test.h"
-#include "Dlls/_test.h"
-#include "FileIO/_test.h"
-#include "Intl/_test.h"
-#include "MenuRc/_test.h"
-#include "Services/_test.h"
-#include "Shell/_test.h"
-#include "Sync/_test.h"
-#include "SysInfo/_test.h"
-#include "WinSock/_test.h"
+#include "Console/tsConsole.h"
+#include "Debug/tsDebug.h"
+#include "Dlls/tsDlls.h"
+#include "FileIO/tsFileIO.h"
+#include "Intl/tsIntl.h"
+#include "MenuRc/tsMenuRc.h"
+#include "ProcThread/tsProcThread.h"
+#include "Services/tsServices.h"
+#include "Shell/tsShell.h"
+#include "Sync/tsSync.h"
+#include "SysInfo/tsSysInfo.h"
+#include "WinSock/tsWinSock.h"
 
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
@@ -40,6 +41,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(tr, tsFileIO());
     srunner_add_suite(tr, tsIntl());
     srunner_add_suite(tr, tsMenuRc());
+    srunner_add_suite(tr, tsProcThread());
     srunner_add_suite(tr, tsShell());
     srunner_add_suite(tr, tsSync());
     srunner_add_suite(tr, tsSysInfo());
@@ -53,5 +55,9 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 /* 桌面应用入口 */
 INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PTSTR lpCmdLine, INT nCmdShow)
 {
+    UNREFERENCED_PARAMETER(hInstance);
+    UNREFERENCED_PARAMETER(hPrevInstance);
+    UNREFERENCED_PARAMETER(lpCmdLine);
+    UNREFERENCED_PARAMETER(nCmdShow);
     return EXIT_SUCCESS;
 }

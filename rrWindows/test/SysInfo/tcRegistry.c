@@ -8,7 +8,7 @@
  * \version 2018-10-22
  * \since 2018-01-15
  * \authors zhengrr
- * \copyright The Unlicense
+ * \copyright Unlicense
  *
  * @{
 *//*===--------------------------------------------------------------------===*/
@@ -17,10 +17,10 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include <check/check.h>
+#include <check.h>
 
-#include "_test.h"
 #include "rrwindows/rrwindows.h"
+#include "tsSysInfo.h"
 
 static PTSTR CONST App = _T("app");
 static PTSTR CONST StrKey = _T("str");
@@ -58,11 +58,13 @@ START_TEST(tfGetIni)
 }
 END_TEST
 
-/** @} */
+/**
+ * @}
+ */
 
 TCase *tcRegistry(void)
 {
-    TCase *const tc = tcase_create("Registry");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tfWriteIni);
     tcase_add_test(tc, tfGetIni);
     return tc;
