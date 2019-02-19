@@ -3,6 +3,8 @@
  * @{
  */
 
+#define _CRT_SECURE_NO_WARNINGS
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,10 +18,8 @@
 START_TEST(tf_malloc)
 {
     char *p = malloc(666 * sizeof(char));
-    if (!p) {
-        perror("malloc failed");
-        ck_abort();
-    }
+    if (!p)
+        ck_abort_msg("malloc() failed: %s", strerror(errno));
 
     /* 使用分配到的空间 */
 
@@ -34,10 +34,8 @@ END_TEST;
 START_TEST(tf_calloc)
 {
     char *p = calloc(666, sizeof(char));
-    if (!p) {
-        perror("calloc failed");
-        ck_abort();
-    }
+    if (!p)
+        ck_abort_msg("calloc() failed: %s", strerror(errno));
 
     ck_assert_int_eq(*p, 0);
     /* 使用分配到的空间 */
@@ -55,10 +53,8 @@ START_TEST(tf_realloc)
 {
     /* 第一次请求分配 233 字节的空间 */
     char *p = realloc(NULL, 233 * sizeof(char));
-    if (!p) {
-        perror("realloc failed");
-        ck_abort();
-    }
+    if (!p)
+        ck_abort_msg("realloc() failed: %s", strerror(errno));
 
     /* 并指定前四个字节 */
     p[0] = '2';
@@ -72,8 +68,7 @@ START_TEST(tf_realloc)
     p = realloc(bak, 666 * sizeof(uint8_t));
     if (!p) {
         free(bak);
-        perror("realloc failed");
-        ck_abort();
+        ck_abort_msg("realloc() failed: %s", strerror(errno));
     }
     bak = NULL;
 

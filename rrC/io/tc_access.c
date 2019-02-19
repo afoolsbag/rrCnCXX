@@ -3,7 +3,7 @@
  * \defgroup gAccess 文件访问
  * \ingroup gFileIO
  *
- * \version 2019-02-13
+ * \version 2019-02-19
  * \since 2016-11-14
  * \authors zhengrr
  * \copyright Unlicense
@@ -12,6 +12,7 @@
 *//*===--------------------------------------------------------------------===*/
 
 #define _CRT_SECURE_NO_WARNINGS
+#include <errno.h>
 #include <stdio.h>
 
 #include <check.h>
@@ -27,10 +28,8 @@
 START_TEST(tf_create_file)
 {
     FILE *fp = fopen("tf.txt", "w");
-    if (!fp) {
-        perror("fopen failed");
-        ck_abort();
-    }
+    if (!fp)
+        ck_abort_msg("fopen() failed: %s", strerror(errno));
 
     ck_assert(!fclose(fp));
 }
@@ -42,10 +41,8 @@ END_TEST;
  */
 START_TEST(tf_move_file)
 {
-    if (rename("tf.txt", "tf2.txt")) {
-        perror("rename failed");
-        ck_abort();
-    }
+    if (rename("tf.txt", "tf2.txt"))
+        ck_abort_msg("rename() failed: %s", strerror(errno));
 }
 END_TEST;
 
@@ -55,10 +52,8 @@ END_TEST;
  */
 START_TEST(tf_delete_file)
 {
-    if (remove("tf2.txt")) {
-        perror("remove failed");
-        ck_abort();
-    }
+    if (remove("tf2.txt"))
+        ck_abort_msg("remove() failed: %s", strerror(errno));
 }
 END_TEST;
 

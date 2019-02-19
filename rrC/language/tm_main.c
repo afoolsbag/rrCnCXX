@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLanguage
  *
- * \version 2019-01-29
+ * \version 2019-02-19
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -18,6 +18,7 @@
 #include "algorithm/ts_algorithm.h"
 #include "atomic/ts_atomic.h"
 #include "chrono/ts_chrono.h"
+#include "error/ts_error.h"
 #include "io/ts_io.h"
 #include "language/ts_language.h"
 #include "memory/ts_memory.h"
@@ -38,6 +39,7 @@ int main(void)
     srunner_add_suite(tr, ts_algorithm());
     srunner_add_suite(tr, ts_atomic());
     srunner_add_suite(tr, ts_chrono());
+    srunner_add_suite(tr, ts_error());
     srunner_add_suite(tr, ts_io());
     srunner_add_suite(tr, ts_language());
     srunner_add_suite(tr, ts_memory());

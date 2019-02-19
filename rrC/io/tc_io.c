@@ -35,19 +35,19 @@ START_TEST(tf_direct_io)
 
     double *buf = malloc(count * size);
     if (!buf) {
-        perror("malloc failed");
+        perror("malloc() failed");
         goto exit;
     }
 
     FILE *tp = tmpfile();
     if (!tp) {
-        perror("tmpfile failed");
+        perror("tmpfile() failed");
         goto exit_free;
     }
 
     /* 写入 */
     if (fwrite(data, size, count, tp) != count) {
-        perror("fwrite failed");
+        perror("fwrite() failed");
         goto exit_close;
     }
 
@@ -55,7 +55,7 @@ START_TEST(tf_direct_io)
 
     /* 读出 */
     if (fread(buf, size, count, tp) < count && !feof(tp)) {
-        perror("fread failed");
+        perror("fread() failed");
         goto exit_close;
     }
 

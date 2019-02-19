@@ -36,6 +36,17 @@ START_TEST(tf_array_compound_literals)
 END_TEST;
 
 /**
+ * \brief 变长数组。
+ */
+START_TEST(tf_variable_length_arrays)
+{
+#if FEATURE_VLA
+#endif
+}
+END_TEST;
+
+
+/**
  * @}
  */
 
@@ -43,5 +54,6 @@ TCase *tc_array(void)
 {
     TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_array_compound_literals);
+    tcase_add_test(tc, tf_variable_length_arrays);
     return tc;
 }
