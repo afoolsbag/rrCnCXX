@@ -32,7 +32,7 @@ TEST(vector, traverse)
 {
     const vector<int> numbers {9, 5, 2, 7};
 
-#if N2930
+#if FEATURE_N2930
     int sum1 {};
     for (const auto &number : numbers)
         sum1 += number;

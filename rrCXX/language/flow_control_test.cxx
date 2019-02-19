@@ -33,7 +33,7 @@ TEST(flow_control, switch)
     random_device dev;
     default_random_engine eng(dev());
 
-#if _MSC_VER
+#if NORMALIZED_MSC_VERSION
     const uniform_int_distribution<> dis(1, 6);
 #else
     uniform_int_distribution<> dis(1, 6);
@@ -41,19 +41,15 @@ TEST(flow_control, switch)
 
     const auto condition {dis(eng)};
 
-#if P0188R1
+#if FEATURE_P0188R1
     switch (condition) {
-    case 1:
-        [[fallthrough]];
-    case 2:
-        [[fallthrough]];
+    case 1: [[fallthrough]];
+    case 2: [[fallthrough]];
     case 3:
         // do something
         break;
-    case 4:
-        [[fallthrough]];
-    case 5:
-        [[fallthrough]];
+    case 4: [[fallthrough]];
+    case 5: [[fallthrough]];
     case 6:
         // do something
         break;

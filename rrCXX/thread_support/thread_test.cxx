@@ -25,7 +25,7 @@ namespace rrcxx {
 
 TEST(thread, test)
 {
-#if N2497
+#if FEATURE_N2497
     using namespace chrono_literals;
 
     cout << "main: call thread 1.\n";

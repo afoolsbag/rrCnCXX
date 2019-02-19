@@ -181,9 +181,62 @@
 /// ## 组件图                                             {#ssComponentDiagram}
 ///
 /// \startuml
-///   [组件] as component
-///   () "接口" as interface
-///   interface - component
+///   cloud "视频平台\nVideo Platform" as vp {
+///     [视频平台服务\nVideo Platform Service] as vps
+///     () "GB/T28181 服务端\nGB/T28181 Server End" as gbse
+///     vps -l- gbse
+///   }
+///
+///   node "媒体服务器\nMedia Server\n（Linux）" as msr {
+///     [转发服务\nForwarding Service] as fs
+///     () "GB/T28181 客户端\nGB/T28181 Client End" as gbce
+///     () "RTSP 服务端\nRTSP Server End" as rtspse
+///     () "转发控制服务端\nForwarding Control Server End" as fcse
+///     fs -l- gbce
+///     fs -r- rtspse
+///     fs -u- fcse
+///
+///     storage "视频存储\nVideo Storage" as vst
+///
+///     [视频点播服务\nVideo-On-Demand Service] as vods
+///     () "VOD 服务端\nVOD Server End" as vodse
+///     vods -r- vodse
+///
+///     fs --> vst
+///     vst --> vods
+///   }
+///
+///   rectangle "计算服务器集群\nCompute Server Cluster" as csc {
+///     node "计算服务器 1\nCompute Server 1\n（Windows）"
+///     node "计算服务器 2\nCompute Server 2\n（Windows）"
+///     node "计算服务器 3\nCompute Server 3\n（Windows）"
+///     node "计算服务器 ...\nCompute Server ...\n（Windows）"
+///   }
+///
+///   node "网页服务器\nWeb Server\n（Windows）" as wsr {
+///     [网页服务\nWeb Service] as ws
+///   }
+///
+///   node "用户机\nUser Computer\n（Windows）" as ucr {
+///     [用户端\nUser Client] as uc
+///
+///     [播放控件\nPlayer Control] as pct
+///     () "RTSP 客户端\nRTSP Client End" as rtspce
+///     () "VOD 客户端\nVOD Client End" as vodce
+///     pct -u- rtspce
+///     pct -d- vodce
+///
+///     uc -l- pct : ActiveX 控件
+///   }
+///
+///   () "转发控制客户端\nForwarding Control Client End" as fcce
+///
+///   gbse <---> gbce : GB/T28181
+///   fcse <-> fcce
+///   fcce . ws
+///   fcce .. uc
+///   rtspse <-> rtspce : RTSP
+///   vodse <-> vodce : VOD
 /// \enduml
 ///
 /// ## 部署图                                            {#ssDeploymentDiagram}

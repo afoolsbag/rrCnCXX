@@ -84,7 +84,7 @@ public:
     /// \brief 获取实例。
     static lazy_singleton &instance()
     {
-#if !N2660
+#if FEATURE_N2660
         static lazy_singleton instance_owner;
         return instance_owner;
 

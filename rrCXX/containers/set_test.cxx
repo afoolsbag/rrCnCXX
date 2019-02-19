@@ -41,7 +41,7 @@ TEST(set, lookup)
     ASSERT_FALSE(numbers.find(6) != numbers.cend());
 
     // contains
-#if CXX20
+#if STANDARD_CXX20
     ASSERT_TRUE(numSet.contains(5));
     ASSERT_FALSE(numSet.contains(6));
 #endif

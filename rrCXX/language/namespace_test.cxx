@@ -17,7 +17,7 @@ namespace rrcxx {
 /// \addtogroup gNamespace
 /// @{
 
-#if N4230
+#if FEATURE_N4230
 
 /// \brief 嵌套命名空间
 namespace outer::inner {

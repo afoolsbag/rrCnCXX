@@ -32,7 +32,7 @@ namespace rrcxx {
 /// \brief 任意包装器。
 TEST(common_vocabulary_types, any)
 {
-#if P0220R1
+#if FEATURE_P0220R1
     any any;
     ASSERT_FALSE(any.has_value());
 
@@ -55,7 +55,7 @@ TEST(common_vocabulary_types, any)
 /// \brief 可选包装器。
 TEST(common_vocabulary_types, optional)
 {
-#if P0220R1
+#if FEATURE_P0220R1
     const auto create {[](const bool notnull) -> optional<int> {
         if (notnull)
             return 666;
@@ -89,7 +89,7 @@ TEST(common_vocabulary_types, tuple)
     double cxx11double;
     tie(cxx11int, cxx11double) = get_two_zero();
 
-#if P0217R3
+#if FEATURE_P0217R3
     // C++17
     const auto [cxx17int, cxx17double] {get_two_zero()};
     (void)cxx17int;
@@ -100,7 +100,7 @@ TEST(common_vocabulary_types, tuple)
 /// \brief 变体包装器。
 TEST(common_vocabulary_types, variant)
 {
-#if P0088R3
+#if FEATURE_P0088R3
     variant<int, double> variant {0};
     [[maybe_unused]] const auto as_int {get<int>(variant)};
 
