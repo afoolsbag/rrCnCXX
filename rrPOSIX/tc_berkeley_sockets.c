@@ -3,7 +3,7 @@
  * \file
  * \brief 伯克利套接字。
  *
- * \version 2019-02-18
+ * \version 2019-02-19
  * \since 2019-02-15
  * \authors zhengrr
  * \copyright Unlicense
@@ -254,32 +254,32 @@ static void *tcp_client_func(void *data)
     socklen_t len = sizeof src;
     if (getsockname(skt, &src, &len) == -1) {
         perror("getsockname() failed");
-        goto exit_close_skt;
+        goto exit_shutdown_skt;
     }
 
     char src_addr[INET_ADDRSTRLEN < INET6_ADDRSTRLEN ? INET6_ADDRSTRLEN : INET_ADDRSTRLEN];
     uint16_t src_port;
     if (inet_conv(&src, src_addr, sizeof src_addr, &src_port) == -1) {
         perror("inet_conv() failed");
-        goto exit_close_skt;
+        goto exit_shutdown_skt;
     }
 
     const char send_buf[] = "你好";
     if (send(skt, send_buf, sizeof send_buf, 0) == -1) {
         perror("send() failed");
-        goto exit_close_skt;
+        goto exit_shutdown_skt;
     }
     printf("[%s:%hu >> %s:%hu] %s\n", src_addr, src_port, dst_addr, dst_port, send_buf);
 
     char recv_buf[256];
     if (recv(skt, recv_buf, sizeof recv_buf, 0) == -1) {
         perror("recv() failed");
-        goto exit_close_skt;
+        goto exit_shutdown_skt;
     }
     printf("[%s:%hu >> %s:%hu] %s\n", src_addr, src_port, dst_addr, dst_port, recv_buf);
 
+exit_shutdown_skt:
     shutdown(skt, SHUT_RDWR);
-
 exit_close_skt:
     close(skt);
 exit:
