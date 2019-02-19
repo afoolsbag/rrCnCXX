@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-11-23
+# 2016-10-08 – 2019-02-15
 # Unlicense
 
 include_guard()
@@ -35,7 +35,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 #   参见：
 #
-#   - `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen>`_. *CMake Documentation*.
+#   - `"FindDoxygen" <https://cmake.org/cmake/help/latest/module/FindDoxygen.html>`_. *CMake Documentation*.
 #   - `"Configuration" <http://doxygen.org/manual/config.html>`_. *Doxygen Manual*.
 function(add_doxygen)
   set(zOptKws    WITH_OPTION
@@ -136,12 +136,12 @@ function(add_doxygen)
 
   # Configuration options related to the dot tool
   #           DOT_PATH              http://doxygen.org/manual/config.html#cfg_dot_path
-  set(DOXYGEN_DOT_PATH              "$ENV{GRAPHVIZ_DOT}" CACHE FILEPATH "The path where the dot tool can be found.")
+  set(DOXYGEN_DOT_PATH              "$ENV{GRAPHVIZ_DOT}" CACHE FILEPATH "The path to the dot.exe.")
   mark_as_advanced(DOXYGEN_DOT_PATH)
   # NO        UML_LOOK              http://doxygen.org/manual/config.html#cfg_uml_look
   set(DOXYGEN_UML_LOOK              NO)
   #           PLANTUML_JAR_PATH     http://doxygen.org/manual/config.html#cfg_plantuml_jar_path
-  set(DOXYGEN_PLANTUML_JAR_PATH     "$ENV{PLANTUML}" CACHE FILEPATH "The path where java can find the plantuml.jar file.")
+  set(DOXYGEN_PLANTUML_JAR_PATH     "$ENV{PLANTUML}" CACHE FILEPATH "The path to the plantuml.jar.")
   mark_as_advanced(DOXYGEN_PLANTUML_JAR_PATH)
 
   doxygen_add_docs(
