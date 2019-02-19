@@ -1,8 +1,3 @@
-/**
- * \addtogroup gMemory
- * @{
- */
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
 #include <stdio.h>
@@ -11,6 +6,11 @@
 #include <check.h>
 
 #include "ts_memory.h"
+
+/**
+ * \addtogroup gMemory
+ * @{
+ */
 
 /**
  * \brief 内存分配（Memory Allocate）

@@ -1,8 +1,3 @@
-/**
- * \addtogroup gError
- * @{
- */
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <errno.h>
 #include <stdio.h>
@@ -11,6 +6,11 @@
 #include <check.h>
 
 #include "ts_error.h"
+
+/**
+ * \addtogroup gError
+ * @{
+ */
 
 START_TEST(tf_error)
 {

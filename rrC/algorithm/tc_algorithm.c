@@ -1,13 +1,13 @@
-/**
- * \addtogroup gAlgorithm
- * @{
- */
-
 #include <stdlib.h>
 
 #include <check.h>
 
 #include "ts_algorithm.h"
+
+/**
+ * \addtogroup gAlgorithm
+ * @{
+ */
 
 static int cmp(const void *lhs, const void *rhs)
 {

@@ -1,8 +1,3 @@
-/**
- * \addtogroup gThread
- * @{
- */
-
 #include <check.h>
 
 #include "c_versions.h"
@@ -11,6 +6,11 @@
 #if FEATURE_THREADS
 #include <threads.h>
 #endif
+
+/**
+ * \addtogroup gThread
+ * @{
+ */
 
 START_TEST(tf_thread)
 {

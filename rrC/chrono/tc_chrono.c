@@ -1,8 +1,3 @@
-/**
- * \addtogroup gChrono
- * @{
- */
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <time.h>
@@ -10,6 +5,11 @@
 #include <check.h>
 
 #include "ts_chrono.h"
+
+/**
+ * \addtogroup gChrono
+ * @{
+ */
 
 /**
  * \brief POSIX 时间
