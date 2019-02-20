@@ -253,7 +253,7 @@ RRWINDOWS_API
 _Success_(return != NULL)
 PSTR
 WINAPI
-StringAllocCopy_CountA(
+StringAllocCopyCA(
     _In_        PCSTR CONST src,
     _Out_opt_ PSIZE_T CONST heapCount)
 {
@@ -294,7 +294,7 @@ RRWINDOWS_API
 _Success_(return != NULL)
 PWSTR
 WINAPI
-StringAllocCopy_CountW(
+StringAllocCopyCW(
     _In_       PCWSTR CONST src,
     _Out_opt_ PSIZE_T CONST heapCount)
 {

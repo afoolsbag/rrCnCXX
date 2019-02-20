@@ -26,7 +26,7 @@ CountProcessesByExecutableA(
     if (!Process32First(snapshot, &processEntry))
         goto exit;
     do {
-        if (CompareString_SimplifyA(executableName, processEntry.szExeFile) == CSTR_EQUAL)
+        if (CompareStringSA(executableName, processEntry.szExeFile) == CSTR_EQUAL)
             ++count;
     } while (Process32Next(snapshot, &processEntry));
 
@@ -55,7 +55,7 @@ CountProcessesByExecutableW(
     if (!Process32FirstW(snapshot, &processEntry))
         goto exit;
     do {
-        if (CompareString_SimplifyW(executableName, processEntry.szExeFile) == CSTR_EQUAL)
+        if (CompareStringSW(executableName, processEntry.szExeFile) == CSTR_EQUAL)
             ++count;
     } while (Process32NextW(snapshot, &processEntry));
 

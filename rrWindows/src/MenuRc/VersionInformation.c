@@ -20,23 +20,23 @@ GetFileFixedInformationA(
     CONST DWORD siz = GetFileVersionInfoSizeA(filePath, NULL);
     if (siz == 0)
         return FALSE;
-    LPVOID CONST buf = HeapAlloc_Simplify(siz);
+    LPVOID CONST buf = HeapAllocS(siz);
     if (NULL == buf) {
         SetLastError(ERROR_OUTOFMEMORY);
         return FALSE;
     }
     if (!GetFileVersionInfoA(filePath, 0, siz, buf)) {
-        HeapFree_Simplify(buf);
+        HeapFreeS(buf);
         return FALSE;
     }
     VS_FIXEDFILEINFO *tmp;
     UINT len;
     if (!VerQueryValueA(buf, "\\", (LPVOID *)&tmp, &len)) {
-        HeapFree_Simplify(buf);
+        HeapFreeS(buf);
         return FALSE;
     }
     CopyMemory(pFixedInfo, tmp, min(len, sizeof(VS_FIXEDFILEINFO)));
-    HeapFree_Simplify(buf);
+    HeapFreeS(buf);
     return TRUE;
 }
 
@@ -51,22 +51,22 @@ GetFileFixedInformationW(
     CONST DWORD siz = GetFileVersionInfoSizeW(filePath, NULL);
     if (siz == 0)
         return FALSE;
-    LPVOID CONST buf = HeapAlloc_Simplify(siz);
+    LPVOID CONST buf = HeapAllocS(siz);
     if (NULL == buf) {
         SetLastError(ERROR_OUTOFMEMORY);
         return FALSE;
     }
     if (!GetFileVersionInfoW(filePath, 0, siz, buf)) {
-        HeapFree_Simplify(buf);
+        HeapFreeS(buf);
         return FALSE;
     }
     VS_FIXEDFILEINFO *tmp;
     UINT len;
     if (!VerQueryValueW(buf, L"\\", (LPVOID *)&tmp, &len)) {
-        HeapFree_Simplify(buf);
+        HeapFreeS(buf);
         return FALSE;
     }
     CopyMemory(pFixedInfo, tmp, min(len, sizeof(VS_FIXEDFILEINFO)));
-    HeapFree_Simplify(buf);
+    HeapFreeS(buf);
     return TRUE;
 }

@@ -38,37 +38,37 @@ INT WINAPI TheServiceMain(INT argc, TCHAR *argv[], TCHAR *envp[])
 
     if (argc == 2) {
 
-        if (CompareString_Simplify(argv[1], _T("install")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("install")) == CSTR_EQUAL) {
             TheServiceTool(Install);
             return EXIT_SUCCESS;
         }
 
-        if (CompareString_Simplify(argv[1], _T("remove")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("remove")) == CSTR_EQUAL) {
             TheServiceTool(Remove);
             return EXIT_SUCCESS;
         }
 
-        if (CompareString_Simplify(argv[1], _T("start")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("start")) == CSTR_EQUAL) {
             TheServiceTool(Start);
             return EXIT_SUCCESS;
         }
 
-        if (CompareString_Simplify(argv[1], _T("stop")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("stop")) == CSTR_EQUAL) {
             TheServiceTool(Stop);
             return EXIT_SUCCESS;
         }
 
-        if (CompareString_Simplify(argv[1], _T("pause")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("pause")) == CSTR_EQUAL) {
             TheServiceTool(Pause);
             return EXIT_SUCCESS;
         }
 
-        if (CompareString_Simplify(argv[1], _T("continue")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("continue")) == CSTR_EQUAL) {
             TheServiceTool(Continue);
             return EXIT_SUCCESS;
         }
 
-        if (CompareString_Simplify(argv[1], _T("restart")) == CSTR_EQUAL) {
+        if (CompareStringS(argv[1], _T("restart")) == CSTR_EQUAL) {
             TheServiceTool(Stop);
             TheServiceTool(Start);
             return EXIT_SUCCESS;

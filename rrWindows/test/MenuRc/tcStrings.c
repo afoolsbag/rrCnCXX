@@ -50,7 +50,7 @@ END_TEST
 START_TEST(tfStringAllocCopy_Const)
 {
     SIZE_T count;
-    PCTSTR CONST tmp = StringAllocCopy_Count(ToBeOrNot, &count);
+    PCTSTR CONST tmp = StringAllocCopyC(ToBeOrNot, &count);
     ck_assert(tmp);
     ck_assert(count);
     ck_assert(CompareStringInvariant(tmp, ToBeOrNot) == CSTR_EQUAL);

@@ -34,7 +34,7 @@ START_TEST(tfPathCchRemoveFileSpec)
 
     for (INT i = 0; i < 5; ++i) {
         PathCchRemoveFileSpec(td[i][0], 255);
-        ck_assert(CompareString_Simplify(td[i][0], td[i][1]) == CSTR_EQUAL);
+        ck_assert(CompareStringS(td[i][0], td[i][1]) == CSTR_EQUAL);
     }
 #else
     TCHAR td[5][2][255] = {
@@ -47,7 +47,7 @@ START_TEST(tfPathCchRemoveFileSpec)
 
     for (INT i = 0; i < 5; ++i) {
         PathRemoveFileSpec(td[i][0]);
-        ck_assert(CompareString_Simplify(td[i][0], td[i][1]) == CSTR_EQUAL);
+        ck_assert(CompareStringS(td[i][0], td[i][1]) == CSTR_EQUAL);
     }
 #endif
 

@@ -41,7 +41,7 @@ CreateDirectoryRecursivelyW_Internal(
         return TRUE;
 
     SIZE_T count;
-    PWSTR CONST parent = StringAllocCopy_CountW(path, &count);
+    PWSTR CONST parent = StringAllocCopyCW(path, &count);
     if (!parent)
         return FALSE;
 

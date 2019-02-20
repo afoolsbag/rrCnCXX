@@ -24,7 +24,7 @@ RunExecutableA(
 {
     PSTR cmdBuf = NULL;
     if (command) {
-        CONST size_t cmdBufCnt = 1/*' '*/ + StringCchLength_SimplifyA(command) + 1/*'\0'*/;
+        CONST size_t cmdBufCnt = 1/*' '*/ + StringCchLengthSA(command) + 1/*'\0'*/;
         cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(CHAR));
         if (!cmdBuf) {
             SetLastError(ERROR_OUTOFMEMORY);
@@ -72,7 +72,7 @@ RunExecutableW(
 {
     PWSTR cmdBuf = NULL;
     if (command) {
-        CONST size_t cmdBufCnt = 1/*L' '*/ + StringCchLength_SimplifyW(command) + 1/*L'\0'*/;
+        CONST size_t cmdBufCnt = 1/*L' '*/ + StringCchLengthSW(command) + 1/*L'\0'*/;
         cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(WCHAR));
         if (!cmdBuf) {
             SetLastError(ERROR_OUTOFMEMORY);
@@ -126,7 +126,7 @@ KillExecutableA(
     if (!Process32First(snap, &info))
         goto out_clssnap;
     do {
-        if (CSTR_EQUAL != CompareString_SimplifyA(exeName, info.szExeFile))
+        if (CSTR_EQUAL != CompareStringSA(exeName, info.szExeFile))
             continue;
         HANDLE CONST hdl = OpenProcess(PROCESS_TERMINATE, FALSE, info.th32ProcessID);
         if (NULL == hdl)
@@ -167,7 +167,7 @@ KillExecutableW(
     if (!Process32FirstW(snap, &info))
         goto out_clssnap;
     do {
-        if (CSTR_EQUAL != CompareString_SimplifyW(exeName, info.szExeFile))
+        if (CSTR_EQUAL != CompareStringSW(exeName, info.szExeFile))
             continue;
         HANDLE CONST hdl = OpenProcess(PROCESS_TERMINATE, FALSE, info.th32ProcessID);
         if (NULL == hdl)

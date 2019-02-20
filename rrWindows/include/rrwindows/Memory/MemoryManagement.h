@@ -3,7 +3,7 @@
  * \file
  * \brief 内存管理。
  *
- * \version 2019-02-19
+ * \version 2019-02-20
  * \since 2018-07-13
  * \authors zhengrr
  * \copyright Unlicense
@@ -17,7 +17,7 @@
 #include <strsafe.h>
 
 /**
- * \brief 分配内存块，简化接口。
+ * \brief 分配内存块，Simplify 接口。
  *
  * \param bytes 内存块尺寸。
  * \returns `!NULL` 成功，指向所分配内存块的指针；\n
@@ -28,14 +28,14 @@ _Ret_maybenull_
 _Post_writable_byte_size_(bytes)
 LPVOID
 WINAPI_INLINE
-HeapAlloc_Simplify(
+HeapAllocS(
     _In_ CONST SIZE_T bytes)
 {
     return HeapAlloc(GetProcessHeap(), 0, bytes);
 }
 
 /**
- * \brief 释放内存块，简化接口。
+ * \brief 释放内存块，Simplify 接口。
  *
  * \param ptr 内存块指针。
  * \returns `!FALSE` 成功，指向所分配内存块的指针；\n
@@ -45,7 +45,7 @@ FORCEINLINE
 _Success_(return != FALSE)
 BOOL
 WINAPI_INLINE
-HeapFree_Simplify(
+HeapFreeS(
     _In_ LPVOID CONST ptr)
 {
     return HeapFree(GetProcessHeap(), 0, ptr);

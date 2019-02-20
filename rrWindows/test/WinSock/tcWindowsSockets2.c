@@ -27,7 +27,7 @@ static BOOL ConsoleOutput(PCTSTR CONST msg)
     if (hdl == INVALID_HANDLE_VALUE)
         return FALSE;
 
-    CONST size_t len = StringCchLength_Simplify(msg);
+    CONST size_t len = StringCchLengthS(msg);
     WriteConsole(hdl, msg, (DWORD)len, NULL, NULL);
 
     return TRUE;
@@ -43,7 +43,7 @@ static BOOL ConsoleError(PCTSTR CONST funcName, CONST INT errCode)
     CONST size_t cnt = sizeof buf / sizeof *buf;
 
     StringCchPrintf(buf, cnt, _T("%s failed: %d\n"), funcName, errCode);
-    CONST size_t len = StringCchLength_Simplify(buf);
+    CONST size_t len = StringCchLengthS(buf);
     WriteConsole(hdl, buf, (DWORD)len, NULL, NULL);
 
     return TRUE;

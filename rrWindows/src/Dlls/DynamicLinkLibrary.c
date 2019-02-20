@@ -123,7 +123,7 @@ AllocExecutableName_CountA(
         return NULL;
     }
     SIZE_T count = 0;
-    PSTR CONST heap = StringAllocCopy_CountA(name, &count);
+    PSTR CONST heap = StringAllocCopyCA(name, &count);
     HeapFree(GetProcessHeap(), 0, (PVOID)path);
 
     if (heapCount)
@@ -150,7 +150,7 @@ AllocExecutableName_CountW(
         return NULL;
     }
     SIZE_T count = 0;
-    PWSTR CONST heap = StringAllocCopy_CountW(name, &count);
+    PWSTR CONST heap = StringAllocCopyCW(name, &count);
     HeapFree(GetProcessHeap(), 0, (PVOID)path);
 
     if (heapCount)
