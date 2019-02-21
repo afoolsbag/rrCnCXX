@@ -3,7 +3,7 @@
  * \file
  * \brief 宏。
  *
- * \version 2019-02-20
+ * \version 2019-02-21
  * \since 2018-06-12
  * \authors zhengrr
  * \copyright Unlicense
@@ -78,7 +78,63 @@
 # endif
 #endif
 
-/* 宏函数变参重载（Macro Function Variadic Overloading） */
+/* 宏函数变参重载（Macro Function Variadic Overloading）
+ * 
+ * 如何实现的？
+ *
+ * 1. 藉由宏的 __VA_ARGS__ 特性，构造 SELECT 宏，将参数个数和函数记号联系起来：
+ *
+ *    譬如现有三个函数：
+ *    f1(p1)
+ *    f2(p1, p2)
+ *    f3(p1, p2, p3)
+ *
+ *    构造路由宏：
+ *    fv(...) SELECT_4TH(__VA_ARGS__, f3, f2, f1)(__VA_ARGS__)
+ *
+ *    预处理阶段会被替换为：
+ *    fv(p1)
+ *        => SELECT_4TH(p1, f3, f2, f1)(p1)
+ *            => f1(p1)
+ *    fv(p1, p2)
+ *        => SELECT_4TH(p1, p2, f3, f2, f1)(p1, p2)
+ *            => f2(p1, p2)
+ *    fv(p1, p2, p3)
+ *        => SELECT_4TH(p1, p2, p3, f3, f2, f1)(p1, p2, p3)
+ *            => f3(p1, p2, p3)
+ *
+ *    但仅用该技巧，无法支持零个参数的情况：
+ *    fv()
+ *        => SELECT_4TH( , f3, f2, f1, f0)()
+ *            => f1()
+ *
+ * 2. 藉由预处理阶段的替换特性，修正零参数时的情形：
+ * 
+ *    构造路由宏：
+ *    fv(...) SELECT_5TH(PAD_4_TOKENS __VA_ARGS__ (), f0, f3, f2, f1)(__VA_ARGS__)
+ *
+ *    当 __VA_ARGS__ 不为空时：
+ *    fv(p1)
+ *        => SELECT_5TH(PAD_4_TOKENS p1 (), f0, f3, f2, f1)(p1)
+ *            => f1(p1)
+ *    fv(p1, p2)
+ *        => SELECT_5TH(PAD_4_TOKENS p1, p2 (), f0, f3, f2, f1)(p1, p2)
+ *            => f2(p1, p2)
+ *    fv(p1, p2, p3)
+ *        => SELECT_5TH(PAD_4_TOKENS p1, p2, p3 (), f0, f3, f2, f1)(p1, p2, p3)
+ *            => f3(p1, p2, p3)
+ *
+ *    当 __VA_ARGS__ 为空时：
+ *    fv()
+ *        => SELECT_5TH(PAD_4_TOKENS (), f0, f3, f2, f1)()
+ *            => SELECT_5TH(_1, _2, _3, _4, f0, f3, f2, f1)()
+ *                => f0()
+ *
+ * 3. 由于 MSC 的预处理特性，使用 __VA_ARGS__ 向 SELECT 宏传参会被认为是单个记号，
+ *    需要使用 EXPAND 将 SELECT 间接展开，以达到预期作用。
+ *
+ * 4. 将该技巧封装为 MFVO 宏，便于使用。
+ */
 
 #define SELECT_1ST(_1, ...) _1
 #define SELECT_2ND(_1, _2, ...) _2
@@ -111,46 +167,46 @@
     )
 #define MFVO_2(f0, f1, f2, ...)                                                \
     EXPAND(                                                                    \
-        SELECT_4TH(PAD_3_TOKENS __VA_ARGS__ (), f0, f1, f2)(__VA_ARGS__)       \
+        SELECT_4TH(PAD_3_TOKENS __VA_ARGS__ (), f0, f2, f1)(__VA_ARGS__)       \
     )
 #define MFVO_3(f0, f1, f2, f3, ...)                                            \
     EXPAND(                                                                    \
-        SELECT_5TH(PAD_4_TOKENS __VA_ARGS__ (), f0, f1, f2, f3)(__VA_ARGS__)   \
+        SELECT_5TH(PAD_4_TOKENS __VA_ARGS__ (), f0, f3, f2, f1)(__VA_ARGS__)   \
     )
 #define MFVO_4(f0, f1, f2, f3, f4, ...)                                        \
     EXPAND(                                                                    \
         SELECT_6TH(PAD_5_TOKENS __VA_ARGS__ (),                                \
-                                              f0, f1, f2, f3, f4)(__VA_ARGS__) \
+                                              f0, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 #define MFVO_5(f0, f1, f2, f3, f4, f5, ...)                                    \
     EXPAND(                                                                    \
         SELECT_7TH(PAD_6_TOKENS __VA_ARGS__ (),                                \
-                                          f0, f1, f2, f3, f4, f5)(__VA_ARGS__) \
+                                          f0, f5, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 #define MFVO_6(f0, f1, f2, f3, f4, f5, f6, ...)                                \
     EXPAND(                                                                    \
         SELECT_8TH(PAD_7_TOKENS __VA_ARGS__ (),                                \
-                                      f0, f1, f2, f3, f4, f5, f6)(__VA_ARGS__) \
+                                      f0, f6, f5, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 #define MFVO_7(f0, f1, f2, f3, f4, f5, f6, f7, ...)                            \
     EXPAND(                                                                    \
         SELECT_9TH(PAD_8_TOKENS __VA_ARGS__ (),                                \
-                                  f0, f1, f2, f3, f4, f5, f6, f7)(__VA_ARGS__) \
+                                  f0, f7, f6, f5, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 #define MFVO_8(f0, f1, f2, f3, f4, f5, f6, f7, f8, ...)                        \
     EXPAND(                                                                    \
         SELECT_10TH(PAD_9_TOKENS __VA_ARGS__ (),                               \
-                              f0, f1, f2, f3, f4, f5, f6, f7, f8)(__VA_ARGS__) \
+                              f0, f8, f7, f6, f5, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 #define MFVO_9(f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, ...)                    \
     EXPAND(                                                                    \
         SELECT_11TH(PAD_10_TOKENS __VA_ARGS__ (),                              \
-                          f0, f1, f2, f3, f4, f5, f6, f7, f8, f9)(__VA_ARGS__) \
+                          f0, f9, f8, f7, f6, f5, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 #define MFVO_10(f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, ...)              \
     EXPAND(                                                                    \
         SELECT_12TH(PAD_11_TOKENS __VA_ARGS__ (),                              \
-                     f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10)(__VA_ARGS__) \
+                     f0, f10, f9, f8, f7, f6, f5, f4, f3, f2, f1)(__VA_ARGS__) \
     )
 
 #define MFVO_BAN __UnsupportedNumberOfParamaters__

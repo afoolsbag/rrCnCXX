@@ -1,7 +1,7 @@
 /** \copyright Unlicense */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/Intl/UnicodeAndCharacterSets.h"
+#include "rrWindows/Intl/UnicodeAndCharacterSets.h"
 
 RRWINDOWS_API
 _Success_(return != NULL)

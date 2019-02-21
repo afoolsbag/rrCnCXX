@@ -19,7 +19,7 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#include "rrwindows/macros.h"
+#include "rrWindows/macros.h"
 
 #ifdef __cplusplus
 extern "C" {;

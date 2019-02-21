@@ -15,7 +15,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "rrwindows/macros.h"
+#include "rrWindows/macros.h"
 
 #ifndef UUID_STRING_COUNT
 #define UUID_STRING_COUNT 37
@@ -60,88 +60,36 @@ GenerateUuidStringW(
 #endif
 
 /**
- * \brief 分配通用唯一标识符字符串，Count 输出，ANSI 适配。
+ * \brief 通用唯一标识符字符串，ANSI 适配。
+ * \warning 该字符串存储在线程静态变量中，重复调用将被覆盖。
  *
- * \param[out] cnt 缓存容量（字符数）
  * \returns `!NULL` 成功\n
  *           `NULL` 失败
- *
- * \post 若函数成功，当字符串不再使用时，调用者有责任调用 `FreeUuidString()` 释放资源。
  */
 RRWINDOWS_API
-_Success_(return != NULL)
-PSTR
-WINAPI
-AllocUuidStringCA(
-    _Out_opt_ PSIZE_T CONST cnt
-);
-
-/**
- * \brief 分配通用唯一标识符字符串，Count 输出，Unicode 适配。
- *
- * \param[out] cnt 分配容量（字符数）
- * \returns `!NULL` 成功\n
- *           `NULL` 失败
- *
- * \post 若函数成功，当字符串不再使用时，调用者有责任调用 `FreeUuidString()` 释放资源。
- */
-RRWINDOWS_API
-_Success_(return != NULL)
-PWSTR
-WINAPI
-AllocUuidStringCW(
-    _Out_opt_ PSIZE_T CONST cnt
-);
-
-#ifdef _UNICODE
-# define AllocUuidStringC AllocUuidStringCW
-#else
-# define AllocUuidStringC AllocUuidStringCA
-#endif
-
-/**
- * \brief 分配通用唯一标识符字符串，Unicode 适配。
- *
- * \returns `!NULL` 成功\n
- *           `NULL` 失败
- *
- * \post 若函数成功，当字符串不再使用时，调用者有责任调用 `FreeUuidString()` 释放资源。
- */
-FORCEINLINE
 _Success_(return != NULL)
 PCSTR
-WINAPI_INLINE
-AllocUuidStringA(VOID)
-{
-    return AllocUuidStringCA(NULL);
-}
+WINAPI
+UuidStringA(VOID);
 
 /**
- * \brief 分配通用唯一标识符字符串，Unicode 适配。
+ * \brief 通用唯一标识符字符串，Unicode 适配。
+ * \warning 该字符串存储在线程静态变量中，重复调用将被覆盖。
  *
  * \returns `!NULL` 成功\n
  *           `NULL` 失败
- *
- * \post 若函数成功，当字符串不再使用时，调用者有责任调用 `FreeUuidString()` 释放资源。
- */
-FORCEINLINE
-_Success_(return != NULL)
-PCWSTR
-WINAPI_INLINE
-AllocUuidStringW(VOID)
-{
-    return AllocUuidStringCW(NULL);
-}
-
-/**
- * \brief 释放通用唯一标识符字符串。
  */
 RRWINDOWS_API
-VOID
+_Success_(return != NULL)
+PCWSTR
 WINAPI
-FreeUuidString(
-    _In_ PVOID CONST ptr
-);
+UuidStringW(VOID);
+
+#ifdef _UNICODE
+# define UuidString UuidStringW
+#else
+# define UuidString UuidStringA
+#endif
 
 #ifdef __cplusplus
 }

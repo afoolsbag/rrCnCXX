@@ -19,7 +19,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsFileIO.h"
 
 CONST TCHAR Sub1[] = _T("\\sub");

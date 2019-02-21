@@ -13,7 +13,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsShell.h"
 
 /**

@@ -19,7 +19,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsSysInfo.h"
 
 static PTSTR CONST App = _T("app");

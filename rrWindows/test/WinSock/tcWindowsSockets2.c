@@ -6,7 +6,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsWinSock.h"
 
 #ifndef EXIT_SUCCESS

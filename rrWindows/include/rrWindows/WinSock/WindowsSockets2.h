@@ -16,7 +16,7 @@
 #include <Windows.h>
 #include <inaddr.h>
 
-#include "rrwindows/macros.h"
+#include "rrWindows/macros.h"
 
 #ifdef __cplusplus
 extern "C" {;

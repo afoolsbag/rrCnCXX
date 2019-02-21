@@ -15,7 +15,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "rrwindows/macros.h"
+#include "rrWindows/macros.h"
 
 #ifndef CP_GB2312
 #define CP_GB2312                 936

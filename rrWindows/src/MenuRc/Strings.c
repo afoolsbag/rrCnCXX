@@ -3,7 +3,7 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 #include <strsafe.h>
 

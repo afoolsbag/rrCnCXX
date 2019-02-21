@@ -3,12 +3,12 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/WNet/WindowsNetworking.h"
+#include "rrWindows/WNet/WindowsNetworking.h"
 
 #include <shellapi.h>
 #pragma comment(lib, "Mpr.Lib")
 
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 RRWINDOWS_API
 _Success_(return != FALSE)

@@ -3,7 +3,7 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/Debug/StructuredExceptionHandling.h"
+#include "rrWindows/Debug/StructuredExceptionHandling.h"
 
 #include <ImageHlp.h>
 #pragma comment(lib, "DbgHelp.Lib")
@@ -11,9 +11,9 @@
 #pragma comment(lib, "pathcch.Lib")
 #include <strsafe.h>
 
-#include "rrwindows/Dlls/DynamicLinkLibrary.h"
-#include "rrwindows/Memory/MemoryManagement.h"
-#include "rrwindows/MenuRc/VersionInformation.h"
+#include "rrWindows/Dlls/DynamicLinkLibrary.h"
+#include "rrWindows/Memory/MemoryManagement.h"
+#include "rrWindows/MenuRc/VersionInformation.h"
 
 #define countof(array) (sizeof (array) / sizeof *(array))
 

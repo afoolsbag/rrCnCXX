@@ -18,7 +18,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsDebug.h"
 
 START_TEST(tfAllocErrorMessage)

@@ -3,18 +3,16 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/Rpc/RemoteProcedureCall.h"
+#include "rrWindows/Rpc/RemoteProcedureCall.h"
 
 #include <rpc.h>
 #pragma comment(lib, "RpcRT4.Lib")
 #include <strsafe.h>
 
-#include "rrwindows/Memory/MemoryManagement.h"
-
 RRWINDOWS_API
 HRESULT
 WINAPI
-GenerateUuidA(
+GenerateUuidStringA(
     _Out_  PSTR CONST  buf,
     _In_  CONST SIZE_T cnt)
 {
@@ -44,7 +42,7 @@ exit:
 RRWINDOWS_API
 HRESULT
 WINAPI
-GenerateUuidW(
+GenerateUuidStringW(
     _Out_ PWSTR CONST  buf,
     _In_  CONST SIZE_T cnt)
 {
@@ -73,11 +71,12 @@ exit:
 
 RRWINDOWS_API
 _Success_(return != NULL)
-PSTR
+PCSTR
 WINAPI
-AllocUuidStringCA(
-    _Out_opt_ PSIZE_T CONST cnt)
+UuidStringA(VOID)
 {
+    __declspec(thread) static CHAR Buffer[UUID_STRING_COUNT];
+
     UUID bin;
     if (UuidCreate(&bin) != RPC_S_OK)
         return NULL;
@@ -86,32 +85,24 @@ AllocUuidStringCA(
     if (UuidToStringA(&bin, &str) != RPC_S_OK)
         return NULL;
 
-    CONST SIZE_T siz = UUID_STRING_COUNT * sizeof(CHAR);
-    PSTR CONST buf = HeapAllocS(siz);
-    if (!buf) {
-        RpcStringFreeA(&str);
-        return NULL;
-    }
-
-    if (FAILED(StringCchCopyA(buf, UUID_STRING_COUNT, (PSTR)str))) {
-        HeapFreeS(buf);
+    if (FAILED(StringCchCopyA(Buffer, countof(Buffer), (PSTR)str))) {
         RpcStringFreeA(&str);
         return NULL;
     }
 
     RpcStringFreeA(&str);
 
-    *cnt = UUID_STRING_COUNT;
-    return buf;
+    return Buffer;
 }
 
 RRWINDOWS_API
 _Success_(return != NULL)
-PWSTR
+PCWSTR
 WINAPI
-AllocUuidStringCW(
-    _Out_opt_ PSIZE_T CONST cnt)
+UuidStringW(VOID)
 {
+    __declspec(thread) static WCHAR Buffer[UUID_STRING_COUNT];
+
     UUID bin;
     if (UuidCreate(&bin) != RPC_S_OK)
         return NULL;
@@ -120,21 +111,12 @@ AllocUuidStringCW(
     if (UuidToStringW(&bin, &str) != RPC_S_OK)
         return NULL;
 
-    CONST SIZE_T siz = UUID_STRING_COUNT * sizeof(WCHAR);
-    PWSTR CONST buf = HeapAllocS(siz);
-    if (!buf) {
-        RpcStringFreeW(&str);
-        return NULL;
-    }
-
-    if (FAILED(StringCchCopyW(buf, UUID_STRING_COUNT, (PWSTR)str))) {
-        HeapFreeS(buf);
+    if (FAILED(StringCchCopyW(Buffer, countof(Buffer), (PWSTR)str))) {
         RpcStringFreeW(&str);
         return NULL;
     }
 
     RpcStringFreeW(&str);
 
-    *cnt = UUID_STRING_COUNT;
-    return buf;
+    return Buffer;
 }

@@ -1,12 +1,12 @@
 /** \copyright Unlicense */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/ProcThread/ProcessesAndThreads.h"
+#include "rrWindows/ProcThread/ProcessesAndThreads.h"
 
 #undef UNICODE
 #include <TlHelp32.h>
 
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 #ifndef EXIT_FAILURE
 #define EXIT_FAILURE 1

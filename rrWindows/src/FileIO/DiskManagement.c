@@ -3,12 +3,12 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/FileIO/DiskManagement.h"
+#include "rrWindows/FileIO/DiskManagement.h"
 
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 RRWINDOWS_API
 _Success_(return != 0)

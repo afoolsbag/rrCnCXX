@@ -19,7 +19,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsConsole.h"
 
 START_TEST(tfAllocErrorMessage)

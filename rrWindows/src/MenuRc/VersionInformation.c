@@ -3,11 +3,11 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/MenuRc/VersionInformation.h"
+#include "rrWindows/MenuRc/VersionInformation.h"
 
 #pragma comment(lib, "Version.Lib")
 
-#include "rrwindows/Memory/MemoryManagement.h"
+#include "rrWindows/Memory/MemoryManagement.h"
 
 RRWINDOWS_API
 _Success_(return != FALSE)

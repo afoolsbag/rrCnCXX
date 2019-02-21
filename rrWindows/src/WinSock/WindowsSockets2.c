@@ -1,7 +1,7 @@
 /** \copyright Unlicense */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/WinSock/WindowsSockets2.h"
+#include "rrWindows/WinSock/WindowsSockets2.h"
 
 #include <WinSock2.h>
 #pragma comment(lib, "Ws2_32.lib")

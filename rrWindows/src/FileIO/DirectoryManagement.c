@@ -1,7 +1,7 @@
 /** \copyright The Unlicense */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/FileIO/DirectoryManagement.h"
+#include "rrWindows/FileIO/DirectoryManagement.h"
 
 #if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
 #include <PathCch.h>
@@ -11,9 +11,9 @@
 #pragma comment(lib, "ShLwApi.lib")
 #include <strsafe.h>
 
-#include "rrwindows/Intl/NationalLanguageSupport.h"
-#include "rrwindows/Intl/UnicodeAndCharacterSets.h"
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/Intl/NationalLanguageSupport.h"
+#include "rrWindows/Intl/UnicodeAndCharacterSets.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 RRWINDOWS_API
 _Success_(return != FALSE)

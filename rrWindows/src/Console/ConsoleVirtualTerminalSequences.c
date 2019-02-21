@@ -3,7 +3,7 @@
  */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/Console/ConsoleVirtualTerminalSequences.h"
+#include "rrWindows/Console/ConsoleVirtualTerminalSequences.h"
 
 RRWINDOWS_API
 _Success_(return != FALSE)

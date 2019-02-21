@@ -4,6 +4,7 @@
 
 #include <check.h>
 
+#include "rrWindows/rrWindows.h"
 #include "tsProcThread.h"
 
 #ifndef EXIT_SUCCESS
@@ -29,8 +30,7 @@ static DWORD WINAPI ThrdFunc(LPVOID CONST lpThreadParameter)
     if (stdoutHandle == INVALID_HANDLE_VALUE)
         return EXIT_FAILURE;
 
-    TCHAR msg[] = _T("hello, world\n");
-    WriteConsole(stdoutHandle, msg, sizeof msg / sizeof *msg - 1, NULL, NULL);
+    ConsoleColorPutV(_T("hello, world\n"));
     return EXIT_SUCCESS;
 }
 

@@ -19,7 +19,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsMenuRc.h"
 
 static CONST TCHAR Head[] = _T("Head");
@@ -31,7 +31,7 @@ static CONST TCHAR ToBeOrNot[] = _T("To be, or not to be, that is the question."
 
 START_TEST(tfStringAllocCat)
 {
-    PCTSTR CONST tmp = StringAllocCat(Head, Tail);
+    PCTSTR CONST tmp = StringAllocCatV(Head, Tail);
     ck_assert(tmp);
     ck_assert(CompareStringInvariant(tmp, HeadTail) == CSTR_EQUAL);
     HeapFree(GetProcessHeap(), 0, (PVOID)tmp);
@@ -40,7 +40,7 @@ END_TEST
 
 START_TEST(tfStringAllocCat3)
 {
-    PCTSTR CONST tmp = StringAllocCat3(Head, Body, Tail);
+    PCTSTR CONST tmp = StringAllocCatV(Head, Body, Tail);
     ck_assert(tmp);
     ck_assert(CompareStringInvariant(tmp, HeadBodyTail) == CSTR_EQUAL);
     HeapFree(GetProcessHeap(), 0, (PVOID)tmp);

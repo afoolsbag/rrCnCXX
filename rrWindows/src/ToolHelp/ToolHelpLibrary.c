@@ -1,12 +1,12 @@
 /** \copyright Unlicense */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/ToolHelp/ToolHelpLibrary.h"
+#include "rrWindows/ToolHelp/ToolHelpLibrary.h"
 
 #undef UNICODE
 #include <TlHelp32.h>
 
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 RRWINDOWS_API
 _Success_(0 <= return)

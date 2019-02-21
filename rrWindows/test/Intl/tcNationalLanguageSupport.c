@@ -19,7 +19,7 @@
 
 #include <check.h>
 
-#include "rrwindows/rrwindows.h"
+#include "rrWindows/rrWindows.h"
 #include "tsIntl.h"
 
 static CONST TCHAR Str1[] = _T("1234567");

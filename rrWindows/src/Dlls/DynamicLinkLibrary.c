@@ -1,7 +1,7 @@
 /** \copyright Unlicense */
 
 #define RRWINDOWS_EXPORTS
-#include "rrwindows/Dlls/DynamicLinkLibrary.h"
+#include "rrWindows/Dlls/DynamicLinkLibrary.h"
 
 #if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
 #include <PathCch.h>
@@ -10,8 +10,8 @@
 #include <Shlwapi.h>
 #pragma comment(lib, "ShLwApi.lib")
 
-#include "rrwindows/Intl/UnicodeAndCharacterSets.h"
-#include "rrwindows/MenuRc/Strings.h"
+#include "rrWindows/Intl/UnicodeAndCharacterSets.h"
+#include "rrWindows/MenuRc/Strings.h"
 
 RRWINDOWS_API
 _Success_(return != NULL)

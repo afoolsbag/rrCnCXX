@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台。
  *
- * \version 2019-02-20
+ * \version 2019-02-21
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright Unlicense
@@ -15,17 +15,29 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-#include "rrwindows/macros.h"
+#include "rrWindows/macros.h"
 
 /**
  * \brief 控制台颜色。
  */
 typedef
 enum ConsoleColor {
-    Black = 0x0, Blue = 0x1, Green = 0x2, Aqua = 0x3,
-    Red = 0x4, Purple = 0x5, Yellow = 0x6, White = 0x7,
-    Gray = 0x8, LightBlue = 0x9, LightGreen = 0xA, LightAqua = 0xB,
-    LightRed = 0xC, LightPurple = 0xD, LightYellow = 0xE, BrightWhite = 0xF
+    ConsoleBlack = 0x0,
+    ConsoleBlue = 0x1,
+    ConsoleGreen = 0x2,
+    ConsoleAqua = 0x3,
+    ConsoleRed = 0x4,
+    ConsolePurple = 0x5,
+    ConsoleYellow = 0x6,
+    ConsoleWhite = 0x7,
+    ConsoleGray = 0x8,
+    ConsoleLightBlue = 0x9,
+    ConsoleLightGreen = 0xA,
+    ConsoleLightAqua = 0xB,
+    ConsoleLightRed = 0xC,
+    ConsoleLightPurple = 0xD,
+    ConsoleLightYellow = 0xE,
+    ConsoleBrightWhite = 0xF
 } ConsoleColor;
 
 #ifdef __cplusplus
@@ -87,7 +99,7 @@ SetConsoleForeGroundColor(
 );
 
 /**
- * \brief 控制台放置有色字串（ANSI 适配）。
+ * \brief 控制台放置有色字串，ANSI 适配。
  *
  * \param color 颜色。
  * \param text  字串。
@@ -101,7 +113,7 @@ ConsoleColorPutA(
 );
 
 /**
- * \brief 控制台放置有色字串（UNICODE 适配）。
+ * \brief 控制台放置有色字串，Unicode 适配。
  *
  * \param color 颜色。
  * \param text  字串。
@@ -126,7 +138,7 @@ WINAPI_INLINE
 ConsoleColorPut1(
     _In_z_ LPCTSTR CONST text)
 {
-    ConsoleColorPut(White, text);
+    ConsoleColorPut(ConsoleWhite, text);
 }
 
 FORCEINLINE
@@ -222,10 +234,10 @@ ConsoleColorPut10(
                                       MFVO_BAN,                                \
                                       ConsoleColorPut8,                        \
                                       MFVO_BAN,                                \
-                                      ConsoleColorPut10)(__VA_ARGS__)
+                                      ConsoleColorPut10, __VA_ARGS__)
 
 /**
- * \brief 控制台打印有色字串（ANSI 适配）。
+ * \brief 控制台打印有色字串，ANSI 适配。
  *
  * \param color  颜色。
  * \param format 格式。
@@ -241,7 +253,7 @@ ConsoleColorPrintA(
 );
 
 /**
- * \brief 控制台打印有色字串（UNICODE 适配）。
+ * \brief 控制台打印有色字串，Unicode 适配。
  *
  * \param color  颜色。
  * \param format 格式。
@@ -263,26 +275,12 @@ ConsoleColorPrintW(
 #endif
 
 /**
- * \brief 清空控制台屏幕（ANSI适配）。
+ * \brief 清空控制台屏幕。
  */
 RRWINDOWS_API
 VOID
 WINAPI
-ClearConsoleScreenA(VOID);
-
-/**
- * \brief 清空控制台屏幕（UNICODE适配）。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-ClearConsoleScreenW(VOID);
-
-#ifdef _UNICODE
-# define ClearConsoleScreen ClearConsoleScreenW
-#else
-# define ClearConsoleScreen ClearConsoleScreenA
-#endif
+ClearConsoleScreen(VOID);
 
 #ifdef __cplusplus
 }

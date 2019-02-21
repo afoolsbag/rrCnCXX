@@ -18,7 +18,7 @@
 #include <Windows.h>
 #include <strsafe.h>
 
-#include "rrwindows/macros.h"
+#include "rrWindows/macros.h"
 
 #ifdef __cplusplus
 extern "C" {;
