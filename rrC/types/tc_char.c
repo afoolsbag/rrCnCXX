@@ -1,6 +1,6 @@
 /*===-- Character ----------------------------------------------*- C -*-===*//**
  *
- * \defgroup gCharacter 字符
+ * \defgroup gChar 字符
  * \ingroup gTypes
  *
  * \sa <https://zh.cppreference.com/w/c/language/arithmetic_types>
@@ -71,7 +71,7 @@ END_TEST;
  * @}
  */
 
-TCase *tc_character(void)
+TCase *tc_char(void)
 {
     TCase *const tc = tcase_create(__func__);
 

@@ -1,11 +1,11 @@
 /*===-- Structure ----------------------------------------------*- C -*-===*//**
  *
- * \defgroup gStructure 结构体
+ * \defgroup gStruct 结构体
  * \ingroup gTypes
  *
- * \sa <http://zh.cppreference.com/w/c/language/struct>
- * \sa <http://zh.cppreference.com/w/c/language/struct_initialization>
- * \sa <http://zh.cppreference.com/w/c/language/compound_literal>
+ * \sa <https://zh.cppreference.com/w/c/language/struct>
+ * \sa <https://zh.cppreference.com/w/c/language/struct_initialization>
+ * \sa <https://zh.cppreference.com/w/c/language/compound_literal>
  *
  * \version 2019-02-13
  * \since 2016-12-02
@@ -43,7 +43,7 @@ END_TEST;
  * @}
  */
 
-TCase *tc_structure(void)
+TCase *tc_struct(void)
 {
     TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_struct_compound_literals);

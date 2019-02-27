@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLanguage
  *
- * \version 2019-02-19
+ * \version 2019-02-26
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -45,7 +45,7 @@ int main(void)
     srunner_add_suite(tr, ts_memory());
     srunner_add_suite(tr, ts_numeric());
     srunner_add_suite(tr, ts_string());
-    srunner_add_suite(tr, ts_type_support());
+    srunner_add_suite(tr, ts_types());
 
     srunner_run_all(tr, CK_NORMAL);
     const int err = srunner_ntests_failed(tr);

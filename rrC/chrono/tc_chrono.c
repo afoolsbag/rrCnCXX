@@ -46,7 +46,7 @@ START_TEST(tf_struct_tm)
         struct tm t0s;
         memset(&t0s, 0x00, sizeof t0s);
         t0s.tm_year = 1992 - 1900;
-        t0s.tm_mon = 6 - 1;
+        t0s.tm_mon = 5 - 1;
         t0s.tm_mday = 25;
 
         t0 = mktime(&t0s);

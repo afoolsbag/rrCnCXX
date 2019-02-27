@@ -10,7 +10,7 @@
  *     *   定宽整数类型
  *     *   数值极限
  *
- * \version 2019-02-13
+ * \version 2019-02-26
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense
@@ -24,15 +24,17 @@
 #include <check.h>
 
 TCase *tc_array(void);
-TCase *tc_character(void);
-TCase *tc_structure(void);
+TCase *tc_enum(void);
+TCase *tc_char(void);
+TCase *tc_struct(void);
 
-static inline Suite *ts_type_support(void)
+static inline Suite *ts_types(void)
 {
     Suite *const ts = suite_create(__func__);
     suite_add_tcase(ts, tc_array());
-    suite_add_tcase(ts, tc_character());
-    suite_add_tcase(ts, tc_structure());
+    suite_add_tcase(ts, tc_enum());
+    suite_add_tcase(ts, tc_char());
+    suite_add_tcase(ts, tc_struct());
     return ts;
 }
 
