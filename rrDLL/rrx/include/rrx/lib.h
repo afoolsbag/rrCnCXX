@@ -41,7 +41,7 @@
 
 /*----- Types ----------------------------------------------------------------*/
 
-/*
+/**
  * \brief 状态码。
  */
 enum rrx_status_t {
@@ -77,7 +77,7 @@ enum rrx_status_t {
     rrx_bad_variant_access,
 };
 
-/*
+/**
  * \brief 版本。
  */
 struct rrx_version_t {
@@ -87,7 +87,7 @@ struct rrx_version_t {
     int tweak;  /**< 微调版本号。 */
 };
 
-/*
+/**
  * \brief 实例句柄。
  */
 typedef struct rrx_t *rrx_handle_t;

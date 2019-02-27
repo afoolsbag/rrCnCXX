@@ -14,7 +14,7 @@ struct rrx_t {
 public:
     void plus(int n) { r += n; }
     void minus(int n) { r -= n; }
-    int equals() { return r; };
+    int equals() const { return r; }
 private:
     int r {};
 };

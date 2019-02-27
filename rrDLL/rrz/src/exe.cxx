@@ -11,7 +11,7 @@
 #include <iostream>
 
 #include "rrc/lib.h"
-#include "rrx/lib.h"
+#include "rrx/lib.hxx"
 
 using namespace std;
 
@@ -25,21 +25,15 @@ int main()
     }
 
     {
-        rrx_version_t v {};
-        if (rrx_version(&v) != rrx_success)
-            return EXIT_FAILURE;
+        const auto v = rrx::version();
         cout << "rrx version " << v.major << "." << v.minor << "." << v.patch << "." << v.tweak << "\n";
     }
 
     {
-        rrx_handle_t h;
-        rrx_construct(&h);
-        rrx_plus(h, 5);
-        rrx_minus(h, 2);
-        int r;
-        rrx_equals(h, &r);
-        rrx_destruct(h);
-        cout << "rrx result: " << r << "\n";
+        rrx::rrx_t x;
+        x.plus(5);
+        x.minus(2);
+        cout << "rrx result: " << x.equals() << "\n";
     }
 
     return EXIT_SUCCESS;

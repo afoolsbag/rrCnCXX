@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRX_CONFIG_HXX_
-#define RRX_CONFIG_HXX_
+#ifndef RRX_CFG_HXX_
+#define RRX_CFG_HXX_
 
 #include <cstdint>
 
@@ -95,4 +95,4 @@ constexpr char project_license[] {PROJECT_LICENSE};
 
 }//namespace rrx
 
-#endif//RRX_CONFIG_HXX_
+#endif//RRX_CFG_HXX_
