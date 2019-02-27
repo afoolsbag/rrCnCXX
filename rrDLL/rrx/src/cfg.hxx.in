@@ -4,7 +4,7 @@
 /// \brief 配置。
 /// \details 名称、版本、作者、版权等信息。
 ///
-/// \version 2019-01-18
+/// \version 2019-02-27
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef CXXLIB_CONFIG_HXX_
-#define CXXLIB_CONFIG_HXX_
+#ifndef RRX_CONFIG_HXX_
+#define RRX_CONFIG_HXX_
 
 #include <cstdint>
 
@@ -36,26 +36,26 @@ using namespace std;
 /// 产品许可。
 #define PRODUCT_LICENSE       "@PRODUCT_LICENSE@"
 
-namespace cxxlib::product {
+namespace rrx {
 
 /// 产品名。
-constexpr char name[] {PRODUCT_NAME};
+constexpr char product_name[] {PRODUCT_NAME};
 /// 产品版本。
-constexpr char version[] {PRODUCT_VERSION};
+constexpr char product_version[] {PRODUCT_VERSION};
 /// 产品主版本号。
-constexpr intmax_t version_major {PRODUCT_VERSION_MAJOR};
+constexpr intmax_t product_version_major {PRODUCT_VERSION_MAJOR};
 /// 产品次版本号。
-constexpr intmax_t version_minor {PRODUCT_VERSION_MINOR};
+constexpr intmax_t product_version_minor {PRODUCT_VERSION_MINOR};
 /// 产品补丁版本号。
-constexpr intmax_t version_patch {PRODUCT_VERSION_PATCH};
+constexpr intmax_t product_version_patch {PRODUCT_VERSION_PATCH};
 /// 产品微调版本号。
-constexpr intmax_t version_tweak {PRODUCT_VERSION_TWEAK};
+constexpr intmax_t product_version_tweak {PRODUCT_VERSION_TWEAK};
 /// 产品作者。
-constexpr char authors[] {PRODUCT_AUTHORS};
+constexpr char product_authors[] {PRODUCT_AUTHORS};
 /// 产品许可。
-constexpr char license[] {PRODUCT_LICENSE};
+constexpr char product_license[] {PRODUCT_LICENSE};
 
-}//namespace cxxlib::product
+}//namespace rrx
 
 /// 项目名。
 #define PROJECT_NAME          "@PROJECT_NAME@"
@@ -74,25 +74,25 @@ constexpr char license[] {PRODUCT_LICENSE};
 /// 项目许可。
 #define PROJECT_LICENSE       "@PROJECT_LICENSE@"
 
-namespace cxxlib::project {
+namespace rrx {
 
 /// 项目名。
-constexpr char name[] {PROJECT_NAME};
+constexpr char project_name[] {PROJECT_NAME};
 /// 项目版本。
-constexpr char version[] {PROJECT_VERSION};
+constexpr char project_version[] {PROJECT_VERSION};
 /// 项目主版本号。
-constexpr intmax_t version_major {PROJECT_VERSION_MAJOR};
+constexpr intmax_t project_version_major {PROJECT_VERSION_MAJOR};
 /// 项目次版本号。
-constexpr intmax_t version_minor {PROJECT_VERSION_MINOR};
+constexpr intmax_t project_version_minor {PROJECT_VERSION_MINOR};
 /// 项目补丁版本号。
-constexpr intmax_t version_patch {PROJECT_VERSION_PATCH};
+constexpr intmax_t project_version_patch {PROJECT_VERSION_PATCH};
 /// 项目微调版本号。
-constexpr intmax_t version_tweak {PROJECT_VERSION_TWEAK};
+constexpr intmax_t project_version_tweak {PROJECT_VERSION_TWEAK};
 /// 项目作者。
-constexpr char authors[] {PROJECT_AUTHORS};
+constexpr char project_authors[] {PROJECT_AUTHORS};
 /// 项目许可。
-constexpr char license[] {PROJECT_LICENSE};
+constexpr char project_license[] {PROJECT_LICENSE};
 
-}//namespace cxxlib::project
+}//namespace rrx
 
-#endif//CXXLIB_CONFIG_HXX_
+#endif//RRX_CONFIG_HXX_
