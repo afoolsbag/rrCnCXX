@@ -2,12 +2,12 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-01-23
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-02-26
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
-project(rrBoost VERSION 2019.01.23 LANGUAGES CXX)
+project(rrBoost VERSION 2019.02.26 LANGUAGES CXX)
 project_more()
-compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
 add_doxygen(WITH_OPTION)
 

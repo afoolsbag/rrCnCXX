@@ -2,10 +2,10 @@
 ///
 /// \file
 /// \brief DLL
-/// \sa <https://www.boost.org/doc/libs/1_69_0/doc/html/boost_dll.html>
+/// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_dll.html>
 ///
-/// \version 2019-01-11
-/// \since 2018-01-10
+/// \version 2019-02-28
+/// \since 2019-01-10
 /// \authors zhengrr
 /// \copyright Unlicense
 ///

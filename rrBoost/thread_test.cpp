@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Thread
-/// \sa <https://boost.org/doc/libs/1_68_0/libs/uuid/doc/index.html>
+/// \sa <https://boost.org/doc/libs/1_69_0/libs/uuid/doc/index.html>
 ///
 /// \version 2019-01-11
 /// \since 2019-01-08
