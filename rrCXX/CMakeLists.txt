@@ -2,12 +2,17 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-01-28
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-03-01
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
-project(rrCXX VERSION 2019.01.28 LANGUAGES CXX)
+project(rrCXX VERSION 2019.03.01 LANGUAGES CXX)
 project_more()
-compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+compile_option(
+  DISABLE_LANGUAGE_EXTENSIONS
+  RECOMMENDED_WARNING_LEVEL
+  MULTIPLE_PROCESSES
+  UTF-8
+  WARNING_AS_ERROR)
 
 add_doxygen(WITH_OPTION)
 

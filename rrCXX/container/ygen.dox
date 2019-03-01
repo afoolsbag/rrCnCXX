@@ -1,6 +1,6 @@
 //===-- Containers Library --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gContainers 容器库
+/// \defgroup gContainer 容器库
 /// \ingroup gReference
 ///
 /// \sa ["容器库"](https://zh.cppreference.com/w/cpp/container). *cppreference.com*.
@@ -25,7 +25,7 @@
 ///         *   队列适配器 `queue`
 ///         *   优先级队列适配器 `priority_queue`
 ///
-/// \version 2018-11-22
+/// \version 2019-02-22
 /// \since 2018-01-22
 /// \authors zhengrr
 /// \copyright CC0-1.0

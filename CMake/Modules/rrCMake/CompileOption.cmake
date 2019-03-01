@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-01-28
+# 2016-10-08 – 2019-03-01
 # Unlicense
 
 include_guard()
@@ -14,6 +14,7 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 #     compile_option(
 #       [ANALYZE]
+#       [DISABLE_LANGUAGE_EXTENSIONS]
 #       [HIGHEST_WARNING_LEVEL | RECOMMENDED_WARNING_LEVEL]
 #       [MULTIPLE_PROCESSES]
 #       [UTF-8]
@@ -22,15 +23,18 @@ cmake_policy(SET CMP0057 NEW) #3.3+
 #
 #   参见：
 #
-#   - `CMAKE_<LANG>_FLAGS <https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS>`_
 #   - `add_compile_options <https://cmake.org/cmake/help/latest/command/add_compile_options.html>`_
+#
 #   - `<https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html>`_
+#
+#   - `<https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis>`_
 #   - `<https://docs.microsoft.com/cpp/build/reference/compiler-option-warning-level>`_
 #   - `<https://docs.microsoft.com/cpp/build/reference/mp-build-with-multiple-processes>`_
 #   - `<https://docs.microsoft.com/cpp/build/reference/utf-8-set-source-and-executable-character-sets-to-utf-8>`_
-#   - `<https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis>`_
+#   - `<https://docs.microsoft.com/cpp/build/reference/za-ze-disable-language-extensions>`_
 function(compile_option)
   set(zOptKws    ANALYZE
+                 DISABLE_LANGUAGE_EXTENSIONS
                  HIGHEST_WARNING_LEVEL
                  MULTIPLE_PROCESSES
                  RECOMMENDED_WARNING_LEVEL
@@ -49,16 +53,27 @@ function(compile_option)
     endif()
   endif()
 
+  if(_DISABLE_LANGUAGE_EXTENSIONS)
+    if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+      add_compile_options("-Wpedantic")
+    endif()
+    if(MSVC AND NOT CMAKE_CXX_COMPILER)
+      add_compile_options("-Za")
+    endif()
+  endif()
+
   if(_HIGHEST_WARNING_LEVEL)
     if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
       add_compile_options("-Wall" "-Wextra")
-    elseif(MSVC)
+    endif()
+    if(MSVC)
       add_compile_options("/Wall")
     endif()
   elseif(_RECOMMENDED_WARNING_LEVEL)
     if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
       add_compile_options("-Wall")
-    elseif(MSVC)
+    endif()
+    if(MSVC)
       add_compile_options("/W4")
     endif()
   endif()
@@ -78,7 +93,8 @@ function(compile_option)
   if(_WARNING_AS_ERROR)
     if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
       add_compile_options("-Werror")
-    elseif(MSVC)
+    endif()
+    if (MSVC)
       add_compile_options("/WX")
     endif()
   endif()

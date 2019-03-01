@@ -1,7 +1,7 @@
 //===-- Dynamic Memory Management -------------------------------*- C++ -*-===//
 ///
 /// \defgroup gMemory 动态内存管理
-/// \ingroup gGeneralUtilities
+/// \ingroup gUtility
 ///
 /// \sa gPtr
 /// \sa ["动态内存管理"](https://zh.cppreference.com/w/cpp/memory). *cppreference.com*.
@@ -11,7 +11,7 @@
 ///         *   共享指针的弱引用 `weak_ptr`（C++11）
 ///         *   自动指针 `auto_ptr`
 ///
-/// \version 2018-11-27
+/// \version 2019-02-22
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright Unlicense

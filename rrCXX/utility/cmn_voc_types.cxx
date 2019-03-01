@@ -1,12 +1,9 @@
 //===-- Common Vocabulary Types ---------------------------------*- C++ -*-===//
 ///
-/// \defgroup gCommonVocabularyTypes 通用词汇类型
-/// \ingroup gGeneralUtilities
+/// \defgroup gCmnVocTypes 通用词汇类型
+/// \ingroup gUtility
 ///
-/// \sa "通用词汇类型". *cppreference.com*.
-///     *   [`std::variant`](https://zh.cppreference.com/w/cpp/utility/variant)
-///
-/// \version 2018-11-27
+/// \version 2019-02-28
 /// \since 2018-10-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -26,11 +23,12 @@ using namespace std;
 
 namespace rrcxx {
 
-/// \addtogroup gCommonVocabularyTypes
+/// \addtogroup gCmnVocTypes
 /// @{
 
 /// \brief 任意包装器。
-TEST(common_vocabulary_types, any)
+/// \sa <https://zh.cppreference.com/w/cpp/utility/any>
+TEST(cmn_voc_types, any)
 {
 #if FEATURE_P0220R1
     any any;
@@ -53,7 +51,7 @@ TEST(common_vocabulary_types, any)
 }
 
 /// \brief 可选包装器。
-TEST(common_vocabulary_types, optional)
+TEST(cmn_voc_types, optional)
 {
 #if FEATURE_P0220R1
     const auto create {[](const bool notnull) -> optional<int> {
@@ -73,7 +71,7 @@ TEST(common_vocabulary_types, optional)
 }
 
 /// \brief 元组包装器。
-TEST(common_vocabulary_types, tuple)
+TEST(cmn_voc_types, tuple)
 {
     const auto get_two_zero {[]() -> tuple<int, double> {
         return make_tuple(0, 0.0);
@@ -98,7 +96,19 @@ TEST(common_vocabulary_types, tuple)
 }
 
 /// \brief 变体包装器。
-TEST(common_vocabulary_types, variant)
+///
+/// \note
+/// *   `union` - 使用 `variant`（C++17 提供）
+/// *   强制转换 - 尽可能减少其使用；使用模板有助于这点
+/// *   数组衰退 - 使用 `span`（来自 GSL）
+/// *   范围错误 - 使用 `span`
+/// *   窄化转换 - 尽可能减少其使用，必须使用时则使用 `narrow` 或者 `narrow_cast`（来自 GSL）
+///
+/// \remarks P.4: 理想情况下，程序应当是静态类型安全的
+///
+/// \sa <https://zh.cppreference.com/w/cpp/utility/variant>
+/// \sa [*C++C.G. P.4*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-typesafe)
+TEST(cmn_voc_types, variant)
 {
 #if FEATURE_P0088R3
     variant<int, double> variant {0};

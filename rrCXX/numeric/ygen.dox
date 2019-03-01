@@ -1,11 +1,11 @@
 //===-- Numerics library ----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gNumerics 数值库
+/// \defgroup gNumeric 数值库
 /// \ingroup gReference
 ///
 /// \sa ["数值库"](https://zh.cppreference.com/w/cpp/numeric). *cppreference.com*.
 ///
-/// \version 2018-11-22
+/// \version 2019-02-22
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

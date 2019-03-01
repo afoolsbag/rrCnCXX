@@ -1,6 +1,6 @@
-//===-- General-Purpose Utilities -------------------------------*- C++ -*-===//
+//===-- Utilities -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gGeneralUtilities 通用工具库
+/// \defgroup gUtility 工具库
 /// \ingroup gReference
 ///
 /// \sa ["工具库"](https://zh.cppreference.com/w/cpp/utility). *cppreference.com*.
@@ -10,7 +10,7 @@
 ///         *   日期和时间
 ///         *   `optional`、`variant` 和 `any`
 ///
-/// \version 2018-11-22
+/// \version 2019-02-22
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

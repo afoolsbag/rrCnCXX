@@ -183,13 +183,13 @@
 /// \startuml
 ///   cloud "视频平台\nVideo Platform" as vp {
 ///     [视频平台服务\nVideo Platform Service] as vps
-///     () "GB/T28181 服务端\nGB/T28181 Server End" as gbse
+///     () "GB/T 28181 服务端\nGB/T 28181 Server End" as gbse
 ///     vps -l- gbse
 ///   }
 ///
 ///   node "媒体服务器\nMedia Server\n（Linux）" as msr {
 ///     [转发服务\nForwarding Service] as fs
-///     () "GB/T28181 客户端\nGB/T28181 Client End" as gbce
+///     () "GB/T 28181 客户端\nGB/T 28181 Client End" as gbce
 ///     () "RTSP 服务端\nRTSP Server End" as rtspse
 ///     () "转发控制服务端\nForwarding Control Server End" as fcse
 ///     fs -l- gbce
@@ -231,7 +231,7 @@
 ///
 ///   () "转发控制客户端\nForwarding Control Client End" as fcce
 ///
-///   gbse <---> gbce : GB/T28181
+///   gbse <---> gbce : GB/T 28181
 ///   fcse <-> fcce
 ///   fcce . ws
 ///   fcce .. uc

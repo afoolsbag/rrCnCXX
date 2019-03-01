@@ -143,9 +143,13 @@
     [*styles*](https://studiostyl.es/ "Studio Styles") )</sub>
 
 调试
+/ [*Cheat Engine*](https://cheatengine.org/)
 / [*DebugView*](https://docs.microsoft.com/sysinternals/downloads/debugview)
 / [*Dependency Walker*](http://dependencywalker.com)
+/ [*Interactive Disassembler*](https://hex-rays.com/products/ida/)
+/ [*OllyDbg*](http://ollydbg.de/)
 / [*Process Explorer*](https://docs.microsoft.com/sysinternals/downloads/process-explorer)
+/ [*Radare2*](https://radare.org/)
 / [*WinDbg*](http://windbg.org/)
 
 网络
