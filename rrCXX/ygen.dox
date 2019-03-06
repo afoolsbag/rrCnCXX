@@ -15,6 +15,8 @@
 /// / [*C++98*](https://iso.org/standard/25845.html) (1998)
 /// / *C++* (1983)
 ///
+/// *Bjarne Stroustrup（比雅尼·斯特劳斯特鲁普）*
+///
 /// # 参考                                                        {#sReferences}
 ///
 /// ["C++ 参考手册"](https://zh.cppreference.com/w/cpp). *cppreference.com*.
@@ -26,9 +28,9 @@
 /// K&R 和 Stroustrup 风格布局；
 /// `.hxx` 和 `.cxx` 风格后缀。
 ///
-/// [*C++ Core Guidelines*](http://isocpp.github.io/CppCoreGuidelines/)
+/// [*C++ Core Guidelines*](https://isocpp.github.io/CppCoreGuidelines/)
 /// <sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
-/// *   [Coding rules](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#SS-rules)
+/// *   [Coding rules](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-rules)
 ///     <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
 /// *   [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
 ///
@@ -67,7 +69,7 @@
 ///   has waived all copyright and related or neighboring rights to this work.
 /// </p>
 ///
-/// \version 2019-01-17
+/// \version 2019-03-04
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

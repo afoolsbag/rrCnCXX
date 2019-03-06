@@ -70,6 +70,7 @@
 
 新闻
 / [*InfoQ*](https://infoq.cn/)
+/ [*蓝点网*](https://landiannews.com/)
 
 黄页
 / [*awesome*](https://awesome.re/)
