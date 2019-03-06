@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-03-01
+# 2016-10-08 – 2019-03-04
 # Unlicense
 
 include_guard()
@@ -48,8 +48,8 @@ function(compile_option)
   endif()
 
   if(_ANALYZE)
-    if(MSVC)
-      add_compile_options("/analyze")
+    if(1910 LESS_EQUAL MSVC_VERSION AND CMAKE_CXX_COMPILER)
+      add_compile_options("/analyze" "/analyze:WX-" "/analyze:ruleset AllRules.ruleset")
     endif()
   endif()
 
