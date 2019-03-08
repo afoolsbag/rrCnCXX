@@ -1,5 +1,5 @@
 # zhengrr
-# 2018-06-06 – 2018-12-29
+# 2018-06-06 – 2019-03-07
 # Unlicense
 
 include_guard()
@@ -17,7 +17,7 @@ endif()
 #
 #   参见：
 #
-#   - `<https://boost.org/doc/libs/1_68_0/more/getting_started/windows.html#library-naming>`_
+#   - `<https://boost.org/doc/libs/1_69_0/more/getting_started/windows.html#library-naming>`_
 function(get_toolset_tag _RESULT_VARIABLE)
   check_name_with_cmake_rules("${_RESULT_VARIABLE}" WARNING)
   get_cmake_property(zLangs ENABLED_LANGUAGES)
@@ -38,25 +38,27 @@ function(get_toolset_tag _RESULT_VARIABLE)
     endif()
 
     if(MSVC)
-      if(MSVC_VERSION GREATER_EQUAL 1910)
+      if(1920 LESS_EQUAL MSVC_VERSION)
+        set(${_RESULT_VARIABLE} "vc142" PARENT_SCOPE)
+      elseif(1910 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc141" PARENT_SCOPE)
-      elseif(MSVC14)
+      elseif(1900 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc140" PARENT_SCOPE)
-      elseif(MSVC12)
+      elseif(1800 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc120" PARENT_SCOPE)
-      elseif(MSVC11)
+      elseif(1700 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc110" PARENT_SCOPE)
-      elseif(MSVC10)
+      elseif(1600 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc100" PARENT_SCOPE)
-      elseif(MSVC90)
+      elseif(1500 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc90" PARENT_SCOPE)
-      elseif(MSVC80)
+      elseif(1400 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc80" PARENT_SCOPE)
-      elseif(MSVC71)
+      elseif(1310 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc71" PARENT_SCOPE)
-      elseif(MSVC70)
+      elseif(1300 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc7" PARENT_SCOPE)
-      elseif(MSVC60)
+      elseif(1200 LESS_EQUAL MSVC_VERSION)
         set(${_RESULT_VARIABLE} "vc6" PARENT_SCOPE)
       else()
         message(FATAL_ERROR "Unsupported MSVC_VERSION: ${MSVC_VERSION}.")
