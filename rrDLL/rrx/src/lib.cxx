@@ -23,8 +23,9 @@ private:
 /// \details 用于管理实例的生命周期
 map<rrx_handle_t, unique_ptr<rrx_t>> inst_map;
 
-RRX_DECORATING RRX_PORTING rrx_status_t RRX_CALLING
-rrx_version(rrx_version_t *pv)
+RRX_APIp rrx_status_t
+RRX_APIm rrx_version(rrx_version_t *pv)
+RRX_APIs
 {
     if (!pv)
         return rrx_invalid_argument;
@@ -37,8 +38,9 @@ rrx_version(rrx_version_t *pv)
     return rrx_success;
 }
 
-RRX_DECORATING RRX_PORTING rrx_status_t RRX_CALLING
-rrx_construct(rrx_handle_t *ph)
+RRX_APIp rrx_status_t
+RRX_APIm rrx_construct(rrx_handle_t *ph)
+RRX_APIs
 {
     if (!ph)
         return rrx_invalid_argument;
@@ -53,8 +55,9 @@ rrx_construct(rrx_handle_t *ph)
     return rrx_success;
 }
 
-RRX_DECORATING RRX_PORTING rrx_status_t RRX_CALLING
-rrx_plus(rrx_handle_t h, int n)
+RRX_APIp rrx_status_t
+RRX_APIm rrx_plus(rrx_handle_t h, int n)
+RRX_APIs
 {
     if (!inst_map.count(h))
         return rrx_out_of_range;
@@ -62,8 +65,9 @@ rrx_plus(rrx_handle_t h, int n)
     return rrx_success;
 }
 
-RRX_DECORATING RRX_PORTING rrx_status_t RRX_CALLING
-rrx_minus(rrx_handle_t h, int n)
+RRX_APIp rrx_status_t
+RRX_APIm rrx_minus(rrx_handle_t h, int n)
+RRX_APIs
 {
     if (!inst_map.count(h))
         return rrx_out_of_range;
@@ -71,8 +75,9 @@ rrx_minus(rrx_handle_t h, int n)
     return rrx_success;
 }
 
-RRX_DECORATING RRX_PORTING rrx_status_t RRX_CALLING
-rrx_equals(rrx_handle_t h, int *pn)
+RRX_APIp rrx_status_t
+RRX_APIm rrx_equals(rrx_handle_t h, int *pn)
+RRX_APIs
 {
     if (!pn)
         return rrx_invalid_argument;
@@ -82,8 +87,9 @@ rrx_equals(rrx_handle_t h, int *pn)
     return rrx_success;
 }
 
-RRX_DECORATING RRX_PORTING rrx_status_t RRX_CALLING
-rrx_destruct(rrx_handle_t h)
+RRX_APIp rrx_status_t
+RRX_APIm rrx_destruct(rrx_handle_t h)
+RRX_APIs
 {
     if (!inst_map.count(h))
         return rrx_out_of_range;

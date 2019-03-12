@@ -1,9 +1,9 @@
-//===-- Flow Control --------------------------------------------*- C++ -*-===//
+//===-- Statements ----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gFlowControl 流控制
+/// \defgroup gStatements 语句
 /// \ingroup gLanguage
 ///
-/// \version 2019-01-28
+/// \version 2019-03-11
 /// \since 2018-09-19
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -23,12 +23,13 @@ using namespace gsl;
 
 namespace rrcxx {
 
-/// \addtogroup gFlowControl
+/// \addtogroup gStatements
 /// @{
 
 /// \brief `switch` 语句。
+///
 /// \sa <https://zh.cppreference.com/w/cpp/language/switch>
-TEST(flow_control, switch)
+TEST(statements, switch)
 {
     random_device dev;
     default_random_engine eng(dev());
@@ -59,10 +60,13 @@ TEST(flow_control, switch)
 #endif
 }
 
-/// \brief `goto` 语句和 `goto finished` 技巧。
-/// \remarks ES.76: 避免 goto
+/// \brief `goto finished` 技巧。
+///
+/// \remarks ES.76: 避免 `goto`
+///
 /// \sa <https://zh.cppreference.com/w/cpp/language/goto>
-TEST(flow_control, goto_finished)
+/// \sa [*C++C.G. ES.76*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-goto)
+TEST(statements, goto_finished)
 {
     constexpr int imax {10};
     constexpr int jmax {10};
@@ -82,8 +86,11 @@ finished:
 }
 
 /// \brief `goto exit` 技巧。
+///
 /// \remarks NR.6: 请勿如此：把所有清理操作放在函数末尾并使用 `goto exit`
-TEST(flow_control, goto_exit)
+///
+/// \sa [*C++C.G. NR.76*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rnr-goto-exit)
+TEST(statements, goto_exit)
 {
     void *tmp1 {nullptr};
     void *tmp2 {nullptr};
@@ -110,8 +117,9 @@ exit:
 }
 
 /// \brief `gsl::finally`
+///
 /// \remarks 替代 `goto exit` 技巧。
-TEST(flow_control, gsl_finally)
+TEST(statements, gsl_finally)
 {
     const auto tmp1 {malloc(sizeof(int))};
     if (!tmp1)

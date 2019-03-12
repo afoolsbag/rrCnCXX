@@ -2,13 +2,12 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-03-04
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-03-11
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
-project(rrCXX VERSION 2019.03.04 LANGUAGES CXX)
+project(rrCXX VERSION 2019.03.11 LANGUAGES CXX)
 project_more()
 compile_option(
-  ANALYZE
   DISABLE_LANGUAGE_EXTENSIONS
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES

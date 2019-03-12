@@ -39,6 +39,20 @@
 ///
 /// \sa <https://stackoverflow.com/questions/461449/return-statement-vs-exit-in-main>
 ///
+/// _____________________________
+/// \section sReturnValueAndError 返回值和错误
+///
+/// 返回值表示函数完成了所承诺功能，并返回所求值；
+/// 错误表示函数无法完成所承诺功能：
+///
+/// *   允许使用异常时，使用 `return` 返回值，使用 `throw` 抛出错误；
+/// *   无法使用异常时，使用 `return pair<status, value>` 返回状态和值；
+/// *   无法使用对值时，使用 `return status` 返回状态，使用传入指针返回值。
+///
+/// \remarks I.10: 使用异常来表明无法实施所要求的任务
+///
+/// \sa [*C++C.G. I.10*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Ri-except)
+///
 /// \version 2018-11-22
 /// \since 2018-01-23
 /// \authors zhengrr
