@@ -99,16 +99,18 @@ typedef struct rrx_t *rrx_handle_t;
  *
  * \param[out] pv 版本指针（pointer to version）
  */
-RRX_DECORATING RRX_PORTING enum rrx_status_t RRX_CALLING
-rrx_version(struct rrx_version_t *pv);
+RRX_APIp enum rrx_status_t
+RRX_APIm rrx_version(struct rrx_version_t *pv)
+RRX_APIs;
 
 /**
  * \brief 构造实例。
  *
  * \param[out] ph 句柄指针（pointer to handle）
  */
-RRX_DECORATING RRX_PORTING enum rrx_status_t RRX_CALLING
-rrx_construct(rrx_handle_t *ph);
+RRX_APIp enum rrx_status_t
+RRX_APIm rrx_construct(rrx_handle_t *ph)
+RRX_APIs;
 
 /**
  * \brief 加。
@@ -116,8 +118,9 @@ rrx_construct(rrx_handle_t *ph);
  * \param h 实例句柄（handle）
  * \param n 加数
  */
-RRX_DECORATING RRX_PORTING enum rrx_status_t RRX_CALLING
-rrx_plus(rrx_handle_t h, int n);
+RRX_APIp enum rrx_status_t
+RRX_APIm rrx_plus(rrx_handle_t h, int n)
+RRX_APIs;
 
 /**
  * \brief 减。
@@ -125,8 +128,9 @@ rrx_plus(rrx_handle_t h, int n);
  * \param h 实例句柄（handle）
  * \param n 减数
  */
-RRX_DECORATING RRX_PORTING enum rrx_status_t RRX_CALLING
-rrx_minus(rrx_handle_t h, int n);
+RRX_APIp enum rrx_status_t
+RRX_APIm rrx_minus(rrx_handle_t h, int n)
+RRX_APIs;
 
 /**
  * \brief 等于。
@@ -134,15 +138,17 @@ rrx_minus(rrx_handle_t h, int n);
  * \param[in]  h  实例句柄（handle）
  * \param[out] pn 值指针（pointer to n）
  */
-RRX_DECORATING RRX_PORTING enum rrx_status_t RRX_CALLING
-rrx_equals(rrx_handle_t h, int *pn);
+RRX_APIp enum rrx_status_t
+RRX_APIm rrx_equals(rrx_handle_t h, int *pn)
+RRX_APIs;
 
 /**
  * \brief 析构实例。
  *
  * \param h 实例句柄（handle）
  */
-RRX_DECORATING RRX_PORTING enum rrx_status_t RRX_CALLING
-rrx_destruct(rrx_handle_t h);
+RRX_APIp enum rrx_status_t
+RRX_APIm rrx_destruct(rrx_handle_t h)
+RRX_APIs;
 
 #endif/*RRX_LIB_H_*/

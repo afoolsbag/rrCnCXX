@@ -23,7 +23,8 @@ add_library_ex(
   TARGET_NAME_VARIABLE sRrc
   C11
   COMPILE_DEFINITIONS  PUBLIC  "RRC_SHARED"
-  INCLUDE_DIRECTORIES  PUBLIC  "${sIncDir}"
+  INCLUDE_DIRECTORIES  PUBLIC  "."
+                               "${sIncDir}"
                        PRIVATE "${sSrcDir}"
                                "${sGenDir}")
 
@@ -41,7 +42,8 @@ add_library_ex(
   TARGET_NAME_VARIABLE sRrx
   CXX17
   COMPILE_DEFINITIONS  PUBLIC  "RRX_SHARED"
-  INCLUDE_DIRECTORIES  PUBLIC  "${sIncDir}"
+  INCLUDE_DIRECTORIES  PUBLIC  "."
+                               "${sIncDir}"
                        PRIVATE "${sSrcDir}"
                                "${sGenDir}")
 

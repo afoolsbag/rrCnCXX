@@ -3,7 +3,7 @@
  * \file
  * \brief 应用程序接口宏。
  *
- * \version 2019-02-27
+ * \version 2019-03-11
  * \since 2017-01-12
  * \authors zhengrr
  * \copyright Unlicense
@@ -14,71 +14,26 @@
 #ifndef RRX_API_H_
 #define RRX_API_H_
 
-/*----------------------------------------------------------------------------*/
+#include "apiaux.h"
 
-#if defined __unix__ || defined __linux__
-# if defined __GNUC__
-#  if 4 <= __GNUC__
-#   define EXPORT __attribute__ ((visibility ("default")))
-#   define IMPORT __attribute__ ((visibility ("default")))
-#   define LOCAL  __attribute__ ((visibility ("hidden")))
-#  else
-#   define EXPORT
-#   define IMPORT
-#   define LOCAL
-#  endif
-# endif
-#elif defined _WIN32 || defined __CYGWIN__
-# if defined __GNUC__
-#  define EXPORT __attribute__ ((dllexport))
-#  define IMPORT __attribute__ ((dllimport))
-#  define LOCAL
-# elif defined _MSC_VER
-#  define EXPORT __declspec(dllexport)
-#  define IMPORT __declspec(dllimport)
-#  define LOCAL
-# endif
-#else
-# define EXPORT
-# define IMPORT
-# define LOCAL
-#endif
-
-#if defined __GUNC__
-# define CDECL    __attribute__ ((cdecl))
-# define FASTCALL __attribute__ ((fastcall))
-# define THISCALL __attribute__ ((thiscall))
-# define STDCALL  __attribute__ ((stdcall))
-#elif defined _MSC_VER
-# define CDECL    __cdecl
-# define FASTCALL __fastcall
-# define THISCALL __thiscall
-# define STDCALL  __stdcall
-#else
-# define CDECL
-# define FASTCALL
-# define THISCALL
-# define STDCALL
-#endif
-
-/*----------------------------------------------------------------------------*/
-
-#ifdef __cplusplus
-#define RRX_DECORATING extern "C"
-#else
-#define RRX_DECORATING extern
+#if !!(RRX_STATIC) + !!(RRX_SHARED) != 1
+#error Single choice options: RRX_STATIC & RRX_SHARED
 #endif
 
 #ifdef RRX_SHARED
 # ifdef RRX_EXPORTS
-#  define RRX_PORTING EXPORT
+#  define RRX_APIp EXTERNC EXPORT
+#  define RRX_APIm CDECL
+#  define RRX_APIs NOEXCEPT
 # else
-#  define RRX_PORTING IMPORT
+#  define RRX_APIp EXTERNC IMPORT
+#  define RRX_APIm CDECL
+#  define RRX_APIs NOEXCEPT
 # endif
 #else
-# define RRX_PORTING
+#  define RRX_APIp EXTERNC
+#  define RRX_APIm CDECL
+#  define RRX_APIs NOEXCEPT
 #endif
-
-#define RRX_CALLING CDECL
 
 #endif/*RRX_API_H_*/

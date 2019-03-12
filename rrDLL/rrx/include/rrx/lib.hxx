@@ -27,21 +27,14 @@ using version_t = rrx_version_t;
 /// \details 用于异常抛出。
 class error: public std::exception {
 public:
-    explicit error(status_t e): e_ {std::move(e)} {};
+    explicit error(status_t e): e_ {e} {};
     status_t code() const { return e_; };
 private:
     status_t e_;
 };
 
 /// \brief 获取版本。
-inline version_t version()
-{
-    version_t v;
-    const auto e = rrx_version(&v);
-    if (e != rrx_success)
-        throw error(e);
-    return v;
-}
+inline version_t version();
 
 /// \brief 实例包装类。
 class rrx_t final {
@@ -55,39 +48,8 @@ private:
     rrx_handle_t h_;
 };
 
-inline rrx_t::rrx_t()
-{
-    rrx_construct(&h_);
-}
-
-inline void rrx_t::plus(int n)
-{
-    const auto e = rrx_plus(h_, n);
-    if (e != rrx_success)
-        throw error(e);
-}
-
-inline void rrx_t::minus(int n)
-{
-    const auto e = rrx_minus(h_, n);
-    if (e != rrx_success)
-        throw error(e);
-}
-
-inline int rrx_t::equals()
-{
-    int n;
-    const auto e = rrx_equals(h_, &n);
-    if (e != rrx_success)
-        throw error(e);
-    return n;
-}
-
-inline rrx_t::~rrx_t()
-{
-    rrx_destruct(h_);
-}
-
 }//namespace rrx
+
+#include "lib.inl"
 
 #endif//RRX_LIB_HXX_

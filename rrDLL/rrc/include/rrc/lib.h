@@ -75,15 +75,17 @@ struct rrc_version_t {
  *
  * \param[out] pv 版本指针（pointer to version）
  */
-RRC_DECORATING RRC_PORTING enum rrc_status_t RRC_CALLING
-rrc_version(struct rrc_version_t *pv);
+RRC_APIp enum rrc_status_t
+RRC_APIm rrc_version(struct rrc_version_t *pv)
+RRC_APIs;
 
 /**
  * \brief 叹。
  *
  * \param[out] pt 时间指针（pointer to time）
  */
-RRC_DECORATING RRC_PORTING enum rrc_status_t RRC_CALLING
-rrc_sigh(time_t *pt);
+RRC_APIp enum rrc_status_t
+RRC_APIm rrc_sigh(time_t *pt)
+RRC_APIs;
 
 #endif/*RRC_LIB_H_*/

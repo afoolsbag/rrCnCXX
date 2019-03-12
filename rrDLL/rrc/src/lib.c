@@ -10,8 +10,9 @@
 
 #include "cfg.h"
 
-RRC_DECORATING RRC_PORTING enum rrc_status_t RRC_CALLING
-rrc_version(struct rrc_version_t *pv)
+RRC_APIp enum rrc_status_t
+RRC_APIm rrc_version(struct rrc_version_t *pv)
+RRC_APIs
 {
     if (!pv)
         return rrc_invalid_argument;
@@ -24,8 +25,9 @@ rrc_version(struct rrc_version_t *pv)
     return rrc_success;
 }
 
-RRC_DECORATING RRC_PORTING enum rrc_status_t RRC_CALLING
-rrc_sigh(time_t *pt)
+RRC_APIp enum rrc_status_t
+RRC_APIm rrc_sigh(time_t *pt)
+RRC_APIs
 {
     if (!pt)
         return rrc_invalid_argument;
