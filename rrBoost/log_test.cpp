@@ -13,14 +13,14 @@
 ///
 //===----------------------------------------------------------------------===//
 
-//#include <boost/log/core.hpp>
-//#include <boost/log/expressions.hpp>
 #include <boost/dll.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/setup/console.hpp>
 #include <boost/log/utility/setup/file.hpp>
 #include <gtest/gtest.h>
+
+namespace dll = boost::dll;
 
 namespace rrboost {
 
@@ -37,10 +37,16 @@ TEST(log, trivial)
 TEST(log, file_sink)
 {
     namespace log = boost::log;
-    const auto base_name {boost::dll::program_location().filename().stem().string()};
+
+    const auto log_path = [] {
+        auto tmp {dll::program_location()};
+        tmp.replace_extension(".log");
+        tmp /= "%Y-%m-%d_%N.log";
+        return tmp;
+    }();
 
     const auto &file_sink = log::add_file_log(
-        log::keywords::file_name = "log/" + base_name + "_%Y-%m-%d_%N.log",
+        log::keywords::file_name = log_path,
         log::keywords::max_files = 256,
         log::keywords::min_free_space = 100 * 1024 * 1024,
         log::keywords::open_mode = std::ios::out | std::ios::app,
