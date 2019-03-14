@@ -2,7 +2,7 @@
 # |  ___(_)         | /  __ \ |             | |
 # | |_   _ _ __   __| | /  \/ |__   ___  ___| | __
 # |  _| | | '_ \ / _` | |   | '_ \ / _ \/ __| |/ / zhengrr
-# | |   | | | | | (_| | \__/\ | | |  __/ (__|   <  2018-02-02 – 2019-02-12
+# | |   | | | | | (_| | \__/\ | | |  __/ (__|   <  2018-02-02 – 2019-03-14
 # \_|   |_|_| |_|\__,_|\____/_| |_|\___|\___|_|\_\ Unlicense
 
 if(NOT COMMAND check_include_file)
@@ -66,17 +66,80 @@ endif()
 
 check_include_file("stdint.h" HAVE_STDINT_H)
 
+#-------------------------------------------------------------------------------
+# UNIX-like
+
+if(UNIX)
+
+  # <prefix>/include
+  find_path(
+    Check_INCLUDE_DIR
+    NAMES "check.h")
+  mark_as_advanced(Check_INCLUDE_DIR)
+
+  # <prefix>/lib
+  find_library(
+    Check_check_LIBRARY
+    NAMES "check")
+  mark_as_advanced(Check_check_LIBRARY)
+
+  find_library(
+    Check_compat_LIBRARY
+    NAMES "compat")
+  mark_as_advanced(Check_compat_LIBRARY)
+
+  # package
+  find_package_handle_standard_args(
+    Check
+    DEFAULT_MSG
+    Check_check_LIBRARY
+    Check_INCLUDE_DIR)
+
+  if(Check_FOUND)
+    # targets
+    if(NOT TARGET Check::compat)
+      add_library(Check::compat STATIC IMPORTED)
+      set_target_properties(
+        Check::compat
+        PROPERTIES IMPORTED_LOCATION             "${Check_compat_LIBRARY}"
+                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
+    endif()
+
+    if(NOT TARGET Check::check)
+      add_library(Check::check STATIC IMPORTED)
+      set_target_properties(
+        Check::check
+        PROPERTIES IMPORTED_LOCATION             "${Check_check_LIBRARY}"
+                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
+      target_compile_definitions(
+        Check::check
+        INTERFACE $<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>)
+      target_link_libraries(
+        Check::check
+        INTERFACE m
+                  rt
+                  subunit
+                  Check::compat)
+    endif()
+
+  endif()
+
+endif()
+
+#-------------------------------------------------------------------------------
+# Windows
+
 if(WIN32)
 
   cmake_minimum_required(VERSION 3.12)  # CMP0074
 
-  # include
+  # <prefix>/include
   find_path(
     Check_INCLUDE_DIR
     NAMES         "check.h")
   mark_as_advanced(Check_INCLUDE_DIR)
 
-  # lib
+  # <prefix>/lib
   get_toolset_architecture_address_model_tag(sTag)
 
   find_library(
@@ -143,63 +206,6 @@ if(WIN32)
     # hints
     set(Check_ROOT "${Check_ROOT}" CACHE PATH "The root directory of the Check installation.")
     mark_as_advanced(CLEAR Check_ROOT)
-
-  endif()
-
-endif()
-
-if(UNIX)
-
-  # include
-  find_path(
-    Check_INCLUDE_DIR
-    NAMES "check.h")
-  mark_as_advanced(Check_INCLUDE_DIR)
-
-  # lib
-  find_library(
-    Check_check_LIBRARY
-    NAMES "check")
-  mark_as_advanced(Check_check_LIBRARY)
-
-  find_library(
-    Check_compat_LIBRARY
-    NAMES "compat")
-  mark_as_advanced(Check_compat_LIBRARY)
-
-  # package
-  find_package_handle_standard_args(
-    Check
-    DEFAULT_MSG
-    Check_check_LIBRARY
-    Check_INCLUDE_DIR)
-
-  if(Check_FOUND)
-    # targets
-    if(NOT TARGET Check::compat)
-      add_library(Check::compat STATIC IMPORTED)
-      set_target_properties(
-        Check::compat
-        PROPERTIES IMPORTED_LOCATION             "${Check_compat_LIBRARY}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
-    endif()
-
-    if(NOT TARGET Check::check)
-      add_library(Check::check STATIC IMPORTED)
-      set_target_properties(
-        Check::check
-        PROPERTIES IMPORTED_LOCATION             "${Check_check_LIBRARY}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
-      target_compile_definitions(
-        Check::check
-        INTERFACE $<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>)
-      target_link_libraries(
-        Check::check
-        INTERFACE m
-                  rt
-                  subunit
-                  Check::compat)
-    endif()
 
   endif()
 
