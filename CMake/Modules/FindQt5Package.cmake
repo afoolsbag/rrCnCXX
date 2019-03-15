@@ -4,20 +4,21 @@
 # |  _| | | | | | (_| | |_| | |_ ___) |  __| (_| | (__|   | (_| | (_| |  __/
 # |_|   |_|_| |_|\__,_|\__\_\\__|____/|_|   \__,_|\___|_|\_\__,_|\__, |\___|
 # zhengrr                               FindQt5Package by FIGlet |___/
-# 2016-10-21 – 2018-10-22
-# The Unlicense
+# 2016-10-21 – 2019-03-15
+# Unlicense
 
+cmake_minimum_required(VERSION 3.3)
 cmake_policy(SET CMP0057 NEW) #3.3+
 
-if(NOT COMMAND get_address_model_tag)
-  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/LibTag.cmake")
+if(NOT COMMAND find_package_handle_standard_args)
+  include(FindPackageHandleStandardArgs)
 endif()
 
 #.rst:
 # FindQt5Package
 # --------------
 #
-# Find the `Qt5 <https://qt.io/>`_ CMake packages.
+# Find the `Qt5 <https://qt.io/>`_ CMake Packages.
 #
 # Result Variables
 # ^^^^^^^^^^^^^^^^
@@ -25,20 +26,20 @@ endif()
 # This module defines the following variables:
 #
 # ``Qt5Package_FOUND``
-#   Found the Qt5 CMake packages.
+#   Found the Qt5 CMake Packages.
 #
 # ``Qt5Package_PREFIX_PATH``
-#   The directory containing the Qt5 CMake packages.
+#   The directory containing the Qt5 CMake Packages.
 #
 # Cache variables
 # ^^^^^^^^^^^^^^^
 #
 # The following cache variables may also be set:
 #
-# ``Qt5_ROOT_DIR`` ``ENV QTDIR[32|64]``
-#   The root directory of the Qt5 installation::
+# ``Qt5_ROOT``
+#   The root directory of the Qt5 installation (may also be set as an environment variable)::
 #
-#     v Qt5_ROOT_DIR
+#     v Qt5_ROOT
 #       v lib
 #         v cmake
 #           v Qt5
@@ -52,8 +53,7 @@ if(Qt5Package_FOUND)
 endif()
 
 # hints
-get_address_model_tag(sAddr)
-set(zHints "${Qt5_ROOT_DIR}" "$ENV{QTDIR${sAddr}}" "$ENV{QTDIR}")
+set(zHints "${Qt5_ROOT}" "$ENV{Qt5_ROOT}" "$ENV{QTDIR}")
 
 # prefix
 find_path(Qt5Package_PREFIX_PATH
@@ -64,7 +64,6 @@ find_path(Qt5Package_PREFIX_PATH
 mark_as_advanced(Qt5Package_PREFIX_PATH)
 
 # package
-include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
   Qt5Package
   DEFAULT_MSG
@@ -75,11 +74,11 @@ if(Qt5Package_FOUND)
   if(NOT Qt5Package_PREFIX_PATH IN_LIST CMAKE_PREFIX_PATH)
     list(APPEND CMAKE_PREFIX_PATH "${Qt5Package_PREFIX_PATH}")
   endif()
-  mark_as_advanced(Qt5_ROOT_DIR)
+  mark_as_advanced(Qt5_ROOT)
 
 else()
   # hints
-  set(Qt5_ROOT_DIR "${Qt5_ROOT_DIR}" CACHE PATH "The root directory of the Qt5 installation.")
-  mark_as_advanced(CLEAR Qt5_ROOT_DIR)
+  set(Qt5_ROOT "${Qt5_ROOT}" CACHE PATH "The root directory of the Qt5 installation.")
+  mark_as_advanced(CLEAR Qt5_ROOT)
 
 endif()

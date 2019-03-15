@@ -2,15 +2,18 @@
 #           |  _  | |
 #  _ __ _ __| | | | |_
 # | '__| '__| | | | __| zhengrr
-# | |  | |  \ \/' / |_  2016-06-28 – 2018-11-28
+# | |  | |  \ \/' / |_  2016-06-28 – 2019-03-15
 # |_|  |_|   \_/\_\\__| Unlicense
 
-project(rrQt VERSION 2018.11.28 LANGUAGES CXX)
+project(rrQt VERSION 2019.03.15 LANGUAGES CXX)
 project_more()
-compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
-add_doxygen()
+add_doxygen(WITH_OPTION)
 
+if(3.12 VERSION_LESS CMAKE_VERSION)
+  cmake_policy(SET CMP0074 NEW)
+endif()
 find_package(Qt5Package)
 find_package(Qt5 COMPONENTS Core Gui LinguistTools Quick Test Widgets)
 set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "generated")
