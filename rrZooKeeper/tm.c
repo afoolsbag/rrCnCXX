@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stddef.h>
 
 #include <check.h>
 #ifdef _MSC_VER
@@ -17,6 +17,7 @@ int main(void)
     zoo_set_debug_level(ZOO_LOG_LEVEL_WARN);
 
     SRunner *const tr = srunner_create(NULL);
+    srunner_set_fork_status(tr, CK_NOFORK);
     srunner_add_suite(tr, ts());
 
     srunner_run_all(tr, CK_NORMAL);
