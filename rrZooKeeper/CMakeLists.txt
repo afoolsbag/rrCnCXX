@@ -5,40 +5,29 @@
 # | |  | |./ /__| (_) | (_) | |\  \  __/  __/ |_) |  __/ |
 # |_|  |_|\_____/\___/ \___/\_| \_/\___|\___| .__/ \___|_|
 # zhengrr                                   | |
-# 2018-12-29 – 2019-03-14                   |_|
+# 2018-12-29 – 2019-03-15                   |_|
 # Unlicense
 
-project(rrZooKeeper VERSION 2018.03.14 LANGUAGES C)
+project(rrZooKeeper VERSION 2018.03.15 LANGUAGES C)
 project_more()
+
 compile_option(
-  #RECOMMENDED_WARNING_LEVEL
+  RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
   WARNING_AS_ERROR)
 
-add_doxygen(WITH_OPTION)
+add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
 
 if(3.12 VERSION_LESS CMAKE_VERSION)
   cmake_policy(SET CMP0074 NEW)
 endif()
+find_package(Check)
 find_package(ZooKeeperC)
 
+aux_source_directory_ex(zSource RECURSE)
 add_executable_ex(
-  NAME SyncCRUD "sync_crud_test.c" FLAT_GROUP C11
+  ${zSource} C11
   INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE ZooKeeperC::zookeeper)
-
-add_executable_ex(
-  NAME AsyncCRUD "async_crud_test.c" FLAT_GROUP C11
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE ZooKeeperC::zookeeper)
-
-add_executable_ex(
-  NAME Watch "watch_test.c" FLAT_GROUP C11
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE ZooKeeperC::zookeeper)
-
-add_executable_ex(
-  NAME EphSeq "eph_seq_test.c" FLAT_GROUP C11
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE ZooKeeperC::zookeeper)
+  LINK_LIBRARIES      PRIVATE Check::check
+                              ZooKeeperC::zookeeper)

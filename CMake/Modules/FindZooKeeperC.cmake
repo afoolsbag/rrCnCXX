@@ -5,7 +5,7 @@
 # | |   | | | | | (_| |./ /__| (_) | (_) | |\  \  __/  __/ |_) |  __/ |  | \__/\
 # \_|   |_|_| |_|\__,_|\_____/\___/ \___/\_| \_/\___|\___| .__/ \___|_|   \____/
 # zhengrr                                                | |
-# 2018-12-29 – 2019-03-14                                |_|
+# 2018-12-29 – 2019-03-15                                |_|
 # Unlicense
 
 if(NOT COMMAND find_package_handle_standard_args)
@@ -205,9 +205,6 @@ if(WIN32)
         ZooKeeperC::zookeeper
         INTERFACE "USE_STATIC_LIB"
       )
-      target_compile_options(
-        ZooKeeperC::zookeeper
-        INTERFACE $<IF:$<CONFIG:Debug>,/MTd,/MT>)
       target_link_libraries(
         ZooKeeperC::zookeeper
         INTERFACE WS2_32
