@@ -3,7 +3,7 @@
  * \file
  * \brief 可移植操作系统接口线程。
  *
- * \version 2019-02-18
+ * \version 2019-03-19
  * \since 2019-02-15
  * \authors zhengrr
  * \copyright Unlicense
@@ -16,7 +16,7 @@
 
 #include <check.h>
 
-#include "ts.h"
+#include "ts_issue5.h"
 
 static void *thrd_func(void *data)
 {
@@ -32,7 +32,7 @@ START_TEST(tf_pthreads)
 }
 END_TEST;
 
-TCase *tc_posix_threads(void)
+TCase *tc_pthread(void)
 {
     TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_pthreads);

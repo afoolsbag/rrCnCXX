@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-03-04
+# 2016-10-08 – 2019-03-19
 # Unlicense
 
 include_guard()
@@ -58,7 +58,7 @@ function(compile_option)
       add_compile_options("-Wpedantic")
     endif()
     if(MSVC AND NOT CMAKE_CXX_COMPILER)
-      add_compile_options("-Za")
+      add_compile_options("/Za")
     endif()
   endif()
 

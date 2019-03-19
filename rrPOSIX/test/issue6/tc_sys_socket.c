@@ -3,7 +3,7 @@
  * \file
  * \brief 伯克利套接字。
  *
- * \version 2019-02-19
+ * \version 2019-03-19
  * \since 2019-02-15
  * \authors zhengrr
  * \copyright Unlicense
@@ -22,7 +22,7 @@
 
 #include <check.h>
 
-#include "ts.h"
+#include "ts_issue6.h"
 
 /**
  * \brief 配置套接字地址。
@@ -402,7 +402,7 @@ START_TEST(tf_udp)
 }
 END_TEST;
 
-TCase *tc_berkeley_sockets(void)
+TCase *tc_sys_socket(void)
 {
     TCase *const tc = tcase_create(__func__);
     tcase_add_test(tc, tf_tcp);
