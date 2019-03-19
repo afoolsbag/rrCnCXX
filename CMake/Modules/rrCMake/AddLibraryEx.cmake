@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2018-12-29
+# 2016-10-08 – 2019-03-19
 # Unlicense
 
 include_guard()
@@ -8,6 +8,10 @@ cmake_minimum_required(VERSION 3.10)
 
 if(NOT COMMAND check_name_with_cmake_rules)
   include("${CMAKE_CURRENT_LIST_DIR}/CheckName.cmake")
+endif()
+
+if(NOT COMMAND get_toolset_architecture_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/LibraryTag.cmake")
 endif()
 
 # .rst
@@ -273,5 +277,10 @@ function(add_library_ex)
     endforeach()
   endif()
 
-  install(TARGETS "${sTgtName}" DESTINATION "lib")
+  get_toolset_architecture_address_model_tag(sTag)
+  install(
+    TARGETS             "${sTgtName}"
+    ARCHIVE DESTINATION "lib/${sTag}$<$<CONFIG:Debug>:d>/"
+    LIBRARY DESTINATION "lib/${sTag}$<$<CONFIG:Debug>:d>/"
+    RUNTIME DESTINATION "bin/${sTag}$<$<CONFIG:Debug>:d>/")
 endfunction()

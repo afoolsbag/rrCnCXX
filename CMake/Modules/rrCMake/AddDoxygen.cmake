@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-02-15
+# 2016-10-08 – 2019-03-19
 # Unlicense
 
 include_guard()
@@ -147,8 +147,9 @@ function(add_doxygen)
   doxygen_add_docs(
     "${sTgtName}"
     "${PROJECT_SOURCE_DIR}"
+    ALL
     WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
     COMMENT           "Generating documentation with Doxygen.")
 
-  install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen" DESTINATION "docs/${PROJECT_NAME}")
+  install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen/" DESTINATION "doc/")
 endfunction()

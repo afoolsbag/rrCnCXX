@@ -39,6 +39,7 @@ add_library_ex(
                       PRIVATE "src/"
                               "${CMAKE_CURRENT_BINARY_DIR}/src/"
 )
+install(DIRECTORY "include" DESTINATION "./")
 
 #-------------------------------------------------------------------------------
 # Test
