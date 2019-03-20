@@ -85,14 +85,20 @@
 
 壳层
 / [*SS64*](https://ss64.com/ "参考")
-/ [*Bash*](https://gnu.org/software/bash/)
-/ [*KornShell*](http://kornshell.com/)
-/ [*PowerShell*](https://microsoft.com/powershell)
-/ [*PuTTY*](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
-/ [*SecureCRT*](https://vandyke.com/products/securecrt/)
-/ [*WinSCP*](https://winscp.net/)
-/ [*Xshell*](https://netsarang.com/en/xshell/)
-/ [*Zsh*](https://zsh.org/)
+/ [sh](# "Bourne Shell, 1977"),
+  [csh](# "C Shell, 1978"),
+  [*tcsh*](http://tcsh.org/ "TENEX C Shell, 1983"),
+  [*ksh*](http://kornshell.com/ "KornShell, 1983"),
+  [*ash*](https://in-ulm.de/~mascheck/various/ash/ "Almquist Shell, 1989-05-30"),
+  [*bash*](https://gnu.org/software/bash/ "Bourne-Again Shell, 1989-06-08"),
+  [*zsh*](https://zsh.org/ "Z Shell, 1990"),
+  [*scsh*](https://scsh.net/ "Scheme Shell, 1994-10-31"),
+  [*fish*](https://fishshell.com/ "Friendly Interactive Shell, 2005-02-13")
+/ [CMD](# "Command Prompt, 1987"),
+  [*PowerShell*](https://microsoft.com/powershell "PowerShell, 2006")
+/ [*SecureCRT*](https://vandyke.com/products/securecrt/ "SecureCRT, 1998-06"),
+  [*PuTTY*](https://www.chiark.greenend.org.uk/~sgtatham/putty/ "PuTTY, 1999-01-22"),
+  [*WinSCP*](https://winscp.net/ "WinSCP, 2000")
 
 环境
 / [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
