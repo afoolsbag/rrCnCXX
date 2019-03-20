@@ -144,6 +144,7 @@
     [*styles*](https://studiostyl.es/ "Studio Styles") )</sub>
 
 调试
+/ [*Beyond Compare*](https://scootersoftware.com/)
 / [*Cheat Engine*](https://cheatengine.org/)
 / [*DebugView*](https://docs.microsoft.com/sysinternals/downloads/debugview)
 / [*Dependency Walker*](http://dependencywalker.com)
@@ -156,9 +157,11 @@
 网络
 / [*bettercap*](https://bettercap.org/)
 / [*dsniff*](https://monkey.org/~dugsong/dsniff/)
+/ [*EasyPHP*](https://easyphp.org/ "A Web Server")
 / [*Ettercap*](https://ettercap-project.org/)
 / [*iPerf*](https://iperf.fr/)
 / [*Wireshark*](https://wireshark.org/)
+/ [*Xlight*](https://xlightftpd.com/ "A FTP Server")
 
 维护
 / [*AutoHotkey*](https://autohotkey.com/)
