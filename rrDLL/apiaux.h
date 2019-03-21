@@ -3,7 +3,7 @@
  * \file
  * \brief 应用程序接口辅助宏。
  *
- * \version 2019-03-11
+ * \version 2019-03-21
  * \since 2019-03-11
  * \authors zhengrr
  * \copyright Unlicense
@@ -20,9 +20,9 @@
  */
 
 #ifdef __cplusplus
-#define EXTERNC extern "C"
+# define EXTERNC extern "C"
 #else
-#define EXTERNC extern
+# define EXTERNC extern
 #endif
 
 /**
@@ -113,7 +113,7 @@
 #  define NOEXCEPT throw()
 # endif
 #else
-#define NOEXCEPT
+# define NOEXCEPT
 #endif
 
 #endif/*APIAUX*/

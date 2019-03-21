@@ -3,7 +3,7 @@
  * \file
  * \brief 应用程序接口宏。
  *
- * \version 2019-03-11
+ * \version 2019-03-21
  * \since 2017-01-12
  * \authors zhengrr
  * \copyright Unlicense
@@ -31,9 +31,9 @@
 #  define RRX_APIs NOEXCEPT
 # endif
 #else
-#  define RRX_APIp EXTERNC
-#  define RRX_APIm CDECL
-#  define RRX_APIs NOEXCEPT
+# define RRX_APIp EXTERNC
+# define RRX_APIm CDECL
+# define RRX_APIs NOEXCEPT
 #endif
 
 #endif/*RRX_API_H_*/
