@@ -5,19 +5,25 @@
  *
  * # C                                                                     {#sC}
  *
- * [*ISO/IEC JTC1/SC22/WG14 - C*](http://open-std.org/jtc1/sc22/wg14/)
+ * *The C Programming Language*:
  *
- * / [*C18*](https://iso.org/standard/74528.html) (2017)
- * / [*C11*](https://iso.org/standard/57853.html) (2011)
- * / [*C99*](https://iso.org/standard/29237.html) (1999)
- * / *C95*
- * / [*C90*](https://iso.org/standard/17782.html) (1990)
- * / *ANSI C* (1989)
- * / *K&R C* (1978)
- * / *C* (1972)
+ * > ```c
+ * > #include <stdio.h>
+ * >
+ * > main( ) {
+ * >         "hello, world\n"
+ * > }
+ * > ```
  *
- * *Dennis MacAlistair Ritchie（丹尼斯·里奇）*
- * *Kenneth Lane Thompson（肯·汤普逊）*
+ * [C](http://open-std.org/jtc1/sc22/wg14/ "JTC1/SC22/WG14 - C")
+ * / [Early C](# "Early C, 1972"),
+ *   [K&R C](# "K&R C, 1978"),
+ *   [*ANSI C*](https://ansi.org/search_results?q=ANSI+X3.159-1989 "ANSI X3.159-1989"),
+*    [*C90*](https://iso.org/standard/17782.html "ISO/IEC 9899:1990"),
+*    [*C95*](https://iso.org/standard/23909.html "ISO/IEC 9899:1990/Amd 1:1995"),
+*    [*C99*](https://iso.org/standard/29237.html "ISO/IEC 9899:1999"),
+*    [*C11*](https://iso.org/standard/57853.html "ISO/IEC 9899:2011"),
+*    [*C18*](https://iso.org/standard/74528.html "ISO/IEC 9899:2018")
  *
  * # 参考                                                         {#sReferences}
  *

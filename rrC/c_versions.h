@@ -5,7 +5,7 @@
  *
  * \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki)
  *
- * \version 2019-01-31
+ * \version 2019-03-21
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright Unlicense
@@ -107,14 +107,14 @@
 #endif
 
 /**
- * \def STANDARD_C94
- * \brief ISO/IEC 9899:1999/Cor 1:1994
- * \sa <https://iso.org/standard/24271.html>
+ * \def STANDARD_C95
+ * \brief ISO/IEC 9899:1990/Amd 1:1995
+ * \sa <https://iso.org/standard/23909.html>
  */
 #if defined(__STDC_VERSION__) && 199410L<=__STDC_VERSION__
-#define STANDARD_C94                1
+#define STANDARD_C95                1
 #else
-#define STANDARD_C94                0
+#define STANDARD_C95                0
 #endif
 
 /**
