@@ -3,7 +3,7 @@
  * \file
  * \brief 进程和线程。
  *
- * \version 2019-01-08
+ * \version 2019-03-28
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright Unlicense
@@ -22,45 +22,51 @@ extern "C" {;
 #endif
 
 /**
- * \brief 运行可执行文件（ANSI 适配）。
+ * \brief 运行可执行文件，ANSI 适配）。
  *
  * \param path    路径；
- * \param command 命令，可为 `NULL`；
+ * \param args    参数，可为 `NULL`；
  * \param startIn 起始位置，可为 `NULL`；
  * \param show    显示或隐藏。
  * \returns `!FALSE` 成功；\n
- *           `FALSE` 失败，调用 `GetLastError()` 获取扩展信息。
+ *           `FALSE` 失败，可调用 `GetLastError()` 获取扩展错误信息。
+ * 
+ * \version 2019-03-28
+ * \since 2018-05-07
  */
 RRWINDOWS_API
 _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableA(
-    _In_z_     PCSTR CONST path,
-    _In_opt_z_ PCSTR CONST command,
-    _In_opt_z_ PCSTR CONST startIn,
-    _In_       CONST BOOL  show
+    _In_z_     PCSTR path,
+    _In_opt_z_ PCSTR args,
+    _In_opt_z_ PCSTR startIn,
+    _In_       BOOL  show
 );
 
 /**
- * \brief 运行可执行文件（UNICODE 适配）。
+ * \brief 运行可执行文件，Unicode 适配。
  *
  * \param path    路径；
- * \param command 命令，可为 `NULL`；
+ * \param args    参数，可为 `NULL`；
  * \param startIn 起始位置，可为 `NULL`；
  * \param show    显示或隐藏。
  * \returns `!FALSE` 成功；\n
- *           `FALSE` 失败，可调 `GetLastError()` 获取扩展信息。
+ *           `FALSE` 失败，可调用 `GetLastError()` 获取扩展错误信息。
+ *
+ * \version 2019-03-28
+ * \since 2018-05-07
  */
 RRWINDOWS_API
 _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableW(
-    _In_z_     PCWSTR CONST path,
-    _In_opt_z_ PCWSTR CONST command,
-    _In_opt_z_ PCWSTR CONST startIn,
-    _In_        CONST BOOL  show
+    _In_z_     PCWSTR path,
+    _In_opt_z_ PCWSTR args,
+    _In_opt_z_ PCWSTR startIn,
+    _In_       BOOL   show
 );
 
 #ifdef _UNICODE
@@ -70,12 +76,12 @@ RunExecutableW(
 #endif
 
 /**
- * \brief 杀死可执行文件进程（ANSI 适配）。
+ * \brief 杀死可执行文件进程，ANSI 适配。
  * \details 尝试终止指定可执行文件的所有进程，不会因对单个进程的终止失败而中断。
  *          可将返回值视作残余的进程数。
  *
- * \param exeName 可执行文件名，如`foobar.exe`。
- * \returns `<0`  内部错误，调用 `GetLastError()` 获取扩展信息；\n
+ * \param exeName 可执行文件名，如 `foobar.exe`。
+ * \returns `<0`  内部错误，调用 `GetLastError()` 获取扩展错误信息；\n
  *           `0`  全部终止成功；\n
  *           `0<` 终止失败计数。
  */
@@ -84,16 +90,16 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableA(
-    _In_z_ CONST PCSTR exeName
+    _In_z_ PCSTR exeName
 );
 
 /**
- * \brief 杀死可执行文件进程（UNICODE 适配）。
+ * \brief 杀死可执行文件进程，Unicode 适配。
  * \details 尝试终止指定可执行文件的所有进程，不会因对单个进程的终止失败而中断。
  *          可将返回值视作残余的进程数。
  *
- * \param exeName 可执行文件名，如`foobar.exe`。
- * \returns `<0`  内部错误，调用 `GetLastError()` 获取扩展信息；\n
+ * \param exeName 可执行文件名，如 `foobar.exe`。
+ * \returns `<0`  内部错误，调用 `GetLastError()` 获取扩展错误信息；\n
  *           `0`  全部终止成功；\n
  *           `0<` 终止失败计数。
  */
@@ -102,7 +108,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableW(
-    _In_z_ CONST PCWSTR exeName
+    _In_z_ PCWSTR exeName
 );
 
 #ifdef _UNICODE

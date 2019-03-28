@@ -17,24 +17,32 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableA(
-    _In_z_     PCSTR CONST path,
-    _In_opt_z_ PCSTR CONST command,
-    _In_opt_z_ PCSTR CONST startIn,
-    _In_       CONST BOOL  show)
+    _In_z_     PCSTR path,
+    _In_opt_z_ PCSTR args,
+    _In_opt_z_ PCSTR startIn,
+    _In_       BOOL  show)
 {
+    CONST size_t pathLen = StringCchLengthSA(path);
+
     PSTR cmdBuf = NULL;
-    if (command) {
-        CONST size_t cmdBufCnt = 1/*' '*/ + StringCchLengthSA(command) + 1/*'\0'*/;
-        cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(CHAR));
+    if (args) {
+        CONST size_t cmdCnt = pathLen + 1/*' '*/ + StringCchLengthSA(args) + 1/*'\0'*/;
+        cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdCnt * sizeof(CHAR));
         if (!cmdBuf) {
             SetLastError(ERROR_OUTOFMEMORY);
             return FALSE;
         }
-        cmdBuf[0] = ' ';
-        CONST HRESULT hr = StringCchCopyA(cmdBuf + 1, cmdBufCnt - 1, command);
-        if (FAILED(hr)) {
+        CONST HRESULT hr1 = StringCchCopyA(cmdBuf, cmdCnt, path);
+        if (FAILED(hr1)) {
             HeapFree(GetProcessHeap(), 0, cmdBuf);
-            SetLastError(HRESULT_CODE(hr));
+            SetLastError(HRESULT_CODE(hr1));
+            return FALSE;
+        }
+        cmdBuf[pathLen] = ' ';
+        CONST HRESULT hr2 = StringCchCopyA(cmdBuf + pathLen + 1, cmdCnt - pathLen - 1, args);
+        if (FAILED(hr2)) {
+            HeapFree(GetProcessHeap(), 0, cmdBuf);
+            SetLastError(HRESULT_CODE(hr2));
             return FALSE;
         }
     }
@@ -65,24 +73,32 @@ _Success_(return != FALSE)
 BOOL
 WINAPI
 RunExecutableW(
-    _In_z_     PCWSTR CONST path,
-    _In_opt_z_ PCWSTR CONST command,
-    _In_opt_z_ PCWSTR CONST startIn,
-    _In_        CONST BOOL  show)
+    _In_z_     PCWSTR path,
+    _In_opt_z_ PCWSTR args,
+    _In_opt_z_ PCWSTR startIn,
+    _In_       BOOL   show)
 {
+    CONST size_t pathLen = StringCchLengthSW(path);
+
     PWSTR cmdBuf = NULL;
-    if (command) {
-        CONST size_t cmdBufCnt = 1/*L' '*/ + StringCchLengthSW(command) + 1/*L'\0'*/;
-        cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdBufCnt * sizeof(WCHAR));
+    if (args) {
+        CONST size_t cmdCnt = pathLen + 1/*L' '*/ + StringCchLengthSW(args) + 1/*L'\0'*/;
+        cmdBuf = HeapAlloc(GetProcessHeap(), 0, cmdCnt * sizeof(WCHAR));
         if (!cmdBuf) {
             SetLastError(ERROR_OUTOFMEMORY);
             return FALSE;
         }
-        cmdBuf[0] = L' ';
-        CONST HRESULT hr = StringCchCopyW(cmdBuf + 1, cmdBufCnt - 1, command);
-        if (FAILED(hr)) {
+        CONST HRESULT hr1 = StringCchCopyW(cmdBuf, cmdCnt, path);
+        if (FAILED(hr1)) {
             HeapFree(GetProcessHeap(), 0, cmdBuf);
-            SetLastError(HRESULT_CODE(hr));
+            SetLastError(HRESULT_CODE(hr1));
+            return FALSE;
+        }
+        cmdBuf[pathLen] = L' ';
+        CONST HRESULT hr2 = StringCchCopyW(cmdBuf + pathLen + 1, cmdCnt - pathLen - 1, args);
+        if (FAILED(hr2)) {
+            HeapFree(GetProcessHeap(), 0, cmdBuf);
+            SetLastError(HRESULT_CODE(hr2));
             return FALSE;
         }
     }
@@ -113,7 +129,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableA(
-    _In_z_ CONST PCSTR exeName)
+    _In_z_ PCSTR exeName)
 {
     INT cnt = 0;
 
@@ -154,7 +170,7 @@ _Success_(return >= 0)
 INT
 WINAPI
 KillExecutableW(
-    _In_z_ CONST PCWSTR exeName)
+    _In_z_ PCWSTR exeName)
 {
     INT cnt = 0;
 

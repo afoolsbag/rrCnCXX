@@ -21,9 +21,9 @@
 #include "rrWindows/rrWindows.h"
 #include "tsDebug.h"
 
-START_TEST(tfAllocErrorMessage)
+START_TEST(tfFormatMessageS)
 {
-    PCTSTR CONST msg = AllocErrorMessage(ERROR_SUCCESS);
+    PCTSTR CONST msg = FormatMessageS(ERROR_SUCCESS);
     ck_assert(msg);
     LocalFree((HLOCAL)msg);
 }
@@ -36,6 +36,6 @@ END_TEST
 TCase *tcErrorHandling(void)
 {
     TCase *const tc = tcase_create(__func__);
-    tcase_add_test(tc, tfAllocErrorMessage);
+    tcase_add_test(tc, tfFormatMessageS);
     return tc;
 }
