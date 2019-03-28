@@ -3,7 +3,7 @@
  * \file
  * \brief 宏。
  *
- * \version 2019-02-21
+ * \version 2019-03-28
  * \since 2018-06-12
  * \authors zhengrr
  * \copyright Unlicense
@@ -138,7 +138,19 @@
  * 3. 由于 MSC 的预处理特性，使用 __VA_ARGS__ 向 SELECT 宏传参会被认为是单个记号，
  *    需要使用 EXPAND 将 SELECT 间接展开，以达到预期作用。
  *
- * 4. 将该技巧封装为 MFVO 宏，便于使用。
+ * 4. 将该技巧封装为 MFVO 宏，便于使用，如：
+ *    
+ *    #define fv(...) MFVO_10(f0,                                              \
+ *                            f1,                                              \
+ *                            f2,                                              \
+ *                            MFVO_BAN,                                        \
+ *                            MFVO_BAN,                                        \
+ *                            MFVO_BAN,                                        \
+ *                            f6,                                              \
+ *                            MFVO_BAN,                                        \
+ *                            MFVO_BAN,                                        \
+ *                            MFVO_BAN,                                        \
+ *                            f10, __VA_ARGS__)
  */
 
 #define SELECT_1ST(_1, ...) _1

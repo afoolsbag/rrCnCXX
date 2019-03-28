@@ -4,9 +4,10 @@
 
 #include "service.h"
 
-#include "eventlog.h"
+#include "rrWindows/rrWindows.h"
 
-#define MAX_COMMAND 32768
+#include "eventlog.h"
+#include "inifile.h"
 
 static SERVICE_STATUS_HANDLE ServiceStatusHandle = NULL;
 
@@ -29,7 +30,7 @@ VOID WINAPI ServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors)
     ReportServiceStatus(SERVICE_START_PENDING, NO_ERROR, 3000);
     ReportServiceStatus(SERVICE_RUNNING, NO_ERROR, 0);
 
-    /* 读取配置 */
+    PBones pBones = AllocBones();
 
     while (!ServiceStopFlag) {
         if (ServicePauseFlag) {
@@ -37,13 +38,50 @@ VOID WINAPI ServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors)
             continue;
         }
 
-        static INT cnt = 0;
-        TCHAR buffer[MAX_PATH];
-        StringCchPrintf(buffer, ARRAYSIZE(buffer), _T("Count %d.\n"), ++cnt);
-        OutputDebugString(buffer);
+        SYSTEMTIME currentTime;
+        GetLocalTime(&currentTime);
+
+        for (int i = 0; i < pBones->Count; ++i) {
+            /* 遍历所有项 */
+
+            if (pBones->Data[i].EnableKillAtTime &&
+                TimeCompare(&pBones->Data[i].NextKillAt, &currentTime) == TIME_LESS_THAN) {
+                /* 若该项启用了定时重启，且符合重启条件 */
+
+                /* 杀死现有进程，等待看门狗将其拉起 */
+                KillExecutable(pBones->Data[i].ExeName);
+
+                /* 重置下次开启时间 */
+                while (TimeCompare(&pBones->Data[i].NextKillAt, &currentTime) == TIME_LESS_THAN)
+                    TimeAdd(&pBones->Data[i].NextKillAt, &TimeOneDay);
+
+                continue;
+            }
+
+            if (!CountProcessesByExecutable(pBones->Data[i].ExeName)) {
+                /* 若项未在运行 */
+
+                /* 检查重试间隔 */
+                SYSTEMTIME canTryAt = pBones->Data[i].LastTryAt;
+                TimeAdd(&canTryAt, &pBones->Data[i].RetryInterval);
+                if (TimeCompare(&currentTime, &canTryAt) == TIME_LESS_THAN)
+                    continue;
+
+                if (!RunExecutable(pBones->Data[i].ExePath,
+                                   pBones->Data[i].ExeArgs,
+                                   pBones->Data[i].ExeStartIn,
+                                   pBones->Data[i].ExeShow))
+                    EventLogFunctionFailed(_T("RunExecutable"), GetLastError());
+
+                /* 更新重试间隔 */
+                pBones->Data[i].LastTryAt = currentTime;
+            }
+        }
 
         Sleep(SleepCycle);
     }
+
+    FreeBones(pBones);
 }
 
 VOID WINAPI ServiceCtrlHandler(DWORD dwControl)
@@ -78,7 +116,7 @@ VOID WINAPI ServiceCtrlHandler(DWORD dwControl)
 
 VOID WINAPI ReportServiceStatus(DWORD currentState, DWORD win32ExitCode, DWORD waitHint)
 {
-    static SERVICE_STATUS ServiceStatus = {.dwServiceType = SERVICE_WIN32_OWN_PROCESS, .dwServiceSpecificExitCode = 0};
+    static SERVICE_STATUS ServiceStatus = {.dwServiceType = SERVICE_WIN32_OWN_PROCESS,.dwServiceSpecificExitCode = 0};
     static DWORD CheckPoint = 1;
 
     ServiceStatus.dwCurrentState = currentState;

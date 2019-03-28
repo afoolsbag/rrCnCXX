@@ -3,7 +3,7 @@
  * \file
  * \brief 控制台。
  *
- * \version 2019-02-21
+ * \version 2019-03-28
  * \since 2018-04-14
  * \authors zhengrr
  * \copyright Unlicense
@@ -20,78 +20,8 @@
 #include "rrWindows/MenuRc/Strings.h"
 
 /*------------------------------------------------------------------------------
- * 简化函数
+ * 简化控制台颜色
  */
-
-/**
- * \brief 向标准输出流写入，Simplify 接口，ANSI 适配。
- */
-FORCEINLINE
-_Success_(return != FALSE)
-BOOL
-WINAPI_INLINE
-WriteStdoutA(
-    _In_z_ PCSTR text)
-{
-    HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (outHdl == INVALID_HANDLE_VALUE)
-        return FALSE;
-    return WriteConsoleA(outHdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
-}
-
-/**
- * \brief 向标准输出流写入，Simplify 接口，Unicode 适配。
- */
-FORCEINLINE
-_Success_(return != FALSE)
-BOOL
-WINAPI_INLINE
-WriteStdoutW(
-    _In_z_ PCWSTR text)
-{
-    HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (outHdl == INVALID_HANDLE_VALUE)
-        return FALSE;
-    return WriteConsoleW(outHdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
-}
-
-/**
- * \brief 向标准错误流写入，Simplify 接口，ANSI 适配。
- */
-FORCEINLINE
-_Success_(return != FALSE)
-BOOL
-WINAPI_INLINE
-WriteStderrA(
-    _In_z_ PCSTR text)
-{
-    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
-    if (errHdl == INVALID_HANDLE_VALUE)
-        return FALSE;
-    return WriteConsoleA(errHdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
-}
-
-/**
- * \brief 向标准错误流写入，Simplify 接口，Unicode 适配。
- */
-FORCEINLINE
-_Success_(return != FALSE)
-BOOL
-WINAPI_INLINE
-WriteStderrW(
-    _In_z_ PCWSTR text)
-{
-    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
-    if (errHdl == INVALID_HANDLE_VALUE)
-        return FALSE;
-    return WriteConsoleW(errHdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
-}
-
-#ifdef _UNICODE
-# define WriteStderrS WriteStderrW
-#else
-# define WriteStderrS WriteStderrA
-#endif
 
 /**
  * \brief 控制台颜色。
@@ -116,248 +46,384 @@ enum ConsoleColor {
     ConsoleBrightWhite = 0xF
 } ConsoleColor;
 
+/**
+ * \brief 获取控制台背景色。
+ *
+ * \param hConsoleOutput 控制台句柄。
+ */
+FORCEINLINE
+ConsoleColor
+WINAPI_INLINE
+GetConsoleBackGroundColor(
+    _In_ HANDLE hConsoleOutput)
+{
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    if (!GetConsoleScreenBufferInfo(hConsoleOutput, &info))
+        return ConsoleBlack;
+    return (ConsoleColor)((info.wAttributes & 0x00F0) >> 4);
+}
+
+/**
+ * \brief 获取控制台前景色。
+ *
+ * \param hConsoleOutput 控制台句柄。
+ */
+FORCEINLINE
+ConsoleColor
+WINAPI_INLINE
+GetConsoleForeGroundColor(
+    _In_ HANDLE hConsoleOutput)
+{
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    if (!GetConsoleScreenBufferInfo(hConsoleOutput, &info))
+        return ConsoleWhite;
+    return (ConsoleColor)(info.wAttributes & 0x000F);
+}
+
+/**
+ * \brief 设定控制台背景色。
+ *
+ * \param hConsoleOutput 控制台句柄。
+ * \param backGroundColor 背景色。
+ */
+FORCEINLINE
+VOID
+WINAPI_INLINE
+SetConsoleBackGroundColor(
+    _In_ HANDLE       hConsoleOutput,
+    _In_ ConsoleColor backGroundColor)
+{
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    if (!GetConsoleScreenBufferInfo(hConsoleOutput, &info))
+        return;
+    info.wAttributes &= 0xFF0F;
+    info.wAttributes |= backGroundColor << 4;
+    if (!SetConsoleTextAttribute(hConsoleOutput, info.wAttributes))
+        return;
+}
+
+/**
+ * \brief 设定控制台前景色。
+ *
+ * \param hConsoleOutput 控制台句柄。
+ * \param foreGroundColor 前景色。
+ */
+FORCEINLINE
+VOID
+WINAPI_INLINE
+SetConsoleForeGroundColor(
+    _In_ HANDLE       hConsoleOutput,
+    _In_ ConsoleColor foreGroundColor)
+{
+    CONSOLE_SCREEN_BUFFER_INFO info;
+    if (!GetConsoleScreenBufferInfo(hConsoleOutput, &info))
+        return;
+    info.wAttributes &= 0xFFF0;
+    info.wAttributes |= foreGroundColor;
+    if (!SetConsoleTextAttribute(hConsoleOutput, info.wAttributes))
+        return;
+}
+
+/*------------------------------------------------------------------------------
+ * 简化写入标准输出流和标准错误流
+ */
+
+/**
+ * \brief 向标准输出流写入，Simplify 接口，ANSI 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStdoutA(
+    _In_z_ PCSTR text)
+{
+    CONST HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleA(outHdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
+}
+
+/**
+ * \brief 向标准输出流写入，Simplify 接口，Unicode 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStdoutW(
+    _In_z_ PCWSTR text)
+{
+    CONST HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleW(outHdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
+}
+
+#ifdef _UNICODE
+# define WriteStdout WriteStdoutW
+#else
+# define WriteStdout WriteStdoutA
+#endif
+
+/**
+ * \brief 向标准错误流写入，Simplify 接口，ANSI 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStderrA(
+    _In_z_ PCSTR text)
+{
+    CONST HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleA(errHdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
+}
+
+/**
+ * \brief 向标准错误流写入，Simplify 接口，Unicode 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStderrW(
+    _In_z_ PCWSTR text)
+{
+    CONST HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleW(errHdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
+}
+
+#ifdef _UNICODE
+# define WriteStderr WriteStderrW
+#else
+# define WriteStderr WriteStderrA
+#endif
+
+/*------------------------------------------------------------------------------
+ * 格式化写入控制台及其简化
+ */
+
 #ifdef __cplusplus
 extern "C" {;
 #endif
 
 /**
- * \brief 获取控制台背景色。
- */
-RRWINDOWS_API
-ConsoleColor
-WINAPI
-GetConsoleBackGroundColor(VOID);
-
-/**
- * \brief 获取控制台前景色。
- */
-RRWINDOWS_API
-ConsoleColor
-WINAPI
-GetConsoleForeGroundColor(VOID);
-
-/**
- * \brief 设定控制台颜色。
+ * \brief 格式化写入控制台，ANSI 适配。
  *
- * \param backGroundColor 背景色。
- * \param foreGroundColor 前景色。
+ * \param hConsoleOutput 控制台句柄。
+ * \param format         格式。
+ * \param argList        参数。
  */
 RRWINDOWS_API
-VOID
+_Success_(return != FALSE)
+BOOL
 WINAPI
-SetConsoleColor(
-    _In_ CONST ConsoleColor backGroundColor,
-    _In_ CONST ConsoleColor foreGroundColor
+VPrintfConsoleA(
+    _In_                          HANDLE  hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCSTR  format,
+    _In_                          va_list argList
 );
 
 /**
- * \brief 设定控制台背景色。
+ * \brief 格式化写入控制台，Unicode 适配。
  *
- * \param backGroundColor 背景色。
+ * \param hConsoleOutput 控制台句柄。
+ * \param format         格式。
+ * \param argList        参数。
  */
 RRWINDOWS_API
-VOID
+_Success_(return != FALSE)
+BOOL
 WINAPI
-SetConsoleBackGroundColor(
-    _In_ CONST ConsoleColor backGroundColor
-);
-
-/**
- * \brief 设定控制台前景色。
- *
- * \param foreGroundColor 前景色。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-SetConsoleForeGroundColor(
-    _In_ CONST ConsoleColor foreGroundColor
-);
-
-/**
- * \brief 控制台放置有色字串，ANSI 适配。
- *
- * \param color 颜色。
- * \param text  字串。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-ConsoleColorPutA(
-    _In_    CONST ConsoleColor color,
-    _In_z_ LPCSTR CONST        text
-);
-
-/**
- * \brief 控制台放置有色字串，Unicode 适配。
- *
- * \param color 颜色。
- * \param text  字串。
- */
-RRWINDOWS_API
-VOID
-WINAPI
-ConsoleColorPutW(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCWSTR CONST        text
+VPrintfConsoleW(
+    _In_                          HANDLE  hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCWSTR format,
+    _In_                          va_list argList
 );
 
 #ifdef _UNICODE
-# define ConsoleColorPut ConsoleColorPutW
+# define VPrintfConsole VPrintfConsoleW
 #else
-# define ConsoleColorPut ConsoleColorPutA
+# define VPrintfConsole VPrintfConsoleA
 #endif
 
-FORCEINLINE
-VOID
-WINAPI_INLINE
-ConsoleColorPut1(
-    _In_z_ LPCTSTR CONST text)
-{
-    ConsoleColorPut(ConsoleWhite, text);
-}
-
-FORCEINLINE
-VOID
-WINAPI_INLINE
-ConsoleColorPut2(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCTSTR CONST        text)
-{
-    ConsoleColorPut(color, text);
-}
-
-FORCEINLINE
-VOID
-WINAPI_INLINE
-ConsoleColorPut4(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCTSTR CONST        text,
-    _In_     CONST ConsoleColor color2,
-    _In_z_ LPCTSTR CONST        text2)
-{
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-}
-
-FORCEINLINE
-VOID
-WINAPI_INLINE
-ConsoleColorPut6(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCTSTR CONST        text,
-    _In_     CONST ConsoleColor color2,
-    _In_z_ LPCTSTR CONST        text2,
-    _In_     CONST ConsoleColor color3,
-    _In_z_ LPCTSTR CONST        text3)
-{
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-    ConsoleColorPut(color3, text3);
-}
-
-FORCEINLINE
-VOID
-WINAPI_INLINE
-ConsoleColorPut8(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCTSTR CONST        text,
-    _In_     CONST ConsoleColor color2,
-    _In_z_ LPCTSTR CONST        text2,
-    _In_     CONST ConsoleColor color3,
-    _In_z_ LPCTSTR CONST        text3,
-    _In_     CONST ConsoleColor color4,
-    _In_z_ LPCTSTR CONST        text4)
-{
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-    ConsoleColorPut(color3, text3);
-    ConsoleColorPut(color4, text4);
-}
-
-FORCEINLINE
-VOID
-WINAPI_INLINE
-ConsoleColorPut10(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCTSTR CONST        text,
-    _In_     CONST ConsoleColor color2,
-    _In_z_ LPCTSTR CONST        text2,
-    _In_     CONST ConsoleColor color3,
-    _In_z_ LPCTSTR CONST        text3,
-    _In_     CONST ConsoleColor color4,
-    _In_z_ LPCTSTR CONST        text4,
-    _In_     CONST ConsoleColor color5,
-    _In_z_ LPCTSTR CONST        text5)
-{
-    ConsoleColorPut(color, text);
-    ConsoleColorPut(color2, text2);
-    ConsoleColorPut(color3, text3);
-    ConsoleColorPut(color4, text4);
-    ConsoleColorPut(color5, text5);
-}
-
 /**
- * \brief 控制台放置有色字串，宏函数变参重载。
- */
-#define ConsoleColorPutV(...) MFVO_10(MFVO_BAN,                                \
-                                      ConsoleColorPut1,                        \
-                                      ConsoleColorPut2,                        \
-                                      MFVO_BAN,                                \
-                                      ConsoleColorPut4,                        \
-                                      MFVO_BAN,                                \
-                                      ConsoleColorPut6,                        \
-                                      MFVO_BAN,                                \
-                                      ConsoleColorPut8,                        \
-                                      MFVO_BAN,                                \
-                                      ConsoleColorPut10, __VA_ARGS__)
-
-/**
- * \brief 控制台打印有色字串，ANSI 适配。
+ * \brief 格式化写入控制台，Simplify 接口，ANSI 适配。
  *
- * \param color  颜色。
- * \param format 格式。
- * \param ...    参数。
+ * \param hConsoleOutput 控制台句柄。
+ * \param format         格式。
+ * \param ...            参数。
  */
 RRWINDOWS_API
-VOID
+_Success_(return != FALSE)
+BOOL
 WINAPIV
-ConsoleColorPrintA(
-    _In_                           CONST ConsoleColor color,
-    _In_z_ _Printf_format_string_ LPCSTR CONST        format,
+PrintfConsoleA(
+    _In_                          HANDLE hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCSTR format,
     ...
 );
 
 /**
- * \brief 控制台打印有色字串，Unicode 适配。
+ * \brief 格式化写入控制台，Simplify 接口，Unicode 适配。
  *
- * \param color  颜色。
- * \param format 格式。
- * \param ...    参数。
+ * \param hConsoleOutput 控制台句柄。
+ * \param format         格式。
+ * \param ...            参数。
  */
 RRWINDOWS_API
-VOID
+_Success_(return != FALSE)
+BOOL
 WINAPIV
-ConsoleColorPrintW(
-    _In_                            CONST ConsoleColor color,
-    _In_z_ _Printf_format_string_ LPCWSTR CONST        format,
+PrintfConsoleW(
+    _In_                          HANDLE  hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCWSTR format,
     ...
 );
 
 #ifdef _UNICODE
-# define ConsoleColorPrint ConsoleColorPrintW
+# define PrintfConsole PrintfConsoleW
 #else
-# define ConsoleColorPrint ConsoleColorPrintA
+# define PrintfConsole PrintfConsoleA
+#endif
+
+/**
+ * \brief 格式化写入标准输出流，Simplify 接口，ANSI 适配。
+ *
+ * \param format 格式。
+ * \param ...    参数。
+ */
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStdoutA(
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...
+);
+
+/**
+ * \brief 格式化写入标准输出流，Simplify 接口，Unicode 适配。
+ *
+ * \param format 格式。
+ * \param ...    参数。
+ */
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStdoutW(
+    _In_z_ _Printf_format_string_ LPCWSTR format,
+    ...
+);
+
+#ifdef _UNICODE
+# define PrintfStdout PrintfStdoutW
+#else
+# define PrintfStdout PrintfStdoutA
+#endif
+
+/**
+ * \brief 格式化写入标准错误流，Simplify 接口，ANSI 适配。
+ *
+ * \param format 格式。
+ * \param ...    参数。
+ */
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStderrA(
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...
+);
+
+/**
+ * \brief 格式化写入标准错误流，Simplify 接口，Unicode 适配。
+ *
+ * \param format 格式。
+ * \param ...    参数。
+ */
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStderrW(
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...
+);
+
+#ifdef _UNICODE
+# define PrintfStderr PrintfStderrW
+#else
+# define PrintfStderr PrintfStderrA
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+/*------------------------------------------------------------------------------
+ * 清空控制台及其简化
+ */
+
+#ifdef __cplusplus
+extern "C" {;
 #endif
 
 /**
  * \brief 清空控制台屏幕。
+ *
+ * \param hConsoleOutput 控制台句柄。
  */
 RRWINDOWS_API
-VOID
+_Success_(return != FALSE)
+BOOL
 WINAPI
-ClearConsoleScreen(VOID);
+ClearConsoleScreen(
+    _In_ HANDLE hConsoleOutput);
 
 #ifdef __cplusplus
 }
+#endif
+
+/**
+ * \brief 清空标准输出流屏幕，Simplify 接口。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+ClearStdoutScreen(VOID)
+{
+    HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return ClearConsoleScreen(outHdl);
+}
+
+/**
+ * \brief 清空标准错误流屏幕，Simplify 接口。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+ClearStderrScreen(VOID)
+{
+    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return ClearConsoleScreen(errHdl);
+}
+
+#ifdef _UNICODE
+# define WriteStdout WriteStdoutW
+#else
+# define WriteStdout WriteStdoutA
 #endif

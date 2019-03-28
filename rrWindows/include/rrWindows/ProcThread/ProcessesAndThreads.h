@@ -17,6 +17,9 @@
 
 #include "rrWindows/macros.h"
 
+#define MAX_COMMAND 32768
+#define MAX_ARGS    (MAX_COMMAND - MAX_PATH - 1)
+
 #ifdef __cplusplus
 extern "C" {;
 #endif

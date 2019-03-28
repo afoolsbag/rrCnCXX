@@ -8,171 +8,31 @@
 #include <stdarg.h>
 
 #include "rrWindows/Memory/MemoryManagement.h"
-#include <rrWindows/MenuRc/Strings.h>
+#include "rrWindows/MenuRc/Strings.h"
 
 RRWINDOWS_API
-ConsoleColor
+_Success_(return != FALSE)
+BOOL
 WINAPI
-GetConsoleBackGroundColor(VOID)
+VPrintfConsoleA(
+    _In_                          HANDLE  hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCSTR  format,
+    _In_                          va_list argList)
 {
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return ConsoleBlack;
-
-    CONSOLE_SCREEN_BUFFER_INFO info;
-    if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return ConsoleBlack;
-
-    return (ConsoleColor)((info.wAttributes & 0x00F0) >> 4);
-}
-
-RRWINDOWS_API
-ConsoleColor
-WINAPI
-GetConsoleForeGroundColor(VOID)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return ConsoleWhite;
-
-    CONSOLE_SCREEN_BUFFER_INFO info;
-    if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return ConsoleWhite;
-
-    return (ConsoleColor)(info.wAttributes & 0x000F);
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-SetConsoleColor(
-    _In_ CONST ConsoleColor backGroundColor,
-    _In_ CONST ConsoleColor foreGroundColor)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return;
-
-    CONSOLE_SCREEN_BUFFER_INFO info;
-    if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return;
-    info.wAttributes &= 0xFF00;
-    info.wAttributes |= backGroundColor << 4;
-    info.wAttributes |= foreGroundColor;
-
-    if (!SetConsoleTextAttribute(hdl, info.wAttributes))
-        return;
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-SetConsoleBackGroundColor(
-    _In_ CONST ConsoleColor backGroundColor)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return;
-
-    CONSOLE_SCREEN_BUFFER_INFO info;
-    if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return;
-    info.wAttributes &= 0xFF0F;
-    info.wAttributes |= backGroundColor << 4;
-
-    if (!SetConsoleTextAttribute(hdl, info.wAttributes))
-        return;
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-SetConsoleForeGroundColor(
-    _In_ CONST ConsoleColor foreGroundColor)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return;
-
-    CONSOLE_SCREEN_BUFFER_INFO info;
-    if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return;
-    info.wAttributes &= 0xFFF0;
-    info.wAttributes |= foreGroundColor;
-
-    if (!SetConsoleTextAttribute(hdl, info.wAttributes))
-        return;
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-ConsoleColorPutA(
-    _In_    CONST ConsoleColor color,
-    _In_z_ LPCSTR CONST        text)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return;
-
-    CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor)
-        SetConsoleForeGroundColor(color);
-
-    WriteConsoleA(hdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
-
-    if (oldColor != color)
-        SetConsoleForeGroundColor(oldColor);
-}
-
-RRWINDOWS_API
-VOID
-WINAPI
-ConsoleColorPutW(
-    _In_     CONST ConsoleColor color,
-    _In_z_ LPCWSTR CONST        text)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return;
-
-    CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor)
-        SetConsoleForeGroundColor(color);
-
-    WriteConsoleW(hdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
-
-    if (oldColor != color)
-        SetConsoleForeGroundColor(oldColor);
-}
-
-RRWINDOWS_API
-VOID
-WINAPIV
-ConsoleColorPrintA(
-    _In_                           CONST ConsoleColor color,
-    _In_z_ _Printf_format_string_ LPCSTR CONST        format,
-    ...)
-{
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        goto exit;
-
-    va_list va;
-    va_start(va, format);
+    BOOL rv = FALSE;
 
     SIZE_T cnt = 128;
     PSTR buf = HeapAllocS(cnt * sizeof(CHAR));
     if (!buf)
-        goto exit_va_end;
+        goto exit;
 
     while (TRUE) {
-        CONST HRESULT hr = StringCchVPrintfA(buf, cnt, format, va);
+        CONST HRESULT hr = StringCchVPrintfA(buf, cnt, format, argList);
         if (SUCCEEDED(hr)) {
             break;
         } else if (hr == STRSAFE_E_INSUFFICIENT_BUFFER) {
             cnt *= 2;
-            PSTR CONST tmp = HeapReAllocS(buf, cnt * sizeof(CHAR));
+            CONST PSTR tmp = HeapReAllocS(buf, cnt * sizeof(CHAR));
             if (!tmp)
                 goto exit_buf_free;
             buf = tmp;
@@ -182,50 +42,37 @@ ConsoleColorPrintA(
         }
     }
 
-    CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor)
-        SetConsoleForeGroundColor(color);
-
-    WriteConsoleA(hdl, buf, (DWORD)StringCchLengthSA(buf), NULL, NULL);
-
-    if (oldColor != color)
-        SetConsoleForeGroundColor(oldColor);
+    rv = WriteConsoleA(hConsoleOutput, buf, (DWORD)StringCchLengthSA(buf), NULL, NULL);
 
 exit_buf_free:
     HeapFreeS(buf);
-exit_va_end:
-    va_end(va);
 exit:
-    return;
+    return rv;
 }
 
 RRWINDOWS_API
-VOID
-WINAPIV
-ConsoleColorPrintW(
-    _In_                            CONST ConsoleColor color,
-    _In_z_ _Printf_format_string_ LPCWSTR CONST        format,
-    ...)
+_Success_(return != FALSE)
+BOOL
+WINAPI
+VPrintfConsoleW(
+    _In_                          HANDLE  hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCWSTR format,
+    _In_                          va_list argList)
 {
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        goto exit;
-
-    va_list va;
-    va_start(va, format);
+    BOOL rv = FALSE;
 
     SIZE_T cnt = 128;
     PWSTR buf = HeapAllocS(cnt * sizeof(WCHAR));
     if (!buf)
-        goto exit_va_end;
+        goto exit;
 
     while (TRUE) {
-        CONST HRESULT hr = StringCchVPrintfW(buf, cnt, format, va);
+        CONST HRESULT hr = StringCchVPrintfW(buf, cnt, format, argList);
         if (SUCCEEDED(hr)) {
             break;
         } else if (hr == STRSAFE_E_INSUFFICIENT_BUFFER) {
             cnt *= 2;
-            PWSTR CONST tmp = HeapReAllocS(buf, cnt * sizeof(WCHAR));
+            CONST PWSTR tmp = HeapReAllocS(buf, cnt * sizeof(WCHAR));
             if (!tmp)
                 goto exit_buf_free;
             buf = tmp;
@@ -235,47 +82,153 @@ ConsoleColorPrintW(
         }
     }
 
-    CONST ConsoleColor oldColor = GetConsoleForeGroundColor();
-    if (color != oldColor)
-        SetConsoleForeGroundColor(color);
-
-    WriteConsoleW(hdl, buf, (DWORD)StringCchLengthSW(buf), NULL, NULL);
-
-    if (oldColor != color)
-        SetConsoleForeGroundColor(oldColor);
+    rv = WriteConsoleW(hConsoleOutput, buf, (DWORD)StringCchLengthSW(buf), NULL, NULL);
 
 exit_buf_free:
     HeapFreeS(buf);
-exit_va_end:
-    va_end(va);
 exit:
-    return;
+    return rv;
 }
 
 RRWINDOWS_API
-VOID
-WINAPI
-ClearConsoleScreen(VOID)
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfConsoleA(
+    _In_                          HANDLE hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...)
 {
-    HANDLE CONST hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (INVALID_HANDLE_VALUE == hdl)
-        return;
+    va_list va;
+    va_start(va, format);
+    CONST BOOL rv = VPrintfConsoleA(hConsoleOutput, format, va);
+    va_end(va);
+    return rv;
+}
 
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfConsoleW(
+    _In_                          HANDLE  hConsoleOutput,
+    _In_z_ _Printf_format_string_ LPCWSTR format,
+    ...)
+{
+    va_list va;
+    va_start(va, format);
+    CONST BOOL rv = VPrintfConsoleW(hConsoleOutput, format, va);
+    va_end(va);
+    return rv;
+}
+
+#ifdef _UNICODE
+# define PrintfConsole PrintfConsoleW
+#else
+# define PrintfConsole PrintfConsoleA
+#endif
+
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStdoutA(
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...)
+{
+    CONST HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    va_list va;
+    va_start(va, format);
+    CONST BOOL rv = VPrintfConsoleA(outHdl, format, va);
+    va_end(va);
+    return rv;
+}
+
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStdoutW(
+    _In_z_ _Printf_format_string_ LPCWSTR format,
+    ...)
+{
+    CONST HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    va_list va;
+    va_start(va, format);
+    CONST BOOL rv = VPrintfConsoleW(outHdl, format, va);
+    va_end(va);
+    return rv;
+}
+
+#ifdef _UNICODE
+# define PrintfStdout PrintfStdoutW
+#else
+# define PrintfStdout PrintfStdoutA
+#endif
+
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStderrA(
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...)
+{
+    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    va_list va;
+    va_start(va, format);
+    CONST BOOL rv = VPrintfConsoleA(errHdl, format, va);
+    va_end(va);
+    return rv;
+}
+
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPIV
+PrintfStderrW(
+    _In_z_ _Printf_format_string_ LPCSTR format,
+    ...)
+{
+    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    va_list va;
+    va_start(va, format);
+    CONST BOOL rv = VPrintfConsoleA(errHdl, format, va);
+    va_end(va);
+    return rv;
+}
+
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
+ClearConsoleScreen(
+    _In_ HANDLE hConsoleOutput)
+{
     CONSOLE_SCREEN_BUFFER_INFO info;
-    if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return;
+    if (!GetConsoleScreenBufferInfo(hConsoleOutput, &info))
+        return FALSE;
 
     CONST DWORD size = info.dwSize.X * info.dwSize.Y;
     CONST COORD coord = {0, 0};
     DWORD charsWritten;
-    if (!FillConsoleOutputCharacterA(hdl, ' ', size, coord, &charsWritten))
-        return;
+    if (!FillConsoleOutputCharacterA(hConsoleOutput, ' ', size, coord, &charsWritten))
+        return FALSE;
 #if 0
     if (!GetConsoleScreenBufferInfo(hdl, &info))
-        return;
+        return FALSE;
 #endif
-    if (!FillConsoleOutputAttribute(hdl, info.wAttributes, size, coord, &charsWritten))
-        return;
-    if (!SetConsoleCursorPosition(hdl, coord))
-        return;
+    if (!FillConsoleOutputAttribute(hConsoleOutput, info.wAttributes, size, coord, &charsWritten))
+        return FALSE;
+    if (!SetConsoleCursorPosition(hConsoleOutput, coord))
+        return FALSE;
+    return TRUE;
 }

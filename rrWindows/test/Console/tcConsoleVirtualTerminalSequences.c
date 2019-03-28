@@ -5,7 +5,7 @@
  *
  * \sa <https://docs.microsoft.com/windows/console/console-virtual-terminal-sequences>
  *
- * \version 2018-11-19
+ * \version 2019-03-28
  * \since 2018-06-07
  * \authors zhengrr
  * \copyright Unlicense
@@ -26,10 +26,10 @@ START_TEST(tfAllocErrorMessage)
 {
     ck_assert(EnableVirtualTerminalMode());
 
-    _putts(VTFRED _T("Red text") VTFDEF);
-    _putts(VTFGRN _T("Green text") VTFDEF);
-    _putts(VTFYEL _T("Yellow text") VTFDEF);
-    _putts(VTFBLU _T("Blue text") VTFDEF);
+    WriteStdout(VTFRED _T("Red text") VTFDEF _T("\n"));
+    WriteStdout(VTFGRN _T("Green text") VTFDEF _T("\n"));
+    WriteStdout(VTFYEL _T("Yellow text") VTFDEF _T("\n"));
+    WriteStdout(VTFBLU _T("Blue text") VTFDEF _T("\n"));
 
     ck_assert(DisableVirtualTerminalMode());
 }

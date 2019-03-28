@@ -3,7 +3,7 @@
  * \file
  * \brief 包含文件汇总。
  *
- * \version 2019-02-20
+ * \version 2019-03-28
  * \since 2018-08-08
  * \authors zhengrr
  * \copyright Unlicense
@@ -38,6 +38,8 @@
 #include "rrWindows/Rpc/RemoteProcedureCall.h"
 
 #include "rrWindows/Sync/Synchronization.h"
+
+#include "rrWindows/SysInfo/Time.h"
 
 #include "rrWindows/ToolHelp/ToolHelpLibrary.h"
 

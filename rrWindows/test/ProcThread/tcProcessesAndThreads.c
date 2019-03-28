@@ -26,11 +26,7 @@ static DWORD WINAPI ThrdFunc(LPVOID CONST lpThreadParameter)
 {
     UNREFERENCED_PARAMETER(lpThreadParameter);
 
-    HANDLE CONST stdoutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (stdoutHandle == INVALID_HANDLE_VALUE)
-        return EXIT_FAILURE;
-
-    ConsoleColorPutV(_T("hello, world\n"));
+    WriteStdout(_T("hello, world\n"));
     return EXIT_SUCCESS;
 }
 

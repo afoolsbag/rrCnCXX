@@ -23,10 +23,12 @@
 #include <check.h>
 
 TCase *tcRegistry(void);
+TCase *tcTime(void);
 
 inline Suite *tsSysInfo(void)
 {
     Suite *const ts = suite_create(__func__);
     suite_add_tcase(ts, tcRegistry());
+    suite_add_tcase(ts, tcTime());
     return ts;
 }
