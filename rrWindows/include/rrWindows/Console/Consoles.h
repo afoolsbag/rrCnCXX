@@ -17,6 +17,82 @@
 
 #include "rrWindows/macros.h"
 
+#include "rrWindows/MenuRc/Strings.h"
+
+/*------------------------------------------------------------------------------
+ * 简化函数
+ */
+
+/**
+ * \brief 向标准输出流写入，Simplify 接口，ANSI 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStdoutA(
+    _In_z_ PCSTR text)
+{
+    HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleA(outHdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
+}
+
+/**
+ * \brief 向标准输出流写入，Simplify 接口，Unicode 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStdoutW(
+    _In_z_ PCWSTR text)
+{
+    HANDLE outHdl = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (outHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleW(outHdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
+}
+
+/**
+ * \brief 向标准错误流写入，Simplify 接口，ANSI 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStderrA(
+    _In_z_ PCSTR text)
+{
+    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleA(errHdl, text, (DWORD)StringCchLengthSA(text), NULL, NULL);
+}
+
+/**
+ * \brief 向标准错误流写入，Simplify 接口，Unicode 适配。
+ */
+FORCEINLINE
+_Success_(return != FALSE)
+BOOL
+WINAPI_INLINE
+WriteStderrW(
+    _In_z_ PCWSTR text)
+{
+    HANDLE errHdl = GetStdHandle(STD_ERROR_HANDLE);
+    if (errHdl == INVALID_HANDLE_VALUE)
+        return FALSE;
+    return WriteConsoleW(errHdl, text, (DWORD)StringCchLengthSW(text), NULL, NULL);
+}
+
+#ifdef _UNICODE
+# define WriteStderrS WriteStderrW
+#else
+# define WriteStderrS WriteStderrA
+#endif
+
 /**
  * \brief 控制台颜色。
  */
