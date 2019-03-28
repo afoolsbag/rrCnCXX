@@ -132,7 +132,7 @@ CompareStringUserDefaultW(
 #ifdef _UNICODE
 # define CompareStringUserDefault CompareStringUserDefaultW
 #else
-# define CompareStringUserDefault CompareStringUserDefaultW
+# define CompareStringUserDefault CompareStringUserDefaultA
 #endif
 
 #ifdef __cplusplus
