@@ -12,7 +12,9 @@
 
 #pragma once
 
-/* 自适应导入、导出宏 */
+/*------------------------------------------------------------------------------
+ * 自适应导入、导出宏
+ */
 
 #ifdef RRWINDOWS_SHARED
 # ifdef RRWINDOWS_EXPORTS
@@ -24,7 +26,9 @@
 #  define RRWINDOWS_API
 #endif
 
-/* 间接展开和条件展开 */
+/*------------------------------------------------------------------------------
+ * 间接展开和条件展开
+ */
 
 #ifndef EXPAND
 #define EXPAND(macro) macro
@@ -78,7 +82,8 @@
 # endif
 #endif
 
-/* 宏函数变参重载（Macro Function Variadic Overloading）
+/*------------------------------------------------------------------------------
+ * 宏函数变参重载（Macro Function Variadic Overloading）
  * 
  * 如何实现的？
  *
@@ -211,7 +216,20 @@
 
 #define MFVO_BAN __UnsupportedNumberOfParamaters__
 
-/* 常用宏函数 */
+/*------------------------------------------------------------------------------
+ * 常用宏常量
+ */
+
+#ifndef EXIT_SUCCESS
+#define EXIT_SUCCESS 0
+#endif
+#ifndef EXIT_FAILURE
+#define EXIT_FAILURE 1
+#endif
+
+/*------------------------------------------------------------------------------
+ * 常用宏函数
+ */
 
 #ifndef countof
 #define countof(array) (sizeof (array) / sizeof *(array))
