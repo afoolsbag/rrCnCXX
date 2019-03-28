@@ -1,10 +1,10 @@
 #          __        ___           _
 #  _ __ _ _\ \      / (_)_ __   __| | _____      _____
 # | '__| '__\ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __| zhengrr
-# | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-02-19
+# | |  | |   \ V  V / | | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-03-27
 # |_|  |_|    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/ Unlicense
 
-project(rrWindows VERSION 2019.02.19 LANGUAGES C)
+project(rrWindows VERSION 2019.03.27 LANGUAGES C)
 project_more()
 compile_option(
   RECOMMENDED_WARNING_LEVEL
@@ -18,9 +18,7 @@ compile_option(
 add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
 
 
-
 add_definitions("-D_UNICODE")
-remove_definitions("-D_MBCS")
 
 #-------------------------------------------------------------------------------
 # Library
@@ -40,6 +38,22 @@ add_library_ex(
                               "${CMAKE_CURRENT_BINARY_DIR}/src/"
 )
 install(DIRECTORY "include" DESTINATION "./")
+
+#-------------------------------------------------------------------------------
+# WDT(Watchdog Timer)
+
+configure_file("wdt/project.h.in" "wdt/project.h" @ONLY)
+aux_source_directory_ex(zWdt       DIRECTORY "wdt/"    RECURSE EXTENSIONS ".rc" GROUP_ROOT "wdt/")
+aux_source_directory_ex(zGenerated DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/wdt/" GROUP_ROOT "generated/")
+add_executable_ex(
+  NAME                        "wdt"
+                              ${zWdt} ${zGenerated}
+                              C11
+  INCLUDE_DIRECTORIES PRIVATE "wdt/"
+                              "${CMAKE_CURRENT_BINARY_DIR}/wdt/"
+  LINK_LIBRARIES      PRIVATE ${sRrwindowsLib}
+  POST_COPIES                 ${sRrwindowsLib}
+)
 
 #-------------------------------------------------------------------------------
 # Test

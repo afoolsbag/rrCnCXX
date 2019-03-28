@@ -28,10 +28,6 @@
 /* 控制台应用入口 */
 INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
 {
-#ifdef TEST_SERVICE
-    return TheServiceMain(argc, argv, envp);
-#endif
-
     UNREFERENCED_PARAMETER(argc);
     UNREFERENCED_PARAMETER(argv);
     UNREFERENCED_PARAMETER(envp);
@@ -44,6 +40,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
     srunner_add_suite(tr, tsIntl());
     srunner_add_suite(tr, tsMenuRc());
     srunner_add_suite(tr, tsProcThread());
+    srunner_add_suite(tr, tsServices());
     srunner_add_suite(tr, tsShell());
     srunner_add_suite(tr, tsSync());
     srunner_add_suite(tr, tsSysInfo());
