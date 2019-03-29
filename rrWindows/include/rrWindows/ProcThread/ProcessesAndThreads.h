@@ -25,7 +25,7 @@ extern "C" {;
 #endif
 
 /**
- * \brief 运行可执行文件，ANSI 适配）。
+ * \brief 运行可执行文件，ANSI 适配。
  *
  * \param path    路径；
  * \param args    参数，可为 `NULL`；

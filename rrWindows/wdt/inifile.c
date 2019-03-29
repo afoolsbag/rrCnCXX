@@ -9,7 +9,9 @@
 
 #include "rrWindows/rrWindows.h"
 
-PBones WINAPI AllocBones(VOID)
+#include "eventlog.h"
+
+VOID WINAPI AllocBones(Bones *pBones)
 {
     TCHAR path[MAX_PATH];
     GetModuleFileName(NULL, path, countof(path));
@@ -17,87 +19,113 @@ PBones WINAPI AllocBones(VOID)
 
     CONST INT count = GetPrivateProfileInt(_T("Index"), _T("Count"), 0, path);
 
-    CONST PBones bones = HeapAllocS(sizeof(Bones));
-    bones->Count = count;
-    bones->Data = HeapAllocS(count * sizeof(Bone));
+    pBones->Count = count;
+    pBones->Data = HeapAllocS(count * sizeof(Bone));
 
     for (int i = 0; i < count; ++i)
     {
-        TCHAR section[10];
+        TCHAR section[50];
         StringCchPrintf(section, countof(section), _T("Item%d"), i + 1);
 
         TCHAR tmp[MAX_PATH];
         size_t cnt = 0;
 
-        GetPrivateProfileString(section, _T("ExeName"), NULL, tmp, countof(tmp), path);
-        cnt = StringCchLengthS(tmp) + 1;
-        bones->Data[i].ExeName = HeapAllocS(cnt * sizeof(TCHAR));
-        StringCchCopy(bones->Data[i].ExeName, cnt, tmp);
+        Bone *ref = pBones->Data + i;
+        ref->IsValid = TRUE;
 
-        GetPrivateProfileString(section, _T("ExePath"), NULL, tmp, countof(tmp), path);
-        cnt = StringCchLengthS(tmp) + 1;
-        bones->Data[i].ExePath = HeapAllocS(cnt * sizeof(TCHAR));
-        StringCchCopy(bones->Data[i].ExePath, cnt, tmp);
+        /* read from ini */
+        ref->IsService = GetPrivateProfileInt(section, _T("IsService"), FALSE, path);
 
-        GetPrivateProfileString(section, _T("ExeArgs"), NULL, tmp, countof(tmp), path);
-        cnt = StringCchLengthS(tmp) + 1;
-        if (1 < cnt) {
-            bones->Data[i].ExeArgs = HeapAllocS(cnt * sizeof(TCHAR));
-            StringCchCopy(bones->Data[i].ExeArgs, cnt, tmp);
+        GetPrivateProfileString(section, _T("Name"), NULL, tmp, countof(tmp), path);
+        cnt = StringCchLengthS(tmp);
+        if (cnt) {
+            ref->Name = HeapAllocS(++cnt * sizeof(TCHAR));
+            StringCchCopy(ref->Name, cnt, tmp);
         } else {
-            bones->Data[i].ExeArgs = NULL;
+            ref->Name = NULL;
+            ref->IsValid = FALSE;
+            EventLogReadItemFailed(section, _T("missing Name."));
         }
 
-        GetPrivateProfileString(section, _T("ExeStartIn"), NULL, tmp, countof(tmp), path);
-        cnt = StringCchLengthS(tmp) + 1;
-        if (1 < cnt) {
-            bones->Data[i].ExeStartIn = HeapAllocS(cnt * sizeof(TCHAR));
-            StringCchCopy(bones->Data[i].ExeStartIn, cnt, tmp);
+        GetPrivateProfileString(section, _T("Path"), NULL, tmp, countof(tmp), path);
+        cnt = StringCchLengthS(tmp);
+        if (cnt) {
+            ref->Path = HeapAllocS(++cnt * sizeof(TCHAR));
+            StringCchCopy(ref->Path, cnt, tmp);
         } else {
-            bones->Data[i].ExeStartIn = NULL;
+            ref->Path = NULL;
+            if (!ref->IsService) {
+                ref->IsValid = FALSE;
+                EventLogReadItemFailed(section, _T("missing Path when isn't service."));
+            }
         }
 
-        bones->Data[i].ExeShow = GetPrivateProfileInt(section, _T("ExeShow"), FALSE, path);
+        GetPrivateProfileString(section, _T("Args"), NULL, tmp, countof(tmp), path);
+        cnt = StringCchLengthS(tmp);
+        if (cnt) {
+            ref->Args = HeapAllocS(++cnt * sizeof(TCHAR));
+            StringCchCopy(ref->Args, cnt, tmp);
+        } else {
+            ref->Args = NULL;
+        }
 
-        bones->Data[i].RetryInterval.QuadPart =
+        GetPrivateProfileString(section, _T("StartIn"), NULL, tmp, countof(tmp), path);
+        cnt = StringCchLengthS(tmp);
+        if (cnt) {
+            ref->StartIn = HeapAllocS(++cnt * sizeof(TCHAR));
+            StringCchCopy(ref->Args, cnt, tmp);
+        } else {
+            ref->StartIn = NULL;
+        }
+
+        ref->RetryInterval.QuadPart =
             GetPrivateProfileInt(section, _T("RetryInterval"), 60, path) * TimeOneSecond.QuadPart;
 
-        bones->Data[i].EnableKillAtTime = GetPrivateProfileInt(section, _T("EnableKillAtTime"), FALSE, path);
-        bones->Data[i].KillAtHour = GetPrivateProfileInt(section, _T("KillAtHour"), 0, path);
-        bones->Data[i].KillAtMinute = GetPrivateProfileInt(section, _T("KillAtMinute"), 0, path);
-        bones->Data[i].KillAtSecond = GetPrivateProfileInt(section, _T("KillAtSecond"), 0, path);
+        ref->EnableKillPerDay = GetPrivateProfileInt(section, _T("EnableKillPerDay"), FALSE, path);
+        ref->KillPerDayHour = GetPrivateProfileInt(section, _T("KillPerDayHour"), 0, path);
+        ref->KillPerDayMinute = GetPrivateProfileInt(section, _T("KillPerDayMinute"), 0, path);
+        ref->KillPerDaySecond = GetPrivateProfileInt(section, _T("KillPerDaySecond"), 0, path);
+        if (ref->EnableKillPerDay) {
+            if (0 <= ref->KillPerDayHour && ref->KillPerDayHour <= 23 &&
+                0 <= ref->KillPerDayMinute && ref->KillPerDayMinute <= 59 &&
+                0 <= ref->KillPerDaySecond && ref->KillPerDaySecond <= 59) {
 
-        SYSTEMTIME currentTime;
-        GetLocalTime(&currentTime);
+                SYSTEMTIME currentTime;
+                GetLocalTime(&currentTime);
 
-        GetLocalTime(&bones->Data[i].NextKillAt);
-        bones->Data[i].NextKillAt.wHour = (WORD)bones->Data[i].KillAtHour;
-        bones->Data[i].NextKillAt.wMinute = (WORD)bones->Data[i].KillAtMinute;
-        bones->Data[i].NextKillAt.wSecond = (WORD)bones->Data[i].KillAtSecond;
+                GetLocalTime(&ref->NextKillAt);
+                ref->NextKillAt.wHour = (WORD)ref->KillPerDayHour;
+                ref->NextKillAt.wMinute = (WORD)ref->KillPerDayMinute;
+                ref->NextKillAt.wSecond = (WORD)ref->KillPerDaySecond;
 
-        while (TimeCompare(&bones->Data[i].NextKillAt, &currentTime) == TIME_LESS_THAN)
-            TimeAdd(&bones->Data[i].NextKillAt, &TimeOneDay);
+                while (TimeCompare(&ref->NextKillAt, &currentTime) == TIME_LESS_THAN)
+                    TimeAdd(&ref->NextKillAt, &TimeOneDay);
 
-        FILETIME initTime = {0};
-        FileTimeToSystemTime(&initTime, &bones->Data[i].LastTryAt);
+            } else {
+                ref->IsValid = FALSE;
+                EventLogReadItemFailed(section, _T("invalid time when KillPerDay enabled, the range is [0, 23], [0, 59] & [0, 59]."));
+            }
+        }
+
+        CONST FILETIME initTime = {0};
+        FileTimeToSystemTime(&initTime, &ref->LastTryAt);
     }
-
-    return bones;
 }
 
 VOID WINAPI FreeBones(Bones *pBones)
 {
     for (int i = 0; i < pBones->Count; ++i)
     {
-        if (pBones->Data[i].ExeName)
-            HeapFreeS(pBones->Data[i].ExeName);
-        if (pBones->Data[i].ExePath)
-            HeapFreeS(pBones->Data[i].ExePath);
-        if (pBones->Data[i].ExeArgs)
-            HeapFreeS(pBones->Data[i].ExeArgs);
-        if (pBones->Data[i].ExeStartIn)
-            HeapFreeS(pBones->Data[i].ExeStartIn);
+        Bone *ref = pBones->Data +i;
+
+        if (ref->Name)
+            HeapFreeS(ref->Name);
+        if (ref->Path)
+            HeapFreeS(ref->Path);
+        if (ref->Args)
+            HeapFreeS(ref->Args);
+        if (ref->StartIn)
+            HeapFreeS(ref->StartIn);
     }
     HeapFreeS(pBones->Data);
-    HeapFreeS(pBones);
 }

@@ -19,7 +19,8 @@ VOID WINAPI ServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors)
     UNREFERENCED_PARAMETER(dwNumServicesArgs);
     UNREFERENCED_PARAMETER(lpServiceArgVectors);
 
-    static CONST DWORD SleepCycle = 10 * 1000;
+    static CONST DWORD MainLoopCycle = 10 * 1000;
+    static CONST DWORD CheckPauseCycle = 1000;
 
     ServiceStatusHandle = RegisterServiceCtrlHandler(ServiceName, ServiceCtrlHandler);
     if (!ServiceStatusHandle) {
@@ -30,58 +31,68 @@ VOID WINAPI ServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors)
     ReportServiceStatus(SERVICE_START_PENDING, NO_ERROR, 3000);
     ReportServiceStatus(SERVICE_RUNNING, NO_ERROR, 0);
 
-    PBones pBones = AllocBones();
+    Bones bones;
+    AllocBones(&bones);
 
     while (!ServiceStopFlag) {
         if (ServicePauseFlag) {
-            Sleep(1000);
+            Sleep(CheckPauseCycle);
             continue;
         }
 
         SYSTEMTIME currentTime;
         GetLocalTime(&currentTime);
 
-        for (int i = 0; i < pBones->Count; ++i) {
+        for (int i = 0; i < bones.Count; ++i) {
             /* 遍历所有项 */
 
-            if (pBones->Data[i].EnableKillAtTime &&
-                TimeCompare(&pBones->Data[i].NextKillAt, &currentTime) == TIME_LESS_THAN) {
+            Bone *ref = bones.Data + i;
+
+            if (!ref->IsValid)
+                continue;
+
+            if (ref->EnableKillPerDay &&
+                TimeCompare(&ref->NextKillAt, &currentTime) == TIME_LESS_THAN) {
                 /* 若该项启用了定时重启，且符合重启条件 */
 
                 /* 杀死现有进程，等待看门狗将其拉起 */
-                KillExecutable(pBones->Data[i].ExeName);
+                if (ref->IsService)
+                    StopServiceS(ref->Name);
+                else
+                    KillExecutable(ref->Name);
 
-                /* 重置下次开启时间 */
-                while (TimeCompare(&pBones->Data[i].NextKillAt, &currentTime) == TIME_LESS_THAN)
-                    TimeAdd(&pBones->Data[i].NextKillAt, &TimeOneDay);
+                /* 设置下次开启时间 */
+                while (TimeCompare(&ref->NextKillAt, &currentTime) == TIME_LESS_THAN)
+                    TimeAdd(&ref->NextKillAt, &TimeOneDay);
 
                 continue;
             }
 
-            if (!CountProcessesByExecutable(pBones->Data[i].ExeName)) {
+            if (ref->IsService && !ServiceIsRunning(ref->Name) ||
+                !ref->IsService && !CountProcessesByExecutable(ref->Name)) {
                 /* 若项未在运行 */
 
                 /* 检查重试间隔 */
-                SYSTEMTIME canTryAt = pBones->Data[i].LastTryAt;
-                TimeAdd(&canTryAt, &pBones->Data[i].RetryInterval);
+                SYSTEMTIME canTryAt = ref->LastTryAt;
+                TimeAdd(&canTryAt, &ref->RetryInterval);
                 if (TimeCompare(&currentTime, &canTryAt) == TIME_LESS_THAN)
                     continue;
 
-                if (!RunExecutable(pBones->Data[i].ExePath,
-                                   pBones->Data[i].ExeArgs,
-                                   pBones->Data[i].ExeStartIn,
-                                   pBones->Data[i].ExeShow))
-                    EventLogFunctionFailed(_T("RunExecutable"), GetLastError());
+                if (ref->IsService)
+                    StartServiceS(ref->Name, 0, NULL);
+                else
+                    if (!RunExecutable(ref->Path, ref->Args, ref->StartIn, FALSE))
+                        EventLogFunctionFailed(_T("RunExecutable"), GetLastError());
 
                 /* 更新重试间隔 */
-                pBones->Data[i].LastTryAt = currentTime;
+                ref->LastTryAt = currentTime;
             }
         }
 
-        Sleep(SleepCycle);
+        Sleep(MainLoopCycle);
     }
 
-    FreeBones(pBones);
+    FreeBones(&bones);
 }
 
 VOID WINAPI ServiceCtrlHandler(DWORD dwControl)

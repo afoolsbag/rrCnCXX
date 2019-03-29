@@ -3,7 +3,7 @@
  * \file
  * \brief 包含文件汇总。
  *
- * \version 2019-03-28
+ * \version 2019-03-29
  * \since 2018-08-08
  * \authors zhengrr
  * \copyright Unlicense
@@ -36,6 +36,8 @@
 #include "rrWindows/ProcThread/ProcessesAndThreads.h"
 
 #include "rrWindows/Rpc/RemoteProcedureCall.h"
+
+#include "rrWindows/Services/Services.h"
 
 #include "rrWindows/Sync/Synchronization.h"
 

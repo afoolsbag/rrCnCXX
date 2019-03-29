@@ -46,6 +46,10 @@ enum ConsoleColor {
     ConsoleBrightWhite = 0xF
 } ConsoleColor;
 
+#ifdef __cplusplus
+extern "C" {;
+#endif
+
 /**
  * \brief 获取控制台背景色。
  *
@@ -207,10 +211,6 @@ WriteStderrW(
 /*------------------------------------------------------------------------------
  * 格式化写入控制台及其简化
  */
-
-#ifdef __cplusplus
-extern "C" {;
-#endif
 
 /**
  * \brief 格式化写入控制台，ANSI 适配。
@@ -388,10 +388,6 @@ WINAPI
 ClearConsoleScreen(
     _In_ HANDLE hConsoleOutput);
 
-#ifdef __cplusplus
-}
-#endif
-
 /**
  * \brief 清空标准输出流屏幕，Simplify 接口。
  */
@@ -426,4 +422,8 @@ ClearStderrScreen(VOID)
 # define WriteStdout WriteStdoutW
 #else
 # define WriteStdout WriteStdoutA
+#endif
+
+#ifdef __cplusplus
+}
 #endif

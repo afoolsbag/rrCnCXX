@@ -21,6 +21,10 @@
 #define TIME_EQUAL        2
 #define TIME_GREATER_THAN 3
 
+#ifdef __cplusplus
+extern "C" {;
+#endif
+
 /**
  * \brief 时间比较。
  *
@@ -83,3 +87,7 @@ TimeAdd(
     _Inout_       SYSTEMTIME     *sysTime,
     _In_    CONST ULARGE_INTEGER *delta
 );
+
+#ifdef __cplusplus
+}
+#endif

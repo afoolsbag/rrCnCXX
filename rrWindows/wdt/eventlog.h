@@ -25,7 +25,12 @@ VOID WINAPI EventLog(WORD type, PCTSTR message);
 /**
  * \brief 向系统报告函数失败事件。
  */
-FORCEINLINE VOID WINAPI_INLINE EventLogFunctionFailed(PCTSTR functionName, DWORD errorCode)
+FORCEINLINE
+VOID
+WINAPI_INLINE
+EventLogFunctionFailed(
+    PCTSTR functionName,
+    DWORD errorCode)
 {
     TCHAR buffer[MAX_PATH];
 
@@ -34,4 +39,19 @@ FORCEINLINE VOID WINAPI_INLINE EventLogFunctionFailed(PCTSTR functionName, DWORD
     LocalFree((HLOCAL)errorMessage);
 
     EventLog(EVENTLOG_ERROR_TYPE, buffer);
+}
+
+/**
+ * \brief 向系统报告读取配置失败事件。
+ */
+FORCEINLINE
+VOID
+WINAPI_INLINE
+EventLogReadItemFailed(
+    PCTSTR itemName,
+    PCTSTR description)
+{
+    TCHAR buffer[MAX_PATH];
+    StringCchPrintf(buffer, countof(buffer), _T("Read %s from .ini failed: %s\n"), itemName, description);
+    EventLog(EVENTLOG_WARNING_TYPE, buffer);
 }
