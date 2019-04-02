@@ -2,10 +2,10 @@
 #           |  _  \ |    | |
 #  _ __ _ __| | | | |    | |
 # | '__| '__| | | | |    | |     zhengrr
-# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-02-26
+# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-04-02
 # |_|  |_|  |___/ \_____/\_____/ Unlicense
 
-project(rrDLL VERSION 2018.02.26 LANGUAGES C CXX)
+project(rrDLL VERSION 2018.04.02 LANGUAGES C CXX)
 project_more()
 compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
@@ -18,7 +18,7 @@ aux_source_directory_ex(zInc DIRECTORY "${sIncDir}" RECURSE GROUP_ROOT "include/
 aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
 aux_source_directory_ex(zGen DIRECTORY "${sGenDir}" RECURSE GROUP_ROOT "generated/")
 add_library_ex(
-  NAME                 "rrc"
+  NAME_PREFIX          "rrc"
   SHARED               ${zInc} ${zSrc} ${zGen}
   TARGET_NAME_VARIABLE sRrc
   C11
@@ -37,7 +37,7 @@ aux_source_directory_ex(zInc DIRECTORY "${sIncDir}" RECURSE GROUP_ROOT "include/
 aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
 aux_source_directory_ex(zGen DIRECTORY "${sGenDir}" RECURSE GROUP_ROOT "generated/")
 add_library_ex(
-  NAME                 "rrx"
+  NAME_PREFIX          "rrx"
   SHARED               ${zInc} ${zSrc} ${zGen}
   TARGET_NAME_VARIABLE sRrx
   CXX17
@@ -51,7 +51,7 @@ add_library_ex(
 set(sSrcDir "rrs/src/")
 aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
 add_executable_ex(
-  NAME                "rrs"
+  NAME_PREFIX         "rrs"
                       ${zSrc}
   C11
   INCLUDE_DIRECTORIES PRIVATE "${sSrcDir}"
@@ -64,7 +64,7 @@ add_executable_ex(
 set(sSrcDir "rrz/src/")
 aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
 add_executable_ex(
-  NAME                "rrz"
+  NAME_PREFIX         "rrz"
                       ${zSrc}
   CXX17
   INCLUDE_DIRECTORIES PRIVATE "${sSrcDir}"
