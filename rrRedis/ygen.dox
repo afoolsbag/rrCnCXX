@@ -42,3 +42,185 @@
  * \copyright CC0-1.0
  *
 *//*===--------------------------------------------------------------------===*/
+
+/*===-- Topics -------------------------------------------------*- C -*-===*//**
+ *
+ * \page pTopics 议题
+ * \tableofcontents
+ *
+ * __________________________________
+ * \section sDatabaseAndCacheDatabase 缓存数据库
+ *
+ * \subsection ssDacd1 场景一：不使用缓存数据库
+ *
+ * \startuml
+ *   !include <cloudinsight/postgresql>
+ *   !include <cloudinsight/server>
+ *
+ *   agent "<$server>服务器1" as server1
+ *   agent "<$server>服务器2" as server2
+ *   agent "<$server>服务器3" as server3
+ *   database "<$postgresql>数据库" as postgresql
+ *
+ *   server1 -[hidden] server2
+ *   server2 -[hidden] server3
+ *
+ *   server1 --> postgresql
+ *   server2 --> postgresql
+ *   server3 --> postgresql
+ *
+ *   caption 不使用缓存数据库
+ * \enduml
+ *
+ * *   密集访问时，数据库压力过大。
+ *
+ * \subsection ssDacd2 场景二：直觉地加入缓存数据库
+ *
+ * *   加入缓存数据库，减轻主数据库压力。
+ *
+ * \startuml
+ *   !include <cloudinsight/postgresql>
+ *   !include <cloudinsight/redis>
+ *   !include <cloudinsight/server>
+ *
+ *   agent "<$server>服务器1" as server1
+ *   agent "<$server>服务器2" as server2
+ *   agent "<$server>服务器3" as server3
+ *   database "<$redis>缓存数据库1" as redis1
+ *   database "<$redis>缓存数据库2" as redis2
+ *   database "<$postgresql>主数据库" as postgresql
+ *
+ *   server1 -[hidden] server2
+ *   server2 -[hidden] server3
+ *   redis1 -[hidden] redis2
+ *
+ *   server1 --> redis1: 1
+ *   server2 --> redis1: 1
+ *   server3 --> redis2: 1
+ *   redis1 <.. postgresql: 3
+ *   redis2 <.. postgresql: 3
+ *   server1 ---> postgresql: 2
+ *   server2 ---> postgresql: 2
+ *   server3 ---> postgresql: 2
+ *
+ *   caption 直觉地加入缓存数据库
+ * \enduml
+ *
+ * *   无法保证双写一致性（缓存数据库和主数据库的数据一致性）；
+ * *   未考虑并发；
+ * *   未考虑缓存数据库容量（随机存储器昂贵）。
+ *
+ * \subsection ssDacd3 场景三：考虑双写一致性、并发和容量
+ *
+ * *   制定流程保证双写一致性；
+ * *   加入请求队列处理并发访问；
+ * *   加入过期时间放大缓存数据库容量。
+ *
+ * \startuml
+ *   start
+ *   if (从缓存数据库读取) then (命中)
+ *     :命中回执;
+ *     end
+ *   else (未命中)
+ *     if (从主数据库读取) then (命中)
+ *       :更新缓存\n设置过期时间;
+ *       :命中回执;
+ *       end
+ *     else (未命中)
+ *       :空值回执;
+ *       end
+ *     endif
+ *   endif
+ *
+ *   caption 读取访问流程
+ * \enduml
+ *
+ * \startuml
+ *   start
+ *   if (到缓存数据库删除) then (成功)
+ *     if (往主数据库写入) then (成功)
+ *       :成功回执;
+ *       end
+ *     else (失败)
+ *       :失败回执;
+ *       end
+ *     endif
+ *   else (失败)
+ *     :失败回执;
+ *     end
+ *   endif
+ *
+ *   caption 写入访问流程
+ * \enduml
+ *
+ * \startuml
+ *   !include <cloudinsight/kafka>
+ *   !include <cloudinsight/postgresql>
+ *   !include <cloudinsight/redis>
+ *   !include <cloudinsight/server>
+ *
+ *   agent "<$server>服务器1" as server1
+ *   agent "<$server>服务器2" as server2
+ *   agent "<$server>服务器3" as server3
+ *   queue "<$kafka>请求队列" as kafka
+ *   database "<$redis>缓存数据库1" as redis1
+ *   database "<$redis>缓存数据库2" as redis2
+ *   database "<$postgresql>主数据库" as postgresql
+ *
+ *   server1 -[hidden] server2
+ *   server2 -[hidden] server3
+ *   redis1 -[hidden] redis2
+ *
+ *   server1 --> kafka
+ *   server2 --> kafka
+ *   server3 --> kafka
+ *   kafka --> redis1
+ *   kafka --> redis2
+ *   redis1 <.. postgresql
+ *   redis2 <.. postgresql
+ *   kafka ---> postgresql
+ *
+ *   caption 加入请求队列
+ * \enduml
+ *
+ * *   缓存穿透问题（未命中请求不受缓存数据库拦截，对主数据库造成压力）；
+ * *   缓存雪崩问题（集中访问导致缓存集中创建，进而导致缓存集中失效，进而对主数据库造成周期性压力）；
+ * *   缓存击穿问题（海量并发访问同一数据，在该数据过期瞬间，海量访问冲击主数据库）。
+ *
+ * \subsection ssDacd4 场景四：解决特定情形下的缓存数据库失效问题
+ *
+ * *   加入空值缓存，缓解缓存穿透问题；
+ * *   设置随机过期时间，缓解缓存雪崩问题；
+ * *   加入同步标志，缓解缓存击穿问题。
+ *
+ * \startuml
+ *   start
+ *   if (从缓存数据库读取) then (命中)
+ *     :命中回执;
+ *     end
+ *   else (未命中)
+ *     if (设定同步标志位) then (成功)
+ *       if (从主数据库读取) then (命中)
+ *         :更新缓存\n设置随机过期时间;
+ *         :命中回执;
+ *         end
+ *       else (未命中)
+ *         :更新缓存\n设置短期过期时间;
+ *         :空值回执;
+ *         end
+ *       endif
+ *     else (失败)
+ *       :重试;
+ *       stop
+ *     endif
+ *   endif
+ *
+ *   caption 优化后的读取访问流程
+ * \enduml
+ *
+ * \version 2019-04-04
+ * \since 2019-04-03
+ * \authors zhengrr
+ * \copyright CC0-1.0
+ *
+*//*===--------------------------------------------------------------------===*/
