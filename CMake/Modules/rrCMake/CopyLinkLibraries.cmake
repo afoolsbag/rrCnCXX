@@ -10,16 +10,20 @@ include_guard()
 #-------------------------------------------------------------------------------
 # FUNCTIONS
 
-# .res
+#.rst
 # .. command:: copy_link_libraries
 function(copy_link_libraries _TARGET)
+  return()
   get_target_property(zUnts ${_TARGET} LINK_LIBRARIES)  # untraversed libraries
   set(zTras)                                            # traversed libraries
   while(zUnts)
     foreach(sUnt IN ITEMS ${zUnts})
       if(TARGET ${sUnt})
         get_target_property(sType ${sUnt} TYPE)
-        if(NOT sType STREQUAL INTERFACE_LIBRARY)
+        if(sType STREQUAL INTERFACE_LIBRARY)
+          get_target_property(zTmps ${sUnt} INTERFACE_LINK_LIBRARIES)
+          list(APPEND zUnts ${zTmps})
+        else()
           get_target_property(zTmps ${sUnt} LINK_LIBRARIES)
           list(APPEND zUnts ${zTmps})
         endif()
@@ -42,7 +46,7 @@ function(copy_link_libraries _TARGET)
                   "$<TARGET_FILE:${sLib}>"
                   "$<TARGET_FILE_DIR:${_TARGET}>")
       endif()
-    elseif(EXISTS ${sDep})
+    elseif(EXISTS ${sLib})
       add_custom_command(
         TARGET  ${_TARGET}
                 POST_BUILD
