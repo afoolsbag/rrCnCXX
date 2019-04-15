@@ -116,7 +116,7 @@ function(add_doxygen_con _NAME)
   endif()
 
   # arguments
-  if(DEFINED _EXCLUDE_FROM_ALL)
+  if(_EXCLUDE_FROM_ALL)
     set(_ALL)
   else()
     set(_ALL ALL)
