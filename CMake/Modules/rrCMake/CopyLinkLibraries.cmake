@@ -18,8 +18,11 @@ function(copy_link_libraries _TARGET)
   while(zUnts)
     foreach(sUnt IN ITEMS ${zUnts})
       if(TARGET ${sUnt})
-        get_target_property(zTmps ${sUnt} LINK_LIBRARIES)
-        list(APPEND zUnts ${zTmps})
+        get_target_property(sType ${sUnt} TYPE)
+        if(NOT sType STREQUAL INTERFACE_LIBRARY)
+          get_target_property(zTmps ${sUnt} LINK_LIBRARIES)
+          list(APPEND zUnts ${zTmps})
+        endif()
       endif()
       list(APPEND zTras ${sUnt})
     endforeach()
@@ -30,12 +33,15 @@ function(copy_link_libraries _TARGET)
 
   foreach(sLib IN LISTS zTras)
     if(TARGET ${sLib})
-      add_custom_command(
-        TARGET  ${_TARGET}
-                POST_BUILD
-        COMMAND "${CMAKE_COMMAND}" "-E" "copy_if_different"
-                "$<TARGET_FILE:${sLib}>"
-                "$<TARGET_FILE_DIR:${_TARGET}>")
+      get_target_property(sType ${sLib} TYPE)
+      if(sType STREQUAL SHARED_LIBRARY)
+        add_custom_command(
+          TARGET  ${_TARGET}
+                  POST_BUILD
+          COMMAND "${CMAKE_COMMAND}" "-E" "copy_if_different"
+                  "$<TARGET_FILE:${sLib}>"
+                  "$<TARGET_FILE_DIR:${_TARGET}>")
+      endif()
     elseif(EXISTS ${sDep})
       add_custom_command(
         TARGET  ${_TARGET}
