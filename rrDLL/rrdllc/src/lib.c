@@ -2,35 +2,35 @@
  * copyright Unlicense
  */
 
-#define RRC_EXPORTS
-#include "rrc/lib.h"
+#define RRDLLC_EXPORTS
+#include "rrdllc/lib.h"
 
 #include <string.h>
 #include <time.h>
 
 #include "cfg.h"
 
-RRC_APIp enum rrc_status_t
-RRC_APIm rrc_version(struct rrc_version_t *pv)
-RRC_APIs
+RRDLLC_APIp enum rrdllc_status_t
+RRDLLC_APIm rrdllc_version(struct rrdllc_version_t *pv)
+RRDLLC_APIs
 {
     if (!pv)
-        return rrc_invalid_argument;
+        return rrdllc_invalid_argument;
 
     pv->major = (int)project_version_major;
     pv->minor = (int)project_version_minor;
     pv->patch = (int)project_version_patch;
     pv->tweak = (int)project_version_tweak;
 
-    return rrc_success;
+    return rrdllc_success;
 }
 
-RRC_APIp enum rrc_status_t
-RRC_APIm rrc_sigh(time_t *pt)
-RRC_APIs
+RRDLLC_APIp enum rrdllc_status_t
+RRDLLC_APIm rrdllc_sigh(time_t *pt)
+RRDLLC_APIs
 {
     if (!pt)
-        return rrc_invalid_argument;
+        return rrdllc_invalid_argument;
 
     struct tm ts;
     memset(&ts, 0x00, sizeof ts);
@@ -40,7 +40,7 @@ RRC_APIs
 
     *pt = mktime(&ts);
     if (*pt == -1)
-        return rrc_overflow_error;
+        return rrdllc_overflow_error;
 
-    return rrc_success;
+    return rrdllc_success;
 }

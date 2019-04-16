@@ -5,7 +5,7 @@
 #include <check.h>
 
 static const char host[] = "172.16.0.122:2181";
-static const int timeout = 10 * 1000;
+static const int timeout = 10 * 1000 /*ms*/;
 
 TCase *tc_async_crud(void);
 TCase *tc_eph_seq(void);

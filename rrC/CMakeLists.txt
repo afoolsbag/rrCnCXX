@@ -2,26 +2,30 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2019-03-01
+# | |  | |  | \__/\ 2016-08-01 – 2019-04-15
 # |_|  |_|   \____/ Unlicense
 
-project(rrC VERSION 2019.03.01 LANGUAGES C)
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+project(rrC VERSION 2019.04.15 LANGUAGES C)
 project_more()
+
 compile_option(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
   WARNING_AS_ERROR)
 
-add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
+add_doxygen_con(
+  rrCdoc
+  OPTIMIZE_OUTPUT_FOR_C ON)
 
-if(3.12 VERSION_LESS CMAKE_VERSION)
-  cmake_policy(SET CMP0074 NEW)
-endif()
 find_package(Check)
-
-aux_source_directory_ex(zSource RECURSE)
-add_executable_ex(
-  ${zSource} C11
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE Check::check)
+aux_source_directory_ex(zSrc RECURSE)
+add_executable_con(
+  rrCtest             ${zSrc}
+  PROPERTIES          C_STANDARD          11
+                      C_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE             "./"
+  LINK_LIBRARIES      PRIVATE             Check::check)

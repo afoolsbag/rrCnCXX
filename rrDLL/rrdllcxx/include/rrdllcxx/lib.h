@@ -26,7 +26,7 @@
  *
  * \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
  *
- * \version 2019-02-27
+ * \version 2019-04-16
  * \since 2018-01-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -34,53 +34,55 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRX_LIB_H_
-#define RRX_LIB_H_
+#ifndef RRDLLCXX_LIB_H_
+#define RRDLLCXX_LIB_H_
 
-#include "rrx/api.h"
+#include "rrdllcxx/api.h"
 
-/*----- Types ----------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+ * TYPES
+ */
 
 /**
  * \brief 状态码。
  */
-enum rrx_status_t {
-    rrx_success = 0,
+enum rrdllcxx_status_t {
+    rrdllcxx_success = 0,
 
-    rrx_exception,
-    rrx_logic_error,
-    rrx_invalid_argument,
-    rrx_domain_error,
-    rrx_length_error,
-    rrx_out_of_range,
-    rrx_future_error,
-    rrx_bad_optional_access,
-    rrx_runtime_error,
-    rrx_range_error,
-    rrx_overflow_error,
-    rrx_underflow_error,
-    rrx_regex_error,
-    rrx_nonexistent_local_time,
-    rrx_ambiguous_local_time,
-    rrx_tx_exception,
-    rrx_system_error,
-    rrx_ios_base_failure,
-    rrx_filesystem_filesystem_error,
-    rrx_bad_typeid,
-    rrx_bad_cast,
-    rrx_bad_any_cast,
-    rrx_bad_weak_ptr,
-    rrx_bad_function_call,
-    rrx_bad_alloc,
-    rrx_bad_array_new_length,
-    rrx_bad_exception,
-    rrx_bad_variant_access,
+    rrdllcxx_exception,
+    rrdllcxx_logic_error,
+    rrdllcxx_invalid_argument,
+    rrdllcxx_domain_error,
+    rrdllcxx_length_error,
+    rrdllcxx_out_of_range,
+    rrdllcxx_future_error,
+    rrdllcxx_bad_optional_access,
+    rrdllcxx_runtime_error,
+    rrdllcxx_range_error,
+    rrdllcxx_overflow_error,
+    rrdllcxx_underflow_error,
+    rrdllcxx_regex_error,
+    rrdllcxx_nonexistent_local_time,
+    rrdllcxx_ambiguous_local_time,
+    rrdllcxx_tx_exception,
+    rrdllcxx_system_error,
+    rrdllcxx_ios_base_failure,
+    rrdllcxx_filesystem_filesystem_error,
+    rrdllcxx_bad_typeid,
+    rrdllcxx_bad_cast,
+    rrdllcxx_bad_any_cast,
+    rrdllcxx_bad_weak_ptr,
+    rrdllcxx_bad_function_call,
+    rrdllcxx_bad_alloc,
+    rrdllcxx_bad_array_new_length,
+    rrdllcxx_bad_exception,
+    rrdllcxx_bad_variant_access,
 };
 
 /**
  * \brief 版本。
  */
-struct rrx_version_t {
+struct rrdllcxx_version_t {
     int major;  /**< 主版本号。 */
     int minor;  /**< 次版本号。 */
     int patch;  /**< 补丁版本号。 */
@@ -90,27 +92,29 @@ struct rrx_version_t {
 /**
  * \brief 实例句柄。
  */
-typedef struct rrx_t *rrx_handle_t;
+typedef struct rrdllcxx_t *rrdllcxx_handle_t;
 
-/*----- Functions ------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+ * FUNCTIONS
+ */
 
 /**
  * \brief 获取版本。
  *
  * \param[out] pv 版本指针（pointer to version）
  */
-RRX_APIp enum rrx_status_t
-RRX_APIm rrx_version(struct rrx_version_t *pv)
-RRX_APIs;
+RRDLLCXX_APIp enum rrdllcxx_status_t
+RRDLLCXX_APIm rrdllcxx_version(struct rrdllcxx_version_t *pv)
+RRDLLCXX_APIs;
 
 /**
  * \brief 构造实例。
  *
  * \param[out] ph 句柄指针（pointer to handle）
  */
-RRX_APIp enum rrx_status_t
-RRX_APIm rrx_construct(rrx_handle_t *ph)
-RRX_APIs;
+RRDLLCXX_APIp enum rrdllcxx_status_t
+RRDLLCXX_APIm rrdllcxx_construct(rrdllcxx_handle_t *ph)
+RRDLLCXX_APIs;
 
 /**
  * \brief 加。
@@ -118,9 +122,9 @@ RRX_APIs;
  * \param h 实例句柄（handle）
  * \param n 加数
  */
-RRX_APIp enum rrx_status_t
-RRX_APIm rrx_plus(rrx_handle_t h, int n)
-RRX_APIs;
+RRDLLCXX_APIp enum rrdllcxx_status_t
+RRDLLCXX_APIm rrdllcxx_plus(rrdllcxx_handle_t h, int n)
+RRDLLCXX_APIs;
 
 /**
  * \brief 减。
@@ -128,9 +132,9 @@ RRX_APIs;
  * \param h 实例句柄（handle）
  * \param n 减数
  */
-RRX_APIp enum rrx_status_t
-RRX_APIm rrx_minus(rrx_handle_t h, int n)
-RRX_APIs;
+RRDLLCXX_APIp enum rrdllcxx_status_t
+RRDLLCXX_APIm rrdllcxx_minus(rrdllcxx_handle_t h, int n)
+RRDLLCXX_APIs;
 
 /**
  * \brief 等于。
@@ -138,17 +142,17 @@ RRX_APIs;
  * \param[in]  h  实例句柄（handle）
  * \param[out] pn 值指针（pointer to n）
  */
-RRX_APIp enum rrx_status_t
-RRX_APIm rrx_equals(rrx_handle_t h, int *pn)
-RRX_APIs;
+RRDLLCXX_APIp enum rrdllcxx_status_t
+RRDLLCXX_APIm rrdllcxx_equals(rrdllcxx_handle_t h, int *pn)
+RRDLLCXX_APIs;
 
 /**
  * \brief 析构实例。
  *
  * \param h 实例句柄（handle）
  */
-RRX_APIp enum rrx_status_t
-RRX_APIm rrx_destruct(rrx_handle_t h)
-RRX_APIs;
+RRDLLCXX_APIp enum rrdllcxx_status_t
+RRDLLCXX_APIm rrdllcxx_destruct(rrdllcxx_handle_t h)
+RRDLLCXX_APIs;
 
-#endif/*RRX_LIB_H_*/
+#endif/*RRDLLCXX_LIB_H_*/

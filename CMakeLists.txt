@@ -2,13 +2,13 @@
 #           /  __ \     /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/_ __ | /  \/ \ V /  \ V /
 # | '__| '__| |   | '_ \| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\ | | | \__/\/ /^\ \/ /^\ \ 2016-06-28 – 2018-11-12
+# | |  | |  | \__/\ | | | \__/\/ /^\ \/ /^\ \ 2016-06-28 – 2019-04-11
 # |_|  |_|   \____/_| |_|\____/\/   \/\/   \/ Unlicense
 
-cmake_minimum_required(VERSION 3.9.6)
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake/Modules")
-include(rrCMake)
+# Conan Modules
 
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
   file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/v0.13/conan.cmake"
@@ -16,9 +16,18 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 include("${CMAKE_BINARY_DIR}/conan.cmake")
 
-project(rrCnCxx VERSION 2019.01.14 LANGUAGES NONE)
+# Custom Modules
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake/Modules")
+include(rrCMake)
+
+# Products and Projects
+
+project(rrCnCxx VERSION 2019.04.11 LANGUAGES NONE)
 product_more(AUTHORS "zhengrr" LICENSE "Unlicense")
 
 aux_add_subdirectories(WITH_OPTION)
+
+# Miscellaneous Installation
 
 install(FILES "UNLICENSE.txt" DESTINATION ".")

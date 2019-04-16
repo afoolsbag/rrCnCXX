@@ -2,73 +2,64 @@
 #           |  _  \ |    | |
 #  _ __ _ __| | | | |    | |
 # | '__| '__| | | | |    | |     zhengrr
-# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-04-02
+# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-04-16
 # |_|  |_|  |___/ \_____/\_____/ Unlicense
 
-project(rrDLL VERSION 2018.04.02 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+project(rrDLL VERSION 2018.04.16 LANGUAGES C CXX)
 project_more()
 compile_option(RECOMMENDED_WARNING_LEVEL MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
 
-# RRC (C Library)
-set(sIncDir "rrc/include/")
-set(sSrcDir "rrc/src/")
-set(sGenDir "${CMAKE_CURRENT_BINARY_DIR}/rrc/src/")
-configure_file("${sSrcDir}cfg.h.in" "${sGenDir}cfg.h" @ONLY)
-aux_source_directory_ex(zInc DIRECTORY "${sIncDir}" RECURSE GROUP_ROOT "include/")
-aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
-aux_source_directory_ex(zGen DIRECTORY "${sGenDir}" RECURSE GROUP_ROOT "generated/")
-add_library_ex(
-  NAME_PREFIX          "rrc"
-  SHARED               ${zInc} ${zSrc} ${zGen}
-  TARGET_NAME_VARIABLE sRrc
-  C11
-  COMPILE_DEFINITIONS  PUBLIC  "RRC_SHARED"
-  INCLUDE_DIRECTORIES  PUBLIC  "."
-                               "${sIncDir}"
-                       PRIVATE "${sSrcDir}"
-                               "${sGenDir}")
+set(sPathName "rrdllc")
+configure_file("${sPathName}/src/cfg.h.in" "${CMAKE_CURRENT_BINARY_DIR}/${sPathName}/src/cfg.h" @ONLY)
+aux_source_directory_ex(zInc DIRECTORY "${sPathName}/include"                         RECURSE GROUP_ROOT "include/")
+aux_source_directory_ex(zSrc DIRECTORY "${sPathName}/src"                             RECURSE GROUP_ROOT "src/")
+aux_source_directory_ex(zGen DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${sPathName}/src" RECURSE GROUP_ROOT "generated/")
+add_library_con(
+  rrDLLc
+  SHARED              ${zInc} ${zSrc} ${zGen}
+  PROPERTIES          C_STANDARD          11
+                      C_STANDARD_REQUIRED ON
+  COMPILE_DEFINITIONS PUBLIC  "RRDLLC_SHARED"
+  INCLUDE_DIRECTORIES PUBLIC  "."
+                              "${sPathName}/include"
+                      PRIVATE "${sPathName}/src"
+                              "${CMAKE_CURRENT_BINARY_DIR}/${sPathName}/src")
 
-# RRX (C++ Library)
-set(sIncDir "rrx/include/")
-set(sSrcDir "rrx/src/")
-set(sGenDir "${CMAKE_CURRENT_BINARY_DIR}/rrx/src/")
-configure_file("${sSrcDir}cfg.hxx.in" "${sGenDir}cfg.hxx" @ONLY)
-aux_source_directory_ex(zInc DIRECTORY "${sIncDir}" RECURSE GROUP_ROOT "include/")
-aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
-aux_source_directory_ex(zGen DIRECTORY "${sGenDir}" RECURSE GROUP_ROOT "generated/")
-add_library_ex(
-  NAME_PREFIX          "rrx"
-  SHARED               ${zInc} ${zSrc} ${zGen}
-  TARGET_NAME_VARIABLE sRrx
-  CXX17
-  COMPILE_DEFINITIONS  PUBLIC  "RRX_SHARED"
-  INCLUDE_DIRECTORIES  PUBLIC  "."
-                               "${sIncDir}"
-                       PRIVATE "${sSrcDir}"
-                               "${sGenDir}")
+set(sPathName "rrdllcxx")
+configure_file("${sPathName}/src/cfg.hxx.in" "${CMAKE_CURRENT_BINARY_DIR}/${sPathName}/src/cfg.hxx" @ONLY)
+aux_source_directory_ex(zInc DIRECTORY "${sPathName}/include"                         RECURSE GROUP_ROOT "include/")
+aux_source_directory_ex(zSrc DIRECTORY "${sPathName}/src"                             RECURSE GROUP_ROOT "src/")
+aux_source_directory_ex(zGen DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${sPathName}/src" RECURSE GROUP_ROOT "generated/")
+add_library_con(
+  rrDLLcxx
+  SHARED              ${zInc} ${zSrc} ${zGen}
+  PROPERTIES          CXX_STANDARD          17
+                      CXX_STANDARD_REQUIRED ON
+  COMPILE_DEFINITIONS PUBLIC  "RRDLLCXX_SHARED"
+  INCLUDE_DIRECTORIES PUBLIC  "."
+                              "${sPathName}/include"
+                      PRIVATE "${sPathName}/src"
+                              "${CMAKE_CURRENT_BINARY_DIR}/${sPathName}/src")
 
-# RRS (C Executable)
-set(sSrcDir "rrs/src/")
-aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
-add_executable_ex(
-  NAME_PREFIX         "rrs"
-                      ${zSrc}
-  C11
-  INCLUDE_DIRECTORIES PRIVATE "${sSrcDir}"
-  LINK_LIBRARIES      ${sRrc}
-                      ${sRrx}
-  POST_COPIES         ${sRrc}
-                      ${sRrx})
+set(sPathName "rrexec")
+aux_source_directory_ex(zSrc DIRECTORY "${sPathName}/src" RECURSE GROUP_ROOT "src/")
+add_executable_con(
+  rrEXEc              ${zSrc}
+  PROPERTIES          C_STANDARD          11
+                      C_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE "${sPathName}/src"
+  LINK_LIBRARIES      rrDLLc
+                      rrDLLcxx)
 
-# RRZ (C++ Executable)
-set(sSrcDir "rrz/src/")
-aux_source_directory_ex(zSrc DIRECTORY "${sSrcDir}" RECURSE GROUP_ROOT "src/")
-add_executable_ex(
-  NAME_PREFIX         "rrz"
-                      ${zSrc}
-  CXX17
-  INCLUDE_DIRECTORIES PRIVATE "${sSrcDir}"
-  LINK_LIBRARIES      ${sRrc}
-                      ${sRrx}
-  POST_COPIES         ${sRrc}
-                      ${sRrx})
+set(sPathName "rrexecxx")
+aux_source_directory_ex(zSrc DIRECTORY "${sPathName}/src" RECURSE GROUP_ROOT "src/")
+add_executable_con(
+  rrEXEcxx            ${zSrc}
+  PROPERTIES          CXX_STANDARD          17
+                      CXX_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE "${sPathName}/src"
+  LINK_LIBRARIES      rrDLLc
+                      rrDLLcxx)
