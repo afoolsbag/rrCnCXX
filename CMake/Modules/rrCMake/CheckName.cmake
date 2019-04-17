@@ -1,19 +1,24 @@
 # zhengrr
-# 2017-12-18 – 2018-12-29
+# 2017-12-18 – 2019-04-17
 # Unlicense
+
+cmake_minimum_required(VERSION 3.10)
+cmake_policy(VERSION 3.10)
 
 include_guard()
 
-cmake_minimum_required(VERSION 3.1)
-cmake_policy(SET CMP0054 NEW) #3.1+
-
-# .rst
+#.rst:
 # .. command:: check_name_with_c_rules
 #
-#   检查输入是否符合 C 语言标识符命名规则（C identifier rules），
-#   仅包含拉丁字母、阿拉伯数字和下划线，且首字符不为数字::
+#   检查输入是否符合 C 语言标识符命名规则：
+#   仅包含拉丁字母、阿拉伯数字和下划线，且首字符不为数字。
 #
-#     check_name_with_c_rules(<name> <STATUS|WARNING|AUTHOR_WARNING|SEND_ERROR|FATAL_ERROR|DEPRECATION>)
+#   .. code-block:: cmake
+#
+#     check_name_with_c_rules(
+#       <name>
+#       <STATUS|WARNING|AUTHOR_WARNING|SEND_ERROR|FATAL_ERROR|DEPRECATION>
+#     )
 function(check_name_with_c_rules _NAME _MODE)
   if(NOT ${ARGC} EQUAL 2)
     message(FATAL_ERROR "Incorrect number of arguments: ${ARGN}.")
@@ -24,13 +29,18 @@ function(check_name_with_c_rules _NAME _MODE)
   endif()
 endfunction()
 
-# .rst
+#.rst:
 # .. command:: check_name_with_cmake_rules
 #
-#   检查输入是否符合 CMake 推荐变量命名规则（CMake recommend variable rules），
-#   仅包含拉丁字母、阿拉伯数字、下划线和连字符::
+#   检查输入是否符合 CMake 推荐变量命名规则：
+#   仅包含拉丁字母、阿拉伯数字、下划线和连字符。
 #
-#     check_name_with_cmake_rules(<name> <STATUS|WARNING|AUTHOR_WARNING|SEND_ERROR|FATAL_ERROR|DEPRECATION>)
+#   .. code-block:: cmake
+#
+#     check_name_with_cmake_rules(
+#       <name>
+#       <STATUS|WARNING|AUTHOR_WARNING|SEND_ERROR|FATAL_ERROR|DEPRECATION>
+#     )
 function(check_name_with_cmake_rules _NAME _MODE)
   if(NOT ${ARGC} EQUAL 2)
     message(FATAL_ERROR "Incorrect number of arguments: ${ARGN}.")
@@ -41,13 +51,18 @@ function(check_name_with_cmake_rules _NAME _MODE)
   endif()
 endfunction()
 
-# .rst
+#.rst:
 # .. command:: check_name_with_fext_rules
 #
-#   检查输入是否符合文件扩展名命名规则（file extension rules），
-#   首字符为下脚点，扩展名仅包含拉丁字母和阿拉伯数字，可以串接::
+#   检查输入是否符合文件扩展名命名规则：
+#   首字符为下脚点，扩展名仅包含拉丁字母和阿拉伯数字，可以串接。
 #
-#     check_name_with_fext_rules(<name> <STATUS|WARNING|AUTHOR_WARNING|SEND_ERROR|FATAL_ERROR|DEPRECATION>)
+#   .. code-block:: cmake
+#
+#     check_name_with_fext_rules(
+#       <name>
+#       <STATUS|WARNING|AUTHOR_WARNING|SEND_ERROR|FATAL_ERROR|DEPRECATION>
+#     )
 function(check_name_with_fext_rules _NAME _MODE)
   if(NOT ${ARGC} EQUAL 2)
     message(FATAL_ERROR "Incorrect number of arguments: ${ARGN}.")

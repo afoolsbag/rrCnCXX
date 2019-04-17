@@ -2,11 +2,20 @@
 # |  ___(_)         | |     /  ___|          | |      | |
 # | |_   _ _ __   __| |_   _\ `--.  ___   ___| | _____| |_ ___
 # |  _| | | '_ \ / _` | | | |`--. \/ _ \ / __| |/ / _ \ __/ __| zhengrr
-# | |   | | | | | (_| | |_| /\__/ / (_) | (__|   <  __/ |_\__ \ 2019-04-11 – 2019-04-11
+# | |   | | | | | (_| | |_| /\__/ / (_) | (__|   <  __/ |_\__ \ 2019-04-11 – 2019-04-16
 # \_|   |_|_| |_|\__,_|\__,_\____/ \___/ \___|_|\_\___|\__|___/ Unlicense
+
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+include_guard()
 
 if(NOT COMMAND find_package_handle_standard_args)
   include(FindPackageHandleStandardArgs)
+endif()
+
+if(NOT COMMAND add_library_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/AddLibrary.cmake")
 endif()
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -106,9 +115,6 @@ endif()
 # Windows
 
 if(WIN32)
-
-  cmake_minimum_required(VERSION 3.12)  # CMP0074
-
   # <prefix>/include
   find_path(
     uSockets_INCLUDE_DIR
@@ -140,17 +146,11 @@ if(WIN32)
   if(uSockets_FOUND)
     # targets
     if(NOT TARGET uSockets::uSockets)
-      add_library(uSockets::uSockets STATIC IMPORTED)
-      set_target_properties(
-        uSockets::uSockets
-        PROPERTIES IMPORTED_LOCATION_DEBUG       "${uSockets_uSockets_LIBRARY_DEBUG}"
-                   IMPORTED_LOCATION_RELEASE     "${uSockets_uSockets_LIBRARY_RELEASE}")
-      target_compile_features(
-        uSockets::uSockets
-        INTERFACE cxx_std_17)
-      target_link_directories(
-        uSockets::uSockets
-        INTERFACE "${uSockets_INCLUDE_DIR}")
+      add_library_ex(
+        uSockets::uSockets  STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION_DEBUG       "${uSockets_uSockets_LIBRARY_DEBUG}"
+                            IMPORTED_LOCATION_RELEASE     "${uSockets_uSockets_LIBRARY_RELEASE}"
+        INCLUDE_DIRECTORIES INTERFACE                     "${uSockets_INCLUDE_DIR}")
     endif()
 
     mark_as_advanced(uSockets_ROOT)

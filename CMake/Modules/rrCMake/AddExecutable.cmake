@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2019-04-15
+# 2017-12-18 – 2019-04-17
 # Unlicense
 
 cmake_minimum_required(VERSION 3.10)
@@ -7,18 +7,15 @@ cmake_policy(VERSION 3.10)
 
 include_guard()
 
-if(NOT COMMAND copy_link_libraries)
-  include("${CMAKE_CURRENT_LIST_DIR}/CopyLinkLibraries.cmake")
-endif()
-
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
   include("${CMAKE_CURRENT_LIST_DIR}/LibraryTag.cmake")
 endif()
 
-#-------------------------------------------------------------------------------
-# FUNCTIONS
+if(NOT COMMAND post_build_copy_link_libraries)
+  include("${CMAKE_CURRENT_LIST_DIR}/LinkLibraries.cmake")
+endif()
 
-#.rst
+#.rst:
 # .. command:: add_executable_ex
 #
 #   添加可执行目标到项目（add executable），扩展功能（extend）。
@@ -26,16 +23,16 @@ endif()
 #   .. code-block:: cmake
 #
 #     add_executable_ex(
-#       <name> <arguments...>
+#       <name> <argument>...
 #       [PROPERTIES          <property-key> <property-value> ...]
-#       [COMPILE_DEFINITIONS <INTERFACE|PUBLIC|PRIVATE> <definitions...> ...]
-#       [COMPILE_FEATURES    <INTERFACE|PUBLIC|PRIVATE> <features...> ...]
-#       [COMPILE_OPTIONS     <INTERFACE|PUBLIC|PRIVATE> <options...> ...]
-#       [INCLUDE_DIRECTORIES <INTERFACE|PUBLIC|PRIVATE> <directories...> ...]
-#       [LINK_DIRECTORIES    <INTERFACE|PUBLIC|PRIVATE> <directories...> ...]
-#       [LINK_LIBRARIES      <INTERFACE|PUBLIC|PRIVATE> <libraries...> ...]
-#       [LINK_OPTIONS        <INTERFACE|PUBLIC|PRIVATE> <options...> ...]
-#       [SOURCES             <INTERFACE|PUBLIC|PRIVATE> <sources...> ...]
+#       [COMPILE_DEFINITIONS <INTERFACE|PUBLIC|PRIVATE> <definition>... ...]
+#       [COMPILE_FEATURES    <INTERFACE|PUBLIC|PRIVATE> <feature>... ...]
+#       [COMPILE_OPTIONS     <INTERFACE|PUBLIC|PRIVATE> <option>... ...]
+#       [INCLUDE_DIRECTORIES <INTERFACE|PUBLIC|PRIVATE> <directory>... ...]
+#       [LINK_DIRECTORIES    <INTERFACE|PUBLIC|PRIVATE> <directory>... ...]
+#       [LINK_LIBRARIES      <INTERFACE|PUBLIC|PRIVATE> <library>... ...]
+#       [LINK_OPTIONS        <INTERFACE|PUBLIC|PRIVATE> <option>... ...]
+#       [SOURCES             <INTERFACE|PUBLIC|PRIVATE> <source>... ...]
 #     )
 #
 #   参见：
@@ -147,7 +144,7 @@ function(add_executable_ex _NAME)
   endif()
 endfunction()
 
-#.res
+#.res:
 # .. command:: add_executable_con
 #
 #   添加库目标到项目（add executable），遵循惯例（convention）。
@@ -155,7 +152,7 @@ endfunction()
 #   .. code-block:: cmake
 #
 #     add_executable_con(
-#       <arguments...>
+#       <argument>...
 #     )
 #
 #   参见：
@@ -164,7 +161,15 @@ endfunction()
 #   - :command:`add_executable_ex`
 #   - `install <https://cmake.org/cmake/help/latest/command/install.html>`_
 function(add_executable_con _NAME)
-  set(zMutValKws PROPERTIES)
+  set(zMutValKws PROPERTIES
+                 COMPILE_DEFINITIONS
+                 COMPILE_FEATURES
+                 COMPILE_OPTIONS
+                 INCLUDE_DIRECTORIES
+                 LINK_DIRECTORIES
+                 LINK_LIBRARIES
+                 LINK_OPTIONS
+                 SOURCES)
   cmake_parse_arguments(PARSE_ARGV 1 "" "" "" "${zMutValKws}")
 
   string(TOUPPER ${PROJECT_NAME} _PROJECT_NAME_UPPER)
@@ -179,22 +184,69 @@ function(add_executable_con _NAME)
 
   # PROPERTIES
   list(INSERT _PROPERTIES 0 PROPERTIES)
-  set(zDefProps)
   if(NOT DEBUG_POSTFIX IN_LIST _PROPERTIES)
-    list(APPEND zDefProps DEBUG_POSTFIX d)
+    list(APPEND _PROPERTIES DEBUG_POSTFIX "d")
   endif()
   if(NOT OUTPUT_NAME IN_LIST _PROPERTIES)
-    list(APPEND zDefProps OUTPUT_NAME "${_NAME}")
+    list(APPEND _PROPERTIES OUTPUT_NAME "${_NAME}")
+  endif()
+
+  # COMPILE_DEFINITIONS
+  if(DEFINED _COMPILE_DEFINITIONS)
+    list(INSERT _COMPILE_DEFINITIONS 0 COMPILE_DEFINITIONS)
+  endif()
+
+  # COMPILE_FEATURES
+  if(DEFINED _COMPILE_FEATURES)
+    list(INSERT _COMPILE_FEATURES 0 COMPILE_FEATURES)
+  endif()
+
+  # COMPILE_OPTIONS
+  if(DEFINED _COMPILE_OPTIONS)
+    list(INSERT _COMPILE_OPTIONS 0 COMPILE_OPTIONS)
+  endif()
+
+  # INCLUDE_DIRECTORIES
+  if(DEFINED _INCLUDE_DIRECTORIES)
+    list(INSERT _INCLUDE_DIRECTORIES 0 INCLUDE_DIRECTORIES)
+  endif()
+
+  # LINK_DIRECTORIES
+  if(DEFINED _LINK_DIRECTORIES)
+    list(INSERT _LINK_DIRECTORIES 0 LINK_DIRECTORIES)
+  endif()
+
+  # LINK_LIBRARIE
+  if(DEFINED _LINK_LIBRARIES)
+    list(INSERT _LINK_LIBRARIES 0 LINK_LIBRARIES)
+  endif()
+
+  # LINK_OPTIONS
+  if(DEFINED _LINK_OPTIONS)
+    list(INSERT _LINK_OPTIONS 0 LINK_OPTIONS)
+  endif()
+
+  # SOURCES
+  if(DEFINED _SOURCES)
+    list(INSERT _SOURCES 0 SOURCES)
   endif()
 
   # add_executable_ex
   add_executable_ex(
     ${_NAME} ${_UNPARSED_ARGUMENTS}
     ${_PROPERTIES}
+    ${_COMPILE_DEFINITIONS}
+    ${_COMPILE_FEATURES}
+    ${_COMPILE_OPTIONS}
+    ${_INCLUDE_DIRECTORIES}
+    ${_LINK_DIRECTORIES}
+    ${_LINK_LIBRARIES}
+    ${_LINK_OPTIONS}
+    ${_SOURCES}
   )
 
-  # copy_link_libraries
-  copy_link_libraries(${_NAME})
+  # post_build_copy_link_libraries
+  post_build_copy_link_libraries(${_NAME} RECURSE)
 
   # install
   get_toolset_architecture_address_model_tag(sTag)

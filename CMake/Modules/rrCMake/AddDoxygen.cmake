@@ -7,10 +7,7 @@ cmake_policy(VERSION 3.10)
 
 include_guard()
 
-#-------------------------------------------------------------------------------
-# MACROS
-
-#.rst
+#.rst:
 # .. command:: arguments_to_doxygen
 macro(arguments_to_doxygen)
   foreach(sCfgName IN ITEMS ${ARGV})
@@ -20,10 +17,7 @@ macro(arguments_to_doxygen)
   endforeach()
 endmacro()
 
-#-------------------------------------------------------------------------------
-# FUNCTIONS
-
-#.rst
+#.rst:
 # .. command:: add_doxygen
 #
 #   添加 Doxygen 目标到项目。
@@ -31,7 +25,7 @@ endmacro()
 #   .. code-block:: cmake
 #
 #     add_doxygen(                                                       default
-#       <arguments...>
+#       <argument>...
 #       [FULL_PATH_NAMES       <YES|NO>]                                     YES
 #       [STRIP_FROM_PATH       path]
 #       [JAVADOC_AUTOBRIEF     <YES|NO>]                                      NO
@@ -76,7 +70,7 @@ function(add_doxygen)
   doxygen_add_docs(${_UNPARSED_ARGUMENTS})
 endfunction()
 
-#.rst
+#.rst:
 # .. command:: add_doxygen_con
 #
 #   添加 Doxygen 目标到项目，遵循惯例（convention）。
@@ -84,7 +78,7 @@ endfunction()
 #   .. code-block:: cmake
 #
 #     add_doxygen_con(
-#       <arguments...>
+#       <argument>...
 #     )
 #
 #   参见：
@@ -148,7 +142,7 @@ function(add_doxygen_con _NAME)
     set(_PLANTUML_JAR_PATH PLANTUML_JAR_PATH "$ENV{PLANTUML}")
   endif()
 
-  # 调用 add_doxygen
+  # add_doxygen
   add_doxygen(
     ${_NAME} ${_UNPARSED_ARGUMENTS} ${_ALL} ${WORKING_DIRECTORY} ${_COMMENT}
     ${_STRIP_FROM_PATH}
@@ -159,7 +153,7 @@ function(add_doxygen_con _NAME)
     ${_PLANTUML_JAR_PATH}
   )
 
-  # 安装
+  # install
   install(
     DIRECTORY   "${PROJECT_BINARY_DIR}/doxygen/"
     DESTINATION "doc/${_NAME}")

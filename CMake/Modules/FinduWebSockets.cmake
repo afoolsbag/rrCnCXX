@@ -5,11 +5,20 @@
 # | |   | | | | | (_| | |_| \  /\  /  __/ |_) /\__/ / (_) | (__|   <  __/ |_\__ \
 # \_|   |_|_| |_|\__,_|\__,_|\/  \/ \___|_.__/\____/ \___/ \___|_|\_\___|\__|___/
 # zhengrr
-# 2019-04-11 – 2019-04-11
+# 2019-04-11 – 2019-04-16
 # Unlicense
+
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+include_guard()
 
 if(NOT COMMAND find_package_handle_standard_args)
   include(FindPackageHandleStandardArgs)
+endif()
+
+if(NOT COMMAND add_library_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/AddLibrary.cmake")
 endif()
 
 #.rst:
@@ -54,8 +63,6 @@ endif()
 
 find_package(uSockets)
 
-cmake_minimum_required(VERSION 3.12)  # CMP0074
-
 # <prefix>/include
 find_path(
   uWebSockets_INCLUDE_DIR
@@ -71,13 +78,11 @@ find_package_handle_standard_args(
 if(uWebSockets_FOUND)
   # targets
   if(NOT TARGET uWebSockets::uWebSockets)
-    add_library(uWebSockets::uWebSockets INTERFACE IMPORTED)
-    set_target_properties(
-      uWebSockets::uWebSockets
-      PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${uWebSockets_INCLUDE_DIR}")
-    target_link_libraries(
-      uWebSockets::uWebSockets
-      INTERFACE uSockets::uSockets)
+    add_library_ex(
+      uWebSockets::uWebSockets INTERFACE IMPORTED
+      COMPILE_FEATURES         INTERFACE cxx_std_17
+      INCLUDE_DIRECTORIES      INTERFACE "${uWebSockets_INCLUDE_DIR}"
+      LINK_LIBRARIES           INTERFACE uSockets::uSockets)
   endif()
 
   mark_as_advanced(uWebSockets_ROOT)

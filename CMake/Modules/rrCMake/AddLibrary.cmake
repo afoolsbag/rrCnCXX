@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-04-15
+# 2016-10-08 – 2019-04-17
 # Unlicense
 
 cmake_minimum_required(VERSION 3.10)
@@ -7,18 +7,15 @@ cmake_policy(VERSION 3.10)
 
 include_guard()
 
-if(NOT COMMAND copy_link_libraries)
-  include("${CMAKE_CURRENT_LIST_DIR}/CopyLinkLibraries.cmake")
-endif()
-
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
   include("${CMAKE_CURRENT_LIST_DIR}/LibraryTag.cmake")
 endif()
 
-#-------------------------------------------------------------------------------
-# FUNCTIONS
+if(NOT COMMAND post_build_copy_link_libraries)
+  include("${CMAKE_CURRENT_LIST_DIR}/LinkLibraries.cmake")
+endif()
 
-#.res
+#.res:
 # .. command:: add_library_ex
 #
 #   添加库目标到项目（add library），扩展功能（extend）。
@@ -26,16 +23,16 @@ endif()
 #   .. code-block:: cmake
 #
 #     add_library_ex(
-#       <name> <arguments...>
+#       <name> <argument>...
 #       [PROPERTIES          <property-key> <property-value> ...]
-#       [COMPILE_DEFINITIONS <INTERFACE|PUBLIC|PRIVATE> <definitions...> ...]
-#       [COMPILE_FEATURES    <INTERFACE|PUBLIC|PRIVATE> <features...> ...]
-#       [COMPILE_OPTIONS     <INTERFACE|PUBLIC|PRIVATE> <options...> ...]
-#       [INCLUDE_DIRECTORIES <INTERFACE|PUBLIC|PRIVATE> <directories...> ...]
-#       [LINK_DIRECTORIES    <INTERFACE|PUBLIC|PRIVATE> <directories...> ...]
-#       [LINK_LIBRARIES      <INTERFACE|PUBLIC|PRIVATE> <libraries...> ...]
-#       [LINK_OPTIONS        <INTERFACE|PUBLIC|PRIVATE> <options...> ...]
-#       [SOURCES             <INTERFACE|PUBLIC|PRIVATE> <sources...> ...]
+#       [COMPILE_DEFINITIONS <INTERFACE|PUBLIC|PRIVATE> <definition>... ...]
+#       [COMPILE_FEATURES    <INTERFACE|PUBLIC|PRIVATE> <feature>... ...]
+#       [COMPILE_OPTIONS     <INTERFACE|PUBLIC|PRIVATE> <option>... ...]
+#       [INCLUDE_DIRECTORIES <INTERFACE|PUBLIC|PRIVATE> <directory>... ...]
+#       [LINK_DIRECTORIES    <INTERFACE|PUBLIC|PRIVATE> <directory>... ...]
+#       [LINK_LIBRARIES      <INTERFACE|PUBLIC|PRIVATE> <library>... ...]
+#       [LINK_OPTIONS        <INTERFACE|PUBLIC|PRIVATE> <option>... ...]
+#       [SOURCES             <INTERFACE|PUBLIC|PRIVATE> <source>... ...]
 #     )
 #
 #   参见：
@@ -147,7 +144,7 @@ function(add_library_ex _NAME)
   endif()
 endfunction()
 
-#.res
+#.res:
 # .. command:: add_library_con
 #
 #   添加库目标到项目（add library），遵循惯例（convention）。
@@ -155,7 +152,7 @@ endfunction()
 #   .. code-block:: cmake
 #
 #     add_library_con(
-#       <arguments...>
+#       <argument>...
 #     )
 #
 #   参见：
@@ -201,15 +198,14 @@ function(add_library_con _NAME)
 
   # PROPERTIES
   list(INSERT _PROPERTIES 0 PROPERTIES)
-  set(zDefProps)
   if(NOT DEBUG_POSTFIX IN_LIST _PROPERTIES)
-    list(APPEND zDefProps DEBUG_POSTFIX d)
+    list(APPEND _PROPERTIES DEBUG_POSTFIX "d")
   endif()
   if(NOT OUTPUT_NAME IN_LIST _PROPERTIES)
-    list(APPEND zDefProps OUTPUT_NAME "${_NAME}")
+    list(APPEND _PROPERTIES OUTPUT_NAME "${_NAME}")
   endif()
   if(NOT PREFIX IN_LIST _PROPERTIES AND _STATIC)
-    list(APPEND zDefProps PREFIX lib)
+    list(APPEND _PROPERTIES PREFIX "lib")
   endif()
 
   # COMPILE_DEFINITIONS
@@ -266,8 +262,8 @@ function(add_library_con _NAME)
     ${_SOURCES}
   )
 
-  # copy_link_libraries
-  copy_link_libraries(${_NAME})
+  # post_build_copy_link_libraries
+  post_build_copy_link_libraries(${_NAME} RECURSE)
 
   # install
   get_toolset_architecture_address_model_tag(sTag)

@@ -1,177 +1,205 @@
 # zhengrr
-# 2018-06-06 – 2019-03-07
+# 2018-06-06 – 2019-04-17
 # Unlicense
 
-include_guard()
+cmake_minimum_required(VERSION 3.10)
+cmake_policy(VERSION 3.10)
 
-if(NOT COMMAND check_name_with_cmake_rules)
-  include("${CMAKE_CURRENT_LIST_DIR}/CheckName.cmake")
-endif()
+include_guard()
 
 #.rst:
 # .. command:: get_toolset_tag
 #
-#   获取工具集标签::
+#   获取工具集标签（get toolset tag）。
 #
-#     get_toolset_tag(<result-variable>)
+#   .. code-block:: cmake
+#
+#     get_toolset_tag(
+#       <variable>
+#     )
 #
 #   参见：
 #
-#   - `<https://boost.org/doc/libs/1_69_0/more/getting_started/windows.html#library-naming>`_
-function(get_toolset_tag _RESULT_VARIABLE)
-  check_name_with_cmake_rules("${_RESULT_VARIABLE}" WARNING)
+#   - `<https://boost.org/doc/libs/1_70_0/more/getting_started/windows.html#library-naming>`_
+function(get_toolset_tag _VARIABLE)
   get_cmake_property(zLangs ENABLED_LANGUAGES)
-  foreach(sLang ${zLangs})
+  foreach(sL IN LISTS zLangs)
 
-    if(CMAKE_${sLang}_COMPILER_ID STREQUAL "Intel")
+    if(CMAKE_${sL}_COMPILER_ID STREQUAL "Intel")
       if(WIN32)
-        set(${_RESULT_VARIABLE} "iw" PARENT_SCOPE)
+        set(${_VARIABLE} "iw" PARENT_SCOPE)
       else()
-        set(${_RESULT_VARIABLE} "il" PARENT_SCOPE)
+        set(${_VARIABLE} "il" PARENT_SCOPE)
       endif()
       return()
     endif()
 
-    if(GHSMULTI)
-      set(${_RESULT_VARIABLE} "ghs" PARENT_SCOPE)
+    if(GHS-MULTI)
+      set(${_VARIABLE} "ghs" PARENT_SCOPE)
       return()
     endif()
 
     if(MSVC)
       if(1920 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc142" PARENT_SCOPE)
+        set(${_VARIABLE} "vc142" PARENT_SCOPE)
       elseif(1910 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc141" PARENT_SCOPE)
+        set(${_VARIABLE} "vc141" PARENT_SCOPE)
       elseif(1900 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc140" PARENT_SCOPE)
+        set(${_VARIABLE} "vc140" PARENT_SCOPE)
       elseif(1800 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc120" PARENT_SCOPE)
+        set(${_VARIABLE} "vc120" PARENT_SCOPE)
       elseif(1700 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc110" PARENT_SCOPE)
+        set(${_VARIABLE} "vc110" PARENT_SCOPE)
       elseif(1600 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc100" PARENT_SCOPE)
+        set(${_VARIABLE} "vc100" PARENT_SCOPE)
       elseif(1500 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc90" PARENT_SCOPE)
+        set(${_VARIABLE} "vc90" PARENT_SCOPE)
       elseif(1400 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc80" PARENT_SCOPE)
+        set(${_VARIABLE} "vc80" PARENT_SCOPE)
       elseif(1310 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc71" PARENT_SCOPE)
+        set(${_VARIABLE} "vc71" PARENT_SCOPE)
       elseif(1300 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc7" PARENT_SCOPE)
+        set(${_VARIABLE} "vc7" PARENT_SCOPE)
       elseif(1200 LESS_EQUAL MSVC_VERSION)
-        set(${_RESULT_VARIABLE} "vc6" PARENT_SCOPE)
+        set(${_VARIABLE} "vc6" PARENT_SCOPE)
       else()
-        message(FATAL_ERROR "Unsupported MSVC_VERSION: ${MSVC_VERSION}.")
+        set(${_VARIABLE} "vc" PARENT_SCOPE)
       endif()
       return()
     endif()
 
     if(BORLAND)
-      set(${_RESULT_VARIABLE} "bcb" PARENT_SCOPE)
+      set(${_VARIABLE} "bcb" PARENT_SCOPE)
       return()
     endif()
 
-    if(CMAKE_${sLang}_COMPILER_ID STREQUAL "SunPro")
-      set(${_RESULT_VARIABLE} "sw" PARENT_SCOPE)
+    if(CMAKE_${sL}_COMPILER_ID STREQUAL "SunPro")
+      set(${_VARIABLE} "sw" PARENT_SCOPE)
       return()
     endif()
 
-    if(CMAKE_${sLang}_COMPILER_ID STREQUAL "XL")
-      set(${_RESULT_VARIABLE} "xlc" PARENT_SCOPE)
+    if(CMAKE_${sL}_COMPILER_ID STREQUAL "XL")
+      set(${_VARIABLE} "xlc" PARENT_SCOPE)
       return()
     endif()
 
     if(MINGW)
-      string(REGEX REPLACE "([0-9]+)\\.([0-9]+)(\\.[0-9]+)?" "\\1\\2" sVer "${CMAKE_CXX_COMPILER_VERSION}")
-      set(${_RESULT_VARIABLE} "mgw${sVer}" PARENT_SCOPE)
+      string(REGEX REPLACE "([0-9]+)\\.([0-9]+)(\\.[0-9]+)?" "\\1\\2" sVer "${CMAKE_${sL}_COMPILER_VERSION}")
+      set(${_VARIABLE} "mgw${sVer}" PARENT_SCOPE)
       return()
     endif()
 
-    if(UNIX AND (CMAKE_COMPILER_IS_GNUC OR CMAKE_COMPILER_IS_GNUCXX))
-      string(REGEX REPLACE "([0-9]+)\\.([0-9]+)(\\.[0-9]+)?" "\\1\\2" sVer "${CMAKE_CXX_COMPILER_VERSION}")
+    if(UNIX AND CMAKE_${sL}_COMPILER_ID STREQUAL "GNU")
+      string(REGEX REPLACE "([0-9]+)\\.([0-9]+)(\\.[0-9]+)?" "\\1\\2" sVer "${CMAKE_${sL}_COMPILER_VERSION}")
       if(APPLE)
-        set(${_RESULT_VARIABLE} "xgcc${sVer}" PARENT_SCOPE)
+        set(${_VARIABLE} "xgcc${sVer}" PARENT_SCOPE)
       else()
-        set(${_RESULT_VARIABLE} "gcc${sVer}" PARENT_SCOPE)
+        set(${_VARIABLE} "gcc${sVer}" PARENT_SCOPE)
       endif()
       return()
     endif()
 
+    if(UNIX AND CMAKE_${sL}_COMPILER_ID STREQUAL "Clang")
+      string(REGEX REPLACE "([0-9]+)\\.([0-9]+)(\\.[0-9]+)?" "\\1\\2" sVer "${CMAKE_${sL}_COMPILER_VERSION}")
+      set(${_VARIABLE} "clang${sVer}" PARENT_SCOPE)
+      return()
+    endif()
+
   endforeach()
-  set(${_RESULT_VARIABLE} "" PARENT_SCOPE)
+  set(${_VARIABLE} "" PARENT_SCOPE)
 endfunction()
 
 #.rst:
 # .. command:: get_architecture_tag
 #
-#   获取架构标签::
+#   获取架构标签（get architecture tag）。
 #
-#     get_architecture_tag(<result-variable>)
-function(get_architecture_tag _RESULT_VARIABLE)
+#   .. code-block:: cmake
+#
+#     get_architecture_tag(
+#       <variable>
+#     )
+function(get_architecture_tag _VARIABLE)
   get_cmake_property(zLangs ENABLED_LANGUAGES)
-  foreach(sLang ${zLangs})
+  foreach(sL IN LISTS zLangs)
 
-    if(CMAKE_${sLang}_COMPILER_ARCHITECTURE_ID STREQUAL "IA64")
-      set(${_RESULT_VARIABLE} "i" PARENT_SCOPE)
+    if(CMAKE_${sL}_COMPILER_ARCHITECTURE_ID STREQUAL "IA64")
+      set(${_VARIABLE} "i" PARENT_SCOPE)
       return()
     endif()
 
-    if(CMAKE_${sLang}_COMPILER_ARCHITECTURE_ID MATCHES "^[Xx](86|64)$")
-      set(${_RESULT_VARIABLE} "x" PARENT_SCOPE)
+    if(CMAKE_${sL}_COMPILER_ARCHITECTURE_ID MATCHES "^[Xx](86|64)$")
+      set(${_VARIABLE} "x" PARENT_SCOPE)
       return()
     endif()
 
-    if(CMAKE_${sLang}_COMPILER_ARCHITECTURE_ID MATCHES "^ARM")
-      set(${_RESULT_VARIABLE} "a" PARENT_SCOPE)
+    if(CMAKE_${sL}_COMPILER_ARCHITECTURE_ID MATCHES "^ARM")
+      set(${_VARIABLE} "a" PARENT_SCOPE)
       return()
     endif()
 
-    if(CMAKE_${sLang}_COMPILER_ARCHITECTURE_ID STREQUAL "MIPS")
-      set(${_RESULT_VARIABLE} "m" PARENT_SCOPE)
+    if(CMAKE_${sL}_COMPILER_ARCHITECTURE_ID STREQUAL "MIPS")
+      set(${_VARIABLE} "m" PARENT_SCOPE)
       return()
     endif()
 
   endforeach()
-  set(${_RESULT_VARIABLE} "" PARENT_SCOPE)
+  set(${_VARIABLE} "" PARENT_SCOPE)
 endfunction()
 
 #.rst:
 # .. command::get_address_model_tag
 #
-#   获取地址模型标签::
+#   获取地址模型标签（get address model tag）。
 #
-#     get_address_model_tag(<result-variable>)
-function(get_address_model_tag _RESULT_VARIABLE)
-  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(${_RESULT_VARIABLE} "32" PARENT_SCOPE)
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(${_RESULT_VARIABLE} "64" PARENT_SCOPE)
-  else()
-    message(FATAL_ERROR "Unsupported CMAKE_SIZEOF_VOID_P: ${CMAKE_SIZEOF_VOID_P}.")
+#   .. code-block:: cmake
+#
+#     get_address_model_tag(
+#       <variable>
+#     )
+function(get_address_model_tag _VARIABLE)
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(${_VARIABLE} "64" PARENT_SCOPE)
+    return()
   endif()
+
+  if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(${_VARIABLE} "32" PARENT_SCOPE)
+    return()
+  endif()
+
+  set(${_VARIABLE} "" PARENT_SCOPE)
 endfunction()
 
 #.rst:
 # .. command::get_architecture_address_model_tag
 #
-#   获取架构和地址模型标签::
+#   获取架构和地址模型标签（get architecture address model tag）。
 #
-#     get_architecture_address_model_tag(<result-variable>)
-function(get_architecture_address_model_tag _RESULT_VARIABLE)
+#   .. code-block:: cmake
+#
+#     get_architecture_address_model_tag(
+#       <variable>
+#     )
+function(get_architecture_address_model_tag _VARIABLE)
   get_architecture_tag(sArch)
   get_address_model_tag(sAddr)
-  set(${_RESULT_VARIABLE} "${sArch}${sAddr}" PARENT_SCOPE)
+  set(${_VARIABLE} "${sArch}${sAddr}" PARENT_SCOPE)
 endfunction()
 
-#.rst
+#.rst:
 # .. command::get_toolset_architecture_address_model_tag
 #
-#   获取工具集、架构和地址模型标签::
+#   获取工具集、架构和地址模型标签（get toolset architecture address model tag）。
 #
-#     get_toolset_architecture_address_model_tag(<result-variable>)
-function(get_toolset_architecture_address_model_tag _RESULT_VARIABLE)
+#   .. code-block:: cmake
+#
+#     get_toolset_architecture_address_model_tag(
+#       <variable>
+#     )
+function(get_toolset_architecture_address_model_tag _VARIABLE)
   get_toolset_tag(sTool)
   get_architecture_tag(sArch)
   get_address_model_tag(sAddr)
-  set(${_RESULT_VARIABLE} "${sTool}${sArch}${sAddr}" PARENT_SCOPE)
+  set(${_VARIABLE} "${sTool}${sArch}${sAddr}" PARENT_SCOPE)
 endfunction()

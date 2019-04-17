@@ -2,8 +2,13 @@
 # |  ___(_)         | /  __ \ |             | |
 # | |_   _ _ __   __| | /  \/ |__   ___  ___| | __
 # |  _| | | '_ \ / _` | |   | '_ \ / _ \/ __| |/ / zhengrr
-# | |   | | | | | (_| | \__/\ | | |  __/ (__|   <  2018-02-02 – 2019-03-14
+# | |   | | | | | (_| | \__/\ | | |  __/ (__|   <  2018-02-02 – 2019-04-16
 # \_|   |_|_| |_|\__,_|\____/_| |_|\___|\___|_|\_\ Unlicense
+
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+include_guard()
 
 if(NOT COMMAND check_include_file)
   include(CheckIncludeFile)
@@ -11,6 +16,10 @@ endif()
 
 if(NOT COMMAND find_package_handle_standard_args)
   include(FindPackageHandleStandardArgs)
+endif()
+
+if(NOT COMMAND add_library_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/AddLibrary.cmake")
 endif()
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -70,7 +79,6 @@ check_include_file("stdint.h" HAVE_STDINT_H)
 # UNIX-like
 
 if(UNIX)
-
   # <prefix>/include
   find_path(
     Check_INCLUDE_DIR
@@ -93,33 +101,25 @@ if(UNIX)
     Check
     DEFAULT_MSG
     Check_check_LIBRARY
-    Check_INCLUDE_DIR)
+    Check_INCLUDE_DIR
+    Check_compat_LIBRARY)
 
   if(Check_FOUND)
     # targets
     if(NOT TARGET Check::compat)
-      add_library(Check::compat STATIC IMPORTED)
-      set_target_properties(
-        Check::compat
-        PROPERTIES IMPORTED_LOCATION             "${Check_compat_LIBRARY}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
+      add_library_ex(
+        Check::compat       STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION "${Check_compat_LIBRARY}"
+        INCLUDE_DIRECTORIES INTERFACE         "${Check_INCLUDE_DIR}")
     endif()
 
     if(NOT TARGET Check::check)
-      add_library(Check::check STATIC IMPORTED)
-      set_target_properties(
-        Check::check
-        PROPERTIES IMPORTED_LOCATION             "${Check_check_LIBRARY}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
-      target_compile_definitions(
-        Check::check
-        INTERFACE $<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>)
-      target_link_libraries(
-        Check::check
-        INTERFACE m
-                  rt
-                  subunit
-                  Check::compat)
+      add_library_ex(
+        Check::check        STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION "${Check_check_LIBRARY}"
+        COMPILE_DEFINITIONS INTERFACE         "$<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>"
+        INCLUDE_DIRECTORIES INTERFACE         "${Check_INCLUDE_DIR}"
+        LINK_LIBRARIES      INTERFACE         m rt subunit Check::compat)
     endif()
 
   endif()
@@ -130,9 +130,6 @@ endif()
 # Windows
 
 if(WIN32)
-
-  cmake_minimum_required(VERSION 3.12)  # CMP0074
-
   # <prefix>/include
   find_path(
     Check_INCLUDE_DIR
@@ -177,27 +174,22 @@ if(WIN32)
   if(Check_FOUND)
     # targets
     if(NOT TARGET Check::compat)
-      add_library(Check::compat STATIC IMPORTED)
-      set_target_properties(
-        Check::compat
-        PROPERTIES IMPORTED_LOCATION_DEBUG       "${Check_compat_LIBRARY_DEBUG}"
-                   IMPORTED_LOCATION_RELEASE     "${Check_compat_LIBRARY_RELEASE}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
+      add_library_ex(
+        Check::compat       STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION_DEBUG   "${Check_compat_LIBRARY_DEBUG}"
+                            IMPORTED_LOCATION_RELEASE "${Check_compat_LIBRARY_RELEASE}"
+        INCLUDE_DIRECTORIES INTERFACE                 "${Check_INCLUDE_DIR}")
     endif()
 
     if(NOT TARGET Check::check)
-      add_library(Check::check STATIC IMPORTED)
-      set_target_properties(
-        Check::check
-        PROPERTIES IMPORTED_LOCATION_DEBUG       "${Check_check_LIBRARY_DEBUG}"
-                   IMPORTED_LOCATION_RELEASE     "${Check_check_LIBRARY_RELEASE}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${Check_INCLUDE_DIR}")
-      target_compile_definitions(
-        Check::check
-        INTERFACE $<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>)
-      target_link_libraries(
-        Check::check
-        INTERFACE Check::compat)
+      add_library_ex(
+        Check::check        STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION_DEBUG       "${Check_check_LIBRARY_DEBUG}"
+                            IMPORTED_LOCATION_RELEASE     "${Check_check_LIBRARY_RELEASE}"
+        COMPILE_DEFINITIONS INTERFACE                     "$<$<BOOL:${HAVE_STDINT_H}>:HAVE_STDINT_H>"
+        INCLUDE_DIRECTORIES INTERFACE                     "${Check_INCLUDE_DIR}"
+        LINK_LIBRARIES      INTERFACE                     Check::compat)
+
     endif()
 
     mark_as_advanced(Check_ROOT)
