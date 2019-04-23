@@ -3,7 +3,7 @@
  * \file
  * \brief 进程和线程。
  *
- * \version 2019-03-28
+ * \version 2019-04-22
  * \since 2018-05-07
  * \authors zhengrr
  * \copyright Unlicense
@@ -76,6 +76,60 @@ RunExecutableW(
 # define RunExecutable RunExecutableW
 #else
 # define RunExecutable RunExecutableA
+#endif
+
+/**
+ * \brief 以活动用户运行可执行文件，ANSI 适配。
+ *
+ * \param path    路径；
+ * \param args    参数，可为 `NULL`；
+ * \param startIn 起始位置，可为 `NULL`；
+ * \param show    显示或隐藏。
+ * \returns `!FALSE` 成功；\n
+ *           `FALSE` 失败，可调用 `GetLastError()` 获取扩展错误信息。
+ * 
+ * \version 2019-04-22
+ * \since 2019-04-22
+ */
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
+RunExecutableAsActiveA(
+    _In_z_     PCSTR path,
+    _In_opt_z_ PCSTR args,
+    _In_opt_z_ PCSTR startIn,
+    _In_       BOOL  show
+);
+
+/**
+ * \brief 以活动用户运行可执行文件，Unicode 适配。
+ *
+ * \param path    路径；
+ * \param args    参数，可为 `NULL`；
+ * \param startIn 起始位置，可为 `NULL`；
+ * \param show    显示或隐藏。
+ * \returns `!FALSE` 成功；\n
+ *           `FALSE` 失败，可调用 `GetLastError()` 获取扩展错误信息。
+ *
+ * \version 2019-04-22
+ * \since 2019-04-22
+ */
+RRWINDOWS_API
+_Success_(return != FALSE)
+BOOL
+WINAPI
+RunExecutableAsActiveW(
+    _In_z_     PCWSTR path,
+    _In_opt_z_ PCWSTR args,
+    _In_opt_z_ PCWSTR startIn,
+    _In_       BOOL   show
+);
+
+#ifdef _UNICODE
+# define RunExecutableAsActive RunExecutableAsActiveW
+#else
+# define RunExecutableAsActive RunExecutableAsActiveA
 #endif
 
 /**

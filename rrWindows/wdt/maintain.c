@@ -11,7 +11,7 @@
 #include "eventlog.h"
 #include "service.h"
 
-VOID Maintain(MaintainType type)
+VOID WINAPI Maintain(MaintainType type)
 {
     SC_HANDLE serviceCM = NULL;
     SC_HANDLE service = NULL;
@@ -44,7 +44,7 @@ VOID Maintain(MaintainType type)
 
         service = CreateService(
             serviceCM, ServiceName, ServiceDisplayName,
-            SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
+            SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
             path, NULL, NULL, NULL, NULL, NULL);
         if (!service) {
             errorMessage = FormatMessageS(GetLastError());

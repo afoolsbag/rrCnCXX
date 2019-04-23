@@ -36,6 +36,7 @@ INT _tmain(INT argc, TCHAR *argv[], TCHAR *envp[])
         }
 
         if (CompareStringS(argv[1], _T("start")) == CSTR_EQUAL) {
+            Maintain(Install);
             Maintain(Start);
             return EXIT_SUCCESS;
         }

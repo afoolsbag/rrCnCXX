@@ -81,8 +81,8 @@ VOID WINAPI ServiceEntry(DWORD dwNumServicesArgs, LPTSTR *lpServiceArgVectors)
                 if (ref->IsService)
                     StartServiceS(ref->Name, 0, NULL);
                 else
-                    if (!RunExecutable(ref->Path, ref->Args, ref->StartIn, FALSE))
-                        EventLogFunctionFailed(_T("RunExecutable"), GetLastError());
+                    if (!RunExecutableAsActive(ref->Path, ref->Args, ref->StartIn, FALSE))
+                        EventLogFunctionFailed(_T("RunExecutableAsAdmin"), GetLastError());
 
                 /* 更新重试间隔 */
                 ref->LastTryAt = currentTime;
