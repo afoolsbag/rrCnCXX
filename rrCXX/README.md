@@ -14,12 +14,12 @@
 
 *Bjarne Stroustrup（比雅尼·斯特劳斯特鲁普）*
 
-# 参考
+## 参考
 
 ["C++ 参考手册"](https://zh.cppreference.com/w/cpp). *cppreference.com*.
 [*cplusplus.com*](http://cplusplus.com)
 
-# 风格
+## 风格
 
 标准库（`std`）和指导方针支持库（`gsl`）风格命名；
 K&R 和 Stroustrup 风格布局；
@@ -31,13 +31,13 @@ K&R 和 Stroustrup 风格布局；
     <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
 *   [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
 
-# 指南
+## 指南
 
 / [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
 / ["C++ 必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
 / *Effective C++*
 
-# Awesome
+## Awesome
 
 [*Awesome C++*](https://fffaraz.github.io/awesome-cpp/)
 
@@ -50,7 +50,7 @@ K&R 和 Stroustrup 风格布局；
 / [*LIVE555*](http://live555.com/)
 / [*Unreal Engine*](https://unrealengine.com/)
 
-# 许可                                                           {#sLicense}
+## 许可                                                           {#sLicense}
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
 
