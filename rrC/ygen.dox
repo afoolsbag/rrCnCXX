@@ -19,11 +19,11 @@
  * / [Early C](# "Early C, 1972"),
  *   [K&R C](# "K&R C, 1978"),
  *   [*ANSI C*](https://ansi.org/search_results?q=ANSI+X3.159-1989 "ANSI X3.159-1989"),
-*    [*C90*](https://iso.org/standard/17782.html "ISO/IEC 9899:1990"),
-*    [*C95*](https://iso.org/standard/23909.html "ISO/IEC 9899:1990/Amd 1:1995"),
-*    [*C99*](https://iso.org/standard/29237.html "ISO/IEC 9899:1999"),
-*    [*C11*](https://iso.org/standard/57853.html "ISO/IEC 9899:2011"),
-*    [*C18*](https://iso.org/standard/74528.html "ISO/IEC 9899:2018")
+ *   [*C90*](https://iso.org/standard/17782.html "ISO/IEC 9899:1990"),
+ *   [*C95*](https://iso.org/standard/23909.html "ISO/IEC 9899:1990/Amd 1:1995"),
+ *   [*C99*](https://iso.org/standard/29237.html "ISO/IEC 9899:1999"),
+ *   [*C11*](https://iso.org/standard/57853.html "ISO/IEC 9899:2011"),
+ *   [*C18*](https://iso.org/standard/74528.html "ISO/IEC 9899:2018")
  *
  * # 参考                                                         {#sReferences}
  *
@@ -82,7 +82,7 @@
  *   has waived all copyright and related or neighboring rights to this work.
  * </p>
  *
- * \version 2019-01-17
+ * \version 2019-04-28
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright CC0-1.0
