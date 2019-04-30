@@ -1,6 +1,6 @@
 # zhengrr 所知的 C                                                   {#mainpage}
 
-[![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpeg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
+> [![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpeg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
 
 > ```c
 > #include <stdio.h>
@@ -10,7 +10,7 @@
 > }
 > ```
 >
-> *The C Programming Language*:
+> *The C Programming Language*
 
 [C](http://open-std.org/jtc1/sc22/wg14/ "JTC1/SC22/WG14 - C")
 / [Early C](# "Early C, 1972"),
@@ -22,15 +22,15 @@
   [*C11*](https://iso.org/standard/57853.html "ISO/IEC 9899:2011"),
   [*C18*](https://iso.org/standard/74528.html "ISO/IEC 9899:2018")
 
-# 参考                                                         {#sReferences}
+## 参考                                                         {#sReferences}
 
 ["C 参考手册"](https://zh.cppreference.com/w/c). *cppreference.com*.
 
-# 风格                                                             {#sStyles}
+## 风格                                                             {#sStyles}
 
 [*Linux kernel coding style*](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
 
-# 指南                                                             {#sGuides}
+## 指南                                                             {#sGuides}
 
 / *C Interfaces and Implementations: Techniques for Creating Reusable Software*. 1997. David R. Hanson.
 / [*The C Library Reference Guide*](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide). 1997. Eric Huss.
@@ -42,7 +42,7 @@
 / *Pointers on C*. 1997. Kenneth Reek.
 / *The Standard C Library*. 1992. P. J. Plauger.
 
-# Awesome                                                         {#sAwesome}
+## Awesome                                                         {#sAwesome}
 
 [*Awesome C*](https://notabug.org/koz.ross/awesome-c)
 
@@ -63,7 +63,7 @@
 / [*Tesseract*](https://github.com/tesseract-ocr/tesseract)
 / [*ZooKeeper*](https://zookeeper.apache.org/)
 
-# 许可                                                            {#sLicense}
+## 许可                                                            {#sLicense}
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
 
