@@ -1,6 +1,6 @@
 # zhengrr 所知的 C++                                                 {#mainpage}
 
-> [![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpeg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
+> [![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
 
 [*Standard C++*](https://isocpp.org)
 
