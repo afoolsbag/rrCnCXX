@@ -8,6 +8,8 @@
 >
 > [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
+> [![Which Programming Language Should I Learn First?](./README-IMG.png)](http://carlcheo.com/startcoding "Which Programming Language Should I Learn First?")
+
 ## 写作
 
 文法
