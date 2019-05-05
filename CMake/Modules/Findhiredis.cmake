@@ -2,11 +2,20 @@
 # |  ___(_)         | | |   (_)            | (_)
 # | |_   _ _ __   __| | |__  _ _ __ ___  __| |_ ___
 # |  _| | | '_ \ / _` | '_ \| | '__/ _ \/ _` | / __| zhengrr
-# | |   | | | | | (_| | | | | | | |  __/ (_| | \__ \ 2019-04-02 – 2019-04-02
+# | |   | | | | | (_| | | | | | | |  __/ (_| | \__ \ 2019-04-02 – 2019-05-05
 # \_|   |_|_| |_|\__,_|_| |_|_|_|  \___|\__,_|_|___/ Unlicense
+
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+include_guard()
 
 if(NOT COMMAND find_package_handle_standard_args)
   include(FindPackageHandleStandardArgs)
+endif()
+
+if(NOT COMMAND add_library_ex)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/AddLibrary.cmake")
 endif()
 
 if(NOT COMMAND get_toolset_architecture_address_model_tag)
@@ -61,7 +70,6 @@ endif()
 # UNIX-like
 
 if(UNIX)
-
   # <prefix>/include
   find_path(
     hiredis_INCLUDE_DIR
@@ -84,11 +92,10 @@ if(UNIX)
   if(hiredis_FOUND)
     # targets
     if(NOT TARGET hiredis::hiredis)
-      add_library(hiredis::hiredis STATIC IMPORTED)
-      set_target_properties(
-        hiredis::hiredis
-        PROPERTIES IMPORTED_LOCATION             "${hiredis_hiredis_LIBRARY}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${hiredis_INCLUDE_DIR}")
+      add_library_ex(
+        hiredis::hiredis    STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION "${hiredis_hiredis_LIBRARY}"
+        INCLUDE_DIRECTORIES INTERFACE         "${hiredis_INCLUDE_DIR}")
     endif()
 
   endif()
@@ -99,9 +106,6 @@ endif()
 # Windows
 
 if(WIN32)
-
-  cmake_minimum_required(VERSION 3.12)  # CMP0074
-
   # <prefix>/include
   find_path(
     hiredis_INCLUDE_DIR
@@ -133,18 +137,15 @@ if(WIN32)
   if(hiredis_FOUND)
     # targets
     if(NOT TARGET hiredis::hiredis)
-      add_library(hiredis::hiredis STATIC IMPORTED)
-      set_target_properties(
-        hiredis::hiredis
-        PROPERTIES IMPORTED_LOCATION_DEBUG       "${hiredis_hiredis_LIBRARY_DEBUG}"
-                   IMPORTED_LOCATION_RELEASE     "${hiredis_hiredis_LIBRARY_RELEASE}"
-                   INTERFACE_INCLUDE_DIRECTORIES "${hiredis_INCLUDE_DIR}")
-      target_link_libraries(
-        hiredis::hiredis
-        INTERFACE WS2_32)
+      add_library_ex(
+        hiredis::hiredis    STATIC IMPORTED
+        PROPERTIES          IMPORTED_LOCATION_DEBUG   "${hiredis_hiredis_LIBRARY_DEBUG}"
+                            IMPORTED_LOCATION_RELEASE "${hiredis_hiredis_LIBRARY_RELEASE}"
+        INCLUDE_DIRECTORIES INTERFACE                 "${hiredis_INCLUDE_DIR}"
+        LINK_LIBRARIES      INTERFACE                 WS2_32)
     endif()
 
-    mark_as_advanced(hiredis_ROOT)
+    mark_as_advanced(FORCE hiredis_ROOT)
 
   else()
     # hints
