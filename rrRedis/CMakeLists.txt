@@ -2,30 +2,35 @@
 #           | ___ \       | (_)
 #  _ __ _ __| |_/ /___  __| |_ ___
 # | '__| '__|    // _ \/ _` | / __| zhengrr
-# | |  | |  | |\ \  __/ (_| | \__ \ 2019-04-02 – 2019-04-02
+# | |  | |  | |\ \  __/ (_| | \__ \ 2019-04-02 – 2019-05-05
 # |_|  |_|  \_| \_\___|\__,_|_|___/ Unlicense
 
-project(rrRedis VERSION 2019.04.02 LANGUAGES C)
-project_more()
-compile_option(
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
+
+project_ex(
+  rrRedis
+  VERSION   2019.05.05
+  LANGUAGES C)
+
+add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
   WARNING_AS_ERROR)
 
-add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
+add_doxygen_con(
+  rrRedisDoc
+  OPTIMIZE_OUTPUT_FOR_C)
 
-if(3.12 VERSION_LESS CMAKE_VERSION)
-  cmake_policy(SET CMP0074 NEW)
-endif()
 find_package(Check)
 find_package(hiredis)
 
-aux_source_directory_ex(zSource RECURSE)
-add_executable_ex(
-                      ${zSource}
-                      C11
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE Check::check
-                              hiredis::hiredis
-)
+aux_source_directory_con("." zSrc RECURSE)
+add_executable_con(
+  rrRedis             ${zSrc}
+  PROPERTIES          C_STANDARD          11
+                      C_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE             "./"
+  LINK_LIBRARIES      PRIVATE             Check::check
+                                          hiredis::hiredis)
