@@ -85,6 +85,12 @@
 
 ## 工具
 
+系统
+/ [*Cygwin*](https://cygwin.com/ "Cygnus Windows"),
+  [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows"),
+  [*Mingw-w64*](https://mingw-w64.org/),
+  [*MSYS2*](https://www.msys2.org/ "Minimal System")
+
 壳层
 / [*SS64*](https://ss64.com/ "参考")
 / [sh](# "Bourne Shell, 1977"),
@@ -102,12 +108,6 @@
   [*PuTTY*](https://www.chiark.greenend.org.uk/~sgtatham/putty/ "PuTTY, 1999-01-22"),
   [*WinSCP*](https://winscp.net/ "WinSCP, 2000")
 
-环境
-/ [*Cygwin*](https://cygwin.com/ "Cygnus Windows")
-/ [*MinGW*](http://mingw.org/ "Minimalist GNU for Windows")
-/ [*Mingw-w64*](https://mingw-w64.org/)
-/ [*MSYS2*](https://www.msys2.org/ "Minimal System")
-
 编辑
 / [*Emacs*](https://gnu.org/software/emacs/)
 / [*Notepad++*](https://notepad-plus-plus.org/)
@@ -122,12 +122,15 @@
 / [*WinHex*](http://winhex.com/winhex/)
 
 版本
-/ [*Git*](https://git-scm.com/) <sub>(
+/ [*CVS*](https://savannah.nongnu.org/projects/cvs "Concurrent Versions System, 1990-11-19")
+/ [*SVN*](https://subversion.apache.org/ "Subversion, 2000-10-20") <sub>(
+    [*tortoise*](https://tortoisesvn.net/) )</sub>
+/ [*Git*](https://git-scm.com/ "Git, 2005-04-07") <sub>(
     [*cheatsheet*](https://git-tower.com/blog/git-cheat-sheet/),
     [*commit*](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines),
     [*gitignore*](https://github.com/github/gitignore),
-    [*教程*](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) )</sub>
-/ SVN
+    [*教程*](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000),
+    [*tortoise*](https://tortoisegit.org/) )</sub>
 
 生成
 / [*CMake*](https://cmake.org/)
@@ -161,6 +164,10 @@
 / [*Process Explorer*](https://docs.microsoft.com/sysinternals/downloads/process-explorer)
 / [*Radare2*](https://radare.org/)
 / [*WinDbg*](http://windbg.org/)
+
+媒体
+/ [*Elecard*](https://elecard.com/)
+/ [*VLC*](https://videolan.org/ "VideoLAN Client")
 
 网络
 / [*bettercap*](https://bettercap.org/)
