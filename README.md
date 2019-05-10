@@ -15,8 +15,7 @@
 文法
 / [*Jupyter*](https://jupyter.org/)
 / [*Markdown*](https://daringfireball.net/markdown/) <sub>(
-    [*cheatsheet*](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-)</sub>
+    [*cheatsheet*](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) )</sub>
 
 字符
 / ASCII Art <sub>(
