@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-04-15
+# 2016-10-08 – 2019-05-10
 # Unlicense
 
 cmake_minimum_required(VERSION 3.10)
@@ -103,7 +103,8 @@ function(add_doxygen_con _NAME)
   string(TOUPPER ${_NAME}        _NAME_UPPER)
 
   # option
-  set(vOptVar ${_PROJECT_NAME_UPPER}_${_NAME_UPPER}_DOCUMENTATION)
+  string(REGEX REPLACE "^${_PROJECT_NAME_UPPER}" "" sTrimmedNameUpper "${_NAME_UPPER}")
+  set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_DOCUMENTATION)
   option(${vOptVar} "Build ${_NAME} documentation." ${DOXYGEN_FOUND})
   if(NOT ${vOptVar})
     return()

@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-08 – 2019-04-17
+# 2016-10-08 – 2019-05-10
 # Unlicense
 
 cmake_minimum_required(VERSION 3.10)
@@ -190,7 +190,8 @@ function(add_library_con _NAME)
   string(TOLOWER ${_TYPE}        _TYPE_LOWER)
 
   # option
-  set(vOptVar ${_PROJECT_NAME_UPPER}_${_NAME_UPPER}_${_TYPE_UPPER}_LIBRARY)
+  string(REGEX REPLACE "^${_PROJECT_NAME_UPPER}" "" sTrimmedNameUpper "${_NAME_UPPER}")
+  set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_${_TYPE_UPPER}_LIBRARY)
   option(${vOptVar} "Build ${_NAME} ${_TYPE_LOWER} library." ON)
   if(NOT ${vOptVar})
     return()

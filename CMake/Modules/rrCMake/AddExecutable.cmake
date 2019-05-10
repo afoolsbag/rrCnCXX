@@ -1,5 +1,5 @@
 # zhengrr
-# 2017-12-18 – 2019-04-17
+# 2017-12-18 – 2019-05-10
 # Unlicense
 
 cmake_minimum_required(VERSION 3.10)
@@ -176,7 +176,8 @@ function(add_executable_con _NAME)
   string(TOUPPER ${_NAME}        _NAME_UPPER)
 
   # option
-  set(vOptVar ${_PROJECT_NAME_UPPER}_${_NAME_UPPER}_EXECUTABLE)
+  string(REGEX REPLACE "^${_PROJECT_NAME_UPPER}" "" sTrimmedNameUpper "${_NAME_UPPER}")
+  set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_EXECUTABLE)
   option(${vOptVar} "Build ${_NAME} executable." ON)
   if(NOT ${vOptVar})
     return()
