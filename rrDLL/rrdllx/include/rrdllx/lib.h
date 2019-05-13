@@ -82,6 +82,16 @@ typedef enum rrdllx_status_t {
     rrdllx_bad_array_new_length,
     rrdllx_bad_exception,
     rrdllx_bad_variant_access,
+
+    rrdllx_invalid_argument_nullptr,
+    rrdllx_invalid_argument_reference_to_notnull,
+
+    rrdllx_out_of_range_handle,
+    rrdllx_out_of_range_instance_string,
+    rrdllx_out_of_range_instance_string_index,
+    rrdllx_out_of_range_instance_string_array,
+
+    rrdllx_unexpected_exception
 } rrdllx_status_t;
 
 /**
@@ -114,7 +124,7 @@ typedef const rrdllx_string_t *rrdllx_string_index_t;
  */
 typedef struct rrdllx_string_array_dereference_t {
     const size_t                c;  /** 数目（counter） */
-    const rrdllx_string_index_t v;  /** 数组（vector） */
+    const rrdllx_string_index_t v;  /** 数组（vector）  */
 } *rrdllx_string_array_t;
 
 /*==============================================================================
@@ -139,6 +149,8 @@ RRDLLX_APIs;
  * \brief 构造实例。
  *
  * \param[out] rh 句柄引用（reference to handle）
+ *
+ * \pre `assert((*rh) == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
 RRDLLX_APIm rrdllx_construct(rrdllx_handle_t *rh)
@@ -159,6 +171,8 @@ RRDLLX_APIs;
  * \param[in]  h  实例句柄（handle）
  * \param[in]  v  输入的字符串值（value of string）
  * \param[out] rs 输出的字符串引用（reference to string）
+ *
+ * \pre `assert((*rs) == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
 RRDLLX_APIm rrdllx_alloc_string(rrdllx_handle_t h, rrdllx_string_t v, rrdllx_string_t *rs)
@@ -177,12 +191,13 @@ RRDLLX_APIs;
 /**
  * \brief 分配字符串数组，并纳入实例资源管理。
  *
- * \param h  实例句柄（handle）
- * \param s  字符串数目（size）。
- * \param ra 字符串数组引用（reference to string array）
+ * \param[in]  h  实例句柄（handle）
+ * \param[out] ra 字符串数组引用（reference to string array）
+ *
+ * \pre `assert((*ra) == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_alloc_string_array(rrdllx_handle_t h, size_t s, rrdllx_string_array_t *ra)
+RRDLLX_APIm rrdllx_alloc_string_array(rrdllx_handle_t h, rrdllx_string_array_t *ra)
 RRDLLX_APIs;
 
 /**

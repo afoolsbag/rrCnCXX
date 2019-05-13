@@ -35,13 +35,13 @@ START_TEST(tf_rrdllx_string)
     ck_assert(rrdllx_construct(&h) == rrdllx_success);
 
     rrdllx_string_t s;
-    ck_assert(rrdllx_alloc_string(h, NULL, &s) == rrdllx_invalid_argument);
+    ck_assert(rrdllx_alloc_string(h, NULL, &s) == rrdllx_invalid_argument_reference_to_notnull);
 
     s = NULL;
     ck_assert(rrdllx_alloc_string(h, NULL, &s) == rrdllx_success);
     ck_assert(rrdllx_free_string(h, s) == rrdllx_success);
 
-    ck_assert(rrdllx_free_string(h, s) == rrdllx_out_of_range);
+    ck_assert(rrdllx_free_string(h, s) == rrdllx_out_of_range_instance_string);
 
     rrdllx_destruct(h);
 }
@@ -53,13 +53,13 @@ START_TEST(tf_rrdllx_string_array)
     ck_assert(rrdllx_construct(&h) == rrdllx_success);
 
     rrdllx_string_array_t a;
-    ck_assert(rrdllx_alloc_string_array(h, 20, &a) == rrdllx_invalid_argument);
+    ck_assert(rrdllx_alloc_string_array(h, &a) == rrdllx_invalid_argument_reference_to_notnull);
 
     a = NULL;
-    ck_assert(rrdllx_alloc_string_array(h, 20, &a) == rrdllx_success);
+    ck_assert(rrdllx_alloc_string_array(h, &a) == rrdllx_success);
     ck_assert(rrdllx_free_string_array(h, a) == rrdllx_success);
 
-    ck_assert(rrdllx_free_string_array(h, a) == rrdllx_out_of_range);
+    ck_assert(rrdllx_free_string_array(h, a) == rrdllx_out_of_range_instance_string_array);
 
     rrdllx_destruct(h);
 }
