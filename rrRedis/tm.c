@@ -2,8 +2,6 @@
  * \copyright Unlicense
  */
 
-#include <stdlib.h>
-
 #include <check.h>
 
 #include "ts.h"
