@@ -91,26 +91,26 @@ public:
 private:
     /// \brief 实例映射。
     /// \details 管理所有实例。
-    static map<rrdllx_handle_t, unique_ptr<rrdllx_t>> instances_map;
+    static map<rrdllx_handle_t, unique_ptr<rrdllx_t>> instances_map_;
 
     /// \brief 字符串映射。
     /// \details 管理实例字符串。
-    map<rrdllx_string_t, unique_ptr<const char[]>> string_map;
+    map<rrdllx_string_t, unique_ptr<const char[]>> string_map_;
 
     /// \brief 字符串索引映射。
     /// \details 管理实例字符串索引。
-    map<rrdllx_string_index_t, unique_ptr<const rrdllx_string_t[]>> string_index_map;
+    map<rrdllx_string_index_t, unique_ptr<const rrdllx_string_t[]>> string_index_map_;
 
     /// \brief 字符串结构数组映射。
     /// \details 管理实例字符串结构数组。
-    map<rrdllx_string_array_t, unique_ptr<rrdllx_string_array_dereference_t>> string_array_map;
+    map<rrdllx_string_array_t, unique_ptr<rrdllx_string_array_dereference_t>> string_array_map_;
 };
 
 rrdllx_handle_t rrdllx_t::alloc_instance()
 {
     auto mov_ptr = make_unique<rrdllx_t>();
     const auto handle = mov_ptr.get();
-    instances_map.insert(make_pair(handle, move(mov_ptr)));
+    instances_map_.insert(make_pair(handle, move(mov_ptr)));
     return handle;
 }
 
@@ -118,25 +118,25 @@ rrdllx_t &rrdllx_t::instance(rrdllx_handle_t h)
 {
     if (!h)
         throw rrdllx_exception_t(rrdllx_invalid_argument_nullptr);
-    if (!instances_map.count(h))
+    if (!instances_map_.count(h))
         throw rrdllx_exception_t(rrdllx_out_of_range_handle);
-    return *instances_map.at(h);
+    return *instances_map_.at(h);
 }
 
 void rrdllx_t::free_instance(rrdllx_handle_t h)
 {
     if (!h)
         throw rrdllx_exception_t(rrdllx_invalid_argument_nullptr);
-    if (!instances_map.count(h))
+    if (!instances_map_.count(h))
         throw rrdllx_exception_t(rrdllx_out_of_range_handle);
-    instances_map.erase(h);
+    instances_map_.erase(h);
 }
 
 rrdllx_string_t rrdllx_t::alloc_string(const string &v)
 {
     auto mov_ptr = make_unique<char[]>(v.length() + 1);
     const auto raw_ptr = mov_ptr.get();
-    string_map.insert(make_pair(raw_ptr, move(mov_ptr)));
+    string_map_.insert(make_pair(raw_ptr, move(mov_ptr)));
     strcpy(raw_ptr, v.c_str());
     return raw_ptr;
 }
@@ -145,22 +145,22 @@ void rrdllx_t::free_string(rrdllx_string_t s)
 {
     if (!s)
         throw rrdllx_exception_t(rrdllx_invalid_argument_nullptr);
-    if (!string_map.count(s))
+    if (!string_map_.count(s))
         throw rrdllx_exception_t(rrdllx_out_of_range_instance_string);
-    string_map.erase(s);
+    string_map_.erase(s);
 }
 
 rrdllx_string_array_t rrdllx_t::alloc_string_array(const vector<string> &v)
 {
     auto index_mov_ptr = make_unique<rrdllx_string_t[]>(v.size());
     const auto index_raw_ptr = index_mov_ptr.get();
-    string_index_map.insert(make_pair(index_raw_ptr, move(index_mov_ptr)));
+    string_index_map_.insert(make_pair(index_raw_ptr, move(index_mov_ptr)));
     for (size_t i = 0; i < v.size(); ++i)
         index_raw_ptr[i] = alloc_string(v.at(i));
 
     auto array_mov_ptr = make_unique<rrdllx_string_array_dereference_t>(rrdllx_string_array_dereference_t {v.size(), index_raw_ptr});
     const auto array_raw_ptr = array_mov_ptr.get();
-    string_array_map.insert(make_pair(array_raw_ptr, move(array_mov_ptr)));
+    string_array_map_.insert(make_pair(array_raw_ptr, move(array_mov_ptr)));
     return array_raw_ptr;
 }
 
@@ -168,24 +168,24 @@ void rrdllx_t::free_string_array(rrdllx_string_array_t a)
 {
     if (!a)
         throw rrdllx_exception_t(rrdllx_invalid_argument_nullptr);
-    if (!string_array_map.count(a))
+    if (!string_array_map_.count(a))
         throw rrdllx_exception_t(rrdllx_out_of_range_instance_string_array);
-    if (!string_index_map.count(a->v))
+    if (!string_index_map_.count(a->v))
         throw rrdllx_exception_t(rrdllx_out_of_range_instance_string_index);
     for (size_t i = 0; i < a->c; ++i)
         free_string(a->v[i]);
-    string_index_map.erase(a->v);
-    string_array_map.erase(a);
+    string_index_map_.erase(a->v);
+    string_array_map_.erase(a);
 }
 
 void rrdllx_t::free_all()
 {
-    string_array_map.clear();
-    string_index_map.clear();
-    string_map.clear();
+    string_array_map_.clear();
+    string_index_map_.clear();
+    string_map_.clear();
 }
 
-map<rrdllx_handle_t, unique_ptr<rrdllx_t>> rrdllx_t::instances_map;
+map<rrdllx_handle_t, unique_ptr<rrdllx_t>> rrdllx_t::instances_map_;
 
 //==============================================================================
 //  _____ _   _ _____ _________________ ___  _____  _____
