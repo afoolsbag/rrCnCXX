@@ -1,6 +1,6 @@
 /*===-- Executable ---------------------------------------------*- C -*-===*//**
  *
- * \version 2019-05-10
+ * \version 2019-05-13
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -18,14 +18,14 @@
 START_TEST(tf_rrdllc_version)
 {
     rrdllc_version_t v;
-    ck_assert(rrdllc_version(&v) == rrdllc_success);
+    ck_assert(rrdllc_get_version(&v) == rrdllc_success);
 }
 END_TEST;
 
 START_TEST(tf_rrdllx_version)
 {
     rrdllx_version_t v;
-    ck_assert(rrdllx_version(&v) == rrdllx_success);
+    ck_assert(rrdllx_get_version(&v) == rrdllx_success);
 }
 END_TEST;
 

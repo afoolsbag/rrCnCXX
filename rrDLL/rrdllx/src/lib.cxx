@@ -196,16 +196,16 @@ map<rrdllx_handle_t, unique_ptr<rrdllx_t>> rrdllx_t::instances_map;
 //  \___/\_| \_/ \_/ \____/\_| \_\_|  \_| |_/\____/\____/
 
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_version(rrdllx_version_t *rv)
+RRDLLX_APIm rrdllx_get_version(rrdllx_version_t *rv)
 RRDLLX_APIs
 {
     RRDLLX_ETS_TRY {
     if (!rv)
         return rrdllx_invalid_argument_nullptr;
-    (*rv).major = static_cast<int>(rrdllx::project_version_major);
-    (*rv).minor = static_cast<int>(rrdllx::project_version_minor);
-    (*rv).patch = static_cast<int>(rrdllx::project_version_patch);
-    (*rv).tweak = static_cast<int>(rrdllx::project_version_tweak);
+    rv->major = static_cast<int>(rrdllx::project_version_major);
+    rv->minor = static_cast<int>(rrdllx::project_version_minor);
+    rv->patch = static_cast<int>(rrdllx::project_version_patch);
+    rv->tweak = static_cast<int>(rrdllx::project_version_tweak);
     return rrdllx_success;
     } RRDLLX_ETS_CATCH_ALL
 }

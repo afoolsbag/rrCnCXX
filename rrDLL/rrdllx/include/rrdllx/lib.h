@@ -26,7 +26,7 @@
  *
  * \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
  *
- * \version 2019-05-10
+ * \version 2019-05-13
  * \since 2018-01-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -142,7 +142,7 @@ typedef struct rrdllx_string_array_dereference_t {
  * \param[out] rv 版本引用（reference to version）
  */
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_version(rrdllx_version_t *rv)
+RRDLLX_APIm rrdllx_get_version(rrdllx_version_t *rv)
 RRDLLX_APIs;
 
 /**
@@ -150,7 +150,7 @@ RRDLLX_APIs;
  *
  * \param[out] rh 句柄引用（reference to handle）
  *
- * \pre `assert((*rh) == NULL)`
+ * \pre `assert(*rh == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
 RRDLLX_APIm rrdllx_construct(rrdllx_handle_t *rh)
@@ -172,7 +172,7 @@ RRDLLX_APIs;
  * \param[in]  v  输入的字符串值（value of string）
  * \param[out] rs 输出的字符串引用（reference to string）
  *
- * \pre `assert((*rs) == NULL)`
+ * \pre `assert(*rs == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
 RRDLLX_APIm rrdllx_alloc_string(rrdllx_handle_t h, rrdllx_string_t v, rrdllx_string_t *rs)
@@ -194,7 +194,7 @@ RRDLLX_APIs;
  * \param[in]  h  实例句柄（handle）
  * \param[out] ra 字符串数组引用（reference to string array）
  *
- * \pre `assert((*ra) == NULL)`
+ * \pre `assert(*ra == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
 RRDLLX_APIm rrdllx_alloc_string_array(rrdllx_handle_t h, rrdllx_string_array_t *ra)

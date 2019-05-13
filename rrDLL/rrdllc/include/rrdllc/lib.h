@@ -5,7 +5,7 @@
  *
  * \sa [*DLL 编写教程*](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2019-04-16
+ * \version 2019-05-13
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright Unlicense
@@ -90,7 +90,7 @@ typedef struct rrdllc_version_t {
  * \param[out] rv 版本引用（reference to version）
  */
 RRDLLC_APIp rrdllc_status_t
-RRDLLC_APIm rrdllc_version(rrdllc_version_t *rv)
+RRDLLC_APIm rrdllc_get_version(rrdllc_version_t *rv)
 RRDLLC_APIs;
 
 /**

@@ -11,7 +11,7 @@ namespace rrdllx {
 inline version_t version()
 {
     version_t v;
-    const auto e = rrdllx_version(&v);
+    const auto e = rrdllx_get_version(&v);
     if (e != rrdllx_success)
         throw error(e);
     return v;

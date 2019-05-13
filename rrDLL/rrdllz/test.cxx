@@ -1,6 +1,6 @@
 //===-- Executable ----------------------------------------------*- C++ -*-===//
 ///
-/// \version 2019-05-10
+/// \version 2019-05-13
 /// \since 2016-10-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,7 +20,7 @@ using namespace std;
 TEST(rrdllc, version)
 {
     rrdllc_version_t v {};
-    ASSERT_TRUE(rrdllc_version(&v) == rrdllc_success);
+    ASSERT_TRUE(rrdllc_get_version(&v) == rrdllc_success);
 }
 
 TEST(rrdllx, version)

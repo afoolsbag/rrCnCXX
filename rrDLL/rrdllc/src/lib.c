@@ -10,7 +10,7 @@
 #include "cfg.h"
 
 RRDLLC_APIp rrdllc_status_t
-RRDLLC_APIm rrdllc_version(rrdllc_version_t *rv)
+RRDLLC_APIm rrdllc_get_version(rrdllc_version_t *rv)
 RRDLLC_APIs
 {
     if (!rv)
