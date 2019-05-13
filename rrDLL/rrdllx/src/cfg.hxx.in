@@ -4,7 +4,7 @@
 /// \brief 配置。
 /// \details 名称、版本、作者、版权等信息。
 ///
-/// \version 2019-04-16
+/// \version 2019-05-10
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRDLLCXX_CFG_HXX_
-#define RRDLLCXX_CFG_HXX_
+#ifndef RRDLLX_CFG_HXX_
+#define RRDLLX_CFG_HXX_
 
 #include <cstdint>
 
@@ -36,7 +36,7 @@ using namespace std;
 /// 产品许可。
 #define PRODUCT_LICENSE       "@PRODUCT_LICENSE@"
 
-namespace rrdllcxx {
+namespace rrdllx {
 
 /// 产品名。
 constexpr char product_name[] {PRODUCT_NAME};
@@ -55,7 +55,7 @@ constexpr char product_authors[] {PRODUCT_AUTHORS};
 /// 产品许可。
 constexpr char product_license[] {PRODUCT_LICENSE};
 
-}//namespace rrdllcxx
+}//namespace rrdllx
 
 /// 项目名。
 #define PROJECT_NAME          "@PROJECT_NAME@"
@@ -74,7 +74,7 @@ constexpr char product_license[] {PRODUCT_LICENSE};
 /// 项目许可。
 #define PROJECT_LICENSE       "@PROJECT_LICENSE@"
 
-namespace rrdllcxx {
+namespace rrdllx {
 
 /// 项目名。
 constexpr char project_name[] {PROJECT_NAME};
@@ -93,6 +93,6 @@ constexpr char project_authors[] {PROJECT_AUTHORS};
 /// 项目许可。
 constexpr char project_license[] {PROJECT_LICENSE};
 
-}//namespace rrdllcxx
+}//namespace rrdllx
 
-#endif//RRDLLCXX_CFG_HXX_
+#endif//RRDLLX_CFG_HXX_

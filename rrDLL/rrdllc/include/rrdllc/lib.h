@@ -20,14 +20,19 @@
 
 #include "rrdllc/api.h"
 
-/*------------------------------------------------------------------------------
- * TYPES
+/*==============================================================================
+ *  _______   _______ _____ _____
+ * |_   _\ \ / / ___ \  ___/  ___|
+ *   | |  \ V /| |_/ / |__ \ `--.
+ *   | |   \ / |  __/|  __| `--. \
+ *   | |   | | | |   | |___/\__/ /
+ *   \_/   \_/ \_|   \____/\____/
  */
 
 /**
  * \brief 状态码。
  */
-enum rrdllc_status_t {
+typedef enum rrdllc_status_t {
     rrdllc_success = 0,
 
     rrdllc_exception,
@@ -58,38 +63,43 @@ enum rrdllc_status_t {
     rrdllc_bad_array_new_length,
     rrdllc_bad_exception,
     rrdllc_bad_variant_access,
-};
+} rrdllc_status_t;
 
 /**
  * \brief 版本。
  */
-struct rrdllc_version_t {
+typedef struct rrdllc_version_t {
     int major;  /**< 主版本号。 */
     int minor;  /**< 次版本号。 */
     int patch;  /**< 补丁版本号。 */
     int tweak;  /**< 微调版本号。 */
-};
+} rrdllc_version_t;
 
-/*------------------------------------------------------------------------------
- * FUNCTIONS
+/*==============================================================================
+ * ______ _   _ _   _ _____ _____ _____ _____ _   _  _____
+ * |  ___| | | | \ | /  __ \_   _|_   _|  _  | \ | |/  ___|
+ * | |_  | | | |  \| | /  \/ | |   | | | | | |  \| |\ `--.
+ * |  _| | | | | . ` | |     | |   | | | | | | . ` | `--. \
+ * | |   | |_| | |\  | \__/\ | |  _| |_\ \_/ / |\  |/\__/ /
+ * \_|    \___/\_| \_/\____/ \_/  \___/ \___/\_| \_/\____/
  */
 
 /**
  * \brief 获取版本。
  *
- * \param[out] pv 版本指针（pointer to version）
+ * \param[out] rv 版本引用（reference to version）
  */
-RRDLLC_APIp enum rrdllc_status_t
-RRDLLC_APIm rrdllc_version(struct rrdllc_version_t *pv)
+RRDLLC_APIp rrdllc_status_t
+RRDLLC_APIm rrdllc_version(rrdllc_version_t *rv)
 RRDLLC_APIs;
 
 /**
  * \brief 叹。
  *
- * \param[out] pt 时间指针（pointer to time）
+ * \param[out] rt 时间引用（reference to time）
  */
-RRDLLC_APIp enum rrdllc_status_t
-RRDLLC_APIm rrdllc_sigh(time_t *pt)
+RRDLLC_APIp rrdllc_status_t
+RRDLLC_APIm rrdllc_sigh(time_t *rt)
 RRDLLC_APIs;
 
 #endif/*RRDLLC_LIB_H_*/

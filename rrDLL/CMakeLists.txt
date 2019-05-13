@@ -2,7 +2,7 @@
 #           |  _  \ |    | |
 #  _ __ _ __| | | | |    | |
 # | '__| '__| | | | |    | |     zhengrr
-# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-04-17
+# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-05-10
 # |_|  |_|  |___/ \_____/\_____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrDLL
-  VERSION   2018.04.17
+  VERSION   2018.05.10
   LANGUAGES C CXX)
 
 add_compile_options_ex(
@@ -19,6 +19,7 @@ add_compile_options_ex(
   UTF-8
   WARNING_AS_ERROR)
 
+# rrDLLc (c library)
 configure_file("rrdllc/src/cfg.h.in" "rrdllc/src/cfg.h" @ONLY)
 aux_source_directory_con("rrdllc/include"                         zInc RECURSE PREFIX "include")
 aux_source_directory_con("rrdllc/src"                             zSrc RECURSE PREFIX "src")
@@ -29,40 +30,55 @@ add_library_con(
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PUBLIC  "RRDLLC_SHARED"
-  INCLUDE_DIRECTORIES PUBLIC  "."
-                              "rrdllc/include"
+                      PRIVATE "RRDLLC_EXPORTS"
+  INCLUDE_DIRECTORIES PUBLIC  "rrdllc/include"
                       PRIVATE "rrdllc/src"
                               "${CMAKE_CURRENT_BINARY_DIR}/rrdllc/src")
+install(
+  DIRECTORY   "rrdllc/include/"
+  DESTINATION "include/")
 
-configure_file("rrdllcxx/src/cfg.hxx.in" "rrdllcxx/src/cfg.hxx" @ONLY)
-aux_source_directory_con("rrdllcxx/include"                         zInc RECURSE PREFIX "include")
-aux_source_directory_con("rrdllcxx/src"                             zSrc RECURSE PREFIX "src")
-aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrdllcxx/src" zGen RECURSE PREFIX "generated")
+# rrDLLx (cxx library)
+configure_file("rrdllx/src/cfg.hxx.in" "rrdllx/src/cfg.hxx" @ONLY)
+aux_source_directory_con("rrdllx/include"                         zInc RECURSE PREFIX "include")
+aux_source_directory_con("rrdllx/src"                             zSrc RECURSE PREFIX "src")
+aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrdllx/src" zGen RECURSE PREFIX "generated")
 add_library_con(
-  rrDLLcxx
+  rrDLLx
   SHARED              ${zInc} ${zSrc} ${zGen}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
-  COMPILE_DEFINITIONS PUBLIC  "RRDLLCXX_SHARED"
-  INCLUDE_DIRECTORIES PUBLIC  "."
-                              "rrdllcxx/include"
-                      PRIVATE "rrdllcxx/src"
-                              "${CMAKE_CURRENT_BINARY_DIR}/rrdllcxx/src")
+  COMPILE_DEFINITIONS PUBLIC  "RRDLLX_SHARED"
+                      PRIVATE "RRDLLX_EXPORTS"
+  INCLUDE_DIRECTORIES PUBLIC  "rrdllx/include"
+                      PRIVATE "rrdllx/src"
+                              "${CMAKE_CURRENT_BINARY_DIR}/rrdllx/src")
+install(
+  DIRECTORY   "rrdllx/include/"
+  DESTINATION "include/")
 
-aux_source_directory_con("rrexec/src" zSrc RECURSE PREFIX "src")
+# rrDLLe (c executable)
+find_package(Check)
+aux_source_directory_con("rrdlle" zSrc RECURSE)
 add_executable_con(
-  rrEXEc              ${zSrc}
+  rrDLLe              ${zSrc}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrexec/src"
-  LINK_LIBRARIES      rrDLLc
-                      rrDLLcxx)
+  INCLUDE_DIRECTORIES PRIVATE "rrdlle"
+  LINK_LIBRARIES      PRIVATE rrDLLc
+                              rrDLLx
+                              Check::check)
 
-aux_source_directory_con("rrexecxx/src" zSrc RECURSE PREFIX "src")
+# rrDLLz (cxx execatable)
+conan_cmake_run(
+  REQUIRES    gtest/1.8.1@bincrafters/stable
+  BASIC_SETUP CMAKE_TARGETS)
+aux_source_directory_con("rrdllz" zSrc RECURSE)
 add_executable_con(
-  rrEXEcxx            ${zSrc}
+  rrDLLz              ${zSrc}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrexecxx/src"
-  LINK_LIBRARIES      rrDLLc
-                      rrDLLcxx)
+  INCLUDE_DIRECTORIES PRIVATE "rrdllz"
+  LINK_LIBRARIES      PRIVATE rrDLLc
+                              rrDLLx
+                              CONAN_PKG::gtest)
