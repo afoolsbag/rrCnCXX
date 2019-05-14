@@ -4,7 +4,7 @@
 /// \brief 配置。
 /// \details 名称、版本、作者、版权等信息。
 ///
-/// \version 2019-05-10
+/// \version 2019-05-14
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -16,8 +16,6 @@
 #define RRDLLX_CFG_HXX_
 
 #include <cstdint>
-
-using namespace std;
 
 /// 产品名。
 #define PRODUCT_NAME          "@PRODUCT_NAME@"
@@ -43,13 +41,13 @@ constexpr char product_name[] {PRODUCT_NAME};
 /// 产品版本。
 constexpr char product_version[] {PRODUCT_VERSION};
 /// 产品主版本号。
-constexpr intmax_t product_version_major {PRODUCT_VERSION_MAJOR};
+constexpr std::intmax_t product_version_major {PRODUCT_VERSION_MAJOR};
 /// 产品次版本号。
-constexpr intmax_t product_version_minor {PRODUCT_VERSION_MINOR};
+constexpr std::intmax_t product_version_minor {PRODUCT_VERSION_MINOR};
 /// 产品补丁版本号。
-constexpr intmax_t product_version_patch {PRODUCT_VERSION_PATCH};
+constexpr std::intmax_t product_version_patch {PRODUCT_VERSION_PATCH};
 /// 产品微调版本号。
-constexpr intmax_t product_version_tweak {PRODUCT_VERSION_TWEAK};
+constexpr std::intmax_t product_version_tweak {PRODUCT_VERSION_TWEAK};
 /// 产品作者。
 constexpr char product_authors[] {PRODUCT_AUTHORS};
 /// 产品许可。
@@ -81,13 +79,13 @@ constexpr char project_name[] {PROJECT_NAME};
 /// 项目版本。
 constexpr char project_version[] {PROJECT_VERSION};
 /// 项目主版本号。
-constexpr intmax_t project_version_major {PROJECT_VERSION_MAJOR};
+constexpr std::intmax_t project_version_major {PROJECT_VERSION_MAJOR};
 /// 项目次版本号。
-constexpr intmax_t project_version_minor {PROJECT_VERSION_MINOR};
+constexpr std::intmax_t project_version_minor {PROJECT_VERSION_MINOR};
 /// 项目补丁版本号。
-constexpr intmax_t project_version_patch {PROJECT_VERSION_PATCH};
+constexpr std::intmax_t project_version_patch {PROJECT_VERSION_PATCH};
 /// 项目微调版本号。
-constexpr intmax_t project_version_tweak {PROJECT_VERSION_TWEAK};
+constexpr std::intmax_t project_version_tweak {PROJECT_VERSION_TWEAK};
 /// 项目作者。
 constexpr char project_authors[] {PROJECT_AUTHORS};
 /// 项目许可。

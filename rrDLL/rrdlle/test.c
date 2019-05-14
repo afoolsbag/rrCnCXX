@@ -13,7 +13,7 @@
 #include <check.h>
 
 #include <rrdllc/lib.h>
-#include <rrdllx/lib.h>
+#include <rrdllx/rrdllx.h>
 
 START_TEST(tf_rrdllc_version)
 {
@@ -29,39 +29,57 @@ START_TEST(tf_rrdllx_version)
 }
 END_TEST;
 
-START_TEST(tf_rrdllx_string)
+START_TEST(tf_rrdllx_zstring)
 {
     rrdllx_handle_t h = NULL;
     ck_assert(rrdllx_construct(&h) == rrdllx_success);
 
-    rrdllx_string_t s;
-    ck_assert(rrdllx_alloc_string(h, NULL, &s) == rrdllx_invalid_argument_reference_to_notnull);
+    rrdllx_zstring_t z;
+    ck_assert(rrdllx_alloc_zstring(h, &z) == rrdllx_invalid_argument_reference_to_notnull);
 
-    s = NULL;
-    ck_assert(rrdllx_alloc_string(h, NULL, &s) == rrdllx_success);
-    ck_assert(rrdllx_free_string(h, s) == rrdllx_success);
+    z = NULL;
+    ck_assert(rrdllx_alloc_zstring(h, &z) == rrdllx_success);
+    ck_assert(rrdllx_free_zstring(h, z) == rrdllx_success);
 
-    ck_assert(rrdllx_free_string(h, s) == rrdllx_out_of_range_instance_string);
+    ck_assert(rrdllx_free_zstring(h, z) == rrdllx_out_of_range_instance_zstring);
 
-    rrdllx_destruct(h);
+    ck_assert(rrdllx_destruct(h) == rrdllx_success);
 }
 END_TEST;
 
-START_TEST(tf_rrdllx_string_array)
+START_TEST(tf_rrdllx_zstring_array)
 {
     rrdllx_handle_t h = NULL;
     ck_assert(rrdllx_construct(&h) == rrdllx_success);
 
-    rrdllx_string_array_t a;
-    ck_assert(rrdllx_alloc_string_array(h, &a) == rrdllx_invalid_argument_reference_to_notnull);
+    rrdllx_zstring_array_t za;
+    ck_assert(rrdllx_alloc_zstring_array(h, &za) == rrdllx_invalid_argument_reference_to_notnull);
 
-    a = NULL;
-    ck_assert(rrdllx_alloc_string_array(h, &a) == rrdllx_success);
-    ck_assert(rrdllx_free_string_array(h, a) == rrdllx_success);
+    za = NULL;
+    ck_assert(rrdllx_alloc_zstring_array(h, &za) == rrdllx_success);
+    ck_assert(rrdllx_free_zstring_array(h, za) == rrdllx_success);
 
-    ck_assert(rrdllx_free_string_array(h, a) == rrdllx_out_of_range_instance_string_array);
+    ck_assert(rrdllx_free_zstring_array(h, za) == rrdllx_out_of_range_instance_zstring_array);
 
-    rrdllx_destruct(h);
+    ck_assert(rrdllx_destruct(h) == rrdllx_success);
+}
+END_TEST;
+
+START_TEST(tf_rrdllx_binary)
+{
+    rrdllx_handle_t h = NULL;
+    ck_assert(rrdllx_construct(&h) == rrdllx_success);
+
+    rrdllx_binary_t b;
+    ck_assert(rrdllx_alloc_binary(h, &b) == rrdllx_invalid_argument_reference_to_notnull);
+
+    b = NULL;
+    ck_assert(rrdllx_alloc_binary(h, &b) == rrdllx_success);
+    ck_assert(rrdllx_free_binary(h, b) == rrdllx_success);
+
+    ck_assert(rrdllx_free_binary(h, b) == rrdllx_out_of_range_instance_binary);
+
+    ck_assert(rrdllx_destruct(h) == rrdllx_success);
 }
 END_TEST;
 
@@ -71,8 +89,9 @@ TCase *tc(void)
     tcase_set_timeout(tc, 0);
     tcase_add_test(tc, tf_rrdllc_version);
     tcase_add_test(tc, tf_rrdllx_version);
-    tcase_add_test(tc, tf_rrdllx_string);
-    tcase_add_test(tc, tf_rrdllx_string_array);
+    tcase_add_test(tc, tf_rrdllx_zstring);
+    tcase_add_test(tc, tf_rrdllx_zstring_array);
+    tcase_add_test(tc, tf_rrdllx_binary);
     return tc;
 }
 

@@ -34,10 +34,16 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRDLLX_LIB_H_
-#define RRDLLX_LIB_H_
+#ifndef RRDLLX_RRDLLX_INTF_H_
+#define RRDLLX_RRDLLX_INTF_H_
 
-#include "rrdllx/api.h"
+#ifdef __cplusplus
+#include <cstdint>
+#else
+#include <stdint.h>
+#endif
+
+#include "api.h"
 
 /*==============================================================================
  *  _______   _______ _____ _____
@@ -87,9 +93,11 @@ typedef enum rrdllx_status_t {
     rrdllx_invalid_argument_reference_to_notnull,
 
     rrdllx_out_of_range_handle,
-    rrdllx_out_of_range_instance_string,
-    rrdllx_out_of_range_instance_string_index,
-    rrdllx_out_of_range_instance_string_array,
+    rrdllx_out_of_range_instance_zstring,
+    rrdllx_out_of_range_instance_zstring_array,
+    rrdllx_out_of_range_instance_zstring_array_vector,
+    rrdllx_out_of_range_instance_binary,
+    rrdllx_out_of_range_instance_binary_data,
 
     rrdllx_unexpected_exception
 } rrdllx_status_t;
@@ -97,7 +105,7 @@ typedef enum rrdllx_status_t {
 /**
  * \brief 版本。
  */
-typedef struct rrdllx_version_t {
+typedef struct {
     int major;  /**< 主版本号。 */
     int minor;  /**< 次版本号。 */
     int patch;  /**< 补丁版本号。 */
@@ -107,25 +115,30 @@ typedef struct rrdllx_version_t {
 /**
  * \brief 实例句柄。
  */
-typedef struct rrdllx_t *rrdllx_handle_t;
+typedef void
+*rrdllx_handle_t;
 
 /**
- * \brief 字符串。
+ * \brief 空终止字符串。
  */
-typedef const char *rrdllx_string_t;
+typedef const char
+rrdllx_zstring_deref_t[], *rrdllx_zstring_t;
 
 /**
- * \brief 字符串索引。
+ * \brief 空终止字符串数组。
  */
-typedef const rrdllx_string_t *rrdllx_string_index_t;
+typedef struct {
+    const size_t                  count;
+    const rrdllx_zstring_t *const vector;
+} rrdllx_zstring_array_deref_t, *rrdllx_zstring_array_t;
 
 /**
- * \brief 字符串数组。
+ * \brief 二进制数据。
  */
-typedef struct rrdllx_string_array_dereference_t {
-    const size_t                c;  /** 数目（counter） */
-    const rrdllx_string_index_t v;  /** 数组（vector）  */
-} *rrdllx_string_array_t;
+typedef struct {
+    const size_t         size;
+    const uint8_t *const data;
+} rrdllx_binary_deref_t, *rrdllx_binary_t;
 
 /*==============================================================================
  * ______ _   _ _   _ _____ _____ _____ _____ _   _  _____
@@ -166,48 +179,69 @@ RRDLLX_APIm rrdllx_destruct(rrdllx_handle_t h)
 RRDLLX_APIs;
 
 /**
- * \brief 分配字符串，并纳入实例资源管理。
+ * \brief 分配空终止字符串，并纳入实例资源管理。
  *
  * \param[in]  h  实例句柄（handle）
- * \param[in]  v  输入的字符串值（value of string）
- * \param[out] rs 输出的字符串引用（reference to string）
+ * \param[out] rz 空终止字符串引用（reference to zstring）
  *
- * \pre `assert(*rs == NULL)`
+ * \pre `assert(*rz == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_alloc_string(rrdllx_handle_t h, rrdllx_string_t v, rrdllx_string_t *rs)
+RRDLLX_APIm rrdllx_alloc_zstring(rrdllx_handle_t h, rrdllx_zstring_t *rz)
 RRDLLX_APIs;
 
 /**
- * \brief 释放实例字符串。
+ * \brief 释放实例管理的空终止字符串。
  *
  * \param h 实例句柄（handle）
- * \param s 字符串（string）
+ * \param z 空终止字符串（zstring）
  */
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_free_string(rrdllx_handle_t h, rrdllx_string_t s)
+RRDLLX_APIm rrdllx_free_zstring(rrdllx_handle_t h, rrdllx_zstring_t z)
 RRDLLX_APIs;
 
 /**
- * \brief 分配字符串数组，并纳入实例资源管理。
+ * \brief 分配空终止字符串数组，并纳入实例资源管理。
+ *
+ * \param[in]  h   实例句柄（handle）
+ * \param[out] rza 空终止字符串数组引用（reference to zstring array）
+ *
+ * \pre `assert(*rza == NULL)`
+ */
+RRDLLX_APIp rrdllx_status_t
+RRDLLX_APIm rrdllx_alloc_zstring_array(rrdllx_handle_t h, rrdllx_zstring_array_t *rza)
+RRDLLX_APIs;
+
+/**
+ * \brief 释放实例管理的空终止字符串数组。
+ *
+ * \param h 实例句柄（handle）
+ * \param za 空终止字符串数组（zstring array）
+ */
+RRDLLX_APIp rrdllx_status_t
+RRDLLX_APIm rrdllx_free_zstring_array(rrdllx_handle_t h, rrdllx_zstring_array_t za)
+RRDLLX_APIs;
+
+/**
+ * \brief 分配二进制数据，并纳入实例资源管理。
  *
  * \param[in]  h  实例句柄（handle）
- * \param[out] ra 字符串数组引用（reference to string array）
+ * \param[out] rb 二进制数据引用（reference to binary）
  *
- * \pre `assert(*ra == NULL)`
+ * \pre `assert(*rb == NULL)`
  */
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_alloc_string_array(rrdllx_handle_t h, rrdllx_string_array_t *ra)
+RRDLLX_APIm rrdllx_alloc_binary(rrdllx_handle_t h, rrdllx_binary_t *rb)
 RRDLLX_APIs;
 
 /**
- * \brief 释放实例字符串数组。
+ * \brief 释放实例管理的二进制数据。
  *
  * \param h 实例句柄（handle）
- * \param a 字符串数组（string array）
+ * \param b 二进制数据（binary）
  */
 RRDLLX_APIp rrdllx_status_t
-RRDLLX_APIm rrdllx_free_string_array(rrdllx_handle_t h, rrdllx_string_array_t a)
+RRDLLX_APIm rrdllx_free_binary(rrdllx_handle_t h, rrdllx_binary_t b)
 RRDLLX_APIs;
 
 /**
@@ -219,4 +253,4 @@ RRDLLX_APIp rrdllx_status_t
 RRDLLX_APIm rrdllx_free_all(rrdllx_handle_t h)
 RRDLLX_APIs;
 
-#endif/*RRDLLX_LIB_H_*/
+#endif/*RRDLLX_RRDLLX_INTF_H_*/
