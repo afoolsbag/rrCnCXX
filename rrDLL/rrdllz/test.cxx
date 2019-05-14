@@ -13,7 +13,7 @@
 #include <gtest/gtest.h>
 
 #include "rrdllc/lib.h"
-#include "rrdllx/lib.hxx"
+#include "rrdllx/rrdllx.hxx"
 
 using namespace std;
 

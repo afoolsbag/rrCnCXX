@@ -36,7 +36,7 @@ using zstring_array_t = rrdllx_zstring_array_t;
 using binary_deref_t = rrdllx_binary_deref_t;
 using binary_t = rrdllx_binary_t;
 
-class exception_t: public std::exception {
+class exception_t final: public std::exception {
 public:
     explicit exception_t(status_t status): status_ {status} {}
     [[nodiscard]] status_t status() const { return status_; }
@@ -46,20 +46,20 @@ private:
 
 class rrdllx_t final {
 public:
-    static handle_t   alloc_instance();
-    static rrdllx_t & instance(handle_t handle);
-    static void       free_instance(handle_t handle);
+    [[nodiscard]] static handle_t alloc_instance();
+    static rrdllx_t &             instance(handle_t handle);
+    static void                   free_instance(handle_t handle);
 
-    zstring_t         alloc_zstring(const std::string &value);
-    void              free_zstring(zstring_t zstring);
+    [[nodiscard]] zstring_t       alloc_zstring(const std::string &value);
+    void                          free_zstring(zstring_t zstring);
 
-    zstring_array_t   alloc_zstring_array(const std::vector<std::string> &value);
-    void              free_zstring_array(zstring_array_t zstring_array);
+    [[nodiscard]] zstring_array_t alloc_zstring_array(const std::vector<std::string> &value);
+    void                          free_zstring_array(zstring_array_t zstring_array);
 
-    binary_t          alloc_binary(const std::vector<std::uint8_t> &value);
-    void              free_binary(binary_t binary);
+    [[nodiscard]] binary_t        alloc_binary(const std::vector<std::uint8_t> &value);
+    void                          free_binary(binary_t binary);
 
-    void              free_all();
+    void                          free_all();
 
 private:
     static std::map<handle_t, std::unique_ptr<rrdllx_t>>              instance_map_;

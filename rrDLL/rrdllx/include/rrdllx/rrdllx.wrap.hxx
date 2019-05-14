@@ -31,7 +31,7 @@ using zstring_array_t = rrdllx_zstring_array_t;
 using binary_deref_t = rrdllx_binary_deref_t;
 using binary_t = rrdllx_binary_t;
 
-class exception_t: public std::exception {
+class exception_t final: public std::exception {
 public:
     explicit exception_t(status_t status): status_ {status} {}
     [[nodiscard]] status_t status() const { return status_; }
