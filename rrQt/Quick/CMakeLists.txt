@@ -1,6 +1,6 @@
 aux_source_directory_con("." zSrc QT)
 add_executable_con(
-  rrQtAppQuick   WIN32
+  rrQtQuick      WIN32
                  ${zSrc}
   PROPERTIES     CXX_STANDARD          17
                  CXX_STANDARD_REQUIRED ON

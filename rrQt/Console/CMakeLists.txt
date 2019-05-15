@@ -1,11 +1,7 @@
 aux_source_directory_con("." zSrc QT)
 add_executable_con(
-  rrQtAppWidget  WIN32
-                 ${zSrc}
+  rrQtConsole    ${zSrc}
   PROPERTIES     CXX_STANDARD          17
                  CXX_STANDARD_REQUIRED ON
                  AUTOMOC               ON
-                 AUTOUIC               ON
-  LINK_LIBRARIES Qt5::Core
-                 Qt5::Gui
-                 Qt5::Widgets)
+  LINK_LIBRARIES Qt5::Core)

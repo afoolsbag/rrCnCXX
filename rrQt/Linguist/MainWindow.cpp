@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 
 #include <QtCore/QDir>
+#include <QtCore/QRegularExpression>
 #include <QtCore/QTranslator>
 #include <QtWidgets/QMessageBox>
 
@@ -40,13 +41,13 @@ void MainWindow::loadLanguage(const QLocale &locale)
     }
 
     const auto qms {QDir(languagesDirectory).entryList()};
-    const QRegularExpression re {locale.name() + QStringLiteral("[.]qm$")};
+    const QRegularExpression re {locale.name() + QStringLiteral(R"(\.qm$)")};
 
     for (const auto &qm : qms) {
         if (!re.match(qm).hasMatch())
             continue;
         const auto translator = new QTranslator(this);
-        translator->load(qm);
+        translator->load(languagesDirectory + "/" + qm);
         qApp->installTranslator(translator);
         translators.append(translator);
     }

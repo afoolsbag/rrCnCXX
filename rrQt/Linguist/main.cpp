@@ -6,7 +6,7 @@
 //! \sa <https://doc.qt.io/qt-5/i18n-source-translation.html>
 //!
 //! \author zhengrr
-//! \version 2018-11-28
+//! \version 2019-05-15
 //! \sinve 2017-12-25
 //! \copyright Unlicense
 //!
