@@ -104,7 +104,12 @@ function(add_doxygen_con _NAME)
 
   # option
   string(REGEX REPLACE "^${_PROJECT_NAME_UPPER}" "" sTrimmedNameUpper "${_NAME_UPPER}")
-  set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_DOCUMENTATION)
+  string(LENGTH "${sTrimmedNameUpper}" sLen)
+  if(0 LESS sLen)
+    set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_DOCUMENTATION)
+  else()
+    set(vOptVar ${_PROJECT_NAME_UPPER}_DOCUMENTATION)
+  endif()
   option(${vOptVar} "Build ${_NAME} documentation." ${DOXYGEN_FOUND})
   if(NOT ${vOptVar})
     return()

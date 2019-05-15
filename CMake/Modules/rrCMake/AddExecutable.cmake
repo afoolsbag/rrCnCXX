@@ -177,7 +177,12 @@ function(add_executable_con _NAME)
 
   # option
   string(REGEX REPLACE "^${_PROJECT_NAME_UPPER}" "" sTrimmedNameUpper "${_NAME_UPPER}")
-  set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_EXECUTABLE)
+  string(LENGTH "${sTrimmedNameUpper}" sLen)
+  if(0 LESS sLen)
+    set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_EXECUTABLE)
+  else()
+    set(vOptVar ${_PROJECT_NAME_UPPER}_EXECUTABLE)
+  endif()
   option(${vOptVar} "Build ${_NAME} executable." ON)
   if(NOT ${vOptVar})
     return()

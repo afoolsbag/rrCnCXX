@@ -14,6 +14,10 @@ if(NOT COMMAND find_package_handle_standard_args)
   include(FindPackageHandleStandardArgs)
 endif()
 
+if(NOT COMMAND get_address_model_tag)
+  include("${CMAKE_CURRENT_LIST_DIR}/rrCMake/LibraryTag.cmake")
+endif()
+
 #.rst:
 # FindQt5Package
 # --------------
@@ -53,7 +57,9 @@ if(Qt5Package_FOUND)
 endif()
 
 # hints
-set(zHints "${Qt5_ROOT}" "$ENV{Qt5_ROOT}" "$ENV{QTDIR}")
+get_address_model_tag(sTag)
+set(zHints "${Qt5_${sTag}_ROOT}" "$ENV{Qt5_${sTag}_ROOT}" "$ENV{QTDIR${sTag}}"
+           "${Qt5_ROOT}"         "$ENV{Qt5_ROOT}"         "$ENV{QTDIR}")
 
 # prefix
 find_path(Qt5Package_PREFIX_PATH

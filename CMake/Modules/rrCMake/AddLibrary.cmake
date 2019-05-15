@@ -191,7 +191,12 @@ function(add_library_con _NAME)
 
   # option
   string(REGEX REPLACE "^${_PROJECT_NAME_UPPER}" "" sTrimmedNameUpper "${_NAME_UPPER}")
-  set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_${_TYPE_UPPER}_LIBRARY)
+  string(LENGTH "${sTrimmedNameUpper}" sLen)
+  if(0 LESS sLen)
+    set(vOptVar ${_PROJECT_NAME_UPPER}_${sTrimmedNameUpper}_${_TYPE_UPPER}_LIBRARY)
+  else()
+    set(vOptVar ${_PROJECT_NAME_UPPER}_${_TYPE_UPPER}_LIBRARY)
+  endif()
   option(${vOptVar} "Build ${_NAME} ${_TYPE_LOWER} library." ON)
   if(NOT ${vOptVar})
     return()
