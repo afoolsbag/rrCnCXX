@@ -38,8 +38,10 @@
 #define RRDLLX_RRDLLX_INTF_H_
 
 #ifdef __cplusplus
+#include <cstddef>
 #include <cstdint>
 #else
+#include <stddef.h>
 #include <stdint.h>
 #endif
 
