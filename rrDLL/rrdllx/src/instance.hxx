@@ -1,9 +1,9 @@
-//===-- rrDLLx --------------------------------------------------*- C++ -*-===//
+//===-- Instance ------------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 库 rrDLLx 的实现。
+/// \brief 库 rrDLLx 的 C++ 实例类。
 ///
-/// \version 2019-05-14
+/// \version 2019-05-17
 /// \since 2019-05-14
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -11,8 +11,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRDLLX_RRDLLX_IMPL_HXX_
-#define RRDLLX_RRDLLX_IMPL_HXX_
+#ifndef RRDLLX_INSTANCE_HXX_
+#define RRDLLX_INSTANCE_HXX_
 
 #include <cstdint>
 #include <exception>
@@ -23,7 +23,7 @@
 #include <string>
 #include <vector>
 
-#include "rrdllx/rrdllx.intf.h"
+#include "rrdllx/rrdllx.h"
 
 namespace rrdllx {
 
@@ -36,9 +36,9 @@ using zstring_array_t = rrdllx_zstring_array_t;
 using binary_deref_t = rrdllx_binary_deref_t;
 using binary_t = rrdllx_binary_t;
 
-class exception_t final: public std::exception {
+class exception_t final : public std::exception {
 public:
-    explicit exception_t(status_t status): status_ {status} {}
+    explicit exception_t(status_t status) : status_{status} {}
     [[nodiscard]] status_t status() const { return status_; }
 private:
     status_t status_;
@@ -62,19 +62,19 @@ public:
     void                          free_all();
 
 private:
-    static std::map<handle_t, std::unique_ptr<rrdllx_t>>              instance_map_;
+    static std::map<handle_t, std::unique_ptr<rrdllx_t>>              instance_owner_;
 
-    std::map<zstring_t, std::unique_ptr<zstring_deref_t>>             zstring_map_;
+    std::map<zstring_t, std::unique_ptr<zstring_deref_t>>             zstring_owner_;
 
-    std::map<zstring_array_t, std::unique_ptr<zstring_array_deref_t>> zstring_array_map_;
-    std::map<const zstring_t *, std::unique_ptr<const zstring_t[]>>   zstring_array_vector_map_;
+    std::map<zstring_array_t, std::unique_ptr<zstring_array_deref_t>> zstring_array_owner_;
+    std::map<const zstring_t *, std::unique_ptr<const zstring_t[]>>   zstring_array_vector_owner_;
 
-    std::map<binary_t, std::unique_ptr<binary_deref_t>>               binary_map_;
-    std::map<const uint8_t *, std::unique_ptr<const uint8_t[]>>       binary_data_map_;
+    std::map<binary_t, std::unique_ptr<binary_deref_t>>               binary_owner_;
+    std::map<const uint8_t *, std::unique_ptr<const uint8_t[]>>       binary_data_owner_;
 
     using zstring_delete_t = std::function<void(zstring_t)>;
-    const zstring_delete_t                                            zstring_delete_ {std::bind(&rrdllx_t::free_zstring, this, std::placeholders::_1)};
-    std::unique_ptr<zstring_deref_t, zstring_delete_t>                zstring_unique_ptr_ {nullptr, zstring_delete_};
+    const zstring_delete_t                                            zstring_delete_{std::bind(&rrdllx_t::free_zstring, this, std::placeholders::_1)};
+    std::unique_ptr<zstring_deref_t, zstring_delete_t>                zstring_unique_ptr_{nullptr, zstring_delete_};
 };//class rrdllx_t
 
 }//namespace rrdllx
@@ -119,4 +119,4 @@ private:
         return rrdllx_unexpected_exception;                                    \
     }
 
-#endif//RRDLLX_RRDLLX_IMPL_HXX_
+#endif//RRDLLX_INSTANCE_HXX_

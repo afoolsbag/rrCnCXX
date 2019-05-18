@@ -1,6 +1,6 @@
 /*===-- Executable ---------------------------------------------*- C -*-===*//**
  *
- * \version 2019-05-13
+ * \version 2019-05-18
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -31,55 +31,60 @@ END_TEST;
 
 START_TEST(tf_rrdllx_zstring)
 {
-    rrdllx_handle_t h = NULL;
-    ck_assert(rrdllx_construct(&h) == rrdllx_success);
+    static const rrdllx_zstring_t val = "wahyayayah";
 
-    rrdllx_zstring_t z;
-    ck_assert(rrdllx_alloc_zstring(h, &z) == rrdllx_invalid_argument_reference_to_notnull);
+    rrdllx_handle_t hdl = NULL;
+    ck_assert(rrdllx_construct(&hdl) == rrdllx_success);
 
-    z = NULL;
-    ck_assert(rrdllx_alloc_zstring(h, &z) == rrdllx_success);
-    ck_assert(rrdllx_free_zstring(h, z) == rrdllx_success);
+    rrdllx_zstring_t ztr;
+    ck_assert(rrdllx_alloc_zstring(hdl, val, &ztr) == rrdllx_dereference_not_initialized);
+    ztr = NULL;
+    ck_assert(rrdllx_alloc_zstring(hdl, val, &ztr) == rrdllx_success);
 
-    ck_assert(rrdllx_free_zstring(h, z) == rrdllx_out_of_range_instance_zstring);
+    ck_assert(rrdllx_free_zstring(hdl, ztr) == rrdllx_success);
+    ck_assert(rrdllx_free_zstring(hdl, ztr) == rrdllx_instance_zstring_not_found);
 
-    ck_assert(rrdllx_destruct(h) == rrdllx_success);
+    ck_assert(rrdllx_destruct(hdl) == rrdllx_success);
 }
 END_TEST;
 
 START_TEST(tf_rrdllx_zstring_array)
 {
-    rrdllx_handle_t h = NULL;
-    ck_assert(rrdllx_construct(&h) == rrdllx_success);
+    static const rrdllx_zstring_t val[] = {"str1", "str2", "str3"};
+    static const size_t cnt = sizeof val / sizeof *val;
 
-    rrdllx_zstring_array_t za;
-    ck_assert(rrdllx_alloc_zstring_array(h, &za) == rrdllx_invalid_argument_reference_to_notnull);
+    rrdllx_handle_t hdl = NULL;
+    ck_assert(rrdllx_construct(&hdl) == rrdllx_success);
 
-    za = NULL;
-    ck_assert(rrdllx_alloc_zstring_array(h, &za) == rrdllx_success);
-    ck_assert(rrdllx_free_zstring_array(h, za) == rrdllx_success);
+    rrdllx_zstring_array_t ztr_arr;
+    ck_assert(rrdllx_alloc_zstring_array(hdl, val, cnt, &ztr_arr) == rrdllx_dereference_not_initialized);
+    ztr_arr = NULL;
+    ck_assert(rrdllx_alloc_zstring_array(hdl, val, cnt, &ztr_arr) == rrdllx_success);
 
-    ck_assert(rrdllx_free_zstring_array(h, za) == rrdllx_out_of_range_instance_zstring_array);
+    ck_assert(rrdllx_free_zstring_array(hdl, ztr_arr) == rrdllx_success);
+    ck_assert(rrdllx_free_zstring_array(hdl, ztr_arr) == rrdllx_instance_zstring_array_not_found);
 
-    ck_assert(rrdllx_destruct(h) == rrdllx_success);
+    ck_assert(rrdllx_destruct(hdl) == rrdllx_success);
 }
 END_TEST;
 
 START_TEST(tf_rrdllx_binary)
 {
-    rrdllx_handle_t h = NULL;
-    ck_assert(rrdllx_construct(&h) == rrdllx_success);
+    static const uint8_t val[] = "The binary value.";
+    static const size_t siz = sizeof val;
 
-    rrdllx_binary_t b;
-    ck_assert(rrdllx_alloc_binary(h, &b) == rrdllx_invalid_argument_reference_to_notnull);
+    rrdllx_handle_t hdl = NULL;
+    ck_assert(rrdllx_construct(&hdl) == rrdllx_success);
 
-    b = NULL;
-    ck_assert(rrdllx_alloc_binary(h, &b) == rrdllx_success);
-    ck_assert(rrdllx_free_binary(h, b) == rrdllx_success);
+    rrdllx_binary_t bin;
+    ck_assert(rrdllx_alloc_binary(hdl, val, siz, &bin) == rrdllx_dereference_not_initialized);
+    bin = NULL;
+    ck_assert(rrdllx_alloc_binary(hdl, val, siz, &bin) == rrdllx_success);
 
-    ck_assert(rrdllx_free_binary(h, b) == rrdllx_out_of_range_instance_binary);
+    ck_assert(rrdllx_free_binary(hdl, bin) == rrdllx_success);
+    ck_assert(rrdllx_free_binary(hdl, bin) == rrdllx_instance_binary_not_found);
 
-    ck_assert(rrdllx_destruct(h) == rrdllx_success);
+    ck_assert(rrdllx_destruct(hdl) == rrdllx_success);
 }
 END_TEST;
 
