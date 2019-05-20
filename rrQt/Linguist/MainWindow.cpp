@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <QtCore/QRegularExpression>
 #include <QtWidgets/QMessageBox>
 
 #include "TranslatorSwitcher.h"
