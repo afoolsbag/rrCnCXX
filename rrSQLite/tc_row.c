@@ -1,16 +1,20 @@
+/**
+ * \copyright Unlicense
+ */
+
 #include <stdio.h>
 #include <stdint.h>
 
-#include <check/check.h>
+#include <check.h>
 #include <sqlite3.h>
 
-#include "_test.h"
+#include "ts.h"
 
 static sqlite3 *db = NULL;
 
 static void setup(void)
 {
-    if (sqlite3_open("test.sqlite", &db) != SQLITE_OK)
+    if (sqlite3_open("test.sqlite3", &db) != SQLITE_OK)
         fprintf(stderr, "sqlite3_open failed: %s\n", sqlite3_errmsg(db));
 
     const char sql[] =
@@ -210,7 +214,7 @@ static void teardown(void)
 
 TCase *tc_row(void)
 {
-    TCase *const tc = tcase_create("row");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_unchecked_fixture(tc, setup, teardown);
     tcase_add_test(tc, tf_insert);
     tcase_add_test(tc, tf_select);

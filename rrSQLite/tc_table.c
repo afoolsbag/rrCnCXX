@@ -1,16 +1,27 @@
+/**
+ * \copyright Unlicense
+ */
+
 #include <stdio.h>
 
-#include <check/check.h>
+#include <check.h>
 #include <sqlite3.h>
 
-#include "_test.h"
+#include "ts.h"
 
 static sqlite3 *db = NULL;
 
 static void setup(void)
 {
-    if (sqlite3_open("test.sqlite", &db) != SQLITE_OK)
+    if (sqlite3_open("test.sqlite3", &db) != SQLITE_OK)
         fprintf(stderr, "sqlite3_open failed: %s\n", sqlite3_errmsg(db));
+}
+
+static void teardown(void)
+{
+    if (sqlite3_close(db) != SQLITE_OK)
+        fprintf(stderr, "sqlite3_close failed: %s\n", sqlite3_errmsg(db));
+    db = NULL;
 }
 
 /**
@@ -58,16 +69,9 @@ START_TEST(tf_autoincrement)
 }
 END_TEST;
 
-static void teardown(void)
-{
-    if (sqlite3_close(db) != SQLITE_OK)
-        fprintf(stderr, "sqlite3_close failed: %s\n", sqlite3_errmsg(db));
-    db = NULL;
-}
-
 TCase *tc_table(void)
 {
-    TCase *const tc = tcase_create("table");
+    TCase *const tc = tcase_create(__func__);
     tcase_add_unchecked_fixture(tc, setup, teardown);
     tcase_add_test(tc, tf_create_and_drop);
     tcase_add_test(tc, tf_autoincrement);
