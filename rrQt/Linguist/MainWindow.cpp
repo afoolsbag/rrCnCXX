@@ -6,97 +6,63 @@
 #include <QtCore/QTranslator>
 #include <QtWidgets/QMessageBox>
 
+#include "TranslatorSwitcher.h"
+
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent):
+MainWindow::MainWindow(QWidget *parent) :
     QMainWindow {parent},
     ui {new Ui::MainWindow},
-    actionGroupLanguages {new QActionGroup(this)},
-    languagesDirectory {QApplication::applicationDirPath() + QStringLiteral("/lang")}
+    switchLanguageActionGroup {new QActionGroup(this)}
 {
     ui->setupUi(this);
 
-    connect(actionGroupLanguages, &QActionGroup::triggered,
-            this, &MainWindow::on_actionGroupLanguages_triggered);
+    connect(switchLanguageActionGroup, &QActionGroup::triggered,
+        this, &MainWindow::on_switchLanguageActionGroup_triggered);
 
-    loadLanguage(QLocale::system());
-    loadMenuLanguages();
+    reloadMenuLanguages();
+
+    switchLanguage(QLocale::system());
 }
 
 MainWindow::~MainWindow()
 {
-    disconnect(actionGroupLanguages, &QActionGroup::triggered,
-               this, &MainWindow::on_actionGroupLanguages_triggered);
+    disconnect(switchLanguageActionGroup, &QActionGroup::triggered,
+        this, &MainWindow::on_switchLanguageActionGroup_triggered);
 
     delete ui;
 }
 
-void MainWindow::loadLanguage(const QLocale &locale)
+void MainWindow::switchLanguage(const QLocale &locale)
 {
-    while (!translators.empty()) {
-        const auto translator {translators.first()};
-        translators.removeFirst();
-        qApp->removeTranslator(translator);
-        delete translator;
-    }
-
-    const auto qms {QDir(languagesDirectory).entryList()};
-    const QRegularExpression re {locale.name() + QStringLiteral(R"(\.qm$)")};
-
-    for (const auto &qm : qms) {
-        if (!re.match(qm).hasMatch())
-            continue;
-        const auto translator = new QTranslator(this);
-        translator->load(languagesDirectory + "/" + qm);
-        qApp->installTranslator(translator);
-        translators.append(translator);
-    }
-
+    TranslatorSwitcher::instance()->switchLanguage(locale);
     ui->retranslateUi(this);
     ui->statusBar->showMessage(tr("Current Language changed to %1").arg(locale.nativeLanguageName()));
 }
 
-void MainWindow::loadMenuLanguages()
+void MainWindow::reloadMenuLanguages()
 {
-    for (const auto &action : actionGroupLanguages->actions())
-        actionGroupLanguages->removeAction(action);
+    for (const auto &action : switchLanguageActionGroup->actions())
+        switchLanguageActionGroup->removeAction(action);
     ui->menuLanguages->clear();
 
-    const auto qms {QDir(languagesDirectory).entryList()};
-    const QRegularExpression re {QStringLiteral("([a-z]{2}(_[A-Z]{2})?)[.]qm$")};
-
-    for (const auto &qm : qms) {
-        const auto rem {re.match(qm)};
-        if (!rem.hasMatch())
-            continue;
-
-        QLocale locale {rem.captured(1)};
-
-        const auto &localeIncluded = [&] {
-            for (const auto &action : ui->menuLanguages->actions())
-                if (action->data().toLocale() == locale)
-                    return true;
-            return false;
-        };
-
-        if (localeIncluded())
-            continue;
-
+    const auto locales = TranslatorSwitcher::instance()->scanLanguages();
+    for (const auto &locale : locales) {
         const auto action = new QAction(locale.nativeLanguageName(), ui->menuLanguages);
         action->setData(locale);
         ui->menuLanguages->addAction(action);
-        actionGroupLanguages->addAction(action);
+        switchLanguageActionGroup->addAction(action);
     }
-}
-
-void MainWindow::on_actionGroupLanguages_triggered(QAction *action)
-{
-    if (!action)
-        return;
-    loadLanguage(action->data().toLocale());
 }
 
 void MainWindow::on_popAMessageBox_clicked(bool)
 {
     QMessageBox::information(this, tr("A message Box"), tr("A message."));
+}
+
+void MainWindow::on_switchLanguageActionGroup_triggered(QAction* action)
+{
+    if (!action)
+        return;
+    switchLanguage(action->data().toLocale());
 }

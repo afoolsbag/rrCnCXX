@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<TS version="2.1" language="en">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="MainWindow.ui" line="14"/>
         <source>Linguist application</source>
-        <translation>Qt 多語言應用程式</translation>
+        <translation>Linguist application</translation>
     </message>
     <message>
         <location filename="MainWindow.ui" line="47"/>
         <source>Pop a message box</source>
-        <translation>彈出一個消息框</translation>
+        <translation>Pop a message box</translation>
     </message>
     <message>
         <location filename="MainWindow.ui" line="90"/>
         <source>Language(s)</source>
-        <translation>語言</translation>
+        <translation>Language(s)</translation>
     </message>
     <message>
         <location filename="MainWindow.cpp" line="40"/>
         <source>Current Language changed to %1</source>
-        <translation>當前語言已切換為%1</translation>
+        <translation>Current Language changed to %1</translation>
     </message>
     <message>
         <location filename="MainWindow.cpp" line="60"/>
         <source>A message Box</source>
-        <translation>一個消息框</translation>
+        <translation>A message Box</translation>
     </message>
     <message>
         <location filename="MainWindow.cpp" line="60"/>
         <source>A message.</source>
-        <translation>一段消息。</translation>
+        <translation>A message.</translation>
     </message>
 </context>
 </TS>

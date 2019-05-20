@@ -13,9 +13,10 @@
 
 # 风格
 
-["Qt Coding Style"](https://wiki.qt.io/Qt_Coding_Style). *Qt Wiki*.
-["Coding Conventions"](https://wiki.qt.io/Coding_Conventions). *Qt Wiki*.
-["QML Coding Conventions"](http://doc.qt.io/qt-5/qml-codingconventions.html). *Qt Documentation*.
+*   [“Qt Coding Style”](https://wiki.qt.io/Qt_Coding_Style). *Qt Wiki*.
+*   [*Designing Qt-Style C++ APIs*](https://doc.qt.io/archives/qq/qq13-apis.html)
+*   [“Coding Conventions”](https://wiki.qt.io/Coding_Conventions). *Qt Wiki*.
+*   ["QML Coding Conventions"](http://doc.qt.io/qt-5/qml-codingconventions.html). *Qt Documentation*.
 
 # 许可
 

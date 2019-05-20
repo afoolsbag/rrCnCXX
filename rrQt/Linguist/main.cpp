@@ -14,11 +14,13 @@
 
 #include <QtWidgets/QApplication>
 
+#include "TranslatorSwitcher.h"
 #include "MainWindow.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QApplication app {argc, argv};
+    TranslatorSwitcher switcher {QStringLiteral("lang"), &app};
 
     MainWindow wnd;
     wnd.show();
