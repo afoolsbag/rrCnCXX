@@ -19,17 +19,17 @@
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="40"/>
+        <location filename="MainWindow.cpp" line="38"/>
         <source>Current Language changed to %1</source>
         <translation>當前語言已切換為%1</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="60"/>
+        <location filename="MainWindow.cpp" line="58"/>
         <source>A message Box</source>
         <translation>一個消息框</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="60"/>
+        <location filename="MainWindow.cpp" line="58"/>
         <source>A message.</source>
         <translation>一段消息。</translation>
     </message>

@@ -7,7 +7,6 @@
 #include <QtWidgets/QMainWindow>
 
 class QActionGroup;
-class QTranslator;
 
 namespace Ui {
 class MainWindow;
