@@ -23,7 +23,7 @@ public:
     void switchLanguage(const QLocale &locale);
 
 private:
-    void reloadMenuLanguages();
+    void reloadLanguagesMenu();
     Ui::MainWindow *ui;
     QActionGroup *switchLanguageActionGroup;
 

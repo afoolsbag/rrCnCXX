@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="centralLayout">
     <item row="1" column="0">
-     <spacer name="W_spacer">
+     <spacer name="wSpacer">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -29,7 +29,7 @@
      </spacer>
     </item>
     <item row="2" column="1">
-     <spacer name="S_spacer">
+     <spacer name="sSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -49,7 +49,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <spacer name="N_spacer">
+     <spacer name="nSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -62,7 +62,7 @@
      </spacer>
     </item>
     <item row="1" column="2">
-     <spacer name="E_spacer">
+     <spacer name="eSpacer">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -85,12 +85,12 @@
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuLanguages">
+   <widget class="QMenu" name="languagesMenu">
     <property name="title">
      <string>Language(s)</string>
     </property>
    </widget>
-   <addaction name="menuLanguages"/>
+   <addaction name="languagesMenu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

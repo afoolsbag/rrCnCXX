@@ -1,9 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <QtCore/QDir>
 #include <QtCore/QRegularExpression>
-#include <QtCore/QTranslator>
 #include <QtWidgets/QMessageBox>
 
 #include "TranslatorSwitcher.h"
@@ -20,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(switchLanguageActionGroup, &QActionGroup::triggered,
         this, &MainWindow::on_switchLanguageActionGroup_triggered);
 
-    reloadMenuLanguages();
+    reloadLanguagesMenu();
 
     switchLanguage(QLocale::system());
 }
@@ -40,17 +38,17 @@ void MainWindow::switchLanguage(const QLocale &locale)
     ui->statusBar->showMessage(tr("Current Language changed to %1").arg(locale.nativeLanguageName()));
 }
 
-void MainWindow::reloadMenuLanguages()
+void MainWindow::reloadLanguagesMenu()
 {
     for (const auto &action : switchLanguageActionGroup->actions())
         switchLanguageActionGroup->removeAction(action);
-    ui->menuLanguages->clear();
+    ui->languagesMenu->clear();
 
     const auto locales = TranslatorSwitcher::instance()->scanLanguages();
     for (const auto &locale : locales) {
-        const auto action = new QAction(locale.nativeLanguageName(), ui->menuLanguages);
+        const auto action = new QAction(locale.nativeLanguageName(), ui->languagesMenu);
         action->setData(locale);
-        ui->menuLanguages->addAction(action);
+        ui->languagesMenu->addAction(action);
         switchLanguageActionGroup->addAction(action);
     }
 }
