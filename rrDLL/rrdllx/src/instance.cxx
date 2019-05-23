@@ -4,7 +4,6 @@
 
 #include "instance.hxx"
 
-#include <cassert>
 #include <cstring>
 
 using namespace std;
@@ -53,81 +52,108 @@ map<handle_t, unique_ptr<rrdllx_t>> rrdllx_t::instance_owner_;
  *  \___/\_| \_/\____/  \_/\_| |_/\_| \_/\____/\____/   \_|  |_/\____/\_|  |_/\____/\____/\_| \_|
  */
 
+byte8_parray_t rrdllx_t::alloc_byte8_array(const vector<uint8_t> &value)
+{
+    const auto size = value.size();
+    auto owner = make_unique<uint8_t[]>(value.size());
+    const auto data = owner.get();
+
+    auto data_pair = make_pair(size, move(owner));
+    auto map_pair = make_pair(data, move(data_pair));
+    byte8_array_owner_.insert(move(map_pair));
+
+    memcpy(data, value.data(), value.size() * sizeof(uint8_t));
+
+    return make_pair(size, data);
+}
+
+void rrdllx_t::free_byte8_array(byte8_rarray_t byte8_rarray)
+{
+    if (!byte8_array_owner_.count(byte8_rarray))
+        throw exception_t(rrdllx_instance_byte8_array_not_found);
+    byte8_array_owner_.erase(byte8_rarray);
+}
+
+char_parray_t rrdllx_t::alloc_char_array(const vector<char> &value)
+{
+    const auto size = value.size();
+    auto owner = make_unique<char[]>(value.size());
+    const auto data = owner.get();
+
+    auto data_pair = make_pair(size, move(owner));
+    auto map_pair = make_pair(data, move(data_pair));
+    char_array_owner_.insert(move(map_pair));
+
+    memcpy(data, value.data(), value.size() * sizeof(char));
+
+    return make_pair(size, data);
+}
+
+void rrdllx_t::free_char_array(char_rarray_t char_rarray)
+{
+    if (!char_array_owner_.count(char_rarray))
+        throw exception_t(rrdllx_instance_char_array_not_found);
+    char_array_owner_.erase(char_rarray);
+}
+
 zstring_t rrdllx_t::alloc_zstring(const string &value)
 {
-    auto mov_ptr = make_unique<char[]>(value.length() + 1);
-    const auto raw_ptr = mov_ptr.get();
-    zstring_owner_.insert(make_pair(raw_ptr, move(mov_ptr)));
-    strcpy(raw_ptr, value.c_str());
-    return raw_ptr;
+    return alloc_char_array({value.data(), value.data() + value.size() + 1}).second;
+}
+
+zstring_t rrdllx_t::alloc_last_internal_error_zstring()
+{
+    return alloc_zstring(last_internal_error());
 }
 
 void rrdllx_t::free_zstring(zstring_t zstring)
 {
-    assert(zstring);
-    if (!zstring_owner_.count(zstring))
-        throw exception_t(rrdllx_instance_zstring_not_found);
-    zstring_owner_.erase(zstring);
+    free_char_array(zstring);
 }
 
-zstring_array_t rrdllx_t::alloc_zstring_array(const vector<string> &value)
+zstring_parray_t rrdllx_t::alloc_zstring_array(const vector<string> &value)
 {
-    auto vector_mov_ptr = make_unique<zstring_t[]>(value.size());
-    const auto vector_raw_ptr = vector_mov_ptr.get();
-    zstring_array_vector_owner_.insert(make_pair(vector_raw_ptr, move(vector_mov_ptr)));
+    const auto size = value.size();
+    auto owner = make_unique<zstring_t[]>(value.size());
+    const auto data = owner.get();
+
+    auto data_pair = make_pair(size, move(owner));
+    auto map_pair = make_pair(data, move(data_pair));
+    zstring_array_owner_.insert(move(map_pair));
+
     for (size_t i = 0; i < value.size(); ++i)
-        vector_raw_ptr[i] = alloc_zstring(value.at(i));
+        data[i] = alloc_zstring(value.at(i));
 
-    auto array_mov_ptr = make_unique<zstring_array_deref_t>(zstring_array_deref_t{value.size(), vector_raw_ptr});
-    const auto array_raw_ptr = array_mov_ptr.get();
-    zstring_array_owner_.insert(make_pair(array_raw_ptr, move(array_mov_ptr)));
-    return array_raw_ptr;
+    return make_pair(size, data);
 }
 
-void rrdllx_t::free_zstring_array(zstring_array_t array)
+void rrdllx_t::free_zstring_array(zstring_rarray_t zstring_rarray)
 {
-    assert(array);
-    if (!zstring_array_owner_.count(array))
+    if (!zstring_array_owner_.count(zstring_rarray))
         throw exception_t(rrdllx_instance_zstring_array_not_found);
-    if (!zstring_array_vector_owner_.count(array->vector))
-        throw exception_t(rrdllx_instance_zstring_array_not_found);
-    for (size_t i = 0; i < array->count; ++i)
-        free_zstring(array->vector[i]);
-    zstring_array_vector_owner_.erase(array->vector);
-    zstring_array_owner_.erase(array);
-}
-
-binary_t rrdllx_t::alloc_binary(const vector<uint8_t> &value)
-{
-    auto data_mov_ptr = make_unique<uint8_t[]>(value.size());
-    const auto data_raw_ptr = data_mov_ptr.get();
-    binary_data_owner_.insert(make_pair(data_raw_ptr, move(data_mov_ptr)));
-    memcpy(data_raw_ptr, value.data(), value.size());
-
-    auto binary_mov_ptr = make_unique<binary_deref_t>(binary_deref_t{value.size(), data_raw_ptr});
-    const auto binary_raw_ptr = binary_mov_ptr.get();
-    binary_owner_.insert(make_pair(binary_raw_ptr, move(binary_mov_ptr)));
-    return binary_raw_ptr;
-}
-
-void rrdllx_t::free_binary(binary_t binary)
-{
-    assert(binary);
-    if (!binary_owner_.count(binary))
-        throw exception_t(rrdllx_instance_binary_not_found);
-    if (!binary_data_owner_.count(binary->data))
-        throw exception_t(rrdllx_instance_binary_not_found);
-    binary_data_owner_.erase(binary->data);
-    binary_owner_.erase(binary);
+    const auto &oarray = zstring_array_owner_.at(zstring_rarray);
+    for (size_t i = 0; i < oarray.first; ++i)
+        free_zstring(oarray.second[i]);
+    zstring_array_owner_.erase(zstring_rarray);
 }
 
 void rrdllx_t::free_all()
 {
-    zstring_owner_.clear();
+    byte8_array_owner_.clear();
+    char_array_owner_.clear();
     zstring_array_owner_.clear();
-    zstring_array_vector_owner_.clear();
-    binary_owner_.clear();
-    binary_data_owner_.clear();
+}
+
+void rrdllx_t::last_internal_error(const std::string &txt)
+{
+    const auto tid = this_thread::get_id();
+    last_internal_error_[tid] = txt;
+}
+
+std::string rrdllx_t::last_internal_error()
+{
+    const auto tid = this_thread::get_id();
+    return last_internal_error_[tid];
 }
 
 }//namespace rrdllx

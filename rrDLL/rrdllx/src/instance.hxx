@@ -3,7 +3,7 @@
 /// \file
 /// \brief 库 rrDLLx 的 C++ 实例类。
 ///
-/// \version 2019-05-17
+/// \version 2019-05-23
 /// \since 2019-05-14
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -16,29 +16,37 @@
 
 #include <cstdint>
 #include <exception>
-#include <functional>
 #include <map>
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <thread>
 #include <vector>
 
 #include "rrdllx/rrdllx.h"
 
 namespace rrdllx {
 
-using status_t = rrdllx_status_t;
-using handle_t = rrdllx_handle_t;
-using zstring_deref_t = rrdllx_zstring_deref_t;
-using zstring_t = rrdllx_zstring_t;
-using zstring_array_deref_t = rrdllx_zstring_array_deref_t;
-using zstring_array_t = rrdllx_zstring_array_t;
-using binary_deref_t = rrdllx_binary_deref_t;
-using binary_t = rrdllx_binary_t;
+using status_t = rrdllx_status_t;                                                      ///< 状态码（status）
+using version_t = rrdllx_version_t;                                                    ///< 版本（version）
+using handle_t = rrdllx_handle_t;                                                      ///< 实例句柄（instant handle）
+using byte8_rarray_t = rrdllx_byte8_rarray_t;                                          ///< 八位字节原始数组（8-bit byte raw array）
+using byte8_sarray_t = rrdllx_byte8_sarray_t;                                          ///< 八位字节结构数组（8-bit byte structured array）
+using byte8_parray_t = std::pair<std::size_t, byte8_rarray_t>;                         ///< 八位字节对值数组（8-bit byte pair array）
+using byte8_oarray_t = std::pair<std::size_t, std::unique_ptr<const std::uint8_t[]>>;  ///< 八位字节有权数组（8-bit byte owner array）
+using char_rarray_t = rrdllx_char_rarray_t;                                            ///< 字符原始数组（char raw array）
+using char_sarray_t = rrdllx_char_sarray_t;                                            ///< 字符结构数组（char structured array）
+using char_parray_t = std::pair<std::size_t, char_rarray_t>;                           ///< 字符对值数组（char pair array）
+using char_oarray_t = std::pair<std::size_t, std::unique_ptr<const char[]>>;           ///< 字符有权数组（char owner array）
+using zstring_t = rrdllx_zstring_t;                                                    ///< 空终止字符串（zero-terminated string）
+using zstring_rarray_t = rrdllx_zstring_rarray_t;                                      ///< 空终止字符串原始数组（zero-terminated string raw array）
+using zstring_sarray_t = rrdllx_zstring_sarray_t;                                      ///< 空终止字符串结构数组（zero-terminated string structured array）
+using zstring_parray_t = std::pair<std::size_t, zstring_rarray_t>;                     ///< 空终止字符串对值数组（zero-terminated string pair array）
+using zstring_oarray_t = std::pair<std::size_t, std::unique_ptr<const zstring_t[]>>;   ///< 空终止字符串有权数组（zero-terminated string owner array）
 
 class exception_t final : public std::exception {
 public:
-    explicit exception_t(status_t status) : status_{status} {}
+    explicit exception_t(status_t status) : status_ {status} {}
     [[nodiscard]] status_t status() const { return status_; }
 private:
     status_t status_;
@@ -46,35 +54,35 @@ private:
 
 class rrdllx_t final {
 public:
-    [[nodiscard]] static handle_t alloc_instance();
-    static rrdllx_t &             instance(handle_t handle);
-    static void                   free_instance(handle_t handle);
+    [[nodiscard]] static handle_t  alloc_instance();
+    static rrdllx_t &              instance(handle_t handle);
+    static void                    free_instance(handle_t handle);
 
-    [[nodiscard]] zstring_t       alloc_zstring(const std::string &value);
-    void                          free_zstring(zstring_t zstring);
+    [[nodiscard]] byte8_parray_t   alloc_byte8_array(const std::vector<std::uint8_t> &value);
+    void                           free_byte8_array(byte8_rarray_t byte8_rarray);
 
-    [[nodiscard]] zstring_array_t alloc_zstring_array(const std::vector<std::string> &value);
-    void                          free_zstring_array(zstring_array_t zstring_array);
+    [[nodiscard]] char_parray_t    alloc_char_array(const std::vector<char> &value);
+    void                           free_char_array(char_rarray_t char_rarray);
 
-    [[nodiscard]] binary_t        alloc_binary(const std::vector<std::uint8_t> &value);
-    void                          free_binary(binary_t binary);
+    [[nodiscard]] zstring_t        alloc_zstring(const std::string &value);
+    [[nodiscard]] zstring_t        alloc_last_internal_error_zstring();
+    void                           free_zstring(zstring_t zstring);
 
-    void                          free_all();
+    [[nodiscard]] zstring_parray_t alloc_zstring_array(const std::vector<std::string> &value);
+    void                           free_zstring_array(zstring_rarray_t zstring_rarray);
+
+    void                           free_all();
 
 private:
-    static std::map<handle_t, std::unique_ptr<rrdllx_t>>              instance_owner_;
+    static std::map<handle_t, std::unique_ptr<rrdllx_t>> instance_owner_;
 
-    std::map<zstring_t, std::unique_ptr<zstring_deref_t>>             zstring_owner_;
+    std::map<byte8_rarray_t, byte8_oarray_t>             byte8_array_owner_;
+    std::map<char_rarray_t, char_oarray_t>               char_array_owner_;
+    std::map<zstring_rarray_t, zstring_oarray_t>         zstring_array_owner_;
 
-    std::map<zstring_array_t, std::unique_ptr<zstring_array_deref_t>> zstring_array_owner_;
-    std::map<const zstring_t *, std::unique_ptr<const zstring_t[]>>   zstring_array_vector_owner_;
-
-    std::map<binary_t, std::unique_ptr<binary_deref_t>>               binary_owner_;
-    std::map<const uint8_t *, std::unique_ptr<const uint8_t[]>>       binary_data_owner_;
-
-    using zstring_delete_t = std::function<void(zstring_t)>;
-    const zstring_delete_t                                            zstring_delete_{std::bind(&rrdllx_t::free_zstring, this, std::placeholders::_1)};
-    std::unique_ptr<zstring_deref_t, zstring_delete_t>                zstring_unique_ptr_{nullptr, zstring_delete_};
+    void last_internal_error(const std::string &txt);
+    std::string last_internal_error();
+    std::map<std::thread::id, std::string>               last_internal_error_;
 };//class rrdllx_t
 
 }//namespace rrdllx

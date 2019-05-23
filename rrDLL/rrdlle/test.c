@@ -24,7 +24,7 @@ END_TEST;
 
 START_TEST(tf_rrdllx_version)
 {
-    rrdllx_version_t v;
+    struct rrdllx_version_t v;
     ck_assert(rrdllx_get_version(&v) == rrdllx_success);
 }
 END_TEST;
@@ -37,12 +37,9 @@ START_TEST(tf_rrdllx_zstring)
     ck_assert(rrdllx_construct(&hdl) == rrdllx_success);
 
     rrdllx_zstring_t ztr;
-    ck_assert(rrdllx_alloc_zstring(hdl, val, &ztr) == rrdllx_dereference_not_initialized);
-    ztr = NULL;
     ck_assert(rrdllx_alloc_zstring(hdl, val, &ztr) == rrdllx_success);
-
+    ck_assert_str_eq(ztr, val);
     ck_assert(rrdllx_free_zstring(hdl, ztr) == rrdllx_success);
-    ck_assert(rrdllx_free_zstring(hdl, ztr) == rrdllx_instance_zstring_not_found);
 
     ck_assert(rrdllx_destruct(hdl) == rrdllx_success);
 }
@@ -56,19 +53,15 @@ START_TEST(tf_rrdllx_zstring_array)
     rrdllx_handle_t hdl = NULL;
     ck_assert(rrdllx_construct(&hdl) == rrdllx_success);
 
-    rrdllx_zstring_array_t ztr_arr;
-    ck_assert(rrdllx_alloc_zstring_array(hdl, val, cnt, &ztr_arr) == rrdllx_dereference_not_initialized);
-    ztr_arr = NULL;
-    ck_assert(rrdllx_alloc_zstring_array(hdl, val, cnt, &ztr_arr) == rrdllx_success);
-
-    ck_assert(rrdllx_free_zstring_array(hdl, ztr_arr) == rrdllx_success);
-    ck_assert(rrdllx_free_zstring_array(hdl, ztr_arr) == rrdllx_instance_zstring_array_not_found);
+    struct rrdllx_zstring_sarray_t ztrarr;
+    ck_assert(rrdllx_alloc_zstring_array(hdl, val, cnt, &ztrarr) == rrdllx_success);
+    ck_assert(rrdllx_free_zstring_array(hdl, ztrarr.data) == rrdllx_success);
 
     ck_assert(rrdllx_destruct(hdl) == rrdllx_success);
 }
 END_TEST;
 
-START_TEST(tf_rrdllx_binary)
+START_TEST(tf_rrdllx_byte8_array)
 {
     static const uint8_t val[] = "The binary value.";
     static const size_t siz = sizeof val;
@@ -76,13 +69,9 @@ START_TEST(tf_rrdllx_binary)
     rrdllx_handle_t hdl = NULL;
     ck_assert(rrdllx_construct(&hdl) == rrdllx_success);
 
-    rrdllx_binary_t bin;
-    ck_assert(rrdllx_alloc_binary(hdl, val, siz, &bin) == rrdllx_dereference_not_initialized);
-    bin = NULL;
-    ck_assert(rrdllx_alloc_binary(hdl, val, siz, &bin) == rrdllx_success);
-
-    ck_assert(rrdllx_free_binary(hdl, bin) == rrdllx_success);
-    ck_assert(rrdllx_free_binary(hdl, bin) == rrdllx_instance_binary_not_found);
+    struct rrdllx_byte8_sarray_t byte8arr;
+    ck_assert(rrdllx_alloc_byte8_array(hdl, val, siz, &byte8arr) == rrdllx_success);
+    ck_assert(rrdllx_free_byte8_array(hdl, byte8arr.data) == rrdllx_success);
 
     ck_assert(rrdllx_destruct(hdl) == rrdllx_success);
 }
@@ -96,7 +85,7 @@ TCase *tc(void)
     tcase_add_test(tc, tf_rrdllx_version);
     tcase_add_test(tc, tf_rrdllx_zstring);
     tcase_add_test(tc, tf_rrdllx_zstring_array);
-    tcase_add_test(tc, tf_rrdllx_binary);
+    tcase_add_test(tc, tf_rrdllx_byte8_array);
     return tc;
 }
 
