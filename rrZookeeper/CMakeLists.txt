@@ -1,33 +1,49 @@
-#          ______            _   __
-#         |___  /           | | / /
-#  _ __ _ __ / /  ___   ___ | |/ /  ___  ___ _ __   ___ _ __
-# | '__| '__/ /  / _ \ / _ \|    \ / _ \/ _ \ '_ \ / _ \ '__|
-# | |  | |./ /__| (_) | (_) | |\  \  __/  __/ |_) |  __/ |
-# |_|  |_|\_____/\___/ \___/\_| \_/\___|\___| .__/ \___|_|
-# zhengrr                                   | |
-# 2018-12-29 – 2019-03-15                   |_|
+#          ______            _
+#         |___  /           | |
+#  _ __ _ __ / /  ___   ___ | | _____  ___ _ __   ___ _ __
+# | '__| '__/ /  / _ \ / _ \| |/ / _ \/ _ \ '_ \ / _ \ '__|
+# | |  | |./ /__| (_) | (_) |   <  __/  __/ |_) |  __/ |
+# |_|  |_|\_____/\___/ \___/|_|\_\___|\___| .__/ \___|_|
+# zhengrr                                 | |
+# 2018-12-29 – 2019-05-28                 |_|
 # Unlicense
 
-project(rrZooKeeper VERSION 2018.03.15 LANGUAGES C)
-project_more()
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
 
-compile_option(
+project_ex(
+  rrZooKeeper
+  VERSION   2018.05.28
+  LANGUAGES CXX)
+
+add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
   WARNING_AS_ERROR)
 
-add_doxygen(WITH_OPTION OPTIMIZE_OUTPUT_FOR_C)
+add_doxygen_con(
+  rrZookeeperDoc)
 
-if(3.12 VERSION_LESS CMAKE_VERSION)
-  cmake_policy(SET CMP0074 NEW)
-endif()
-find_package(Check)
-find_package(ZooKeeperC)
+find_package(ZookeeperCClient)
+conan_cmake_run(
+  REQUIRES    gtest/1.8.1@bincrafters/stable
+  BASIC_SETUP CMAKE_TARGETS)
 
-aux_source_directory_ex(zSource RECURSE)
+aux_source_directory_ex("wrapper" zWrapper RECURSE PREFIX "wrapper")
+add_library_ex(
+  rrZookeeperWraper   INTERFACE
+  COMPILE_FEATURES    INTERFACE cxx_std_17
+  INCLUDE_DIRECTORIES INTERFACE "wrapper"
+  LINK_LIBRARIES      INTERFACE ZookeeperCClient::zookeeper
+  SOURCES             INTERFACE ${zWrapper})
+
+aux_source_directory_ex("test" zTest RECURSE PREFIX "test")
 add_executable_ex(
-  ${zSource} C11
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE Check::check
-                              ZooKeeperC::zookeeper)
+  rrZookeeperTest     ${zTest}
+  PROPERTIES          CXX_STANDARD          17
+                      CXX_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE "test"
+  LINK_LIBRARIES      PRIVATE rrZookeeperWraper
+                              CONAN_PKG::gtest
+                              ZookeeperCClient::zookeeper)
