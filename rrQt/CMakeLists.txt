@@ -23,7 +23,7 @@ add_compile_options_ex(
 add_doxygen_con(
   rrQtDoc)
 
-find_package(Qt5Package)
+find_package(Qt5Config)
 find_package(Qt5 COMPONENTS Core Gui LinguistTools Quick Test Widgets)
 set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "generated")
 conan_cmake_run(
