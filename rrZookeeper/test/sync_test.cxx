@@ -114,17 +114,3 @@ TEST_F(sync_test, eph_seq)
 {
     client.create(bnode_path, client::cf_ephemeral | client::cf_sequence | client::cf_force);
 }
-
-TEST(custom, temp)
-{
-    rrzookeeper::client clt;
-    //clt.connect("172.16.0.16:2181,172.16.0.17:2181,172.16.0.18:2181");
-    clt.connect("127.0.0.1:2181");
-    clt.create("/YLSER/172.16.0.225", R"(
-{
-        "ivsListener" : "http://172.16.0.225:8089/ylser/listenerDevData",
-        "ivsLogin" : "http://172.16.0.225:8089/ylser/ivslogin",
-        "logoutUrl" : "http://172.16.0.225:8089/ylser/ivslogout"
-}
-)", client::cf_force);
-}
