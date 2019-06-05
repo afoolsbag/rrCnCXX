@@ -25,10 +25,10 @@
 K&R 和 Stroustrup 风格布局；
 `.hxx` 和 `.cxx` 风格后缀。
 
-[*C++ Core Guidelines*](https://isocpp.github.io/CppCoreGuidelines/)
-<sub> [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN)</sub>
-*   [Coding rules](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-rules)
-    <sub> [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules)</sub>
+[*C++ Core Guidelines*](https://isocpp.github.io/CppCoreGuidelines/) <sub>(
+    [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN) )</sub>
+*   [Coding rules](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-rules) <sub>(
+        [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules) )</sub>
 *   [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
 
 ## 指南
