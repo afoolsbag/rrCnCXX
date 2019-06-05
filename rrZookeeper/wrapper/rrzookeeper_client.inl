@@ -37,13 +37,13 @@ inline void client::reconnect()
     using namespace std;
 
     if (host_.empty())
-        throw std::invalid_argument("Host cannot be empty.");
+        throw invalid_argument("Host cannot be empty.");
     if (timeout_.count() < 0)
-        throw std::invalid_argument("Timeout cannot be negative.");
+        throw invalid_argument("Timeout cannot be negative.");
 
     zh_.reset(zookeeper_init(host_.c_str(), nullptr, static_cast<int>(timeout_.count()), nullptr, nullptr, 0));
     if (!zh_)
-        throw std::runtime_error("zookeeper_init failed: "s + zerror(errno));
+        throw runtime_error("zookeeper_init failed: "s + zerror(errno));
 }
 
 inline void client::disconnect()
@@ -55,7 +55,7 @@ inline void client::disconnect()
 
     const auto zrc = zookeeper_close(zh_.release());
     if (zrc != ZOK)
-        throw std::runtime_error("zookeeper_close failed: "s + zerror(zrc));
+        throw runtime_error("zookeeper_close failed: "s + zerror(zrc));
 }
 
 inline std::string client::create(const std::string &path, const std::optional<std::string> &value, int flags)
@@ -102,7 +102,7 @@ inline bool client::exists(const std::string &path) const
     else if (zrc == ZNONODE)
         return false;
     else
-        throw std::runtime_error("zoo_exists failed: "s + zerror(zrc));
+        throw runtime_error("zoo_exists failed: "s + zerror(zrc));
 }
 
 inline std::optional<std::string> client::get(const std::string &path) const
@@ -113,7 +113,7 @@ inline std::optional<std::string> client::get(const std::string &path) const
     int len = sizeof buf;
     const auto zrc = zoo_get(zh_.get(), path.c_str(), false, buf, &len, nullptr);
     if (zrc != ZOK)
-        throw std::runtime_error("zoo_get failed: "s + zerror(zrc));
+        throw runtime_error("zoo_get failed: "s + zerror(zrc));
     return buf;
 }
 
@@ -121,12 +121,12 @@ inline std::list<std::string> client::get_children(const std::string &path) cons
 {
     using namespace std;
 
-    std::list<std::string> tmp;
+    list<string> tmp;
 
     String_vector vec {};
     const auto zrc = zoo_get_children(zh_.get(), path.c_str(), false, &vec);
     if (zrc != ZOK)
-        throw std::runtime_error("zoo_get_children failed: "s + zerror(zrc));
+        throw runtime_error("zoo_get_children failed: "s + zerror(zrc));
     for (auto i = 0; i < vec.count; ++i)
         tmp.push_back(vec.data[i]);
     return tmp;
@@ -139,15 +139,13 @@ inline void client::set(const std::string &path, const std::optional<std::string
     const auto val = value ? value.value().data() : nullptr;
     const auto siz = value ? static_cast<int>(value.value().length()) + 1 : -1;
     const auto zrc = zoo_set(zh_.get(), path.c_str(), val, siz, -1);
-    if (zrc != ZOK)
-        throw std::runtime_error("zoo_set failed: "s + zerror(zrc));
 
     if (zrc == ZOK)
         return;
     else if (zrc == ZNONODE && flags & sf_create_if_not_exists)
         create(path, value, cf_recursive);
     else
-        throw runtime_error("zoo_create failed: "s + zerror(zrc));
+        throw runtime_error("zoo_set failed: "s + zerror(zrc));
 }
 
 inline void client::deleta(const std::string &path, int flags)
@@ -165,7 +163,7 @@ inline void client::deleta(const std::string &path, int flags)
     } else if (zrc == ZNONODE && flags & df_ignore_if_not_exists) {
         return;
     } else {
-        throw std::runtime_error("zoo_delete failed: "s + zerror(zrc));
+        throw runtime_error("zoo_delete failed: "s + zerror(zrc));
     }
 }
 
