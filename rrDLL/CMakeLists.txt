@@ -2,7 +2,7 @@
 #           |  _  \ |    | |
 #  _ __ _ __| | | | |    | |
 # | '__| '__| | | | |    | |     zhengrr
-# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-05-10
+# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-06-20
 # |_|  |_|  |___/ \_____/\_____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrDLL
-  VERSION   2018.05.10
+  VERSION   2019.06.20
   LANGUAGES C CXX)
 
 add_compile_options_ex(
@@ -19,66 +19,64 @@ add_compile_options_ex(
   UTF-8
   WARNING_AS_ERROR)
 
-# rrDLLc (c library)
-configure_file("rrdllc/src/cfg.h.in" "rrdllc/src/cfg.h" @ONLY)
-aux_source_directory_con("rrdllc/include"                         zInc RECURSE PREFIX "include")
-aux_source_directory_con("rrdllc/src"                             zSrc RECURSE PREFIX "src")
-aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrdllc/src" zGen RECURSE PREFIX "generated")
+configure_file("rrLibC/src/cfg.h.in" "rrLibC/src/cfg.h" @ONLY)
+aux_source_directory_con("rrLibC/include"                         zInc RECURSE PREFIX "include")
+aux_source_directory_con("rrLibC/src"                             zSrc RECURSE PREFIX "src")
+aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrLibC/src" zGen RECURSE PREFIX "generated")
 add_library_con(
-  rrDLLc
+  rrLibC
   SHARED              ${zInc} ${zSrc} ${zGen}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
-  COMPILE_DEFINITIONS PUBLIC  "RRDLLC_SHARED"
-                      PRIVATE "RRDLLC_EXPORTS"
-  INCLUDE_DIRECTORIES PUBLIC  "rrdllc/include"
-                      PRIVATE "rrdllc/src"
-                              "${CMAKE_CURRENT_BINARY_DIR}/rrdllc/src")
+  COMPILE_DEFINITIONS PUBLIC  "RRLIBC_SHARED"
+                      PRIVATE "RRLIBC_EXPORTS"
+  INCLUDE_DIRECTORIES PUBLIC  "rrLibC/include"
+                      PRIVATE "rrLibC/src"
+                              "${CMAKE_CURRENT_BINARY_DIR}/rrLibC/src")
 install(
-  DIRECTORY   "rrdllc/include/"
+  DIRECTORY   "rrLibC/include/"
   DESTINATION "include/")
 
-# rrDLLx (cxx library)
-configure_file("rrdllx/src/cfg.hxx.in" "rrdllx/src/cfg.hxx" @ONLY)
-aux_source_directory_con("rrdllx/include"                         zInc RECURSE PREFIX "include")
-aux_source_directory_con("rrdllx/src"                             zSrc RECURSE PREFIX "src")
-aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrdllx/src" zGen RECURSE PREFIX "generated")
+configure_file("rrLibX/src/cfg.hxx.in" "rrLibX/src/cfg.hxx" @ONLY)
+aux_source_directory_con("rrLibX/include"                         zInc RECURSE PREFIX "include")
+aux_source_directory_con("rrLibX/src"                             zSrc RECURSE PREFIX "src")
+aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrLibX/src" zGen RECURSE PREFIX "generated")
 add_library_con(
-  rrDLLx
+  rrLibX
   SHARED              ${zInc} ${zSrc} ${zGen}
-  PROPERTIES          CXX_STANDARD          17
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  COMPILE_DEFINITIONS PUBLIC  "RRDLLX_SHARED"
-                      PRIVATE "RRDLLX_EXPORTS"
-  INCLUDE_DIRECTORIES PUBLIC  "rrdllx/include"
-                      PRIVATE "rrdllx/src"
-                              "${CMAKE_CURRENT_BINARY_DIR}/rrdllx/src")
+  COMPILE_DEFINITIONS PUBLIC  "RRLIBX_SHARED"
+                      PRIVATE "RRLIBX_EXPORTS"
+  INCLUDE_DIRECTORIES PUBLIC  "rrLibX/include"
+                      PRIVATE "rrLibX/src"
+                              "${CMAKE_CURRENT_BINARY_DIR}/rrLibX/src")
 install(
-  DIRECTORY   "rrdllx/include/"
+  DIRECTORY   "rrLibX/include/"
   DESTINATION "include/")
 
-# rrDLLe (c executable)
+# REC: rr-executable by c language
 find_package(Check)
-aux_source_directory_con("rrdlle" zSrc RECURSE)
+aux_source_directory_con("rrExeC" zSrc RECURSE)
 add_executable_con(
-  rrDLLe              ${zSrc}
+  rrExeC              ${zSrc}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrdlle"
-  LINK_LIBRARIES      PRIVATE rrDLLc
-                              rrDLLx
+  INCLUDE_DIRECTORIES PRIVATE "rrExeC"
+  LINK_LIBRARIES      PRIVATE rrLibC
+                              rrLibX
                               Check::check)
 
-# rrDLLz (cxx execatable)
+# REC++/REX: rr-executable by c++ language
 conan_cmake_run(
   REQUIRES    gtest/1.8.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS)
-aux_source_directory_con("rrdllz" zSrc RECURSE)
+aux_source_directory_con("rrExeX" zSrc RECURSE)
 add_executable_con(
-  rrDLLz              ${zSrc}
-  PROPERTIES          CXX_STANDARD          17
+  rrExeX              ${zSrc}
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrdllz"
-  LINK_LIBRARIES      PRIVATE rrDLLc
-                              rrDLLx
+  INCLUDE_DIRECTORIES PRIVATE "rrExeX"
+  LINK_LIBRARIES      PRIVATE rrLibC
+                              rrLibX
                               CONAN_PKG::gtest)
