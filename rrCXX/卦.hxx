@@ -167,6 +167,6 @@ constexpr std::array<别, 64> 后天六十四卦 {
     中孚, 小过, 既济, 未济
 };
 
-}//namespace rrcxx::卦
+}
 
-#endif//RRCXX_卦_HXX_
+#endif

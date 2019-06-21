@@ -121,4 +121,4 @@ TEST(functions, return_value_error)
 
 /// @}
 
-}//namespace rrcxx
+}

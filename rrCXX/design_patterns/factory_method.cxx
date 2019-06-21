@@ -87,4 +87,4 @@ TEST(design_patterns, factory_method)
 
 /// @}
 
-}//namespace rrcxx
+}

@@ -139,4 +139,4 @@ TEST(statements, gsl_finally)
 
 /// @}
 
-}//namespace rrcxx
+}

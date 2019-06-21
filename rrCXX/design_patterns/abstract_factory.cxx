@@ -193,7 +193,7 @@ public:
 
 /// @}
 
-}//namespace abstract_factory
+}
 
 /// \addtogroup gAbstractFactory
 /// @{
@@ -221,4 +221,4 @@ TEST(design_patterns, abstract_factory)
 
 /// @}
 
-}//namespace rrcxx
+}

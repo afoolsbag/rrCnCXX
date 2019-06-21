@@ -98,4 +98,4 @@ TEST(array, gsl_zstring)
 
 /// @}
 
-}//namespace rrcxx
+}

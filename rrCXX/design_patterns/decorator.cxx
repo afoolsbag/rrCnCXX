@@ -213,4 +213,4 @@ TEST(design_patterns, decorator)
 
 /// @}
 
-}//namespace rrcxx
+}

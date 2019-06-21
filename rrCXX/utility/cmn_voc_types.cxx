@@ -127,4 +127,4 @@ TEST(cmn_voc_types, variant)
 
 /// @}
 
-}//namespace rrcxx
+}

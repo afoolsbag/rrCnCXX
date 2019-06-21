@@ -104,4 +104,4 @@ TEST(pointer, gsl_not_null)
 
 /// @}
 
-}//namespace rrcxx
+}

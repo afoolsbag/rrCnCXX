@@ -812,4 +812,4 @@
 /// \sa <https://wg21.link/n1653>
 #define FEATURE_N1653               (STANDARD_CXX11 || NORMALIZED_VERSION(19,0,0)<=NORMALIZED_MSC_VERSION)
 
-#endif//RRCXX_CXX_VERSIONS_HXX_
+#endif

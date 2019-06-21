@@ -69,4 +69,4 @@ TEST(design_patterns, prototype)
 
 /// @}
 
-}//namespace rrcxx
+}

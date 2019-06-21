@@ -48,4 +48,4 @@ namespace rrcxx {
 
 /// @}
 
-}//namespace rrcxx
+}

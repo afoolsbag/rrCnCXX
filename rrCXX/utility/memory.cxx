@@ -25,4 +25,4 @@ namespace rrcxx {
 
 /// @}
 
-}//namespace rrcxx
+}

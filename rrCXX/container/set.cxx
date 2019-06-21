@@ -49,4 +49,4 @@ TEST(set, lookup)
 
 /// @}
 
-}//namespace rrcxx
+}

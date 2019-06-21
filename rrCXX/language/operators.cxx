@@ -56,8 +56,8 @@ TEST(operators, user_literal)
 }
 
 #endif
-}//namespace
+}
 
 /// @}
 
-}//namespace rrcxx
+}

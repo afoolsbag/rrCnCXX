@@ -101,4 +101,4 @@ TEST(design_patterns, builder)
 
 /// @}
 
-}//namespace rrcxx
+}

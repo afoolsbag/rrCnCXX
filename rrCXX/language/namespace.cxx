@@ -22,10 +22,10 @@ namespace rrcxx {
 /// \brief 嵌套命名空间
 namespace outer::inner {
 
-}//namespace rrcxx::test
+}
 
 #endif
 
 /// @}
 
-}//namespace rrcxx
+}

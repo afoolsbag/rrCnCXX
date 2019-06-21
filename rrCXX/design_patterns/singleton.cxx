@@ -118,4 +118,4 @@ TEST(design_patterns, singleton)
 
 /// @}
 
-}//namespace rrcxx
+}

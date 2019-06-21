@@ -36,4 +36,4 @@ namespace rrcxx {
 
 /// @}
 
-}//namespace rrcxx
+}

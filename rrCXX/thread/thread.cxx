@@ -53,4 +53,4 @@ TEST(thread, test)
 
 /// @}
 
-}//namespace rrcxx
+}

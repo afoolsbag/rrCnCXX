@@ -71,4 +71,4 @@ TEST(vector, traverse)
 
 /// @}
 
-}//namespace rrcxx
+}
