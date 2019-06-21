@@ -3,7 +3,7 @@
  * \defgroup gAccess 文件访问
  * \ingroup gFileIO
  *
- * \version 2019-02-19
+ * \version 2019-06-21
  * \since 2016-11-14
  * \authors zhengrr
  * \copyright Unlicense

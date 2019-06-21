@@ -15,7 +15,7 @@
  *     *   空终止多字节字符串管理
  *     *   空终止宽字符串管理
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense
@@ -41,4 +41,4 @@ static inline Suite *ts_string(void)
     return ts;
 }
 
-#endif/*RRC_TS_STRING_H_*/
+#endif

@@ -14,7 +14,7 @@
  *     *   函数
  *     *   杂项
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense
@@ -33,4 +33,4 @@ static inline Suite *ts_language(void)
     return ts;
 }
 
-#endif/*RRC_TS_LANGUAGE_H_*/
+#endif

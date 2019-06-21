@@ -5,7 +5,7 @@
  *
  * \sa ["日期和时间工具"](https://zh.cppreference.com/w/c/chrono). *cppreference.com*.
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright Unlicense
@@ -27,4 +27,4 @@ static inline Suite *ts_chrono(void)
     return ts;
 }
 
-#endif/*RRC_TS_CHRONO_H_*/
+#endif

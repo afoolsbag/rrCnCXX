@@ -5,7 +5,7 @@
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/math>
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2018-07-10
  * \authors zhengrr
  * \copyright Unlicense

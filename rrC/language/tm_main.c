@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLanguage
  *
- * \version 2019-02-26
+ * \version 2019-06-20
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -11,6 +11,7 @@
  * @{
 **//*===-------------------------------------------------------------------===*/
 
+#include <locale.h>
 #include <stdlib.h>
 
 #include <check.h>
@@ -21,6 +22,7 @@
 #include "error/ts_error.h"
 #include "io/ts_io.h"
 #include "language/ts_language.h"
+#include "locale/ts_locale.h"
 #include "memory/ts_memory.h"
 #include "numeric/ts_numeric.h"
 #include "string/ts_string.h"
@@ -35,6 +37,8 @@
  */
 int main(void)
 {
+    setlocale(LC_ALL, ".UTF-8");
+
     SRunner *const tr = srunner_create(NULL);
     srunner_add_suite(tr, ts_algorithm());
     srunner_add_suite(tr, ts_atomic());
@@ -42,6 +46,7 @@ int main(void)
     srunner_add_suite(tr, ts_error());
     srunner_add_suite(tr, ts_io());
     srunner_add_suite(tr, ts_language());
+    srunner_add_suite(tr, ts_locale());
     srunner_add_suite(tr, ts_memory());
     srunner_add_suite(tr, ts_numeric());
     srunner_add_suite(tr, ts_string());

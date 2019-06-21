@@ -278,4 +278,4 @@
 #define FEATURE_VLA                 0
 #endif
 
-#endif/*RRC_C_VERSIONS_H_*/
+#endif

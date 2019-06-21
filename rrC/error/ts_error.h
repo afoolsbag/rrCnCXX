@@ -5,7 +5,7 @@
  *
  * \sa ["错误处理"](https://zh.cppreference.com/w/c/error). *cppreference.com*.
  *
- * \version 2019-02-19
+ * \version 2019-06-21
  * \since 2019-02-19
  * \authors zhengrr
  * \copyright Unlicense
@@ -27,4 +27,4 @@ static inline Suite *ts_error(void)
     return ts;
 }
 
-#endif/*RRC_TS_ERROR_H_*/
+#endif

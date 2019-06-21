@@ -10,7 +10,7 @@
  *     *   复数算术
  *     *   泛型数学
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense
@@ -34,4 +34,4 @@ static inline Suite *ts_numeric(void)
     return ts;
 }
 
-#endif/*RRC_TS_NUMERIC_H_*/
+#endif

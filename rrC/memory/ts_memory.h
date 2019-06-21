@@ -5,7 +5,7 @@
  *
  * \sa ["C 内存管理库"](https://zh.cppreference.com/w/c/memory). *cppreference.com*.
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright Unlicense
@@ -27,4 +27,4 @@ static inline Suite *ts_memory(void)
     return ts;
 }
 
-#endif/*RRC_TS_MEMORY_H_*/
+#endif

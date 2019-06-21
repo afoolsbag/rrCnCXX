@@ -5,7 +5,7 @@
  *
  * \sa ["文件输入、输出"](http://zh.cppreference.com/w/c/io). *cppreference.com*.
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2016-11-14
  * \authors zhengrr
  * \copyright Unlicense
@@ -31,4 +31,4 @@ static inline Suite *ts_io(void)
     return ts;
 }
 
-#endif/*RRC_TS_IO_H_*/
+#endif

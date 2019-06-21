@@ -5,7 +5,7 @@
  *
  * \sa ["线程支持库"](https://zh.cppreference.com/w/c/thread). *cppreference.com*.
  *
- * \version 2019-02-19
+ * \version 2019-06-21
  * \since 2019-02-19
  * \authors zhengrr
  * \copyright Unlicense
@@ -27,4 +27,4 @@ static inline Suite *ts_thread(void)
     return ts;
 }
 
-#endif/*RRC_TS_THREAD_H_*/
+#endif

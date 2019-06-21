@@ -3,7 +3,7 @@
  * \defgroup gPositioning 文件定位
  * \ingroup gFileIO
  *
- * \version 2019-02-13
+ * \version 2019-06-21
  * \since 2019-02-13
  * \authors zhengrr
  * \copyright Unlicense

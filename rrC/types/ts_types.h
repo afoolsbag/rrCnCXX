@@ -10,7 +10,7 @@
  *     *   定宽整数类型
  *     *   数值极限
  *
- * \version 2019-02-26
+ * \version 2019-06-21
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense
@@ -38,4 +38,4 @@ static inline Suite *ts_types(void)
     return ts;
 }
 
-#endif/*RRC_TYPE_SUPPORT_TEST_H_*/
+#endif
