@@ -4,7 +4,7 @@
  * \brief 配置。
  * \details 名称、版本、作者、版权等信息。
  *
- * \version 2019-06-20
+ * \version 2019-06-24
  * \since 2016-08-03
  * \authors zhengrr
  * \copyright Unlicense
@@ -59,10 +59,17 @@
 
 static const char product_name[] = PRODUCT_NAME;                      /**< 产品名。 */
 static const char product_version[] = PRODUCT_VERSION;                /**< 产品版本号。 */
+#ifdef _MSC_VER
+static const uint16_t product_version_major = PRODUCT_VERSION_MAJOR;  /**< 产品主版本号。 */
+static const uint16_t product_version_minor = PRODUCT_VERSION_MINOR;  /**< 产品次版本号。 */
+static const uint16_t product_version_patch = PRODUCT_VERSION_PATCH;  /**< 产品补丁版本号。 */
+static const uint16_t product_version_tweak = PRODUCT_VERSION_TWEAK;  /**< 产品微调版本号。 */
+#else
 static const intmax_t product_version_major = PRODUCT_VERSION_MAJOR;  /**< 产品主版本号。 */
 static const intmax_t product_version_minor = PRODUCT_VERSION_MINOR;  /**< 产品次版本号。 */
 static const intmax_t product_version_patch = PRODUCT_VERSION_PATCH;  /**< 产品补丁版本号。 */
 static const intmax_t product_version_tweak = PRODUCT_VERSION_TWEAK;  /**< 产品微调版本号。 */
+#endif
 static const char product_authors[] = PRODUCT_AUTHORS;                /**< 产品作者。 */
 static const char product_license[] = PRODUCT_LICENSE;                /**< 产品许可。 */
 
@@ -108,10 +115,17 @@ static const char product_license[] = PRODUCT_LICENSE;                /**< 产�
 
 static const char project_name[] = PROJECT_NAME;                      /**< 项目名。 */
 static const char project_version[] = PROJECT_VERSION;                /**< 项目版本号。 */
+#ifdef _MSC_VER
+static const uint16_t project_version_major = PROJECT_VERSION_MAJOR;  /**< 项目主版本号。 */
+static const uint16_t project_version_minor = PROJECT_VERSION_MINOR;  /**< 项目次版本号。 */
+static const uint16_t project_version_patch = PROJECT_VERSION_PATCH;  /**< 项目补丁版本号。 */
+static const uint16_t project_version_tweak = PROJECT_VERSION_TWEAK;  /**< 项目微调版本号。 */
+#else
 static const intmax_t project_version_major = PROJECT_VERSION_MAJOR;  /**< 项目主版本号。 */
 static const intmax_t project_version_minor = PROJECT_VERSION_MINOR;  /**< 项目次版本号。 */
 static const intmax_t project_version_patch = PROJECT_VERSION_PATCH;  /**< 项目补丁版本号。 */
 static const intmax_t project_version_tweak = PROJECT_VERSION_TWEAK;  /**< 项目微调版本号。 */
+#endif
 static const char project_authors[] = PROJECT_AUTHORS;                /**< 项目作者。 */
 static const char project_license[] = PROJECT_LICENSE;                /**< 项目许可。 */
 
