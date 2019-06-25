@@ -50,7 +50,7 @@ K&R 和 Stroustrup 风格布局；
 / [*LIVE555*](http://live555.com/)
 / [*Unreal Engine*](https://unrealengine.com/)
 
-## 许可                                                           {#sLicense}
+## 许可
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
 

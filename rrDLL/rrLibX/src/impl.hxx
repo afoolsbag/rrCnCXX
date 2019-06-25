@@ -33,7 +33,7 @@ public:
     static void free(handle h);
     static impl &ref(handle h);
 private:
-    static std::unordered_map<handle, std::unique_ptr<impl>> instance_owner_;
+    static std::unordered_map<handle, std::unique_ptr<impl>> instances_owner_;
     explicit impl() = default;
 
 public:

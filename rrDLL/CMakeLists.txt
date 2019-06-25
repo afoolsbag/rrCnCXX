@@ -28,6 +28,7 @@ add_library_con(
   SHARED              ${zInc} ${zSrc} ${zGen}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
+                      SOVERSION           1.0.0
   COMPILE_DEFINITIONS PUBLIC  "RRLIBC_SHARED"
                       PRIVATE "RRLIBC_EXPORTS"
   INCLUDE_DIRECTORIES PUBLIC  "rrLibC/include"
@@ -44,8 +45,9 @@ aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrLibX/src" zGen RECURSE P
 add_library_con(
   rrLibX
   SHARED              ${zInc} ${zSrc} ${zGen}
-  PROPERTIES          CXX_STANDARD          20
+  PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
+                      SOVERSION           1.0.0
   COMPILE_DEFINITIONS PUBLIC  "RRLIBX_SHARED"
                       PRIVATE "RRLIBX_EXPORTS"
   INCLUDE_DIRECTORIES PUBLIC  "rrLibX/include"
@@ -74,7 +76,7 @@ conan_cmake_run(
 aux_source_directory_con("rrExeX" zSrc RECURSE)
 add_executable_con(
   rrExeX              ${zSrc}
-  PROPERTIES          CXX_STANDARD          20
+  PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "rrExeX"
   LINK_LIBRARIES      PRIVATE rrLibC

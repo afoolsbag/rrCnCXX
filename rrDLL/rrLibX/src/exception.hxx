@@ -27,8 +27,8 @@ using status = rrlibx_status_t;  ///< 状态码
 /// \brief 状态码包装异常。
 class exception final : public std::exception {
 public:
-    explicit exception(status status) : status_ {status} {}
-    [[nodiscard]] status status() const { return status_; }
+    explicit exception(rrlibx::status status) : status_ {status} {}
+    [[nodiscard]] rrlibx::status status() const { return status_; }
 private:
     rrlibx::status status_;
 };
