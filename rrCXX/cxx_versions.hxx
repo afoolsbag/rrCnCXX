@@ -722,7 +722,7 @@
 
 /// \brief `nullptr`
 /// \sa <https://wg21.link/n2431>
-#define FEATURE_N2431               (STANDARD_CXX11 || NORMALIZED_VERSION(16.0.0)<=NORMALIZED_MSC_VERSION)
+#define FEATURE_N2431               (STANDARD_CXX11 || NORMALIZED_VERSION(16,0,0)<=NORMALIZED_MSC_VERSION)
 
 /// \brief 原子操作
 /// \sa <https://wg21.link/n2427>
