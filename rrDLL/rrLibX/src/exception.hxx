@@ -40,7 +40,7 @@ private:
 /// \brief 异常转状态码
 #define RRDLLX_EXCEPTION_TO_STATUS_TRY                                         \
     try {
-#define RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL                                   \
+#define RRDLLX_EXCEPTION_TO_STATUS_CATCH                                       \
     } catch (const rrlibx::exception &e) {                                     \
         return e.status();                                                     \
     } catch (const std::invalid_argument &) {                                  \
