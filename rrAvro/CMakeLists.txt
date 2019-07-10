@@ -41,7 +41,7 @@ endif()
 
 aux_source_directory_con("."                           zTest EXTENSIONS ".json" PREFIX "test")
 aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}" zGen                     PREFIX "generated")
-add_executable_ex(
+add_executable_con(
   rrAvroTest          ${zTest} ${zGen}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
