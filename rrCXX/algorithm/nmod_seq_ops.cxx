@@ -30,7 +30,6 @@ using namespace gsl;
 #endif
 
 namespace rrcxx {
-
 /// \addtogroup gNModSeqOps
 /// @{
 
@@ -39,7 +38,6 @@ namespace rrcxx {
 /// \remarks P.1: 在代码中直接表达你的想法
 ///
 /// \sa <https://zh.cppreference.com/w/cpp/algorithm/find>
-/// \sa [*C++C.G. P.1*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-direct)
 TEST(nmod_seq_ops, find)
 {
     const vector<int> v {1, 2, 3, 4, 5};
@@ -106,5 +104,4 @@ TEST(nmod_seq_ops, for_each)
 }
 
 /// @}
-
 }//namespace rrcxx

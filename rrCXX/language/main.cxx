@@ -10,10 +10,12 @@
 ///
 //===----------------------------------------------------------------------===//
 
+#include <cmath>
+#include <iostream>
+
 #include <gtest/gtest.h>
 
 namespace rrcxx {
-
 /// \addtogroup gMain
 /// @{
 
@@ -32,5 +34,4 @@ int entry_point(int argc, char *argv[])
 }
 
 /// @}
-
 }

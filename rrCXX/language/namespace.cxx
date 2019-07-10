@@ -13,7 +13,6 @@
 #include "cxx_versions.hxx"
 
 namespace rrcxx {
-
 /// \addtogroup gNamespace
 /// @{
 
@@ -27,5 +26,4 @@ namespace outer::inner {
 #endif
 
 /// @}
-
 }

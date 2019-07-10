@@ -6,7 +6,7 @@
 /// \sa [Boost.Asio C++ 网络编程](https://gitbook.com/book/mmoaay/boost-asio-cpp-network-programming-chinese)
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_asio.html>
 ///
-/// \version 2019-01-17
+/// \version 2019-07-10
 /// \since 2019-01-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -30,8 +30,8 @@ using namespace std;
 template <typename T>
 void tag(const T &label) noexcept
 {
-    const auto now {chrono::steady_clock::now()};
-    const auto since_epoch_mss {chrono::duration_cast<chrono::milliseconds>(now.time_since_epoch())};
+    const auto now = chrono::steady_clock::now();
+    const auto since_epoch_mss = chrono::duration_cast<chrono::milliseconds>(now.time_since_epoch());
 
     cout << "[" << since_epoch_mss.count() << "ms] " << label << "\n";
 }
@@ -231,4 +231,4 @@ TEST(asio, udp)
     client.join();
 }
 
-}//namespace rrboost
+}

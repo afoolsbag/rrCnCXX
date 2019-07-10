@@ -5,15 +5,16 @@
 ///
 /// \sa gMemory
 ///
-/// \version 2019-01-28
+/// \version 2019-07-10
 /// \since 2018-10-09
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-namespace rrcxx {
+#include <gtest/gtest.h>
 
+namespace rrcxx {
 /// \addtogroup gClasses
 /// @{
 
@@ -80,6 +81,11 @@ public:
     smf_class &operator=(smf_class &&) noexcept = default;
 };
 
-/// @}
+/// \details 通过 `{}` 调用构造函数，以与可能的 `()` 操作符区分
+TEST(classes, constructor)
+{
+    [[maybe_unused]] const smf_class obj {};
+}
 
+/// @}
 }

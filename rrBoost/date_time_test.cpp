@@ -4,7 +4,7 @@
 /// \brief Date Time
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/date_time.html>
 ///
-/// \version 2019-02-26
+/// \version 2019-07-10
 /// \since 2019-02-25
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -19,22 +19,19 @@
 
 using namespace std;
 
-namespace posix_time = boost::posix_time;
-
 namespace rrboost {
 
-TEST(date_time, posix_time)
+TEST(date_time, posix_time_local)
 {
-    {
-        const auto pt {posix_time::second_clock::local_time()};
-        cout << "lcl=" << to_iso_extended_string(pt) << "\n";
-    }
-
-    {
-        const auto tt = time(nullptr);
-        const auto pt {posix_time::from_time_t(tt)};
-        cout << "utc=" << to_iso_extended_string(pt) << "\n";
-    }
+    const auto pt = boost::posix_time::second_clock::local_time();
+    cout << "local time: " << to_iso_extended_string(pt) << '\n';
 }
 
-}//namespace rrboost
+TEST(date_time, posix_time_utc)
+{
+    const auto ct = time(nullptr);
+    const auto pt = boost::posix_time::from_time_t(ct);
+    cout << "UTC time: " << to_iso_extended_string(pt) << '\n';
+}
+
+}

@@ -15,21 +15,25 @@
 #include <gtest/gtest.h>
 
 using namespace std;
-namespace lockfree = boost::lockfree;
 
 namespace rrboost {
 
 /// \details 支持多个生产者、多个消费者的无锁队列
 TEST(lockfree, queue)
 {
+
 }
 
 /// \details 支持多个生产者、多个消费者的无锁栈
 TEST(lockfree, stack)
-{}
+{
+
+}
 
 /// \details 支持单个生产者、单个消费者的无锁队列，较 `queue` 效率更高
 TEST(lockfree, spsc_queue)
-{}
+{
+
+}
 
 }//namespace rrboost

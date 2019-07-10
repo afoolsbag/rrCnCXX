@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-08
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-10
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrBoost
-  VERSION   2019.04.22
+  VERSION   2019.07.10
   LANGUAGES CXX)
 
 add_compile_options_ex(
@@ -23,7 +23,7 @@ add_doxygen_con(
   rrBoostDoc)
 
 conan_cmake_run(
-  REQUIRES    boost/1.69.0@conan/stable
+  REQUIRES    boost/1.70.0@conan/stable
               gsl_microsoft/2.0.0@bincrafters/stable
               gtest/1.8.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS

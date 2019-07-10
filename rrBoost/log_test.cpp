@@ -6,7 +6,7 @@
 /// \sa [Boost.Log使用文档](http://www.wanguanglu.com/2016/07/28/boost-log-document/)
 /// \sa <https://boost.org/doc/libs/1_69_0/libs/log/doc/html/index.html>
 ///
-/// \version 2019-01-11
+/// \version 2019-07-10
 /// \since 2019-01-11
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,7 +20,7 @@
 #include <boost/log/utility/setup/file.hpp>
 #include <gtest/gtest.h>
 
-namespace dll = boost::dll;
+using namespace std;
 
 namespace rrboost {
 
@@ -36,23 +36,15 @@ TEST(log, trivial)
 
 TEST(log, file_sink)
 {
-    namespace log = boost::log;
+    const auto log_path = boost::dll::program_location().replace_extension(".log") / "%Y-%m-%d_%N.log";
 
-    const auto log_path = [] {
-        auto tmp {dll::program_location()};
-        tmp.replace_extension(".log");
-        tmp /= "%Y-%m-%d_%N.log";
-        return tmp;
-    }();
-
-    const auto &file_sink = log::add_file_log(
-        log::keywords::file_name = log_path,
-        log::keywords::max_files = 256,
-        log::keywords::min_free_space = 100 * 1024 * 1024,
-        log::keywords::open_mode = std::ios::out | std::ios::app,
-        log::keywords::rotation_size = 5 * 1024 * 1024,
-        log::keywords::time_based_rotation = log::sinks::file::rotation_at_time_point(0, 0, 0)
-    );
+    const auto &file_sink = boost::log::add_file_log(
+        boost::log::keywords::file_name = log_path,
+        boost::log::keywords::max_files = 256,
+        boost::log::keywords::min_free_space = 100 * 1024 * 1024,
+        boost::log::keywords::open_mode = ios::out | ios::app,
+        boost::log::keywords::rotation_size = 5 * 1024 * 1024,
+        boost::log::keywords::time_based_rotation = boost::log::sinks::file::rotation_at_time_point(0, 0, 0));
 
     BOOST_LOG_TRIVIAL(trace) << "trace message";
     BOOST_LOG_TRIVIAL(debug) << "debug message";
@@ -61,23 +53,21 @@ TEST(log, file_sink)
     BOOST_LOG_TRIVIAL(error) << "error message";
     BOOST_LOG_TRIVIAL(fatal) << "fatal message";
 
-    log::core::get()->remove_sink(file_sink);
+    boost::log::core::get()->remove_sink(file_sink);
 }
 
 TEST(log, filter)
 {
-    namespace log = boost::log;
-
-    const auto &console_sink = log::add_console_log();
+    const auto &console_sink = boost::log::add_console_log();
 
     // 全局过滤器
-    log::core::get()->set_filter(
-        log::trivial::debug <= log::trivial::severity
+    boost::log::core::get()->set_filter(
+        boost::log::trivial::debug <= boost::log::trivial::severity
     );
 
     // 槽过滤器
     console_sink->set_filter(
-        log::trivial::info <= log::trivial::severity
+        boost::log::trivial::info <= boost::log::trivial::severity
     );
 
     BOOST_LOG_TRIVIAL(trace) << "trace message";
@@ -87,7 +77,7 @@ TEST(log, filter)
     BOOST_LOG_TRIVIAL(error) << "error message";
     BOOST_LOG_TRIVIAL(fatal) << "fatal message";
 
-    log::core::get()->remove_sink(console_sink);
+    boost::log::core::get()->remove_sink(console_sink);
 }
 
-}//namespace rrboost
+}

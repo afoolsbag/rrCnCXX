@@ -4,7 +4,7 @@
 /// \brief Format
 /// \sa <https://boost.org/doc/libs/1_69_0/libs/format/index.html>
 ///
-/// \version 2019-01-11
+/// \version 2019-07-10
 /// \since 2019-01-11
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -22,9 +22,7 @@ namespace rrboost {
 
 TEST(format, first_step)
 {
-    using boost::format;
-
-    cout << format("Hello, %1%.\n") % "Aoi";
+    cout << boost::format("Hello, %1%.\n") % "Aoi";
 }
 
-}//namespace rrboost
+}

@@ -4,7 +4,7 @@
 /// \brief DLL
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_dll.html>
 ///
-/// \version 2019-02-28
+/// \version 2019-07-10
 /// \since 2019-01-10
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,7 +20,7 @@ namespace rrboost {
 
 TEST(dll, program_location)
 {
-    const auto program_path {boost::dll::program_location()};
+    const auto program_path = boost::dll::program_location();
 }
 
-}//namespace rrboost
+}

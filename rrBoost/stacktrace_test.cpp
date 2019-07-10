@@ -4,7 +4,7 @@
 /// \brief Stacktrace
 /// \sa <https://boost.org/doc/libs/1_69_0/doc/html/stacktrace.html>
 ///
-/// \version 2019-03-21
+/// \version 2019-07-10
 /// \since 2019-03-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -26,7 +26,7 @@ namespace rrboost {
 
 TEST(stacktrace, getting_started)
 {
-    cout << stacktrace::stacktrace() << '\n';
+    cout << stacktrace::stacktrace {} << '\n';
 }
 
 }//namespace rrboost
