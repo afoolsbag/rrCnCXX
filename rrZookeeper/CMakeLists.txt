@@ -13,7 +13,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrZooKeeper
-  VERSION   2018.05.28
+  VERSION   2019.05.28
   LANGUAGES CXX)
 
 add_compile_options_ex(

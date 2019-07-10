@@ -2,7 +2,7 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-04-17
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-08
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -26,7 +26,9 @@ add_doxygen_con(
 conan_cmake_run(
   REQUIRES    gsl_microsoft/2.0.0@bincrafters/stable
               gtest/1.8.1@bincrafters/stable
-  BASIC_SETUP CMAKE_TARGETS)
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
+
 aux_source_directory_con("." zSrc RECURSE)
 add_executable_con(
   rrCXXtest           ${zSrc}
