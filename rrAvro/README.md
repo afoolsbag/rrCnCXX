@@ -1,9 +1,10 @@
 # zhengrr 所知的 Avro                                                {#mainpage}
 
-[*Apache Avro*](https://avro.apache.org/)
+[*Apache Avro*](https://avro.apache.org/)，一种数据序列化框架。
 
 ## 风格
 
+大驼峰式命名；
 `.hh` 和 `.cc` 风格后缀。
 
 ## 指南

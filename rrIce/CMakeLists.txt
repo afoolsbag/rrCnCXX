@@ -1,18 +1,26 @@
 #          _____
 #         |_   _|
 #  _ __ _ __| |  ___ ___
-# | '__| '__| | / __/ _ \
-# | |  | | _| || (_|  __/
-# |_|  |_| \___/\___\___| rrIce by FIGlet doom
-# zhengrr
-# 2018-03-21 – 2018-10-16
-# The MIT License
+# | '__| '__| | / __/ _ \ zhengrr
+# | |  | | _| || (_|  __/ 2018-03-21 – 2019-07-10
+# |_|  |_| \___/\___\___| Unlicense
 
-project(rrIce VERSION 2018.10.16 LANGUAGES CXX)
-project_more()
-compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
 
-facile_add_doxygen()
+project_ex(
+  rrIce
+  VERSION   2019.07.10
+  LANGUAGES CXX)
+
+add_compile_options_ex(
+  RECOMMENDED_WARNING_LEVEL
+  MULTIPLE_PROCESSES
+  UTF-8
+  WARNING_AS_ERROR)
+
+add_doxygen_con(
+  rrIceDoc)
 
 find_package(
   Ice
@@ -20,9 +28,6 @@ find_package(
              IceDiscovery++11
              IceLocatorDiscovery++11
              IceSSL++11)
-if(NOT Ice_FOUND)
-  set(Ice_HOME "${Ice_HOME}" CACHE PATH "The root directory of the ICE installation.")
-endif()
 
 aux_add_subdirectories(
   WITH_OPTION
