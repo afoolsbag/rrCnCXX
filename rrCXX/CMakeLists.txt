@@ -2,7 +2,7 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-08
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-11
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrCXX
-  VERSION   2019.04.17
+  VERSION   2019.07.11
   LANGUAGES CXX)
 
 add_compile_options_ex(
