@@ -2,7 +2,7 @@
 #           |  _  \ |    | |
 #  _ __ _ __| | | | |    | |
 # | '__| '__| | | | |    | |     zhengrr
-# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-06-20
+# | |  | |  | |/ /| |____| |____ 2019-01-14 – 2019-07-15
 # |_|  |_|  |___/ \_____/\_____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrDLL
-  VERSION   2019.06.20
+  VERSION   2019.07.15
   LANGUAGES C CXX)
 
 add_compile_options_ex(

@@ -9,170 +9,185 @@
 #include "cfg.hxx"
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_version(int *ref_major, int *ref_minor, int *ref_patch, int *ref_tweak)
+RRLIBX_APIm rrlibx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (ref_major)
-        *ref_major = static_cast<int>(rrlibx::project_version_major);
-    if (ref_minor)
-        *ref_minor = static_cast<int>(rrlibx::project_version_minor);
-    if (ref_patch)
-        *ref_patch = static_cast<int>(rrlibx::project_version_patch);
-    if (ref_tweak)
-        *ref_tweak = static_cast<int>(rrlibx::project_version_tweak);
+    if (r_major)
+        *r_major = static_cast<int>(rrlibx::project_version_major);
+    if (r_minor)
+        *r_minor = static_cast<int>(rrlibx::project_version_minor);
+    if (r_patch)
+        *r_patch = static_cast<int>(rrlibx::project_version_patch);
+    if (r_tweak)
+        *r_tweak = static_cast<int>(rrlibx::project_version_tweak);
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_construct(rrlibx_handle_t *ref_handle)
+RRLIBX_APIm rrlibx_construct(rrlibx_handle_t *r_handle)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!ref_handle)
+    if (!r_handle)
         return rrlibx_invalid_argument;
-    *ref_handle = rrlibx::impl::alloc();
+    *r_handle = rrlibx::impl::alloc();
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_destruct(rrlibx_handle_t h)
+RRLIBX_APIm rrlibx_destruct(rrlibx_handle_t handle)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h)
+    if (!handle)
         return rrlibx_invalid_argument;
-    rrlibx::impl::free(h);
+    rrlibx::impl::free(handle);
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_set_basic(rrlibx_handle_t h, int value)
+RRLIBX_APIm rrlibx_set_basic(rrlibx_handle_t handle, int value)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h)
+    if (!handle)
         return rrlibx_invalid_argument;
-    rrlibx::implref(h).basic = value;
+    rrlibx::implref(handle).basic = value;
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_basic(rrlibx_handle_t h, int *ref_value)
+RRLIBX_APIm rrlibx_get_basic(rrlibx_handle_t handle, int *r_value)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !ref_value)
+    if (!handle || !r_value)
         return rrlibx_invalid_argument;
-    *ref_value = rrlibx::implref(h).basic;
+    *r_value = rrlibx::implref(handle).basic;
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_set_array(rrlibx_handle_t h, const uint8_t *data, size_t size)
+RRLIBX_APIm rrlibx_set_array(rrlibx_handle_t handle, const uint8_t data[], size_t size)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !data || !size)
+    if (!handle || !data || !size)
         return rrlibx_invalid_argument;
-    rrlibx::implref(h).array = {data, data + size};
+    rrlibx::implref(handle).array = {data, data + size};
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_array(rrlibx_handle_t h, uint8_t *buffer, size_t *ref_size)
+RRLIBX_APIm rrlibx_get_array(rrlibx_handle_t handle, uint8_t buffer[], size_t *r_size)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !ref_size)
+    if (!handle || !r_size)
         return rrlibx_invalid_argument;
-    const auto &array = rrlibx::implref(h).array;
+    const auto &array = rrlibx::implref(handle).array;
     if (!buffer) {
-        *ref_size = array.size();
+        *r_size = array.size();
         return rrlibx_success;
     }
-    if (*ref_size < array.size()) {
-        *ref_size = array.size();
+    if (*r_size < array.size()) {
+        *r_size = array.size();
         return rrlibx_range_error;
     }
     std::memcpy(buffer, array.data(), array.size());
-    *ref_size = array.size();
+    *r_size = array.size();
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_array_volatile_readonly_reference(rrlibx_handle_t h, const uint8_t **ref_data, size_t *ref_size)
+RRLIBX_APIm rrlibx_get_array_cvr(rrlibx_handle_t handle, const uint8_t *(*r_data), size_t *r_size)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !ref_data || !ref_size)
+    if (!handle || !r_data || !r_size)
         return rrlibx_invalid_argument;
-    const auto &array = rrlibx::implref(h).array;
-    *ref_data = array.data();
-    *ref_size = array.size();
+    const auto &array = rrlibx::implref(handle).array;
+    *r_data = array.data();
+    *r_size = array.size();
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_set_string(rrlibx_handle_t h, const char *string)
+RRLIBX_APIm rrlibx_set_string(rrlibx_handle_t handle, const char string[])
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !string)
+    if (!handle || !string)
         return rrlibx_invalid_argument;
-    rrlibx::implref(h).string = string;
+    rrlibx::implref(handle).string = string;
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_string_fixed_size(rrlibx_handle_t h, char buffer[rrlibx_string_fixed_size])
+RRLIBX_APIm rrlibx_get_string_fsb(rrlibx_handle_t handle, char buffer[rrlibx_string_fsb_size])
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !buffer)
+    if (!handle || !buffer)
         return rrlibx_invalid_argument;
-    const auto &string = rrlibx::implref(h).string;
-    if (rrlibx_string_fixed_size < string.size() + 1)
+    const auto &string = rrlibx::implref(handle).string;
+    if (rrlibx_string_fsb_size < string.size() + 1)
         return rrlibx_range_error;
     std::memcpy(buffer, string.data(), string.size());
     buffer[string.size()] = '\0';
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_string_volatile_readonly_reference(rrlibx_handle_t h, const char **ref_string)
+RRLIBX_APIm rrlibx_get_string_cvr(rrlibx_handle_t handle, const char *(*r_string))
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !ref_string)
+    if (!handle || !r_string)
         return rrlibx_invalid_argument;
-    *ref_string = rrlibx::implref(h).string.c_str();
+    *r_string = rrlibx::implref(handle).string.data();
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }
 
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_last_internal_error_message(rrlibx_handle_t h, char buffer[rrlibx_error_message_size])
+RRLIBX_APIm rrlibx_non_blocking(rrlibx_handle_t handle, rrlibx_non_blocking_callback_t callback, void *p_user_data)
 RRLIBX_APIs
 {
     RRDLLX_EXCEPTION_TO_STATUS_TRY;
-    if (!h || !buffer)
+    if (!handle || !callback)
         return rrlibx_invalid_argument;
-    const auto &string = rrlibx::implref(h).string;
-    if (rrlibx_error_message_size < string.size() + 1)
+    std::thread {[callback, p_user_data] {
+        std::this_thread::yield();
+        callback(p_user_data);
+    }}.detach();
+    return rrlibx_success;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
+}
+
+RRLIBX_APIp enum rrlibx_status_t
+RRLIBX_APIm rrlibx_get_last_internal_error_message(rrlibx_handle_t handle, char buffer[rrlibx_last_internal_error_message_fsb_size])
+RRLIBX_APIs
+{
+    RRDLLX_EXCEPTION_TO_STATUS_TRY;
+    if (!handle || !buffer)
+        return rrlibx_invalid_argument;
+    const auto &string = rrlibx::implref(handle).string;
+    if (rrlibx_last_internal_error_message_fsb_size < string.size() + 1)
         return rrlibx_range_error;
     std::memcpy(buffer, string.data(), string.size());
     buffer[string.size()] = '\0';
     return rrlibx_success;
-    RRDLLX_EXCEPTION_TO_STATUS_CATCH_ALL;
+    RRDLLX_EXCEPTION_TO_STATUS_CATCH;
 }

@@ -37,7 +37,7 @@
  *
  * \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
  *
- * \version 2019-06-20
+ * \version 2019-07-15
  * \since 2018-01-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -56,7 +56,11 @@
 #include <stdint.h>
 #endif
 
-#include "api.h"
+#include "rrlibx/api.h"
+
+/*==============================================================================
+ * 状态码：STATUS CODES
+ *----------------------------------------------------------------------------*/
 
 /**
  * \brief 状态码。
@@ -97,145 +101,181 @@ enum rrlibx_status_t {
     rrlibx_unexpected_exception          /**< 不预期的异常：不遵循标准异常或任何已知异常，意料之外的状况。 */
 };
 
-typedef struct internal_rrlibx_handle_t *rrlibx_handle_t;  /**< 实例句柄。 */
+/*==============================================================================
+ * 类型和常量：TYPES & CONSTANTS
+ *----------------------------------------------------------------------------*/
+
+enum {
+    rrlibx_last_internal_error_message_fsb_size = 128,  /**< 最新内部错误消息定长缓存尺寸 */
+    rrlibx_string_fsb_size = 777,                       /**< 字串定长缓存尺寸 */
+};
+
+/**
+ * \brief 实例句柄类型。
+ */
+typedef struct incomplete_rrlibx_t *rrlibx_handle_t;
+
+/**
+ * \brief `rrlibx_non_blocking` 回调函数类型。
+ */
+typedef void(*rrlibx_non_blocking_callback_t)(void *p_user_data);
+
+/*==============================================================================
+ * 接口：INTERFACE
+ *----------------------------------------------------------------------------*/
 
 /**
  * \brief 获取版本。
  *
- * \param[out] ref_major 主版本引用，reference to major version
- * \param[out] ref_minor 次版本引用，reference to minor version
- * \param[out] ref_patch 补丁版本引用，reference to patch version
- * \param[out] ref_tweak 微调版本引用，reference to tweak version
+ * \param[out] r_major 主版本号引用，可空
+ * \param[out] r_minor 次版本号引用，可空
+ * \param[out] r_patch 补丁版本号引用，可空
+ * \param[out] r_tweak 微调版本号引用，可空
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_version(int *ref_major, int *ref_minor, int *ref_patch, int *ref_tweak)
+RRLIBX_APIm rrlibx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
 RRLIBX_APIs;
 
 /**
  * \brief 构造实例。
  *
- * \param[out] ref_handle 实例句柄引用，reference to handle
+ * \param[out] r_handle 实例句柄引用
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_construct(rrlibx_handle_t *ref_handle)
+RRLIBX_APIm rrlibx_construct(rrlibx_handle_t *r_handle)
 RRLIBX_APIs;
 
 /**
  * \brief 析构实例。
  *
- * \param h 实例句柄，handle
+ * \param handle 实例句柄
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_destruct(rrlibx_handle_t h)
+RRLIBX_APIm rrlibx_destruct(rrlibx_handle_t handle)
 RRLIBX_APIs;
 
-//------------------------------------------------------------------------------
-// basic type
+/*==============================================================================
+ * 接口，基础读取：BASIC GETTER & SETTER
+ *----------------------------------------------------------------------------*/
 
 /**
- * \brief 基本类型赋值。
+ * \brief 基础赋值。
  *
- * \param h     实例句柄，handle
- * \param value 值
+ * \param handle 实例句柄
+ * \param value  值
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_set_basic(rrlibx_handle_t h, int value)
-RRLIBX_APIs;
-
-/**
- * \brief 基本类型取值。
- *
- * \param[in]  h         实例句柄，handle
- * \param[out] ref_value 值引用，reference to value
- */
-RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_basic(rrlibx_handle_t h, int *ref_value)
-RRLIBX_APIs;
-
-/*----------------------------------------------------------------------------*/
-/* array type */
-
-/**
- * \brief 数组类型赋值。
- *
- * \param h    实例句柄，handle
- * \param data 数据指针
- * \param size 数据尺寸
- */
-RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_set_array(rrlibx_handle_t h, const uint8_t *data, size_t size)
+RRLIBX_APIm rrlibx_set_basic(rrlibx_handle_t handle, int value)
 RRLIBX_APIs;
 
 /**
- * \brief 数组类型取值。
+ * \brief 基础取值。
  *
- * \param[in]     h        实例句柄，handle
- * \param[out]    buffer   缓存指针
- * \param[in,out] ref_size 尺寸引用：输入缓存尺寸，输出数据尺寸。
+ * \param[in]  handle  实例句柄
+ * \param[out] r_value 值引用
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_array(rrlibx_handle_t h, uint8_t *buffer, size_t *ref_size)
+RRLIBX_APIm rrlibx_get_basic(rrlibx_handle_t handle, int *r_value)
+RRLIBX_APIs;
+
+/*==============================================================================
+ * 接口，数组读取：ARRAY GETTER & SETTER
+ *----------------------------------------------------------------------------*/
+
+/**
+ * \brief 数组赋值。
+ *
+ * \param handle 实例句柄
+ * \param data   只读数组
+ * \param size   数组尺寸
+ */
+RRLIBX_APIp enum rrlibx_status_t
+RRLIBX_APIm rrlibx_set_array(rrlibx_handle_t handle, const uint8_t data[], size_t size)
 RRLIBX_APIs;
 
 /**
- * \brief 数组类型取值，易变只读引用变种。
+ * \brief 数组取值。
  *
- * \param[in]  h        实例句柄，handle
- * \param[out] ref_data 数据指针引用，reference to data
- * \param[out] ref_size 数据尺寸引用，reference to size
+ * \param[in]     handle 实例句柄
+ * \param[out]    buffer 缓存数组，可空
+ * \param[in,out] r_size 尺寸引用，输入缓存尺寸，输出数据尺寸。
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_array_volatile_readonly_reference(rrlibx_handle_t h, const uint8_t **ref_data, size_t *ref_size)
-RRLIBX_APIs;
-
-/*----------------------------------------------------------------------------*/
-/* string type */
-
-enum { rrlibx_string_fixed_size = 777 };
-
-/**
- * \brief 字串类型赋值。
- *
- * \param h      实例句柄，handle
- * \param string 字串指针
- */
-RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_set_string(rrlibx_handle_t h, const char *string)
+RRLIBX_APIm rrlibx_get_array(rrlibx_handle_t handle, uint8_t buffer[], size_t *r_size)
 RRLIBX_APIs;
 
 /**
- * \brief 字串类型取值，定长缓存变种。
+ * \brief 数组取值，只读易变引用（const volatile reference）变种。
  *
- * \param[in]  h      实例句柄，handle
+ * \param[in]  handle 实例句柄
+ * \param[out] r_data 只读数组引用
+ * \param[out] r_size 尺寸引用
+ */
+RRLIBX_APIp enum rrlibx_status_t
+RRLIBX_APIm rrlibx_get_array_cvr(rrlibx_handle_t handle, const uint8_t *(*r_data), size_t *r_size)
+RRLIBX_APIs;
+
+/*==============================================================================
+ * 接口，字串读取：STRING GETTER & SETTER
+ *----------------------------------------------------------------------------*/
+
+/**
+ * \brief 字串赋值。
+ *
+ * \param handle 实例句柄
+ * \param string 只读字串
+ */
+RRLIBX_APIp enum rrlibx_status_t
+RRLIBX_APIm rrlibx_set_string(rrlibx_handle_t handle, const char string[])
+RRLIBX_APIs;
+
+/**
+ * \brief 字串取值，定长缓存（fixed size buffer）变种。
+ *
+ * \param[in]  handle 实例句柄
  * \param[out] buffer 定长缓存
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_string_fixed_size(rrlibx_handle_t h, char buffer[rrlibx_string_fixed_size])
+RRLIBX_APIm rrlibx_get_string_fsb(rrlibx_handle_t handle, char buffer[rrlibx_string_fsb_size])
 RRLIBX_APIs;
 
 /**
- * \brief 字串类型取值，易变只读引用变种。
+ * \brief 字串取值，只读易变引用（const volatile reference）变种。
  *
- * \param[in]  h          实例句柄，handle
- * \param[out] ref_string 字串指针引用，reference to string
+ * \param[in]  handle   实例句柄
+ * \param[out] r_string 只读字串引用
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_string_volatile_readonly_reference(rrlibx_handle_t h, const char **ref_string)
+RRLIBX_APIm rrlibx_get_string_cvr(rrlibx_handle_t handle, const char *(*r_string))
 RRLIBX_APIs;
 
-/*----------------------------------------------------------------------------*/
-/* error handling */
+/*==============================================================================
+ * 接口，回调：CALLBACK
+ *----------------------------------------------------------------------------*/
 
-enum { rrlibx_error_message_size = 128 };
+/**
+ * \brief 异步回调。
+ *
+ * \param handle      实例句柄
+ * \param callback    回调函数
+ * \param p_user_data 用户数据指针，在回调时将原样传递此指针，用户需注意其指向内容的生存期
+ */
+RRLIBX_APIp enum rrlibx_status_t
+RRLIBX_APIm rrlibx_non_blocking(rrlibx_handle_t handle, rrlibx_non_blocking_callback_t callback, void *p_user_data)
+RRLIBX_APIs;
+
+/*==============================================================================
+ * 接口，错误处理：ERROR HANDLING
+ *----------------------------------------------------------------------------*/
 
 /**
  * \brief 最新内部错误消息。
  *
- * \param[in]  h      实例句柄，handle
+ * \param[in]  handle 实例句柄
  * \param[out] buffer 定长缓存
  */
 RRLIBX_APIp enum rrlibx_status_t
-RRLIBX_APIm rrlibx_get_last_internal_error_message(rrlibx_handle_t h, char buffer[rrlibx_error_message_size])
+RRLIBX_APIm rrlibx_get_last_internal_error_message(rrlibx_handle_t handle, char buffer[rrlibx_last_internal_error_message_fsb_size])
 RRLIBX_APIs;
 
 #endif

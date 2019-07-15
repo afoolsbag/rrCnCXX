@@ -10,25 +10,25 @@
 #include "cfg.h"
 
 RRLIBC_APIp enum rrlibc_status_t
-RRLIBC_APIm rrlibc_get_version(int *ref_major, int *ref_minor, int *ref_patch, int *ref_tweak)
+RRLIBC_APIm rrlibc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
 RRLIBC_APIs
 {
-    if (ref_major)
-        *ref_major = (int)project_version_major;
-    if (ref_minor)
-        *ref_minor = (int)project_version_minor;
-    if (ref_patch)
-        *ref_patch = (int)project_version_patch;
-    if (ref_tweak)
-        *ref_tweak = (int)project_version_tweak;
+    if (r_major)
+        *r_major = (int)project_version_major;
+    if (r_minor)
+        *r_minor = (int)project_version_minor;
+    if (r_patch)
+        *r_patch = (int)project_version_patch;
+    if (r_tweak)
+        *r_tweak = (int)project_version_tweak;
     return rrlibc_success;
 }
 
 RRLIBC_APIp enum rrlibc_status_t
-RRLIBC_APIm rrlibc_sigh(time_t *ref_time)
+RRLIBC_APIm rrlibc_sigh(time_t *r_time)
 RRLIBC_APIs
 {
-    if (!ref_time)
+    if (!r_time)
         return rrlibc_invalid_argument;
 
     struct tm ts;
@@ -41,6 +41,6 @@ RRLIBC_APIs
     if (tmp == -1)
         return rrlibc_overflow_error;
 
-    *ref_time = tmp;
+    *r_time = tmp;
     return rrlibc_success;
 }

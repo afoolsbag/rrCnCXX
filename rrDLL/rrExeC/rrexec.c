@@ -1,12 +1,13 @@
 /*===-- rrExeC -------------------------------------------------*- C -*-===*//**
  *
- * \version 2019-06-20
+ * \version 2019-07-15
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
  *
 **//*===-------------------------------------------------------------------===*/
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,6 +15,10 @@
 
 #include <rrlibc/rrlibc.h>
 #include <rrlibx/rrlibx.h>
+
+/*==============================================================================
+ * rrLibC
+ *----------------------------------------------------------------------------*/
 
 START_TEST(tf_rrlibc_version)
 {
@@ -27,6 +32,10 @@ static TCase *tc_rrlibc(void)
     tcase_add_test(tc, tf_rrlibc_version);
     return tc;
 }
+
+/*==============================================================================
+ * rrLibX
+ *----------------------------------------------------------------------------*/
 
 static rrlibx_handle_t tc_rrlibx_handle = NULL;
 
@@ -51,44 +60,64 @@ END_TEST;
 
 START_TEST(tf_rrlibx_basic)
 {
-    static const int invalue = 1337;
-    ck_assert_int_eq(rrlibx_success, rrlibx_set_basic(tc_rrlibx_handle, invalue));
+    static const int in_value = 1337;
+    ck_assert_int_eq(rrlibx_success, rrlibx_set_basic(tc_rrlibx_handle, in_value));
 
-    int outvalue = 0;
-    ck_assert_int_eq(rrlibx_success, rrlibx_get_basic(tc_rrlibx_handle, &outvalue));
+    int out_value = 0;
+    ck_assert_int_eq(rrlibx_success, rrlibx_get_basic(tc_rrlibx_handle, &out_value));
 
-    ck_assert_int_eq(invalue, outvalue);
+    ck_assert_int_eq(in_value, out_value);
 }
 END_TEST;
 
 START_TEST(tf_rrlibx_array)
 {
-    static const uint8_t indata[] = "wahyayayah";
-    static const size_t insize = sizeof indata;
-    ck_assert_int_eq(rrlibx_success, rrlibx_set_array(tc_rrlibx_handle, indata, insize));
+    static const uint8_t in_data[] = "SMT ZL JT";
+    static const size_t in_size = sizeof in_data;
+    ck_assert_int_eq(rrlibx_success, rrlibx_set_array(tc_rrlibx_handle, in_data, in_size));
 
-    size_t outsize = 0;
-    ck_assert_int_eq(rrlibx_success, rrlibx_get_array(tc_rrlibx_handle, NULL, &outsize));
-    ck_assert_int_eq(insize, outsize);
+    size_t out_size = 0;
+    ck_assert_int_eq(rrlibx_success, rrlibx_get_array(tc_rrlibx_handle, NULL, &out_size));
+    ck_assert_int_eq(in_size, out_size);
+    uint8_t *out_data = malloc(out_size);
+    ck_assert_ptr_ne(NULL, out_data);
+    ck_assert_int_eq(rrlibx_success, rrlibx_get_array(tc_rrlibx_handle, out_data, &out_size));
+    ck_assert_mem_eq(in_data, out_data, min(in_size, out_size));
+    free(out_data);
 
-    uint8_t *outdata = malloc(outsize);
-    ck_assert_ptr_ne(NULL, outdata);
-    ck_assert_int_eq(rrlibx_success, rrlibx_get_array(tc_rrlibx_handle, outdata, &outsize));
-
-    ck_assert_mem_eq(indata, outdata, insize);
-    free(outdata);
+    const uint8_t *ref_data;
+    size_t ref_size;
+    ck_assert_int_eq(rrlibx_success, rrlibx_get_array_cvr(tc_rrlibx_handle, &ref_data, &ref_size));
+    ck_assert_mem_eq(in_data, ref_data, min(in_size, ref_size));
 }
 END_TEST;
 
 START_TEST(tf_rrlibx_string)
 {
-    static const char instring[] = "wahyayayah";
-    ck_assert_int_eq(rrlibx_success, rrlibx_set_string(tc_rrlibx_handle, instring));
+    static const char in_string[] = "SMT ZL JT";
+    ck_assert_int_eq(rrlibx_success, rrlibx_set_string(tc_rrlibx_handle, in_string));
 
-    char outstring[rrlibx_string_fixed_size] = "\0";
-    ck_assert_int_eq(rrlibx_success, rrlibx_get_string_fixed_size(tc_rrlibx_handle, outstring));
+    char out_string[rrlibx_string_fsb_size] = "\0";
+    ck_assert_int_eq(rrlibx_success, rrlibx_get_string_fsb(tc_rrlibx_handle, out_string));
+    ck_assert_str_eq(in_string, out_string);
 
-    ck_assert_str_eq(instring, outstring);
+    const char *ref_string;
+    ck_assert_int_eq(rrlibx_success, rrlibx_get_string_cvr(tc_rrlibx_handle, &ref_string));
+    ck_assert_str_eq(in_string, ref_string);
+}
+END_TEST;
+
+static void non_blocking_callback(void *p_user_data)
+{
+    *(bool *)p_user_data = true;
+}
+
+START_TEST(tf_rrlibx_callback)
+{
+    bool pass = false;
+    rrlibx_non_blocking(tc_rrlibx_handle, non_blocking_callback, &pass);
+    while (!pass)
+        continue;
 }
 END_TEST;
 
@@ -100,6 +129,7 @@ static TCase *tc_rrlibx(void)
     tcase_add_test(tc, tf_rrlibx_basic);
     tcase_add_test(tc, tf_rrlibx_array);
     tcase_add_test(tc, tf_rrlibx_string);
+    tcase_add_test(tc, tf_rrlibx_callback);
     return tc;
 }
 

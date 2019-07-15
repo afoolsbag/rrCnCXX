@@ -5,7 +5,7 @@
  *
  * \sa [*DLL 编写教程*](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2019-05-13
+ * \version 2019-07-15
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright Unlicense
@@ -16,7 +16,11 @@
 #ifndef RRLIBC_RRLIBC_H_
 #define RRLIBC_RRLIBC_H_
 
+#ifdef __cplusplus
+#include <ctime>
+#else
 #include <time.h>
+#endif
 
 #include "rrlibc/api.h"
 
@@ -59,22 +63,22 @@ enum rrlibc_status_t {
 /**
  * \brief 获取版本。
  *
- * \param[out] ref_major 主版本引用，reference to major version
- * \param[out] ref_minor 次版本引用，reference to minor version
- * \param[out] ref_patch 补丁版本引用，reference to patch version
- * \param[out] ref_tweak 微调版本引用，reference to tweak version
+ * \param[out] r_major 主版本号引用
+ * \param[out] r_minor 次版本号引用
+ * \param[out] r_patch 补丁版本号引用
+ * \param[out] r_tweak 微调版本号引用
  */
 RRLIBC_APIp enum rrlibc_status_t
-RRLIBC_APIm rrlibc_get_version(int *ref_major, int *ref_minor, int *ref_patch, int *ref_tweak)
+RRLIBC_APIm rrlibc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
 RRLIBC_APIs;
 
 /**
  * \brief 叹。
  *
- * \param[out] ref_time 时间引用，reference to time
+ * \param[out] r_time 时间引用
  */
 RRLIBC_APIp enum rrlibc_status_t
-RRLIBC_APIm rrlibc_sigh(time_t *ref_time)
+RRLIBC_APIm rrlibc_sigh(time_t *r_time)
 RRLIBC_APIs;
 
 #endif
