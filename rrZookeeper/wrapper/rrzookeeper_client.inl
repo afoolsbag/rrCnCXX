@@ -37,11 +37,11 @@ inline void client::reconnect()
     using namespace std;
 
     if (host_.empty())
-        throw invalid_argument("Host cannot be empty.");
+        throw invalid_argument("host cannot be empty");
     if (timeout_.count() < 0)
-        throw invalid_argument("Timeout cannot be negative.");
+        throw invalid_argument("timeout cannot be negative");
 
-    zh_.reset(zookeeper_init(host_.c_str(), nullptr, static_cast<int>(timeout_.count()), nullptr, nullptr, 0));
+    zh_.reset(zookeeper_init(host_.c_str(), init_watcher, static_cast<int>(timeout_.count()), nullptr, this, 0));
     if (!zh_)
         throw runtime_error("zookeeper_init failed: "s + zerror(errno));
 }
@@ -58,36 +58,36 @@ inline void client::disconnect()
         throw runtime_error("zookeeper_close failed: "s + zerror(zrc));
 }
 
-inline std::string client::create(const std::string &path, const std::optional<std::string> &value, int flags)
+inline std::string client::create(const std::string &path, const std::optional<std::string> &value, const create_flag &flags)
 {
     using namespace std;
 
     const auto val = value ? value.value().data() : nullptr;
     const auto siz = value ? static_cast<int>(value.value().length()) + 1 : -1;
-    const auto flg = (flags & cf_ephemeral ? ZOO_EPHEMERAL : 0) | (flags & cf_sequence ? ZOO_SEQUENCE : 0);
+    const auto flg = (flags.test(_cf_ephemeral) ? ZOO_EPHEMERAL : 0) | (flags.test(_cf_sequence) ? ZOO_SEQUENCE : 0);
     char buf[1024] {};
 
     const auto zrc = zoo_create(zh_.get(), path.c_str(), val, siz, &ZOO_OPEN_ACL_UNSAFE, flg, buf, sizeof buf);
 
     if (zrc == ZOK) {
         return buf;
-    } else if (zrc == ZNONODE && flags & cf_recursive) {
+    } else if (zrc == ZNONODE && flags.test(_cf_recursive)) {
         const auto pos = path.find_last_of('/');
         if (pos == path.npos)
             throw runtime_error("zoo_create failed: "s + zerror(ZNONODE));
         create(path.substr(0, pos), nullopt, flags & ~cf_ephemeral & ~cf_sequence);
         return create(path, value, flags & ~cf_recursive);
-    } else if (zrc == ZNODEEXISTS && flags & cf_set_if_exists) {
+    } else if (zrc == ZNODEEXISTS && flags.test(_cf_set_if_exists)) {
         set(path, value);
         return path;
-    } else if (zrc == ZNODEEXISTS && flags & cf_ignore_if_exists) {
+    } else if (zrc == ZNODEEXISTS && flags.test(_cf_ignore_if_exists)) {
         return path;
     } else {
         throw runtime_error("zoo_create failed: "s + zerror(zrc));
     }
 }
 
-inline std::string client::create(const std::string &path, int flags)
+inline std::string client::create(const std::string &path, const create_flag &flags)
 {
     return create(path, std::nullopt, flags);
 }
@@ -128,11 +128,11 @@ inline std::list<std::string> client::get_children(const std::string &path) cons
     if (zrc != ZOK)
         throw runtime_error("zoo_get_children failed: "s + zerror(zrc));
     for (auto i = 0; i < vec.count; ++i)
-        tmp.push_back(vec.data[i]);
+        tmp.emplace_back(vec.data[i]);
     return tmp;
 }
 
-inline void client::set(const std::string &path, const std::optional<std::string> &value, int flags)
+inline void client::set(const std::string &path, const std::optional<std::string> &value, const set_flag &flags)
 {
     using namespace std;
 
@@ -142,31 +142,82 @@ inline void client::set(const std::string &path, const std::optional<std::string
 
     if (zrc == ZOK)
         return;
-    else if (zrc == ZNONODE && flags & sf_create_if_not_exists)
+    else if (zrc == ZNONODE && flags.test(_sf_create_if_not_exists))
         create(path, value, cf_recursive);
     else
         throw runtime_error("zoo_set failed: "s + zerror(zrc));
 }
 
-inline void client::deleta(const std::string &path, int flags)
+inline void client::deleta(const std::string &path, const delete_flag &flags)
 {
     using namespace std;
 
     const auto zrc = zoo_delete(zh_.get(), path.c_str(), -1);
     if (zrc == ZOK) {
         return;
-    } else if (zrc == ZNOTEMPTY && flags & df_traversal) {
+    } else if (zrc == ZNOTEMPTY && flags.test(_df_traversal)) {
         auto subs = get_children(path);
         for (const auto &sub : subs)
             deleta(path + "/"s + sub, df_traversal);
         deleta(path, flags & ~df_traversal);
-    } else if (zrc == ZNONODE && flags & df_ignore_if_not_exists) {
+    } else if (zrc == ZNONODE && flags.test(_df_ignore_if_not_exists)) {
         return;
     } else {
         throw runtime_error("zoo_delete failed: "s + zerror(zrc));
     }
 }
 
-}//namespace rrzookeeper
+inline void client::init_watcher([[maybe_unused]] zhandle_t *zh, int type, int state, const char *path, void *watcherCtx)
+{
+    [[maybe_unused]] const auto self = reinterpret_cast<client *>(watcherCtx);
 
-#endif//RRZOOKEEPER_CLIENT_INL_
+    std::stringstream ss;
+    ss << __func__ << ":";
+
+    ss << " type=";
+    if (type == ZOO_CREATED_EVENT)
+        ss << "CREATED_EVENT";
+    else if (type == ZOO_DELETED_EVENT)
+        ss << "DELETED_EVENT";
+    else if (type == ZOO_CHANGED_EVENT)
+        ss << "CHANGED_EVENT";
+    else if (type == ZOO_CHILD_EVENT)
+        ss << "CHILD_EVENT";
+    else if (type == ZOO_SESSION_EVENT)
+        ss << "SESSION_EVENT";
+    else if (type == ZOO_NOTWATCHING_EVENT)
+        ss << "NOTWATCHING_EVENT";
+    else
+        ss << "UNKNOWN_EVENT_TYPE";
+
+    ss << " state=";
+    if (state == 0)
+        ss << "CLOSED_STATE";
+    else if (state == ZOO_EXPIRED_SESSION_STATE)
+        ss << "EXPIRED_SESSION_STATE";
+    else if (state == ZOO_AUTH_FAILED_STATE)
+        ss << "AUTH_FAILED_STATE";
+    else if (state == ZOO_CONNECTING_STATE)
+        ss << "CONNECTING_STATE";
+    else if (state == ZOO_ASSOCIATING_STATE)
+        ss << "ASSOCIATING_STATE";
+    else if (state == ZOO_CONNECTED_STATE)
+        ss << "CONNECTED_STATE";
+    else
+        ss << "INVALID_STATE";
+
+    ss << " path=";
+    if (!path)
+        ss << "<null>";
+    else if (!strlen(path))
+        ss << "<empty>";
+    else
+        ss << path;
+
+    ss << '\n';
+    fputs(ss.str().c_str(), stderr);
+}
+
+}
+
+#endif
