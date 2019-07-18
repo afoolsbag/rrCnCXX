@@ -24,7 +24,7 @@
 # pragma warning(push)
 # pragma warning(disable: 4201)
 #endif
-#include <zookeeper/zookeeper.h>
+#include <zookeeper.h>
 #ifdef _MSC_VER
 # pragma warning(pop)
 #endif
