@@ -2,16 +2,16 @@
  * copyright Unlicense
  */
 
-#include "rrlibc/rrlibc.h"
+#include "rrlc/rrlc.h"
 
 #include <string.h>
 #include <time.h>
 
 #include "cfg.h"
 
-RRLIBC_APIp enum rrlibc_status_t
-RRLIBC_APIm rrlibc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
-RRLIBC_APIs
+RRLC_APIp enum rrlc_status_t
+RRLC_APIm rrlc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
+RRLC_APIs
 {
     if (r_major)
         *r_major = (int)project_version_major;
@@ -21,15 +21,15 @@ RRLIBC_APIs
         *r_patch = (int)project_version_patch;
     if (r_tweak)
         *r_tweak = (int)project_version_tweak;
-    return rrlibc_success;
+    return rrlc_success;
 }
 
-RRLIBC_APIp enum rrlibc_status_t
-RRLIBC_APIm rrlibc_sigh(time_t *r_time)
-RRLIBC_APIs
+RRLC_APIp enum rrlc_status_t
+RRLC_APIm rrlc_sigh(time_t *r_time)
+RRLC_APIs
 {
     if (!r_time)
-        return rrlibc_invalid_argument;
+        return rrlc_invalid_argument;
 
     struct tm ts;
     memset(&ts, 0x00, sizeof ts);
@@ -39,8 +39,8 @@ RRLIBC_APIs
 
     const time_t tmp = mktime(&ts);
     if (tmp == -1)
-        return rrlibc_overflow_error;
+        return rrlc_overflow_error;
 
     *r_time = tmp;
-    return rrlibc_success;
+    return rrlc_success;
 }

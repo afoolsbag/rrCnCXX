@@ -1,6 +1,23 @@
 # zhengrr 所知的 SWIG                                                {#mainpage}
 
-[*SWIG*](http://swig.org/)
+[*Simplified Wrapper and Interface Generator*](http://swig.org/)
+
+## 参考
+
+[SWIG Documentation, Papers, and Presentations](http://swig.org/doc.html)
+
+*   [“a.out”](https://wikipedia.org/wiki/A.out). *Wikipedia*.
+*   [“Common Object File Format”](https://wikipedia.org/wiki/COFF). *Wikipedia*.
+*   [“Executable and Linkable Format”](https://wikipedia.org/wiki/Executable_and_Linkable_Format). *Wikipedia*.
+*   [“Mach-O”](https://wikipedia.org/wiki/Mach-O). *Wikipedia*.
+*   [“Portable Executable”](https://wikipedia.org/wiki/Portable_Executable). *Wikipedia*.
+
+## 指南
+
+*   手动安装，并使用 CMake 进行链接（Windows）
+    1.  访问 SWIG 官网，下载 `swigwin-4.0.0.zip` 包并解压
+    2.  设置环境变量 `SWIG_HOME`
+    3.  通过 CMake 的 `FindSWIG` 模块链接使用 SWIG 库
 
 ## 许可
 

@@ -3,7 +3,7 @@
 /// \file
 /// \brief rrLibX 的 C++ 实现。
 ///
-/// \version 2019-06-20
+/// \version 2019-07-18
 /// \since 2019-05-14
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -21,11 +21,11 @@
 #include <vector>
 #include <thread>
 
-#include "exception.hxx"
+#include "rrlx/rrlx.h"
 
-namespace rrlibx {
+namespace rrlx {
 
-using handle = rrlibx_handle_t;  ///< 实例句柄
+using handle = rrlx_handle_t;  ///< 实例句柄
 
 class impl final {
 public:
@@ -40,6 +40,7 @@ public:
     int basic {};
     std::vector<std::uint8_t> array;
     std::string string;
+
     void last_internal_error_message(const std::string &val);
     [[nodiscard]] const std::string &last_internal_error_message();
 private:

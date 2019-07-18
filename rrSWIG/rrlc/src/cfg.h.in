@@ -4,7 +4,7 @@
  * \brief 配置。
  * \details 名称、版本、作者、版权等信息。
  *
- * \version 2019-06-24
+ * \version 2019-07-18
  * \since 2016-08-03
  * \authors zhengrr
  * \copyright Unlicense
@@ -12,54 +12,39 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRLIBC_CFG_H_
-#define RRLIBC_CFG_H_
+#ifndef RRLC_CFG_H_
+#define RRLC_CFG_H_
 
 #include <stdint.h>
 
-/**
- * \brief 产品名。
- */
+/** \brief 产品作者。 */
+#define PRODUCT_AUTHORS       "@PRODUCT_AUTHORS@"
+/** \brief 产品描述。 */
+#define PRODUCT_DESCRIPTION   "@PRODUCT_DESCRIPTION@"
+/** \brief 产品主页。 */
+#define PRODUCT_HOMEPAGE_URL  "@PRODUCT_HOMEPAGE_URL@"
+/** \brief 产品许可。 */
+#define PRODUCT_LICENSE       "@PRODUCT_LICENSE@"
+/** \brief 产品名。 */
 #define PRODUCT_NAME          "@PRODUCT_NAME@"
-
-/**
- * \brief 产品版本。
- */
+/** \brief 产品版本。 */
 #define PRODUCT_VERSION       "@PRODUCT_VERSION@"
-
-/**
- * \brief 产品主版本号。
- */
+/** \brief 产品主版本号。 */
 #define PRODUCT_VERSION_MAJOR @PRODUCT_VERSION_MAJOR@
-
-/**
- * \brief 产品次版本号。
- */
+/** \brief 产品次版本号。 */
 #define PRODUCT_VERSION_MINOR @PRODUCT_VERSION_MINOR@
-
-/**
- * \brief 产品补丁版本号。
- */
+/** \brief 产品补丁版本号。 */
 #define PRODUCT_VERSION_PATCH @PRODUCT_VERSION_PATCH@
-
-/**
- * \brief 产品微调版本号。
- */
+/** \brief 产品微调版本号。 */
 #define PRODUCT_VERSION_TWEAK @PRODUCT_VERSION_TWEAK@
 
-/**
- * \brief 产品作者。
- */
-#define PRODUCT_AUTHORS       "@PRODUCT_AUTHORS@"
-
-/**
- * \brief 产品许可。
- */
-#define PRODUCT_LICENSE       "@PRODUCT_LICENSE@"
-
+static const char product_authors[] = PRODUCT_AUTHORS;                /**< 产品作者。 */
+static const char product_description[] = PRODUCT_DESCRIPTION;        /**< 产品描述。 */
+static const char product_homepage_url[] = PRODUCT_HOMEPAGE_URL;      /**< 产品主页。 */
+static const char product_license[] = PRODUCT_LICENSE;                /**< 产品许可。 */
 static const char product_name[] = PRODUCT_NAME;                      /**< 产品名。 */
 static const char product_version[] = PRODUCT_VERSION;                /**< 产品版本号。 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 static const uint16_t product_version_major = PRODUCT_VERSION_MAJOR;  /**< 产品主版本号。 */
 static const uint16_t product_version_minor = PRODUCT_VERSION_MINOR;  /**< 产品次版本号。 */
 static const uint16_t product_version_patch = PRODUCT_VERSION_PATCH;  /**< 产品补丁版本号。 */
@@ -70,52 +55,35 @@ static const intmax_t product_version_minor = PRODUCT_VERSION_MINOR;  /**< 产�
 static const intmax_t product_version_patch = PRODUCT_VERSION_PATCH;  /**< 产品补丁版本号。 */
 static const intmax_t product_version_tweak = PRODUCT_VERSION_TWEAK;  /**< 产品微调版本号。 */
 #endif
-static const char product_authors[] = PRODUCT_AUTHORS;                /**< 产品作者。 */
-static const char product_license[] = PRODUCT_LICENSE;                /**< 产品许可。 */
 
-/**
- * \brief 项目名。
- */
+/** \brief 项目作者。 */
+#define PROJECT_AUTHORS       "@PROJECT_AUTHORS@"
+/** \brief 项目描述。 */
+#define PROJECT_DESCRIPTION   "@PROJECT_DESCRIPTION@"
+/** \brief 项目主页。 */
+#define PROJECT_HOMEPAGE_URL  "@PROJECT_HOMEPAGE_URL@"
+/** \brief 项目许可。 */
+#define PROJECT_LICENSE       "@PROJECT_LICENSE@"
+/** \brief 项目名。 */
 #define PROJECT_NAME          "@PROJECT_NAME@"
-
-/**
- * \brief 项目版本。
- */
+/** \brief 项目版本。 */
 #define PROJECT_VERSION       "@PROJECT_VERSION@"
-
-/**
- * \brief 项目主版本号。
- */
+/** \brief 项目主版本号。 */
 #define PROJECT_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
-
-/**
- * \brief 项目次版本号。
- */
+/** \brief 项目次版本号。 */
 #define PROJECT_VERSION_MINOR @PROJECT_VERSION_MINOR@
-
-/**
- * \brief 项目补丁版本号。
- */
+/** \brief 项目补丁版本号。 */
 #define PROJECT_VERSION_PATCH @PROJECT_VERSION_PATCH@
-
-/**
- * \brief 项目微调版本号。
- */
+/** \brief 项目微调版本号。 */
 #define PROJECT_VERSION_TWEAK @PROJECT_VERSION_TWEAK@
 
-/**
- * \brief 项目作者。
- */
-#define PROJECT_AUTHORS       "@PROJECT_AUTHORS@"
-
-/**
- * \brief 项目许可。
- */
-#define PROJECT_LICENSE       "@PROJECT_LICENSE@"
-
+static const char project_authors[] = PROJECT_AUTHORS;                /**< 项目作者。 */
+static const char project_description[] = PROJECT_DESCRIPTION;        /**< 项目描述。 */
+static const char project_homepage_url[] = PROJECT_HOMEPAGE_URL;      /**< 项目主页。 */
+static const char project_license[] = PROJECT_LICENSE;                /**< 项目许可。 */
 static const char project_name[] = PROJECT_NAME;                      /**< 项目名。 */
 static const char project_version[] = PROJECT_VERSION;                /**< 项目版本号。 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 static const uint16_t project_version_major = PROJECT_VERSION_MAJOR;  /**< 项目主版本号。 */
 static const uint16_t project_version_minor = PROJECT_VERSION_MINOR;  /**< 项目次版本号。 */
 static const uint16_t project_version_patch = PROJECT_VERSION_PATCH;  /**< 项目补丁版本号。 */
@@ -126,7 +94,5 @@ static const intmax_t project_version_minor = PROJECT_VERSION_MINOR;  /**< 项�
 static const intmax_t project_version_patch = PROJECT_VERSION_PATCH;  /**< 项目补丁版本号。 */
 static const intmax_t project_version_tweak = PROJECT_VERSION_TWEAK;  /**< 项目微调版本号。 */
 #endif
-static const char project_authors[] = PROJECT_AUTHORS;                /**< 项目作者。 */
-static const char project_license[] = PROJECT_LICENSE;                /**< 项目许可。 */
 
 #endif
