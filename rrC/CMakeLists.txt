@@ -8,9 +8,14 @@
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
+string(TIMESTAMP sYear       "%Y")
+string(TIMESTAMP sMonth      "%m")
+string(TIMESTAMP sDay        "%d")
+string(TIMESTAMP sHourMinute "%H%M")
+
 project_ex(
   rrC
-  VERSION   2019.04.15
+  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
   LANGUAGES C)
 
 add_compile_options_ex(

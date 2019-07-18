@@ -2,15 +2,22 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-11
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-18
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
+include_hunter_gate_script()
+
+string(TIMESTAMP sYear       "%Y")
+string(TIMESTAMP sMonth      "%m")
+string(TIMESTAMP sDay        "%d")
+string(TIMESTAMP sHourMinute "%H%M")
+
 project_ex(
   rrCXX
-  VERSION   2019.07.11
+  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
   LANGUAGES CXX)
 
 add_compile_options_ex(
@@ -23,17 +30,16 @@ add_compile_options_ex(
 add_doxygen_con(
   rrCXXdoc)
 
-conan_cmake_run(
-  REQUIRES    gsl_microsoft/2.0.0@bincrafters/stable
-              gtest/1.8.1@bincrafters/stable
-  BASIC_SETUP CMAKE_TARGETS
-  BUILD       missing)
+hunter_add_package(Microsoft.GSL)
+find_package(Microsoft.GSL CONFIG REQUIRED)
+hunter_add_package(GTest)
+find_package(GTest CONFIG REQUIRED)
 
 aux_source_directory_con("." zSrc RECURSE)
 add_executable_con(
   rrCXXtest           ${zSrc}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "."
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::gsl_microsoft
-                              CONAN_PKG::gtest)
+  INCLUDE_DIRECTORIES PRIVATE               "."
+  LINK_LIBRARIES      Microsoft.GSL::GSL
+                      GTest::main)
