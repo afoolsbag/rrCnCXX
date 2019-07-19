@@ -3,7 +3,7 @@
  * \file
  * \brief 应用程序接口宏。
  *
- * \version 2019-07-18
+ * \version 2019-07-19
  * \since 2016-08-01
  * \authors zhengrr
  * \copyright Unlicense
@@ -22,18 +22,12 @@
 
 #ifdef RRLC_SHARED
 # ifdef RRLC_EXPORTS
-#  define RRLC_APIp EXTERNC EXPORT
-#  define RRLC_APIm CDECL
-#  define RRLC_APIs NOEXCEPT
+#  define RRLC_API EXPORT
 # else
-#  define RRLC_APIp EXTERNC IMPORT
-#  define RRLC_APIm CDECL
-#  define RRLC_APIs NOEXCEPT
+#  define RRLC_API IMPORT
 # endif
 #else
-# define RRLC_APIp EXTERNC
-# define RRLC_APIm CDECL
-# define RRLC_APIs NOEXCEPT
+# define RRLC_API
 #endif
 
 #endif

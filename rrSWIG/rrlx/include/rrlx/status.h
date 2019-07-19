@@ -1,7 +1,18 @@
-%module rrlx
-%{
-#include "rrlx/rrlx.h"
-%}
+/*===-- Status -------------------------------------------------*- C -*-===*//**
+ *
+ * \file
+ * \brief 状态码。
+ *
+ * \version 2019-07-19
+ * \since 2018-01-09
+ * \authors zhengrr
+ * \copyright Unlicense
+ *
+**//*===-------------------------------------------------------------------===*/
+
+#pragma once
+#ifndef RRLX_STATUS_H_
+#define RRLX_STATUS_H_
 
 /**
  * \brief 状态码。
@@ -38,12 +49,8 @@ enum rrlx_status_t {
     rrlx_bad_exception,
     rrlx_bad_variant_access,
 
-    rrlx_internal_error,               /**< 内部错误：可紧接调用 `rrlx_alloc_last_internal_error_zstring` 获取错误信息。 */
+    rrlx_internal_exception,           /**< 内部异常 */
     rrlx_unexpected_exception          /**< 不预期的异常：不遵循标准异常或任何已知异常，意料之外的状况。 */
 };
 
-typedef struct incomplete_rrlx_t *rrlx_handle_t;
-
-typedef void(*rrlx_non_blocking_callback_t)(void *p_user_data);
-
-enum rrlx_status_t rrlx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak);
+#endif

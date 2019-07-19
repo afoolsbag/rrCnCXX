@@ -1,193 +1,127 @@
 /// \copyright Unlicense
 
-#include "rrlx/rrlx.h"
-
-#include <cstring>
+#include "rrlx/rrlx.hxx"
 
 #include "cfg.hxx"
-#include "exception.hxx"
-#include "impl.hxx"
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
-RRLX_APIs
+using namespace std;
+
+namespace rrlx {
+
+RRLX_API version_t STDCALL version()
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (r_major)
-        *r_major = static_cast<int>(rrlx::project_version_major);
-    if (r_minor)
-        *r_minor = static_cast<int>(rrlx::project_version_minor);
-    if (r_patch)
-        *r_patch = static_cast<int>(rrlx::project_version_patch);
-    if (r_tweak)
-        *r_tweak = static_cast<int>(rrlx::project_version_tweak);
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    return {
+        static_cast<int>(project_version_major),
+        static_cast<int>(project_version_minor),
+        static_cast<int>(project_version_patch),
+        static_cast<int>(project_version_tweak)
+    };
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_construct(rrlx_handle_t *r_handle)
-RRLX_APIs
+class clazz::impl final {
+public:
+    explicit impl() = default;
+    explicit impl(const impl &) = default;
+    impl &operator=(const impl &) = default;
+    explicit impl(impl &&) noexcept = default;
+    impl &operator=(impl &&) noexcept = default;
+    ~impl() noexcept = default;
+
+    inline void basic(int value);
+    [[nodiscard]] inline int basic() const;
+
+    void array(const array_t &value);
+    void array(array_t &&value);
+    [[nodiscard]] inline const array_t &array() const;
+
+    inline void string(const std::string &value);
+    inline void string(std::string &&value);
+    [[nodiscard]] inline const std::string &string() const;
+
+    inline void set_callback(const callback_t &callback, void *p_user_data);
+    inline void set_callback(callback_t &&callback, void *p_user_data);
+    inline void invoke_callback() const;
+
+private:
+    int basic_ {};
+    array_t array_;
+    std::string string_;
+    callback_t callback_;
+    void *p_user_data_ {};
+};
+
+RRLX_API clazz::clazz() : impl_ {make_unique<impl>()} {}
+RRLX_API clazz::clazz(clazz &&) noexcept = default;
+RRLX_API clazz &clazz::operator=(clazz&&) noexcept = default;
+RRLX_API clazz::~clazz() noexcept = default;
+
+RRLX_API void clazz::basic(int value) { return impl_->basic(value); }
+inline void clazz::impl::basic(int value)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!r_handle)
-        return rrlx_invalid_argument;
-    *r_handle = rrlx::impl::alloc();
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    basic_ = value;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_destruct(rrlx_handle_t handle)
-RRLX_APIs
+[[nodiscard]] RRLX_API int clazz::basic() const { return impl_->basic(); }
+[[nodiscard]] inline int clazz::impl::basic() const
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle)
-        return rrlx_invalid_argument;
-    rrlx::impl::free(handle);
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    return basic_;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_set_basic(rrlx_handle_t handle, int value)
-RRLX_APIs
+RRLX_API void clazz::array(const array_t &value) { return impl_->array(value); }
+inline void clazz::impl::array(const array_t &value)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle)
-        return rrlx_invalid_argument;
-    rrlx::implref(handle).basic = value;
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    array_ = value;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_basic(rrlx_handle_t handle, int *r_value)
-RRLX_APIs
+RRLX_API void clazz::array(array_t &&value) { return impl_->array(move(value)); }
+inline void clazz::impl::array(array_t &&value)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !r_value)
-        return rrlx_invalid_argument;
-    *r_value = rrlx::implref(handle).basic;
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    array_ = move(value);
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_set_array(rrlx_handle_t handle, const uint8_t data[], size_t size)
-RRLX_APIs
+[[nodiscard]] RRLX_API const clazz::array_t &clazz::array() { return impl_->array(); }
+[[nodiscard]] inline const clazz::array_t &clazz::impl::array() const
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !data || !size)
-        return rrlx_invalid_argument;
-    rrlx::implref(handle).array = {data, data + size};
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    return array_;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_array(rrlx_handle_t handle, uint8_t buffer[], size_t *r_size)
-RRLX_APIs
+RRLX_API void clazz::string(const std::string &value) { return impl_->string(value); }
+inline void clazz::impl::string(const std::string &value)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !r_size)
-        return rrlx_invalid_argument;
-    const auto &array = rrlx::implref(handle).array;
-    if (!buffer) {
-        *r_size = array.size();
-        return rrlx_success;
-    }
-    if (*r_size < array.size()) {
-        *r_size = array.size();
-        return rrlx_range_error;
-    }
-    std::memcpy(buffer, array.data(), array.size());
-    *r_size = array.size();
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    string_ = value;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_array_cvr(rrlx_handle_t handle, const uint8_t *(*r_data), size_t *r_size)
-RRLX_APIs
+RRLX_API void clazz::string(std::string &&value) { return impl_->string(move(value)); }
+inline void clazz::impl::string(std::string &&value)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !r_data || !r_size)
-        return rrlx_invalid_argument;
-    const auto &array = rrlx::implref(handle).array;
-    *r_data = array.data();
-    *r_size = array.size();
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    string_ = move(value);
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_set_string(rrlx_handle_t handle, const char string[])
-RRLX_APIs
+[[nodiscard]] RRLX_API const std::string &clazz::string() const { return impl_->string(); }
+[[nodiscard]] inline const std::string &clazz::impl::string() const
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !string)
-        return rrlx_invalid_argument;
-    rrlx::implref(handle).string = string;
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    return string_;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_string_fsb(rrlx_handle_t handle, char buffer[rrlx_string_fsb_size])
-RRLX_APIs
+RRLX_API void clazz::set_callback(const callback_t &callback, void *p_user_data) { return impl_->set_callback(callback, p_user_data); }
+inline void clazz::impl::set_callback(const callback_t &callback, void *p_user_data)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !buffer)
-        return rrlx_invalid_argument;
-    const auto &string = rrlx::implref(handle).string;
-    if (rrlx_string_fsb_size < string.size() + 1)
-        return rrlx_range_error;
-    std::memcpy(buffer, string.data(), string.size());
-    buffer[string.size()] = '\0';
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    callback_ = callback;
+    p_user_data_ = p_user_data;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_string_cvr(rrlx_handle_t handle, const char *(*r_string))
-RRLX_APIs
+RRLX_API void clazz::set_callback(callback_t &&callback, void *p_user_data) { return impl_->set_callback(move(callback), p_user_data); }
+inline void clazz::impl::set_callback(callback_t &&callback, void *p_user_data)
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !r_string)
-        return rrlx_invalid_argument;
-    *r_string = rrlx::implref(handle).string.data();
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    callback_ = move(callback);
+    p_user_data_ = p_user_data;
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_non_blocking(rrlx_handle_t handle, rrlx_non_blocking_callback_t callback, void *p_user_data)
-RRLX_APIs
+RRLX_API void clazz::invoke_callback() const { return impl_->invoke_callback(); }
+inline void clazz::impl::invoke_callback() const
 {
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !callback)
-        return rrlx_invalid_argument;
-    std::thread {[callback, p_user_data] {
-        std::this_thread::yield();
-        callback(p_user_data);
-    }}.detach();
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
+    if (callback_)
+        callback_(p_user_data_);
 }
 
-RRLX_APIp enum rrlx_status_t
-RRLX_APIm rrlx_get_last_internal_error_message(rrlx_handle_t handle, char buffer[rrlx_last_internal_error_message_fsb_size])
-RRLX_APIs
-{
-    RRLX_EXCEPTION_TO_STATUS_TRY;
-    if (!handle || !buffer)
-        return rrlx_invalid_argument;
-    const auto &string = rrlx::implref(handle).string;
-    if (rrlx_last_internal_error_message_fsb_size < string.size() + 1)
-        return rrlx_range_error;
-    std::memcpy(buffer, string.data(), string.size());
-    buffer[string.size()] = '\0';
-    return rrlx_success;
-    RRLX_EXCEPTION_TO_STATUS_CATCH;
 }

@@ -9,9 +9,8 @@
 
 #include "cfg.h"
 
-RRLC_APIp enum rrlc_status_t
-RRLC_APIm rrlc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
-RRLC_APIs
+EXTERN_C RRLC_API enum rrlc_status_t CDECL
+rrlc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT
 {
     if (r_major)
         *r_major = (int)project_version_major;
@@ -24,9 +23,8 @@ RRLC_APIs
     return rrlc_success;
 }
 
-RRLC_APIp enum rrlc_status_t
-RRLC_APIm rrlc_sigh(time_t *r_time)
-RRLC_APIs
+EXTERN_C RRLC_API enum rrlc_status_t CDECL
+rrlc_sigh(time_t *r_time) NOEXCEPT
 {
     if (!r_time)
         return rrlc_invalid_argument;

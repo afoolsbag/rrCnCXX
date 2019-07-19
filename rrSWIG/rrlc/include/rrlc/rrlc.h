@@ -5,7 +5,7 @@
  *
  * \sa [*DLL 编写教程*](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2019-07-18
+ * \version 2019-07-19
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright Unlicense
@@ -68,17 +68,15 @@ enum rrlc_status_t {
  * \param[out] r_patch 补丁版本号引用
  * \param[out] r_tweak 微调版本号引用
  */
-RRLC_APIp enum rrlc_status_t
-RRLC_APIm rrlc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak)
-RRLC_APIs;
+EXTERN_C RRLC_API enum rrlc_status_t CDECL
+rrlc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT;
 
 /**
  * \brief 叹。
  *
  * \param[out] r_time 时间引用
  */
-RRLC_APIp enum rrlc_status_t
-RRLC_APIm rrlc_sigh(time_t *r_time)
-RRLC_APIs;
+EXTERN_C RRLC_API enum rrlc_status_t CDECL
+rrlc_sigh(time_t *r_time) NOEXCEPT;
 
 #endif

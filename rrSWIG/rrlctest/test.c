@@ -107,7 +107,7 @@ START_TEST(tf_rrlx_string)
 }
 END_TEST;
 
-static void non_blocking_callback(void *p_user_data)
+static void CDECL callback(void *p_user_data)
 {
     *(bool *)p_user_data = true;
 }
@@ -115,7 +115,8 @@ static void non_blocking_callback(void *p_user_data)
 START_TEST(tf_rrlx_callback)
 {
     bool pass = false;
-    rrlx_non_blocking(tc_rrlx_handle, non_blocking_callback, &pass);
+    rrlx_set_callback(tc_rrlx_handle, callback, &pass);
+    rrlx_invoke_callback(tc_rrlx_handle);
     while (!pass)
         continue;
 }
