@@ -2,13 +2,11 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-18
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-22
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
-
-include_hunter_gate_script()
 
 string(TIMESTAMP sYear       "%Y")
 string(TIMESTAMP sMonth      "%m")
@@ -20,6 +18,8 @@ project_ex(
   VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
   LANGUAGES CXX)
 
+include_conan_script()
+
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
@@ -28,13 +28,6 @@ add_compile_options_ex(
 
 add_doxygen_con(
   rrBoostDoc)
-
-hunter_add_package(Boost)
-find_package(Boost CONFIG REQUIRED)
-hunter_add_package(Microsoft.GSL)
-find_package(Microsoft.GSL CONFIG REQUIRED)
-hunter_add_package(GTest)
-find_package(GTest CONFIG REQUIRED)
 
 conan_cmake_run(
   REQUIRES    boost/1.70.0@conan/stable
@@ -46,9 +39,11 @@ conan_cmake_run(
 aux_source_directory_con("." zSrc)
 add_executable_con(
   rrBoostTest         ${zSrc}
-  PROPERTIES          CXX_STANDARD          17
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "."
-  LINK_LIBRARIES      PRIVATE Microsoft.GSL
-                              GTest::main
-                              Boost::boost)
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
+                              CONAN_PKG::boost
+                              CONAN_PKG::gsl_microsoft)
+
+add_test(NAME rrBoostTest COMMAND rrBoostTest)

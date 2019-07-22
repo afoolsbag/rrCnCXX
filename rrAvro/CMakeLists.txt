@@ -2,22 +2,29 @@
 #            / _ \                 
 #  _ __ _ __/ /_\ \_   ___ __ ___  
 # | '__| '__|  _  \ \ / / '__/ _ \  zhengrr
-# | |  | |  | | | |\ V /| | | (_) | 2018-04-02 – 2019-07-10
+# | |  | |  | | | |\ V /| | | (_) | 2018-04-02 – 2019-07-22
 # |_|  |_|  \_| |_/ \_/ |_|  \___/  Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
+string(TIMESTAMP sYear       "%Y")
+string(TIMESTAMP sMonth      "%m")
+string(TIMESTAMP sDay        "%d")
+string(TIMESTAMP sHourMinute "%H%M")
+
 project_ex(
   rrAvro
-  VERSION   2019.07.10
+  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
   LANGUAGES CXX)
 
+include_conan_script()
+
 add_compile_options_ex(
-  DISABLE_LANGUAGE_EXTENSIONS
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 add_doxygen_con(
@@ -43,9 +50,9 @@ endif()
 aux_source_directory_con("."                           zTest EXTENSIONS ".json" PREFIX "test")
 aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}" zGen                     PREFIX "generated")
 add_executable_con(
-  rrAvroTest          ${zTest} ${zGen}
-  PROPERTIES          CXX_STANDARD          17
-                      CXX_STANDARD_REQUIRED ON
+  rrAvroTest                  ${zTest} ${zGen}
+  PROPERTIES                  CXX_STANDARD          20
+                              CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "."
                               "${CMAKE_CURRENT_BINARY_DIR}"
   LINK_LIBRARIES      PRIVATE AvroCpp::avrocpp

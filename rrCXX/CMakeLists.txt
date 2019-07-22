@@ -2,7 +2,7 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-18
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-22
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -25,6 +25,7 @@ add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 add_doxygen_con(
@@ -38,8 +39,10 @@ find_package(GTest CONFIG REQUIRED)
 aux_source_directory_con("." zSrc RECURSE)
 add_executable_con(
   rrCXXtest           ${zSrc}
-  PROPERTIES          CXX_STANDARD          17
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE               "."
   LINK_LIBRARIES      Microsoft.GSL::GSL
                       GTest::main)
+
+add_test(NAME rrCXXtest COMMAND rrCXXtest)

@@ -4,21 +4,29 @@
 # | '__| '__/ __| '_ \ / _` | |/ _ \ / _` |
 # | |  | |  \__ \ |_) | (_| | | (_) | (_| |
 # |_|  |_|  |___/ .__/ \__,_|_|\___/ \__, | zhengrr
-#               | |                   __/ | 2018-08-04 – 2019-07-13
+#               | |                   __/ | 2018-08-04 – 2019-07-22
 #               |_|                  |___/  Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
+string(TIMESTAMP sYear       "%Y")
+string(TIMESTAMP sMonth      "%m")
+string(TIMESTAMP sDay        "%d")
+string(TIMESTAMP sHourMinute "%H%M")
+
 project_ex(
   rrspdlog
-  VERSION   2019.07.13
+  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
   LANGUAGES CXX)
+
+include_conan_script()
 
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 add_doxygen_con(
@@ -40,3 +48,5 @@ add_executable_con(
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
                               CONAN_PKG::boost
                               CONAN_PKG::spdlog)
+
+add_test(NAME rrspdlogTest COMMAND rrspdlogTest)

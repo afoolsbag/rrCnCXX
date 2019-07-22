@@ -2,7 +2,7 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2019-04-17
+# | |  | |  | \__/\ 2016-08-01 – 2019-07-22
 # |_|  |_|   \____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -37,3 +37,5 @@ add_executable_con(
                       C_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE             "."
   LINK_LIBRARIES      PRIVATE             Check::check)
+
+add_test(NAME rrCtest COMMAND rrCtest)

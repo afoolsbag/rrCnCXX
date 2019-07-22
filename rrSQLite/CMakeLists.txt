@@ -2,37 +2,46 @@
 #           /  ___||  _  | |   (_) |
 #  _ __ _ __\ `--. | | | | |    _| |_ ___
 # | '__| '__|`--. \| | | | |   | | __/ _ \ zhengrr
-# | |  | |  /\__/ /\ \/' / |___| | ||  __/ 2018-05-23 – 2019-05-20
+# | |  | |  /\__/ /\ \/' / |___| | ||  __/ 2018-05-23 – 2019-07-22
 # |_|  |_|  \____/  \_/\_\_____/_|\__\___| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
+include_hunter_gate_script()
+
+string(TIMESTAMP sYear       "%Y")
+string(TIMESTAMP sMonth      "%m")
+string(TIMESTAMP sDay        "%d")
+string(TIMESTAMP sHourMinute "%H%M")
+
 project_ex(
   rrSQLite
-  VERSION   2019.05.20
-  LANGUAGES C)
+  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
+  LANGUAGES CXX)
 
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-add_doxygen(
-  rrSQLiteDoc
-  OPTIMIZE_OUTPUT_FOR_C ON)
+add_doxygen_con(
+  rrSQLiteDoc)
 
-find_package(Check)
-conan_cmake_run(
-  REQUIRES    sqlite3/3.28.0@bincrafters/stable
-  BASIC_SETUP CMAKE_TARGETS)
+hunter_add_package(GTest)
+find_package(GTest CONFIG REQUIRED)
+hunter_add_package(sqlite3)
+find_package(sqlite3 CONFIG REQUIRED)
   
-aux_source_directory_con("." zSrc RECURSE)
+aux_source_directory_con("." zTest RECURSE)
 add_executable_con(
-  rrSQLiteTest        ${zSrc}
-  PROPERTIES          C_STANDARD          11
-                      C_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE             "."
-  LINK_LIBRARIES      PRIVATE             Check::check
-                                          CONAN_PKG::sqlite3)
+  rrSQLiteTest        ${zTest}
+  PROPERTIES          CXX_STANDARD          20
+                      CXX_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE               "."
+  LINK_LIBRARIES      PRIVATE               GTest::main
+                                            sqlite3::sqlite3)
+
+add_test(NAME rrSQLiteTest COMMAND rrSQLiteTest)

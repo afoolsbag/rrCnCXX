@@ -5,34 +5,43 @@
 # | |  | |  \  /\  /  __/ |_) /\__/ / (_) | (__|   <  __/ |_| |   | |
 # |_|  |_|   \/  \/ \___|_.__/\____/ \___/ \___|_|\_\___|\__\_|   \_|
 # zhengrr
-# 2019-04-22 – 2019-04-21
+# 2019-04-22 – 2019-07-22
 # Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
+
+string(TIMESTAMP sYear       "%Y")
+string(TIMESTAMP sMonth      "%m")
+string(TIMESTAMP sDay        "%d")
+string(TIMESTAMP sHourMinute "%H%M")
 
 project_ex(
   rrWebSocketPP
   VERSION   2019.04.23
   LANGUAGES CXX)
 
+include_conan_script()
+
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
-  UTF-8)
+  UTF-8
+  VISIBLE_DEFAULT_HIDDEN
+  WARNING_AS_ERROR)
 
 add_doxygen_con(
   rrWebSocketPPdoc)
 
 find_package(WebSocketPP)
 conan_cmake_run(
-  REQUIRES    asio/1.12.0@bincrafters/stable
+  REQUIRES    asio/1.13.0@bincrafters/stable
               gtest/1.8.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS)
 
 add_executable_con(
   rrWsDbgSvr          "debug_server.cpp"
-  PROPERTIES          CXX_STANDARD          17
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PRIVATE _WEBSOCKETPP_CPP11_STL_
   INCLUDE_DIRECTORIES PRIVATE "."
@@ -41,7 +50,7 @@ add_executable_con(
 
 add_executable_con(
   rrWsDgbClt          "debug_client.cpp"
-  PROPERTIES          CXX_STANDARD          17
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PRIVATE _WEBSOCKETPP_CPP11_STL_
   INCLUDE_DIRECTORIES PRIVATE "."

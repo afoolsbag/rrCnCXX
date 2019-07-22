@@ -4,7 +4,7 @@
 /// \brief Universally Unique Identifier
 /// \sa <https://boost.org/doc/libs/1_68_0/libs/uuid/doc/index.html>
 ///
-/// \version 2019-07-10
+/// \version 2019-07-22
 /// \since 2018-10-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -26,7 +26,7 @@ TEST(uuid, great_first_step)
 {
     boost::uuids::random_generator gen;
     const auto uuid = gen();
-    cout << "UUID: " << boost::uuids::to_string(uuid);
+    cout << "UUID: " << boost::uuids::to_string(uuid) << '\n';
 }
 
 }//namespace rrboost

@@ -2,7 +2,7 @@
 #           /  __ \     /  __ \
 #  _ __ _ __| /  \/_ __ | /  \/_  ____  __
 # | '__| '__| |   | '_ \| |   \ \/ /\ \/ / zhengrr
-# | |  | |  | \__/\ | | | \__/\>  <  >  <  2016-06-28 – 2019-07-18
+# | |  | |  | \__/\ | | | \__/\>  <  >  <  2016-06-28 – 2019-07-22
 # |_|  |_|   \____/_| |_|\____/_/\_\/_/\_\ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -13,10 +13,12 @@ include(rrCMake)
 
 product_ex(
   rrCnCxx
-  VERSION   2019.07.11
+  VERSION   2019.07.22
   LANGUAGES NONE
   AUTHORS   "zhengrr"
   LICENSE   "Unlicense")
+
+enable_testing()
 
 add_aux_subdirectories_con()
 
