@@ -5,7 +5,7 @@
 # | |  | |  \  /\  /  __/ |_) /\__/ / (_) | (__|   <  __/ |_| |   | |
 # |_|  |_|   \/  \/ \___|_.__/\____/ \___/ \___|_|\_\___|\__\_|   \_|
 # zhengrr
-# 2019-04-22 – 2019-07-22
+# 2019-04-22 – 2019-07-23
 # Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -18,7 +18,7 @@ string(TIMESTAMP sHourMinute "%H%M")
 
 project_ex(
   rrWebSocketPP
-  VERSION   2019.04.23
+  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
   LANGUAGES CXX)
 
 include_conan_script()
@@ -35,24 +35,20 @@ add_doxygen_con(
 
 find_package(WebSocketPP)
 conan_cmake_run(
-  REQUIRES    asio/1.13.0@bincrafters/stable
+  REQUIRES    asio/1.12.2@bincrafters/stable
               gtest/1.8.1@bincrafters/stable
-  BASIC_SETUP CMAKE_TARGETS)
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
 
+aux_source_directory_con("." zTest)
 add_executable_con(
-  rrWsDbgSvr          "debug_server.cpp"
+  rrWebSocketPPTest   ${zTest}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PRIVATE _WEBSOCKETPP_CPP11_STL_
   INCLUDE_DIRECTORIES PRIVATE "."
   LINK_LIBRARIES      PRIVATE CONAN_PKG::asio
+                              CONAN_PKG::gtest
                               WebSocketPP::websocketpp)
 
-add_executable_con(
-  rrWsDgbClt          "debug_client.cpp"
-  PROPERTIES          CXX_STANDARD          20
-                      CXX_STANDARD_REQUIRED ON
-  COMPILE_DEFINITIONS PRIVATE _WEBSOCKETPP_CPP11_STL_
-  INCLUDE_DIRECTORIES PRIVATE "."
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::asio
-                              WebSocketPP::websocketpp)
+add_test(NAME rrWebSocketPPTest COMMAND rrWebSocketPPTest)
