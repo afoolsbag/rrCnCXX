@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-22
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-23
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -37,9 +37,9 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-aux_source_directory_con("." zSrc)
+aux_source_directory_con("." zTest)
 add_executable_con(
-  rrBoostTest         ${zSrc}
+  rrBoostTest         ${zTest}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PUBLIC  "_WIN32_WINNT=0x0A00"  # Windows 10

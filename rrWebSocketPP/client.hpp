@@ -18,13 +18,13 @@
 
 #ifdef _MSC_VER
 #pragma warning(push)
-#pragma warning(disable: 4127 4244)
+#pragma warning(disable: 4127 4244 4996)
 #endif
 #include <websocketpp/config/asio_no_tls_client.hpp>
-#include <websocketpp/client.hpp>
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
+#include <websocketpp/client.hpp>
 
 namespace rrwebsocketpp {
 

@@ -2,7 +2,7 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-22
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-07-23
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -36,9 +36,9 @@ find_package(Microsoft.GSL CONFIG REQUIRED)
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
-aux_source_directory_con("." zSrc RECURSE)
+aux_source_directory_con("." zTest RECURSE)
 add_executable_con(
-  rrCXXtest           ${zSrc}
+  rrCXXtest           ${zTest}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE               "."

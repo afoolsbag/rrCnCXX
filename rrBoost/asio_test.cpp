@@ -13,17 +13,19 @@
 ///
 //===----------------------------------------------------------------------===//
 
-#pragma warning(push)
-#pragma warning(disable: 4996)
-
 #include <iostream>
 
 #include <boost/array.hpp>
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996)
+#endif
 #include <boost/asio.hpp>
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 #include <boost/bind.hpp>
 #include <gtest/gtest.h>
-
-#pragma warning(pop)
 
 using namespace std;
 

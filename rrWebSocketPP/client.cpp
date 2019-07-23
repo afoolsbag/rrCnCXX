@@ -1,9 +1,5 @@
 /// \copyright Unlicense
 
-#ifdef _MSC_VER
-#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
-#endif
-
 #include <system_error>
 
 #include "client.hpp"
