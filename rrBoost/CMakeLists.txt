@@ -24,6 +24,7 @@ add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 add_doxygen_con(
@@ -41,6 +42,7 @@ add_executable_con(
   rrBoostTest         ${zSrc}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
+  COMPILE_DEFINITIONS PUBLIC  "_WIN32_WINNT=0x0A00"  # Windows 10
   INCLUDE_DIRECTORIES PRIVATE "."
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
                               CONAN_PKG::boost
