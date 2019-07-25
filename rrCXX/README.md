@@ -34,7 +34,9 @@ K&R 和 Stroustrup 风格布局；
 ## 指南
 
 / [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
+/ *C++ Templates 中文版*
 / ["C++ 必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
+/ *C++ 模板元编程*
 / *Effective C++*
 
 ## Awesome

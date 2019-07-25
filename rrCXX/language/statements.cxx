@@ -22,7 +22,6 @@ using namespace std;
 using namespace gsl;
 
 namespace rrcxx {
-
 /// \addtogroup gStatements
 /// @{
 
@@ -138,5 +137,4 @@ TEST(statements, gsl_finally)
 }
 
 /// @}
-
 }
