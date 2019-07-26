@@ -64,6 +64,9 @@ add_library_con(
   INCLUDE_DIRECTORIES PUBLIC  "rrlx/include"
                       PRIVATE "rrlx/src"
                               "${CMAKE_CURRENT_BINARY_DIR}/rrlx/src")
+if(CMAKE_COMPILER_IS_GNUCXX)
+  target_link_libraries(rrlx PRIVATE stdc++fs)
+endif()
 install(
   DIRECTORY   "rrlx/include/"
   DESTINATION "include/")
@@ -81,6 +84,8 @@ add_executable_con(
                               rrlx
                               Check::check)
 
+add_test(NAME rrlctest COMMAND rrlctest)
+
 #-------------------------------------------------------------------------------
 # rrlxtest
 hunter_add_package(GTest)
@@ -94,6 +99,8 @@ add_executable_con(
   LINK_LIBRARIES      PRIVATE rrlc
                               rrlx
                               GTest::main)
+
+add_test(NAME rrlxtest COMMAND rrlxtest)
 
 #-------------------------------------------------------------------------------
 # rrlxswg

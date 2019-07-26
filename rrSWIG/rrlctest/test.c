@@ -82,13 +82,13 @@ START_TEST(tf_rrlx_array)
     uint8_t *out_data = malloc(out_size);
     ck_assert_ptr_ne(NULL, out_data);
     ck_assert_int_eq(rrlx_success, rrlx_get_array(tc_rrlx_handle, out_data, &out_size));
-    ck_assert_mem_eq(in_data, out_data, min(in_size, out_size));
+    ck_assert_mem_eq(in_data, out_data, fminl(in_size, out_size));
     free(out_data);
 
     const uint8_t *ref_data;
     size_t ref_size;
     ck_assert_int_eq(rrlx_success, rrlx_get_array_cvr(tc_rrlx_handle, &ref_data, &ref_size));
-    ck_assert_mem_eq(in_data, ref_data, min(in_size, ref_size));
+    ck_assert_mem_eq(in_data, ref_data, fminl(in_size, ref_size));
 }
 END_TEST;
 

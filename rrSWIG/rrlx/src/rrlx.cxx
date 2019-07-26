@@ -31,15 +31,12 @@ public:
     [[nodiscard]] inline int basic() const;
 
     void array(const array_t &value);
-    void array(array_t &&value);
     [[nodiscard]] inline const array_t &array() const;
 
     inline void string(const std::string &value);
-    inline void string(std::string &&value);
     [[nodiscard]] inline const std::string &string() const;
 
     inline void set_callback(const callback_t &callback, void *p_user_data);
-    inline void set_callback(callback_t &&callback, void *p_user_data);
     inline void invoke_callback() const;
 
 private:
@@ -73,12 +70,6 @@ inline void clazz::impl::array(const array_t &value)
     array_ = value;
 }
 
-RRLX_API void clazz::array(array_t &&value) { return impl_->array(move(value)); }
-inline void clazz::impl::array(array_t &&value)
-{
-    array_ = move(value);
-}
-
 [[nodiscard]] RRLX_API const clazz::array_t &clazz::array() { return impl_->array(); }
 [[nodiscard]] inline const clazz::array_t &clazz::impl::array() const
 {
@@ -91,12 +82,6 @@ inline void clazz::impl::string(const std::string &value)
     string_ = value;
 }
 
-RRLX_API void clazz::string(std::string &&value) { return impl_->string(move(value)); }
-inline void clazz::impl::string(std::string &&value)
-{
-    string_ = move(value);
-}
-
 [[nodiscard]] RRLX_API const std::string &clazz::string() const { return impl_->string(); }
 [[nodiscard]] inline const std::string &clazz::impl::string() const
 {
@@ -107,13 +92,6 @@ RRLX_API void clazz::set_callback(const callback_t &callback, void *p_user_data)
 inline void clazz::impl::set_callback(const callback_t &callback, void *p_user_data)
 {
     callback_ = callback;
-    p_user_data_ = p_user_data;
-}
-
-RRLX_API void clazz::set_callback(callback_t &&callback, void *p_user_data) { return impl_->set_callback(move(callback), p_user_data); }
-inline void clazz::impl::set_callback(callback_t &&callback, void *p_user_data)
-{
-    callback_ = move(callback);
     p_user_data_ = p_user_data;
 }
 

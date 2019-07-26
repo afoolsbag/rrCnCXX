@@ -55,20 +55,17 @@ public:
     using array_t = std::vector<std::uint8_t>;
     /// \brief 数组赋值。
     RRLX_API void array(const array_t &value);
-    RRLX_API void array(array_t &&value);
     /// \brief 数组取值。
     [[nodiscard]] RRLX_API const array_t &array();
 
     /// \brief 字串赋值。
     RRLX_API void string(const std::string &value);
-    RRLX_API void string(std::string &&value);
     /// \brief 字串取值。
     [[nodiscard]] RRLX_API const std::string &string() const;
 
     using callback_t = std::function<void(void *)>;
     /// \brief 回调设置。
     RRLX_API void set_callback(const callback_t &callback, void *p_user_data);
-    RRLX_API void set_callback(callback_t &&callback, void *p_user_data);
     /// \brief 回调调用。
     RRLX_API void invoke_callback() const;
 
