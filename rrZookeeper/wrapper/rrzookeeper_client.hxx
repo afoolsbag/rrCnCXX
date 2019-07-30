@@ -2,7 +2,7 @@
 ///
 /// \file
 ///
-/// \version 2019-07-17
+/// \version 2019-07-29
 /// \since 2019-05-29
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -33,29 +33,56 @@ namespace rrzookeeper {
 
 class client {
 public:
-    enum { _cf_ephemeral, _cf_sequence, _cf_recursive, _cf_set_if_exists, _cf_ignore_if_exists, _cf_count };
-    using create_flag = std::bitset<_cf_count>;
-    static constexpr create_flag cf_ephemeral {1 << _cf_ephemeral};                ///< 创建临时节点
-    static constexpr create_flag cf_sequence {1 << _cf_sequence};                  ///< 创建顺序节点
-    static constexpr create_flag cf_recursive {1 << _cf_recursive};                ///< 若节点悬空，则递归创建中间节点，然后创建该节点
-    static constexpr create_flag cf_set_if_exists {1 << _cf_set_if_exists};        ///< 若节点已存在，则变更该节点内容
-    static constexpr create_flag cf_ignore_if_exists {1 << _cf_ignore_if_exists};  ///< 若节点已存在，则忽略本次操作
-    static constexpr create_flag cf_force {1 << _cf_recursive | 1 << _cf_set_if_exists};
+    enum class event { created, deleted, changed, child, session, not_watching, unknown };
+    inline static event ztype(int type) noexcept;
+    enum class state { closed, connecting, association, connected, expired_session, auth_failed, invalid };
+    inline static state zstate(int state) noexcept;
+    inline static std::optional<std::string> zpath(const char *path);
 
-    enum { _sf_create_if_not_exists, _sf_count };
-    using set_flag = std::bitset<_sf_count>;
-    static constexpr set_flag sf_create_if_not_exists {1 << _sf_create_if_not_exists};  ///< 若节点不存在，则递归创建该节点
-    static constexpr set_flag sf_force {1 << _sf_create_if_not_exists};
+    struct create {
+    private:
+        enum { _ephemeral, _sequence, _recursive, _set_if_exists, _ignore_if_exists, _count };
+    public:
+        using flag = std::bitset<_count>;
+        static constexpr flag ephemeral {1uLL << _ephemeral};                ///< 创建临时节点
+        static constexpr flag sequence {1uLL << _sequence};                  ///< 创建顺序节点
+        static constexpr flag recursive {1uLL << _recursive};                ///< 若节点悬空，则递归创建中间节点，然后创建该节点
+        static constexpr flag set_if_exists {1uLL << _set_if_exists};        ///< 若节点已存在，则变更该节点内容
+        static constexpr flag ignore_if_exists {1uLL << _ignore_if_exists};  ///< 若节点已存在，则忽略本次操作
+        static constexpr flag force {1uLL << _recursive | 1uLL << _set_if_exists};
+    };
+    struct set {
+    private:
+        enum { _create_if_not_exists, _count };
+    public:
+        using flag = std::bitset<_count>;
+        static constexpr flag create_if_not_exists {1uLL << _create_if_not_exists};  ///< 若节点不存在，则递归创建该节点
+        static constexpr flag force {1uLL << _create_if_not_exists};
+    };
+    struct deleta {
+    private:
+        enum { _traversal, _ignore_if_not_exists, _count };
+    public:
+        using flag = std::bitset<_count>;
+        static constexpr flag traversal {1uLL << _traversal};                        ///< 若节点挂载有子节点，则遍历删除子节点，然后删除该节点
+        static constexpr flag ignore_if_not_exists {1uLL << _ignore_if_not_exists};  ///< 若节点不存在，则忽略本次操作
+        static constexpr flag force {1uLL << _traversal | 1uLL << _ignore_if_not_exists};
+    };
 
-    enum { _df_traversal, _df_ignore_if_not_exists, _df_count };
-    using delete_flag = std::bitset<_df_count>;
-    static constexpr delete_flag df_traversal {1 << _df_traversal};                        ///< 若节点挂载有子节点，则遍历删除子节点，然后删除该节点
-    static constexpr delete_flag df_ignore_if_not_exists {1 << _df_ignore_if_not_exists};  ///< 若节点不存在，则忽略本次操作
-    static constexpr delete_flag df_force {1 << _df_traversal | 1 << _df_ignore_if_not_exists};
+    typedef void(*event_callback_t)(client *self, const event &type, const state &state, const std::optional<std::string> &path, void *p_user_data);
 
     inline explicit client(ZooLogLevel log_level = ZOO_LOG_LEVEL_WARN) noexcept;
+    inline explicit client(const client &) = delete;
+    inline client &operator=(const client &) = delete;
+    inline explicit client(client &&) noexcept = default;
+    inline client &operator=(client &&) noexcept = default;
     inline virtual ~client() noexcept;
 
+    /// \brief 设定事件回调。
+    inline void set_event_callback(event_callback_t callback = nullptr,
+                                   void *p_user_data = nullptr);
+
+    /// \brief 连接到服务。
     inline void connect(const std::string &host,
                         const std::chrono::milliseconds &timeout = std::chrono::seconds {10});
     inline void reconnect();
@@ -64,10 +91,11 @@ public:
     /// \brief 创建节点。
     /// \param path  节点路径。
     /// \param value 节点值。
-    /// \param flags  额外标记。
+    /// \param flags 额外标记。
     /// \returns 节点路径，主要用于 `sequence` 标记生效时的情形。
-    inline std::string create(const std::string &path, const std::optional<std::string> &value, const create_flag &flags = {});
-    inline std::string create(const std::string &path, const create_flag &flags = {});
+    inline std::string create(const std::string &path,
+                              const std::optional<std::string> &value = std::nullopt,
+                              const create::flag &flags = {});
 
     /// \brief 检查节点是否存在。
     /// \param path 节点路径。
@@ -88,22 +116,25 @@ public:
     /// \param path  节点路径。
     /// \param value 节点值。
     /// \param flags 额外标记。
-    inline void set(const std::string &path, const std::optional<std::string> &value = std::nullopt, const set_flag &flags = {});
+    inline void set(const std::string &path,
+                    const std::optional<std::string> &value = std::nullopt,
+                    const set::flag &flags = {});
 
     /// \brief 删除节点。
-    /// \param path 节点路径。
-    /// \param flags  额外标记。
+    /// \param path  节点路径。
+    /// \param flags 额外标记。
     /// \remarks 因与 C++ 关键词冲突，刻意将 `delete` 拼写为 `deleta`。
-    inline void deleta(const std::string &path, const delete_flag &flags = {});
+    inline void deleta(const std::string &path, const deleta::flag &flags = {});
 
 private:
     std::string host_;
-    std::chrono::milliseconds timeout_;
+    std::chrono::milliseconds timeout_ {};
 
-    using zhandle_unique_ptr = std::unique_ptr<zhandle_t, decltype(&zookeeper_close)>;
-    zhandle_unique_ptr zh_;
+    std::unique_ptr<zhandle_t, decltype(&zookeeper_close)> zh_ {nullptr, &zookeeper_close};
 
     static inline void init_watcher(zhandle_t *zh, int type, int stat, const char *path, void *ctx);
+    event_callback_t event_callback_ {nullptr};
+    void *event_callback_p_user_data_ {nullptr};
 };
 
 }

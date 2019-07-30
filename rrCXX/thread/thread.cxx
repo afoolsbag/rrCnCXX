@@ -19,7 +19,6 @@
 using namespace std;
 
 namespace rrcxx {
-
 /// @addtogroup gThread
 /// @{
 
@@ -52,5 +51,4 @@ TEST(thread, test)
 }
 
 /// @}
-
 }

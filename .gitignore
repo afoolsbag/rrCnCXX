@@ -672,3 +672,8 @@ compile_commands.json
 
 /.idea/
 /build*/
+/rrCeph/linux/**/*
+/rrKafka/linux/**/*
+
+!/rrCeph/linux/copy_usr_include_to_here.sh
+!/rrKafka/linux/copy_usr_include_to_here.sh

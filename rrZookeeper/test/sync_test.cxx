@@ -3,7 +3,7 @@
 /// \file
 /// \brief 同步增删改查。
 ///
-/// \version 2019-05-28
+/// \version 2019-07-29
 /// \since 2018-12-30
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -18,7 +18,8 @@
 #include "rrzookeeper_client.hxx"
 
 using namespace std;
-using client = rrzookeeper::client;
+
+namespace rrzookeeper {
 
 static const string root_path {"/rrzookeeper"};
 static const string base_path {root_path + "/sync"};
@@ -33,12 +34,19 @@ static const string vnode_eulav {"eulav"};
 
 class sync_test : public testing::Test {
 protected:
-    static rrzookeeper::client client;
+    static client client;
+    static void event_callback(rrzookeeper::client *self, const client::event &type, const client::state &state, const optional<string> &path, void *p_user_data)
+    {
+        (void)self;
+        (void)p_user_data;
+        cout << "event: type=" << static_cast<int>(type) << " state=" << static_cast<int>(state) << " path=" << path.value_or("<null>") << endl;
+    }
     static void SetUpTestCase()
     {
+        client.set_event_callback(event_callback, nullptr);
         client.connect("127.0.0.1:2181");
-        client.deleta(base_path, client::df_force);
-        client.create(base_path, std::nullopt, client::cf_force);
+        client.deleta(base_path, client::deleta::force);
+        client.create(base_path, std::nullopt, client::create::force);
     }
     static void TearDownTestCase()
     {
@@ -100,17 +108,19 @@ TEST_F(sync_test, deleta)
 /// \brief 创建临时节点
 TEST_F(sync_test, eph)
 {
-    client.create(enode_path, client::cf_ephemeral | client::cf_force);
+    client.create(enode_path, nullopt, client::create::ephemeral | client::create::force);
 }
 
 /// \brief 创建顺序节点
 TEST_F(sync_test, seq)
 {
-    client.create(snode_path, client::cf_sequence | client::cf_force);
+    client.create(snode_path, nullopt, client::create::sequence | client::create::force);
 }
 
 /// \brief 创建临时、顺序节点
 TEST_F(sync_test, eph_seq)
 {
-    client.create(bnode_path, client::cf_ephemeral | client::cf_sequence | client::cf_force);
+    client.create(bnode_path, nullopt, client::create::ephemeral | client::create::sequence | client::create::force);
+}
+
 }
