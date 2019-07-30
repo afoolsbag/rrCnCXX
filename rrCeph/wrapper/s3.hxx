@@ -80,6 +80,9 @@ public:
     /// \brief 删除对象
     inline void delete_object(const std::string &bucket_name, const std::string &key);
 
+    /// \brief 生成外链
+    inline std::string generate_download_url(const std::string &bucket_name, const std::string &key, std::time_t expires);
+
 private:
     const std::string agent_;
     std::string host_;

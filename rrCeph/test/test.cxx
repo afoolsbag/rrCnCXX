@@ -62,6 +62,13 @@ TEST_F(ceph_test, upload_file)
     client.upload_file_as_object(sample_upload_file, sample_bucket, sample_key);
 }
 
+TEST_F(ceph_test, generate_download_url)
+{
+    const auto expires = time(nullptr) + 15 * 60;
+    const auto url = client.generate_download_url(sample_bucket, sample_key, expires);
+    cout << "url: " << url << '\n';
+}
+
 TEST_F(ceph_test, download_object_as_file)
 {
     client.download_object_as_file(sample_bucket, sample_key, sample_download_file);

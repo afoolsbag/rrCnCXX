@@ -580,7 +580,34 @@ inline void s3::delete_object(const std::string &bucket_name, const std::string 
     // 检查异常
     if (user_data.status != S3StatusOK)
         throw runtime_error {string {"S3_delete_object failed: "}.append(S3_get_status_name(user_data.status))};
+
 }
+
+inline std::string s3::generate_download_url(const std::string &bucket_name, const std::string &key, std::time_t expires)
+{
+    using namespace std;
+
+    S3BucketContext bucket_context {
+        host_.c_str(),
+        bucket_name.c_str(),
+        S3ProtocolHTTP,
+        S3UriStylePath,
+        access_key_.c_str(),
+        secret_key_.c_str()
+    };
+
+    char buffer[S3_MAX_AUTHENTICATED_QUERY_STRING_SIZE] {};
+
+    // 调用 API 生成外链，并等待完成
+    const auto status = S3_generate_authenticated_query_string(buffer, &bucket_context, key.c_str(), static_cast<int64_t>(expires), nullptr);
+
+    // 检查异常
+    if (status != S3StatusOK)
+        throw runtime_error {string {"S3_generate_authenticated_query_string failed: "}.append(S3_get_status_name(status))};
+
+    return buffer;
+}
+
 
 }
 
