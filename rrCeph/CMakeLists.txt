@@ -44,7 +44,7 @@ add_library_ex(
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 aux_source_directory_ex("test" zTest RECURSE PREFIX "test")
-add_executable_ex(
+add_executable_con(
   rrCephTest          ${zTest}
   PROPERTIES          CXX_STANDARD          11
                       CXX_STANDARD_REQUIRED ON

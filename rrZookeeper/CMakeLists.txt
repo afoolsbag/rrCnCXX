@@ -32,7 +32,7 @@ add_compile_options_ex(
 
 hunter_add_package(zookeeper)
 find_package(zookeeper CONFIG REQUIRED)
-aux_source_directory_ex("wrapper" zWrapper RECURSE PREFIX "wrapper")
+aux_source_directory_con("wrapper" zWrapper RECURSE PREFIX "wrapper")
 add_library_ex(
   rrZookeeperWraper   INTERFACE
   COMPILE_FEATURES    INTERFACE cxx_std_17
@@ -43,7 +43,7 @@ add_library_ex(
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 aux_source_directory_ex("test" zTest RECURSE PREFIX "test")
-add_executable_ex(
+add_executable_con(
   rrZookeeperTest     ${zTest}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON

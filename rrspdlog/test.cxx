@@ -32,9 +32,9 @@ namespace rrspdlog {
 ///          *   “级别”和“消息”在具高亮输出中高亮
 /// \sa <https://github.com/gabime/spdlog/wiki/3.-Custom-formatting#pattern-flags>
 #ifdef NDEBUG
-constexpr auto pattern {R"([%Y-%m-%dT%H:%M:%S.%e%z|P.%P|T.%t|%n] %^%l: %v%$)"};
+constexpr auto pattern = R"([%Y-%m-%dT%H:%M:%S.%e%z|P.%P|T.%t|%n] %^%l: %v%$)";
 #else
-constexpr auto pattern {R"([%Y-%m-%dT%H:%M:%S.%e%z|P.%P|T.%t|%@] %^%l: %v%$)"};
+constexpr auto pattern = R"([%Y-%m-%dT%H:%M:%S.%e%z|P.%P|T.%t|%@] %^%l: %v%$)";
 #endif
 
 /// \brief 默认日志器。

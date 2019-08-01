@@ -21,9 +21,7 @@
 using namespace std;
 
 namespace rrcxx {
-
 /// \addtogroup gSet
-
 /// @{
 
 /// \brief 集合的查找。
@@ -48,5 +46,4 @@ TEST(set, lookup)
 }
 
 /// @}
-
 }

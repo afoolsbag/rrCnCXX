@@ -1,9 +1,9 @@
 //===-- Non-Modifying Sequence Operations -----------------------*- C++ -*-===//
 ///
-/// \defgroup gNModSeqOps 不修改序列的操作 
+/// \defgroup gNonModifyingSequenceOperations 不修改序列的操作
 /// \ingroup gAlgorithm
 ///
-/// \version 2019-02-28
+/// \version 2019-08-01
 /// \since 2018-06-21
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -30,7 +30,7 @@ using namespace gsl;
 #endif
 
 namespace rrcxx {
-/// \addtogroup gNModSeqOps
+/// \addtogroup gNonModifyingSequenceOperations
 /// @{
 
 /// \brief 查找。
@@ -38,7 +38,7 @@ namespace rrcxx {
 /// \remarks P.1: 在代码中直接表达你的想法
 ///
 /// \sa <https://zh.cppreference.com/w/cpp/algorithm/find>
-TEST(nmod_seq_ops, find)
+TEST(non_modifying_sequence_operations, find)
 {
     const vector<int> v {1, 2, 3, 4, 5};
     const int t {3};
@@ -72,7 +72,7 @@ TEST(nmod_seq_ops, find)
 ///
 /// \sa <https://zh.cppreference.com/w/cpp/algorithm/for_each>
 /// \sa [*C++C.G. P.3*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-what)
-TEST(nmod_seq_ops, for_each)
+TEST(non_modifying_sequence_operations, for_each)
 {
     vector<int> v {1, 2, 3, 4, 5};
 
@@ -104,4 +104,4 @@ TEST(nmod_seq_ops, for_each)
 }
 
 /// @}
-}//namespace rrcxx
+}
