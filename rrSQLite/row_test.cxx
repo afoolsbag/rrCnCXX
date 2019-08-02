@@ -33,13 +33,14 @@ protected:
     {
         {
             sqlite3 *p {nullptr};
-            ASSERT_EQ(SQLITE_OK, sqlite3_open("test.sqlite3", &p)) << sqlite3_errmsg(p);
+            ASSERT_EQ(SQLITE_OK, sqlite3_open("rrsqlite.sqlite3", &p)) << sqlite3_errmsg(p);
             db.reset(p);
         }
 
         {
             constexpr char stat_text[] {
                 "DROP TABLE IF EXISTS row_test_table; "
+                " "
                 "CREATE TABLE row_test_table ( "
                 "    id             INTEGER PRIMARY KEY, "
                 "    integer_column INTEGER, "
