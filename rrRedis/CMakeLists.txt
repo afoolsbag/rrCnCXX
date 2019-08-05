@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrRedis
-  VERSION   2019.05.05
+  TIME_AS_VERSION
   LANGUAGES C)
 
 add_compile_options_ex(

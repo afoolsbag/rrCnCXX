@@ -10,14 +10,9 @@ cmake_policy(VERSION 3.12)
 
 include_hunter_gate_script()
 
-string(TIMESTAMP sYear       "%Y")
-string(TIMESTAMP sMonth      "%m")
-string(TIMESTAMP sDay        "%d")
-string(TIMESTAMP sHourMinute "%H%M")
-
 project_ex(
   rrSWIG
-  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
+  TIME_AS_VERSION
   LANGUAGES C CXX)
 
 add_compile_options_ex(

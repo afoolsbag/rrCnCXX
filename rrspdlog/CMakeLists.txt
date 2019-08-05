@@ -10,14 +10,9 @@
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
-string(TIMESTAMP sYear       "%Y")
-string(TIMESTAMP sMonth      "%m")
-string(TIMESTAMP sDay        "%d")
-string(TIMESTAMP sHourMinute "%H%M")
-
 project_ex(
   rrspdlog
-  VERSION   ${sYear}.${sMonth}.${sDay}.${sHourMinute}
+  TIME_AS_VERSION
   LANGUAGES CXX)
 
 include_conan_script()

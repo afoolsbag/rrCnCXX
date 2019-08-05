@@ -10,7 +10,7 @@ cmake_policy(VERSION 3.12)
 
 project_ex(
   rrQt
-  VERSION   2019.05.08
+  TIME_AS_VERSION
   LANGUAGES CXX)
 
 add_compile_options_ex(
