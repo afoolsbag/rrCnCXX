@@ -47,7 +47,7 @@ inline producer::producer(const std::string &broker_list, const std::string &top
         throw exception {"RdKafka::Topic::create(*) failed: "s.append(errstr)};
 }
 
-inline void producer::produce(const std::optional<std::string> &key, const std::vector<std::uint8_t> &value, std::int32_t partition)
+inline void producer::produce(const std::optional<std::string> &key, const void *value_data, std::size_t value_size, std::int32_t partition)
 {
     using namespace std;
 
@@ -57,8 +57,8 @@ inline void producer::produce(const std::optional<std::string> &key, const std::
     const auto ec = rd_producer_->produce(rd_topic_.get(),
                                           partition,
                                           RdKafka::Producer::RK_MSG_COPY,
-                                          const_cast<void *>(reinterpret_cast<const void *>(value.data())),
-                                          value.size(),
+                                          const_cast<void *>(value_data),
+                                          value_size,
                                           key.has_value() ? &key.value() : nullptr,
                                           nullptr);
 
@@ -70,7 +70,7 @@ inline void producer::produce(const std::optional<std::string> &key, const std::
 
 }
 
-inline consumer::consumer(const std::string &broker_list, const std::string &topic, std::int32_t partition, const std::string &group_id) :
+inline consumer::consumer(const std::string &broker_list, const std::string &topic, std::int32_t partition, std::int64_t offset) :
     partition_ {partition}
 {
     using namespace std;
@@ -90,12 +90,6 @@ inline consumer::consumer(const std::string &broker_list, const std::string &top
     if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
         throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // group.id
-    // Client group id string. All clients sharing the same group.id belong to the same group.
-    // Type: string
-    if (gcfg->set("group.id", group_id, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
-
     rd_consumer_.reset(RdKafka::Consumer::create(gcfg.get(), errstr));
     if (!rd_consumer_)
         throw exception {"RdKafka::Consumer::create(*) failed: "s.append(errstr)};
@@ -113,7 +107,7 @@ inline consumer::consumer(const std::string &broker_list, const std::string &top
 
     // -------------------------------------------------------------------------
 
-    const auto ec = rd_consumer_->start(rd_topic_.get(), partition_, 0);
+    const auto ec = rd_consumer_->start(rd_topic_.get(), partition_, offset);
     if (ec != RdKafka::ERR_NO_ERROR)
         throw exception {ec, "RdKafka::Consumer::start(*) failed"};
 }
@@ -126,7 +120,7 @@ inline consumer::~consumer() noexcept
     rd_consumer_->poll(100);
 }
 
-inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> consumer::consume()
+inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consumer::consume()
 {
     using namespace std;
 
@@ -143,7 +137,8 @@ inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> consumer
     if (message->err() != RdKafka::ERR_NO_ERROR)
         throw exception {message->err(), "RdKafka::Consumer::consume(*) failed"};
 
-    return make_pair<std::optional<std::string>, std::vector<std::uint8_t>>(
+    return make_tuple<int64_t, optional<string>, vector<uint8_t>>(
+        message->offset(),
         message->key() ? optional {*message->key()} : nullopt,
         {reinterpret_cast<uint8_t *>(message->payload()), reinterpret_cast<uint8_t *>(message->payload()) + message->len()}
     );

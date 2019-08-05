@@ -39,7 +39,7 @@ kafka_consumer kafka_test::cons {broker_list, topic};
 TEST_F(kafka_test, produce)
 {
     const auto str = "hello, world"s;
-    prod.produce({str.cbegin(), str.cend()});
+    prod.produce(str);
 }
 
 TEST_F(kafka_test, consume)
