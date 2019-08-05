@@ -2,6 +2,8 @@
 
 [*Lua*](https://lua.org/)
 
+[*Lua: Good, bad, and ugly parts*](https://notebook.kulchenko.com/programming/lua-good-different-bad-and-ugly-parts)
+
 ## 参考
 
 [Lua 5.3 Reference Manual](https://lua.org/manual/5.3/contents.html)
