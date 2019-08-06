@@ -3,21 +3,16 @@
 /// \defgroup gMain 主函数
 /// \ingroup gLanguage
 ///
-/// \version 2019-01-28
+/// \version 2019-08-06
 /// \since 2016-10-12
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
-#include <cmath>
-#include <iostream>
+#include <clocale>
 
 #include <gtest/gtest.h>
-
-namespace rrcxx {
-/// \addtogroup gMain
-/// @{
 
 /// \brief 入口点（主函数）。
 ///
@@ -27,11 +22,16 @@ namespace rrcxx {
 ///
 /// \sa \ref sReturnVsExitVsAbort
 /// \sa <https://zh.cppreference.com/w/cpp/language/main_function>
-int entry_point(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
+    std::setlocale(LC_ALL, ".UTF-8");
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+
+namespace rrcxx {
+/// \addtogroup gMain
+/// @{
 
 /// @}
 }

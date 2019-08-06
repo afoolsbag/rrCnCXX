@@ -34,10 +34,10 @@ find_package(GTest CONFIG REQUIRED)
 aux_source_directory_con("." zTest RECURSE)
 add_executable_con(
   rrCXXtest           ${zTest}
-  PROPERTIES          CXX_STANDARD          20
+  PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE               "."
   LINK_LIBRARIES      Microsoft.GSL::GSL
-                      GTest::main)
+                      GTest::gtest)
 
 add_test(NAME rrCXXtest COMMAND rrCXXtest)

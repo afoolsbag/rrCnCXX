@@ -3,7 +3,9 @@
 /// \defgroup gArray 数组
 /// \ingroup gLanguage
 ///
-/// \version 2019-02-28
+/// \sa [数组声明](https://zh.cppreference.com/w/cpp/language/array)
+///
+/// \version 2019-08-06
 /// \since 2018-10-08
 /// \authors zhengrr
 /// \copyright Unlicense
