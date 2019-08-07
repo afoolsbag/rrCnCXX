@@ -10,6 +10,7 @@
 ///
 //===----------------------------------------------------------------------===//
 
+#include <cctype>
 #include <algorithm>
 #include <vector>
 #include <gsl/gsl>
@@ -28,6 +29,28 @@ using namespace gsl;
 #if NORMALIZED_GNUC_VERSION
 #define index gsl::index
 #endif
+
+namespace {
+void ltrim(std::string &text)
+{
+    text.erase(
+        text.begin(),
+        std::find_if(text.begin(), text.end(), [](int ch) { return !std::isspace(ch); })
+    );
+}
+void rtrim(std::string &text)
+{
+    text.erase(
+        std::find_if(text.rbegin(), text.rend(), [](int ch) { return !std::isspace(ch); }).base(),
+        text.end()
+    );
+}
+void trim(std::string &text)
+{
+    ltrim(text);
+    rtrim(text);
+}
+}
 
 namespace rrcxx {
 /// \addtogroup gNonModifyingSequenceOperations
@@ -56,6 +79,14 @@ TEST(non_modifying_sequence_operations, find)
     // 好
     auto const p {find(begin(v), end(v), t)};
     ASSERT_EQ(*p, t);
+}
+
+
+TEST(non_modifying_sequence_operations, trim)
+{
+    auto string = "  hello, world  "s;
+    trim(string);
+    ASSERT_EQ("hello, world", string);
 }
 
 /// \brief 遍历。

@@ -17,7 +17,7 @@ TEST(sample, wow)
     try {
          initialize_as_default(boost::dll::program_location().replace_extension("logs").string());
     } catch (const exception &e) {
-        FAIL() << "initialize_rrspdlog_as_default failed: " << e.what();
+        FAIL() << "initialize_as_default failed: " << e.what();
     }
 
     SPDLOG_TRACE("trace message");

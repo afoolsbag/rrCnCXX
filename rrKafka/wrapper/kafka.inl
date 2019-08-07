@@ -151,6 +151,19 @@ inline kafka_consumer::kafka_consumer(const std::string &broker_list, const std:
     string errstr;
 
     // -------------------------------------------------------------------------
+    // DEFAULT TOPIC
+
+    unique_ptr<RdKafka::Conf> tcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC)};
+    if (!tcfg)
+        throw exception {"RdKafka::Conf::create(*) failed"};
+
+    // auto.offset.reset
+    // Action to take when there is no initial offset in offset store or the desired offset is out of range: 'smallest','earliest' - automatically reset the offset to the smallest offset, 'largest','latest' - automatically reset the offset to the largest offset, 'error' - trigger an error which is retrieved by consuming messages and checking 'message->err'.
+    // Type: enum value
+    if (tcfg->set("auto.offset.reset", "earliest", errstr) != RdKafka::Conf::CONF_OK)
+        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+
+    // -------------------------------------------------------------------------
     // KAFKA CONSUMER
 
     unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
@@ -161,6 +174,12 @@ inline kafka_consumer::kafka_consumer(const std::string &broker_list, const std:
     // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
     // Type: string
     if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
+        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+
+    // default_topic_conf
+    // Default topic configuration for automatically subscribed topics.
+    // Type: pointer
+    if (gcfg->set("default_topic_conf", tcfg.get(), errstr) != RdKafka::Conf::CONF_OK)
         throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
     // group.id
@@ -202,7 +221,7 @@ inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> kafka_co
     if (message->err() != RdKafka::ERR_NO_ERROR)
         throw exception {message->err(), "RdKafka::KafkaConsumer::consume(*) failed"};
 
-    const auto ec = rd_kafka_consumer_->commitSync();
+    const auto ec = rd_kafka_consumer_->commitSync(message.get());
     if (ec != RdKafka::ERR_NO_ERROR)
         throw exception {ec, "RdKafka::KafkaConsumer::commitSync(*) failed"};
 

@@ -34,7 +34,7 @@ protected:
     {}
 };
 producer kafka_test::prod {broker_list, topic};
-kafka_consumer kafka_test::cons {broker_list, topic};
+kafka_consumer kafka_test::cons {broker_list, topic, "debug2"};
 
 TEST_F(kafka_test, produce)
 {
@@ -44,10 +44,12 @@ TEST_F(kafka_test, produce)
 
 TEST_F(kafka_test, consume)
 {
-    const auto[key, value] = cons.consume();
-    cout << "consume:\n"
-        "key=" << key.value_or("<null>") << "\n"
-        "value=" << string {reinterpret_cast<const char *>(value.data()), value.size()} << '\n';
+    for (; ; ) {
+        const auto[key, value] = cons.consume();
+        cout << "consume:\n"
+            "key=" << key.value_or("<null>") << "\n"
+            "value=" << string {reinterpret_cast<const char *>(value.data()), value.size()} << '\n';
+    }
 }
 
 }
