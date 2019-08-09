@@ -23,6 +23,7 @@ add_compile_options_ex(
 
 #-------------------------------------------------------------------------------
 # rrlc
+
 configure_file("rrlc/src/cfg.h.in" "rrlc/src/cfg.h" @ONLY)
 aux_source_directory_con("rrlc/include"                         zInclude   RECURSE PREFIX "include")
 aux_source_directory_con("rrlc/src"                             zSrc       RECURSE PREFIX "src")
@@ -44,6 +45,7 @@ install(
 
 #-------------------------------------------------------------------------------
 # rrlx
+
 configure_file("rrlx/src/cfg.hxx.in" "rrlx/src/cfg.hxx" @ONLY)
 aux_source_directory_con("rrlx/include"                         zInclude   RECURSE PREFIX "include")
 aux_source_directory_con("rrlx/src"                             zSrc       RECURSE PREFIX "src")
@@ -68,6 +70,7 @@ install(
 
 #-------------------------------------------------------------------------------
 # rrlctest
+
 find_package(Check REQUIRED)
 aux_source_directory_con("rrlctest" zSrc RECURSE)
 add_executable_con(
@@ -83,6 +86,7 @@ add_test(NAME rrlctest COMMAND rrlctest)
 
 #-------------------------------------------------------------------------------
 # rrlxtest
+
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 aux_source_directory_con("rrlxtest" zSrc RECURSE)
@@ -99,58 +103,61 @@ add_test(NAME rrlxtest COMMAND rrlxtest)
 
 #-------------------------------------------------------------------------------
 # rrlxswg
+
 find_package(SWIG)
 if(SWIG_FOUND)
 
-  function(add_swig_library_con _BASENAME _LANGUAGE _INPUT_SWG_FILE _OUTPUT_PARENT_DIR)
-    set(zMutValKws COMMAND_OPTIONS
-                   LINK_LIBRARIES)
-    cmake_parse_arguments(PARSE_ARGV 2 "" "" "" "${zMutValKws}")
+  add_library_swig(
+    rrlx_swig_csharp
+    SHARED
+    SWIG_LANGUAGE  CSHARP
+    SWIG_INTERFACE "rrlx/rrlx.swg"
+    PROPERTIES     CXX_STANDARD          17
+                   CXX_STANDARD_REQUIRED ON
+    LINK_LIBRARIES rrlx)
 
-    string(TOLOWER "${_LANGUAGE}" sLanguageLower)
-	get_filename_component(sSwgNameWle "${_INPUT_SWG_FILE}" NAME_WLE)
+  add_library_swig(
+    rrlx_swig_go
+    SHARED
+    SWIG_LANGUAGE  GO
+    SWIG_INTERFACE "rrlx/rrlx.swg"
+    PROPERTIES     CXX_STANDARD          17
+                   CXX_STANDARD_REQUIRED ON
+    LINK_LIBRARIES rrlx)
 
-    file(MAKE_DIRECTORY "${_OUTPUT_PARENT_DIR}/${sLanguageLower}")
-    execute_process(
-      COMMAND "${SWIG_EXECUTABLE}"
-              "-c++"               "-o"      "${_OUTPUT_PARENT_DIR}/${sLanguageLower}/${sSwgNameWle}_wrap.cpp"
-              "-${sLanguageLower}" "-outdir" "${_OUTPUT_PARENT_DIR}/${sLanguageLower}"
-              ${_COMMAND_OPTIONS}
-              "${_INPUT_SWG_FILE}"
-      RESULTS_VARIABLE sResultCode)
-    if(NOT sResultCode EQUAL 0)
-      message(FATAL_ERROR "Gennerate SWIG ${sLanguageLower} files from interface file failed: ${sResultCode}")
-    endif()
+  add_library_swig(
+    rrlx_swig_java
+    SHARED
+    SWIG_LANGUAGE  JAVA
+    SWIG_INTERFACE "rrlx/rrlx.swg"
+    PROPERTIES     CXX_STANDARD          17
+                   CXX_STANDARD_REQUIRED ON
+    LINK_LIBRARIES rrlx)
 
-    aux_source_directory_con("${_OUTPUT_PARENT_DIR}/${sLanguageLower}" zGen PREFIX "generated")
-    add_library_con(
-      "${_BASENAME}_${sLanguageLower}"
-      SHARED              "${_INPUT_SWG_FILE}" ${zGen}
-      PROPERTIES          CXX_STANDARD          17
-                          CXX_STANDARD_REQUIRED ON
-      INCLUDE_DIRECTORIES PRIVATE "${_OUTPUT_PARENT_DIR}/${sLanguageLower}"
-	  LINK_LIBRARIES      PRIVATE ${_LINK_LIBRARIES})
-  endfunction()
+  add_library_swig(
+    rrlx_swig_javascript
+    SHARED
+    SWIG_LANGUAGE  JAVASCRIPT
+    SWIG_INTERFACE "rrlx/rrlx.swg"
+    PROPERTIES     CXX_STANDARD          17
+                   CXX_STANDARD_REQUIRED ON
+    LINK_LIBRARIES rrlx)
 
-  set(sSwg       "${CMAKE_CURRENT_SOURCE_DIR}/rrlx/rrlx.swg")
-  set(sSwgOutput "${CMAKE_CURRENT_BINARY_DIR}/rrlx/rrlx.swg")
+  add_library_swig(
+    rrlx_swig_python
+    SHARED
+    SWIG_LANGUAGE  PYTHON
+    SWIG_INTERFACE "rrlx/rrlx.swg"
+    PROPERTIES     CXX_STANDARD          17
+                   CXX_STANDARD_REQUIRED ON
+    LINK_LIBRARIES rrlx)
 
-  math(EXPR sIntGoZize "8 * ${CMAKE_SIZEOF_VOID_P}")
-
-  add_swig_library_con(rrlxswg CSharp     "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg D          "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Go         "${sSwg}" "${sSwgOutput}" COMMAND_OPTIONS "-intgosize" "${sIntGoZize}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Guile      "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Java       "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg JavaScript "${sSwg}" "${sSwgOutput}" COMMAND_OPTIONS "-node" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Lua        "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Octave     "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Perl5      "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Php7       "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Python     "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg R          "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Ruby       "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg SciLab     "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  add_swig_library_con(rrlxswg Tcl8       "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
-  #add_swig_library_con(rrlxswg Xml        "${sSwg}" "${sSwgOutput}" LINK_LIBRARIES rrlx)
+  add_library_swig(
+    rrlx_swig_ruby
+    SHARED
+    SWIG_LANGUAGE  RUBY
+    SWIG_INTERFACE "rrlx/rrlx.swg"
+    PROPERTIES     CXX_STANDARD          17
+                   CXX_STANDARD_REQUIRED ON
+    LINK_LIBRARIES rrlx)
 endif()

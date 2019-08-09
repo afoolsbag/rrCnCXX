@@ -46,6 +46,8 @@
     2.  设置环境变量 `SWIG_HOME`
     3.  通过 CMake 的 `FindSWIG` 模块链接使用 SWIG 库
 
+/ [“开发人员 SWIG 快速入门”](https://ibm.com/developerworks/cn/aix/library/au-swig/). *IBM Developer*
+
 ## 许可
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
