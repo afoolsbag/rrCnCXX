@@ -41,9 +41,9 @@ RRLX_API version_t STDCALL version();
 class clazz final {
 public:
     RRLX_API explicit clazz();
-    RRLX_API explicit clazz(const clazz &) = delete;
+    RRLX_API clazz(const clazz &) = delete;
     RRLX_API clazz &operator=(const clazz &) = delete;
-    RRLX_API explicit clazz(clazz &&) noexcept;
+    RRLX_API clazz(clazz &&) noexcept;
     RRLX_API clazz &operator=(clazz &&) noexcept;
     RRLX_API ~clazz() noexcept;
 

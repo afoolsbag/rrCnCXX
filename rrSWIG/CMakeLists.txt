@@ -108,7 +108,7 @@ find_package(SWIG)
 if(SWIG_FOUND)
 
   add_library_swig(
-    rrlx_swig_csharp
+    rrlxswigcsharp
     SHARED
     SWIG_LANGUAGE  CSHARP
     SWIG_INTERFACE "rrlx/rrlx.swg"
@@ -117,7 +117,7 @@ if(SWIG_FOUND)
     LINK_LIBRARIES rrlx)
 
   add_library_swig(
-    rrlx_swig_go
+    rrlxswiggo
     SHARED
     SWIG_LANGUAGE  GO
     SWIG_INTERFACE "rrlx/rrlx.swg"
@@ -126,16 +126,17 @@ if(SWIG_FOUND)
     LINK_LIBRARIES rrlx)
 
   add_library_swig(
-    rrlx_swig_java
+    rrlxswigjava
     SHARED
     SWIG_LANGUAGE  JAVA
     SWIG_INTERFACE "rrlx/rrlx.swg"
+    SWIG_ARGUMENTS "-package"            "rrswig"
     PROPERTIES     CXX_STANDARD          17
                    CXX_STANDARD_REQUIRED ON
     LINK_LIBRARIES rrlx)
 
   add_library_swig(
-    rrlx_swig_javascript
+    rrlxswigjavascript
     SHARED
     SWIG_LANGUAGE  JAVASCRIPT
     SWIG_INTERFACE "rrlx/rrlx.swg"
@@ -144,7 +145,7 @@ if(SWIG_FOUND)
     LINK_LIBRARIES rrlx)
 
   add_library_swig(
-    rrlx_swig_python
+    rrlxswigpython
     SHARED
     SWIG_LANGUAGE  PYTHON
     SWIG_INTERFACE "rrlx/rrlx.swg"
@@ -153,7 +154,7 @@ if(SWIG_FOUND)
     LINK_LIBRARIES rrlx)
 
   add_library_swig(
-    rrlx_swig_ruby
+    rrlxswigruby
     SHARED
     SWIG_LANGUAGE  RUBY
     SWIG_INTERFACE "rrlx/rrlx.swg"
