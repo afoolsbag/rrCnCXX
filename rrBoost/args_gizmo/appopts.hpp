@@ -37,7 +37,7 @@ private:
         std::vector<boost::filesystem::path> include_files;    // 包含文件
         std::vector<boost::filesystem::path> input_files;      // 输入文件
         int optimization_level {};                             // 优化级别
-        std::filesystem::path output_file;                     // 输出文件
+        boost::filesystem::path output_file;                   // 输出文件
         boost::optional<boost::filesystem::path> report_file;  // 报告文件
         int verbosity_level {};                                // 输出级别
         int warning_level {};                                  // 警告级别
