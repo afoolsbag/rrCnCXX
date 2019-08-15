@@ -15,7 +15,6 @@
 #ifndef RRARGSGIZMO_APPOPTS_HPP_
 #define RRARGSGIZMO_APPOPTS_HPP_
 
-#include <filesystem>
 #include <string>
 #include <vector>
 
