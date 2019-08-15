@@ -20,6 +20,8 @@ K&R 和 Stroustrup 风格布局；
     6.  设置环境变量 `BOOST_ROOT` 或 `BOOSTROOT`
     7.  通过 CMake 的 `FindBoost` 模块链接使用 Boost 库
 
+/ [*Boost C++ 库*](http://zh.highscore.de/cpp/boost/)
+
 ## 许可
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：

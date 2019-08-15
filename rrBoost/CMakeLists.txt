@@ -32,9 +32,19 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-aux_source_directory_con("." zTest)
+aux_source_directory_con("args_gizmo" zArgsGizmo PREFIX "args_gizmo")
+add_executable_con(
+  rrArgsGizmo         ${zArgsGizmo}
+                      "README.md"
+  PROPERTIES          CXX_STANDARD          20
+                      CXX_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE "."
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::boost)
+
+aux_source_directory_con("test" zTest PREFIX "test")
 add_executable_con(
   rrBoostTest         ${zTest}
+                      "README.md"
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PUBLIC  "_WIN32_WINNT=0x0A00"  # Windows 10

@@ -10,9 +10,11 @@
 ///
 //===----------------------------------------------------------------------===//
 
-#include <clocale>
+#include <locale>
 
 #include <gtest/gtest.h>
+
+using namespace std;
 
 /// \brief 入口点（主函数）。
 ///
@@ -24,7 +26,7 @@
 /// \sa <https://zh.cppreference.com/w/cpp/language/main_function>
 int main(int argc, char *argv[])
 {
-    std::setlocale(LC_ALL, ".UTF-8");
+    locale::global(locale {".UTF-8"});
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

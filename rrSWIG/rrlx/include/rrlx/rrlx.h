@@ -6,7 +6,7 @@
  *
  * \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
  *
- * \version 2019-07-19
+ * \version 2019-08-13
  * \since 2018-01-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -82,21 +82,21 @@ rrlx_get_basic(rrlx_handle_t handle, int *r_value) NOEXCEPT;
  * \brief 数组赋值。
  *
  * \param handle 实例句柄
- * \param data   只读数组
+ * \param data   只读数组首指针
  * \param size   数组尺寸
  */
 EXTERN_C RRLX_API enum rrlx_status_t CDECL
-rrlx_set_array(rrlx_handle_t handle, const uint8_t data[], size_t size) NOEXCEPT;
+rrlx_set_array(rrlx_handle_t handle, const uint8_t *data, size_t size) NOEXCEPT;
 
 /**
  * \brief 数组取值。
  *
  * \param[in]     handle 实例句柄
- * \param[out]    buffer 缓存数组，可空
+ * \param[out]    buffer 缓存数组首指针，可空
  * \param[in,out] r_size 尺寸引用，输入缓存尺寸，输出数据尺寸。
  */
 EXTERN_C RRLX_API enum rrlx_status_t CDECL
-rrlx_get_array(rrlx_handle_t handle, uint8_t buffer[], size_t *r_size) NOEXCEPT;
+rrlx_get_array(rrlx_handle_t handle, uint8_t *buffer, size_t *r_size) NOEXCEPT;
 
 /**
  * \brief 数组取值，只读易变引用（const volatile reference）变种。
@@ -115,7 +115,7 @@ rrlx_get_array_cvr(rrlx_handle_t handle, const uint8_t *(*r_data), size_t *r_siz
  * \param string 只读字串
  */
 EXTERN_C RRLX_API enum rrlx_status_t CDECL
-rrlx_set_string(rrlx_handle_t handle, const char string[]) NOEXCEPT;
+rrlx_set_string(rrlx_handle_t handle, const char *string) NOEXCEPT;
 
 enum {
     rrlx_string_fsb_size = 777  /**< 字串定长缓存尺寸 */

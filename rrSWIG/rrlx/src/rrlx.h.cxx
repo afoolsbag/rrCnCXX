@@ -68,7 +68,7 @@ rrlx_get_basic(rrlx_handle_t handle, int *r_value) NOEXCEPT
 }
 
 EXTERN_C RRLX_API enum rrlx_status_t CDECL
-rrlx_set_array(rrlx_handle_t handle, const uint8_t data[], size_t size) NOEXCEPT
+rrlx_set_array(rrlx_handle_t handle, const uint8_t *data, size_t size) NOEXCEPT
 {
     return rrlx::exception2status(handle, [&] {
         if (!handle || !data || !size)
@@ -79,7 +79,7 @@ rrlx_set_array(rrlx_handle_t handle, const uint8_t data[], size_t size) NOEXCEPT
 }
 
 EXTERN_C RRLX_API enum rrlx_status_t CDECL
-rrlx_get_array(rrlx_handle_t handle, uint8_t buffer[], size_t *r_size) NOEXCEPT
+rrlx_get_array(rrlx_handle_t handle, uint8_t *buffer, size_t *r_size) NOEXCEPT
 {
     return rrlx::exception2status(handle, [&] {
         if (!handle || !r_size)
@@ -113,7 +113,7 @@ rrlx_get_array_cvr(rrlx_handle_t handle, const uint8_t *(*r_data), size_t *r_siz
 }
 
 EXTERN_C RRLX_API enum rrlx_status_t CDECL
-rrlx_set_string(rrlx_handle_t handle, const char string[]) NOEXCEPT
+rrlx_set_string(rrlx_handle_t handle, const char *string) NOEXCEPT
 {
     return rrlx::exception2status(handle, [&] {
         if (!handle || !string)

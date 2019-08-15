@@ -201,7 +201,7 @@ enum rrlx_status_t rrlx_get_basic(rrlx_handle_t handle, int *r_value);
 #if defined(SWIGJAVA)
 %rename(setArray) rrlx_set_array;
 #endif
-enum rrlx_status_t rrlx_set_array(rrlx_handle_t handle, const uint8_t data[], size_t size);
+enum rrlx_status_t rrlx_set_array(rrlx_handle_t handle, const uint8_t *data, size_t size);
 
 //------------------------------------------------------------------------------
 // rrlx_get_array
@@ -209,7 +209,7 @@ enum rrlx_status_t rrlx_set_array(rrlx_handle_t handle, const uint8_t data[], si
 %rename(getArray) rrlx_get_array;
 #endif
 %apply size_t *INOUT { size_t *r_size };
-enum rrlx_status_t rrlx_get_array(rrlx_handle_t handle, uint8_t buffer[], size_t *r_size);
+enum rrlx_status_t rrlx_get_array(rrlx_handle_t handle, uint8_t *buffer, size_t *r_size);
 
 //------------------------------------------------------------------------------
 // rrlx_get_array_cvr
@@ -224,7 +224,7 @@ enum rrlx_status_t rrlx_get_array_cvr(rrlx_handle_t handle, const uint8_t *(*r_d
 #if defined(SWIGJAVA)
 %rename(setString) rrlx_set_string;
 #endif
-enum rrlx_status_t rrlx_set_string(rrlx_handle_t handle, const char string[]);
+enum rrlx_status_t rrlx_set_string(rrlx_handle_t handle, const char *string);
 
 //------------------------------------------------------------------------------
 // rrlx_string_fsb_size
