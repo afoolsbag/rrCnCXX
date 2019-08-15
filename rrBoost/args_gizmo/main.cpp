@@ -19,12 +19,25 @@
 
 using namespace std;
 
+constexpr char figlet_logo[] {
+    R"(            ___                _____ _                     )" "\n"
+    R"(           / _ \              |  __ (_)                    )" "\n"
+    R"( _ __ _ __/ /_\ \_ __ __ _ ___| |  \/_ _____ __ ___   ___  )" "\n"
+    R"(| '__| '__|  _  | '__/ _` / __| | __| |_  / '_ ` _ \ / _ \ )" "\n"
+    R"(| |  | |  | | | | | | (_| \__ \ |_\ \ |/ /| | | | | | (_) |)" "\n"
+    R"(|_|  |_|  \_| |_/_|  \__, |___/\____/_/___|_| |_| |_|\___/ )" "\n"
+    R"(                      __/ |                                )" "\n"
+    R"(                     |___/                                 )" "\n"};
+
 int main(int argc, char *argv[]) noexcept
 {
     try {
         locale::global(locale {".UTF-8"});
 
         const rrargsgizmo::appopts opts {argc, argv};
+
+        if (opts->debug)
+            opts.print_options(cout);
 
         if (opts->help) {
             opts.print_help(cout);
@@ -35,9 +48,6 @@ int main(int argc, char *argv[]) noexcept
             cout << "version 1.3.3.7\n";
             return EXIT_SUCCESS;
         }
-
-        if (opts->debug)
-            opts.print_options(cout);
 
         return EXIT_SUCCESS;
 
