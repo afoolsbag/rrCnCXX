@@ -27,6 +27,8 @@ appopts::appopts(int argc, const char *const argv[])
         ("configuration-file", bpo::value(&entries_.configuration_file)->default_value(default_config_file), "配置文件")
         ("environment-prefix", bpo::value(&entries_.environment_prefix)->default_value(default_environment_prefix), "环境变量前缀");
 
+#//=============================================================================
+#//
     common_options_.add_options()
         ("include-file,I", bpo::value(&entries_.include_files)->composing(), "包含文件")
         ("optimization-level,O", bpo::value(&entries_.optimization_level)->default_value(0), "优化级别")
@@ -36,6 +38,8 @@ appopts::appopts(int argc, const char *const argv[])
         ("warning-level,w", bpo::value(&entries_.warning_level)->default_value(3), "警告级别");
     hidden_options_.add_options()
         ("input-file", bpo::value(&entries_.input_files)->composing(), "输入文件");
+#//
+#//-----------------------------------------------------------------------------
 
     parse_from_command_lice(argc, argv);
     parse_from_configuration_file(entries_.configuration_file);
@@ -46,7 +50,11 @@ void appopts::print_help(std::ostream &os) const
     const auto program_name = boost::dll::program_location().filename().string();
 
     os << '\n';
+#//=============================================================================
+#//
     os << "用法: " << program_name << " [选项]... <文件>...\n";
+#//
+#//-----------------------------------------------------------------------------
     os << '\n';
     bpo::options_description desc {"选项"};
     desc.add(general_options_).add(common_options_);
@@ -65,6 +73,8 @@ void appopts::print_options(std::ostream &os) const
     os << "  configuration-file = " << entries_.configuration_file << '\n';
     os << "  environment-prefix = " << entries_.environment_prefix << '\n';
 
+#//=============================================================================
+#//
     os << "  include-files      = "; for (const auto &e : entries_.include_files) os << e << ' '; os << '\n';
     os << "  input-files        = "; for (const auto &e : entries_.input_files) os << e << ' '; os << '\n';
     os << "  optimization-level = " << entries_.optimization_level << '\n';
@@ -72,6 +82,8 @@ void appopts::print_options(std::ostream &os) const
     os << "  report-file        = " << entries_.report_file << '\n';
     os << "  verbosity-level    = " << entries_.verbosity_level << '\n';
     os << "  warning-level      = " << entries_.warning_level << '\n';
+#//
+#//-----------------------------------------------------------------------------
     os << '\n';
 }
 
@@ -80,8 +92,12 @@ void appopts::parse_from_command_lice(int argc, const char *const argv[])
     bpo::options_description opts;
     opts.add(general_options_).add(common_options_).add(hidden_options_);
 
+#//=============================================================================
+#//
     bpo::positional_options_description pos;
     pos.add("input-file", -1);
+#//
+#//-----------------------------------------------------------------------------
 
     bpo::store(bpo::command_line_parser {argc, argv}.options(opts).positional(pos).run(), vars_);
     bpo::notify(vars_);

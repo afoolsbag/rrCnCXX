@@ -28,12 +28,14 @@ namespace rrargsgizmo {
 class appopts final {
 private:
     struct {
-        bool help {};                                          // 帮助信息
-        bool debug {};                                         // 调试信息
-        bool version {};                                       // 版本信息
-        boost::filesystem::path configuration_file;            // 配置文件
-        std::string environment_prefix;                        // 环境变量前缀
+        bool help {};                                // 帮助信息
+        bool debug {};                               // 调试信息
+        bool version {};                             // 版本信息
+        boost::filesystem::path configuration_file;  // 配置文件
+        std::string environment_prefix;              // 环境变量前缀
 
+#//=============================================================================
+#//
         std::vector<boost::filesystem::path> include_files;    // 包含文件
         std::vector<boost::filesystem::path> input_files;      // 输入文件
         int optimization_level {};                             // 优化级别
@@ -41,6 +43,8 @@ private:
         boost::optional<boost::filesystem::path> report_file;  // 报告文件
         int verbosity_level {};                                // 输出级别
         int warning_level {};                                  // 警告级别
+#//
+#//-----------------------------------------------------------------------------
     } entries_;
 
 public:

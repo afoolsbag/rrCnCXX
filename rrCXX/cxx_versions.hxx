@@ -1,4 +1,4 @@
-//===-- C++ Versiosn --------------------------------------------*- C++ -*-===//
+//===-- C++ Version ---------------------------------------------*- C++ -*-===//
 ///
 /// \file
 /// \brief C++ 版本。
@@ -6,7 +6,7 @@
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ 编译器支持情况表"](https://zh.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 ///
-/// \version 2019-02-14
+/// \version 2019-08-16
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright Unlicense
