@@ -5,11 +5,16 @@
 #include <fstream>
 #include <sstream>
 
+#ifdef WIN32
+#include <Windows.h>
+#endif
+
 #include <boost/algorithm/string.hpp>
 #include <boost/dll.hpp>
 #include <boost/optional/optional_io.hpp>
 
 using namespace std;
+namespace bfs = boost::filesystem;
 namespace bpo = boost::program_options;
 
 namespace rrargsgizmo {
@@ -22,11 +27,10 @@ appopts::appopts(int argc, const char *const argv[])
         ("help,?", bpo::bool_switch(&entries_.help), "显示帮助信息")
         ("version", bpo::bool_switch(&entries_.version), "显示版本信息");
     common_options_.add_options()
-        ("debug,!", bpo::bool_switch(&entries_.debug), "启用调试信息");
+        ("debug,!", bpo::bool_switch(&entries_.debug), "启用调试");
     hidden_options_.add_options()
         ("configuration-file", bpo::value(&entries_.configuration_file)->default_value(default_config_file), "配置文件")
         ("environment-prefix", bpo::value(&entries_.environment_prefix)->default_value(default_environment_prefix), "环境变量前缀");
-
 #//=============================================================================
 #//
     common_options_.add_options()
@@ -40,7 +44,6 @@ appopts::appopts(int argc, const char *const argv[])
         ("input-file", bpo::value(&entries_.input_files)->composing(), "输入文件");
 #//
 #//-----------------------------------------------------------------------------
-
     parse_from_command_lice(argc, argv);
     parse_from_configuration_file(entries_.configuration_file);
     parse_from_environment(entries_.environment_prefix);
@@ -72,7 +75,6 @@ void appopts::print_options(std::ostream &os) const
     os << "  version            = " << entries_.version << '\n';
     os << "  configuration-file = " << entries_.configuration_file << '\n';
     os << "  environment-prefix = " << entries_.environment_prefix << '\n';
-
 #//=============================================================================
 #//
     os << "  include-files      = "; for (const auto &e : entries_.include_files) os << e << ' '; os << '\n';
@@ -91,14 +93,12 @@ void appopts::parse_from_command_lice(int argc, const char *const argv[])
 {
     bpo::options_description opts;
     opts.add(general_options_).add(common_options_).add(hidden_options_);
-
 #//=============================================================================
 #//
     bpo::positional_options_description pos;
     pos.add("input-file", -1);
 #//
 #//-----------------------------------------------------------------------------
-
     bpo::store(bpo::command_line_parser {argc, argv}.options(opts).positional(pos).run(), vars_);
     bpo::notify(vars_);
 }
@@ -141,6 +141,41 @@ void appopts::parse_from_environment(const string &environment_prefix)
 
     bpo::store(bpo::parse_environment(opts, variables_map), vars_);
     bpo::notify(vars_);
+}
+
+void appopts::launch_debugger()
+{
+#ifdef WIN32
+    WCHAR acBuf[MAX_PATH];
+    if (GetSystemDirectoryW(acBuf, _countof(acBuf)) == 0)
+        return;
+    const auto vsjitdebugger = bfs::path {acBuf} / L"vsjitdebugger.exe";
+    auto cmd = vsjitdebugger.wstring() + L" -p " + to_wstring(GetCurrentProcessId());
+
+    STARTUPINFOW stStartupInfo {};
+    stStartupInfo.cb = sizeof(stStartupInfo);
+
+    PROCESS_INFORMATION stProcInfo {};
+
+    if (!CreateProcessW(reinterpret_cast<LPCWSTR>(vsjitdebugger.wstring().c_str()),
+                        reinterpret_cast<LPWSTR>(cmd.data()),
+                        nullptr,
+                        nullptr,
+                        FALSE,
+                        0,
+                        nullptr,
+                        nullptr,
+                        &stStartupInfo,
+                        &stProcInfo))
+        return;
+    CloseHandle(stProcInfo.hThread);
+    CloseHandle(stProcInfo.hProcess);
+
+    while (!IsDebuggerPresent())
+        Sleep(1000 / 25);
+
+    DebugBreak();
+#endif
 }
 
 }

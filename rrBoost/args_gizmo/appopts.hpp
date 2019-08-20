@@ -33,7 +33,6 @@ private:
         bool version {};                             // 版本信息
         boost::filesystem::path configuration_file;  // 配置文件
         std::string environment_prefix;              // 环境变量前缀
-
 #//=============================================================================
 #//
         std::vector<boost::filesystem::path> include_files;    // 包含文件
@@ -48,7 +47,6 @@ private:
     } entries_;
 
 public:
-
     explicit appopts(int argc, const char *const argv[]);
     [[nodiscard]] const auto *operator->() const { return &entries_; }
 
@@ -65,6 +63,9 @@ private:
     boost::program_options::options_description hidden_options_;
 
     boost::program_options::variables_map vars_;
+
+public:
+    static void launch_debugger();
 };
 
 }

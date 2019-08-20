@@ -3,7 +3,7 @@
  * \defgroup gMain 主函数
  * \ingroup gLanguage
  *
- * \version 2019-06-20
+ * \version 2019-08-20
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -37,7 +37,9 @@
  */
 int main(void)
 {
+#ifndef NDEBUG
     setlocale(LC_ALL, ".UTF-8");
+#endif
 
     SRunner *const tr = srunner_create(NULL);
     srunner_add_suite(tr, ts_algorithm());

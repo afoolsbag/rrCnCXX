@@ -32,12 +32,16 @@ constexpr char figlet_logo[] {
 int main(int argc, char *argv[]) noexcept
 {
     try {
+#ifndef NDEBUG
         locale::global(locale {".UTF-8"});
+#endif
 
         const rrargsgizmo::appopts opts {argc, argv};
 
-        if (opts->debug)
+        if (opts->debug) {
             opts.print_options(cout);
+            opts.launch_debugger();
+        }
 
         if (opts->help) {
             opts.print_help(cout);

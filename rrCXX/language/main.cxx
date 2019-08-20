@@ -3,7 +3,7 @@
 /// \defgroup gMain 主函数
 /// \ingroup gLanguage
 ///
-/// \version 2019-08-06
+/// \version 2019-08-20
 /// \since 2016-10-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -26,7 +26,9 @@ using namespace std;
 /// \sa <https://zh.cppreference.com/w/cpp/language/main_function>
 int main(int argc, char *argv[])
 {
+#ifndef NDEBUG
     locale::global(locale {".UTF-8"});
+#endif
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
