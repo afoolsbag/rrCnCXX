@@ -32,7 +32,7 @@ constexpr char figlet_logo[] {
 int main(int argc, char *argv[]) noexcept
 {
     try {
-#ifndef NDEBUG
+#if defined(_WIN32) && !defined(NDEBUG)
         locale::global(locale {".UTF-8"});
 #endif
 
@@ -40,10 +40,13 @@ int main(int argc, char *argv[]) noexcept
 
         if (opts->debug) {
             opts.print_options(cout);
+#ifndef NDEBUG
             opts.launch_debugger();
+#endif
         }
 
         if (opts->help) {
+            cout << figlet_logo;
             opts.print_help(cout);
             return EXIT_SUCCESS;
         }
@@ -56,12 +59,13 @@ int main(int argc, char *argv[]) noexcept
         return EXIT_SUCCESS;
 
     } catch (const exception &e) {
-        cerr << "无法恢复的错误，在主函数中捕获异常：" << e.what() << "\n"
-            "程序即将退出。\n";
+        cerr << "Fatal error, caught standard exception in main function: " << e.what() << '\n';
+        cerr << "The program exit.\n";
         return EXIT_FAILURE;
 
     } catch (...) {
-        cerr << "无法恢复的错误，在主函数中捕获非标准异常，程序即将退出。\n";
+        cerr << "Fatal error, caught non-standard exception in main function\n";
+        cerr << "The program exit.\n";
         return EXIT_FAILURE;
 
     }

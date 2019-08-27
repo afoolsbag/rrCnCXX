@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <Windows.h>
 #endif
 
@@ -24,30 +24,31 @@ appopts::appopts(int argc, const char *const argv[])
     const auto default_config_file = boost::dll::program_location().replace_extension(".cfg");
     const auto default_environment_prefix = boost::dll::program_location().stem().string() + "_";
     general_options_.add_options()
-        ("help,?", bpo::bool_switch(&entries_.help), "显示帮助信息")
-        ("version", bpo::bool_switch(&entries_.version), "显示版本信息");
+        ("help,?", bpo::bool_switch(&entries_.help), "Print Help (this message) and exit")
+        ("version", bpo::bool_switch(&entries_.version), "Print version information and exit");
     common_options_.add_options()
-        ("debug,!", bpo::bool_switch(&entries_.debug), "启用调试");
+        ("debug,!", bpo::bool_switch(&entries_.debug), "Enable debugging");
     hidden_options_.add_options()
-        ("configuration-file", bpo::value(&entries_.configuration_file)->default_value(default_config_file), "配置文件")
-        ("environment-prefix", bpo::value(&entries_.environment_prefix)->default_value(default_environment_prefix), "环境变量前缀");
+        ("configuration-file", bpo::value(&entries_.configuration_file)->default_value(default_config_file), "Specify configuration file")
+        ("environment-prefix", bpo::value(&entries_.environment_prefix)->default_value(default_environment_prefix), "Specify environment prefix");
 #//=============================================================================
 #//
     common_options_.add_options()
-        ("include-file,I", bpo::value(&entries_.include_files)->composing(), "包含文件")
-        ("optimization-level,O", bpo::value(&entries_.optimization_level)->default_value(0), "优化级别")
-        ("output-file,o", bpo::value(&entries_.output_file)->default_value("out.exe"), "输出文件")
-        ("report-file", bpo::value(&entries_.report_file), "报告文件")
-        ("verbosity-level,v", bpo::value(&entries_.verbosity_level)->default_value(2), "输出级别")
-        ("warning-level,w", bpo::value(&entries_.warning_level)->default_value(3), "警告级别");
+        ("include-directory,I", bpo::value(&entries_.include_directories)->composing(), "Add directory to search list for .include directives")
+        ("optimization-level,O", bpo::value(&entries_.optimization_level)->default_value(0), "Specify optimization level")
+        ("output-file,o", bpo::value(&entries_.output_file)->default_value("a.out"), "Name the output file")
+        ("report-file", bpo::value(&entries_.report_file), "Generate and name report file")
+        ("verbosity-level,v", bpo::value(&entries_.verbosity_level)->default_value(2), "Specify verbosity level")
+        ("warning-level,w", bpo::value(&entries_.warning_level)->default_value(3), "Specify warning level");
     hidden_options_.add_options()
-        ("input-file", bpo::value(&entries_.input_files)->composing(), "输入文件");
+        ("input-file", bpo::value(&entries_.input_files)->composing(), "Add file to build list");
 #//
 #//-----------------------------------------------------------------------------
     parse_from_command_lice(argc, argv);
     parse_from_configuration_file(entries_.configuration_file);
     parse_from_environment(entries_.environment_prefix);
 }
+
 void appopts::print_help(std::ostream &os) const
 {
     const auto program_name = boost::dll::program_location().filename().string();
@@ -55,11 +56,11 @@ void appopts::print_help(std::ostream &os) const
     os << '\n';
 #//=============================================================================
 #//
-    os << "用法: " << program_name << " [选项]... <文件>...\n";
+    os << "Usage: " << program_name << " [option]... <file>...\n";
 #//
 #//-----------------------------------------------------------------------------
     os << '\n';
-    bpo::options_description desc {"选项"};
+    bpo::options_description desc {"Options"};
     desc.add(general_options_).add(common_options_);
     os << desc;
     os << '\n';
@@ -68,22 +69,22 @@ void appopts::print_help(std::ostream &os) const
 void appopts::print_options(std::ostream &os) const
 {
     os << '\n';
-    os << "调试: \n";
+    os << "Debugging: \n";
     os << '\n';
-    os << "  help               = " << entries_.help << '\n';
-    os << "  debug              = " << entries_.debug << '\n';
-    os << "  version            = " << entries_.version << '\n';
-    os << "  configuration-file = " << entries_.configuration_file << '\n';
-    os << "  environment-prefix = " << entries_.environment_prefix << '\n';
+    os << "  help                = " << entries_.help << '\n';
+    os << "  debug               = " << entries_.debug << '\n';
+    os << "  version             = " << entries_.version << '\n';
+    os << "  configuration-file  = " << entries_.configuration_file << '\n';
+    os << "  environment-prefix  = " << entries_.environment_prefix << '\n';
 #//=============================================================================
 #//
-    os << "  include-files      = "; for (const auto &e : entries_.include_files) os << e << ' '; os << '\n';
-    os << "  input-files        = "; for (const auto &e : entries_.input_files) os << e << ' '; os << '\n';
-    os << "  optimization-level = " << entries_.optimization_level << '\n';
-    os << "  output-file        = " << entries_.output_file << '\n';
-    os << "  report-file        = " << entries_.report_file << '\n';
-    os << "  verbosity-level    = " << entries_.verbosity_level << '\n';
-    os << "  warning-level      = " << entries_.warning_level << '\n';
+    os << "  include-directories = "; for (const auto &e : entries_.include_directories) os << e << ' '; os << '\n';
+    os << "  input-files         = "; for (const auto &e : entries_.input_files) os << e << ' '; os << '\n';
+    os << "  optimization-level  = " << entries_.optimization_level << '\n';
+    os << "  output-file         = " << entries_.output_file << '\n';
+    os << "  report-file         = " << entries_.report_file << '\n';
+    os << "  verbosity-level     = " << entries_.verbosity_level << '\n';
+    os << "  warning-level       = " << entries_.warning_level << '\n';
 #//
 #//-----------------------------------------------------------------------------
     os << '\n';
@@ -111,7 +112,7 @@ void appopts::parse_from_configuration_file(const boost::filesystem::path &confi
     ifstream ifs {configuration_file.c_str()};
     if (!ifs) {
         ostringstream oss;
-        oss << "读取配置文件 " << configuration_file << " 异常";
+        oss << "read configuration file " << configuration_file << " failed";
         throw runtime_error {oss.str()};
     }
 
@@ -145,7 +146,7 @@ void appopts::parse_from_environment(const string &environment_prefix)
 
 void appopts::launch_debugger()
 {
-#ifdef WIN32
+#ifdef _WIN32
     WCHAR acBuf[MAX_PATH];
     if (GetSystemDirectoryW(acBuf, _countof(acBuf)) == 0)
         return;
@@ -157,7 +158,7 @@ void appopts::launch_debugger()
 
     PROCESS_INFORMATION stProcInfo {};
 
-    if (!CreateProcessW(reinterpret_cast<LPCWSTR>(vsjitdebugger.wstring().c_str()),
+    if (!CreateProcessW(reinterpret_cast<LPCWSTR>(vsjitdebugger.wstring().data()),
                         reinterpret_cast<LPWSTR>(cmd.data()),
                         nullptr,
                         nullptr,

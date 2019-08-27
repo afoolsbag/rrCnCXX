@@ -2,9 +2,9 @@
 ///
 /// \file
 /// \brief 应用选项
-/// \sa <https://boost.org/doc/libs/1_70_0/doc/html/program_options.html>
+/// \sa <https://boost.org/doc/libs/1_71_0/doc/html/program_options.html>
 ///
-/// \version 2019-08-15
+/// \version 2019-08-27
 /// \since 2019-08-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -35,13 +35,13 @@ private:
         std::string environment_prefix;              // 环境变量前缀
 #//=============================================================================
 #//
-        std::vector<boost::filesystem::path> include_files;    // 包含文件
-        std::vector<boost::filesystem::path> input_files;      // 输入文件
-        int optimization_level {};                             // 优化级别
-        boost::filesystem::path output_file;                   // 输出文件
-        boost::optional<boost::filesystem::path> report_file;  // 报告文件
-        int verbosity_level {};                                // 输出级别
-        int warning_level {};                                  // 警告级别
+        std::vector<boost::filesystem::path> include_directories;  // 包含目录
+        std::vector<boost::filesystem::path> input_files;          // 输入文件
+        int optimization_level {};                                 // 优化级别
+        boost::filesystem::path output_file;                       // 输出文件
+        boost::optional<boost::filesystem::path> report_file;      // 报告文件
+        int verbosity_level {};                                    // 输出级别
+        int warning_level {};                                      // 警告级别
 #//
 #//-----------------------------------------------------------------------------
     } entries_;

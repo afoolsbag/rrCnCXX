@@ -1,11 +1,11 @@
-/*===-- rrlc ---------------------------------------------------*- C -*-===*//**
+/*===-- zhengrr's Library With C -------------------------------*- C -*-===*//**
  *
  * \file
- * \brief rrlc
+ * \brief zhengrr's library with C
  *
  * \sa [*DLL 编写教程*](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2019-07-19
+ * \version 2019-08-27
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright Unlicense
