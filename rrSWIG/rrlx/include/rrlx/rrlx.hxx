@@ -56,7 +56,7 @@ public:
     /// \brief 数组赋值。
     RRLX_API void array(const array_t &value);
     /// \brief 数组取值。
-    [[nodiscard]] RRLX_API const array_t &array();
+    [[nodiscard]] RRLX_API const array_t &array() const;
 
     /// \brief 字串赋值。
     RRLX_API void string(const std::string &value);

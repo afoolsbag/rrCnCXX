@@ -70,7 +70,7 @@ inline void clazz::impl::array(const array_t &value)
     array_ = value;
 }
 
-[[nodiscard]] RRLX_API const clazz::array_t &clazz::array() { return impl_->array(); }
+[[nodiscard]] RRLX_API const clazz::array_t &clazz::array() const { return impl_->array(); }
 [[nodiscard]] inline const clazz::array_t &clazz::impl::array() const
 {
     return array_;

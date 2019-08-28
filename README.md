@@ -141,7 +141,7 @@
 / [*Doxygen*](http://doxygen.org/) <sub>(
     [*cmds*](http://doxygen.org/manual/commands.html) )</sub>
 / [*Graphviz*](https://graphviz.org/)
-/ [*LaTex*](https://latex-project.org) <sub>(
+/ [*LaTeX*](https://latex-project.org) <sub>(
     [*quora*](https://math-on-quora.surge.sh/),
     [*detexify*](http://detexify.kirelabs.org/),
     [*texpaste*](http://texpaste.com/),

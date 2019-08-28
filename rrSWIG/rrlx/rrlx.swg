@@ -1,3 +1,4 @@
+//==============================================================================
 // [SWIG-4.0 Documentation](http://swig.org/Doc4.0/)
 //   [Sections](http://swig.org/Doc4.0/Sections.html)
 //   [Contents](http://swig.org/Doc4.0/Contents.html)
@@ -50,8 +51,10 @@
 //
 //     Developer Documentation
 //       39 Extending SWIG to support new languages
+//------------------------------------------------------------------------------
 
-#if defined(SWIGJAVA)
+// 在 C# 和 Java 中，module 将作为公有静态函数的容器类存在，其命名约定为 UpperCamelCase 样式。
+#if defined(SWIGCSHARP) || defined(SWIGJAVA)
 %module Rrlx
 #else
 %module rrlx
@@ -66,53 +69,65 @@
 %include <typemaps.i>
 
 typedef unsigned long size_t;
-
 %{
 #include "rrlx/rrlx.h"
 %}
-
 
 #if defined(SWIGJAVA)
 %array_class(uint8_t, CUInt8Array)
 %pointer_class(size_t, CSize)
 #endif
 
-//------------------------------------------------------------------------------
-// rrlx_status_t
-#if defined(SWIGJAVA)
-%rename(Status) rrlx_status_t;
-%rename(Success) rrlx_success;
-%rename(Exception) rrlx_exception;
-%rename(LogicError) rrlx_logic_error;
-%rename(InvalidArgument) rrlx_invalid_argument;
-%rename(DomainError) rrlx_domain_error;
-%rename(LengthError) rrlx_length_error;
-%rename(OutOfRange) rrlx_out_of_range;
-%rename(FutureError) rrlx_future_error;
-%rename(BadOptionalAccess) rrlx_bad_optional_access;
-%rename(RuntimeError) rrlx_runtime_error;
-%rename(RangeError) rrlx_range_error;
-%rename(OverflowError) rrlx_overflow_error;
-%rename(UnderflowError) rrlx_underflow_error;
-%rename(RegexError) rrlx_regex_error;
-%rename(NonexistentLocalTime) rrlx_nonexistent_local_time;
-%rename(AmbiguousLocalTime) rrlx_ambiguous_local_time;
-%rename(TxException) rrlx_tx_exception;
-%rename(SystemError) rrlx_system_error;
-%rename(IosBaseFailure) rrlx_ios_base_failure;
-%rename(FilesystemFilesystemError) rrlx_filesystem_filesystem_error;
-%rename(BadTypeid) rrlx_bad_typeid;
-%rename(BadCast) rrlx_bad_cast;
-%rename(BadAnyCast) rrlx_bad_any_cast;
-%rename(BadWeakPtr) rrlx_bad_weak_ptr;
-%rename(BadFunctionCall) rrlx_bad_function_call;
-%rename(BadAlloc) rrlx_bad_alloc;
-%rename(BadArrayNewLength) rrlx_bad_array_new_length;
-%rename(BadException) rrlx_bad_exception;
-%rename(BadVariantAccess) rrlx_bad_variant_access;
-%rename(InternalError) rrlx_internal_error;
-%rename(UnexpectedException) rrlx_unexpected_exception;
+// %rename(TARGET_ID, match$name="SOURCE_ID") "";  <=>  %rename(TARGET_ID) SOURCE_ID;
+// %rename("$ignore", match$name="SOURCE_ID") "";  <=>  %rename("$ignore") SOURCE_ID;  <=>  %ignore SOURCE_ID;
+//
+// %rename("%s",                        ...) "...";
+// %rename("%(uppercase)s",             ...) "...";  all_upper        -> ALL_UPPER
+// %rename("%(camelcase)s",             ...) "...";  upper_camel_case -> UpperCamelCase
+// %rename("%(lowercamelcase)s",        ...) "...";  lower_camel_case -> lowerCamelCase
+// %rename("%(undercase)s",             ...) "...";  AllLower         -> all_lower
+// %rename("%(schemify)s",              ...) "...";  scheme_case      -> scheme-case
+// %rename("%(strip:[PREFIX])s",        ...) "...";
+// %rename("%(rsreip:[SUFFIX])s",       ...) "...";
+// %rename("%(regex:/PATTERN/SUBST/)s", ...) "...";  SA: https://perldoc.perl.org/perlre.html
+//                                                       SWIG 不支持 s/PATTERN/SUBST/g 替换
+//
+// %rename(..., match="..."                              ) "";  SA: swig.swg § %rename predicates
+// %rename(..., match$name="SOURCE_ID"                   ) "";  <=> %rename(...) SOURCE_ID;
+// %rename(..., regexmatch$name="SOURCE_ID_REGEXP"       ) "";  <=> %rename(..., regextarget=1) "SOURCE_ID_REGEXP";
+// %rename(..., notregexmatch$name="NOT_SOURCE_ID_REGEXP") "";
+// %rename(..., fullname=1                               ) "";
+
+// 在 C# 和 Java 中，枚举类型命名约定为 UpperCamelCase 样式。
+#if defined(SWIGCSHARP) || defined(SWIGJAVA)
+%rename(R"(%(regex:/^rrlx_([^_]+)_t$/\u\1/)s)", %$isenum, regextarget=1, fullname=1) "^rrlx_([^_]+)$";
 #endif
+
+// 在 C# 中，枚举项命名约定为 UpperCamelCase 样式；
+// 在 Java 中，枚举项命名约定为 ALL_UPPER 样式。
+#if defined(SWIGCSHARP)
+%rename(R"(%(regex:/^rrlx_([^_]+)$/\u\1/)s)", %$isenumitem, regextarget=1, fullname=1) "^rrlx_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)$/\u\1\u\2/)s)", %$isenumitem, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)_([^_]+)$/\u\1\u\2\u\3/)s)", %$isenumitem, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)_([^_]+)_([^_]+)$/\u\1\u\2\u\3\u\4/)s)", %$isenumitem, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)_([^_]+)_([^_]+)$";
+#elif defined(SWIGJAVA)
+%rename(R"(%(regex:/^rrlx_(.*)$/\U\1\E/)s)", %$isenumitem, regextarget=1, fullname=1) "^rrlx_";
+#endif
+
+// 在 C# 中，公有静态成员函数命名约定为 UpperCamelCase 样式；
+// 在 Java 中，公有静态成员函数命名约定为 lowerCamelCase 样式。
+#if defined(SWIGCSHARP)
+%rename(R"(%(regex:/^rrlx_([^_]+)$/\u\1/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)$/\u\1\u\2/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)_([^_]+)$/\u\1\u\2\u\3/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)_([^_]+)_([^_]+)$/\u\1\u\2\u\3\u\4/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)_([^_]+)_([^_]+)$";
+#elif defined(SWIGJAVA)
+%rename(R"(%(regex:/^rrlx_([^_]+)$/\l\1/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)$/\l\1\u\2/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)_([^_]+)$/\l\1\u\2\u\3/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)_([^_]+)$";
+%rename(R"(%(regex:/^rrlx_([^_]+)_([^_]+)_([^_]+)_([^_]+)$/\l\1\u\2\u\3\u\4/)s)", %$isglobal, %$isfunction, regextarget=1, fullname=1) "^rrlx_([^_]+)_([^_]+)_([^_]+)_([^_]+)$";
+#endif
+
 enum rrlx_status_t {
     rrlx_success = 0,
     rrlx_exception,
@@ -147,132 +162,54 @@ enum rrlx_status_t {
     rrlx_unexpected_exception
 };
 
-//------------------------------------------------------------------------------
-// rrlx_get_version
-#if defined(SWIGJAVA)
-%rename(getVersion) rrlx_get_version;
-#endif
 %apply int *OUTPUT { int *r_major };
 %apply int *OUTPUT { int *r_minor };
 %apply int *OUTPUT { int *r_patch };
 %apply int *OUTPUT { int *r_tweak };
 enum rrlx_status_t rrlx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak);
 
-//------------------------------------------------------------------------------
-// rrlx_handle_t
 typedef struct incomplete_rrlx_t *rrlx_handle_t;
 #if defined(SWIGJAVA)
 %pointer_class(rrlx_handle_t, CHandle);
 #endif
 
-//------------------------------------------------------------------------------
-// rrlx_construct
-#if defined(SWIGCSHARP)
-%rename(Construct) rrlx_construct;
-#elif defined(SWIGJAVA)
-%rename(construct) rrlx_construct;
-#endif
 enum rrlx_status_t rrlx_construct(rrlx_handle_t *r_handle);
 
-//------------------------------------------------------------------------------
-// rrlx_destruct
-#if defined(SWIGJAVA)
-%rename(destruct) rrlx_destruct;
-#endif
 enum rrlx_status_t rrlx_destruct(rrlx_handle_t handle);
 
-//------------------------------------------------------------------------------
-// rrlx_set_basic
-#if defined(SWIGJAVA)
-%rename(setBasic) rrlx_set_basic;
-#endif
 enum rrlx_status_t rrlx_set_basic(rrlx_handle_t handle, int value);
 
-//------------------------------------------------------------------------------
-// rrlx_get_basic
-#if defined(SWIGJAVA)
-%rename(getBasic) rrlx_get_basic;
-#endif
 %apply int *OUTPUT { int *r_value };
 enum rrlx_status_t rrlx_get_basic(rrlx_handle_t handle, int *r_value);
 
-//------------------------------------------------------------------------------
-// rrlx_set_array
-#if defined(SWIGJAVA)
-%rename(setArray) rrlx_set_array;
-#endif
 enum rrlx_status_t rrlx_set_array(rrlx_handle_t handle, const uint8_t *data, size_t size);
 
-//------------------------------------------------------------------------------
-// rrlx_get_array
-#if defined(SWIGJAVA)
-%rename(getArray) rrlx_get_array;
-#endif
 %apply size_t *INOUT { size_t *r_size };
 enum rrlx_status_t rrlx_get_array(rrlx_handle_t handle, uint8_t *buffer, size_t *r_size);
 
-//------------------------------------------------------------------------------
-// rrlx_get_array_cvr
-#if defined(SWIGJAVA)
-%rename(getArrayCvr) rrlx_get_array_cvr;
-#endif
 %apply size_t *OUTPUT { size_t *r_size };
 enum rrlx_status_t rrlx_get_array_cvr(rrlx_handle_t handle, const uint8_t *(*r_data), size_t *r_size);
 
-//------------------------------------------------------------------------------
-// rrlx_set_string
-#if defined(SWIGJAVA)
-%rename(setString) rrlx_set_string;
-#endif
 enum rrlx_status_t rrlx_set_string(rrlx_handle_t handle, const char *string);
 
-//------------------------------------------------------------------------------
-// rrlx_string_fsb_size
 #if defined(SWIGJAVA)
 %rename(StringFsbSize) rrlx_string_fsb_size;
 #endif
-enum { rrlx_string_fsb_size = 777 };
+%constant size_t rrlx_string_fsb_size = 777;
 
-//------------------------------------------------------------------------------
-// rrlx_get_string_fsb
-#if defined(SWIGJAVA)
-%rename(getStringFsb) rrlx_get_string_fsb;
-#endif
 enum rrlx_status_t rrlx_get_string_fsb(rrlx_handle_t handle, char buffer[rrlx_string_fsb_size]);
 
-//------------------------------------------------------------------------------
-// rrlx_get_string_fsb
-#if defined(SWIGJAVA)
-%rename(getStringCvr) rrlx_get_string_cvr;
-#endif
 enum rrlx_status_t rrlx_get_string_cvr(rrlx_handle_t handle, const char *(*r_string));
 
-//------------------------------------------------------------------------------
-// rrlx_callback_t
 #if defined(SWIGJAVA)
 %rename(Callback) rrlx_callback_t;
 #endif
 typedef void(*rrlx_callback_t)(void *p_user_data);
 
-//------------------------------------------------------------------------------
-// rrlx_set_callback
-#if defined(SWIGJAVA)
-%rename(setCallback) rrlx_set_callback;
-#endif
 enum rrlx_status_t rrlx_set_callback(rrlx_handle_t handle, rrlx_callback_t callback, void *p_user_data);
 
-//------------------------------------------------------------------------------
-// rrlx_invoke_callback
-#if defined(SWIGJAVA)
-%rename(invokeCallback) rrlx_invoke_callback;
-#endif
 enum rrlx_status_t rrlx_invoke_callback(rrlx_handle_t handle);
 
-//------------------------------------------------------------------------------
-// rrlx_get_last_error_message
-#if defined(SWIGJAVA)
-%rename(getLastErrorMessage) rrlx_get_last_error_message;
-#endif
 enum rrlx_status_t rrlx_get_last_error_message(rrlx_handle_t handle, char buffer[rrlx_last_error_message_fsb_size]);
 
 //==============================================================================
@@ -281,6 +218,7 @@ enum rrlx_status_t rrlx_get_last_error_message(rrlx_handle_t handle, char buffer
 %include <std_string.i>
 %include <std_vector.i>
 
+typedef unsigned long std::size_t;
 %{
 #include "rrlx/rrlx.hxx"
 %}
@@ -306,7 +244,13 @@ struct version_t {
 version_t version();
 
 #if defined(SWIGJAVA)
-%rename(Clazz) clazz;
+%rename(Clazz)     clazz;
+%rename(setBasic)  clazz::basic(int value);
+%rename(getBasic)  clazz::basic() const;
+%rename(setArray)  clazz::array(const array_t &value);
+%rename(getArray)  clazz::array() const;
+%rename(setString) clazz::string(const std::string &value);
+%rename(getString) clazz::string() const;
 #endif
 class clazz {
 public:
@@ -322,7 +266,7 @@ public:
 
     using array_t = std::vector<uint8_t>;
     void array(const array_t &value);
-    const array_t &array();
+    const array_t &array() const;
 
     void string(const std::string &value);
     const std::string &string() const;

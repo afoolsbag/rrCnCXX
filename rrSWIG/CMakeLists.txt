@@ -2,7 +2,7 @@
 #           /  ___|| |  | |_   _|  __ \
 #  _ __ _ __\ `--. | |  | | | | | |  \/
 # | '__| '__|`--. \| |/\| | | | | | __  zhengrr
-# | |  | |  /\__/ /\  /\  /_| |_| |_\ \ 2019-01-14 – 2019-07-18
+# | |  | |  /\__/ /\  /\  /_| |_| |_\ \ 2019-01-14 – 2019-08-28
 # |_|  |_|  \____/  \/  \/ \___/ \____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -22,7 +22,7 @@ add_compile_options_ex(
   WARNING_AS_ERROR)
 
 #-------------------------------------------------------------------------------
-# rrlc
+# zhengrr's library by C
 
 configure_file("rrlc/src/cfg.h.in" "rrlc/src/cfg.h" @ONLY)
 aux_source_directory_con("rrlc/include"                         zInclude   RECURSE PREFIX "include")
@@ -44,7 +44,7 @@ install(
   DESTINATION "include/")
 
 #-------------------------------------------------------------------------------
-# rrlx
+# zhengrr's library by C++
 
 configure_file("rrlx/src/cfg.hxx.in" "rrlx/src/cfg.hxx" @ONLY)
 aux_source_directory_con("rrlx/include"                         zInclude   RECURSE PREFIX "include")
@@ -69,40 +69,40 @@ install(
   DESTINATION "include/")
 
 #-------------------------------------------------------------------------------
-# rrlctest
+# zhengrr's test by C
 
 find_package(Check REQUIRED)
-aux_source_directory_con("rrlctest" zSrc RECURSE)
+aux_source_directory_con("rrtc" zSrc RECURSE)
 add_executable_con(
-  rrlctest             ${zSrc}
+  rrtc                ${zSrc}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrlctest"
+  INCLUDE_DIRECTORIES PRIVATE "rrtc"
   LINK_LIBRARIES      PRIVATE rrlc
                               rrlx
                               Check::check)
 
-add_test(NAME rrlctest COMMAND rrlctest)
+add_test(NAME rrtc COMMAND rrtc)
 
 #-------------------------------------------------------------------------------
-# rrlxtest
+# zhengrr's test by C++
 
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
-aux_source_directory_con("rrlxtest" zSrc RECURSE)
+aux_source_directory_con("rrtx" zSrc RECURSE)
 add_executable_con(
-  rrlxtest             ${zSrc}
-  PROPERTIES          CXX_STANDARD          17
+  rrtx                ${zSrc}
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrlxtest"
+  INCLUDE_DIRECTORIES PRIVATE "rrtx"
   LINK_LIBRARIES      PRIVATE rrlc
                               rrlx
                               GTest::main)
 
-add_test(NAME rrlxtest COMMAND rrlxtest)
+add_test(NAME rrtx COMMAND rrtx)
 
 #-------------------------------------------------------------------------------
-# rrlxswg
+# zhengrr's library by C++ with SWIG
 
 find_package(SWIG)
 if(SWIG_FOUND)
@@ -112,16 +112,8 @@ if(SWIG_FOUND)
     SHARED
     SWIG_LANGUAGE  CSHARP
     SWIG_INTERFACE "rrlx/rrlx.swg"
-    PROPERTIES     CXX_STANDARD          17
-                   CXX_STANDARD_REQUIRED ON
-    LINK_LIBRARIES rrlx)
-
-  add_library_swig(
-    rrlxswiggo
-    SHARED
-    SWIG_LANGUAGE  GO
-    SWIG_INTERFACE "rrlx/rrlx.swg"
-    PROPERTIES     CXX_STANDARD          17
+    SWIG_ARGUMENTS "-namespace"          "RrSwig"
+    PROPERTIES     CXX_STANDARD          20
                    CXX_STANDARD_REQUIRED ON
     LINK_LIBRARIES rrlx)
 
@@ -131,34 +123,8 @@ if(SWIG_FOUND)
     SWIG_LANGUAGE  JAVA
     SWIG_INTERFACE "rrlx/rrlx.swg"
     SWIG_ARGUMENTS "-package"            "rrswig"
-    PROPERTIES     CXX_STANDARD          17
+    PROPERTIES     CXX_STANDARD          20
                    CXX_STANDARD_REQUIRED ON
     LINK_LIBRARIES rrlx)
 
-  add_library_swig(
-    rrlxswigjavascript
-    SHARED
-    SWIG_LANGUAGE  JAVASCRIPT
-    SWIG_INTERFACE "rrlx/rrlx.swg"
-    PROPERTIES     CXX_STANDARD          17
-                   CXX_STANDARD_REQUIRED ON
-    LINK_LIBRARIES rrlx)
-
-  add_library_swig(
-    rrlxswigpython
-    SHARED
-    SWIG_LANGUAGE  PYTHON
-    SWIG_INTERFACE "rrlx/rrlx.swg"
-    PROPERTIES     CXX_STANDARD          17
-                   CXX_STANDARD_REQUIRED ON
-    LINK_LIBRARIES rrlx)
-
-  add_library_swig(
-    rrlxswigruby
-    SHARED
-    SWIG_LANGUAGE  RUBY
-    SWIG_INTERFACE "rrlx/rrlx.swg"
-    PROPERTIES     CXX_STANDARD          17
-                   CXX_STANDARD_REQUIRED ON
-    LINK_LIBRARIES rrlx)
 endif()
