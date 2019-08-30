@@ -32,9 +32,7 @@ constexpr char figlet_logo[] {
 int main(int argc, char *argv[]) noexcept
 {
     try {
-#if defined(_WIN32) && !defined(NDEBUG)
         locale::global(locale {".UTF-8"});
-#endif
 
         const rrargsgizmo::appopts opts {argc, argv};
 

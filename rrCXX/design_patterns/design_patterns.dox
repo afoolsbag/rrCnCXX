@@ -263,6 +263,8 @@
 ///
 /// ## 计时图                                                {#ssTimingDiagram}
 ///
+/// \sa [*PlantUML*](http://plantuml.com/)
+///
 /// ___
 /// # C++ 和 DCLP 的风险                                         {#sCxxAndDclp}
 ///
@@ -280,7 +282,7 @@
 /// \sa ["C++ 和 DCLP 的风险"](http://blog.jobbole.com/86392). *伯乐在线*.
 ///
 /// ___
-/// \version 2018-11-26
+/// \version 2019-08-29
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

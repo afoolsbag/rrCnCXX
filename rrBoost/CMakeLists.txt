@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-07-23
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-08-29
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -26,7 +26,7 @@ add_doxygen_con(
   rrBoostDoc)
 
 conan_cmake_run(
-  REQUIRES    boost/1.70.0@conan/stable
+  REQUIRES    boost/1.71.0@conan/stable
               gsl_microsoft/2.0.0@bincrafters/stable
               gtest/1.8.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS
@@ -49,6 +49,8 @@ add_executable_con(
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PUBLIC  "_WIN32_WINNT=0x0A00"  # Windows 10
   INCLUDE_DIRECTORIES PRIVATE "."
+                              "linux/usr/include"
+                              "linux/usr/include/x86_64-linux-gnu"
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
                               CONAN_PKG::boost
                               CONAN_PKG::gsl_microsoft)

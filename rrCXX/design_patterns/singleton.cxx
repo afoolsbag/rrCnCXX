@@ -42,7 +42,7 @@ namespace rrcxx {
 /// \addtogroup gSingleton
 /// @{
 
-// eager singleton
+// EAGER SINGLETON
 
 /// \brief 饿汉单例。
 class eager_singleton {
@@ -68,7 +68,7 @@ public:
 [[maybe_unused]]
 static eager_singleton &initialize_early = eager_singleton::instance();
 
-// lazy singleton
+// LAZY SINGLETON
 
 /// \brief 懒汉单例。
 class lazy_singleton {
@@ -91,12 +91,11 @@ public:
 #else
         static unique_ptr<lazy_singleton> instance_owner {nullptr};
         static mutex mutex;
-        mutex.lock();
         {
+            lock_guard lg {mutex};
             if (instance_owner == nullptr)
                 instance_owner = unique_ptr<lazy_singleton>(new lazy_singleton);
         }
-        mutex.unlock();
         return *instance_owner;
 
 #endif

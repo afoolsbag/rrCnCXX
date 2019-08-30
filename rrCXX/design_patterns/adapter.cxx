@@ -3,7 +3,11 @@
 /// \defgroup gAdapter 适配器
 /// \ingroup gDesignPatterns
 ///
+/// 将某个类的接口转换成客户端期望的另一个接口表示。适配器模式可以消除由于接口不匹配所造成的类兼容性问题。
+///
 /// \startuml
+///   title 适配器模式（Adapter Pattern）
+///
 ///   package "难以变动的客户方" <<Rectangle>> {
 ///     class "客户方" as client
 ///     interface "接口 1" as interface1
