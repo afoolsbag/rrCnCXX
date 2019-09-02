@@ -165,6 +165,7 @@
 / [*Dependency Walker*](http://dependencywalker.com)
 / [*Interactive Disassembler*](https://hex-rays.com/products/ida/)
 / [*OllyDbg*](http://ollydbg.de/)
+/ [*PC Hunter*](http://xuetr.com/)
 / [*Process Explorer*](https://docs.microsoft.com/sysinternals/downloads/process-explorer)
 / [*Radare2*](https://radare.org/)
 / [*WinDbg*](http://windbg.org/)

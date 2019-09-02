@@ -49,8 +49,6 @@ add_executable_con(
                       CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS PUBLIC  "_WIN32_WINNT=0x0A00"  # Windows 10
   INCLUDE_DIRECTORIES PRIVATE "."
-                              "linux/usr/include"
-                              "linux/usr/include/x86_64-linux-gnu"
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
                               CONAN_PKG::boost
                               CONAN_PKG::gsl_microsoft)
