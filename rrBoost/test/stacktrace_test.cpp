@@ -2,9 +2,9 @@
 ///
 /// \file
 /// \brief Stacktrace
-/// \sa <https://boost.org/doc/libs/1_69_0/doc/html/stacktrace.html>
+/// \sa <https://boost.org/doc/libs/1_71_0/doc/html/stacktrace.html>
 ///
-/// \version 2019-07-22
+/// \version 2019-09-03
 /// \since 2019-03-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,13 +20,13 @@
 
 using namespace std;
 
-namespace stacktrace = boost::stacktrace;
+namespace bst = boost::stacktrace;
 
 namespace rrboost {
 
-TEST(stacktrace, getting_started)
+TEST(stacktrace, gft)
 {
-    cout << stacktrace::stacktrace {};
+    cout << bst::stacktrace {};
 }
 
-}//namespace rrboost
+}

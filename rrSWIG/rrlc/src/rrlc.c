@@ -4,10 +4,58 @@
 
 #include "rrlc/rrlc.h"
 
+#include <stdbool.h>
 #include <string.h>
 #include <time.h>
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 #include "cfg.h"
+
+#ifdef _WIN32
+BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved)
+{
+    (void)hinstDLL;
+
+    switch (fdwReason) {
+    case DLL_PROCESS_DETACH: {
+        const bool is_unloading = lpvReserved == NULL;
+        const bool is_terminating = lpvReserved != NULL;
+        (void)is_unloading;
+        (void)is_terminating;
+        return TRUE;
+    }
+    case DLL_PROCESS_ATTACH: {
+        const bool is_dynamic_loading = lpvReserved == NULL;
+        const bool is_static_loading = lpvReserved != NULL;
+        (void)is_dynamic_loading;
+        (void)is_static_loading;
+        return TRUE;
+    }
+    case DLL_THREAD_ATTACH: {
+        return TRUE;
+    }
+    case DLL_THREAD_DETACH: {
+        return TRUE;
+    }
+    default:
+        return FALSE;
+    }
+}
+#endif
+
+#ifdef __linux__
+EXTERN_C void __attribute__ ((constructor)) init(void)
+{
+
+}
+EXTERN_C void __attribute__ ((destructor)) fini(void)
+{
+
+}
+#endif
 
 EXTERN_C RRLC_API enum rrlc_status_t CDECL
 rrlc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT

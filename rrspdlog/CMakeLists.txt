@@ -4,7 +4,7 @@
 # | '__| '__/ __| '_ \ / _` | |/ _ \ / _` |
 # | |  | |  \__ \ |_) | (_| | | (_) | (_| |
 # |_|  |_|  |___/ .__/ \__,_|_|\___/ \__, | zhengrr
-#               | |                   __/ | 2018-08-04 – 2019-07-22
+#               | |                   __/ | 2018-08-04 – 2019-09-03
 #               |_|                  |___/  Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -28,7 +28,7 @@ add_doxygen_con(
   rrspdlogDoc)
 
 conan_cmake_run(
-  REQUIRES    boost/1.70.0@conan/stable
+  REQUIRES    boost/1.71.0@conan/stable
               gtest/1.8.1@bincrafters/stable
               spdlog/1.3.1@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS
