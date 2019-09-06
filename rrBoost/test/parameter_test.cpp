@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Parameter
-/// \sa <https://boost.org/doc/libs/1_71_0/libs/parameter/doc/html/index.html>
+/// \sa <https://boost.org/doc/libs/master/libs/parameter/doc/html/index.html>
 ///
 /// \version 2019-08-30
 /// \since 2019-01-11

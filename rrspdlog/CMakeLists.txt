@@ -24,9 +24,6 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-add_doxygen_con(
-  rrspdlogDoc)
-
 conan_cmake_run(
   REQUIRES    boost/1.71.0@conan/stable
               gtest/1.8.1@bincrafters/stable

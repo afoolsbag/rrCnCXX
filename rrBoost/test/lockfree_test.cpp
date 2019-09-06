@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Lockfree
-/// \sa <https://boost.org/doc/libs/1_69_0/doc/html/lockfree.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/lockfree.html>
 ///
 /// \version 2019-09-03
 /// \since 2019-02-28

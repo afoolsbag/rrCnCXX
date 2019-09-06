@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief DLL
-/// \sa <https://boost.org/doc/libs/1_71_0/doc/html/boost_dll.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/boost_dll.html>
 ///
 /// \version 2019-07-10
 /// \since 2019-01-10

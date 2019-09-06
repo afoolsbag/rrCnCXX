@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Lexical Cast
-/// \sa <https://boost.org/doc/libs/1_68_0/doc/html/boost_lexical_cast.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/boost_lexical_cast.html>
 ///
 /// \version 2019-07-10
 /// \since 2018-10-15

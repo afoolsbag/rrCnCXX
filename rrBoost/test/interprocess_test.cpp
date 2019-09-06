@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Format
-/// \sa <https://boost.org/doc/libs/1_71_0/libs/interprocess/index.html>
+/// \sa <https://boost.org/doc/libs/master/libs/interprocess/index.html>
 ///
 /// \version 2019-09-02
 /// \since 2019-09-02

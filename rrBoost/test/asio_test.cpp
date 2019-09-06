@@ -4,7 +4,7 @@
 /// \brief Asio
 ///
 /// \sa [Boost.Asio C++ 网络编程](https://gitbook.com/book/mmoaay/boost-asio-cpp-network-programming-chinese)
-/// \sa <https://boost.org/doc/libs/1_69_0/doc/html/boost_asio.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/boost_asio.html>
 ///
 /// \version 2019-07-10
 /// \since 2019-01-08

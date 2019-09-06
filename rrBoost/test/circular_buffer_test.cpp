@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief 循环缓冲区
-/// \sa <https://boost.org/doc/libs/1_71_0/doc/html/circular_buffer.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/circular_buffer.html>
 ///
 /// \version 2019-09-02
 /// \since 2019-08-29

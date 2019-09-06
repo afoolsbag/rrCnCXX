@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Universally Unique Identifier
-/// \sa <https://boost.org/doc/libs/1_68_0/libs/uuid/doc/index.html>
+/// \sa <https://boost.org/doc/libs/master/libs/uuid/doc/index.html>
 ///
 /// \version 2019-07-22
 /// \since 2018-10-15

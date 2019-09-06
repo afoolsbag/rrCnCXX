@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Date Time
-/// \sa <https://boost.org/doc/libs/1_69_0/doc/html/date_time.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/date_time.html>
 ///
 /// \version 2019-07-10
 /// \since 2019-02-25

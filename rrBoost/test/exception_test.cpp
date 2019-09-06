@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Exception
-/// \sa <https://boost.org/doc/libs/1_71_0/libs/exception/doc/boost-exception.html>
+/// \sa <https://boost.org/doc/libs/master/libs/exception/doc/boost-exception.html>
 ///
 /// \version 2019-09-03
 /// \since 2019-09-03

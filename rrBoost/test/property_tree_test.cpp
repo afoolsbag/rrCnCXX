@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Property Tree
-/// \sa <https://boost.org/doc/libs/1_69_0/doc/html/property_tree.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/property_tree.html>
 ///
 /// \version 2019-02-25
 /// \since 2018-10-15

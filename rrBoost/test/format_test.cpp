@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Format
-/// \sa <https://boost.org/doc/libs/1_69_0/libs/format/index.html>
+/// \sa <https://boost.org/doc/libs/master/libs/format/index.html>
 ///
 /// \version 2019-07-10
 /// \since 2019-01-11
@@ -20,7 +20,7 @@ using namespace std;
 
 namespace rrboost {
 
-TEST(format, first_step)
+TEST(format, gfs)
 {
     cout << boost::format("Hello, %1%.\n") % "Aoi";
 }

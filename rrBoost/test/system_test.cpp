@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief System
-/// \sa <https://boost.org/doc/libs/1_69_0/libs/system/doc/html/system.html>
+/// \sa <https://boost.org/doc/libs/master/libs/system/doc/html/system.html>
 ///
 /// \version 2019-01-10
 /// \since 2019-01-08

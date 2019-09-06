@@ -2,7 +2,7 @@
 ///
 /// \file
 /// \brief Stacktrace
-/// \sa <https://boost.org/doc/libs/1_71_0/doc/html/stacktrace.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/stacktrace.html>
 ///
 /// \version 2019-09-03
 /// \since 2019-03-12

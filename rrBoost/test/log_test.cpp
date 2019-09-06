@@ -4,7 +4,7 @@
 /// \brief Log
 ///
 /// \sa [Boost.Log使用文档](http://www.wanguanglu.com/2016/07/28/boost-log-document/)
-/// \sa <https://boost.org/doc/libs/1_69_0/libs/log/doc/html/index.html>
+/// \sa <https://boost.org/doc/libs/master/libs/log/doc/html/index.html>
 ///
 /// \version 2019-07-10
 /// \since 2019-01-11
