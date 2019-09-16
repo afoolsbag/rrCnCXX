@@ -2,7 +2,7 @@
 #           | | / /      / _| |
 #  _ __ _ __| |/ /  __ _| |_| | ____ _
 # | '__| '__|    \ / _` |  _| |/ / _` | zhengrr
-# | |  | |  | |\  \ (_| | | |   < (_| | 2019-07-29 – 2019-07-29
+# | |  | |  | |\  \ (_| | | |   < (_| | 2019-07-29 – 2019-09-16
 # |_|  |_|  \_| \_/\__,_|_| |_|\_\__,_| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -23,14 +23,12 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-find_package(RdKafka)
+find_package(RdKafka REQUIRED)
 aux_source_directory_con("wrapper" zWrapper RECURSE PREFIX "wrapper")
 add_library_ex(
   rrKafkaWraper       INTERFACE
   COMPILE_FEATURES    INTERFACE cxx_std_17
   INCLUDE_DIRECTORIES INTERFACE "wrapper"
-                                "linux/usr/include"
-                                "linux/usr/include/x86_64-linux-gnu"
   LINK_LIBRARIES      INTERFACE RdKafka::rdkafka++
   SOURCES             INTERFACE ${zWrapper})
 

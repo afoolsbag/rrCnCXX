@@ -110,7 +110,7 @@ public:
     /// \brief 消费
     ///
     /// \returns 消息的“偏移量－键－值”元组
-    inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consume();
+    inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consume(int timeout_ms = -1);
 
 private:
     std::unique_ptr<RdKafka::Consumer> rd_consumer_ {nullptr};
@@ -128,7 +128,7 @@ public:
     /// \brief 消费
     ///
     /// \returns 消息的“键－值”对
-    inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> consume();
+    inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> consume(int timeout_ms = -1);
 
 private:
     std::unique_ptr<RdKafka::KafkaConsumer> rd_kafka_consumer_ {nullptr};
@@ -136,6 +136,6 @@ private:
 
 }
 
-#include "kafka.inl"
+#include "rrkafka.inl"
 
 #endif

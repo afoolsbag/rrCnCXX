@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include "kafka.hxx"
+#include "rrkafka.hxx"
 
 using namespace std;
 

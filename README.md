@@ -188,6 +188,7 @@
 维护
 / [*AutoHotkey*](https://autohotkey.com/)
 / [*FastCopy*](https://fastcopy.jp/)
+/ [*NSSM*](https://nssm.cc/)
 / [*Rapid Environment Editor*](https://rapidee.com/)
 
 ## 许可

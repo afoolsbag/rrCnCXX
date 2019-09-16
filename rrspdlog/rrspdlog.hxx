@@ -3,7 +3,7 @@
 /// \file
 /// \brief `spdlog` 日志初始化包装
 ///
-/// \version 2019-08-06
+/// \version 2019-09-09
 /// \since 2019-08-06
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -19,18 +19,22 @@
 #include <string>
 #include <vector>
 
-#include <spdlog/common.h>
 #ifdef SPDLOG_H
 #error This header must be included before other spdlog headers.
 #endif
+
+#include <spdlog/common.h>
+
 #ifdef SPDLOG_ACTIVE_LEVEL
 #undef SPDLOG_ACTIVE_LEVEL
 #endif
+
 #ifdef NDEBUG
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_INFO
 #else
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #endif
+
 #include <spdlog/sinks/daily_file_sink.h>
 #include <spdlog/sinks/rotating_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
@@ -64,13 +68,13 @@ inline void initialize_as_default(const std::filesystem::path &logs_dir_path)
 
     const auto rotating_log_path = (logs_dir_path / "rotating.log").string();
     constexpr size_t ten_megabyte {10 * 1024 * 1024};
-    const auto rotating_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(rotating_log_path, ten_megabyte, 10);
+    auto const rotating_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(rotating_log_path, ten_megabyte, 10);
     rotating_sink->set_level(spdlog::level::trace);
     sinks.push_back(rotating_sink);
 
-    const auto daily_log_path = (logs_dir_path / "daily.log").string();
-    const auto daily_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(daily_log_path, 0, 0);
-    daily_sink->set_level(spdlog::level::warn);
+    const auto daily_log_path = (logs_dir_path / "daily-info.log").string();
+    auto const daily_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(daily_log_path, 0, 0);
+    daily_sink->set_level(spdlog::level::info);
     sinks.push_back(daily_sink);
 
     auto const stderr_sink = std::make_shared<spdlog::sinks::stderr_color_sink_mt>();

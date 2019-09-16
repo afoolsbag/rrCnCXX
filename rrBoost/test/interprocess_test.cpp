@@ -4,7 +4,7 @@
 /// \brief Format
 /// \sa <https://boost.org/doc/libs/master/libs/interprocess/index.html>
 ///
-/// \version 2019-09-02
+/// \version 2019-09-09
 /// \since 2019-09-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -15,7 +15,6 @@
 #include <gsl/gsl>
 
 #include <boost/interprocess/sync/named_mutex.hpp>
-#include <boost/interprocess/sync/scoped_lock.hpp>
 #include <gtest/gtest.h>
 
 using namespace std;
@@ -24,6 +23,7 @@ namespace bip = boost::interprocess;
 
 namespace rrboost {
 
+/// \details 异常中止时可能不调用析构，因而不可用于单例应用的判断。
 TEST(interprocess, gft)
 {
     constexpr char name[] {"rrBoostTest"};

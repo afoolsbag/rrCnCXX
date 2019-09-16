@@ -4,7 +4,7 @@
 #ifndef RRKAFKA_KAFKA_INL_
 #define RRKAFKA_KAFKA_INL_
 
-#include "kafka.hxx"
+#include "rrkafka.hxx"
 
 #include <cassert>
 
@@ -120,14 +120,14 @@ inline consumer::~consumer() noexcept
     rd_consumer_->poll(100);
 }
 
-inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consumer::consume()
+inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consumer::consume(int timeout_ms)
 {
     using namespace std;
 
     assert(rd_consumer_);
     assert(rd_topic_);
 
-    const unique_ptr<RdKafka::Message> message {rd_consumer_->consume(rd_topic_.get(), partition_, -1)};
+    const unique_ptr<RdKafka::Message> message {rd_consumer_->consume(rd_topic_.get(), partition_, timeout_ms)};
 
     // 轮询事件以触发回调
     rd_consumer_->poll(100);
@@ -208,13 +208,13 @@ inline kafka_consumer::~kafka_consumer() noexcept
     rd_kafka_consumer_->close();
 }
 
-inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> kafka_consumer::consume()
+inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> kafka_consumer::consume(int timeout_ms)
 {
     using namespace std;
 
     assert(rd_kafka_consumer_);
 
-    const unique_ptr<RdKafka::Message> message {rd_kafka_consumer_->consume(-1)};
+    const unique_ptr<RdKafka::Message> message {rd_kafka_consumer_->consume(timeout_ms)};
 
     if (!message)
         throw exception {"RdKafka::KafkaConsumer::consume(*) failed"};
