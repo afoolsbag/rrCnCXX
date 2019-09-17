@@ -1,8 +1,8 @@
 /// \copyright Unlicense
 
 #pragma once
-#ifndef RRKAFKA_KAFKA_INL_
-#define RRKAFKA_KAFKA_INL_
+#ifndef RRKAFKA_INL_
+#define RRKAFKA_INL_
 
 #include "rrkafka.hxx"
 

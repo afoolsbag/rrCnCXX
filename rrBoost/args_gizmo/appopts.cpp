@@ -17,17 +17,15 @@ using namespace std;
 namespace bfs = boost::filesystem;
 namespace bpo = boost::program_options;
 
-namespace rrargsgizmo {
-
 appopts::appopts(int argc, const char *const argv[])
 {
     const auto default_config_file = boost::dll::program_location().replace_extension(".cfg");
     const auto default_environment_prefix = boost::dll::program_location().stem().string() + "_";
     general_options_.add_options()
-        ("help,?", bpo::bool_switch(&entries_.help), "Print Help (this message) and exit")
-        ("version", bpo::bool_switch(&entries_.version), "Print version information and exit");
+        ("help,?", bpo::bool_switch(&entries_.help)->default_value(false), "Print Help (this message) and exit")
+        ("version", bpo::bool_switch(&entries_.version)->default_value(false), "Print version information and exit");
     common_options_.add_options()
-        ("debug,!", bpo::bool_switch(&entries_.debug), "Enable debugging");
+        ("debug,!", bpo::bool_switch(&entries_.debug)->default_value(false), "Enable debugging");
     hidden_options_.add_options()
         ("configuration-file", bpo::value(&entries_.configuration_file)->default_value(default_config_file), "Specify configuration file")
         ("environment-prefix", bpo::value(&entries_.environment_prefix)->default_value(default_environment_prefix), "Specify environment prefix");
@@ -96,11 +94,11 @@ void appopts::parse_from_command_lice(int argc, const char *const argv[])
     opts.add(general_options_).add(common_options_).add(hidden_options_);
 #//=============================================================================
 #//
-    bpo::positional_options_description pos;
-    pos.add("input-file", -1);
+    bpo::positional_options_description poss;
+    poss.add("input-file", -1);
 #//
 #//-----------------------------------------------------------------------------
-    bpo::store(bpo::command_line_parser {argc, argv}.options(opts).positional(pos).run(), vars_);
+    bpo::store(bpo::command_line_parser {argc, argv}.options(opts).positional(poss).run(), vars_);
     bpo::notify(vars_);
 }
 
@@ -132,7 +130,7 @@ void appopts::parse_from_environment(const string &environment_prefix)
         auto variable = boost::to_lower_copy(environment_variable);
         if (variable.compare(0, prefix_length, prefix_lower) != 0)
             return "";
-        boost::erase_head(variable, prefix_length);
+        boost::erase_head(variable, static_cast<int>(prefix_length));
         boost::replace_all(variable, "_", "-");
         return variable;
     };
@@ -177,6 +175,4 @@ void appopts::launch_debugger()
 
     DebugBreak();
 #endif
-}
-
 }

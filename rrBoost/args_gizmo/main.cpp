@@ -2,9 +2,9 @@
 ///
 /// \file
 /// \brief 一个小玩意儿，用于展示通过命令行、配置文件或环境变量对程序进行配置
-/// \sa <https://boost.org/doc/libs/1_70_0/doc/html/program_options.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/program_options.html>
 ///
-/// \version 2019-08-15
+/// \version 2019-09-17
 /// \since 2018-04-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) noexcept
     try {
         locale::global(locale {".UTF-8"});
 
-        const rrargsgizmo::appopts opts {argc, argv};
+        const appopts opts {argc, argv};
 
         if (opts->debug) {
             opts.print_options(cout);

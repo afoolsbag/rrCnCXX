@@ -26,7 +26,7 @@ add_compile_options_ex(
 find_package(RdKafka REQUIRED)
 aux_source_directory_con("wrapper" zWrapper RECURSE PREFIX "wrapper")
 add_library_ex(
-  rrKafkaWraper       INTERFACE
+  rrKafkaWrapper      INTERFACE
   COMPILE_FEATURES    INTERFACE cxx_std_17
   INCLUDE_DIRECTORIES INTERFACE "wrapper"
   LINK_LIBRARIES      INTERFACE RdKafka::rdkafka++
@@ -40,7 +40,7 @@ add_executable_con(
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "test"
-  LINK_LIBRARIES      PRIVATE rrKafkaWraper
+  LINK_LIBRARIES      PRIVATE rrKafkaWrapper
                               GTest::main)
 
 add_test(NAME rrKafkaTest COMMAND rrKafkaTest)

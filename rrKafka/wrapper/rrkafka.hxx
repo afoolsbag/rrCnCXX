@@ -2,7 +2,7 @@
 ///
 /// \file
 ///
-/// \version 2019-07-30
+/// \version 2019-09-17
 /// \since 2019-07-30
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -10,8 +10,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRKAFKA_KAFKA_HXX_
-#define RRKAFKA_KAFKA_HXX_
+#ifndef RRKAFKA_HXX_
+#define RRKAFKA_HXX_
 
 #include <cstdint>
 #include <exception>

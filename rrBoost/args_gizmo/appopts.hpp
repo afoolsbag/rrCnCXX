@@ -2,9 +2,9 @@
 ///
 /// \file
 /// \brief 应用选项
-/// \sa <https://boost.org/doc/libs/1_71_0/doc/html/program_options.html>
+/// \sa <https://boost.org/doc/libs/master/doc/html/program_options.html>
 ///
-/// \version 2019-08-27
+/// \version 2019-09-17
 /// \since 2019-08-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRARGSGIZMO_APPOPTS_HPP_
-#define RRARGSGIZMO_APPOPTS_HPP_
+#ifndef APPOPTS_HPP_
+#define APPOPTS_HPP_
 
 #include <string>
 #include <vector>
@@ -22,15 +22,13 @@
 #include <boost/optional.hpp>
 #include <boost/program_options.hpp>
 
-namespace rrargsgizmo {
-
 /// \brief Application Options
 class appopts final {
 private:
     struct {
-        bool help {};                                // 帮助信息
-        bool debug {};                               // 调试信息
-        bool version {};                             // 版本信息
+        bool help;                                   // 帮助信息
+        bool debug;                                  // 调试信息
+        bool version;                                // 版本信息
         boost::filesystem::path configuration_file;  // 配置文件
         std::string environment_prefix;              // 环境变量前缀
 #//=============================================================================
@@ -67,7 +65,5 @@ private:
 public:
     static void launch_debugger();
 };
-
-}
 
 #endif
