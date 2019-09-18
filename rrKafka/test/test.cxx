@@ -2,7 +2,7 @@
 ///
 /// \file
 ///
-/// \version 2019-08-02
+/// \version 2019-09-18
 /// \since 2019-08-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -34,7 +34,7 @@ protected:
     {}
 };
 producer kafka_test::prod {broker_list, topic};
-kafka_consumer kafka_test::cons {broker_list, topic, "debug2"};
+kafka_consumer kafka_test::cons {broker_list, topic};
 
 TEST_F(kafka_test, produce)
 {
@@ -46,9 +46,9 @@ TEST_F(kafka_test, consume)
 {
     for (; ; ) {
         const auto[key, value] = cons.consume();
-        cout << "consume:\n"
-            "key=" << key.value_or("<null>") << "\n"
-            "value=" << string {reinterpret_cast<const char *>(value.data()), value.size()} << '\n';
+        cout << "consume:\n";
+        cout << "  key=" << key.value_or("<null>") << "\n";
+        cout << "  value=" << string {reinterpret_cast<const char *>(value.data()), value.size()} << '\n';
     }
 }
 

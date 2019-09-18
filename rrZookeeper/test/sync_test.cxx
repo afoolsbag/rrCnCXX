@@ -15,7 +15,7 @@
 #include <string>
 
 #include <gtest/gtest.h>
-#include "rrzookeeper_client.hxx"
+#include "rrzookeeper.hxx"
 
 using namespace std;
 

@@ -29,6 +29,12 @@ inline producer::producer(const std::string &broker_list, const std::string &top
     if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
         throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
+    // log_level
+    // Logging level (syslog(3) levels)
+    // Type: integer
+    if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
+        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+
     rd_producer_.reset(RdKafka::Producer::create(gcfg.get(), errstr));
     if (!rd_producer_)
         throw exception {"RdKafka::Producer::create(*) failed: "s.append(errstr)};
@@ -88,6 +94,12 @@ inline consumer::consumer(const std::string &broker_list, const std::string &top
     // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
     // Type: string
     if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
+        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+
+    // log_level
+    // Logging level (syslog(3) levels)
+    // Type: integer
+    if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
         throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
     rd_consumer_.reset(RdKafka::Consumer::create(gcfg.get(), errstr));
@@ -174,6 +186,12 @@ inline kafka_consumer::kafka_consumer(const std::string &broker_list, const std:
     // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
     // Type: string
     if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
+        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+
+    // log_level
+    // Logging level (syslog(3) levels)
+    // Type: integer
+    if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
         throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
     // default_topic_conf

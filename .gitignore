@@ -675,5 +675,6 @@ compile_commands.json
 /rrCeph/linux/**/*
 /rrKafka/linux/**/*
 
+!/.gitmodules-update.cmd
 !/rrCeph/linux/copy_usr_include_to_here.sh
 !/rrKafka/linux/copy_usr_include_to_here.sh

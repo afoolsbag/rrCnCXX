@@ -1,10 +1,10 @@
 /// \copyright Unlicense
 
 #pragma once
-#ifndef RRZOOKEEPER_CLIENT_INL_
-#define RRZOOKEEPER_CLIENT_INL_
+#ifndef RRZOOKEEPER_INL_
+#define RRZOOKEEPER_INL_
 
-#include "rrzookeeper_client.hxx"
+#include "rrzookeeper.hxx"
 
 #include <cerrno>
 #include <condition_variable>
@@ -37,8 +37,10 @@ inline client::state client::zstate(int state) noexcept
 inline std::optional<std::string> client::zpath(const char *path)
 {
     using namespace std;
-    if (!path) return nullopt;
-    return string {path};
+    if (!path)
+        return nullopt;
+    else
+        return string {path};
 }
 
 

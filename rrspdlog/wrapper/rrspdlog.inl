@@ -59,11 +59,16 @@ inline void initialize_as_default(const filesystem::path &logs_dir_path,
 
     std::vector<spdlog::sink_ptr> sinks;
 
-    if (enable_daily_log) {
-        const auto daily_log_path = (logs_dir_path / "daily-info.log").string();
-        auto const daily_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(daily_log_path, 0, 0);
-        daily_sink->set_level(spdlog::level::info);
-        sinks.push_back(daily_sink);
+    if (enable_stdout_log) {
+        auto const stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+        stdout_sink->set_level(spdlog::level::trace);
+        sinks.push_back(stdout_sink);
+    }
+
+    if (enable_stderr_log) {
+        auto const stderr_sink = std::make_shared<spdlog::sinks::stderr_color_sink_mt>();
+        stderr_sink->set_level(spdlog::level::warn);
+        sinks.push_back(stderr_sink);
     }
 
     if (enable_rotating_log) {
@@ -74,16 +79,11 @@ inline void initialize_as_default(const filesystem::path &logs_dir_path,
         sinks.push_back(rotating_sink);
     }
 
-    if (enable_stderr_log) {
-        auto const stderr_sink = std::make_shared<spdlog::sinks::stderr_color_sink_mt>();
-        stderr_sink->set_level(spdlog::level::warn);
-        sinks.push_back(stderr_sink);
-    }
-
-    if (enable_stdout_log) {
-        auto const stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-        stdout_sink->set_level(spdlog::level::info);
-        sinks.push_back(stdout_sink);
+    if (enable_daily_log) {
+        const auto daily_log_path = (logs_dir_path / "daily-info.log").string();
+        auto const daily_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(daily_log_path, 0, 0);
+        daily_sink->set_level(spdlog::level::info);
+        sinks.push_back(daily_sink);
     }
 
     auto const logger = std::make_shared<spdlog::logger>("", sinks.cbegin(), sinks.cend());

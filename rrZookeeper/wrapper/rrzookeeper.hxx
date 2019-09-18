@@ -1,8 +1,8 @@
-//===-- rrZookeeper Client Wrapper ------------------------------*- C++ -*-===//
+//===-- rrZookeeper Wrapper -------------------------------------*- C++ -*-===//
 ///
 /// \file
 ///
-/// \version 2019-07-29
+/// \version 2019-09-18
 /// \since 2019-05-29
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -10,8 +10,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRZOOKEEPER_CLIENT_HXX_
-#define RRZOOKEEPER_CLIENT_HXX_
+#ifndef RRZOOKEEPER_HXX_
+#define RRZOOKEEPER_HXX_
 
 #include <bitset>
 #include <chrono>
@@ -71,7 +71,7 @@ public:
 
     typedef void(*event_callback_t)(client *self, const event &type, const state &state, const std::optional<std::string> &path, void *p_user_data);
 
-    inline explicit client(ZooLogLevel log_level = ZOO_LOG_LEVEL_WARN) noexcept;
+    inline explicit client(ZooLogLevel log_level = ZOO_LOG_LEVEL_ERROR) noexcept;
     inline explicit client(const client &) = delete;
     inline client &operator=(const client &) = delete;
     inline explicit client(client &&) noexcept = default;
@@ -139,6 +139,6 @@ private:
 
 }
 
-#include "rrzookeeper_client.inl"
+#include "rrzookeeper.inl"
 
 #endif
