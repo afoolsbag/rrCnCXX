@@ -1,8 +1,8 @@
-# zhengrr 所知的 rapidjson                                           {#mainpage}
+# zhengrr 所知的 json                                                {#mainpage}
 
-[*rapidjson*](http://rapidjson.org/)
+[*json*](https://github.com/nlohmann/json)
 
-rapidjson 侧重性能，在性能敏感环境中处理 JSON 首选此库。
+nlohmann json 侧重易用性和可读性，在性能不敏感环境中处理 JSON 首选此库。
 
 ## 许可
 
