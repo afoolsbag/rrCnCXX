@@ -31,8 +31,6 @@ add_library_ex(
   rrCephWraper        INTERFACE
   COMPILE_FEATURES    INTERFACE cxx_std_11
   INCLUDE_DIRECTORIES INTERFACE "wrapper"
-                                "linux/usr/include"
-                                "linux/usr/include/x86_64-linux-gnu"
   LINK_LIBRARIES      INTERFACE S3::s3
   SOURCES             INTERFACE ${zWrapper})
 
