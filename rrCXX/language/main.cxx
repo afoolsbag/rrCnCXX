@@ -27,7 +27,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 #ifndef NDEBUG
-    locale::global(locale {".UTF-8"});
+    locale::global(locale {"zh_CN.UTF-8"});
 #endif
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

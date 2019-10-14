@@ -62,10 +62,10 @@ private:
 
 public:
     /// \brief 获取写引用，同一缓冲、同一时间至多只允许存在一个写引用实例。
-    [[nodiscard]] write_reference &&get_reference_for_write_buffer();
+    [[nodiscard]] write_reference get_reference_for_write_buffer();
 
     /// \brief 获取读引用。
-    [[nodiscard]] read_reference &&get_reference_for_read_buffer();
+    [[nodiscard]] read_reference get_reference_for_read_buffer();
 };
 
 /// \brief 写引用

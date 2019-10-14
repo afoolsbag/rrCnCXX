@@ -15,13 +15,10 @@ TEST(split_by_comma, float)
     const auto expected_size {sizeof(expected) / sizeof(*expected)};
 
     stringstream ss {raw_data};
-
     float actual[expected_size];
-    float tmp;
-    for (size_t i = 0; ss >> tmp; ++i) {
-        actual[i] = tmp;
-        for (auto c = ss.peek(); c == ' ' || c == ','; c = ss.peek())
-            ss.ignore();
+    string tmp;
+    for(size_t i = 0; getline(ss, tmp, ','); ++i) {
+        actual[i] = stof(tmp);
     }
 
     for (size_t i = 0; i < expected_size; ++i)

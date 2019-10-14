@@ -30,11 +30,11 @@ namespace rrcxx {
 TEST(binary_search_operations, lower_upper_bound_eq)
 {
     const vector<int> vec {3, 5, 5, 5, 7, /*end*/};
-    const auto it_3 = vec.cbegin() + 0;
-    const auto it_5_1 = vec.cbegin() + 1;
-    const auto it_5_2 = vec.cbegin() + 2;
-    const auto it_5_3 = vec.cbegin() + 3;
-    const auto it_7 = vec.cbegin() + 4;
+    [[maybe_unused]] const auto it_3 = vec.cbegin() + 0;
+    [[maybe_unused]] const auto it_5_1 = vec.cbegin() + 1;
+    [[maybe_unused]] const auto it_5_2 = vec.cbegin() + 2;
+    [[maybe_unused]] const auto it_5_3 = vec.cbegin() + 3;
+    [[maybe_unused]] const auto it_7 = vec.cbegin() + 4;
     ASSERT_TRUE(is_sorted(vec.cbegin(), vec.cend()));
 
     const auto it_lower = lower_bound(vec.cbegin(), vec.cend(), 5);
@@ -48,8 +48,8 @@ TEST(binary_search_operations, lower_upper_bound_eq)
 TEST(binary_search_operations, lower_upper_bound_ne)
 {
     const vector<int> vec {3, 7, /*end*/};
-    const auto it_3 = vec.cbegin() + 0;
-    const auto it_7 = vec.cbegin() + 1;
+    [[maybe_unused]] const auto it_3 = vec.cbegin() + 0;
+    [[maybe_unused]] const auto it_7 = vec.cbegin() + 1;
     ASSERT_TRUE(is_sorted(vec.cbegin(), vec.cend()));
 
     const auto it_lower = lower_bound(vec.cbegin(), vec.cend(), 5);

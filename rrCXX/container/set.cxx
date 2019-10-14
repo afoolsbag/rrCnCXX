@@ -40,8 +40,8 @@ TEST(set, lookup)
 
     // contains
 #if STANDARD_CXX20
-    ASSERT_TRUE(numSet.contains(5));
-    ASSERT_FALSE(numSet.contains(6));
+    ASSERT_TRUE(numbers.contains(5));
+    ASSERT_FALSE(numbers.contains(6));
 #endif
 }
 

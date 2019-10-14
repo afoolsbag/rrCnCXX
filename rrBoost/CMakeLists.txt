@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-08-29
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-10-14
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -38,8 +38,11 @@ add_executable_con(
                       "README.md"
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "."
+  INCLUDE_DIRECTORIES PRIVATE "args_gizmo"
   LINK_LIBRARIES      PRIVATE CONAN_PKG::boost)
+if(UNIX)
+  target_link_libraries(rrArgsGizmo PRIVATE dl)
+endif()
 
 aux_source_directory_con("test" zTest PREFIX "test")
 add_executable_con(
@@ -47,10 +50,15 @@ add_executable_con(
                       "README.md"
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  COMPILE_DEFINITIONS PUBLIC  "_WIN32_WINNT=0x0A00"  # Windows 10
-  INCLUDE_DIRECTORIES PRIVATE "."
+  INCLUDE_DIRECTORIES PRIVATE "test"
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
                               CONAN_PKG::boost
                               CONAN_PKG::gsl_microsoft)
+if(WIN32)
+  target_compile_definitions(rrBoostTest PRIVATE "_WIN32_WINNT=0x0A00")  # Windows 10
+endif()
+if(UNIX)
+  target_link_libraries(rrBoostTest PRIVATE dl rt)
+endif()
 
 add_test(NAME rrBoostTest COMMAND rrBoostTest)

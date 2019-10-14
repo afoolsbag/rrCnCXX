@@ -23,7 +23,7 @@ add_doxygen_con(
   rrCdoc
   OPTIMIZE_OUTPUT_FOR_C ON)
 
-find_package(Check)
+find_package(Check REQUIRED)
 
 aux_source_directory_con("." zSrc RECURSE)
 add_executable_con(

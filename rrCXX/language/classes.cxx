@@ -105,16 +105,14 @@ TEST(classes, constructor)
 //==============================================================================
 // 复制省略 COPY ELISION
 //
-// 长求总：建议返回左值，且尽可能触发优化。
+// 长求总：
 //
-// *   若声明返回左值
+// *   若返回对象在函数内构造，声明“返回左值”
 //     1) 尽可能采用“构造并立即返回”，这将触发返回值优化（return value optimization）
-//     2) 否则，尽可能保证返回对象可移动为返回类型，并在返回时直接返回对象，这将触发右值引用优化
-//     3) 否则，将采用复制构造和析构
+//     2) 否则，尽可能保证“返回对象可移动为返回类型”并“在返回时直接返回对象”，这将触发右值引用优化
+//     3) 否则，将采用复制构造
 //
-// *   若声明返回右值引用
-//     1) 存储返回值的变量必须带有引用记号，不可缺漏；若缺漏不会被语法解析器检查出，但在运行时会造成内存泄露
-//     2) 总会触发返回值优化
+// *   若返回对象从函数外传入，尽可能声明“传入右值引用”且“返回右值引用”
 
 namespace {
 class clazz {
@@ -139,62 +137,49 @@ namespace rrcxx {
 /// \addtogroup gClasses
 /// @{
 
-/// \brief 构造并立即返回左值（Lvalue）
-/// \details 若编译器支持，将执行返回值优化，避免冗余的构造和析构。
+/// \brief 构造并立即返回左值
+/// \details 若编译器支持，将执行返回值优化，避免冗余的构造和析构
 TEST(classes, lvalue_rvo)
 {
+    // 消耗一次构造、一次析构
     const auto &get_by_lvalue_rvo = []() -> clazz {
         return clazz {};
     };
-
     [[maybe_unused]] const auto obj = get_by_lvalue_rvo();
 }
 
-/// \brief 构造左值但推迟返回
-/// \details 编译器将尝试采用移动构造，若不行则采用复制构造。\n
-///          若要采用移动构造，对象类型需要可移动到返回类型，且返回时直接返回对象。
+/// \brief 构造但推迟返回左值，返回对象可移动为返回类型
 TEST(classes, lvalue_move)
 {
+    // 消耗一次构造、一次移动构造、两次析构
     const auto &get_by_lvalue_move = []() -> clazz {
         clazz object;
         return object;
     };
-    {
-        [[maybe_unused]] const auto obj = get_by_lvalue_move();
-    }
+    [[maybe_unused]] const auto obj = get_by_lvalue_move();
+}
 
-    // 对象无法移动到返回类型，采用复制构造
+/// \brief 构造但推迟返回左值，返回对象不可移动为返回类型
+TEST(classes, lvalue_copy_1)
+{
+    // 消耗一次构造、一次复制构造、两次析构
     const auto &get_by_lvalue_copy_1 = []() -> clazz {
         const clazz object;
         return object;
     };
-    {
-        [[maybe_unused]] const auto obj = get_by_lvalue_copy_1();
-    }
+    [[maybe_unused]] const auto obj = get_by_lvalue_copy_1();
 
-    // 返回表达式而非直接返回对象，采用复制构造
+}
+
+/// \brief 构造但推迟返回左值，在返回时没有直接返回对象
+TEST(classes, lvalue_copy_2)
+{
+    // 消耗一次构造、一次复制构造、两次析构
     const auto &get_by_lvalue_copy_2 = [](bool cond = true) -> clazz {
         clazz object;
         return cond ? object : ((void)0, object);
     };
-    {
-        [[maybe_unused]] const auto obj = get_by_lvalue_copy_2();
-    }
-}
-
-/// \brief 构造并返回右值引用（Lvalue reference）
-/// \details 若编译器支持，将执行返回值优化，避免冗余的构造和析构。
-/// \warning 注意，存储返回的右值引用的变量，如 `&obj` 前的引用记号不可缺漏。
-TEST(classes, rvalue_rvo)
-{
-    const auto &get_by_rvalue_rvo = []() -> clazz && {
-        clazz object;
-        return move(object);
-    };
-    [[maybe_unused]] const auto &obj = get_by_rvalue_rvo();
-    //                          ^
-    //                          |
-    //               注意这个引用记号，不可缺漏
+    [[maybe_unused]] const auto obj = get_by_lvalue_copy_2();
 }
 
 /// @}

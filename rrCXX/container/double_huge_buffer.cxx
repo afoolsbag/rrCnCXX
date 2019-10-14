@@ -23,7 +23,7 @@ double_huge_buffer::~double_huge_buffer() noexcept
     scoped_lock sl {lmtx_, rmtx_};
 }
 
-write_reference &&double_huge_buffer::get_reference_for_write_buffer()
+write_reference double_huge_buffer::get_reference_for_write_buffer()
 {
     for (;;) {
         if (destructing_)
@@ -33,7 +33,7 @@ write_reference &&double_huge_buffer::get_reference_for_write_buffer()
         case both_unavailable: {
             unique_lock lk {lmtx_, defer_lock};
             if (lk.try_lock()) {
-                return move(write_reference {lbuf_.get(), lcnt_, *this, move(lk)});
+                return write_reference {lbuf_.get(), lcnt_, *this, move(lk)};
             }
             break;
         }
@@ -41,7 +41,7 @@ write_reference &&double_huge_buffer::get_reference_for_write_buffer()
         case available_unavailable: {
             unique_lock lk {rmtx_, defer_lock};
             if (lk.try_lock()) {
-                return move(write_reference {rbuf_.get(), rcnt_, *this, move(lk)});
+                return write_reference {rbuf_.get(), rcnt_, *this, move(lk)};
             }
             break;
         }
@@ -49,7 +49,7 @@ write_reference &&double_huge_buffer::get_reference_for_write_buffer()
         case unavailable_available: {
             unique_lock lk {lmtx_, defer_lock};
             if (lk.try_lock()) {
-                return move(write_reference {lbuf_.get(), lcnt_, *this, move(lk)});
+                return write_reference {lbuf_.get(), lcnt_, *this, move(lk)};
             }
             break;
         }
@@ -62,7 +62,7 @@ write_reference &&double_huge_buffer::get_reference_for_write_buffer()
     }
 }
 
-read_reference &&double_huge_buffer::get_reference_for_read_buffer()
+read_reference double_huge_buffer::get_reference_for_read_buffer()
 {
     for (;;) {
         if (destructing_)
@@ -75,7 +75,7 @@ read_reference &&double_huge_buffer::get_reference_for_read_buffer()
         case available_unavailable: {
             shared_lock lk {lmtx_, defer_lock};
             if (lk.try_lock()) {
-                return move(read_reference {lbuf_.get(), lcnt_, move(lk)});
+                return read_reference {lbuf_.get(), lcnt_, move(lk)};
             }
             break;
         }
@@ -83,7 +83,7 @@ read_reference &&double_huge_buffer::get_reference_for_read_buffer()
         case unavailable_available: {
             shared_lock lk {rmtx_, defer_lock};
             if (lk.try_lock()) {
-                return move(read_reference {rbuf_.get(), rcnt_, move(lk)});
+                return read_reference {rbuf_.get(), rcnt_, move(lk)};
             }
             break;
         }

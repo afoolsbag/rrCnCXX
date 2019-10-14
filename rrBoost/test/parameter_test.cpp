@@ -21,8 +21,10 @@ using namespace std;
 
 namespace rrboost {
 
+#ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable: 4003)
+#endif
 
 BOOST_PARAMETER_NAME(rp)
 BOOST_PARAMETER_NAME(op1)
@@ -34,7 +36,9 @@ BOOST_PARAMETER_FUNCTION((void), pf, tag, (required(rp, *)) (optional(op1, *, ""
     cout << boost::format("rp=%1%, op1=%2%, op2=%3%, op3=%4%.\n") % rp % op1 % op2 % op3;
 }
 
+#ifdef _MSC_VER
 #pragma warning(pop)
+#endif
 
 TEST(parameter, gfs)
 {

@@ -3,7 +3,7 @@
 /// \defgroup gTypeTraits 类型特性
 /// \ingroup gTypes
 ///
-/// \version 2019-07-26
+/// \version 2019-10-14
 /// \since 2019-07-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include <type_traits>
+#include <typeinfo>
 
 #include <gtest/gtest.h>
 
@@ -33,13 +34,10 @@ TEST(type_traits, compile_time_constant)
 {
     using int_1337_c = integral_constant<int, 1337>;
     static_assert(1337 == int_1337_c::value);
-    ASSERT_STREQ("int", typeid(int_1337_c::value_type).name());
 
     static_assert(true == true_type::value);
-    ASSERT_STREQ("bool", typeid(true_type::value_type).name());
 
     static_assert(false == false_type::value);
-    ASSERT_STREQ("bool", typeid(true_type::value_type).name());
 }
 
 /// \brief 基础类型类别
@@ -105,7 +103,9 @@ TEST(type_traits, primary_type_categories)
     static_assert(is_array_v<int[]>);
 
     // 枚举、联合、结构体和类，is_enum、is_union 和 is_class 依赖于实现
+#ifdef _MSC_VER
     static_assert(is_enum_v<enum enum_t : int>);
+#endif
     static_assert(is_union_v<union union_t>);
     static_assert(is_class_v<class class_t>);
     static_assert(is_class_v<struct struct_t>);
