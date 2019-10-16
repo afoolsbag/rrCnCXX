@@ -4,55 +4,48 @@
 # | '__| '__| | | | '_ \ / _ \ '_ \| |   | | | |
 # | |  | |  \ \_/ / |_) |  __/ | | | \__/\ \_/ /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____/\___/  zhengrr
-#                 | |                            2018-01-22 – 2019-01-22
+#                 | |                            2018-01-22 – 2019-10-15
 #                 |_|                            Unlicense
 
-project(rrOpenCV VERSION 2019.01.22 LANGUAGES CXX)
-project_more()
-compile_option(MULTIPLE_PROCESSES UTF-8 WARNING_AS_ERROR)
+cmake_minimum_required(VERSION 3.12)
+cmake_policy(VERSION 3.12)
 
-add_doxygen(WITH_OPTION)
+project_ex(
+  rrOpenCV
+  TIME_AS_VERSION
+  LANGUAGES CXX)
+
+include_conan_script()
+
+add_compile_options_ex(
+  DISABLE_LANGUAGE_EXTENSIONS
+  RECOMMENDED_WARNING_LEVEL
+  MULTIPLE_PROCESSES
+  UTF-8
+  VISIBLE_DEFAULT_HIDDEN
+  WARNING_AS_ERROR)
+
+add_doxygen_con(
+  rrOpenCVdoc)
 
 conan_cmake_run(
-  REQUIRES gsl_microsoft/2.0.0@bincrafters/stable
-           gtest/1.8.1@bincrafters/stable
-           opencv/4.0.1@conan/stable
-  BASIC_SETUP CMAKE_TARGETS)
+  REQUIRES    gsl_microsoft/2.0.0@bincrafters/stable
+              gtest/1.8.1@bincrafters/stable
+              opencv/4.1.1@conan/stable
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
 
-aux_source_directory_ex(zUnitTestSrc RECURSE BASE_MATCHES "test$")
-add_executable_ex(
-  NAME UnitTest ${zUnitTestSrc} CXX17
-  INCLUDE_DIRECTORIES PRIVATE "./"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::gsl_microsoft
-                              CONAN_PKG::gtest
-                              CONAN_PKG::opencv)
+macro(quick_add_executable)
+  get_filename_component(pDirName "${CMAKE_CURRENT_LIST_DIR}" NAME)
+  aux_source_directory_con("." zSrc RECURSE)
+  add_executable_con(
+    ${PROJECT_NAME}_${pDirName} ${zSrc}
+    PROPERTIES                  CXX_STANDARD          20
+                                CXX_STANDARD_REQUIRED ON
+    INCLUDE_DIRECTORIES         PRIVATE "."
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+                                        CONAN_PKG::gtest
+                                        CONAN_PKG::opencv)
+endmacro()
 
-add_executable_ex(
-  NAME core_Blending "core/blending_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-add_executable_ex(
-  NAME core_ContBrt "core/contbrt_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-add_executable_ex(
-  NAME core_Drawing "core/drawing_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-add_executable_ex(
-  NAME core_Random "core/random_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-
-add_executable_ex(
-  NAME highgui_Trackbar "highgui/trackbar_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-add_executable_ex(
-  NAME highgui_Exp "highgui/exp_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-add_executable_ex(
-  NAME highgui_Display "highgui/display_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-
-add_executable_ex(
-  NAME imgproc_Blur "imgproc/blur_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
-add_executable_ex(
-  NAME imgproc_Morph "imgproc/morph_app.cpp" FLAT_GROUP
-  LINK_LIBRARIES PRIVATE CONAN_PKG::gsl_microsoft CONAN_PKG::opencv)
+add_aux_subdirectories_con(WITHOUT_OPTION)

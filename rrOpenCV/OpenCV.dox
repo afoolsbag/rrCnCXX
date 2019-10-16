@@ -1,48 +1,8 @@
-//===-- Main Page -----------------------------------------------*- C++ -*-===//
-///
-/// \mainpage
-/// [TOC]
-///
-/// # OpenCV                                                          {#sOpenCV}
-///
-/// [Open Source Computer Vision Library](https://opencv.org/)
-///
-/// # 参考                                                        {#sReferences}
-///
-/// [*OpenCV documentation index*](https://docs.opencv.org/)
-///
-/// # 指南                                                            {#sGuides}
-///
-/// [*OpenCV中文网站*](http://opencv.org.cn/)
-///
-/// # 许可                                                           {#sLicense}
-///
-/// 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：
-///
-/// <p xmlns:dct="https://purl.org/dc/terms/">
-///   <a rel="license"
-///      href="https://creativecommons.org/publicdomain/zero/1.0/">
-///     <img src="https://licensebuttons.net/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
-///   </a>
-///   <br />
-///   To the extent possible under law,
-///   <span resource="[_:publisher]" rel="dct:publisher">
-///     <span property="dct:title">zhengrr</span></span>
-///   has waived all copyright and related or neighboring rights to this work.
-/// </p>
-///
-/// \version 2018-01-04
-/// \since 2018-03-01
-/// \authors zhengrr
-/// \copyright CC0-1.0
-///
-//===----------------------------------------------------------------------===//
-
 //===-- Open Source Computer Vision -----------------------------*- C++ -*-===//
 ///
 /// \defgroup gOpenCV 开源计算机视觉库
 ///
-/// \sa [*OpenCV modules*](https://docs.opencv.org/3.4.3/)
+/// \sa [*OpenCV modules*](https://docs.opencv.org/master/)
 ///     *   Introduction
 ///     *   OpenCV Tutorials
 ///     *   OpenCV-Python Tutorials
@@ -117,7 +77,7 @@
 ///         *   xobjdetect. Extended object detection
 ///         *   xphoto. Additional photo processing algorithms
 ///
-/// \version 2018-10-31
+/// \version 2019-10-14
 /// \since 2018-07-17
 /// \authors zhengrr
 /// \copyright CC0-1.0
