@@ -26,8 +26,8 @@ add_compile_options_ex(
   WARNING_AS_ERROR)
 
 conan_cmake_run(
-  REQUIRES    gsl_microsoft/2.0.0@bincrafters/stable
-              gtest/1.8.1@bincrafters/stable
+  REQUIRES    benchmark/1.5.0
+              gsl_microsoft/2.0.0@bincrafters/stable
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
@@ -40,7 +40,7 @@ add_executable_con(
                       CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS     PRIVATE               "$<$<CXX_COMPILER_ID:MSVC>:/arch:AVX2>"
   INCLUDE_DIRECTORIES PRIVATE               "."
-  LINK_LIBRARIES      CONAN_PKG::gsl_microsoft
-                      CONAN_PKG::gtest)
+  LINK_LIBRARIES      CONAN_PKG::benchmark
+                      CONAN_PKG::gsl_microsoft)
 
 add_test(NAME rrAssemblytest COMMAND rrAssemblytest)

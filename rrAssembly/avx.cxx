@@ -15,9 +15,11 @@
 #include <array>
 #include <iostream>
 
-#include <gtest/gtest.h>
+#include <benchmark/benchmark.h>
 
+#ifdef __AVX__
 #include <immintrin.h>  // AVX
+#endif
 
 #include "rrcpuid.hxx"
 
@@ -25,10 +27,9 @@ using namespace std;
 
 namespace rrassembly {
 
-TEST(avx, check)
+void show_cpu_supported()
 {
     const cpuid_report rep;
-
     cout << "OSXSAVE:           " << rep.is_osxsave_supported() << '\n';
     cout << "AES:               " << rep.is_aes_supported() << '\n';
     cout << "FMA:               " << rep.is_fma_supported() << '\n';
@@ -99,12 +100,14 @@ double cosine_similarity(const std::array<float, fvlen> &fv1, const std::array<f
     return dp;
 }
 
-TEST(avx, cosine_similarity_test)
+}
+
+static void cosine_similarity_benchmark(benchmark::State &state)
 {
-    const array<float, 8> fv1 {1, 1, 1, 1, 1, 1, 1, 1};
-    const array<float, 8> fv2 {1, 1, 1, 1, 1, 1, 1, 1};
-    ASSERT_EQ(8, cosine_similarity(fv1, fv2));
+    const array<float, 512> fv1 {};
+    const array<float, 512> fv2 {};
+    for (auto _ : state) {
+        rrassembly::cosine_similarity(fv1, fv2);
+    }
 }
-
-
-}
+BENCHMARK(cosine_similarity_benchmark);
