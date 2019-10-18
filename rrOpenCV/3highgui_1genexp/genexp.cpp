@@ -50,6 +50,8 @@ int main(int argc, char *argv[])
 
 void onMouseChange(int event, int x, int y, int flags, void *userdata)
 {
+    CV_UNUSED(flags);
+
     auto &data = *reinterpret_cast<Userdata *>(userdata);
 
     static bool holding {false};
