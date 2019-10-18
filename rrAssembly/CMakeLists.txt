@@ -4,7 +4,7 @@
 # | '__| '__|  _  / __/ __|/ _ \ '_ ` _ \| '_ \| | | | |
 # | |  | |  | | | \__ \__ \  __/ | | | | | |_) | | |_| |
 # |_|  |_|  \_| |_/___/___/\___|_| |_| |_|_.__/|_|\__, | zhengrr
-#                                                  __/ | 2019-10-15 – 2019-10-15
+#                                                  __/ | 2019-10-15 – 2019-10-18
 #                                                 |___/  Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -38,6 +38,7 @@ add_executable_con(
                       C_STANDARD_REQUIRED   ON
                       CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
+  COMPILE_OPTIONS     PRIVATE               "$<$<CXX_COMPILER_ID:MSVC>:/arch:AVX2>"
   INCLUDE_DIRECTORIES PRIVATE               "."
   LINK_LIBRARIES      CONAN_PKG::gsl_microsoft
                       CONAN_PKG::gtest)
