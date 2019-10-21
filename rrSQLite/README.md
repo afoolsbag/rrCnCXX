@@ -15,10 +15,9 @@
     *   [SQL:2011](https://iso.org/standard/53681.html)
     *   [SQL:2016](https://iso.org/standard/63555.html)
 
-关系型数据库管理系统
-/ [*MySQL*](https://mysql.com/)
-/ [*PostgreSQL*](https://postgresql.org/)
-/ [*SQLite*](https://sqlite.org/)
+
+/ [*SQLite3*](https://sqlite.org/quickstart.html)
+/ [*SQLiteC++*](https://srombauts.github.io/SQLiteCpp/)
 
 ## 风格
 

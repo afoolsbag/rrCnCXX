@@ -13,21 +13,20 @@ using namespace std;
 #ifdef _WIN32
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved)
 {
-    (void)hinstDLL;
-
+    UNREFERENCED_PARAMETER(hinstDLL);
     switch (fdwReason) {
     case DLL_PROCESS_DETACH: {
         const bool is_unloading {lpvReserved == NULL};
         const bool is_terminating {lpvReserved != NULL};
-        (void)is_unloading;
-        (void)is_terminating;
+        UNREFERENCED_PARAMETER(is_unloading);
+        UNREFERENCED_PARAMETER(is_terminating);
         return TRUE;
     }
     case DLL_PROCESS_ATTACH: {
         const bool is_dynamic_loading {lpvReserved == NULL};
         const bool is_static_loading {lpvReserved != NULL};
-        (void)is_dynamic_loading;
-        (void)is_static_loading;
+        UNREFERENCED_PARAMETER(is_dynamic_loading);
+        UNREFERENCED_PARAMETER(is_static_loading);
         return TRUE;
     }
     case DLL_THREAD_ATTACH: {
