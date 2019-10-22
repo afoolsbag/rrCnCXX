@@ -2,7 +2,7 @@
 #           |  _  | |
 #  _ __ _ __| | | | |_
 # | '__| '__| | | | __| zhengrr
-# | |  | |  \ \/' / |_  2016-06-28 – 2019-03-15
+# | |  | |  \ \/' / |_  2016-06-28 – 2019-10-22
 # |_|  |_|   \_/\_\\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -13,29 +13,87 @@ project_ex(
   TIME_AS_VERSION
   LANGUAGES CXX)
 
+include_conan_script()
+
 add_compile_options_ex(
   DISABLE_LANGUAGE_EXTENSIONS
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 add_doxygen_con(
   rrQtDoc)
 
 find_package(Qt5Config)
-find_package(Qt5 COMPONENTS Core Gui LinguistTools Quick Test Widgets)
+find_package(Qt5              # All Modules        https://doc.qt.io/qt-5/qtmodules.html
+  COMPONENTS Core             # Qt Core            https://doc.qt.io/qt-5/qtcore-index.html
+             Gui              # Qt GUI             https://doc.qt.io/qt-5/qtgui-index.html
+             LinguistTools    #
+             Qml              # Qt QML             https://doc.qt.io/qt-5/qtqml-index.html
+             Quick            # Qt Quick           https://doc.qt.io/qt-5/qtquick-index.html
+             QuickControls2   # Qt Quick Controls  https://doc.qt.io/qt-5/qtquickcontrols-index.html
+             QuickTemplates2  #
+             Test             # Qt Test            https://doc.qt.io/qt-5/qttest-index.html
+             Widgets)         # Qt Widgets         https://doc.qt.io/qt-5/qtwidgets-index.html
 set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "generated")
 conan_cmake_run(
-  REQUIRES    gtest/1.8.1@bincrafters/stable
-  BASIC_SETUP CMAKE_TARGETS)
+  REQUIRES    gsl_microsoft/2.0.0@bincrafters/stable
+              gtest/1.8.1@bincrafters/stable
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
 
-aux_source_directory_con("test" zTest RECURSE QT)
-add_executable_con(
-  rrQtTest            ${zTest}
-  PROPERTIES          CXX_STANDARD          17
-                      CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "test/"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest)
+macro(quickadd_console_executable)
+  get_filename_component(pDirName "${CMAKE_CURRENT_LIST_DIR}" NAME)
+  aux_source_directory_con("." zSrc RECURSE QT)
+  add_executable_con(
+    ${PROJECT_NAME}_${pDirName} ${zSrc}
+    PROPERTIES                  CXX_STANDARD          20
+                                CXX_STANDARD_REQUIRED ON
+                                AUTOMOC               ON
+    INCLUDE_DIRECTORIES         PRIVATE "."
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+                                        CONAN_PKG::gtest
+                                        Qt5::Core)
+endmacro()
 
-add_aux_subdirectories_con(PREFIX "${PROJECT_NAME_UPPER}")
+macro(quickadd_widget_executable)
+  get_filename_component(pDirName "${CMAKE_CURRENT_LIST_DIR}" NAME)
+  aux_source_directory_con("." zSrc RECURSE QT)
+  add_executable_con(
+    ${PROJECT_NAME}_${pDirName} WIN32 ${zSrc}
+    PROPERTIES                  CXX_STANDARD          20
+                                CXX_STANDARD_REQUIRED ON
+                                AUTOMOC               ON
+                                AUTOUIC               ON
+    INCLUDE_DIRECTORIES         PRIVATE "."
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+                                        CONAN_PKG::gtest
+                                        Qt5::Core
+                                        Qt5::Gui
+                                        Qt5::Widgets)
+endmacro()
+
+macro(quickadd_quick_executable)
+  get_filename_component(pDirName "${CMAKE_CURRENT_LIST_DIR}" NAME)
+  aux_source_directory_con("." zSrc RECURSE QT)
+  add_executable_con(
+    ${PROJECT_NAME}_${pDirName} WIN32 ${zSrc}
+    PROPERTIES                  CXX_STANDARD          20
+                                CXX_STANDARD_REQUIRED ON
+                                AUTOMOC               ON
+                                AUTORCC               ON
+    INCLUDE_DIRECTORIES         PRIVATE "."
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+                                        CONAN_PKG::gtest
+                                        Qt5::Core
+                                        Qt5::Gui
+                                        Qt5::Network
+                                        Qt5::Qml
+                                        Qt5::Quick
+                                        Qt5::QuickControls2
+                                        Qt5::QuickTemplates2)
+endmacro()
+
+add_aux_subdirectories_con(WITHOUT_OPTION)

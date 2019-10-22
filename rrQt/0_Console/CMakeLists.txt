@@ -1,0 +1,1 @@
+quickadd_console_executable()

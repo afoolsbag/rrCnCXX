@@ -19,4 +19,4 @@ private:
     Ui::Widget *ui;
 };
 
-#endif//WIDGET_H
+#endif

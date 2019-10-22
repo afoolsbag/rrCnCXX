@@ -3,10 +3,10 @@
 //! \file
 //! \brief Qt 快速应用程序入口。
 //!
-//! \author zhengrr
-//! \version 2018-10-25
+//! \version 2019-10-22
 //! \sinve 2018-03-19
-//! \copyright The Unlicense
+//! \authors zhengrr
+//! \copyright Unlicense
 //!
 //===----------------------------------------------------------------------===//
 

@@ -45,8 +45,9 @@ add_executable_con(
 
 add_test(NAME rrSQLiteTest COMMAND rrSQLiteTest)
 
+aux_source_directory_con("tracks_gizmo" zTracksGizmo PREFIX "tracks_gizmo")
 add_executable_con(
-  rrTracksGizmo       "tracks_gizmo/main.cxx"
+  rrTracksGizmo       ${zTracksGizmo}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   LINK_LIBRARIES      PRIVATE               CONAN_PKG::gsl_microsoft

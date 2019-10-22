@@ -1,1 +1,1 @@
-quick_add_executable()
+quickadd_opencv_executable()

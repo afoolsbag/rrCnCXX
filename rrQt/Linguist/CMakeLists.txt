@@ -17,9 +17,9 @@ add_executable_con(
                  Qt5::Widgets)
 
 add_custom_command(
-    TARGET rrQtLinguist POST_BUILD
-    COMMAND "${CMAKE_COMMAND}" "-E" "make_directory"
-            "$<TARGET_FILE_DIR:rrQtLinguist>/lang")
+  TARGET rrQtLinguist POST_BUILD
+  COMMAND "${CMAKE_COMMAND}" "-E" "make_directory"
+          "$<TARGET_FILE_DIR:rrQtLinguist>/lang")
 
 add_custom_command(
   TARGET rrQtLinguist POST_BUILD

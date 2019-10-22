@@ -4,7 +4,7 @@
 # | '__| '__| | | | '_ \ / _ \ '_ \| |   | | | |
 # | |  | |  \ \_/ / |_) |  __/ | | | \__/\ \_/ /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____/\___/  zhengrr
-#                 | |                            2018-01-22 – 2019-10-15
+#                 | |                            2018-01-22 – 2019-10-22
 #                 |_|                            Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -35,7 +35,7 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-macro(quick_add_executable)
+macro(quickadd_opencv_executable)
   get_filename_component(pDirName "${CMAKE_CURRENT_LIST_DIR}" NAME)
   aux_source_directory_con("." zSrc RECURSE)
   add_executable_con(
