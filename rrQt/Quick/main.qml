@@ -1,4 +1,4 @@
-                              // All QML Modules              https://doc.qt.io/qt-5/modules-qml.html
+// All QML Modules              https://doc.qt.io/qt-5/modules-qml.html
 import QtQuick 2.13           // Qt Quick QML Types           https://doc.qt.io/qt-5/qtquick-qmlmodule.html
 import QtQuick.Window 2.13    // Qt Quick Window QML Types    https://doc.qt.io/qt-5/qtquick-window-qmlmodule.html
 import QtQuick.Controls 2.13  // Qt Quick Controls QML Types  https://doc.qt.io/qt-5/qtquick-controls2-qmlmodule.html
@@ -10,18 +10,17 @@ Window {
     height: 480
     title: qsTr("hello, world")
 
-    RowLayout {
-        transformOrigin: Item.Center
+
+    GridLayout {
+        id: rowLayout
         anchors.fill: parent
 
         Button {
             id: button
-            x: 270
-            y: 220
-            text: qsTr("Button")
+            text: qsTr("hello, world")
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             onClicked: console.log("hello, world");
         }
-
     }
 
 }

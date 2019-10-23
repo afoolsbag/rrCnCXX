@@ -104,8 +104,8 @@ double cosine_similarity(const std::array<float, fvlen> &fv1, const std::array<f
 
 static void cosine_similarity_benchmark(benchmark::State &state)
 {
-    const array<float, 512> fv1 {};
-    const array<float, 512> fv2 {};
+    static constexpr array<float, 512> fv1 {};
+    static constexpr array<float, 512> fv2 {};
     for (auto _ : state) {
         rrassembly::cosine_similarity(fv1, fv2);
     }

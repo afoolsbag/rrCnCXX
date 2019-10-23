@@ -1,7 +1,7 @@
 //===-- Interprocess --------------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief Format
+/// \brief Interprocess
 /// \sa <https://boost.org/doc/libs/master/libs/interprocess/index.html>
 ///
 /// \version 2019-09-09

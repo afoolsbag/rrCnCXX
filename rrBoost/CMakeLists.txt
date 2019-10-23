@@ -57,6 +57,9 @@ add_executable_con(
 if(WIN32)
   target_compile_definitions(rrBoostTest PRIVATE "_WIN32_WINNT=0x0A00")  # Windows 10
 endif()
+if(MSVC)
+  target_compile_options(rrBoostTest PRIVATE "/EHs" "/GL-")              # Boost.Coroutine2
+endif()
 if(UNIX)
   target_link_libraries(rrBoostTest PRIVATE dl rt)
 endif()
