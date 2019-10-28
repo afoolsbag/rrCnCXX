@@ -2,7 +2,7 @@
 #         |_   _|
 #  _ __ _ __| |  ___ ___
 # | '__| '__| | / __/ _ \ zhengrr
-# | |  | | _| || (_|  __/ 2018-03-21 – 2019-07-10
+# | |  | | _| || (_|  __/ 2018-03-21 – 2019-10-28
 # |_|  |_| \___/\___\___| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -13,10 +13,13 @@ project_ex(
   TIME_AS_VERSION
   LANGUAGES CXX)
 
+include_conan_script()
+
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 add_doxygen_con(

@@ -44,6 +44,18 @@ if(UNIX)
   target_link_libraries(rrArgsGizmo PRIVATE dl)
 endif()
 
+aux_source_directory_con("skts_gizmo" zSktsGizmo PREFIX "skts_gizmo")
+add_executable_con(
+  rrSktsGizmo         ${zSktsGizmo}
+                      "README.md"
+  PROPERTIES          CXX_STANDARD          20
+                      CXX_STANDARD_REQUIRED ON
+  INCLUDE_DIRECTORIES PRIVATE "skts_gizmo"
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::boost)
+if(WIN32)
+  target_compile_definitions(rrSktsGizmo PRIVATE "_WIN32_WINNT=0x0A00")  # Windows 10
+endif()
+
 aux_source_directory_con("test" zTest PREFIX "test")
 add_executable_con(
   rrBoostTest         ${zTest}
