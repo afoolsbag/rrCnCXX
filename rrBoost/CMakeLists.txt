@@ -39,10 +39,8 @@ add_executable_con(
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "args_gizmo"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::boost)
-if(UNIX)
-  target_link_libraries(rrArgsGizmo PRIVATE dl)
-endif()
+  LINK_LIBRARIES      PRIVATE $<$<PLATFORM_ID:Linux>:dl>
+                              CONAN_PKG::boost)
 
 aux_source_directory_con("skts_gizmo" zSktsGizmo PREFIX "skts_gizmo")
 add_executable_con(
@@ -63,7 +61,9 @@ add_executable_con(
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "test"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
+  LINK_LIBRARIES      PRIVATE $<$<PLATFORM_ID:Linux>:dl>
+                              $<$<PLATFORM_ID:Linux>:rt>
+                              CONAN_PKG::gtest
                               CONAN_PKG::boost
                               CONAN_PKG::gsl_microsoft)
 if(WIN32)
@@ -71,9 +71,6 @@ if(WIN32)
 endif()
 if(MSVC)
   target_compile_options(rrBoostTest PRIVATE "/EHs" "/GL-")              # Boost.Coroutine2
-endif()
-if(UNIX)
-  target_link_libraries(rrBoostTest PRIVATE dl rt)
 endif()
 
 add_test(NAME rrBoostTest COMMAND rrBoostTest)

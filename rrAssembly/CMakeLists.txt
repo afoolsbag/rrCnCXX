@@ -38,7 +38,7 @@ add_executable_con(
                       C_STANDARD_REQUIRED   ON
                       CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  COMPILE_OPTIONS     PRIVATE               "$<$<CXX_COMPILER_ID:MSVC>:/arch:AVX2>"
+  COMPILE_OPTIONS     PRIVATE               $<$<CXX_COMPILER_ID:MSVC>:/arch:AVX2>
   INCLUDE_DIRECTORIES PRIVATE               "."
   LINK_LIBRARIES      CONAN_PKG::benchmark
                       CONAN_PKG::gsl_microsoft)
