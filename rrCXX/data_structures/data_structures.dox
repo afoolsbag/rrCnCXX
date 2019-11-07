@@ -1,0 +1,30 @@
+//===-- Data Structures -----------------------------------------*- C++ -*-===//
+///
+/// \defgroup gDataStructures 数据结构
+/// \ingroup gReference
+///
+/// \ref pDataStructures
+///
+/// \sa [“数据结构”](https://zh.wikipedia.org/wiki/数据结构). *Wikipedia*.
+///
+/// \version 2019-11-07
+/// \since 2019-11-07
+/// \authors zhengrr
+/// \copyright CC0-1.0
+///
+//===----------------------------------------------------------------------===//
+
+//===-- Data Structures Topics ----------------------------------*- C++ -*-===//
+///
+/// \page pDataStructures 数据结构议题
+/// \tableofcontents
+///
+/// \ref gDataStructures
+///
+/// ___
+/// \version 2019-11-07
+/// \since 2019-11-07
+/// \authors zhengrr
+/// \copyright CC0-1.0
+///
+//===----------------------------------------------------------------------===//

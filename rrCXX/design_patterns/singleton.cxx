@@ -60,7 +60,7 @@ public:
     {
         static unique_ptr<eager_singleton> instance_owner {nullptr};
         if (instance_owner == nullptr)
-            instance_owner = unique_ptr<eager_singleton>(new eager_singleton);
+            instance_owner = unique_ptr<eager_singleton>{new eager_singleton};
         return *instance_owner;
     }
 };
@@ -94,7 +94,7 @@ public:
         {
             lock_guard lg {mutex};
             if (instance_owner == nullptr)
-                instance_owner = unique_ptr<lazy_singleton>(new lazy_singleton);
+                instance_owner = unique_ptr<lazy_singleton>{new lazy_singleton};
         }
         return *instance_owner;
 

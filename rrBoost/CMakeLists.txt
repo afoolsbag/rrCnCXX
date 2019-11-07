@@ -32,28 +32,6 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-aux_source_directory_con("args_gizmo" zArgsGizmo PREFIX "args_gizmo")
-add_executable_con(
-  rrArgsGizmo         ${zArgsGizmo}
-                      "README.md"
-  PROPERTIES          CXX_STANDARD          20
-                      CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "args_gizmo"
-  LINK_LIBRARIES      PRIVATE $<$<PLATFORM_ID:Linux>:dl>
-                              CONAN_PKG::boost)
-
-aux_source_directory_con("skts_gizmo" zSktsGizmo PREFIX "skts_gizmo")
-add_executable_con(
-  rrSktsGizmo         ${zSktsGizmo}
-                      "README.md"
-  PROPERTIES          CXX_STANDARD          20
-                      CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "skts_gizmo"
-  LINK_LIBRARIES      PRIVATE CONAN_PKG::boost)
-if(WIN32)
-  target_compile_definitions(rrSktsGizmo PRIVATE "_WIN32_WINNT=0x0A00")  # Windows 10
-endif()
-
 aux_source_directory_con("test" zTest PREFIX "test")
 add_executable_con(
   rrBoostTest         ${zTest}
@@ -74,3 +52,5 @@ if(MSVC)
 endif()
 
 add_test(NAME rrBoostTest COMMAND rrBoostTest)
+
+add_aux_subdirectories_con(WITHOUT_OPTION)

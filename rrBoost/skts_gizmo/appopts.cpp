@@ -31,15 +31,12 @@ appopts::appopts(int argc, const char *const argv[])
         ("environment-prefix", bpo::value(&entries_.environment_prefix)->default_value(default_environment_prefix), "Specify environment prefix");
 #//=============================================================================
 #//
+    const auto default_logs_directory = boost::dll::program_location().replace_extension(".logs");
     common_options_.add_options()
-        ("include-directory,I", bpo::value(&entries_.include_directories)->composing(), "Add directory to search list for .include directives")
-        ("optimization-level,O", bpo::value(&entries_.optimization_level)->default_value(0), "Specify optimization level")
-        ("output-file,o", bpo::value(&entries_.output_file)->default_value("a.out"), "Name the output file")
-        ("report-file", bpo::value(&entries_.report_file), "Generate and name report file")
-        ("verbosity-level,v", bpo::value(&entries_.verbosity_level)->default_value(2), "Specify verbosity level")
-        ("warning-level,w", bpo::value(&entries_.warning_level)->default_value(3), "Specify warning level");
+        ("logs-directory", bpo::value(&entries_.logs_directory)->default_value(default_logs_directory), "Specify logs directory")
+        ("export-port,p", bpo::value(&entries_.export_port)->default_value(49152), "Specify listening port");
     hidden_options_.add_options()
-        ("input-file", bpo::value(&entries_.input_files)->composing(), "Add file to build list");
+        ("parameters", bpo::value(&entries_.parameters)->composing(), "Add some parameter(s)");
 #//
 #//-----------------------------------------------------------------------------
     parse_from_command_lice(argc, argv);
@@ -54,11 +51,11 @@ void appopts::print_help(std::ostream &os) const
     os << '\n';
 #//=============================================================================
 #//
-    os << "Usage: " << program_name << " [option]... <file>...\n";
+    os << "Usage: " << program_name << " [option]...\n";
 #//
 #//-----------------------------------------------------------------------------
     os << '\n';
-    bpo::options_description desc {"Options"};
+    bpo::options_description desc{ "Options" };
     desc.add(general_options_).add(common_options_);
     os << desc;
     os << '\n';
@@ -69,20 +66,16 @@ void appopts::print_options(std::ostream &os) const
     os << '\n';
     os << "Debugging: \n";
     os << '\n';
-    os << "  help                = " << entries_.help << '\n';
-    os << "  debug               = " << entries_.debug << '\n';
-    os << "  version             = " << entries_.version << '\n';
-    os << "  configuration-file  = " << entries_.configuration_file << '\n';
-    os << "  environment-prefix  = " << entries_.environment_prefix << '\n';
+    os << "  help               = " << entries_.help << '\n';
+    os << "  debug              = " << entries_.debug << '\n';
+    os << "  version            = " << entries_.version << '\n';
+    os << "  configuration-file = " << entries_.configuration_file << '\n';
+    os << "  environment-prefix = " << entries_.environment_prefix << '\n';
 #//=============================================================================
 #//
-    os << "  include-directories = "; for (const auto &e : entries_.include_directories) os << e << ' '; os << '\n';
-    os << "  input-files         = "; for (const auto &e : entries_.input_files) os << e << ' '; os << '\n';
-    os << "  optimization-level  = " << entries_.optimization_level << '\n';
-    os << "  output-file         = " << entries_.output_file << '\n';
-    os << "  report-file         = " << entries_.report_file << '\n';
-    os << "  verbosity-level     = " << entries_.verbosity_level << '\n';
-    os << "  warning-level       = " << entries_.warning_level << '\n';
+    os << "  logs-directory     = " << entries_.logs_directory << '\n';
+    os << "  export-port        = " << entries_.export_port << '\n';
+    os << "  parameters         = "; for (const auto &e : entries_.parameters) os << e << ' '; os << '\n';
 #//
 #//-----------------------------------------------------------------------------
     os << '\n';
@@ -95,23 +88,23 @@ void appopts::parse_from_command_lice(int argc, const char *const argv[])
 #//=============================================================================
 #//
     bpo::positional_options_description poss;
-    poss.add("input-file", -1);
+    poss.add("parameters", -1);
 #//
 #//-----------------------------------------------------------------------------
-    bpo::store(bpo::command_line_parser {argc, argv}.options(opts).positional(poss).run(), vars_);
+    bpo::store(bpo::command_line_parser{ argc, argv }.options(opts).positional(poss).run(), vars_);
     bpo::notify(vars_);
 }
 
 void appopts::parse_from_configuration_file(const boost::filesystem::path &configuration_file)
 {
     if (!exists(configuration_file))
-        ofstream {configuration_file.c_str()};
+        ofstream{ configuration_file.c_str() };
 
-    ifstream ifs {configuration_file.c_str()};
+    ifstream ifs{ configuration_file.c_str() };
     if (!ifs) {
         ostringstream oss;
         oss << "read configuration file " << configuration_file << " failed";
-        throw runtime_error {oss.str()};
+        throw runtime_error{ oss.str() };
     }
 
     bpo::options_description opts;
@@ -148,24 +141,24 @@ void appopts::launch_debugger()
     WCHAR acBuf[MAX_PATH];
     if (GetSystemDirectoryW(acBuf, _countof(acBuf)) == 0)
         return;
-    const auto vsjitdebugger = bfs::path {acBuf} / L"vsjitdebugger.exe";
+    const auto vsjitdebugger = bfs::path{ acBuf } / L"vsjitdebugger.exe";
     auto cmd = vsjitdebugger.wstring() + L" -p " + to_wstring(GetCurrentProcessId());
 
-    STARTUPINFOW stStartupInfo {};
+    STARTUPINFOW stStartupInfo{};
     stStartupInfo.cb = sizeof(stStartupInfo);
 
-    PROCESS_INFORMATION stProcInfo {};
+    PROCESS_INFORMATION stProcInfo{};
 
     if (!CreateProcessW(reinterpret_cast<LPCWSTR>(vsjitdebugger.wstring().data()),
-                        reinterpret_cast<LPWSTR>(cmd.data()),
-                        nullptr,
-                        nullptr,
-                        FALSE,
-                        0,
-                        nullptr,
-                        nullptr,
-                        &stStartupInfo,
-                        &stProcInfo))
+        reinterpret_cast<LPWSTR>(cmd.data()),
+        nullptr,
+        nullptr,
+        FALSE,
+        0,
+        nullptr,
+        nullptr,
+        &stStartupInfo,
+        &stProcInfo))
         return;
     CloseHandle(stProcInfo.hThread);
     CloseHandle(stProcInfo.hProcess);
