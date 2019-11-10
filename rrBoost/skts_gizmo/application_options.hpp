@@ -2,9 +2,9 @@
 ///
 /// \file
 /// \brief 应用选项
-/// \sa <https://boost.org/doc/libs/master/doc/html/program_options.html>
+/// \sa <https://boost.org/doc/libs/master/libs/program_options/>
 ///
-/// \version 2019-09-17
+/// \version 2019-11-10
 /// \since 2019-08-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef APPOPTS_HPP_
-#define APPOPTS_HPP_
+#ifndef APPLICATION_OPTIONS_HPP_
+#define APPLICATION_OPTIONS_HPP_
 
 #include <cstdint>
 #include <string>
@@ -24,7 +24,7 @@
 #include <boost/program_options.hpp>
 
 /// \brief Application Options
-class appopts final {
+class application_options final {
 private:
     struct {
         bool help;                                   ///< 帮助信息
@@ -42,7 +42,7 @@ private:
     } entries_;
 
 public:
-    explicit appopts(int argc, const char *const argv[]);
+    explicit application_options(int argc, const char *const argv[]);
     [[nodiscard]] const auto *operator->() const { return &entries_; }
 
     void print_help(std::ostream &os) const;
@@ -57,7 +57,7 @@ private:
     boost::program_options::options_description common_options_;
     boost::program_options::options_description hidden_options_;
 
-    boost::program_options::variables_map vars_;
+    boost::program_options::variables_map variables_map_;
 
 public:
     static void launch_debugger();

@@ -8,10 +8,15 @@
 
 #include <boost/asio.hpp>
 #include <boost/enable_shared_from_this.hpp>
+#include <boost/smart_ptr.hpp>
 
 class tcp_connection : public boost::enable_shared_from_this<tcp_connection> {
 public:
-    static boost::shared_ptr<tcp_connection> create(boost::asio::io_context &io_context);
+    using ptr = boost::shared_ptr<tcp_connection>;
+    using streambuf_ptr = boost::shared_ptr<boost::asio::streambuf>;
+    using string_ptr = boost::shared_ptr<std::string>;
+
+    static ptr create(boost::asio::io_context &io_context);
 
     boost::asio::ip::tcp::socket &socket();
 
@@ -22,17 +27,22 @@ public:
 private:
     explicit tcp_connection(boost::asio::io_context &io_context);
 
-    /// \biref 等待接受下一个请求
-    void start_receive_request();
+    /// \biref 异步接受下一个请求
+    void async_receive();
 
-    /// \brief 处理接受到的请求
-    void handle_receive(boost::shared_ptr<boost::asio::streambuf> request, const boost::system::error_code &error) noexcept;
+    /// \brief 异步接受到请求时的回调
+    /// \param req_ptr 请求报文共享指针（request pointer）
+    /// \param err     错误码（error code）
+    void on_received(streambuf_ptr req_ptr, const boost::system::error_code &err) noexcept;
 public:
-    /// \biref 等待发送下一个回应
-    inline void start_send_response(const std::string &response);
+    /// \biref 异步发送下一个回应
+    /// \param res 回应报文（response）
+    inline void async_send(const std::string &res);
 private:
-    /// \biref 处理发送出的回应
-    void handle_send(boost::shared_ptr<std::string> response, const boost::system::error_code &error) noexcept;
+    /// \biref 异步发送出回应时的回调
+    /// \param res_ptr 回应报文共享指针（response pointer）
+    /// \param err     错误码（error code）
+    void on_sended(string_ptr res_ptr, const boost::system::error_code &err) noexcept;
 
     boost::asio::ip::tcp::socket socket_;
     std::string remote_address_;

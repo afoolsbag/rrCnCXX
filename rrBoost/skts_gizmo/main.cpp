@@ -5,7 +5,7 @@
 /// \sa <https://boost.org/doc/libs/master/doc/html/boost_asio.html>
 /// \sa <https://boost.org/doc/libs/master/doc/html/program_options.html>
 ///
-/// \version 2019-11-07
+/// \version 2019-11-10
 /// \since 2018-04-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -22,11 +22,10 @@
 
 #include <rrspdlog.hxx>
 
-#include "appopts.hpp"
+#include "application_options.hpp"
 #include "tcp_server.hpp"
 
 using namespace std;
-using boost::asio::ip::tcp;
 
 constexpr char figlet_logo[]{
     R"(           _____ _    _       _____ _                     )" "\n"
@@ -38,9 +37,9 @@ constexpr char figlet_logo[]{
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) noexcept
 {
-    const appopts opts = [&]() noexcept -> appopts {
+    const application_options opts = [&]() noexcept -> application_options {
         try {
-            return appopts{ argc, argv };
+            return application_options{ argc, argv };
         } catch (const exception &e) {
             cerr << "Fatal error, parse configurations failed: " << e.what() << '\n';
             cerr << "The program will be closed.";

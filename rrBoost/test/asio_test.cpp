@@ -2,11 +2,13 @@
 ///
 /// \file
 /// \brief Asio
+/// \details Portable networking and other low-level I/O, including sockets, timers, hostname resolution, socket iostreams, serial ports, file descriptors and Windows HANDLEs.
+/// \details 可移植的网络和其他底层 I/O，包括套接字、计时器、主机名解析、套接字 I/O 流、串行端口、文件描述符和 Windows 句柄。
 ///
-/// \sa [Boost.Asio C++ 网络编程](https://gitbook.com/book/mmoaay/boost-asio-cpp-network-programming-chinese)
-/// \sa <https://boost.org/doc/libs/master/doc/html/boost_asio.html>
+/// \sa <https://boost.org/doc/libs/master/libs/asio/>
+/// \sa [Boost.Asio C++ 网络编程](https://mmoaay.gitbooks.io/boost-asio-cpp-network-programming-chinese/)
 ///
-/// \version 2019-07-10
+/// \version 2019-11-09
 /// \since 2019-01-08
 /// \authors zhengrr
 /// \copyright Unlicense

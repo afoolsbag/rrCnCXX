@@ -21,7 +21,10 @@
 ///   }
 /// \enduml
 ///
-/// \version 2018-11-27
+/// \note 单例模式会隐藏依赖，故而不建议使用。
+///       但在工业开发中，有时为提高开发效率而采用此模式，如全局配置、全局日志、全局线程池等。
+///
+/// \version 2019-11-09
 /// \since 2016-10-18
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -58,9 +61,9 @@ public:
     /// \brief 获取实例。
     static eager_singleton &instance()
     {
-        static unique_ptr<eager_singleton> instance_owner {nullptr};
+        static unique_ptr<eager_singleton> instance_owner{ nullptr };
         if (instance_owner == nullptr)
-            instance_owner = unique_ptr<eager_singleton>{new eager_singleton};
+            instance_owner = unique_ptr<eager_singleton>{ new eager_singleton };
         return *instance_owner;
     }
 };
@@ -89,13 +92,33 @@ public:
         return instance_owner;
 
 #else
-        static unique_ptr<lazy_singleton> instance_owner {nullptr};
         static mutex mutex;
-        {
-            lock_guard lg {mutex};
-            if (instance_owner == nullptr)
-                instance_owner = unique_ptr<lazy_singleton>{new lazy_singleton};
-        }
+        lock_guard lg{ mutex };
+        static unique_ptr<lazy_singleton> instance_owner{ nullptr };
+        if (instance_owner == nullptr)
+            instance_owner = unique_ptr<lazy_singleton>{ new lazy_singleton };
+        return *instance_owner;
+
+#endif
+    }
+};
+
+// SINGLETON TEMPLATE
+
+template <class T>
+struct singleton {
+    static T &instance()
+    {
+#if FEATURE_N2660
+        static T instance_owner;
+        return instance_owner;
+
+#else
+        static std::mutex mutex;
+        std::lock_guard lg{ mutex };
+        static std::unique_ptr<T> instance_owner{ nullptr };
+        if (instance_owner == nullptr)
+            instance_owner = std::make_unique<T>();
         return *instance_owner;
 
 #endif
@@ -113,6 +136,10 @@ TEST(design_patterns, singleton)
     auto &lazy_singleton_1 = lazy_singleton::instance();
     auto &lazy_singleton_2 = lazy_singleton::instance();
     ASSERT_EQ(&lazy_singleton_1, &lazy_singleton_2);
+
+    auto &singleton_1 = singleton<int>::instance();
+    auto &singleton_2 = singleton<int>::instance();
+    ASSERT_EQ(&singleton_1, &singleton_2);
 }
 
 /// @}
