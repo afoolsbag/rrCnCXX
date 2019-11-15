@@ -3,7 +3,7 @@
 /// \defgroup gMain 主函数
 /// \ingroup gLanguage
 ///
-/// \version 2019-08-20
+/// \version 2019-11-13
 /// \since 2016-10-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -16,7 +16,7 @@
 
 using namespace std;
 
-/// \brief 入口点（主函数）。
+/// \brief 主函数。
 ///
 /// \param argc 参数计数（argument count）。
 /// \param argv 参数矢量（argument vector）。
@@ -27,7 +27,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 #ifndef NDEBUG
-    locale::global(locale {"zh_CN.UTF-8"});
+    locale::global(locale {"C.UTF-8"});
 #endif
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

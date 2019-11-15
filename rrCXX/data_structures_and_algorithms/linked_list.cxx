@@ -1,7 +1,7 @@
 //===-- Linked List ---------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gLinkedList 链表
-/// \ingroup gDataStructures
+/// \ingroup gDataStructuresAndAlgorithms
 ///
 /// \version 2019-11-07
 /// \since 2019-11-07

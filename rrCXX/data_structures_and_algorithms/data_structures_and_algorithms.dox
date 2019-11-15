@@ -1,13 +1,14 @@
-//===-- Data Structures -----------------------------------------*- C++ -*-===//
+//===-- Data Structures and Algorithms --------------------------*- C++ -*-===//
 ///
-/// \defgroup gDataStructures 数据结构
+/// \defgroup gDataStructuresAndAlgorithms 数据结构和算法
 /// \ingroup gReference
 ///
-/// \ref pDataStructures
+/// \ref pDataStructuresAndAlgorithms
 ///
 /// \sa [“数据结构”](https://zh.wikipedia.org/wiki/数据结构). *Wikipedia*.
+/// \sa [“算法”](https://zh.wikipedia.org/wiki/算法). *Wikipedia*.
 ///
-/// \version 2019-11-07
+/// \version 2019-11-14
 /// \since 2019-11-07
 /// \authors zhengrr
 /// \copyright CC0-1.0
@@ -16,13 +17,13 @@
 
 //===-- Data Structures Topics ----------------------------------*- C++ -*-===//
 ///
-/// \page pDataStructures 数据结构议题
+/// \page pDataStructuresAndAlgorithms 数据结构和算法议题
 /// \tableofcontents
 ///
-/// \ref gDataStructures
+/// \ref gDataStructuresAndAlgorithms
 ///
 /// ___
-/// \version 2019-11-07
+/// \version 2019-11-14
 /// \since 2019-11-07
 /// \authors zhengrr
 /// \copyright CC0-1.0
