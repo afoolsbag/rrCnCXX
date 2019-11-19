@@ -20,13 +20,13 @@ void length_base_benchmark(benchmark::State &state)
     for (auto &i : v)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::length(v);
+        benchmark::DoNotOptimize(rrassembly::internal::length(v));
     }
 }
 BENCHMARK(length_base_benchmark);
 
+#if RRASSEMBLY_AVX_SUPPORTED
 void length_128_benchmark(benchmark::State &state)
 {
     random_device dev;
@@ -37,13 +37,14 @@ void length_128_benchmark(benchmark::State &state)
     for (auto &i : v)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::length_128(v);
+        benchmark::DoNotOptimize(rrassembly::internal::length_128(v));
     }
 }
 BENCHMARK(length_128_benchmark);
+#endif
 
+#if RRASSEMBLY_AVX2_SUPPORTED
 void length_256_benchmark(benchmark::State &state)
 {
     random_device dev;
@@ -54,11 +55,11 @@ void length_256_benchmark(benchmark::State &state)
     for (auto &i : v)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::length_256(v);
+        benchmark::DoNotOptimize(rrassembly::internal::length_256(v));
     }
 }
 BENCHMARK(length_256_benchmark);
+#endif
 
 }

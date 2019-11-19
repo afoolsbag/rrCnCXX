@@ -23,13 +23,13 @@ void euclidean_distance_base_benchmark(benchmark::State &state)
     for (auto &i : pt2)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::euclidean_distance(pt1, pt2);
+        benchmark::DoNotOptimize(rrassembly::internal::euclidean_distance(pt1, pt2));
     }
 }
 BENCHMARK(euclidean_distance_base_benchmark);
 
+#if RRASSEMBLY_AVX_SUPPORTED
 void euclidean_distance_128_benchmark(benchmark::State &state)
 {
     random_device dev;
@@ -43,13 +43,14 @@ void euclidean_distance_128_benchmark(benchmark::State &state)
     for (auto &i : pt2)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::euclidean_distance_128(pt1, pt2);
+        benchmark::DoNotOptimize(rrassembly::internal::euclidean_distance_128(pt1, pt2));
     }
 }
 BENCHMARK(euclidean_distance_128_benchmark);
+#endif
 
+#if RRASSEMBLY_AVX2_SUPPORTED
 void euclidean_distance_256_benchmark(benchmark::State &state)
 {
     random_device dev;
@@ -63,11 +64,11 @@ void euclidean_distance_256_benchmark(benchmark::State &state)
     for (auto &i : pt2)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::euclidean_distance_256(pt1, pt2);
+        benchmark::DoNotOptimize(rrassembly::internal::euclidean_distance_256(pt1, pt2));
     }
 }
 BENCHMARK(euclidean_distance_256_benchmark);
+#endif
 
 }

@@ -1,19 +1,17 @@
 /// \copyright Unlicense
 
 #pragma once
-#ifndef RRHCP_INL_
-#define RRHCP_INL_
+#ifndef RRASSEMBLY_RRHCP_INL_
+#define RRASSEMBLY_RRHCP_INL_
 
 #include "rrhpc.hxx"
 
 #include <cmath>
 #include <utility>
 
-#define AVX2_SUPPORTED 1
-#define AVX_SUPPORTED 1
-#define SSE_SUPPORTED 1
+#include "rrcpuid.hxx"
 
-#if AVX_SUPPORTED
+#if RRASSEMBLY_AVX_SUPPORTED
 #include <immintrin.h>
 #endif
 
@@ -30,6 +28,7 @@ float euclidean_distance(const std::array<float, pt_dim> &pt1, const std::array<
     return std::sqrt(sum_of_sqr);
 }
 
+#if RRASSEMBLY_AVX_SUPPORTED
 template<std::size_t pt_dim>
 float euclidean_distance_128(const std::array<float, pt_dim> &pt1, const std::array<float, pt_dim> &pt2)
 {
@@ -45,7 +44,9 @@ float euclidean_distance_128(const std::array<float, pt_dim> &pt1, const std::ar
     }
     return sum_of_sqr;
 }
+#endif
 
+#if RRASSEMBLY_AVX2_SUPPORTED
 template<std::size_t pt_dim>
 float euclidean_distance_256(const std::array<float, pt_dim> &pt1, const std::array<float, pt_dim> &pt2)
 {
@@ -61,15 +62,16 @@ float euclidean_distance_256(const std::array<float, pt_dim> &pt1, const std::ar
     }
     return sum_of_sqr;
 }
+#endif
 
 }
 
 template<std::size_t pt_dim>
 float euclidean_distance(const std::array<float, pt_dim> &pt1, const std::array<float, pt_dim> &pt2)
 {
-#if AVX2_SUPPORTED
+#if RRASSEMBLY_AVX2_SUPPORTED
     return internal::euclidean_distance_256(std::forward<const std::array<float, pt_dim> &>(pt1), std::forward<const std::array<float, pt_dim> &>(pt2));
-#elif AVX_SUPPORTED
+#elif RRASSEMBLY_AVX_SUPPORTED
     return internal::euclidean_distance_128(std::forward<const std::array<float, pt_dim> &>(pt1), std::forward<const std::array<float, pt_dim> &>(pt2));
 #else
     return internal::euclidean_distance(std::forward<const std::array<float, pt_dim> &>(pt1), std::forward<const std::array<float, pt_dim> &>(pt2));
@@ -87,6 +89,7 @@ float length(const std::array<float, vec_dim> &v)
     return std::sqrt(sum_of_sqr);
 }
 
+#if RRASSEMBLY_AVX_SUPPORTED
 template<std::size_t vec_dim>
 float length_128(const std::array<float, vec_dim> &v)
 {
@@ -100,7 +103,9 @@ float length_128(const std::array<float, vec_dim> &v)
     }
     return std::sqrt(sum_of_sqr);
 }
+#endif
 
+#if RRASSEMBLY_AVX2_SUPPORTED
 template<std::size_t vec_dim>
 float length_256(const std::array<float, vec_dim> &v)
 {
@@ -114,15 +119,16 @@ float length_256(const std::array<float, vec_dim> &v)
     }
     return std::sqrt(sum_of_sqr);
 }
+#endif
 
 }
 
 template<std::size_t vec_dim>
 float length(const std::array<float, vec_dim> &v)
 {
-#if AVX2_SUPPORTED
+#if RRASSEMBLY_AVX2_SUPPORTED
     return internal::length_256(std::forward<const std::array<float, vec_dim> &>(v));
-#elif AVX_SUPPORTED
+#elif RRASSEMBLY_AVX_SUPPORTED
     return internal::length_128(std::forward<const std::array<float, vec_dim> &>(v));
 #else
     return internal::length(std::forward<const std::array<float, vec_dim> &>(v));
@@ -140,6 +146,7 @@ float dot_product(const std::array<float, vec_dim> &v1, const std::array<float, 
     return sum_of_prd;
 }
 
+#if RRASSEMBLY_AVX_SUPPORTED
 template<std::size_t vec_dim>
 float dot_product_128(const std::array<float, vec_dim> &v1, const std::array<float, vec_dim> &v2)
 {
@@ -169,7 +176,9 @@ float dot_product_128(const std::array<float, vec_dim> &v1, const std::array<flo
     }
     return sum_of_prd;
 }
+#endif
 
+#if RRASSEMBLY_AVX2_SUPPORTED
 template<std::size_t vec_dim>
 float dot_product_256(const std::array<float, vec_dim> &v1, const std::array<float, vec_dim> &v2)
 {
@@ -199,15 +208,16 @@ float dot_product_256(const std::array<float, vec_dim> &v1, const std::array<flo
     }
     return sum_of_prd;
 }
+#endif
 
 }
 
 template<std::size_t vec_dim>
 float dot_product(const std::array<float, vec_dim> &v1, const std::array<float, vec_dim> &v2)
 {
-#if AVX2_SUPPORTED
+#if RRASSEMBLY_AVX2_SUPPORTED
     return internal::dot_product_256(std::forward<const std::array<float, vec_dim> &>(v1), std::forward<const std::array<float, vec_dim> &>(v2));
-#elif AVX_SUPPORTED
+#elif RRASSEMBLY_AVX_SUPPORTED
     return internal::dot_product_128(std::forward<const std::array<float, vec_dim> &>(v1), std::forward<const std::array<float, vec_dim> &>(v2));
 #else
     return internal::dot_product(std::forward<const std::array<float, vec_dim> &>(v1), std::forward<const std::array<float, vec_dim> &>(v2));

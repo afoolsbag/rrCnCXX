@@ -5,7 +5,7 @@
 /// \sa [Introduction to Intel® Advanced Vector Extensions](https://software.intel.com/articles/introduction-to-intel-advanced-vector-extensions/)
 /// \sa [Intel® Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
 ///
-/// \version 2019-11-15
+/// \version 2019-11-19
 /// \since 2019-10-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -13,8 +13,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRHPC_HXX_
-#define RRHPC_HXX_
+#ifndef RRASSEMBLY_RRHPC_HXX_
+#define RRASSEMBLY_RRHPC_HXX_
 
 #include <cstddef>
 #include <array>
@@ -32,7 +32,6 @@ namespace internal {
 /// \returns 略
 template<std::size_t pt_dim>
 float euclidean_distance(const std::array<float, pt_dim> &pt1, const std::array<float, pt_dim> &pt2);
-
 
 /// \brief 长度（length）
 ///

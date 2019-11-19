@@ -23,13 +23,13 @@ void dot_product_base_benchmark(benchmark::State &state)
     for (auto &i : v2)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::dot_product(v1, v2);
+        benchmark::DoNotOptimize(rrassembly::internal::dot_product(v1, v2));
     }
 }
 BENCHMARK(dot_product_base_benchmark);
 
+#if RRASSEMBLY_AVX_SUPPORTED
 void dot_product_128_benchmark(benchmark::State &state)
 {
     random_device dev;
@@ -43,13 +43,14 @@ void dot_product_128_benchmark(benchmark::State &state)
     for (auto &i : v2)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::dot_product_128(v1, v2);
+        benchmark::DoNotOptimize(rrassembly::internal::dot_product_128(v1, v2));
     }
 }
 BENCHMARK(dot_product_128_benchmark);
+#endif
 
+#if RRASSEMBLY_AVX2_SUPPORTED
 void dot_product_256_benchmark(benchmark::State &state)
 {
     random_device dev;
@@ -63,11 +64,11 @@ void dot_product_256_benchmark(benchmark::State &state)
     for (auto &i : v2)
         i = dis(eng);
 
-    volatile float r {};
     for (auto _ : state) {
-        r = rrassembly::internal::dot_product_256(v1, v2);
+        benchmark::DoNotOptimize(rrassembly::internal::dot_product_256(v1, v2));
     }
 }
 BENCHMARK(dot_product_256_benchmark);
+#endif
 
 }
