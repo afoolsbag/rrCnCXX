@@ -5,7 +5,7 @@
 # | |  | |./ /__| (_) | (_) |   <  __/  __/ |_) |  __/ |
 # |_|  |_|\_____/\___/ \___/|_|\_\___|\___| .__/ \___|_|
 # zhengrr                                 | |
-# 2018-12-29 – 2019-07-18                 |_|
+# 2018-12-29 – 2019-11-20                 |_|
 # Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -14,7 +14,7 @@ cmake_policy(VERSION 3.12)
 include_hunter_gate_script()
 
 project_ex(
-  rrZooKeeper
+  rrZookeeper
   TIME_AS_VERSION
   LANGUAGES CXX)
 
@@ -27,23 +27,28 @@ add_compile_options_ex(
 
 hunter_add_package(zookeeper)
 find_package(zookeeper CONFIG REQUIRED)
-aux_source_directory_con("wrapper" zWrapper RECURSE PREFIX "wrapper")
+
+include_conan_script()
+conan_cmake_run(
+  REQUIRES    gtest/1.10.0
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
+
+aux_source_directory_con("../include/rrzookeeper" zWrapper RECURSE PREFIX "include/rrzookeeper")
 add_library_ex(
-  rrZookeeperWraper   INTERFACE
+  rrZookeeper         INTERFACE
   COMPILE_FEATURES    INTERFACE cxx_std_17
-  INCLUDE_DIRECTORIES INTERFACE "wrapper"
+  INCLUDE_DIRECTORIES INTERFACE "../include"
   LINK_LIBRARIES      INTERFACE zookeeper::zookeeper_mt
   SOURCES             INTERFACE ${zWrapper})
 
-hunter_add_package(GTest)
-find_package(GTest CONFIG REQUIRED)
-aux_source_directory_ex("test" zTest RECURSE PREFIX "test")
+aux_source_directory_ex("." zTest RECURSE)
 add_executable_con(
   rrZookeeperTest     ${zTest}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "test"
-  LINK_LIBRARIES      PRIVATE rrZookeeperWraper
-                              GTest::main)
+  INCLUDE_DIRECTORIES PRIVATE "."
+  LINK_LIBRARIES      PRIVATE rrZookeeper
+                              CONAN_PKG::gtest)
 
 add_test(NAME rrZookeeperTest COMMAND rrZookeeperTest)

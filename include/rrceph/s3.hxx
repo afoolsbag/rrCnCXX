@@ -1,8 +1,8 @@
-//===-- rrS3 S3 Wrapper -----------------------------------------*- C++ -*-===//
+//===-- rrCeph S3 Wrapper ---------------------------------------*- C++ -*-===//
 ///
 /// \file
 ///
-/// \version 2019-07-30
+/// \version 2019-11-20
 /// \since 2019-07-29
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -10,8 +10,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRS3_S3_HXX_
-#define RRS3_S3_HXX_
+#ifndef RRCEPH_S3_HXX_
+#define RRCEPH_S3_HXX_
 
 #include <cstdint>
 #include <ctime>
@@ -19,28 +19,29 @@
 #include <string>
 #include <vector>
 
-namespace rrs3 {
+namespace rrceph {
 
-/// \brief 桶信息
-struct bucket_info {
-    std::string owner_id;
-    std::string owner_display_name;
-    std::string bucket_name;
-    std::time_t creation_date {};
-};
-
-/// \brief 对象存储
-struct object_info {
-    std::string key;
-    std::time_t last_modified {};
-    std::string e_tag;
-    std::uint64_t size {};
-    std::string owner_id;
-    std::string owner_display_name;
-};
 
 class s3 {
 public:
+    /// \brief 桶信息
+    struct bucket_info {
+        std::string owner_id;
+        std::string owner_display_name;
+        std::string bucket_name;
+        std::time_t creation_date {};
+    };
+
+    /// \brief 对象存储
+    struct object_info {
+        std::string key;
+        std::time_t last_modified {};
+        std::string e_tag;
+        std::uint64_t size {};
+        std::string owner_id;
+        std::string owner_display_name;
+    };
+
     inline explicit s3(const std::string &agent, const std::string &host, const std::string &access_key, const std::string &secret_key);
     inline explicit s3(const s3 &) = delete;
     inline s3 &operator=(const s3 &) = delete;

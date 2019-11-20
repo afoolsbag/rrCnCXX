@@ -1,8 +1,8 @@
 /// \copyright Unlicense
 
 #pragma once
-#ifndef RRS3_S3_INL_
-#define RRS3_S3_INL_
+#ifndef RRCEPH_S3_INL_
+#define RRCEPH_S3_INL_
 
 #include "s3.hxx"
 
@@ -13,7 +13,7 @@
 
 #include <libs3.h>
 
-namespace rrs3 {
+namespace rrceph {
 
 inline s3::s3(const std::string &agent, const std::string &host, const std::string &access_key, const std::string &secret_key)
     : agent_ {agent}, host_ {host}, access_key_ {access_key}, secret_key_ {secret_key}

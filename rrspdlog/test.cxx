@@ -5,7 +5,7 @@
 #include <boost/dll.hpp>
 #include <gtest/gtest.h>
 
-#include "rrspdlog.hxx"
+#include "rrspdlog/rrspdlog.hxx"
 
 using namespace std;
 

@@ -2,7 +2,7 @@
 #           /  __ \     /  __ \
 #  _ __ _ __| /  \/_ __ | /  \/_  ____  __
 # | '__| '__| |   | '_ \| |   \ \/ /\ \/ / zhengrr
-# | |  | |  | \__/\ | | | \__/\>  <  >  <  2016-06-28 – 2019-07-22
+# | |  | |  | \__/\ | | | \__/\>  <  >  <  2016-06-28 – 2019-11-20
 # |_|  |_|   \____/_| |_|\____/_/\_\/_/\_\ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -15,12 +15,12 @@ include(rrCMake)
 
 product_ex(
   rrCnCxx
-  VERSION   2019.07.22
+  VERSION   2019.11.20
   LANGUAGES NONE
   AUTHORS   "zhengrr"
   LICENSE   "Unlicense")
 
-add_aux_subdirectories_con()
+add_subdirectory_aux()
 
 install(
   FILES       "UNLICENSE.txt"

@@ -2,7 +2,7 @@
 ///
 /// \file
 ///
-/// \version 2019-09-18
+/// \version 2019-11-20
 /// \since 2019-08-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include "rrkafka.hxx"
+#include "rrkafka/rrkafka.hxx"
 
 using namespace std;
 

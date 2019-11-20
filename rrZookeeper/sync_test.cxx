@@ -3,7 +3,7 @@
 /// \file
 /// \brief 同步增删改查。
 ///
-/// \version 2019-07-29
+/// \version 2019-11-20
 /// \since 2018-12-30
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -15,7 +15,7 @@
 #include <string>
 
 #include <gtest/gtest.h>
-#include "rrzookeeper.hxx"
+#include "rrzookeeper/rrzookeeper.hxx"
 
 using namespace std;
 
