@@ -1,0 +1,66 @@
+//===-- Develop Windows Desktop Applications Topics -------------*- C++ -*-===//
+///
+/// \page pDevelop 开发桌面应用程序议题
+/// \tableofcontents
+///
+/// ________________
+/// \section sLegend 组织结构说明
+///
+/// 在偏应用层次使用纯 C 开发效率较低，接口较繁琐，因此转用 C++ 开发，组织结构随之改变。
+///
+/// *   `.\include\rrwindows`、`.\src` 和 `.\test` 的目录结构相同：
+///
+///     *   目录按 Microsoft Docs 中 Desktop and technologies 的再级章节 URL 命名。
+///
+///         如 ... / `Desktop and technologies` / `Desktop App User Interface` / `Internationalization for Windows Applications`，
+///         其 URL 为 `https://docs.microsoft.com/windows/desktop/Intl/international-support`，
+///         取其中的 `intl` 为作为目录名，缩写组合词不添下划线。
+///
+///     *   文件按 Microsoft Docs 中的最终章节名命名。
+///
+///         如 ... / `Internationalization for Windows Applications` / `Unicode and Character Sets`，
+///         其章节名为 `Unicode and Character Sets`，取 `unicode_and_character_sets` 作为文件名。
+///
+///         又如 ... / `Internationalization for Windows Applications` / `Globalization Services` / `National Language Support`，
+///         其章节名为 `National Language Support`，取 `national_language_support` 作为文件名。
+///
+/// *   命名空间采用 `rrwindows`。
+///
+/// *   导出标识命名采用标准 C/C++ 风格。
+///
+/// *   接口类型采用标准 C/C++ 类型，内部实现显示转换为所需 Windows 类型，预防类型变动导致的数据失准。
+///
+/// \sa ["Develop desktop applications"](https://docs.microsoft.com/windows/desktop/). *Microsoft Docs*.
+///     *   [Desktop app technologies](https://docs.microsoft.com/windows/desktop/desktop-app-technologies)
+///     *   [API index](https://docs.microsoft.com/windows/desktop/apiindex)
+///     *   [Windows Runtime C++ reference](https://docs.microsoft.com/windows/desktop/winrt)
+///     *   [Develop with server technologies](https://docs.microsoft.com/windows/desktop/server-and-system-technologies)
+///     *   [Windows certification](https://docs.microsoft.com/windows/desktop/win_cert)
+///
+/// ___________________________
+/// \section sHungarianNotation 匈牙利命名法
+///
+/// > 匈牙利命名法由 Simonyi Károly 发明，其名称源自对 Simonyi 祖籍的一种讽刺：
+/// > 匈牙利人的姓名习惯，与多数其它欧洲人的姓名习惯是互反的，即姓在前而名在后。
+///
+/// 类似的，一般变量的描述习惯，是修饰词在前，名词在后，如 `aLongLongLongNameVar`；
+/// 而匈牙利命名法将其命名为 `varLongLongLongName`，将`var`提到最前。
+///
+/// 系统匈牙利命名法（System Hungarian Notation）仅适用于无类型或弱类型语言。
+/// 不要画蛇添足。
+///
+/// 应用匈牙利命名法（Apps Hungarian Notation）可以适时地使用：
+/// *   最常见的，区分类似语义的多个变量，譬如`strWidth`, `intWidth`, `dblWidth`。
+///     在类型转换和遍历迭代时很有用；
+/// *   在不提供模块、包、命名空间等类似功能的语言里，使用前缀以区分不同模块；
+/// *   在任何更有助于理解的情况下使用。
+///
+/// \sa <https://wikipedia.org/wiki/Hungarian_notation>
+/// \sa <https://stackoverflow.com/questions/1228161/why-use-prefixes-on-member-variables-in-c-classes>
+///
+/// \version 2019-07-08
+/// \since 2018-01-23
+/// \authors zhengrr
+/// \copyright CC0-1.0
+///
+//===----------------------------------------------------------------------===//

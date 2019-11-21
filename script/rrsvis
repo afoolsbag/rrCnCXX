@@ -1,0 +1,486 @@
+#!/usr/bin/env bash
+#            _____           _                 _   _ _____      _ _   _____           _       _
+#           /  ___|         | |               | | | |_   _|    (_) | /  ___|         (_)     | |
+#  _ __ _ __\ `--. _   _ ___| |_ ___ _ __ ___ | | | | | | _ __  _| |_\ `--.  ___ _ __ _ _ __ | |_
+# | '__| '__|`--. \ | | / __| __/ _ \ '_ ` _ \| | | | | || '_ \| | __|`--. \/ __| '__| | '_ \| __|
+# | |  | |  /\__/ / |_| \__ \ ||  __/ | | | | \ \_/ /_| || | | | | |_/\__/ / (__| |  | | |_) | |_
+# |_|  |_|  \____/ \__, |___/\__\___|_| |_| |_|\___/ \___/_| |_|_|\__\____/ \___|_|  |_| .__/ \__|
+#                   __/ |                                                              | |
+# zhengrr          |___/                                                               |_|
+# 2019-09-09 – 2019-11-13
+# Unlicense
+#
+# 初始化脚本：在系统切换运行级别时由系统调用，且可通过 `service` 命令由用户便捷调用。
+#
+# see also: [22.2. Init Script Actions](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html)
+#           [22.3. Comment Conventions for Init Scripts](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/initscrcomconv.html)
+#           [22.4. Installation and Removal of Init Scripts](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/initsrcinstrm.html)
+#           [22.5. Run Levels](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptfunc.html)
+#           [22.6. Facility Names](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/facilname.html)
+#           [22.7. Script Names](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/scrptnames.html)
+#           [22.8. Init Script Functions](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptfunc.html)
+
+# 初始化脚本的注释约定，供 `install_initd` 和 `remove_initd` 命令使用：
+#
+### BEGIN INIT INFO
+# Provides:       rrsvis
+# Required-Start: $local_fs $remote_fs $syslog
+# Required-Stop:  $local_fs $remote_fs $syslog
+# Default-Start:  2 3 4 5
+# Default-Stop:   0 1 6
+# Description:    zhengrr's System V init script
+### END INIT INFO
+#
+# 系统提供的依赖设施：
+# $local_fs  本地文件系统已挂载
+# $network   基础网络功能已就绪
+# $named     网络名称到地址的转换功能已就绪
+# $portmap   端口映射功能已就绪
+# $remote_fs 远程文件系统已挂载
+# $syslog    系统日志功能已就绪
+# $time      系统时间已设定
+#
+# 系统运行级别：
+# 0 停机
+# 1 单用户
+# 2 多用户（缺网络服务导出）
+# 3 多用户
+# 4 多用户（为本地使用保留）
+# 5 多用户（图形界面）
+# 6 重启
+#
+# 返回值：
+#         WITHOUT ACTION status                           WITH ACTION status
+#   0     successful                                      program is running or service is OK
+#   1     generic or unspecified error (current practice) program is dead and /var/run pid file exists
+#   2     invalid or excess argument(s)                   program is dead and /var/lock lock file exists
+#   3     unimplemented feature (for example, "reload")   program is not running
+#   4     user had insufficient privilege                 program or service status is unknown
+#   5     program is not installed                        reserved for future LSB use
+#   6     program is not configured                       reserved for future LSB use
+#   7     program is not running                          reserved for future LSB use
+#   8- 99                                    reserved for future LSB use
+# 100-149                                    reserved for distribution use
+# 150-199                                    reserved for application use
+# 200-254                                    reserved
+# 255                                        unspecified
+
+# 包入指定脚本 `/lib/lsb/init-functions`
+. /lib/lsb/init-functions
+
+# 配置
+readonly DAEMON_WDIR='/home/ubuntu/script'
+readonly DAEMON_PATH='/home/ubuntu/script/rrd.sh'
+readonly DAEMON_ARGS=''
+readonly NAKING_PATH='/home/ubuntu/script/rr.sh'
+
+# 配置检验
+if [[ ! "${DAEMON_WDIR}" == '/'* || ! -d "${DAEMON_WDIR}" ]]; then
+        log_failure_msg "The config DAEMON_WDIR isn't an absolute path to directory."
+        exit 5  # program is not installed
+fi
+if [[ ! "${DAEMON_PATH}" == '/'* || ! -x "${DAEMON_PATH}" ]]; then
+        log_failure_msg "The config DAEMON_PATH isn't an absolute path to execuable."
+        exit 5  # program is not installed
+fi
+if [[ -n "${NAKING_PATH}" && ( ! "${NAKING_PATH}" == '/'* || ! -x "${NAKING_PATH}" ) ]]; then
+        log_failure_msg "The config NAKING_PATH is set, but isn't an absolute path to execuable."
+        exit 5  # program is not installed
+fi
+
+# 自行生成的值
+readonly CURRENT_SCRIPT_PATH="$(readlink --canonicalize "$0")"
+readonly CURRENT_SCRIPT_DIR="$(dirname "${CURRENT_SCRIPT_PATH}")"
+readonly CURRENT_SCRIPT_NAME="$(basename "${CURRENT_SCRIPT_PATH}")"
+readonly CURRENT_SCRIPT_ACTION="$1"
+
+readonly INIT_SCRIPT_DIR='/etc/init.d'
+readonly INIT_SCRIPT_PATH="${INIT_SCRIPT_DIR}/${CURRENT_SCRIPT_NAME}"
+
+readonly DAEMON_NAME="$(basename "${DAEMON_PATH}")"
+readonly DAEMON_SSD_PIDFILE="/var/run/${DAEMON_NAME}-ssd.pid"  # start-stop-daemon
+readonly DAEMON_SSD_LOGFILE="/var/log/${DAEMON_NAME}-ssd.log"
+readonly DAEMON_SSD_ERRFILE="/var/log/${DAEMON_NAME}-ssd.err"
+
+readonly NAKING_NAME="$(basename "${NAKING_PATH}")"
+
+# 当前状态
+# 打印当前状态
+status() {
+        local rc  # return code
+
+        echo "Checking ${DAEMON_NAME} status ..."
+
+        start-stop-daemon --status \
+                          --pidfile "${DAEMON_SSD_PIDFILE}"
+        rc="$?"
+        case "$rc" in
+                '0')
+                        log_success_msg 'The program is running.'
+                        ;;
+                '1')
+                        log_warning_msg 'The program is dead and pid file exists.'
+                        ;;
+                '2')
+                        log_warning_msg 'The program is dead and lock file exists.'
+                        ;;
+                '3')
+                        log_success_msg 'The program is not running.'
+                        ;;
+                '4')
+                        log_warning_msg 'The program status is unknown.'
+                        ;;
+                *)
+                        log_warning_msg "The program status is reserved with code $rc."
+                        ;;
+        esac
+        return "$rc"
+}
+
+# 启动服务
+start() {
+        local rc  # return code
+        local rt  # return text
+
+        echo "Starting ${DAEMON_NAME} ..."
+
+        # 检查服务状态
+        status &>'/dev/null'
+        rc="$?"
+        if (( rc == 0 )); then
+                log_success_msg 'The program already started.'
+                return 0  # running start on a service already running
+        fi
+
+        # 检查权限
+        if [[ "$(whoami)" != 'root' ]]; then
+                log_failure_msg 'This action requires root privileges.'
+                return 4  # user had insufficient privilege
+        fi
+
+        # 启动守护进程
+        start-stop-daemon --start --background --no-close \
+                          --make-pidfile --pidfile "${DAEMON_SSD_PIDFILE}" \
+                          --chdir "${DAEMON_WDIR}" --exec "${DAEMON_PATH}" -- ${DAEMON_ARGS} \
+                          0<'/dev/null' 1>"${DAEMON_SSD_LOGFILE}" 2>"${DAEMON_SSD_ERRFILE}"
+        rc="$?"
+        rt="$(cat "${DAEMON_SSD_ERRFILE}")"
+        if [[ "$rc" != '0' || -n "$rt" ]]; then
+                echo "$rt"
+                log_failure_msg "Start failed with code $rc, more information see ${DAEMON_SSD_LOGFILE} and ${DAEMON_SSD_ERRFILE}."
+                return 1  # generic or unspecified error
+        else
+                log_success_msg 'Start successed.'
+                return 0  # successful
+        fi
+}
+
+# 停止服务
+stop() {
+        local rc  # return code
+
+        echo "Stopping ${DAEMON_NAME} ..."
+
+        # 检查服务状态
+        status &>'/dev/null'
+        rc="$?"
+        if (( rc == 3 )); then
+                log_success_msg 'The program already stopped.'
+                return 0  # running stop on a service already stopped or not running
+        fi
+
+        # 检查权限
+        if [[ "$(whoami)" != 'root' ]]; then
+                log_failure_msg 'This action requires root privileges.'
+                return 4  # user had insufficient privilege
+        fi
+
+        # 停止守护进程
+        start-stop-daemon --stop \
+                          --remove-pidfile --pidfile "${DAEMON_SSD_PIDFILE}" \
+                          --retry 10
+        rc="$?"
+
+        # 停止可能的裸进程
+        if [[ -x "${NAKING_PATH}" ]]; then
+                kill $(ps aux | grep --word-regexp "${NAKING_NAME}" | awk '{print $2}') &>'/dev/null'
+        fi
+
+        if (( rc == 0 )); then
+                log_success_msg 'Stop successed.'
+                return 0  # successful
+        else
+                log_failure_msg "Stop failed with error code $rc."
+                return 1  # generic or unspecified error
+        fi
+}
+
+# 重启服务
+# 若服务已在运行，则停止并重新启动服务，否则直接启动服务
+restart() {
+        stop
+        start
+        return "$?"
+}
+
+# 尝试重启服务
+# 若服务已在运行，则停止并重新启动服务，否则什么也不做
+try_restart() {
+        local rc  # return cpde
+
+        status &>'/dev/null'
+        rc="$?"
+        if (( rc == 0 )); then
+                restart
+                return "$?"
+        else
+                return 0  # running try-restart on a service already stopped or not running
+        fi
+}
+
+# 重载配置
+# 通过非“重启服务”的方式，使服务重新加载配置
+reload() {
+        log_failure_msg 'The reload action is not supported currently.'
+        return 3  # unimplemented feature
+}
+
+# 强制重载配置
+# 若支持则“重载配置”，否则重启服务以确保配置被重新加载
+force_reload() {
+        local rc  # return code
+
+        reload &>'/dev/null'
+        rc="$?"
+
+        if (( rc == 3 )); then
+                restart
+                rc="$?"
+        fi
+
+        return "$rc"
+}
+
+# 启用自动调用
+enable() {
+        local rc  # return code
+        local rt  # return text
+
+        echo "Enabling ${DAEMON_NAME} ..."
+
+        # 检查脚本位置
+        if [[ "${CURRENT_SCRIPT_DIR}" != '/etc/init.d' ]]; then
+                log_failure_msg 'The init script must be in /etc/init.d to valid.'
+                return 6  # program is not configured
+        fi
+
+        # 检查权限
+        if [[ "$(whoami)" != 'root' ]]; then
+                log_failure_msg 'This action requires root privileges.'
+                return 4  # user had insufficient privilege
+        fi
+
+        # 启用脚本
+        if [[ -e '/usr/lib/lsb/install_initd' ]]; then
+                rt="$(/usr/lib/lsb/install_initd "${CURRENT_SCRIPT_PATH}" 2>&1)"
+                rc="$?"
+                if (( rc != 0 )); then
+                        log_failure_msg "Enable failed: $rt."
+                        return 1  # generic or unspecified error
+                fi
+                log_success_msg 'Enable successed.'
+                return 0  # successful
+        elif [[ -e '/usr/sbin/update-rc.d' ]]; then
+                rt="$(update-rc.d "${CURRENT_SCRIPT_NAME}" defaults 2>&1)"
+                rc="$?"
+                if (( rc != 0 )); then
+                        log_failure_msg "Enable failed: $rt."
+                        return 1  # generic or unspecified error
+                fi
+                log_success_msg 'Enable successed.'
+                return 0  # successful
+        else
+                log_failure_msg 'Init script utility not found.'
+                return 1  # generic or unspecified error
+        fi
+}
+
+# 禁用自动调用
+disable() {
+        local rc  # return code
+        local rt  # return text
+
+        echo "Disabling ${DAEMON_NAME} ..."
+
+        # 检查脚本位置
+        if [[ "${CURRENT_SCRIPT_DIR}" != '/etc/init.d' ]]; then
+                log_failure_msg 'The init script must be in /etc/init.d to valid.'
+                return 6  # program is not configured
+        fi
+
+        # 检查权限
+        if [[ "$(whoami)" != 'root' ]]; then
+                log_failure_msg 'This action requires root privileges.'
+                return 4  # user had insufficient privilege
+        fi
+
+        # 禁用脚本
+        if [[ -e '/usr/lib/lsb/remove_initd' ]]; then
+                rt="$(/usr/lib/lsb/remove_initd "${CURRENT_SCRIPT_PATH}" 2>&1)"
+                rc="$?"
+                if (( rc != 0 )); then
+                        log_failure_msg "Disable failed: $rt."
+                        return 1  # generic or unspecified error
+                fi
+                log_success_msg 'Disable successed.'
+                return 0  # successful
+        elif [[ -e '/usr/sbin/update-rc.d' ]]; then
+                rt="$(update-rc.d -f "${CURRENT_SCRIPT_NAME}" remove 2>&1)"
+                rc="$?"
+                if (( rc != 0 )); then
+                        log_failure_msg "Disable failed: $rt."
+                        return 1  # generic or unspecified error
+                fi
+                log_success_msg 'Disable successed.'
+                return 0  # successful
+        else
+                log_failure_msg 'Init script utility not found.'
+                return 1  # generic or unspecified error
+        fi
+}
+
+# 安装
+install() {
+        local rc  # return code
+        local rt  # return text
+
+        echo "Installing ${DAEMON_NAME} ..."
+
+        # 检查目标脚本是否已存在
+        if [[ -e "${INIT_SCRIPT_PATH}" ]]; then
+                log_failure_msg "The init script ${INIT_SCRIPT_PATH} already exists."
+                return 1  # generic or unspecified error
+        fi
+
+        # 检查权限
+        if [[ "$(whoami)" != 'root' ]]; then
+                log_failure_msg 'This action requires root privileges.'
+                return 4  # user had insufficient privilege
+        fi
+
+        # 复制到目标位置
+        rt="$(cp "${CURRENT_SCRIPT_PATH}" "${INIT_SCRIPT_PATH}" 2>&1)"
+        rc="$?"
+        if (( rc != 0 )); then
+                log_failure_msg "Copy ${CURRENT_SCRIPT_PATH} to ${INIT_SCRIPT_PATH} failed: $rt."
+                return 1  # generic or unspecified error
+        fi
+
+        log_success_msg 'Install successed.'
+        return 0  # successful
+}
+
+# 卸载
+remove() {
+        local rc  # return code
+        local rt  # return text
+
+        echo "Removing ${DAEMON_NAME} ..."
+
+        # 检查目标脚本是否不存在
+        if [[ ! -e "${INIT_SCRIPT_PATH}" ]]; then
+                log_failure_msg "The init script ${INIT_SCRIPT_PATH} not found."
+                return 6  # program is not configured
+        fi
+
+        # 检查权限
+        if [[ "$(whoami)" != 'root' ]]; then
+                log_failure_msg 'This action requires root privileges.'
+                return 4  # user had insufficient privilege
+        fi
+
+        # 停止服务并禁用自动调用
+        "${INIT_SCRIPT_PATH}" stop &>'/dev/null'
+        "${INIT_SCRIPT_PATH}" disable &>'/dev/null'
+
+        # 从目标位置删除
+        rt="$(rm -- "${INIT_SCRIPT_PATH}" 2>&1)"
+        rc="$?"
+        if (( rc != 0 )); then
+                log_failure_msg "Remove ${INIT_SCRIPT_PATH} failed: $rt."
+                return 1  # generic or unspecified error
+        fi
+
+        log_success_msg 'Remove successed.'
+        return 0  # successful
+}
+
+# 重新安装
+reinstall() {
+        # 检查脚本位置
+        if [[ "${CURRENT_SCRIPT_DIR}" == '/etc/init.d' ]]; then
+                log_failure_msg "The init script doesn't need reinstall itself sames."
+                return 1  # generic or unspecified error
+        fi
+
+        remove
+        install
+        return "$?"
+}
+
+# 行为分发
+case "${CURRENT_SCRIPT_ACTION}" in
+        'start')
+                start
+                exit "$?"
+                ;;
+        'stop')
+                stop
+                exit "$?"
+                ;;
+        'restart')
+                restart
+                exit "$?"
+                ;;
+        'try-restart')
+                try_restart
+                exit "$?"
+                ;;
+        'reload')
+                reload
+                exit "$?"
+                ;;
+        'force-reload')
+                force_reload
+                exit "$?"
+                ;;
+        'status')
+                status
+                exit "$?"
+                ;;
+        'enable')
+                enable
+                exit "$?"
+                ;;
+        'disable')
+                disable
+                exit "$?"
+                ;;
+        'install'|'')
+                install
+                exit "$?"
+                ;;
+        'remove')
+                remove
+                exit "$?"
+                ;;
+        'reinstall')
+                reinstall
+                exit "$?"
+                ;;
+        *)
+                log_failure_msg "Unknown command with arguments: $0 $*"
+                echo "Usage: ${CURRENT_SCRIPT_PATH} <start|stop|restart|try-restart|reload|force-reload|status|enable|disable|install|remove|reinstall>"
+                exit 2  # invalid or excess argument(s)
+                ;;
+esac

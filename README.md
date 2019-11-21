@@ -2,6 +2,8 @@
 
 一份为 zhengrr 定制化的，关于 C 语言、C++ 语言、以及相关和不那么相关技术的备忘。
 
+## 挑选趁手的家伙
+
 > Everyone knows it's a mistake to write your whole program by hand in machine language.
 > What's less often understood is that there is a more general principle here:
 > that if you have a choice of several languages, it is, all other things being equal, a mistake to program in anything but the most powerful one.
@@ -9,6 +11,24 @@
 > [*Beating the Averages*](http://paulgraham.com/avg.html). April 2001, rev. April 2003.
 
 > [![Which Programming Language Should I Learn First?](./README-IMG.png)](http://carlcheo.com/startcoding "Which Programming Language Should I Learn First?")
+
+## 项目目录结构
+
+```text
+rrCnCxx\ ...............................项目根目录
+  CMake\ ...............................CMake 自定义模组，引自 rrCMake 项目
+  doc\ .................................文档
+  include\ .............................库的私人包装
+  rr*\ .................................库的示例项目
+  script\ ..............................系统语言脚本（.sh、.cmd 或 .ps1）
+  .gitignore ...........................Git 忽略列表
+  .gitmodules ..........................Git 子模块列表
+  .gitmodules-update.cmd ...............Git 子模块更新脚本
+  CMakeLists.txt .......................CMake 入口
+  README.md ............................自述文档
+  README* ..............................自述文档所用资源
+  UNLICENSE.txt ........................版权声明
+```
 
 文法
 / [*Jupyter*](https://jupyter.org/)
