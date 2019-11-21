@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-11-09
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-11-21
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -33,13 +33,13 @@ conan_cmake_run(
   BUILD       missing)
 # OPTIONS     boost:header_only=True
 
-aux_source_directory_con("test" zTest PREFIX "test")
+aux_source_directory_con("." zTest)
 add_executable_con(
   rrBoostTest         ${zTest}
                       "README.md"
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "test"
+  INCLUDE_DIRECTORIES PRIVATE "."
   LINK_LIBRARIES      PRIVATE $<$<PLATFORM_ID:Linux>:dl>
                               $<$<PLATFORM_ID:Linux>:rt>
                               CONAN_PKG::gtest
@@ -53,5 +53,3 @@ if(MSVC)
 endif()
 
 add_test(NAME rrBoostTest COMMAND rrBoostTest)
-
-add_aux_subdirectories_con(WITHOUT_OPTION)
