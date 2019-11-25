@@ -2,7 +2,7 @@
 ///
 /// \file
 ///
-/// \version 2019-11-20
+/// \version 2019-11-25
 /// \since 2019-08-02
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -22,7 +22,7 @@ using namespace std;
 namespace rrkafka {
 
 constexpr char broker_list[] {"172.16.0.27:9092, 172.16.0.28:9092, 172.16.0.29:9092"};
-constexpr char topic[] {"test-cpp-1"};
+constexpr char topic[] {"test-cpp"};
 
 class kafka_test : public testing::Test {
 protected:
