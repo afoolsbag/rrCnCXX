@@ -1,9 +1,9 @@
 //===-- Noob ----------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gNoob 数组
+/// \defgroup gNoob 菜鸟
 /// \ingroup gRegex
 ///
-/// \version 2019-06-27
+/// \version 2019-11-26
 /// \since 2019-06-27
 /// \authors zhengrr
 /// \copyright Unlicense

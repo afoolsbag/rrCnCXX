@@ -1,7 +1,7 @@
 //===-- C++ Language --------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gLanguage C++ 语言
-/// \ingroup gReference
+/// \ingroup gRrCxx
 ///
 /// \sa ["C++ language"](https://zh.cppreference.com/w/cpp/language). *cppreference.com*.
 ///     *   基本概念

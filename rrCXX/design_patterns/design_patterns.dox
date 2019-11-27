@@ -1,7 +1,7 @@
 //===-- Design Patterns -----------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gDesignPatterns 设计模式
-/// \ingroup gReference
+/// \ingroup gRrCxx
 ///
 /// \ref pDesignPatterns
 ///

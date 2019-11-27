@@ -1,7 +1,7 @@
 //===-- Numerics library ----------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gNumeric 数值库
-/// \ingroup gReference
+/// \ingroup gRrCxx
 ///
 /// \sa ["数值库"](https://zh.cppreference.com/w/cpp/numeric). *cppreference.com*.
 ///

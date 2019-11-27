@@ -1,7 +1,7 @@
 //===-- Algorithms Library --------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gAlgorithm 算法库
-/// \ingroup gReference
+/// \ingroup gRrCxx
 ///
 /// \sa ["算法库"](https://zh.cppreference.com/w/cpp/algorithm). *cppreference.com*.
 ///

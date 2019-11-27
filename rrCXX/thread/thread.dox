@@ -1,7 +1,7 @@
 //===-- Thread Support Library ----------------------------------*- C++ -*-===//
 ///
 /// \defgroup gThread 线程支持库
-/// \ingroup gReference
+/// \ingroup gRrCxx
 ///
 /// \sa ["线程支持库"](https://zh.cppreference.com/w/cpp/thread). *cppreference.com*.
 ///

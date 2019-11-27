@@ -16,28 +16,27 @@
 
 ## 参考
 
-["C++ 参考手册"](https://zh.cppreference.com/w/cpp). *cppreference.com*.
-[*cplusplus.com*](http://cplusplus.com)
+*   [“C++ 参考手册”](https://zh.cppreference.com/w/cpp). *cppreference.com*.
+*   [*cplusplus.com*](http://cplusplus.com)
 
 ## 风格
 
-标准库（`std`）和指导方针支持库（`gsl`）风格命名；
-K&R 和 Stroustrup 风格布局；
-`.hxx` 和 `.cxx` 风格后缀。
+*   标准库（`std`）和指导方针支持库（`gsl`）风格命名；
+*   K&R 和 Stroustrup 风格布局；
+*   `.hxx` 和 `.cxx` 风格后缀。
 
-[*C++ Core Guidelines*](https://isocpp.github.io/CppCoreGuidelines/) <sub>(
-    [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN) )</sub>
-*   [Coding rules](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-rules) <sub>(
-        [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules) )</sub>
+[“Coding rules”](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-rules) <sub>
+    [cmn-Hans](https://github.com/lynnboy/CppCoreGuidelines-zh-CN/blob/master/CppCoreGuidelines-zh-CN.md#SS-rules) </sub>.
+    *C++ Core Guidelines*.
 *   [*LLVM Coding Standards*](https://llvm.org/docs/CodingStandards.html)
 
 ## 指南
 
-/ [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
-/ *C++ Templates 中文版*
-/ ["C++ 必读书籍推荐"](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
-/ *C++ 模板元编程*
-/ *Effective C++*
+*   [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
+*   [*C++ Core Guidelines*](https://isocpp.github.io/CppCoreGuidelines/) <sub>
+        [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN) </sub>
+
+*   [“C++ 必读书籍推荐”](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
 
 ## Awesome
 

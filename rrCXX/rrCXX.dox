@@ -1,40 +1,18 @@
-//===-- C++ Reference -------------------------------------------*- C++ -*-===//
+//===-- zhengrr's C++ -------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gReference C++ 参考手册
+/// \defgroup gRrCxx zhengrr 所知的 C++
 ///
 /// **目录结构说明**
 ///
-/// *   目录按 cppreference.com 中 C++ reference 的顶级章节 URL 命名。
+/// *   目录按 [*cppreference.com*](https://cppreference.com/) 中 [“C++ 参考手册”](https://zh.cppreference.com/w/cpp) 的顶级章节 URL 命名。
 ///
-///     如 `cppreference.com` / `C++ reference` / `Input/output library`，
-///     其 URL 为 `https://en.cppreference.com/w/cpp/io`
-///     取其中的 `io` 作为目录名。
+///     如 [`cppreference.com`](https://cppreference.com/) / [`C++ 参考手册`](https://zh.cppreference.com/w/cpp) / [`输入、输出库`](https://zh.cppreference.com/w/cpp/io)，
+///     其 URL 为 `https://zh.cppreference.com/w/cpp/io`
+///     取其中的 `io` 用作目录名。
 ///
 /// *   文件按需求划分。
 ///
-/// \sa ["C++ 参考手册"](https://zh.cppreference.com/w/cpp). *cppreference.com*.
-///     *   语言
-///     *   头文件
-///     *   具名要求
-///     *   特性测试宏（C++20）
-///     *   语言支持库
-///     *   概念库（C++20）
-///     *   诊断库
-///     *   通用工具库
-///     *   字符串库
-///     *   容器库
-///     *   迭代器库
-///     *   范围库（C++20）
-///     *   算法库
-///     *   数值库
-///     *   输入、输出库
-///     *   本地化库
-///     *   正则表达式库（C++11）
-///     *   原子操作库（C++11）
-///     *   线程支持库（C++11）
-///     *   文件系统库（C++17）
-///
-/// \version 2019-02-14
+/// \version 2019-11-26
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

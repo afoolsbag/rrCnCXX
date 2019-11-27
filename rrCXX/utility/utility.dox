@@ -1,7 +1,7 @@
 //===-- Utilities -----------------------------------------------*- C++ -*-===//
 ///
 /// \defgroup gUtility 工具库
-/// \ingroup gReference
+/// \ingroup gRrCxx
 ///
 /// \sa ["工具库"](https://zh.cppreference.com/w/cpp/utility). *cppreference.com*.
 ///     *   语言支持

@@ -179,6 +179,7 @@ pair<point_set<dimension, Scalar>, point_cluster_set<dimension, Scalar>> dbscan(
 
 TEST(dbscan, tfs)
 {
+#if 0
     point_set<2> pts;
 
     pts.insert(point<2>{10, 10});
@@ -192,6 +193,7 @@ TEST(dbscan, tfs)
     point_cluster_set<2> clusters;  // 聚类集
     tie(noises, clusters) = dbscan(pts, 3.0f, 3);
     cout << noises.size();
+#endif
 }
 
 }
