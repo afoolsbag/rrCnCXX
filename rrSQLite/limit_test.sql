@@ -1,10 +1,11 @@
 -- 分页查询示例
 -- zhengrr
--- 2019-08-02 – 2019-08-02
+-- 2019-08-02 – 2019-11-27
 -- Unlicense
 
---------------------------------------------------------------------------------
+--
 -- 表 rrsqltest_toolong
+--
 
 DROP TABLE IF EXISTS rrsqltest_toolong;
 CREATE TABLE rrsqltest_toolong (
@@ -22,8 +23,9 @@ $plpgsql$
     END
 $plpgsql$;
 
---------------------------------------------------------------------------------
+--
 -- 分页查询
+--
 
 SELECT *
   FROM rrsqltest_toolong

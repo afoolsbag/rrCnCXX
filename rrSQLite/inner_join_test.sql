@@ -1,10 +1,11 @@
 -- 内联查询示例
 -- zhengrr
--- 2019-08-02 – 2019-08-02
+-- 2019-08-02 – 2019-11-27
 -- Unlicense
 
---------------------------------------------------------------------------------
+--
 -- 表 rrsqltest_entity
+--
 
 -- [PostgreSQL `DROP TABLE`](https://postgresql.org/docs/current/sql-droptable.html)
 -- [SQLite     `DROP TABLE`](https://sqlite.org/lang_droptable.html)
@@ -26,8 +27,9 @@ VALUES (1, 'SMT'),
        (2, 'ZL'),
        (3, 'JT');
 
---------------------------------------------------------------------------------
+--
 -- 表 rrsqltest_property
+--
 
 DROP TABLE IF EXISTS rrsqltest_property;
 
@@ -46,8 +48,9 @@ VALUES (1, 1, 'nick', 'MT'),
        (5, 3, 'nick', 'T'),
        (6, 3, 'some', '');
 
---------------------------------------------------------------------------------
+--
 -- 内联查询
+--
 
 -- [PostgreSQL `SELECT`](https://postgresql.org/docs/current/sql-select.html)
 -- [SQLite     `SELECT`](https://sqlite.org/lang_select.html)
