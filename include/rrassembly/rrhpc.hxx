@@ -5,7 +5,7 @@
 /// \sa [Introduction to Intel® Advanced Vector Extensions](https://software.intel.com/articles/introduction-to-intel-advanced-vector-extensions/)
 /// \sa [Intel® Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/)
 ///
-/// \version 2019-11-19
+/// \version 2019-11-26
 /// \since 2019-10-15
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,9 +20,6 @@
 #include <array>
 
 namespace rrassembly {
-
-namespace internal {
-}
 
 /// \brief 欧几里得距离（euclidean distance）
 ///
