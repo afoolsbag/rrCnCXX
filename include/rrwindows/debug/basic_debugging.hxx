@@ -5,7 +5,7 @@
 ///
 /// \sa <https://docs.microsoft.com/windows/win32/debug/basic-debugging>
 ///
-/// \version 2019-07-08
+/// \version 2019-11-28
 /// \since 2019-07-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -14,10 +14,10 @@
 
 #pragma once
 
-#include "rrwindows/api.hxx"
-
 namespace rrwindows {
 
-RRWINDOWS_API void RRWINDOWS_CALL launch_debugger();
+inline void launch_debugger();
 
 }
+
+#include "basic_debugging.inl"

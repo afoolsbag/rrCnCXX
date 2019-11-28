@@ -1,6 +1,7 @@
 /// \copyright Unlicense
 
-#include "rrwindows/debug/structured_exception_handling.hxx"
+#pragma once
+#include "structured_exception_handling.hxx"
 
 #include <filesystem>
 #include <gsl/gsl>
@@ -16,12 +17,10 @@
 #include "rrwindows/fileio/file_management.hxx"
 #include "rrwindows/menurc/version_information.hxx"
 
-using namespace std;
-using namespace gsl;
+namespace rrwindows {
+namespace internal {
 
-namespace {
-
-filesystem::path temp_dump_path()
+inline std::filesystem::path temp_dump_path()
 {
     const auto exe_path = rrwindows::executable_path();
 
@@ -63,11 +62,11 @@ filesystem::path temp_dump_path()
     return dump_path;
 }
 
-LONG CALLBACK CrashDumpFilter(PEXCEPTION_POINTERS pstExceptionInfo) noexcept
+static LONG CALLBACK CrashDumpFilter(PEXCEPTION_POINTERS pstExceptionInfo) noexcept
 {
-    const wstring path = [] {
+    const std::wstring path = [] {
         try {
-            return temp_dump_path().c_str();
+            return rrwindows::internal::temp_dump_path().c_str();
         } catch (...) {
             return L"crash.dmp";
         }
@@ -82,7 +81,7 @@ LONG CALLBACK CrashDumpFilter(PEXCEPTION_POINTERS pstExceptionInfo) noexcept
                                      nullptr);
     if (hFile == INVALID_HANDLE_VALUE)
         return EXCEPTION_EXECUTE_HANDLER;
-    const auto finally_close_file {finally([&] { CloseHandle(hFile); })};
+    const auto finally_close_file {gsl::finally([&] { CloseHandle(hFile); })};
 
     MINIDUMP_EXCEPTION_INFORMATION stDumpInfo;
     stDumpInfo.ThreadId = GetCurrentThreadId();
@@ -96,14 +95,12 @@ LONG CALLBACK CrashDumpFilter(PEXCEPTION_POINTERS pstExceptionInfo) noexcept
 
 }
 
-namespace rrwindows {
-
-RRWINDOWS_API void RRWINDOWS_CALL set_crash_dump_filter()
+inline void set_crash_dump_filter()
 {
-    SetUnhandledExceptionFilter(CrashDumpFilter);
+    SetUnhandledExceptionFilter(internal::CrashDumpFilter);
 }
 
-RRWINDOWS_API void RRWINDOWS_CALL reset_unhandled_exception_filter()
+inline void reset_unhandled_exception_filter()
 {
     SetUnhandledExceptionFilter(nullptr);
 }

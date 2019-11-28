@@ -1,23 +1,21 @@
 /// \copyright Unlicense
 
-#include "rrwindows/debug/basic_debugging.hxx"
+#pragma once
+#include "basic_debugging.hxx"
 
 #include <string>
-
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 #include "rrwindows/debug/error_handling.hxx"
 #include "rrwindows/sysinfo/system_information.hxx"
 
-using namespace std;
-
 namespace rrwindows {
 
-RRWINDOWS_API void RRWINDOWS_CALL launch_debugger()
+inline void launch_debugger()
 {
     const auto vsjitdebugger = system_directory_path() / L"vsjitdebugger.exe";
-    auto cmd = vsjitdebugger.wstring().append(L" -p ").append(to_wstring(GetCurrentProcessId()));
+    auto cmd = vsjitdebugger.wstring().append(L" -p ").append(std::to_wstring(GetCurrentProcessId()));
 
     STARTUPINFOW stStartupInfo {};
     stStartupInfo.cb = sizeof(stStartupInfo);
@@ -39,7 +37,7 @@ RRWINDOWS_API void RRWINDOWS_CALL launch_debugger()
     CloseHandle(stProcInfo.hProcess);
 
     while (!IsDebuggerPresent())
-        Sleep(40);
+        Sleep(1000 / 25);
 
     DebugBreak();
 }

@@ -5,6 +5,7 @@
 ## 参考
 
 / [*C POSIX library*](https://wikipedia.org/wiki/C_POSIX_library)
+/ [*The Linux man-pages project*](https://kernel.org/doc/man-pages/)
 / [*Linux man pages online*](http://man7.org/linux/man-pages/)
 
 ## 风格

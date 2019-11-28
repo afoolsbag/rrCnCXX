@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-11-21
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-11-25
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -39,17 +39,16 @@ add_executable_con(
                       "README.md"
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
+  COMPILE_DEFINITIONS PRIVATE $<$<PLATFORM_ID:Windows>:_WIN32_WINNT=0x0A00>  # Windows 10
+                              $<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_WARNINGS>
+                              $<$<CXX_COMPILER_ID:MSVC>:_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS>
+  COMPILE_OPTIONS     PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/EHs>                # Boost.Coroutine2
+                              $<$<CXX_COMPILER_ID:MSVC>:/GL->                # Boost.Coroutine2
   INCLUDE_DIRECTORIES PRIVATE "."
-  LINK_LIBRARIES      PRIVATE $<$<PLATFORM_ID:Linux>:dl>
-                              $<$<PLATFORM_ID:Linux>:rt>
-                              CONAN_PKG::gtest
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
                               CONAN_PKG::boost
-                              CONAN_PKG::gsl_microsoft)
-if(WIN32)
-  target_compile_definitions(rrBoostTest PRIVATE "_WIN32_WINNT=0x0A00")  # Windows 10
-endif()
-if(MSVC)
-  target_compile_options(rrBoostTest PRIVATE "/EHs" "/GL-")              # Boost.Coroutine2
-endif()
+                              CONAN_PKG::gsl_microsoft
+                              $<$<PLATFORM_ID:Linux>:dl>
+                              $<$<PLATFORM_ID:Linux>:rt>)
 
 add_test(NAME rrBoostTest COMMAND rrBoostTest)

@@ -5,7 +5,7 @@
 ///
 /// \sa <https://docs.microsoft.com/windows/win32/dlls/dynamic-link-libraries>
 ///
-/// \version 2019-07-08
+/// \version 2019-11-28
 /// \since 2018-05-08
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -16,15 +16,15 @@
 
 #include <filesystem>
 
-#include "rrwindows/api.hxx"
-
 namespace rrwindows {
 
 /// \brief 当前进程可执行文件路径。
 /// \details 形如 `path\\to\\folder\\file.exe`。
-RRWINDOWS_API std::filesystem::path RRWINDOWS_CALL executable_path();
+inline std::filesystem::path executable_path();
 
-/// \brief `rrWindows.dll` 路径。
-RRWINDOWS_API std::filesystem::path RRWINDOWS_CALL rrwindows_path();
+/// \brief `image` 路径。
+inline std::filesystem::path image_path();
 
 }
+
+#include "dynamic_link_library.inl"

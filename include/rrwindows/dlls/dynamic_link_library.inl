@@ -1,9 +1,9 @@
 /// \copyright Unlicense
 
-#include "rrwindows/dlls/dynamic_link_library.hxx"
+#pragma once
+#include "dynamic_link_library.hxx"
 
 #include <memory>
-
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #if _WIN32_WINNT_WIN8 <= _WIN32_WINNT
@@ -15,17 +15,15 @@
 
 #include "rrwindows/debug/error_handling.hxx"
 
-using namespace std;
-
 namespace rrwindows {
 
-RRWINDOWS_API std::filesystem::path RRWINDOWS_CALL executable_path()
+inline std::filesystem::path executable_path()
 {
-    shared_ptr<WCHAR[]> buf {};
+    std::unique_ptr<WCHAR[]> buf {};
     for (DWORD dwCnt = MAX_PATH; ; dwCnt *= 2) {
-        buf = make_unique<WCHAR[]>(dwCnt);
+        buf = std::make_unique<WCHAR[]>(dwCnt);
         if (!buf)
-            throw bad_alloc();
+            throw std::bad_alloc();
         const auto dwLen = GetModuleFileNameW(nullptr, buf.get(), dwCnt);
         if (dwLen == 0)
             throw system_error_exception("GetModuleFileNameW failed", GetLastError());
@@ -35,13 +33,13 @@ RRWINDOWS_API std::filesystem::path RRWINDOWS_CALL executable_path()
 }
 
 EXTERN_C IMAGE_DOS_HEADER __ImageBase;
-RRWINDOWS_API std::filesystem::path RRWINDOWS_CALL rrwindows_path()
+inline std::filesystem::path image_path()
 {
-    shared_ptr<WCHAR[]> buf {};
+    std::unique_ptr<WCHAR[]> buf {};
     for (DWORD dwCnt = MAX_PATH; ; dwCnt *= 2) {
-        buf = make_unique<WCHAR[]>(dwCnt);
+        buf = std::make_unique<WCHAR[]>(dwCnt);
         if (!buf)
-            throw bad_alloc();
+            throw std::bad_alloc {};
         CONST DWORD dwLen = GetModuleFileNameW(
             reinterpret_cast<HINSTANCE>(&__ImageBase),
             reinterpret_cast<LPWSTR>(buf.get()),

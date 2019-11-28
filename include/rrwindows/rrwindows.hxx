@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include "rrwindows/api.hxx"
-
 #include "rrwindows/console/consoles.hxx"
 #include "rrwindows/console/console_virtual_terminal_sequences.hxx"
 

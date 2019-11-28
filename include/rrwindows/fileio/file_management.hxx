@@ -5,7 +5,7 @@
 ///
 /// \sa <https://docs.microsoft.com/windows/win32/fileio/file-management>
 ///
-/// \version 2019-07-08
+/// \version 2019-11-28
 /// \since 2019-07-01
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -16,8 +16,6 @@
 
 #include <filesystem>
 
-#include "rrwindows/api.hxx"
-
 namespace rrwindows {
 
 /// \brief 系统临时文件目录路径。
@@ -26,6 +24,8 @@ namespace rrwindows {
 ///          2. `%TEMP%`
 ///          3. `%USERPROFILE%`
 ///          4. `%WINDIR%`
-RRWINDOWS_API std::filesystem::path RRWINDOWS_CALL temp_path();
+inline std::filesystem::path temp_path();
 
 }
+
+#include "file_management.inl"
