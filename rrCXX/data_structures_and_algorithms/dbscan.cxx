@@ -1,7 +1,7 @@
 //===-- DBSCAN --------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gDBSCAN 带噪声应用的基于密度的空间聚类（Density-Based Spatial Clustering of Applications with Noise）
-/// \ingroup gDataStructuresAndAlgorithms
+/// \defgroup groupDBSCAN 带噪声应用的基于密度的空间聚类（Density-Based Spatial Clustering of Applications with Noise）
+/// \ingroup groupDataStructuresAndAlgorithms
 ///
 /// \sa [“DBSCAN”](https://zh.wikipedia.org/wiki/DBSCAN). *Wikipedia*.
 ///

@@ -1,6 +1,6 @@
 //===-- zhengrr's C++ -------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gRrCxx zhengrr 所知的 C++
+/// \defgroup groupRrCxx zhengrr 所知的 C++
 ///
 /// **目录结构说明**
 ///
@@ -12,7 +12,7 @@
 ///
 /// *   文件按需求划分。
 ///
-/// \version 2019-11-26
+/// \version 2019-11-28
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

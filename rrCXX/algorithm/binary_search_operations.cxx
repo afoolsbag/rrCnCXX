@@ -1,13 +1,13 @@
 //===-- Binary Search Operations --------------------------------*- C++ -*-===//
 ///
-/// \defgroup gBinarySearchOperations 二分搜索操作
-/// \ingroup gAlgorithm
+/// \defgroup groupBinarySearchOperations 二分搜索操作
+/// \ingroup groupAlgorithm
 ///
 /// \brief 二分搜索，边界下沿和上沿
 /// \details 边界下沿：在升序排列中，找到首个大于等于指定值的元素\n
 ///          边界上沿：在升序排列中，找到首个大于指定值的元素
 ///
-/// \version 2019-08-01
+/// \version 2019-11-28
 /// \since 2019-08-01
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -23,7 +23,7 @@
 using namespace std;
 
 namespace rrcxx {
-/// \addtogroup gBinarySearchOperations
+/// \addtogroup groupBinarySearchOperations
 /// @{
 
 /// \brief 边界存在于序列

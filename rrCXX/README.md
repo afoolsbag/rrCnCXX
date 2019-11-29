@@ -4,13 +4,13 @@
 
 [*Standard C++*](https://isocpp.org)
 
-/ *C++20*
-/ [*C++17*](https://iso.org/standard/68564.html) (2017)
-/ [*C++14*](https://iso.org/standard/64029.html) (2014)
-/ [*C++11*](https://iso.org/standard/50372.html) (2011)
-/ [*C++03*](https://iso.org/standard/38110.html) (2003)
-/ [*C++98*](https://iso.org/standard/25845.html) (1998)
-/ *C++* (1983)
+*   *C++20*
+*   [*C++17*](https://iso.org/standard/68564.html) (2017)
+*   [*C++14*](https://iso.org/standard/64029.html) (2014)
+*   [*C++11*](https://iso.org/standard/50372.html) (2011)
+*   [*C++03*](https://iso.org/standard/38110.html) (2003)
+*   [*C++98*](https://iso.org/standard/25845.html) (1998)
+*   *C++* (1983)
 
 *Bjarne Stroustrup（比雅尼·斯特劳斯特鲁普）*
 

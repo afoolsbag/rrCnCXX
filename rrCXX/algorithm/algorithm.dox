@@ -1,11 +1,11 @@
 //===-- Algorithms Library --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gAlgorithm 算法库
-/// \ingroup gRrCxx
+/// \defgroup groupAlgorithm 算法库
+/// \ingroup groupRrCxx
 ///
 /// \sa ["算法库"](https://zh.cppreference.com/w/cpp/algorithm). *cppreference.com*.
 ///
-/// \version 2019-02-22
+/// \version 2019-11-28
 /// \since 2019-02-22
 /// \authors zhengrr
 /// \copyright CC0-1.0

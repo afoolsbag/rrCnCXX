@@ -1,14 +1,16 @@
 //===-- Data Structures and Algorithms --------------------------*- C++ -*-===//
 ///
-/// \defgroup gDataStructuresAndAlgorithms 数据结构和算法
-/// \ingroup gRrCxx
+/// \defgroup groupDataStructuresAndAlgorithms 数据结构和算法
+/// \ingroup groupRrCxx
 ///
 /// \ref pDataStructuresAndAlgorithms
+///
+/// THOMAS H CORMEN，CHARLES E LEISERSON，RONALD L RIVEST，CLIFFORD STEIN．算法导论．第 3 版．北京：机械工业出版社，2013．
 ///
 /// \sa [“数据结构”](https://zh.wikipedia.org/wiki/数据结构). *Wikipedia*.
 /// \sa [“算法”](https://zh.wikipedia.org/wiki/算法). *Wikipedia*.
 ///
-/// \version 2019-11-14
+/// \version 2019-11-28
 /// \since 2019-11-07
 /// \authors zhengrr
 /// \copyright CC0-1.0
@@ -17,13 +19,13 @@
 
 //===-- Data Structures Topics ----------------------------------*- C++ -*-===//
 ///
-/// \page pDataStructuresAndAlgorithms 数据结构和算法议题
+/// \page pageDataStructuresAndAlgorithms 数据结构和算法议题
 /// \tableofcontents
 ///
-/// \ref gDataStructuresAndAlgorithms
+/// \ref groupDataStructuresAndAlgorithms
 ///
 /// ___
-/// \version 2019-11-14
+/// \version 2019-11-28
 /// \since 2019-11-07
 /// \authors zhengrr
 /// \copyright CC0-1.0

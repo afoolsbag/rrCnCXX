@@ -26,7 +26,7 @@ include_conan_script()
 conan_cmake_run(
   REQUIRES    boost/1.71.0@conan/stable
               gtest/1.10.0
-              spdlog/1.3.1@bincrafters/stable
+              spdlog/1.4.2
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
