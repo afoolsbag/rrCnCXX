@@ -3,7 +3,7 @@
 /// \defgroup gThreadSimple 线程示例
 /// \ingroup gThread
 ///
-/// \version 2019-01-28
+/// \version 2019-12-04
 /// \since 2018-09-17
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -48,6 +48,22 @@ TEST(thread, test)
     thread_2_manager.join();
     cout << "main: threads are finished.\n";
 #endif
+}
+
+TEST(thread, ref)
+{
+    static const auto func = [](int &i) {
+        cout << i;
+        ++i;
+    };
+
+    int i1 {1}, i2 {2}, i3 {3};
+    thread t1 {func, ref(i1)};
+    thread t2 {func, ref(i2)};
+    thread t3 {func, ref(i3)};
+    t1.join();
+    t2.join();
+    t3.join();
 }
 
 /// @}
