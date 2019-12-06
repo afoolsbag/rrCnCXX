@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 控制台应用程序入口。
 //!
-//! \version 2019-10-22
+//! \version 2019-12-05
 //! \sinve 2016-02-14
 //! \authors zhengrr
 //! \copyright Unlicense
@@ -21,7 +21,7 @@
 //! \returns 退出状态（exit status）。
 int main(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
+    QCoreApplication app {argc, argv};
 
     qInfo() << QObject::tr("hello, world");
 

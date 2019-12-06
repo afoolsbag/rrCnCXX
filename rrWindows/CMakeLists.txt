@@ -2,7 +2,7 @@
 #           | |  | (_)         | |
 #  _ __ _ __| |  | |_ _ __   __| | _____      _____
 # | '__| '__| |/\| | | '_ \ / _` |/ _ \ \ /\ / / __| zhengrr
-# | |  | |  \  /\  / | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-11-28
+# | |  | |  \  /\  / | | | | (_| | (_) \ V  V /\__ \ 2016-10-12 – 2019-12-05
 # |_|  |_|   \/  \/|_|_| |_|\__,_|\___/ \_/\_/ |___/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -12,12 +12,10 @@ if(NOT WIN32)
   message(WARNING "The project is just supposed to work with Windows.")
 endif()
 
-product_ex(
+project_ex(
   rrWindows
   TIME_AS_VERSION
-  LANGUAGES C CXX
-  AUTHORS   "zhengrr"
-  LICENSE   "Unlicense")
+  LANGUAGES C CXX)
 
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL

@@ -2,7 +2,7 @@
 #           |  _  | |
 #  _ __ _ __| | | | |_
 # | '__| '__| | | | __| zhengrr
-# | |  | |  \ \/' / |_  2016-06-28 – 2019-10-22
+# | |  | |  \ \/' / |_  2016-06-28 – 2019-12-05
 # |_|  |_|   \_/\_\\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -13,8 +13,6 @@ project_ex(
   TIME_AS_VERSION
   LANGUAGES CXX)
 
-include_conan_script()
-
 add_compile_options_ex(
   DISABLE_LANGUAGE_EXTENSIONS
   RECOMMENDED_WARNING_LEVEL
@@ -22,9 +20,6 @@ add_compile_options_ex(
   UTF-8
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
-
-add_doxygen_con(
-  rrQtDoc)
 
 find_package(Qt5Config)
 find_package(Qt5              # All Modules        https://doc.qt.io/qt-5/qtmodules.html
@@ -38,11 +33,16 @@ find_package(Qt5              # All Modules        https://doc.qt.io/qt-5/qtmodu
              Test             # Qt Test            https://doc.qt.io/qt-5/qttest-index.html
              Widgets)         # Qt Widgets         https://doc.qt.io/qt-5/qtwidgets-index.html
 set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "generated")
+
+include_conan_script()
 conan_cmake_run(
-  REQUIRES    gsl_microsoft/2.0.0@bincrafters/stable
-              gtest/1.8.1@bincrafters/stable
+  REQUIRES    gtest/1.10.0
+              ms-gsl/2.0.0
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
+
+add_doxygen_con(
+  rrQtDoc)
 
 macro(quickadd_console_executable)
   get_filename_component(pDirName "${CMAKE_CURRENT_LIST_DIR}" NAME)
@@ -53,7 +53,7 @@ macro(quickadd_console_executable)
                                 CXX_STANDARD_REQUIRED ON
                                 AUTOMOC               ON
     INCLUDE_DIRECTORIES         PRIVATE "."
-    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::ms-gsl
                                         CONAN_PKG::gtest
                                         Qt5::Core)
 endmacro()
@@ -68,7 +68,7 @@ macro(quickadd_widget_executable)
                                 AUTOMOC               ON
                                 AUTOUIC               ON
     INCLUDE_DIRECTORIES         PRIVATE "."
-    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::ms-gsl
                                         CONAN_PKG::gtest
                                         Qt5::Core
                                         Qt5::Gui
@@ -85,7 +85,7 @@ macro(quickadd_quick_executable)
                                 AUTOMOC               ON
                                 AUTORCC               ON
     INCLUDE_DIRECTORIES         PRIVATE "."
-    LINK_LIBRARIES              PRIVATE CONAN_PKG::gsl_microsoft
+    LINK_LIBRARIES              PRIVATE CONAN_PKG::ms-gsl
                                         CONAN_PKG::gtest
                                         Qt5::Core
                                         Qt5::Gui
@@ -96,4 +96,4 @@ macro(quickadd_quick_executable)
                                         Qt5::QuickTemplates2)
 endmacro()
 
-add_aux_subdirectories_con(WITHOUT_OPTION)
+add_subdirectory_aux(WITHOUT_OPTION)

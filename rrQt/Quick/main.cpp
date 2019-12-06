@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 快速应用程序入口。
 //!
-//! \version 2019-10-22
+//! \version 2019-12-05
 //! \sinve 2018-03-19
 //! \authors zhengrr
 //! \copyright Unlicense
@@ -24,10 +24,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-    QGuiApplication app(argc, argv);
+    QGuiApplication app {argc, argv};
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl {QStringLiteral("qrc:/main.qml")});
     if (engine.rootObjects().isEmpty())
         return EXIT_FAILURE;
 

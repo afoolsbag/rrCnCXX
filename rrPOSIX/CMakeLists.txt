@@ -2,29 +2,20 @@
 #           | ___ \  _  /  ___|_   _\ \ / /
 #  _ __ _ __| |_/ / | | \ `--.  | |  \ V /
 # | '__| '__|  __/| | | |`--. \ | |  /   \  zhengrr
-# | |  | |  | |   \ \_/ /\__/ /_| |_/ /^\ \ 2019-02-15 – 2019-11-13
+# | |  | |  | |   \ \_/ /\__/ /_| |_/ /^\ \ 2019-02-15 – 2019-12-05
 # |_|  |_|  \_|    \___/\____/ \___/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
-# 加载额外模块
+if(NOT UNIX)
+  message(WARNING "The project is just supposed to work with Unix-like.")
+endif()
 
-include(CTest)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake/Modules")
-include(rrCMake)
-
-include_hunter_gate_script()
-
-# 配置项目信息和全局编译选项
-
-product_ex(
+project_ex(
   rrPOSIX
   TIME_AS_VERSION
-  LANGUAGES C CXX
-  AUTHORS   "zhengrr"
-  LICENSE   "Unlicense")
+  LANGUAGES C CXX)
 
 add_compile_options_ex(
   DISABLE_LANGUAGE_EXTENSIONS
@@ -33,69 +24,33 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-# 文档：rrPOSIXdoc
+include_conan_script()
+conan_cmake_run(
+  REQUIRES    gtest/1.10.0
+              ms-gsl/2.0.0
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
 
 add_doxygen_con(
   rrPOSIXdoc)
 
-# 共享库：rrPOSIX
+aux_source_directory_con("../include/rrposix" zWrapper RECURSE PREFIX "include/rrposix")
+add_library_ex(
+  rrPOSIX             INTERFACE
+  COMPILE_FEATURES    INTERFACE cxx_std_17
+  INCLUDE_DIRECTORIES INTERFACE "../include"
+                                "../include/linux/usr/linux"
+                                "../include/linux/usr/linux/x86_64-linux-gnu"
+  LINK_LIBRARIES      INTERFACE CONAN_PKG::ms-gsl
+  SOURCES             INTERFACE ${zWrapper})
 
-configure_file("src/project.h.in" "src/project.h" @ONLY)
-aux_source_directory_con("include/"                         zInc RECURSE PREFIX "include")
-aux_source_directory_con("src"                              zSrc RECURSE PREFIX "src")
-aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/src/" zGen RECURSE PREFIX "generated")
-add_library_con(
-  rrPOSIX
-  STATIC     ${zInc} ${zSrc} ${zGen}
-  PROPERTIES CXX_STANDARD          17
-             CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PUBLIC  "include/"
-                              "include/linux/usr/include"
-                              "include/linux/usr/include/x86_64-linux-gnu"
-                      PRIVATE "src/"
-                              "${CMAKE_CURRENT_BINARY_DIR}/src")
-
-install(
-  DIRECTORY   "include"
-  DESTINATION ".")
-
-# 测试程序：rrPOSIXtest
-
-hunter_add_package(GTest)
-find_package(GTest CONFIG REQUIRED)
-
-aux_source_directory_con("test" zSrc RECURSE PREFIX "test")
+aux_source_directory_ex("." zTest RECURSE)
 add_executable_con(
-  rrPOSIXtest         ${zSrc}
-  PROPERTIES          CXX_STANDARD          17
+  rrPosixTest         ${zTest}
+  PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "test"
-                              "include/linux/usr/include"
-                              "include/linux/usr/include/x86_64-linux-gnu"
-  LINK_LIBRARIES      PRIVATE rrPOSIX
-                              GTest::main)
+  INCLUDE_DIRECTORIES PRIVATE "."
+  LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest
+                              rrPOSIX)
 
-add_test(NAME rrPOSIXtest COMMAND rrPOSIXtest)
-
-# 安装包
-# https://cmake.org/cmake/help/latest/module/CPack.html
-# https://cmake.org/cmake/help/latest/cpack_gen/archive.html
-
-set(CPACK_GENERATOR             TGZ)
-
-set(CPACK_PACKAGE_NAME          "${PRODUCT_NAME}")
-math(EXPR nTmp                  "${PRODUCT_VERSION_MAJOR} % 100")
-set(CPACK_PACKAGE_VERSION_MAJOR "${nTmp}")
-math(EXPR nTmp                  "${PRODUCT_VERSION_MINOR} % 100")
-set(CPACK_PACKAGE_VERSION_MINOR "${nTmp}")
-math(EXPR nTmp                  "${PRODUCT_VERSION_PATCH} % 100")
-set(CPACK_PACKAGE_VERSION_PATCH "${nTmp}")
-set(CPACK_PACKAGE_DESCRIPTION   "${PRODUCT_DESCRIPTION}")
-set(CPACK_PACKAGE_HOMEPAGE_URL  "${PRODUCT_HOMEPAGE_URL}")
-set(CPACK_PACKAGE_VENDOR        "${PRODUCT_AUTHORS}")
-
-set(CPACK_RESOURCE_FILE_LICENSE "${PRODUCT_SOURCE_DIR}/UNLICENSE.txt")
-set(CPACK_RESOURCE_FILE_README  "${PRODUCT_SOURCE_DIR}/README.md")
-set(CPACK_PACKAGE_CHECKSUM      SHA256)
-
-include(CPack)
+add_test(NAME rrPosixTest COMMAND rrPosixTest)

@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 小部件应用程序入口。
 //!
-//! \version 2019-10-22
+//! \version 2019-12-05
 //! \sinve 2016-02-14
 //! \authors zhengrr
 //! \copyright Unlicense
@@ -21,7 +21,7 @@
 //! \return 返回退出状态（exit status）。
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QApplication app {argc, argv};
 
     Widget wgt;
     wgt.show();
