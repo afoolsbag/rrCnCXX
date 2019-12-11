@@ -18,6 +18,11 @@
 *   [“Coding Conventions”](https://wiki.qt.io/Coding_Conventions). *Qt Wiki*.
 *   ["QML Coding Conventions"](http://doc.qt.io/qt-5/qml-codingconventions.html). *Qt Documentation*.
 
+# 指南
+
+*   [*Qt 开源社区*](http://qter.org/)
+    *   霍亚飞．Qt Creator 快速入门．北京：航空航天大学出版社．2012．
+
 # 许可
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：

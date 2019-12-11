@@ -1,14 +1,14 @@
 #pragma once
-#ifndef WIDGET_H
-#define WIDGET_H
+#ifndef WIDGET_H_
+#define WIDGET_H_
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
-namespace Ui {
-class Widget;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class Widget; }
+QT_END_NAMESPACE
 
-class Widget: public QWidget {
+class Widget : public QWidget {
     Q_OBJECT
 
 public:

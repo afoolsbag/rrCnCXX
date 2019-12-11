@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 控制台应用程序入口。
 //!
-//! \version 2019-12-05
+//! \version 2019-12-11
 //! \sinve 2016-02-14
 //! \authors zhengrr
 //! \copyright Unlicense
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     qInfo() << QObject::tr("hello, world");
 
-    QTimer::singleShot(1000, &app, &QCoreApplication::quit);
+    QTimer::singleShot(0, &app, &QCoreApplication::quit);
 
     return app.exec();
 }

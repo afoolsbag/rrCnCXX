@@ -1,0 +1,1 @@
+quickadd_widget_executable()

@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 小部件应用程序入口。
 //!
-//! \version 2019-12-05
+//! \version 2019-12-11
 //! \sinve 2016-02-14
 //! \authors zhengrr
 //! \copyright Unlicense

@@ -52,16 +52,16 @@ public:
     ///          C.51: 用委派构造函数来表示类中所有构造函数的共同行为\n
     ///          C.52: 使用继承构造函数来把构造函数引入到无须进行其他的明确初始化操作的派生类之中\n
     ///          NR.5: 请勿如此：不要在构造函数中进行实际工作；代之以采用两阶段初始化
-    explicit smfc() = default;
+    smfc() = default;
 
     /// \brief 复制构造函数。
     /// \details 明确的（`explicit`）复制构造函数只允许形如 `smfc object {other};` 的调用方式；\n
     ///          而不允许形如 `smfc object = other;` 的调用方式。
-    explicit smfc(const smfc &) = default;
+    smfc(const smfc &) = default;
 
     /// \brief 移动构造函数。
     /// \details 对 `explicit` 关键字的行为同复制构造函数。
-    explicit smfc(smfc &&) noexcept = default;
+    smfc(smfc &&) noexcept = default;
 
     /// \brief 析构函数。
     /// \remarks C.30: 如果一个类需要在对象销毁时执行明确的操作，请为其定义析构函数\n
