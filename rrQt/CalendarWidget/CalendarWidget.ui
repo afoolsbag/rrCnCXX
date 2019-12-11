@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CalendarWidget</class>
+ <widget class="QCalendarWidget" name="CalendarWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>248</width>
+    <height>197</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CalendarWidget</string>
+  </property>
+  <property name="firstDayOfWeek">
+   <enum>Qt::Sunday</enum>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
