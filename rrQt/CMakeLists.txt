@@ -30,6 +30,7 @@ find_package(Qt5              # All Modules        https://doc.qt.io/qt-5/qtmodu
              Quick            # Qt Quick           https://doc.qt.io/qt-5/qtquick-index.html
              QuickControls2   # Qt Quick Controls  https://doc.qt.io/qt-5/qtquickcontrols-index.html
              QuickTemplates2  #
+             Sql              # Qt SQL             https://doc.qt.io/qt-5/qtsql-index.html
              Test             # Qt Test            https://doc.qt.io/qt-5/qttest-index.html
              Widgets)         # Qt Widgets         https://doc.qt.io/qt-5/qtwidgets-index.html
 set_property(GLOBAL PROPERTY AUTOGEN_SOURCE_GROUP "generated")
@@ -72,6 +73,7 @@ macro(quickadd_widget_executable)
                                         CONAN_PKG::gtest
                                         Qt5::Core
                                         Qt5::Gui
+                                        Qt5::Sql
                                         Qt5::Widgets)
 endmacro()
 

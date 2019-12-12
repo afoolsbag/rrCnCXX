@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WIDGET_H_
-#define WIDGET_H_
+#ifndef CALENDAR_WIDGET_H_
+#define CALENDAR_WIDGET_H_
 
 #include <QtWidgets/QCalendarWidget>
 
@@ -20,7 +20,6 @@ private slots:
     void on_CalendarWidget_clicked(const QDate &date);
     void on_CalendarWidget_currentPageChanged(int year, int month);
     void on_CalendarWidget_selectionChanged();
-
 
 private:
     Ui::CalendarWidget *ui;

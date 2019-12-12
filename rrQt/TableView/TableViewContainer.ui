@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TableViewContainer</class>
+ <widget class="QWidget" name="TableViewContainer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TableView</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTableView" name="tableView">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>400</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="hostNameLineEdit">
+       <property name="text">
+        <string>localhost</string>
+       </property>
+       <property name="placeholderText">
+        <string>Host Name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="hostPortLineEdit">
+       <property name="text">
+        <string>5432</string>
+       </property>
+       <property name="placeholderText">
+        <string>Host Port</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="usernameLineEdit">
+       <property name="text">
+        <string>postgres</string>
+       </property>
+       <property name="placeholderText">
+        <string>Username</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="passwordLineEdit">
+       <property name="text">
+        <string>0000</string>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Password</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="databaseLineEdit">
+       <property name="text">
+        <string>postgres</string>
+       </property>
+       <property name="placeholderText">
+        <string>Database</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="codePlainTextEdit">
+     <property name="font">
+      <font>
+       <family>Consolas</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="plainText">
+      <string>SELECT * FROM information_schema.sql_features;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Code here, Ctrl+Enter to query.</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+  <action name="queryAction">
+   <property name="text">
+    <string>查询</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Return</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>hostNameLineEdit</tabstop>
+  <tabstop>hostPortLineEdit</tabstop>
+  <tabstop>usernameLineEdit</tabstop>
+  <tabstop>passwordLineEdit</tabstop>
+  <tabstop>databaseLineEdit</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

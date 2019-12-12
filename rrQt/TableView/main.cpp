@@ -1,10 +1,10 @@
-//===-- Calendar Widget -----------------------------------------*- C++ -*-===//
+//===-- TableView Widget ----------------------------------------*- C++ -*-===//
 //!
 //! \file
-//! \brief Qt 日历小部件。
+//! \brief Qt 表视图小部件。
 //!
 //! \version 2019-12-12
-//! \sinve 2019-12-11
+//! \sinve 2019-12-12
 //! \authors zhengrr
 //! \copyright Unlicense
 //!
@@ -12,14 +12,14 @@
 
 #include <QtWidgets/QApplication>
 
-#include "CalendarWidget.h"
+#include "TableViewContainer.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app {argc, argv};
 
-    CalendarWidget wgt;
-    wgt.show();
+    TableViewContainer con;
+    con.show();
 
     return app.exec();
 }
