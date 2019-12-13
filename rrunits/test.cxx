@@ -7,7 +7,9 @@
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable: 4127)
+#endif
 #include <units.h>
+#ifdef _MSC_VER
 #pragma warning(pop)
 #endif
 

@@ -46,7 +46,7 @@ void TableViewContainer::on_queryAction_triggered(bool checked)
         QSqlDatabase::removeDatabase(QLatin1String {QSqlDatabase::defaultConnection});
     }
 
-    QSqlDatabase db = QSqlDatabase::addDatabase(QStringLiteral("QPSQL7"));
+    QSqlDatabase db = QSqlDatabase::addDatabase(QStringLiteral("QPSQL"));
     db.setHostName(ui->hostNameLineEdit->text());
     db.setPort(ui->hostPortLineEdit->text().toInt());
     db.setUserName(ui->usernameLineEdit->text());
