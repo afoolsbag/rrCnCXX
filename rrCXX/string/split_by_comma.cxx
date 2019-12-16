@@ -1,6 +1,8 @@
 /// \copyright Unlicense
 
+#include <array>
 #include <sstream>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -10,19 +12,19 @@ namespace rrcxx {
 
 TEST(split_by_comma, float)
 {
-    constexpr char raw_data[] {"1, 2, 3, 4, 5, 6, 7, 8, 9"};
-    constexpr float expected[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    const auto expected_size {sizeof(expected) / sizeof(*expected)};
+    constexpr char text[] {"1, 2, 3, 4, 5, 6, 7, 8, 9"};
+    constexpr array<float, 9> expected {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    stringstream ss {raw_data};
-    float actual[expected_size];
+    vector<float> actual;
+
+    stringstream ss {text};
     string tmp;
-    for(size_t i = 0; getline(ss, tmp, ','); ++i) {
-        actual[i] = stof(tmp);
-    }
+    while (getline(ss, tmp, ','))
+        actual.push_back(stof(tmp));
 
-    for (size_t i = 0; i < expected_size; ++i)
-        ASSERT_EQ(expected[i], actual[i]);
+    ASSERT_EQ(expected.size(), actual.size());
+    for (size_t i = 0; i < expected.size(); ++i)
+        ASSERT_FLOAT_EQ(expected[i], actual[i]);
 }
 
 }
