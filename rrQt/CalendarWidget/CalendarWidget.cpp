@@ -32,5 +32,5 @@ void CalendarWidget::on_CalendarWidget_currentPageChanged(int year, int month)
 
 void CalendarWidget::on_CalendarWidget_selectionChanged()
 {
-    qInfo() << __func__;
+    qInfo() << __func__ << '(' << ')';
 }

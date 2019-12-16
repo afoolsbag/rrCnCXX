@@ -21,25 +21,8 @@ TableViewContainer::~TableViewContainer()
     delete ui;
 }
 
-void TableViewContainer::on_queryAction_changed()
+void TableViewContainer::on_queryAction_triggered(bool)
 {
-    qInfo() << __func__;
-}
-
-void TableViewContainer::on_queryAction_hovered()
-{
-    qInfo() << __func__;
-}
-
-void TableViewContainer::on_queryAction_toggled(bool checked)
-{
-    qInfo() << __func__ << '(' << checked << ')';
-}
-
-void TableViewContainer::on_queryAction_triggered(bool checked)
-{
-    qInfo() << __func__ << '(' << checked << ')';
-
     if (QSqlDatabase::contains()) {
         if (QSqlDatabase::database().isValid() && QSqlDatabase::database().isOpen())
             QSqlDatabase::database().close();

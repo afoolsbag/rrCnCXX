@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 标签页小部件。
 //!
-//! \version 2019-12-11
+//! \version 2019-12-16
 //! \sinve 2019-12-11
 //! \authors zhengrr
 //! \copyright Unlicense

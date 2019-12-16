@@ -3,7 +3,7 @@
 //! \file
 //! \brief Qt 带右侧标准按钮的对话框小部件。
 //!
-//! \version 2019-12-11
+//! \version 2019-12-16
 //! \sinve 2019-12-11
 //! \authors zhengrr
 //! \copyright Unlicense
@@ -23,13 +23,13 @@ int main(int argc, char *argv[])
     DialogButtonsRight dlg;
     switch (dlg.exec()) {
     case QDialog::Rejected:
-        qInfo() << "rejected";
+        qInfo() << "returns code rejected";
         break;
     case QDialog::Accepted:
-        qInfo() << "accepted";
+        qInfo() << "returns code accepted";
         break;
     default:
-        qInfo() << "unexpected";
+        qInfo() << "returns code unexpected";
         break;
     }
 

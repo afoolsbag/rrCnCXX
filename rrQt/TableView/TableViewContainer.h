@@ -16,9 +16,6 @@ public:
     ~TableViewContainer();
 
 private slots:
-    void on_queryAction_changed();
-    void on_queryAction_hovered();
-    void on_queryAction_toggled(bool checked);
     void on_queryAction_triggered(bool checked);
 
 private:

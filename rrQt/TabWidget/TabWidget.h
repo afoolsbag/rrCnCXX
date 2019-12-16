@@ -1,6 +1,6 @@
 #pragma once
-#ifndef WIDGET_H_
-#define WIDGET_H_
+#ifndef TABWIDGET_H_
+#define TABWIDGET_H_
 
 #include <QtWidgets/QTabWidget>
 
@@ -14,6 +14,12 @@ class TabWidget : public QTabWidget {
 public:
     explicit TabWidget(QTabWidget *parent = nullptr);
     ~TabWidget();
+
+private slots:
+    void on_TabWidget_currentChanged(int index);
+    void on_TabWidget_tabBarClicked(int index);
+    void on_TabWidget_tabBarDoubleClicked(int index);
+    void on_TabWidget_tabCloseRequested(int index);
 
 private:
     Ui::TabWidget *ui;
