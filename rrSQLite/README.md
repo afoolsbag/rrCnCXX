@@ -26,7 +26,8 @@
 ## Awesome
 
 集成开发环境
-*   [*DataGrip*](https://jetbrains.com/datagrip)
+*   [*DataGrip*](https://jetbrains.com/datagrip) <sub>
+        [*zh_CN*](https://github.com/pingfangx/jetbrains-in-chinese/tree/master/DataGrip) </sub>
 *   [*Navicat*](https://navicat.com/)
 
 ## 许可
