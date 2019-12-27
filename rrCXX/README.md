@@ -3,16 +3,15 @@
 > [![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
 
 [*Standard C++*](https://isocpp.org)
+| [C++20](# "2020"),
+  [*C++17*](https://iso.org/standard/68564.html "ISO/IEC 14882:2017"),
+  [*C++14*](https://iso.org/standard/64029.html "ISO/IEC 14882:2014"),
+  [*C++11*](https://iso.org/standard/50372.html "ISO/IEC 14882:2011"),
+  [*C++03*](https://iso.org/standard/38110.html "ISO/IEC 14882:2003"),
+  [*C++98*](https://iso.org/standard/25845.html "ISO/IEC 14882:1998"),
+  [Early C++](# "1983")
 
-*   *C++20*
-*   [*C++17*](https://iso.org/standard/68564.html) (2017)
-*   [*C++14*](https://iso.org/standard/64029.html) (2014)
-*   [*C++11*](https://iso.org/standard/50372.html) (2011)
-*   [*C++03*](https://iso.org/standard/38110.html) (2003)
-*   [*C++98*](https://iso.org/standard/25845.html) (1998)
-*   *C++* (1983)
-
-*Bjarne Stroustrup（比雅尼·斯特劳斯特鲁普）*
+Bjarne Stroustrup（比雅尼·斯特劳斯特鲁普）
 
 ## 参考
 
@@ -42,14 +41,14 @@
 
 [*Awesome C++*](https://fffaraz.github.io/awesome-cpp/)
 
-/ [*Apache Thrift*](https://thrift.apache.org/)
-/ [*CGAL*](https://cgal.org/)
-/ [*DirectX*](https://docs.microsoft.com/windows/desktop/directx)
-/ [*Google Test*](https://github.com/google/googletest)
-/ [*JRTPLIB*](https://research.edm.uhasselt.be/jori/page/CS/Jrtplib.html)
-/ [*JTHREAD*](https://research.edm.uhasselt.be/jori/page/CS/Jthread.html)
-/ [*LIVE555*](http://live555.com/)
-/ [*Unreal Engine*](https://unrealengine.com/)
+| [*Apache Thrift*](https://thrift.apache.org/)
+| [*CGAL*](https://cgal.org/)
+| [*DirectX*](https://docs.microsoft.com/windows/desktop/directx)
+| [*Google Test*](https://github.com/google/googletest)
+| [*JRTPLIB*](https://research.edm.uhasselt.be/jori/page/CS/Jrtplib.html)
+| [*JTHREAD*](https://research.edm.uhasselt.be/jori/page/CS/Jthread.html)
+| [*LIVE555*](http://live555.com/)
+| [*Unreal Engine*](https://unrealengine.com/)
 
 ## 许可
 
