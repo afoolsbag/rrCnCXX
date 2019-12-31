@@ -3,6 +3,8 @@
 /// \defgroup gTypeTraits 类型特性
 /// \ingroup gTypes
 ///
+/// \sa [“类型特性”](https://zh.cppreference.com/w/cpp/types). *cppreference.com*.
+///
 /// \version 2019-10-14
 /// \since 2019-07-26
 /// \authors zhengrr
@@ -64,7 +66,7 @@ TEST(type_traits, compile_time_constant)
 ///          *   函数的参数类型：常规函数 `Ret(Args...)` 或变参函数 `Ret(Args......)`（×2）
 ///          *   函数的 cv 限定：（无）、`const`、`volatile` 或 `const volatile`（×4）
 ///          *   函数的引用限定：（无）、左值引用 `&` 或右值引用 `&&`（×3）
-///          *   函数的异常说明：（无）或无异常说明 `noexcept`（×2）
+///          *   函数的异常声明：（无）或无异常声明 `noexcept`（×2）
 ///
 ///          非静态成员函数类别对应 288 个（同上）类型形参，相较于其它函数，其调用约定另增一项 `__thiscall`
 TEST(type_traits, primary_type_categories)
