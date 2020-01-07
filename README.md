@@ -93,6 +93,8 @@ rrCnCxx\ ...............................项目根目录
 
 **新闻**
 | [*InfoQ*](https://infoq.cn/)
+| [*好奇心日报*](https://www.qdaily.com/),
+  [*后续*](https://houxuapp.com/)
 | [*蓝点网*](https://landiannews.com/)
 
 **指数**
@@ -111,7 +113,6 @@ rrCnCxx\ ...............................项目根目录
 ### 工具
 
 **系统支持**
-
 | [*NetBSD*](http://netbsd.org/ "1993-04-19"),
   [*Debian*](https://debian.org/ "1993-08-16"),
   [*FreeBSD*](https://freebsd.org/ "1993-11-01"),
@@ -171,7 +172,10 @@ rrCnCxx\ ...............................项目根目录
 **文件操作**
 | [*Beyond Compare*](https://scootersoftware.com/ "一款文件比较工具")
 | [*FastCopy*](https://fastcopy.jp/ "一款快速复制工具")
-| [*IDM*](https://www.internetdownloadmanager.com/ "一款下载器")
+| [*IDM*](https://www.internetdownloadmanager.com/ "一款中心网络下载器"),
+  [*qBittorrent*](https://qbittorrent.org/ "一款对等网络下载器") <sub>
+      [*qBittorrent-Enhanced-Edition*](https://github.com/c0re100/qBittorrent-Enhanced-Edition) </sub>,
+  [*Transmission*](https://transmissionbt.com/ "一款对等网络下载器")
 
 **文本编辑**
 | [*Emacs*](https://gnu.org/software/emacs/)
