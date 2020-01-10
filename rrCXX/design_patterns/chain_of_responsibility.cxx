@@ -1,7 +1,7 @@
 //===-- Chain of Responsibility ---------------------------------*- C++ -*-===//
 ///
-/// \defgroup gChainOfResponsibility 责任链
-/// \ingroup gDesignPatterns
+/// \defgroup groupChainOfResponsibility 责任链
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   abstract logger {
@@ -27,7 +27,7 @@
 ///   logger <|-- net_logger
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -36,7 +36,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gChainOfResponsibility
+/// \addtogroup groupChainOfResponsibility
 /// @{
 
 /// @}

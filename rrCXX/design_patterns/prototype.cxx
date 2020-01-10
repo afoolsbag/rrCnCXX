@@ -1,7 +1,7 @@
 //===-- Prototype -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gPrototype 原型
-/// \ingroup gDesignPatterns
+/// \defgroup groupPrototype 原型
+/// \ingroup groupDesignPatterns
 ///
 /// 原型设计模式：
 ///
@@ -25,7 +25,7 @@
 ///   prototype <|.. concrete_propttype
 /// \enduml
 ///
-/// \version 2018-11-27
+/// \version 2020-01-09
 /// \since 2018-09-27
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -41,7 +41,7 @@ using namespace std;
 
 namespace rrcxx {
 
-/// \addtogroup gPrototype
+/// \addtogroup groupPrototype
 /// @{
 
 /// \brief 原型（接口）。

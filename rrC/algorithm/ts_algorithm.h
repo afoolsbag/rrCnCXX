@@ -1,11 +1,11 @@
 /*===-- Algorithms ---------------------------------------------*- C -*-===*//**
  *
- * \defgroup gAlgorithm 算法
- * \ingroup gReference
+ * \defgroup groupAlgorithm 算法
+ * \ingroup groupRrC
  *
- * \sa ["算法"](https://zh.cppreference.com/w/c/algorithm). *cppreference.com*.
+ * \sa <https://zh.cppreference.com/w/c/algorithm>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2018-06-20
  * \authors zhengrr
  * \copyright Unlicense

@@ -1,21 +1,11 @@
 /*===-- Strings Library ----------------------------------------*- C -*-===*//**
  *
- * \defgroup gString 字符串库
- * \ingroup gReference
+ * \defgroup groupString 字符串库
+ * \ingroup groupRrC
  *
- * \sa ["字符串库"](https://zh.cppreference.com/w/c/string). *cppreference.com*.
- *     *   空终止字节字符串管理
- *         *   字符分类
- *         *   字符操作
- *         *   转换成数值格式
- *         *   字符串操作
- *         *   字符串检验
- *         *   字符数组操作
- *         *   杂项
- *     *   空终止多字节字符串管理
- *     *   空终止宽字符串管理
+ * \sa <https://zh.cppreference.com/w/c/string>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense

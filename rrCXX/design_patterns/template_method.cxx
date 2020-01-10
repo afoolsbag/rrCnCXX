@@ -1,7 +1,7 @@
 //===-- Template Method -----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gTemplateMethod 模板方法
-/// \ingroup gDesignPatterns
+/// \defgroup groupTemplateMethod 模板方法
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   abstract "游戏" as game {
@@ -37,7 +37,7 @@
 ///   game <|-- chess
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -46,7 +46,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gTemplateMethod
+/// \addtogroup groupTemplateMethod
 /// @{
 
 /// @}

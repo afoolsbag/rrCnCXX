@@ -1,7 +1,7 @@
 //===-- Builder -------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gBuilder 生成器
-/// \ingroup gDesignPatterns
+/// \defgroup groupBuilder 生成器
+/// \ingroup groupDesignPatterns
 ///
 /// 生成器设计模式：
 ///
@@ -44,7 +44,7 @@
 ///
 /// \enduml
 ///
-/// \version 2018-12-29
+/// \version 2020-01-09
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -60,7 +60,7 @@ using namespace std;
 
 namespace rrcxx::test {
 
-/// \addtogroup gBuilder
+/// \addtogroup groupBuilder
 /// @{
 
 /// \brief 产品。

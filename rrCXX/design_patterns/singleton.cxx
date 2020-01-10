@@ -1,7 +1,7 @@
 //===-- Singleton -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gSingleton 单例
-/// \ingroup gDesignPatterns
+/// \defgroup groupSingleton 单例
+/// \ingroup groupDesignPatterns
 ///
 /// 单例设计模式：
 ///
@@ -24,7 +24,7 @@
 /// \note 单例模式会隐藏依赖，故而不建议使用。
 ///       但在工业开发中，有时为提高开发效率而采用此模式，如全局配置、全局日志、全局线程池等。
 ///
-/// \version 2019-11-09
+/// \version 2020-01-09
 /// \since 2016-10-18
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -42,7 +42,7 @@ using namespace std;
 
 namespace rrcxx {
 
-/// \addtogroup gSingleton
+/// \addtogroup groupSingleton
 /// @{
 
 // EAGER SINGLETON
@@ -126,20 +126,20 @@ struct singleton {
 };
 
 /// \brief 单例。
-/// \sa \ref sCxxAndDclp
+/// \sa \ref sectionCxxAndDclp
 TEST(design_patterns, singleton)
 {
     auto &eager_singleton_1 = eager_singleton::instance();
     auto &eager_singleton_2 = eager_singleton::instance();
-    ASSERT_EQ(&eager_singleton_1, &eager_singleton_2);
+    ASSERT_TRUE(&eager_singleton_1 == &eager_singleton_2);
 
     auto &lazy_singleton_1 = lazy_singleton::instance();
     auto &lazy_singleton_2 = lazy_singleton::instance();
-    ASSERT_EQ(&lazy_singleton_1, &lazy_singleton_2);
+    ASSERT_TRUE(&lazy_singleton_1 == &lazy_singleton_2);
 
     auto &singleton_1 = singleton<int>::instance();
     auto &singleton_2 = singleton<int>::instance();
-    ASSERT_EQ(&singleton_1, &singleton_2);
+    ASSERT_TRUE(&singleton_1 == &singleton_2);
 }
 
 /// @}

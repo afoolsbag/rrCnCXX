@@ -1,7 +1,7 @@
 //===-- Visitor -------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gVisitor 访问者
-/// \ingroup gDesignPatterns
+/// \defgroup groupVisitor 访问者
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   interface "元素" as element {
@@ -53,7 +53,7 @@
 ///   element_visitor <|.. element_weaken_visitor
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -62,7 +62,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gVisitor
+/// \addtogroup groupVisitor
 /// @{
 
 /// @}

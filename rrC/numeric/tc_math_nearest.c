@@ -1,11 +1,11 @@
 /*===-- Nearest Integer Floating-Point Operations --------------*- C -*-===*//**
  *
- * \defgroup gNearest 临近整数的浮点运算
- * \ingroup gNumeric
+ * \defgroup groupNearest 临近整数的浮点运算
+ * \ingroup groupNumeric
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/math>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2018-07-10
  * \authors zhengrr
  * \copyright Unlicense

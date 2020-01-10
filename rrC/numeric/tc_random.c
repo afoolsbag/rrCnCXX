@@ -1,11 +1,11 @@
 /*===-- Pseudo-Random Number -----------------------------------*- C -*-===*//**
  *
- * \defgroup gRandom 伪随机数
- * \ingroup gNumeric
+ * \defgroup groupRandom 伪随机数
+ * \ingroup groupNumeric
  *
  * \sa <http://zh.cppreference.com/w/c/numeric/random>
  *
- * \version 2019-02-13
+ * \version 2020-01-09
  * \since 2016-10-10
  * \authors zhengrr
  * \copyright Unlicense

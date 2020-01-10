@@ -1,7 +1,7 @@
 //===-- Command -------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gCommand 命令
-/// \ingroup gDesignPatterns
+/// \defgroup groupCommand 命令
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   interface "命令" as command {
@@ -34,7 +34,7 @@
 ///   flip_down_command -> light
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -43,7 +43,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gCommand
+/// \addtogroup groupCommand
 /// @{
 
 /// @}

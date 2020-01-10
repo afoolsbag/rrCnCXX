@@ -1,9 +1,9 @@
 /*===-- String Examination -------------------------------------*- C -*-===*//**
  *
- * \defgroup gStringExamination 字符串检验
- * \ingroup gString
+ * \defgroup groupStringExamination 字符串检验
+ * \ingroup groupString
  *
- * \version 2019-02-13
+ * \version 2020-01-09
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright Unlicense

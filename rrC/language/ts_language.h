@@ -1,20 +1,11 @@
 /*===-- C Language ---------------------------------------------*- C -*-===*//**
  *
- * \defgroup gLanguage C 语言
- * \ingroup gReference
+ * \defgroup groupLanguage C 语言
+ * \ingroup groupRrC
  *
- * \sa ["C 语言"](http://zh.cppreference.com/w/c/language). *cppreference.com*.
- *     *   基本概念
- *     *   关键词
- *     *   预处理器
- *     *   语句
- *     *   表达式
- *     *   初始化
- *     *   声明
- *     *   函数
- *     *   杂项
+ * \sa <https://zh.cppreference.com/w/c/language>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense

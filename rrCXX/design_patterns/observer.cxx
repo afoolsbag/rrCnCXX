@@ -1,7 +1,7 @@
 //===-- Observer ------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gObserver 观察者
-/// \ingroup gDesignPatterns
+/// \defgroup groupObserver 观察者
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   interface "观察者" as observer {
@@ -16,7 +16,7 @@
 ///   subject "1" o-> "*" observer : notify/update
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -25,7 +25,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gObserver
+/// \addtogroup groupObserver
 /// @{
 
 /// @}

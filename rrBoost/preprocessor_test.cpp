@@ -1,10 +1,10 @@
-//===-- Preprocessor --------------------------------------------*- C++ -*-===//
+//===-- Boost.Preprocessor --------------------------------------*- C++ -*-===//
 ///
 /// \file
-/// \brief 预处理器。
-/// \sa <https://boost.org/doc/libs/master/libs/preprocessor/doc/index.html>
+/// \brief Boost 预处理器。
+/// \sa <https://boost.org/doc/libs/master/libs/preprocessor/>
 ///
-/// \version 2019-09-05
+/// \version 2020-01-08
 /// \since 2019-09-05
 /// \authors zhengrr
 /// \copyright Unlicense

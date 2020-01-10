@@ -1,7 +1,7 @@
 //===-- Flyweight -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gFlyweight 享元
-/// \ingroup gDesignPatterns
+/// \defgroup groupFlyweight 享元
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   class "贴图" as map {
@@ -16,7 +16,7 @@
 ///   texture o- texture
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -25,7 +25,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gFlyweight
+/// \addtogroup groupFlyweight
 /// @{
 
 /// @}

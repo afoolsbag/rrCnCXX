@@ -1,14 +1,14 @@
 //===-- Design Patterns -----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gDesignPatterns 设计模式
-/// \ingroup gRrCxx
+/// \defgroup groupDesignPatterns 设计模式
+/// \ingroup groupRrCxx
 ///
-/// \ref pDesignPatterns
+/// \ref pageDesignPatterns
 ///
 /// \sa ["设计模式"](https://zh.wikipedia.org/wiki/设计模式). *Wikipedia*.
 /// \sa ["反面模式"](https://zh.wikipedia.org/wiki/反面模式). *Wikipedia*.
 ///
-/// \version 2018-11-26
+/// \version 2020-01-09
 /// \since 2018-01-29
 /// \authors zhengrr
 /// \copyright CC0-1.0
@@ -17,13 +17,13 @@
 
 //===-- Design Patterns Topics ----------------------------------*- C++ -*-===//
 ///
-/// \page pDesignPatterns 设计模式议题
+/// \page pageDesignPatterns 设计模式议题
 /// \tableofcontents
 ///
-/// \ref gDesignPatterns
+/// \ref groupDesignPatterns
 ///
-/// ___
-/// # 统一建模语言                                                       {#sUML}
+/// ___________________
+/// \section sectionUML 统一建模语言
 ///
 /// \startuml
 ///   card "UML 2.5 图表" as diagram
@@ -100,7 +100,7 @@
 ///
 /// \sa <https://www.uml-diagrams.org/uml-25-diagrams.html>
 ///
-/// ## 类图                                                    {#ssClassDiagram}
+/// \subsection subsectionClassDiagram 类图
 ///
 /// \startuml
 ///   class "类" as class {
@@ -169,7 +169,7 @@
 ///   base <|-- derived : 泛化、继承（Generalization/Inheritance）
 /// \enduml
 ///
-/// ## 对象图                                                {#ssObjectDiagram}
+/// \subsection subsectionObjectDiagram 对象图
 ///
 /// \startuml
 ///   object "对象" as object {
@@ -178,7 +178,7 @@
 ///   }
 /// \enduml
 ///
-/// ## 组件图                                             {#ssComponentDiagram}
+/// \subsection subsectionComponentDiagram 组件图
 ///
 /// \startuml
 ///   cloud "视频平台\nVideo Platform" as vp {
@@ -239,11 +239,11 @@
 ///   vodse <-> vodce : VOD
 /// \enduml
 ///
-/// ## 部署图                                            {#ssDeploymentDiagram}
+/// \subsection subsectionDeploymentDiagram 部署图
 ///
-/// ## 用例图                                               {#ssUseCaseDiagram}
+/// \subsection subsectionUseCaseDiagram 用例图
 ///
-/// ## 活动图                                              {#ssActivityDiagram}
+/// \subsection subsectionActivityDiagram 活动图
 ///
 /// \startuml
 ///   start
@@ -257,16 +257,16 @@
 ///   stop
 /// \enduml
 ///
-/// ## 状态图                                          {#ssStateMachineDiagram}
+/// \subsection subsectionStateMachineDiagram 状态图
 ///
-/// ## 时序图                                              {#ssSequenceDiagram}
+/// \subsection subsectionSequenceDiagram 时序图
 ///
-/// ## 计时图                                                {#ssTimingDiagram}
+/// \subsection subsectionTimingDiagram 计时图
 ///
 /// \sa [*PlantUML*](http://plantuml.com/)
 ///
-/// ___
-/// # C++ 和 DCLP 的风险                                         {#sCxxAndDclp}
+/// __________________________
+/// \section sectionCxxAndDclp C++ 和 DCLP 的风险
 ///
 /// 若非必要，建议使用提前初始化单例模式，其无需互斥锁；
 /// 若有必要，延迟初始化应直接用锁，而非双重检查锁，且在调用时善用变量缓存，减少访问。
@@ -281,8 +281,8 @@
 ///
 /// \sa ["C++ 和 DCLP 的风险"](http://blog.jobbole.com/86392). *伯乐在线*.
 ///
-/// ___
-/// \version 2019-08-29
+/// ___________________
+/// \version 2020-01-09
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

@@ -1,11 +1,11 @@
 //===-- Type Traits ---------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gTypeTraits 类型特性
-/// \ingroup gTypes
+/// \defgroup groupTypeTraits 类型特性
+/// \ingroup groupTypes
 ///
-/// \sa [“类型特性”](https://zh.cppreference.com/w/cpp/types). *cppreference.com*.
+/// \sa <https://zh.cppreference.com/w/cpp/types>
 ///
-/// \version 2019-10-14
+/// \version 2020-01-09
 /// \since 2019-07-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,12 +20,12 @@
 using namespace std;
 
 namespace rrcxx {
-/// \addtogroup gTypeTraits
+/// \addtogroup groupTypeTraits
 /// @{
 
-/// \brief 编译期常量：`integral_constant`
-/// \details 标准库通过构造一个具有 `static constexpr T value = V;` 成员的类，
-///          以类的静态成员常量的形式存储一个编译期常量。
+/// \brief 编译期常量：`integral_constant`（完整常量）
+/// \details 标准库通过构造一个具有 `static constexpr T value = V;` 成员的模板类，
+///          以类的公有静态成员常量的形式存储一个编译期常量。
 ///
 ///          标准库还提供了以下编译期常量特化：
 ///          
@@ -34,8 +34,8 @@ namespace rrcxx {
 ///          *   `T=bool, V=false` 的完全特化：`false_type`
 TEST(type_traits, compile_time_constant)
 {
-    using int_1337_c = integral_constant<int, 1337>;
-    static_assert(1337 == int_1337_c::value);
+    using int_1337_type = integral_constant<int, 1337>;
+    static_assert(1337 == int_1337_type::value);
 
     static_assert(true == true_type::value);
 
@@ -43,8 +43,8 @@ TEST(type_traits, compile_time_constant)
 }
 
 /// \brief 基础类型类别
-/// \details 标准库通过构造模板类，使一般模板形参的类继承自 `false_type`，
-///          并特化指定模板形参的类继承自 `true_type`，实现编译器对模板形参的判别。
+/// \details 标准库通过构造模板类，使该模板类的一般形式继承自 `false_type`，
+///          并使该模板类的指定特化形式继承自 `true_type`，实现编译器对模板形参的判别。
 ///
 ///          值得注意的是，基础类别如 `void`，对应有四个类型形参：
 ///
@@ -196,11 +196,6 @@ TEST(type_traits, type_properties)
 
     // 无符号算术类型，`is_unsigned`
     static_assert(is_unsigned_v<unsigned char>);
-}
-
-TEST(type_traits, const_volatility_specifiers)
-{
-
 }
 
 /// @}

@@ -2,7 +2,7 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2019-11-28
+# | |  | |  | \__/\ 2016-08-01 – 2020-01-09
 # |_|  |_|   \____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -22,15 +22,16 @@ add_compile_options_ex(
 find_package(Check REQUIRED)
 
 add_doxygen_con(
-  rrCdoc
+  rrCDoc
   OPTIMIZE_OUTPUT_FOR_C ON)
 
 aux_source_directory_con("." zSrc RECURSE)
 add_executable_con(
-  rrCtest             ${zSrc}
+  rrCTest             ${zSrc}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
+  COMPILE_OPTIONS     PRIVATE             $<$<CXX_COMPILER_ID:MSVC>:/wd4100>
   INCLUDE_DIRECTORIES PRIVATE             "."
   LINK_LIBRARIES      PRIVATE             Check::check)
 
-add_test(NAME rrCtest COMMAND rrCtest)
+add_test(NAME rrCTest COMMAND rrCTest)

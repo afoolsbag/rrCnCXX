@@ -8,7 +8,7 @@
 #include "ts_memory.h"
 
 /**
- * \addtogroup gMemory
+ * \addtogroup groupMemory
  * @{
  */
 

@@ -2,7 +2,7 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2019-11-28
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2020-01-08
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -22,7 +22,7 @@ add_compile_options_ex(
   WARNING_AS_ERROR)
 
 add_doxygen_con(
-  rrCXXdoc)
+  rrCxxDoc)
 
 include_conan_script()
 conan_cmake_run(
@@ -49,4 +49,4 @@ add_executable_con(
                       rrCXX
                       CONAN_PKG::ms-gsl)
 
-add_test(NAME rrCXXtest COMMAND rrCXXtest)
+add_test(NAME rrCxxTest COMMAND rrCxxTest)

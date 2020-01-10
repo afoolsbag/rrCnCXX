@@ -8,7 +8,7 @@
 #include "ts_error.h"
 
 /**
- * \addtogroup gError
+ * \addtogroup groupError
  * @{
  */
 

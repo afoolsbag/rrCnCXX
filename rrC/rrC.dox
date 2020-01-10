@@ -1,0 +1,20 @@
+/*===-- C Reference --------------------------------------------*- C -*-===*//**
+ *
+ * \defgroup groupRrC zhengrr 所知的 C
+ *
+ * **目录结构说明**
+ *
+ * *   目录按 [*cppreference.com*](https://cppreference.com/) 中 [“C 参考手册”](https://zh.cppreference.com/w/c) 的顶级章节 URL 命名。
+ *
+ *     如 [`cppreference.com`](https://cppreference.com/) / [`C 参考手册`](https://zh.cppreference.com/w/c) / [`文件输入、输出`](https://zh.cppreference.com/w/c/io)，
+ *     其 URL 为 `https://zh.cppreference.com/w/c/io`
+ *     取其中的 `io` 用作目录名。
+ *
+ * *   文件按需求划分，前缀 `tm` 含义为“test main”，前缀 `ts` 含义为“test suite”，前缀 `tc` 含义为“test case”。
+ *
+ * \version 2020-01-09
+ * \since 2018-01-23
+ * \authors zhengrr
+ * \copyright CC0-1.0
+ *
+*//*===--------------------------------------------------------------------===*/

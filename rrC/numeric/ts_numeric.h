@@ -1,16 +1,11 @@
-/*===-- Numerics -----------------------------------------------*- C -*-===*//**
+/*===-- Numeric ------------------------------------------------*- C -*-===*//**
  *
- * \defgroup gNumeric 数值
- * \ingroup gReference
+ * \defgroup groupNumeric 数值
+ * \ingroup groupRrC
  *
- * \sa ["数值"](http://zh.cppreference.com/w/c/numeric). *cppreference.com*.
- *     *   常用数学函数
- *     *   浮点环境
- *     *   伪随机数生成
- *     *   复数算术
- *     *   泛型数学
+ * \sa <https://zh.cppreference.com/w/c/numeric>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense

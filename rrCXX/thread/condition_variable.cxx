@@ -1,7 +1,7 @@
 //===-- Condition Variable --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gConditionVariable 条件变量
-/// \ingroup gThread
+/// \defgroup groupConditionVariable 条件变量
+/// \ingroup groupThread
 ///
 /// \version 2019-07-29
 /// \since 2019-07-29
@@ -21,7 +21,7 @@
 using namespace std;
 
 namespace rrcxx {
-/// @addtogroup gConditionVariable
+/// @addtogroup groupConditionVariable
 /// @{
 
 TEST(condition_variable, no_conditon)

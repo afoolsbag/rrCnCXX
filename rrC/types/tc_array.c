@@ -1,12 +1,12 @@
 /*===-- Array --------------------------------------------------*- C -*-===*//**
  *
- * \defgroup gArray 数组
- * \ingroup gTypes
+ * \defgroup groupArray 数组
+ * \ingroup groupTypes
  *
  * \sa <http://zh.cppreference.com/w/c/language/array>
  * \sa <http://zh.cppreference.com/w/c/language/array_initialization>
  *
- * \version 2019-02-13
+ * \version 2020-01-09
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense

@@ -1,11 +1,11 @@
 /*===-- Enumeration --------------------------------------------*- C -*-===*//**
  *
- * \defgroup gEnum 结构体
- * \ingroup gTypes
+ * \defgroup groupEnum 结构体
+ * \ingroup groupTypes
  *
  * \sa <https://zh.cppreference.com/w/c/language/enum>
  *
- * \version 2019-02-26
+ * \version 2020-01-09
  * \since 2019-02-26
  * \authors zhengrr
  * \copyright Unlicense

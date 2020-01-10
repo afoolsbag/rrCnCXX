@@ -8,7 +8,7 @@
 #endif
 
 /**
- * \addtogroup gThread
+ * \addtogroup groupThread
  * @{
  */
 

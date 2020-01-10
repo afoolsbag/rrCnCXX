@@ -1,7 +1,5 @@
 # zhengrr 所知的 C++                                                 {#mainpage}
 
-> [![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
-
 [*Standard C++*](https://isocpp.org)
 | [C++20](# "2020"),
   [*C++17*](https://iso.org/standard/68564.html "ISO/IEC 14882:2017"),
@@ -34,6 +32,7 @@ Bjarne Stroustrup（比雅尼·斯特劳斯特鲁普）
 *   [*Bjarne Stroustrup's homepage*](http://stroustrup.com/)
 *   [*C++ Core Guidelines*](https://isocpp.github.io/CppCoreGuidelines/) <sub>
         [*cmn-Hans*](https://github.com/lynnboy/CppCoreGuidelines-zh-CN) </sub>
+
 
 *   [“C++ 必读书籍推荐”](http://bestcbooks.com/recommended-cpp-books/). *计算机书籍控*.
 

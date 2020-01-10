@@ -1,11 +1,11 @@
 /*===-- Atomic Operations --------------------------------------*- C -*-===*//**
  *
- * \defgroup gAtomic 原子操作
- * \ingroup gReference
+ * \defgroup groupAtomic 原子操作
+ * \ingroup groupRrC
  *
- * \sa ["原子操作库"](https://zh.cppreference.com/w/c/atomic). *cppreference.com*.
+ * \sa <https://zh.cppreference.com/w/c/atomic>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2018-01-23
  * \authors zhengrr
  * \copyright Unlicense

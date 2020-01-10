@@ -3,9 +3,9 @@
 /// \defgroup groupAlgorithm 算法库
 /// \ingroup groupRrCxx
 ///
-/// \sa ["算法库"](https://zh.cppreference.com/w/cpp/algorithm). *cppreference.com*.
+/// \sa <https://zh.cppreference.com/w/cpp/algorithm>
 ///
-/// \version 2019-11-28
+/// \version 2020-01-09
 /// \since 2019-02-22
 /// \authors zhengrr
 /// \copyright CC0-1.0

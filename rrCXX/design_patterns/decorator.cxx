@@ -1,7 +1,7 @@
 //===-- Decorator -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gDecorator 修饰器
-/// \ingroup gDesignPatterns
+/// \defgroup groupDecorator 修饰器
+/// \ingroup groupDesignPatterns
 ///
 /// 向某个对象动态地添加更多的功能。修饰模式是除类继承外另一种扩展功能的方法。
 ///
@@ -50,7 +50,7 @@
 ///   endlegend
 /// \enduml
 ///
-/// \version 2018-11-28
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -67,7 +67,7 @@ using namespace std;
 namespace rrcxx {
 namespace decorator {
 
-/// \addtogroup gDecorator
+/// \addtogroup groupDecorator
 /// @{
 
 /// \brief 智械。
@@ -192,9 +192,9 @@ public:
 
 /// @}
 
-}//namespace decorator
+}
 
-/// \addtogroup gDecorator
+/// \addtogroup groupDecorator
 /// @{
 
 /// \brief 修饰器。

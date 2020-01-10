@@ -7,7 +7,7 @@
 #include "ts_chrono.h"
 
 /**
- * \addtogroup gChrono
+ * \addtogroup groupChrono
  * @{
  */
 

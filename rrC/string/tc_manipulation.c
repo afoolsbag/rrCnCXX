@@ -1,9 +1,9 @@
 /*===-- String Manipulation ------------------------------------*- C -*-===*//**
  *
- * \defgroup gStringManipulation 字符串操作
- * \ingroup gString
+ * \defgroup groupStringManipulation 字符串操作
+ * \ingroup groupString
  *
- * \version 2019-02-13
+ * \version 2020-01-09
  * \since 2018-01-05
  * \authors zhengrr
  * \copyright Unlicense

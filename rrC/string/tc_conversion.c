@@ -1,9 +1,9 @@
 /*===-- String Conversion --------------------------------------*- C -*-===*//**
  *
- * \defgroup gStringConversion 字符串转换
- * \ingroup gString
+ * \defgroup groupStringConversion 字符串转换
+ * \ingroup groupString
  *
- * \version 2019-02-13
+ * \version 2020-01-09
  * \since 2018-02-03
  * \authors zhengrr
  * \copyright Unlicense

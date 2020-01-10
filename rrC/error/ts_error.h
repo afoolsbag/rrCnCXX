@@ -1,11 +1,11 @@
 /*===-- Error Handling -----------------------------------------*- C -*-===*//**
  *
- * \defgroup gError 错误处理
- * \ingroup gReference
+ * \defgroup groupError 错误处理
+ * \ingroup groupRrC
  *
- * \sa ["错误处理"](https://zh.cppreference.com/w/c/error). *cppreference.com*.
+ * \sa <https://zh.cppreference.com/w/c/error>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2019-02-19
  * \authors zhengrr
  * \copyright Unlicense

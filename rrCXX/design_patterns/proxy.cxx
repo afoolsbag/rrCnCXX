@@ -1,7 +1,7 @@
 //===-- Proxy ---------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gProxy 代理
-/// \ingroup gDesignPatterns
+/// \defgroup groupProxy 代理
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   interface "图像" as image {
@@ -20,7 +20,7 @@
 ///   proxy_image -> real_image
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -29,7 +29,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gProxy
+/// \addtogroup groupProxy
 /// @{
 
 /// @}

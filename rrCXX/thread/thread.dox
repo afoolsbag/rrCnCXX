@@ -1,11 +1,13 @@
 //===-- Thread Support Library ----------------------------------*- C++ -*-===//
 ///
-/// \defgroup gThread 线程支持库
-/// \ingroup gRrCxx
+/// \defgroup groupThread 线程支持库
+/// \ingroup groupRrCxx
 ///
-/// \sa ["线程支持库"](https://zh.cppreference.com/w/cpp/thread). *cppreference.com*.
+/// \ref pageThread
 ///
-/// \version 2018-11-22
+/// \sa <https://zh.cppreference.com/w/cpp/thread>
+///
+/// \version 2020-01-09
 /// \since 2016-11-07
 /// \authors zhengrr
 /// \copyright CC0-1.0
@@ -14,8 +16,10 @@
 
 //===-- Thread Support Library Topics ---------------------------*- C++ -*-===//
 ///
-/// \page gThread 线程支持库议题
+/// \page pageThread 线程支持库议题
 /// \tableofcontents
+///
+/// \ref groupThread
 ///
 /// _____________________________
 /// \section sStdendlVsBackslashn `std::endl`与`\n`的异同
@@ -31,7 +35,8 @@
 ///
 /// \sa <https://stackoverflow.com/questions/213907/c-stdendl-vs-n>
 ///
-/// \version 2018-11-22
+/// ___________________
+/// \version 2020-01-09
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

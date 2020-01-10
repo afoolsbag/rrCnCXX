@@ -1,7 +1,5 @@
 # zhengrr 所知的 C                                                   {#mainpage}
 
-> [![Should You Learn Python, C, or Ruby to Be a Top Coder?](./README-IMG.jpg)](https://byrslf.co/188a5bdc9f54 "Should You Learn Python, C, or Ruby to Be a Top Coder?")
-
 > ```c
 > #include <stdio.h>
 >
@@ -10,7 +8,7 @@
 > }
 > ```
 >
-> *The C Programming Language*
+> *The C Programming Language*. 1978-02-22.
 
 [*C*](http://open-std.org/jtc1/sc22/wg14/ "ISO/IEC JTC1/SC22/WG14 - C")
 | [*C18*](https://iso.org/standard/74528.html "ISO/IEC 9899:2018"),

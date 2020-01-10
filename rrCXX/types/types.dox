@@ -1,0 +1,30 @@
+//===-- Type Support --------------------------------------------*- C++ -*-===//
+///
+/// \defgroup groupTypes 类型支持
+/// \ingroup groupRrCxx
+///
+/// \ref pageTypes
+///
+/// \sa <https://zh.cppreference.com/w/cpp/types>
+///
+/// \version 2019-01-09
+/// \since 2019-01-09
+/// \authors zhengrr
+/// \copyright CC0-1.0
+///
+//===----------------------------------------------------------------------===//
+
+//===-- Type Support Topics ---------------------------*- C++ -*-===//
+///
+/// \page pageTypes 类型支持议题
+/// \tableofcontents
+///
+/// \ref groupTypes
+///
+/// ___________________
+/// \version 2019-01-09
+/// \since 2019-01-09
+/// \authors zhengrr
+/// \copyright CC0-1.0
+///
+//===----------------------------------------------------------------------===//

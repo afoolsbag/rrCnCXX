@@ -1,9 +1,11 @@
 /*===-- Localization Support -----------------------------------*- C -*-===*//**
  *
- * \defgroup gLocale 本地化支持
- * \ingroup gReference
+ * \defgroup groupLocale 本地化支持
+ * \ingroup groupRrC
  *
- * \version 2019-06-21
+ * \sa <https://zh.cppreference.com/w/c/locale>
+ *
+ * \version 2020-01-09
  * \since 2019-06-21
  * \authors zhengrr
  * \copyright Unlicense

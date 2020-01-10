@@ -1,7 +1,7 @@
 //===-- Strategy ------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gStrategy 策略
-/// \ingroup gDesignPatterns
+/// \defgroup groupStrategy 策略
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   class "内容" as context {
@@ -28,7 +28,7 @@
 ///   strategy <|.. strategy3
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -37,7 +37,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gStrategy
+/// \addtogroup groupStrategy
 /// @{
 
 /// @}

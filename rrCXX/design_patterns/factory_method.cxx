@@ -1,7 +1,7 @@
 //===-- Factory Method ------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gFactoryMethod 工厂方法
-/// \ingroup gDesignPatterns
+/// \defgroup groupFactoryMethod 工厂方法
+/// \ingroup groupDesignPatterns
 ///
 /// 工厂方法设计模式：
 ///
@@ -37,7 +37,7 @@
 ///   mac_button_factory .> mac_button
 /// \enduml
 ///
-/// \version 2018-11-27
+/// \version 2020-01-09
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -53,7 +53,7 @@ using namespace std;
 
 namespace rrcxx {
 
-/// \addtogroup gFactoryMethod
+/// \addtogroup groupFactoryMethod
 /// @{
 
 /// \brief 产品（接口）。

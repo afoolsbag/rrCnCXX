@@ -1,7 +1,7 @@
 //===-- Bridge --------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gBridge 桥接器
-/// \ingroup gDesignPatterns
+/// \defgroup groupBridge 桥接器
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   interface "绘制器" as drawer {
@@ -37,7 +37,7 @@
 ///   drawing <|.. device2_drawer
 /// \enduml
 ///
-/// \version 2018-11-27
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -46,7 +46,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gBridge
+/// \addtogroup groupBridge
 /// @{
 
 /// @}

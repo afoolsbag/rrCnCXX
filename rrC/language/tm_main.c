@@ -1,9 +1,9 @@
 /*===-- Main Function ------------------------------------------*- C -*-===*//**
  *
- * \defgroup gMain 主函数
- * \ingroup gLanguage
+ * \defgroup groupMain 主函数
+ * \ingroup groupLanguage
  *
- * \version 2019-11-13
+ * \version 2020-01-09
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -12,6 +12,7 @@
 **//*===-------------------------------------------------------------------===*/
 
 #include <locale.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include <check.h>
@@ -37,9 +38,9 @@
  */
 int main(void)
 {
-#ifndef NDEBUG
-    setlocale(LC_ALL, "C.UTF-8");
-#endif
+    if (!setlocale(LC_ALL, ".UTF-8"))
+        if (!setlocale(LC_ALL, "C.UTF-8"))
+            fputs("Set locale with UTF-8 failed.\n", stderr);
 
     SRunner *const tr = srunner_create(NULL);
     srunner_add_suite(tr, ts_algorithm());

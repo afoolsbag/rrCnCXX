@@ -1,11 +1,11 @@
 /*===-- Date and Time Utilities --------------------------------*- C -*-===*//**
  *
- * \defgroup gChrono 日期和时间工具
- * \ingroup gReference
+ * \defgroup groupChrono 日期和时间工具
+ * \ingroup groupRrC
  *
- * \sa ["日期和时间工具"](https://zh.cppreference.com/w/c/chrono). *cppreference.com*.
+ * \sa <https://zh.cppreference.com/w/c/chrono>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright Unlicense

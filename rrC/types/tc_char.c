@@ -1,13 +1,13 @@
 /*===-- Character ----------------------------------------------*- C -*-===*//**
  *
- * \defgroup gChar 字符
- * \ingroup gTypes
+ * \defgroup groupChar 字符
+ * \ingroup groupTypes
  *
  * \sa <https://zh.cppreference.com/w/c/language/arithmetic_types>
  * \sa <https://zh.cppreference.com/w/c/language/character_constant>
  * \sa <https://zh.cppreference.com/w/c/language/escape>
  *
- * \version 2019-02-13
+ * \version 2020-01-09
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense

@@ -1,9 +1,9 @@
 /*===-- Positioning --------------------------------------------*- C -*-===*//**
  *
- * \defgroup gPositioning 文件定位
- * \ingroup gFileIO
+ * \defgroup groupPositioning 文件定位
+ * \ingroup groupFileIO
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2019-02-13
  * \authors zhengrr
  * \copyright Unlicense

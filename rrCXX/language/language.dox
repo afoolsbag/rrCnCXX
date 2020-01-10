@@ -1,24 +1,13 @@
 //===-- C++ Language --------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gLanguage C++ 语言
-/// \ingroup gRrCxx
+/// \defgroup groupLanguage C++ 语言
+/// \ingroup groupRrCxx
 ///
-/// \sa ["C++ language"](https://zh.cppreference.com/w/cpp/language). *cppreference.com*.
-///     *   基本概念
-///     *   C++ 关键词
-///     *   预处理器
-///     *   表达式
-///     *   声明
-///     *   初始化
-///     *   函数
-///     *   语句
-///     *   类
-///     *   模板
-///     *   异常
-///     *   杂项
-///     *   惯用手法
+/// \ref pageLanguage
 ///
-/// \version 2018-11-22
+/// \sa <https://zh.cppreference.com/w/cpp/language>
+///
+/// \version 2020-01-09
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0
@@ -27,11 +16,13 @@
 
 //===-- C++ Language Topics -------------------------------------*- C++ -*-===//
 ///
-/// \page pLanguage C++ 语言议题
+/// \page pageLanguage C++ 语言议题
 /// \tableofcontents
 ///
-/// _____________________________
-/// \section sReturnVsExitVsAbort 主函数中 `return`、`exit` 和 `abort` 的差异
+/// \ref groupLanguage
+///
+/// ___________________________________
+/// \section sectionReturnVsExitVsAbort 主函数中 return、exit 和 abort 的差异
 ///
 /// `exit` 不会触发函数中局部对象的析构, 但静态对象与全局对象不受影响；
 ///
@@ -39,8 +30,8 @@
 ///
 /// \sa <https://stackoverflow.com/questions/461449/return-statement-vs-exit-in-main>
 ///
-/// _____________________________
-/// \section sReturnValueAndError 返回值和错误
+/// ___________________________________
+/// \section sectionReturnValueAndError 返回值和错误
 ///
 /// 返回值表示函数完成了所承诺功能，并返回所求值；
 /// 错误表示函数无法完成所承诺功能：
@@ -53,7 +44,8 @@
 ///
 /// \sa [*C++C.G. I.10*](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Ri-except)
 ///
-/// \version 2018-11-22
+/// ___________________
+/// \version 2020-01-09
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

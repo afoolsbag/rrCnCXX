@@ -1,7 +1,7 @@
 //===-- Facade --------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gFacade 外观器
-/// \ingroup gDesignPatterns
+/// \defgroup groupFacade 外观器
+/// \ingroup groupDesignPatterns
 ///
 /// \startuml
 ///   class "客户方" as client
@@ -26,7 +26,7 @@
 ///   facade --> module5
 /// \enduml
 ///
-/// \version 2018-11-23
+/// \version 2020-01-09
 /// \since 2018-11-23
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -35,7 +35,7 @@
 
 namespace rrcxx {
 
-/// \addtogroup gFacade
+/// \addtogroup groupFacade
 /// @{
 
 /// @}

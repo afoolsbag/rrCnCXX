@@ -1,9 +1,9 @@
 //===-- Thread --------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gThreadSimple 线程示例
-/// \ingroup gThread
+/// \defgroup groupThreadSimple 线程示例
+/// \ingroup groupThread
 ///
-/// \version 2019-12-04
+/// \version 2020-01-09
 /// \since 2018-09-17
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -19,7 +19,7 @@
 using namespace std;
 
 namespace rrcxx {
-/// @addtogroup gThread
+/// @addtogroup groupThread
 /// @{
 
 TEST(thread, test)

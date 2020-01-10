@@ -1,11 +1,11 @@
 /*===-- C Memory Management Library ----------------------------*- C -*-===*//**
  *
- * \defgroup gMemory C 内存管理库
- * \ingroup gReference
+ * \defgroup groupMemory C 内存管理库
+ * \ingroup groupRrC
  *
- * \sa ["C 内存管理库"](https://zh.cppreference.com/w/c/memory). *cppreference.com*.
+ * \sa <https://zh.cppreference.com/w/c/memory>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2016-12-02
  * \authors zhengrr
  * \copyright Unlicense

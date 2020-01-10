@@ -1,11 +1,11 @@
 /*===-- Thread Support -----------------------------------------*- C -*-===*//**
  *
- * \defgroup gThread 线程支持
- * \ingroup gReference
+ * \defgroup groupThread 线程支持
+ * \ingroup groupRrC
  *
- * \sa ["线程支持库"](https://zh.cppreference.com/w/c/thread). *cppreference.com*.
+ * \sa <https://zh.cppreference.com/w/c/thread>
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2019-02-19
  * \authors zhengrr
  * \copyright Unlicense

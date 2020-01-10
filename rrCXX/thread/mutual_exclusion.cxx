@@ -1,9 +1,9 @@
 //===-- Mutual Exclusion ----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gMutualExclusion 互斥
-/// \ingroup gThread
+/// \defgroup groupMutualExclusion 互斥
+/// \ingroup groupThread
 ///
-/// \version 2019-07-29
+/// \version 2020-01-09
 /// \since 2019-07-29
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -20,7 +20,7 @@
 using namespace std;
 
 namespace rrcxx {
-/// @addtogroup gMutualExclusion
+/// @addtogroup groupMutualExclusion
 /// @{
 
 /// \brief 互斥量

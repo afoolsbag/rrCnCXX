@@ -1,7 +1,7 @@
 //===-- Abstract Factory ----------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gAbstractFactory 抽象工厂
-/// \ingroup gDesignPatterns
+/// \defgroup groupAbstractFactory 抽象工厂
+/// \ingroup groupDesignPatterns
 ///
 /// 为一个产品族提供了统一的创建接口。当需要这个产品族的某一系列的时候，可以从抽象工厂中选出相应的系列创建一个具体的工厂类。
 ///
@@ -67,7 +67,7 @@
 ///   endlegend
 /// \enduml
 ///
-/// \version 2018-11-28
+/// \version 2020-01-09
 /// \since 2018-09-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -84,7 +84,7 @@ using namespace std;
 namespace rrcxx {
 namespace abstract_factory {
 
-/// \addtogroup gAbstractFactory
+/// \addtogroup groupAbstractFactory
 /// @{
 
 /// \brief 按钮。
@@ -195,7 +195,7 @@ public:
 
 }
 
-/// \addtogroup gAbstractFactory
+/// \addtogroup groupAbstractFactory
 /// @{
 
 /// \brief 抽象工厂。

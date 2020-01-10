@@ -1,9 +1,9 @@
 /*===-- Access -------------------------------------------------*- C -*-===*//**
  *
- * \defgroup gAccess 文件访问
- * \ingroup gFileIO
+ * \defgroup groupAccess 文件访问
+ * \ingroup groupFileIO
  *
- * \version 2019-06-21
+ * \version 2020-01-09
  * \since 2016-11-14
  * \authors zhengrr
  * \copyright Unlicense

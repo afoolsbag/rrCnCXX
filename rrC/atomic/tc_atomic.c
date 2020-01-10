@@ -9,7 +9,7 @@
 #include "ts_atomic.h"
 
 /**
- * \addtogroup gAtomic
+ * \addtogroup groupAtomic
  * @{
  */
 

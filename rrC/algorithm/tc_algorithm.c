@@ -5,7 +5,7 @@
 #include "ts_algorithm.h"
 
 /**
- * \addtogroup gAlgorithm
+ * \addtogroup groupAlgorithm
  * @{
  */
 
