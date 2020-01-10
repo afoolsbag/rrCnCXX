@@ -6,7 +6,7 @@
 # | |  | |  | |/ / (_| |  __/ | | | | | (_) | | | |
 # |_|  |_|  |___/ \__,_|\___|_| |_| |_|\___/|_| |_|
 # zhengrr
-# 2019-10-31 – 2019-11-13
+# 2019-10-31 – 2020-01-10
 # Unlicense
 #
 # 简陋的守护脚本
@@ -44,9 +44,9 @@ while true; do
                 cd "${NAKING_WDIR}"
                 sudo --user="${NAKING_USER}" \
                         nohup "${NAKING_PATH}" ${NAKING_ARGS} \
-                                0<"${NAKING_INPFILE}"\
-                                1>"${NAKING_LOGFILE}"\
-                                2>"${NAKING_ERRFILE}"\
+                                0<"${NAKING_INPFILE}" \
+                                1>"${NAKING_LOGFILE}" \
+                                2>"${NAKING_ERRFILE}" \
                                 &
                 rc="$?"
                 if (( rc != 0 )); then
