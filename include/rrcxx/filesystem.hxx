@@ -5,7 +5,7 @@
 ///
 /// \sa <https://stackoverflow.com/questions/53365538>
 ///
-/// \version 2019-08-16
+/// \version 2020-01-13
 /// \since 2019-08-16
 /// \authors zhengrr
 /// \copyright Unlicense
