@@ -2,7 +2,7 @@
 #           | ___ \               | |
 #  _ __ _ __| |_/ / ___   ___  ___| |_
 # | '__| '__| ___ \/ _ \ / _ \/ __| __| zhengrr
-# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2019-11-25
+# | |  | |  | |_/ / (_) | (_) \__ \ |_  2016-10-27 – 2020-01-13
 # |_|  |_|  \____/ \___/ \___/|___/\__| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -42,7 +42,8 @@ add_executable_con(
   COMPILE_DEFINITIONS PRIVATE $<$<PLATFORM_ID:Windows>:_WIN32_WINNT=0x0A00>  # Windows 10
                               $<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_WARNINGS>
                               $<$<CXX_COMPILER_ID:MSVC>:_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS>
-  COMPILE_OPTIONS     PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/EHs>                # Boost.Coroutine2
+  COMPILE_OPTIONS     PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-error=unused-function>
+                              $<$<CXX_COMPILER_ID:MSVC>:/EHs>                # Boost.Coroutine2
                               $<$<CXX_COMPILER_ID:MSVC>:/GL->                # Boost.Coroutine2
   INCLUDE_DIRECTORIES PRIVATE "."
   LINK_LIBRARIES      PRIVATE CONAN_PKG::gtest

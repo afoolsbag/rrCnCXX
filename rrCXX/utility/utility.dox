@@ -1,16 +1,11 @@
 //===-- Utilities -----------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gUtility 工具库
-/// \ingroup gRrCxx
+/// \defgroup groupUtility 工具库
+/// \ingroup groupRrCxx
 ///
-/// \sa ["工具库"](https://zh.cppreference.com/w/cpp/utility). *cppreference.com*.
-///     *   语言支持
-///         *   动态内存管理
-///     *   通用工具
-///         *   日期和时间
-///         *   `optional`、`variant` 和 `any`
+/// \sa <https://zh.cppreference.com/w/cpp/utility>
 ///
-/// \version 2019-02-22
+/// \version 2020-01-15
 /// \since 2018-01-23
 /// \authors zhengrr
 /// \copyright CC0-1.0

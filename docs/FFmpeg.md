@@ -25,14 +25,8 @@ ffmpeg [global_options] \
 `input/output_file_options`
 ```shell
         -f <fmt>                                 # 指定文件格式
-        -y                                       # 覆盖输出而不询问
-        -ss <position>                           # 指定位置
-        -frames[:stream_specifier] <framecount>  # 设定输出帧数（仅限输出选项）
 
-        -vn                                      # video    忽略视频流
-        -an                                      # audio    忽略音频流
-        -sn                                      # subtitle 忽略字幕流
-        -dn                                      # data     忽略数据流
+        -y                                       # 覆盖输出而不询问
 
         -codec[:stream_specifier] <codec>        # 指定编解码器
         -c[:stream_specifier] <codec>
@@ -48,6 +42,23 @@ ffmpeg [global_options] \
         -codec:s <codec>                         # 指定字幕流编解码器
         -c:s <codec>
         -scodec <codec>
+
+        -ss <position>                           # 指定位置
+
+        -frames[:stream_specifier] <framecount>  # 设定输出帧数（仅限输出选项）
+
+        -vn                                      # video    忽略视频流
+        -an                                      # audio    忽略音频流
+        -sn                                      # subtitle 忽略字幕流
+        -dn                                      # data     忽略数据流
+```
+
+## 改变封装格式
+
+```shell
+ffmpeg -v error \
+        -i <input-video-path>
+        -y -c copy <output-video-path>
 ```
 
 ## 生成缩略图
@@ -56,8 +67,4 @@ ffmpeg [global_options] \
 ffmpeg -v quiet \
         -i <video-path> \
         -f mjpeg -y -ss 1 -frames:v 1 <image-path>
-
-# 参数含义：不输出日志、指定输出格式为 mjpeg、强制写入、从第一帧开始、总计写入一帧。
-
-# 该命令用于后台调用，生成略缩略图，若失败则忽略。
 ```

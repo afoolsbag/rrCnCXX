@@ -4,13 +4,14 @@
 /// \brief Filesystem
 /// \sa <https://boost.org/doc/libs/master/libs/filesystem/>
 ///
-/// \version 2019-11-27
+/// \version 2020-01-13
 /// \since 2019-11-27
 /// \authors zhengrr
 /// \copyright Unlicense
 ///
 //===----------------------------------------------------------------------===//
 
+#include <fstream>
 #include <string>
 
 #include <boost/filesystem.hpp>
@@ -34,5 +35,18 @@ inline wstring utf8_to_utf16(const string &utf8)
 }
 
 namespace rrboost {
+
+TEST(filesystem, chmod)
+{
+    const auto temp_path = boost::filesystem::temp_directory_path() / boost::filesystem::unique_path();
+
+    ofstream temp_file {temp_path.c_str()};
+    temp_file << "hello, world\n";
+    if (!temp_file.is_open())
+        FAIL() << "Failed to create temporary file: " << temp_path << '\n';
+
+    permissions(temp_path, boost::filesystem::all_all);
+    cout << "Succeed to create temporary file: " << temp_path << '\n';
+}
 
 }
