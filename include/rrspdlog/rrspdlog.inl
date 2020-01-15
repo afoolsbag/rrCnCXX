@@ -89,7 +89,7 @@ inline void initialize_as_default(const filesystem::path &logs_dir_path,
     auto const logger = std::make_shared<spdlog::logger>("", sinks.cbegin(), sinks.cend());
     logger->set_pattern(default_pattern);
     logger->set_level(default_level);
-    logger->flush_on(spdlog::level::warn);
+    logger->flush_on(default_level);
 
     set_default_logger(logger);
 }
