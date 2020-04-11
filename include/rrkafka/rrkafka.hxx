@@ -1,8 +1,9 @@
 //===-- rrKafka Kafka Wrapper -----------------------------------*- C++ -*-===//
 ///
 /// \file
+/// \brief 对 RdKafka 的定制化包装。
 ///
-/// \version 2019-09-17
+/// \version 2020-04-11
 /// \since 2019-07-30
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -47,6 +48,7 @@ private:
     const std::string text_;
 };
 
+/// \brief 生产者
 class producer final {
 public:
     /// \brief 构造
@@ -93,6 +95,7 @@ private:
     std::unique_ptr<RdKafka::Topic> rd_topic_ {nullptr};
 };
 
+/// \brief 消费者
 class consumer final {
 public:
     /// \brief 构造
@@ -118,6 +121,7 @@ private:
     std::int32_t partition_;
 };
 
+/// \brief 顺延消费者
 class kafka_consumer final {
 public:
     /// \sa [*Configuration properties*](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md)
