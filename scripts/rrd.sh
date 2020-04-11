@@ -9,7 +9,7 @@
 # 2019-10-31 – 2020-01-10
 # Unlicense
 #
-# 简陋的守护脚本
+# 一个简单的守护脚本
 
 # 配置
 readonly NAKING_USER='ubuntu'

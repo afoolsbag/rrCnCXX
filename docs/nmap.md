@@ -1,8 +1,8 @@
 # nmap
 
 [*Network Mapper*](https://nmap.org/)
-/ doc <sub>[*zh_CN*](https://nmap.org/man/zh/)</sub>
-/ gui `zenmap`
+| doc <sub>[*zh_cn*](https://nmap.org/man/zh/)</sub>
+| gui `zenmap`
 
 |        | abbr. | term                              | trans.
 |:-------|:------|:----------------------------------|:------

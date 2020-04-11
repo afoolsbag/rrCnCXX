@@ -213,7 +213,9 @@ rrCnCxx\ ...............................项目根目录
 
 **集成开发**
 | [*CLion*](https://jetbrains.com/clion "一款集成开发环境") <sub>
-      [*zh_CN*](https://github.com/pingfangx/jetbrains-in-chinese/tree/master/CLion) </sub>
+      [*icons*](https://plugins.jetbrains.com/plugin/10044),
+      [*vim*](https://plugins.jetbrains.com/plugin/164),
+      [*zh_cn*](https://github.com/pingfangx/jetbrains-in-chinese/tree/master/CLion) </sub>
 | [*Visual Studio*](https://visualstudio.com/ "一款集成开发环境") <sub>
       [*r++*](https://jetbrains.com/resharper-cpp "ReSharper C++"),
       [*va*](https://wholetomato.com/ "Visual Assist");
