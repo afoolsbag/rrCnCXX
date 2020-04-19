@@ -118,7 +118,9 @@ rrCnCxx\ ...............................项目根目录
 ### 工具
 
 **系统支持**
-| [*NetBSD*](http://netbsd.org/ "1993-04-19"),
+| [*Windows 1.0*](# "1985-11-20"),
+  [*Linux 0.01*](# "1991-09-17"),
+  [*NetBSD*](http://netbsd.org/ "1993-04-19"),
   [*Debian*](https://debian.org/ "1993-08-16"),
   [*FreeBSD*](https://freebsd.org/ "1993-11-01"),
   [*SUSE*](https://opensuse.org/ "1994-03-07"),

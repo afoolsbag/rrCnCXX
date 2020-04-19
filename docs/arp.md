@@ -1,10 +1,17 @@
-# [arp](https://docs.microsoft.com/windows-server/administration/windows-commands/arp)
+# 地址解析协议转换表操作工具 `arp` (address resolution protocol)
 
-地址解析协议（Address Resolution Protocol）
+适用于 Windows 和 Linux 的地址解析协议转换表操作工具。
+
+*   [“arp”](https://docs.microsoft.com/windows-server/administration/windows-commands/arp). *Microsoft Docs*.
+
+### 显示
 
 ```cmd
-:: 显示当前缓存表
 arp /a
-:: 删除缓存表
+```
+
+### 删除
+
+```cmd
 arp /d
 ```
