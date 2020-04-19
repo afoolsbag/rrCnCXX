@@ -2,7 +2,7 @@
 ///
 /// \file
 ///
-/// \version 2019-11-20
+/// \version 2020-04-19
 /// \since 2019-07-29
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -64,6 +64,7 @@ public:
     inline std::list<object_info> list_objects(const std::string &bucket_name) const;
 
     /// \brief 上传内存数据作为对象
+    /// \bug 单对象多线程并行调用该接口，可能报错
     inline void upload_memory_as_object(std::uint8_t *buffer, std::size_t size, const std::string &bucket_name, const std::string &key);
 
     /// \brief 下载对象作为内存数据
@@ -73,6 +74,7 @@ public:
     inline void download_object_as_memory(const std::string &bucket_name, const std::string &key, std::vector<std::uint8_t> *buffer);
 
     /// \brief 上传文件作为对象
+    /// \bug 单对象多线程并行调用该接口，可能报错
     inline void upload_file_as_object(const std::string &local_file_path, const std::string &bucket_name, const std::string &key);
 
     /// \brief 下载对象作为文件

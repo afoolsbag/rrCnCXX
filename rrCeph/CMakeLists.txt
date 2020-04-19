@@ -10,6 +10,10 @@
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
+if(WIN32)
+  include_hunter_gate_script()
+endif()
+
 project_ex(
   rrCeph
   TIME_AS_VERSION
@@ -25,6 +29,7 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
+
 if(UNIX)
   conan_cmake_run(
     REQUIRES    gtest/1.8.1@bincrafters/stable
@@ -38,19 +43,32 @@ if(WIN32)
     BUILD       missing)
 endif()
 
-find_package(S3 REQUIRED)
-aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
-add_library_ex(
-  rrCeph              INTERFACE
-  COMPILE_FEATURES    INTERFACE cxx_std_11
-  INCLUDE_DIRECTORIES INTERFACE "../include"
-  LINK_LIBRARIES      INTERFACE S3::s3
-  SOURCES             INTERFACE ${zWrapper})
+if(UNIX)
+  find_package(S3 REQUIRED)
+  aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
+  add_library_ex(
+    rrCeph              INTERFACE
+    COMPILE_FEATURES    INTERFACE cxx_std_11
+    INCLUDE_DIRECTORIES INTERFACE "../include"
+    LINK_LIBRARIES      INTERFACE S3::s3
+    SOURCES             INTERFACE ${zWrapper})
+endif()
+if(WIN32)
+  hunter_add_package(s3)
+  find_package(s3 CONFIG REQUIRED)
+  aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
+  add_library_ex(
+    rrCeph              INTERFACE
+    COMPILE_FEATURES    INTERFACE cxx_std_11
+    INCLUDE_DIRECTORIES INTERFACE "../include"
+    LINK_LIBRARIES      INTERFACE s3::s3
+    SOURCES             INTERFACE ${zWrapper})
+endif()
 
 aux_source_directory_ex("." zTest RECURSE)
 add_executable_con(
   rrCephTest          ${zTest}
-  PROPERTIES          CXX_STANDARD          11
+  PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE               "."
   LINK_LIBRARIES      PRIVATE               rrCeph

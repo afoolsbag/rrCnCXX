@@ -49,14 +49,14 @@ inline std::list<s3::bucket_info> s3::list_buckets() const
         list<bucket_info> infos {};
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         [[maybe_unused]]
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
@@ -68,11 +68,11 @@ inline std::list<s3::bucket_info> s3::list_buckets() const
         }
     };
 
-    const auto list_service_callback = [](const char *ownerId,
-                                          const char *ownerDisplayName,
-                                          const char *bucketName,
-                                          int64_t creationDate,
-                                          void *callbackData) -> S3Status {
+    static const auto list_service_callback = [](const char *ownerId,
+                                                 const char *ownerDisplayName,
+                                                 const char *bucketName,
+                                                 int64_t creationDate,
+                                                 void *callbackData) -> S3Status {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         bucket_info info {};
@@ -85,7 +85,7 @@ inline std::list<s3::bucket_info> s3::list_buckets() const
         return S3StatusOK;
     };
 
-    S3ListServiceHandler list_service_handler {{response_properties_callback, response_complete_callback}, list_service_callback};
+    static const S3ListServiceHandler list_service_handler {{response_properties_callback, response_complete_callback}, list_service_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -99,7 +99,7 @@ inline std::list<s3::bucket_info> s3::list_buckets() const
         throw runtime_error {string {"S3_list_service failed: "}.append(S3_get_status_name(user_data.status))};
 
     // 返回结果
-    return move(user_data.infos);
+    return user_data.infos;
 }
 
 inline void s3::create_bucket(const std::string &bucket_name)
@@ -113,14 +113,14 @@ inline void s3::create_bucket(const std::string &bucket_name)
         string further_details;
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -131,7 +131,7 @@ inline void s3::create_bucket(const std::string &bucket_name)
         }
     };
 
-    const S3ResponseHandler response_handler {response_properties_callback, response_complete_callback};
+    static const S3ResponseHandler response_handler {response_properties_callback, response_complete_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -156,14 +156,14 @@ inline void s3::delete_bucket(const std::string &bucket_name)
         string further_details;
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -174,7 +174,7 @@ inline void s3::delete_bucket(const std::string &bucket_name)
         }
     };
 
-    const S3ResponseHandler response_handler {response_properties_callback, response_complete_callback};
+    static const S3ResponseHandler response_handler {response_properties_callback, response_complete_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -200,14 +200,14 @@ inline std::list<s3::object_info> s3::list_objects(const std::string &bucket_nam
         list<object_info> infos {};
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         [[maybe_unused]]
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
@@ -219,13 +219,13 @@ inline std::list<s3::object_info> s3::list_objects(const std::string &bucket_nam
         }
     };
 
-    const auto list_bucket_callback = [](int isTruncated,
-                                         const char *nextMarker,
-                                         int contentsCount,
-                                         const S3ListBucketContent *contents,
-                                         int commonPrefixesCount,
-                                         const char **commonPrefixes,
-                                         void *callbackData) -> S3Status {
+    static const auto list_bucket_callback = [](int isTruncated,
+                                                const char *nextMarker,
+                                                int contentsCount,
+                                                const S3ListBucketContent *contents,
+                                                int commonPrefixesCount,
+                                                const char **commonPrefixes,
+                                                void *callbackData) -> S3Status {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         for (int i {0}; i < contentsCount; ++i) {
@@ -252,7 +252,7 @@ inline std::list<s3::object_info> s3::list_objects(const std::string &bucket_nam
         secret_key_.c_str()
     };
 
-    S3ListBucketHandler list_bucket_handler {{response_properties_callback, response_complete_callback}, list_bucket_callback};
+    static const S3ListBucketHandler list_bucket_handler {{response_properties_callback, response_complete_callback}, list_bucket_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -265,7 +265,7 @@ inline std::list<s3::object_info> s3::list_objects(const std::string &bucket_nam
         throw runtime_error {string {"S3_list_bucket failed: "}.append(S3_get_status_name(user_data.status))};
 
     // 返回结果
-    return move(user_data.infos);
+    return user_data.infos;
 }
 
 inline void s3::upload_memory_as_object(std::uint8_t *buffer, std::size_t size, const std::string &bucket_name, const std::string &key)
@@ -281,14 +281,14 @@ inline void s3::upload_memory_as_object(std::uint8_t *buffer, std::size_t size, 
         size_t left {};
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -299,9 +299,9 @@ inline void s3::upload_memory_as_object(std::uint8_t *buffer, std::size_t size, 
         }
     };
 
-    const auto put_object_data_callback = [](int bufferSize,
-                                             char *buffer,
-                                             void *callbackData) -> int {
+    static const auto put_object_data_callback = [](int bufferSize,
+                                                    char *buffer,
+                                                    void *callbackData) -> int {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
         const auto size = min(p_user_data->left, static_cast<size_t>(bufferSize));
         if (size == 0)
@@ -321,7 +321,7 @@ inline void s3::upload_memory_as_object(std::uint8_t *buffer, std::size_t size, 
         secret_key_.c_str()
     };
 
-    S3PutObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, put_object_data_callback};
+    static const S3PutObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, put_object_data_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -351,14 +351,14 @@ inline void s3::download_object_as_memory(const std::string &bucket_name, const 
         vector<uint8_t> *buffer {nullptr};
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -369,9 +369,9 @@ inline void s3::download_object_as_memory(const std::string &bucket_name, const 
         }
     };
 
-    const auto get_object_data_callback = [](int bufferSize,
-                                             const char *buffer,
-                                             void *callbackData) -> S3Status {
+    static const auto get_object_data_callback = [](int bufferSize,
+                                                    const char *buffer,
+                                                    void *callbackData) -> S3Status {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
         try {
             p_user_data->buffer->insert(p_user_data->buffer->cend(), buffer, buffer + bufferSize);
@@ -390,7 +390,7 @@ inline void s3::download_object_as_memory(const std::string &bucket_name, const 
         secret_key_.c_str()
     };
 
-    S3GetObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
+    static const S3GetObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -424,14 +424,14 @@ inline void s3::upload_file_as_object(const std::string &local_file_path, const 
         FILE *fp {};
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -442,9 +442,9 @@ inline void s3::upload_file_as_object(const std::string &local_file_path, const 
         }
     };
 
-    const auto put_object_data_callback = [](int bufferSize,
-                                             char *buffer,
-                                             void *callbackData) -> int {
+    static const auto put_object_data_callback = [](int bufferSize,
+                                                    char *buffer,
+                                                    void *callbackData) -> int {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
         return fread(buffer, sizeof(char), bufferSize, p_user_data->fp);
     };
@@ -458,7 +458,7 @@ inline void s3::upload_file_as_object(const std::string &local_file_path, const 
         secret_key_.c_str()
     };
 
-    S3PutObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, put_object_data_callback};
+    static const S3PutObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, put_object_data_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -488,14 +488,14 @@ inline void s3::download_object_as_file(const std::string &bucket_name, const st
         FILE *fp {};
     };
 
-    const auto response_properties_callback = [](const S3ResponseProperties *properties,
-                                                 void *callbackData) -> S3Status {
+    static const auto response_properties_callback = [](const S3ResponseProperties *properties,
+                                                        void *callbackData) -> S3Status {
         return S3StatusOK;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -506,9 +506,9 @@ inline void s3::download_object_as_file(const std::string &bucket_name, const st
         }
     };
 
-    const auto get_object_data_callback = [](int bufferSize,
-                                             const char *buffer,
-                                             void *callbackData) -> S3Status {
+    static const auto get_object_data_callback = [](int bufferSize,
+                                                    const char *buffer,
+                                                    void *callbackData) -> S3Status {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
         return fwrite(buffer, sizeof(char), bufferSize, p_user_data->fp) < static_cast<size_t>(bufferSize) ? S3StatusAbortedByCallback : S3StatusOK;
     };
@@ -522,7 +522,7 @@ inline void s3::download_object_as_file(const std::string &bucket_name, const st
         secret_key_.c_str()
     };
 
-    S3GetObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
+    static const S3GetObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
 
     // 用户数据
     user_data_t user_data;
@@ -547,9 +547,9 @@ inline void s3::delete_object(const std::string &bucket_name, const std::string 
         string further_details;
     };
 
-    const auto response_complete_callback = [](S3Status status,
-                                               const S3ErrorDetails *error,
-                                               void *callbackData) -> void {
+    static const auto response_complete_callback = [](S3Status status,
+                                                      const S3ErrorDetails *error,
+                                                      void *callbackData) -> void {
         auto *p_user_data = reinterpret_cast<user_data_t *>(callbackData);
 
         p_user_data->status = status;
@@ -569,7 +569,7 @@ inline void s3::delete_object(const std::string &bucket_name, const std::string 
         secret_key_.c_str()
     };
 
-    S3ResponseHandler delete_response_handler {nullptr, response_complete_callback};
+    static const S3ResponseHandler delete_response_handler {nullptr, response_complete_callback};
 
     // 用户数据
     user_data_t user_data;
