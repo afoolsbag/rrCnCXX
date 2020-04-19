@@ -16,50 +16,47 @@ inline producer::producer(const std::string &broker_list, const std::string &top
 
     string errstr;
 
-    // -------------------------------------------------------------------------
-    // PRODUCER
+    /* 生产者配置 */ {
+        unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
+        if (!gcfg)
+            throw exception {"RdKafka::Conf::create(*) failed"};
 
-    unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
-    if (!gcfg)
-        throw exception {"RdKafka::Conf::create(*) failed"};
+        // metadata.broker.list
+        // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
+        // Type: string
+        if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // metadata.broker.list
-    // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
-    // Type: string
-    if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        // log_level
+        // Logging level (syslog(3) levels)
+        // Type: integer
+        if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // log_level
-    // Logging level (syslog(3) levels)
-    // Type: integer
-    if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        rd_producer_.reset(RdKafka::Producer::create(gcfg.get(), errstr));
+        if (!rd_producer_)
+            throw exception {"RdKafka::Producer::create(*) failed: "s.append(errstr)};
+    }
 
-    rd_producer_.reset(RdKafka::Producer::create(gcfg.get(), errstr));
-    if (!rd_producer_)
-        throw exception {"RdKafka::Producer::create(*) failed: "s.append(errstr)};
+    /* 话题配置 */ {
+        unique_ptr<RdKafka::Conf> tcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC)};
+        if (!tcfg)
+            throw exception {"RdKafka::Conf::create(*) failed"};
 
-    gcfg.reset();
-
-    // -------------------------------------------------------------------------
-    // TOPIC
-
-    unique_ptr<RdKafka::Conf> tcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC)};
-    if (!tcfg)
-        throw exception {"RdKafka::Conf::create(*) failed"};
-
-    rd_topic_.reset(RdKafka::Topic::create(rd_producer_.get(), topic, tcfg.get(), errstr));
-    if (!rd_topic_)
-        throw exception {"RdKafka::Topic::create(*) failed: "s.append(errstr)};
+        rd_topic_.reset(RdKafka::Topic::create(rd_producer_.get(), topic, tcfg.get(), errstr));
+        if (!rd_topic_)
+            throw exception {"RdKafka::Topic::create(*) failed: "s.append(errstr)};
+    }
 }
 
-inline void producer::produce(const std::optional<std::string> &key, const void *value_data, std::size_t value_size, std::int32_t partition)
+inline void producer::produce(const std::optional<std::string> &key, const void *value_data, std::size_t value_size, std::int32_t partition) const
 {
     using namespace std;
 
     assert(rd_producer_);
     assert(rd_topic_);
 
+    // 生产消息，异步地向远端推送，并异步轮询事件
     const auto ec = rd_producer_->produce(rd_topic_.get(),
                                           partition,
                                           RdKafka::Producer::RK_MSG_COPY,
@@ -68,12 +65,14 @@ inline void producer::produce(const std::optional<std::string> &key, const void 
                                           key.has_value() ? &key.value() : nullptr,
                                           nullptr);
 
-    // 轮询事件以触发回调
-    rd_producer_->poll(100);
+    rd_producer_->poll(0);
 
     if (ec != RdKafka::ERR_NO_ERROR)
         throw exception {ec, "RdKafka::Producer::produce(*) failed"};
 
+    // 轮询事件以触发回调，直至消息推送完毕
+    while (rd_producer_->outq_len() > 0)
+        rd_producer_->poll(1000);
 }
 
 inline consumer::consumer(const std::string &broker_list, const std::string &topic, std::int32_t partition, std::int64_t offset) :
@@ -83,42 +82,39 @@ inline consumer::consumer(const std::string &broker_list, const std::string &top
 
     string errstr;
 
-    // -------------------------------------------------------------------------
-    // CONSUMER
+    /* 消费者配置 */ {
+        unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
+        if (!gcfg)
+            throw exception {"RdKafka::Conf::create(*) failed"};
 
-    unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
-    if (!gcfg)
-        throw exception {"RdKafka::Conf::create(*) failed"};
+        // metadata.broker.list
+        // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
+        // Type: string
+        if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // metadata.broker.list
-    // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
-    // Type: string
-    if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        // log_level
+        // Logging level (syslog(3) levels)
+        // Type: integer
+        if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // log_level
-    // Logging level (syslog(3) levels)
-    // Type: integer
-    if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        rd_consumer_.reset(RdKafka::Consumer::create(gcfg.get(), errstr));
+        if (!rd_consumer_)
+            throw exception {"RdKafka::Consumer::create(*) failed: "s.append(errstr)};
+    }
 
-    rd_consumer_.reset(RdKafka::Consumer::create(gcfg.get(), errstr));
-    if (!rd_consumer_)
-        throw exception {"RdKafka::Consumer::create(*) failed: "s.append(errstr)};
+    /* 话题配置 */ {
+        unique_ptr<RdKafka::Conf> tcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC)};
+        if (!tcfg)
+            throw exception {"RdKafka::Conf::create(*) failed"};
 
-    // -------------------------------------------------------------------------
-    // TOPIC
+        rd_topic_.reset(RdKafka::Topic::create(rd_consumer_.get(), topic, tcfg.get(), errstr));
+        if (!rd_topic_)
+            throw exception {"RdKafka::Topic::create(*) failed: "s.append(errstr)};
+    }
 
-    unique_ptr<RdKafka::Conf> tcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC)};
-    if (!tcfg)
-        throw exception {"RdKafka::Conf::create(*) failed"};
-
-    rd_topic_.reset(RdKafka::Topic::create(rd_consumer_.get(), topic, tcfg.get(), errstr));
-    if (!rd_topic_)
-        throw exception {"RdKafka::Topic::create(*) failed: "s.append(errstr)};
-
-    // -------------------------------------------------------------------------
-
+    // 开始从远端拉取消息，以待消费
     const auto ec = rd_consumer_->start(rd_topic_.get(), partition_, offset);
     if (ec != RdKafka::ERR_NO_ERROR)
         throw exception {ec, "RdKafka::Consumer::start(*) failed"};
@@ -126,13 +122,14 @@ inline consumer::consumer(const std::string &broker_list, const std::string &top
 
 inline consumer::~consumer() noexcept
 {
+    // 停止从远端拉取消息
     rd_consumer_->stop(rd_topic_.get(), partition_);
 
     // 轮询事件以触发回调
-    rd_consumer_->poll(100);
+    rd_consumer_->poll(1000);
 }
 
-inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consumer::consume(int timeout_ms)
+inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consumer::consume(int timeout_ms) const
 {
     using namespace std;
 
@@ -142,7 +139,7 @@ inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uin
     const unique_ptr<RdKafka::Message> message {rd_consumer_->consume(rd_topic_.get(), partition_, timeout_ms)};
 
     // 轮询事件以触发回调
-    rd_consumer_->poll(100);
+    rd_consumer_->poll(0);
 
     if (!message)
         throw exception {"RdKafka::Consumer::consume(*) failed"};
@@ -162,9 +159,7 @@ inline kafka_consumer::kafka_consumer(const std::string &broker_list, const std:
 
     string errstr;
 
-    // -------------------------------------------------------------------------
-    // DEFAULT TOPIC
-
+    // 话题配置
     unique_ptr<RdKafka::Conf> tcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC)};
     if (!tcfg)
         throw exception {"RdKafka::Conf::create(*) failed"};
@@ -175,47 +170,47 @@ inline kafka_consumer::kafka_consumer(const std::string &broker_list, const std:
     if (tcfg->set("auto.offset.reset", "earliest", errstr) != RdKafka::Conf::CONF_OK)
         throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // -------------------------------------------------------------------------
-    // KAFKA CONSUMER
+    /* 高级消费者配置 */ {
+        unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
+        if (!gcfg)
+            throw exception {"RdKafka::Conf::create(*) failed"};
 
-    unique_ptr<RdKafka::Conf> gcfg {RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL)};
-    if (!gcfg)
-        throw exception {"RdKafka::Conf::create(*) failed"};
+        // metadata.broker.list
+        // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
+        // Type: string
+        if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // metadata.broker.list
-    // Initial list of brokers as a CSV list of broker host or host:port. The application may also use rd_kafka_brokers_add() to add brokers during runtime.
-    // Type: string
-    if (gcfg->set("metadata.broker.list", broker_list, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        // log_level
+        // Logging level (syslog(3) levels)
+        // Type: integer
+        if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // log_level
-    // Logging level (syslog(3) levels)
-    // Type: integer
-    if (gcfg->set("log_level", "3"/*err*/, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        // default_topic_conf
+        // Default topic configuration for automatically subscribed topics.
+        // Type: pointer
+        if (gcfg->set("default_topic_conf", tcfg.get(), errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // default_topic_conf
-    // Default topic configuration for automatically subscribed topics.
-    // Type: pointer
-    if (gcfg->set("default_topic_conf", tcfg.get(), errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        // group.id
+        // Client group id string. All clients sharing the same group.id belong to the same group.
+        // Type: string
+        if (gcfg->set("group.id", group_id, errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // group.id
-    // Client group id string. All clients sharing the same group.id belong to the same group.
-    // Type: string
-    if (gcfg->set("group.id", group_id, errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        // enable.partition.eof
+        // Emit RD_KAFKA_RESP_ERR__PARTITION_EOF event whenever the consumer reaches the end of a partition.
+        // Type: boolean
+        if (gcfg->set("enable.partition.eof", "false", errstr) != RdKafka::Conf::CONF_OK)
+            throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
 
-    // enable.partition.eof
-    // Emit RD_KAFKA_RESP_ERR__PARTITION_EOF event whenever the consumer reaches the end of a partition.
-    // Type: boolean
-    if (gcfg->set("enable.partition.eof", "false", errstr) != RdKafka::Conf::CONF_OK)
-        throw exception {"RdKafka::Conf::set(*) failed: "s.append(errstr)};
+        rd_kafka_consumer_.reset(RdKafka::KafkaConsumer::create(gcfg.get(), errstr));
+        if (!rd_kafka_consumer_)
+            throw exception {"RdKafka::KafkaConsumer::create(*) failed: "s.append(errstr)};
+    }
 
-    rd_kafka_consumer_.reset(RdKafka::KafkaConsumer::create(gcfg.get(), errstr));
-    if (!rd_kafka_consumer_)
-        throw exception {"RdKafka::KafkaConsumer::create(*) failed: "s.append(errstr)};
-
+    // 订阅话题，开始从远端拉取消息，以待消费
     vector<string> topics;
     topics.push_back(topic);
     rd_kafka_consumer_->subscribe(topics);
@@ -223,10 +218,11 @@ inline kafka_consumer::kafka_consumer(const std::string &broker_list, const std:
 
 inline kafka_consumer::~kafka_consumer() noexcept
 {
+    // 关闭消费者，停止从远端拉取消息
     rd_kafka_consumer_->close();
 }
 
-inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> kafka_consumer::consume(int timeout_ms)
+inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> kafka_consumer::consume(int timeout_ms) const
 {
     using namespace std;
 

@@ -66,26 +66,26 @@ public:
     /// \param value_data 值数据
     /// \param value_size 值尺寸
     /// \param partition  分区
-    inline void produce(const std::optional<std::string> &key, const void *value_data, std::size_t value_size, std::int32_t partition = RdKafka::Topic::PARTITION_UA);
-    inline void produce(const void *value_data, std::size_t value_size, int partition = RdKafka::Topic::PARTITION_UA)
+    inline void produce(const std::optional<std::string> &key, const void *value_data, std::size_t value_size, std::int32_t partition = RdKafka::Topic::PARTITION_UA) const;
+    inline void produce(const void *value_data, std::size_t value_size, int partition = RdKafka::Topic::PARTITION_UA) const
     {
         return produce(std::nullopt, value_data, value_size, partition);
     }
 
-    inline void produce(const std::optional<std::string> &key, const std::string &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA)
+    inline void produce(const std::optional<std::string> &key, const std::string &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA) const
     {
         return produce(key, reinterpret_cast<const void *>(value.data()), static_cast<std::int64_t>(value.size() * sizeof(char)), partition);
     }
-    inline void produce(const std::string &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA)
+    inline void produce(const std::string &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA) const
     {
         return produce(std::nullopt, reinterpret_cast<const void *>(value.data()), static_cast<std::int64_t>(value.size() * sizeof(char)), partition);
     }
 
-    inline void produce(const std::optional<std::string> &key, const std::vector<std::uint8_t> &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA)
+    inline void produce(const std::optional<std::string> &key, const std::vector<std::uint8_t> &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA) const
     {
         return produce(key, reinterpret_cast<const void *>(value.data()), static_cast<std::int64_t>(value.size() * sizeof(std::uint8_t)), partition);
     }
-    inline void produce(const std::vector<std::uint8_t> &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA)
+    inline void produce(const std::vector<std::uint8_t> &value, std::int32_t partition = RdKafka::Topic::PARTITION_UA) const
     {
         return produce(std::nullopt, reinterpret_cast<const void *>(value.data()), static_cast<std::int64_t>(value.size() * sizeof(std::uint8_t)), partition);
     }
@@ -113,7 +113,7 @@ public:
     /// \brief 消费
     ///
     /// \returns 消息的“偏移量－键－值”元组
-    inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consume(int timeout_ms = -1);
+    inline std::tuple<std::int64_t, std::optional<std::string>, std::vector<std::uint8_t>> consume(int timeout_ms = -1) const;
 
 private:
     std::unique_ptr<RdKafka::Consumer> rd_consumer_ {nullptr};
@@ -132,7 +132,7 @@ public:
     /// \brief 消费
     ///
     /// \returns 消息的“键－值”对
-    inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> consume(int timeout_ms = -1);
+    inline std::pair<std::optional<std::string>, std::vector<std::uint8_t>> consume(int timeout_ms = -1) const;
 
 private:
     std::unique_ptr<RdKafka::KafkaConsumer> rd_kafka_consumer_ {nullptr};

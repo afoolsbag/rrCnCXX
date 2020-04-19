@@ -21,7 +21,7 @@ using namespace std;
 
 namespace rrkafka {
 
-constexpr char broker_list[] {"172.16.0.27:9092, 172.16.0.28:9092, 172.16.0.29:9092"};
+constexpr char broker_list[] {"127.0.0.1:9092"};
 constexpr char topic[] {"test-cpp"};
 
 class kafka_test : public testing::Test {
@@ -47,7 +47,7 @@ TEST_F(kafka_test, consume)
     for (; ; ) {
         const auto[key, value] = cons.consume();
         cout << "consume:\n";
-        cout << "  key=" << key.value_or("<null>") << "\n";
+        cout << "  key=" << key.value_or("<null>") << '\n';
         cout << "  value=" << string {reinterpret_cast<const char *>(value.data()), value.size()} << '\n';
     }
 }

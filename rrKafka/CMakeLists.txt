@@ -2,7 +2,7 @@
 #           | | / /      / _| |
 #  _ __ _ __| |/ /  __ _| |_| | ____ _
 # | '__| '__|    \ / _` |  _| |/ / _` | zhengrr
-# | |  | |  | |\  \ (_| | | |   < (_| | 2019-07-29 – 2019-11-20
+# | |  | |  | |\  \ (_| | | |   < (_| | 2019-07-29 – 2020-04-19
 # |_|  |_|  \_| \_/\__,_|_| |_|\_\__,_| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -23,10 +23,18 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-conan_cmake_run(
-  REQUIRES    gtest/1.10.0
-  BASIC_SETUP CMAKE_TARGETS
-  BUILD       missing)
+if(UNIX)
+  conan_cmake_run(
+    REQUIRES    gtest/1.8.1@bincrafters/stable
+    BASIC_SETUP CMAKE_TARGETS
+    BUILD       missing)
+endif()
+if(WIN32)
+  conan_cmake_run(
+    REQUIRES    gtest/1.10.0
+    BASIC_SETUP CMAKE_TARGETS
+    BUILD       missing)
+endif()
 
 find_package(RdKafka REQUIRED)
 aux_source_directory_con("../include/rrkafka" zWrapper RECURSE PREFIX "/include/rrkafka")
@@ -42,6 +50,8 @@ add_executable_con(
   rrKafkaTest         ${zTest}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
+                      BUILD_RPATH           "."
+                      INSTALL_RPATH         "."
   INCLUDE_DIRECTORIES PRIVATE               "."
   LINK_LIBRARIES      PRIVATE               rrKafka
                                             CONAN_PKG::gtest)
