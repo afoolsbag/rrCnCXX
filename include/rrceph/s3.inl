@@ -37,7 +37,7 @@ inline s3::~s3() noexcept
     S3_deinitialize();
 }
 
-inline std::list<bucket_info> s3::list_buckets() const
+inline std::list<s3::bucket_info> s3::list_buckets() const
 {
     using namespace std;
 
@@ -188,7 +188,7 @@ inline void s3::delete_bucket(const std::string &bucket_name)
         throw runtime_error {string{"S3_delete_bucket failed: "}.append(S3_get_status_name(user_data.status))};
 }
 
-inline std::list<object_info> s3::list_objects(const std::string &bucket_name) const
+inline std::list<s3::object_info> s3::list_objects(const std::string &bucket_name) const
 {
     using namespace std;
 

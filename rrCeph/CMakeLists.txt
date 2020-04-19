@@ -4,7 +4,7 @@
 # | '__| '__| |    / _ \ '_ \| '_ \ 
 # | |  | |  | \__/\  __/ |_) | | | |
 # |_|  |_|   \____/\___| .__/|_| |_| zhengrr
-#                      | |           2019-07-29 – 2019-11-20
+#                      | |           2019-07-29 – 2020-04-19
 #                      |_|           Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -25,10 +25,18 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-conan_cmake_run(
-  REQUIRES    gtest/1.10.0
-  BASIC_SETUP CMAKE_TARGETS
-  BUILD       missing)
+if(UNIX)
+  conan_cmake_run(
+    REQUIRES    gtest/1.8.1@bincrafters/stable
+    BASIC_SETUP CMAKE_TARGETS
+    BUILD       missing)
+endif()
+if(WIN32)
+  conan_cmake_run(
+    REQUIRES    gtest/1.10.0
+    BASIC_SETUP CMAKE_TARGETS
+    BUILD       missing)
+endif()
 
 find_package(S3 REQUIRED)
 aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
