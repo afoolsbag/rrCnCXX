@@ -54,14 +54,15 @@ if(UNIX)
     SOURCES             INTERFACE ${zWrapper})
 endif()
 if(WIN32)
-  hunter_add_package(s3)
-  find_package(s3 CONFIG REQUIRED)
+# hunter_add_package(s3)
+# find_package(s3 CONFIG REQUIRED)
   aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
   add_library_ex(
     rrCeph              INTERFACE
     COMPILE_FEATURES    INTERFACE cxx_std_11
     INCLUDE_DIRECTORIES INTERFACE "../include"
-    LINK_LIBRARIES      INTERFACE s3::s3
+                                  "../include/linux/usr/include"
+#   LINK_LIBRARIES      INTERFACE s3::s3
     SOURCES             INTERFACE ${zWrapper})
 endif()
 
