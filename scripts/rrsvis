@@ -7,7 +7,7 @@
 # |_|  |_|  \____/ \__, |___/\__\___|_| |_| |_|\___/ \___/_| |_|_|\__\____/ \___|_|  |_| .__/ \__|
 #                   __/ |                                                              | |
 # zhengrr          |___/                                                               |_|
-# 2019-09-09 – 2019-11-13
+# 2019-09-09 – 2020-04-21
 # Unlicense
 #
 # 初始化脚本：在系统切换运行级别时由系统调用，且可通过 `service` 命令由用户便捷调用。
@@ -19,6 +19,12 @@
 #           [22.6. Facility Names](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/facilname.html)
 #           [22.7. Script Names](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/scrptnames.html)
 #           [22.8. Init Script Functions](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptfunc.html)
+#
+# 实测：
+#
+# Ubuntu OKAY
+#
+# CentOS [user@host *]$ sudo yum install redhat-lsb
 
 # 初始化脚本的注释约定，供 `install_initd` 和 `remove_initd` 命令使用：
 #
@@ -68,52 +74,73 @@
 # 包入指定脚本 `/lib/lsb/init-functions`
 . /lib/lsb/init-functions
 
+# 包入可能的工具脚本
+#if [[ -e '/etc/init.d/functions' ]]; then
+#        . /etc/init.d/functions
+#fi
+
 # 配置
-readonly DAEMON_WDIR='/home/ubuntu/script'
-readonly DAEMON_PATH='/home/ubuntu/script/rrd.sh'
-readonly DAEMON_ARGS=''
-readonly NAKING_PATH='/home/ubuntu/script/rr.sh'
+readonly DAEMON_EXECUTABLE='/home/scripts/rrd.sh'
+readonly DAEMON_ARGUMENTS=''
+readonly NAKED_EXECUTABLE='/home/scripts/rr.sh'
 
 # 配置检验
-if [[ ! "${DAEMON_WDIR}" == '/'* || ! -d "${DAEMON_WDIR}" ]]; then
-        log_failure_msg "The config DAEMON_WDIR isn't an absolute path to directory."
+if [[ ! "${DAEMON_EXECUTABLE}" == '/'* || ! -x "${DAEMON_EXECUTABLE}" ]]; then
+        log_failure_msg "The config DAEMON_EXECUTABLE='${DAEMON_EXECUTABLE}' isn't an absolute path to execuable."
         exit 5  # program is not installed
 fi
-if [[ ! "${DAEMON_PATH}" == '/'* || ! -x "${DAEMON_PATH}" ]]; then
-        log_failure_msg "The config DAEMON_PATH isn't an absolute path to execuable."
-        exit 5  # program is not installed
-fi
-if [[ -n "${NAKING_PATH}" && ( ! "${NAKING_PATH}" == '/'* || ! -x "${NAKING_PATH}" ) ]]; then
-        log_failure_msg "The config NAKING_PATH is set, but isn't an absolute path to execuable."
+if [[ -n "${NAKED_EXECUTABLE}" && ( ! "${NAKED_EXECUTABLE}" == '/'* || ! -x "${NAKED_EXECUTABLE}" ) ]]; then
+        log_failure_msg "The config NAKED_EXECUTABLE='${NAKED_EXECUTABLE}' is set, but isn't an absolute path to executable."
         exit 5  # program is not installed
 fi
 
 # 自行生成的值
 readonly CURRENT_SCRIPT_PATH="$(readlink --canonicalize "$0")"
-readonly CURRENT_SCRIPT_DIR="$(dirname "${CURRENT_SCRIPT_PATH}")"
+readonly CURRENT_SCRIPT_DIRECTORY="$(dirname "${CURRENT_SCRIPT_PATH}")"
 readonly CURRENT_SCRIPT_NAME="$(basename "${CURRENT_SCRIPT_PATH}")"
 readonly CURRENT_SCRIPT_ACTION="$1"
 
-readonly INIT_SCRIPT_DIR='/etc/init.d'
-readonly INIT_SCRIPT_PATH="${INIT_SCRIPT_DIR}/${CURRENT_SCRIPT_NAME}"
+readonly INIT_SCRIPT_DIRECTORY='/etc/init.d'
+readonly INIT_SCRIPT_PATH="${INIT_SCRIPT_DIRECTORY}/${CURRENT_SCRIPT_NAME}"
 
-readonly DAEMON_NAME="$(basename "${DAEMON_PATH}")"
-readonly DAEMON_SSD_PIDFILE="/var/run/${DAEMON_NAME}-ssd.pid"  # start-stop-daemon
-readonly DAEMON_SSD_LOGFILE="/var/log/${DAEMON_NAME}-ssd.log"
-readonly DAEMON_SSD_ERRFILE="/var/log/${DAEMON_NAME}-ssd.err"
+readonly DAEMON_EXECUTABLE_NAME="$(basename "${DAEMON_EXECUTABLE}")"
+readonly DAEMON_PIDFILE="/var/run/${DAEMON_EXECUTABLE_NAME}.pid"
+readonly DAEMON_LOGFILE="/var/log/${DAEMON_EXECUTABLE_NAME}.log"
+readonly DAEMON_ERRFILE="/var/log/${DAEMON_EXECUTABLE_NAME}.err"
 
-readonly NAKING_NAME="$(basename "${NAKING_PATH}")"
+readonly NAKED_EXECUTABLE_NAME="$(basename "${NAKED_EXECUTABLE}")"
 
 # 当前状态
 # 打印当前状态
-status() {
+svis_status() {
         local rc  # return code
 
-        echo "Checking ${DAEMON_NAME} status ..."
+        echo "Checking ${DAEMON_EXECUTABLE_NAME} status ..."
 
-        start-stop-daemon --status \
-                          --pidfile "${DAEMON_SSD_PIDFILE}"
-        rc="$?"
+        # 检查守护进程
+        if [[ -x '/sbin/start-stop-daemon' ]]; then
+                start-stop-daemon --status \
+                                  --pidfile "${DAEMON_PIDFILE}"
+                rc="$?"
+        else
+                if [[ ! -e "${DAEMON_PIDFILE}" ]]; then
+                        rc='3'
+                elif [[ "$(pgrep --list-full --pidfile "${DAEMON_PIDFILE}" | grep --word-regexp --count "${DAEMON_EXECUTABLE}")" == 1 ]]; then
+                        rc='0'
+                else
+                        rc='1'
+                fi
+        fi
+        #elif [[ -e '/etc/init.d/functions' ]]; then
+        #        status -p "${DAEMON_PIDFILE}" \
+        #               "${DAEMON_EXECUTABLE}"
+        #        rc="$?"
+        #else
+        #        pidofproc -p "${DAEMON_PIDFILE}" \
+        #                  "${DAEMON_EXECUTABLE}"
+        #        rc="$?"
+        #fi
+
         case "$rc" in
                 '0')
                         log_success_msg 'The program is running.'
@@ -138,14 +165,14 @@ status() {
 }
 
 # 启动服务
-start() {
+svis_start() {
         local rc  # return code
         local rt  # return text
 
-        echo "Starting ${DAEMON_NAME} ..."
+        echo "Starting ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查服务状态
-        status &>'/dev/null'
+        svis_status &>'/dev/null'
         rc="$?"
         if (( rc == 0 )); then
                 log_success_msg 'The program already started.'
@@ -159,30 +186,66 @@ start() {
         fi
 
         # 启动守护进程
-        start-stop-daemon --start --background --no-close \
-                          --make-pidfile --pidfile "${DAEMON_SSD_PIDFILE}" \
-                          --chdir "${DAEMON_WDIR}" --exec "${DAEMON_PATH}" -- ${DAEMON_ARGS} \
-                          0<'/dev/null' 1>"${DAEMON_SSD_LOGFILE}" 2>"${DAEMON_SSD_ERRFILE}"
-        rc="$?"
-        rt="$(cat "${DAEMON_SSD_ERRFILE}")"
+        if [[ -x '/sbin/start-stop-daemon' ]]; then
+                start-stop-daemon --start --background --no-close \
+                                  --make-pidfile --pidfile "${DAEMON_PIDFILE}" \
+                                  --exec "${DAEMON_EXECUTABLE}" \
+                                  -- ${DAEMON_ARGUMENTS} \
+                                  0<'/dev/null' \
+                                  1>"${DAEMON_LOGFILE}" \
+                                  2>"${DAEMON_ERRFILE}"
+                rc="$?"
+                rt="$(cat "${DAEMON_ERRFILE}")"
+        else
+                if [[ -e "${DAEMON_PIDFILE}" ]]; then
+                        rm "${DAEMON_PIDFILE}"
+                fi
+                nohup "${DAEMON_EXECUTABLE}" ${DAEMON_ARGUMENTS} \
+                                             0<'/dev/null' \
+                                             1>"${DAEMON_LOGFILE}" \
+                                             2>"${DAEMON_ERRFILE}" \
+                                             &
+                rc="$?"
+                echo "$!" > "${DAEMON_PIDFILE}"
+                rt="$(cat "${DAEMON_ERRFILE}")"
+        fi
+        #elif [[ -e '/etc/init.d/functions' ]]; then
+        #        daemon nohup "${DAEMON_EXECUTABLE}" \
+        #                     "${DAEMON_ARGUMENTS}" \
+        #                     0<'/dev/null' \
+        #                     1>"${DAEMON_LOGFILE}" \
+        #                     2>"${DAEMON_ERRFILE}" \
+        #                     &
+        #        rc="$?"
+        #else
+        #        start_daemon -p "${DAEMON_PIDFILE}" \
+        #                     nohup "${DAEMON_EXECUTABLE}" \
+        #                           "${DAEMON_ARGUMENTS}" \
+        #                           0<'/dev/null' \
+        #                           1>"${DAEMON_LOGFILE}" \
+        #                           2>"${DAEMON_ERRFILE}" \
+        #                           &
+        #        rc="$?"
+        #fi
+
         if [[ "$rc" != '0' || -n "$rt" ]]; then
                 echo "$rt"
-                log_failure_msg "Start failed with code $rc, more information see ${DAEMON_SSD_LOGFILE} and ${DAEMON_SSD_ERRFILE}."
+                log_failure_msg "Start failed with code $rc, more information see '${DAEMON_LOGFILE}' and '${DAEMON_ERRFILE}'."
                 return 1  # generic or unspecified error
         else
-                log_success_msg 'Start successed.'
+                log_success_msg 'Start succeeded.'
                 return 0  # successful
         fi
 }
 
 # 停止服务
-stop() {
+svis_stop() {
         local rc  # return code
 
-        echo "Stopping ${DAEMON_NAME} ..."
+        echo "Stopping ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查服务状态
-        status &>'/dev/null'
+        svis_status &>'/dev/null'
         rc="$?"
         if (( rc == 3 )); then
                 log_success_msg 'The program already stopped.'
@@ -196,18 +259,37 @@ stop() {
         fi
 
         # 停止守护进程
-        start-stop-daemon --stop \
-                          --remove-pidfile --pidfile "${DAEMON_SSD_PIDFILE}" \
-                          --retry 10
-        rc="$?"
+        if [[ -x '/sbin/start-stop-daemon' ]]; then
+                start-stop-daemon --stop \
+                                  --remove-pidfile --pidfile "${DAEMON_PIDFILE}" \
+                                  --retry 10
+                rc="$?"
+        else
+                svis_status &>'/dev/null'
+                rc="$?"
+                if (( rc == 0 )); then
+                        kill $(tee < "${DAEMON_PIDFILE}")
+                fi
+                if [[ -e "${DAEMON_PIDFILE}" ]]; then
+                        rm "${DAEMON_PIDFILE}"
+                fi
+        fi
+        #elif [[ -e '/etc/init.d/functions' ]]; then
+        #        killproc "${DAEMON_EXECUTABLE}"
+        #        rc="$?"
+        #else
+        #        killproc -p "${DAEMON_PIDFILE}" \
+        #                 "${DAEMON_EXECUTABLE}"
+        #        rc="$?"
+        #fi
 
         # 停止可能的裸进程
-        if [[ -x "${NAKING_PATH}" ]]; then
-                kill $(ps aux | grep --word-regexp "${NAKING_NAME}" | awk '{print $2}') &>'/dev/null'
+        if [[ -x "${NAKED_EXECUTABLE}" ]]; then
+                kill $(ps aux | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}') &>'/dev/null'
         fi
 
         if (( rc == 0 )); then
-                log_success_msg 'Stop successed.'
+                log_success_msg 'Stop succeeded.'
                 return 0  # successful
         else
                 log_failure_msg "Stop failed with error code $rc."
@@ -217,21 +299,21 @@ stop() {
 
 # 重启服务
 # 若服务已在运行，则停止并重新启动服务，否则直接启动服务
-restart() {
-        stop
-        start
+svis_restart() {
+        svis_stop
+        svis_start
         return "$?"
 }
 
 # 尝试重启服务
 # 若服务已在运行，则停止并重新启动服务，否则什么也不做
-try_restart() {
+svis_try_restart() {
         local rc  # return cpde
 
-        status &>'/dev/null'
+        svis_status &>'/dev/null'
         rc="$?"
         if (( rc == 0 )); then
-                restart
+                svis_restart
                 return "$?"
         else
                 return 0  # running try-restart on a service already stopped or not running
@@ -240,21 +322,21 @@ try_restart() {
 
 # 重载配置
 # 通过非“重启服务”的方式，使服务重新加载配置
-reload() {
+svis_reload() {
         log_failure_msg 'The reload action is not supported currently.'
         return 3  # unimplemented feature
 }
 
 # 强制重载配置
 # 若支持则“重载配置”，否则重启服务以确保配置被重新加载
-force_reload() {
+svis_force_reload() {
         local rc  # return code
 
-        reload &>'/dev/null'
+        svis_reload &>'/dev/null'
         rc="$?"
 
         if (( rc == 3 )); then
-                restart
+                svis_restart
                 rc="$?"
         fi
 
@@ -262,14 +344,14 @@ force_reload() {
 }
 
 # 启用自动调用
-enable() {
+svis_enable() {
         local rc  # return code
         local rt  # return text
 
-        echo "Enabling ${DAEMON_NAME} ..."
+        echo "Enabling ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查脚本位置
-        if [[ "${CURRENT_SCRIPT_DIR}" != '/etc/init.d' ]]; then
+        if [[ "${CURRENT_SCRIPT_DIRECTORY}" != '/etc/init.d' ]]; then
                 log_failure_msg 'The init script must be in /etc/init.d to valid.'
                 return 6  # program is not configured
         fi
@@ -281,23 +363,23 @@ enable() {
         fi
 
         # 启用脚本
-        if [[ -e '/usr/lib/lsb/install_initd' ]]; then
+        if [[ -x '/usr/lib/lsb/install_initd' ]]; then
                 rt="$(/usr/lib/lsb/install_initd "${CURRENT_SCRIPT_PATH}" 2>&1)"
                 rc="$?"
                 if (( rc != 0 )); then
                         log_failure_msg "Enable failed: $rt."
                         return 1  # generic or unspecified error
                 fi
-                log_success_msg 'Enable successed.'
+                log_success_msg 'Enable succeeded.'
                 return 0  # successful
-        elif [[ -e '/usr/sbin/update-rc.d' ]]; then
+        elif [[ -x '/usr/sbin/update-rc.d' ]]; then
                 rt="$(update-rc.d "${CURRENT_SCRIPT_NAME}" defaults 2>&1)"
                 rc="$?"
                 if (( rc != 0 )); then
                         log_failure_msg "Enable failed: $rt."
                         return 1  # generic or unspecified error
                 fi
-                log_success_msg 'Enable successed.'
+                log_success_msg 'Enable succeeded.'
                 return 0  # successful
         else
                 log_failure_msg 'Init script utility not found.'
@@ -306,14 +388,14 @@ enable() {
 }
 
 # 禁用自动调用
-disable() {
+svis_disable() {
         local rc  # return code
         local rt  # return text
 
-        echo "Disabling ${DAEMON_NAME} ..."
+        echo "Disabling ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查脚本位置
-        if [[ "${CURRENT_SCRIPT_DIR}" != '/etc/init.d' ]]; then
+        if [[ "${CURRENT_SCRIPT_DIRECTORY}" != '/etc/init.d' ]]; then
                 log_failure_msg 'The init script must be in /etc/init.d to valid.'
                 return 6  # program is not configured
         fi
@@ -325,23 +407,23 @@ disable() {
         fi
 
         # 禁用脚本
-        if [[ -e '/usr/lib/lsb/remove_initd' ]]; then
+        if [[ -x '/usr/lib/lsb/remove_initd' ]]; then
                 rt="$(/usr/lib/lsb/remove_initd "${CURRENT_SCRIPT_PATH}" 2>&1)"
                 rc="$?"
                 if (( rc != 0 )); then
                         log_failure_msg "Disable failed: $rt."
                         return 1  # generic or unspecified error
                 fi
-                log_success_msg 'Disable successed.'
+                log_success_msg 'Disable succeeded.'
                 return 0  # successful
-        elif [[ -e '/usr/sbin/update-rc.d' ]]; then
+        elif [[ -x '/usr/sbin/update-rc.d' ]]; then
                 rt="$(update-rc.d -f "${CURRENT_SCRIPT_NAME}" remove 2>&1)"
                 rc="$?"
                 if (( rc != 0 )); then
                         log_failure_msg "Disable failed: $rt."
                         return 1  # generic or unspecified error
                 fi
-                log_success_msg 'Disable successed.'
+                log_success_msg 'Disable succeeded.'
                 return 0  # successful
         else
                 log_failure_msg 'Init script utility not found.'
@@ -350,11 +432,11 @@ disable() {
 }
 
 # 安装
-install() {
+svis_install() {
         local rc  # return code
         local rt  # return text
 
-        echo "Installing ${DAEMON_NAME} ..."
+        echo "Installing ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查目标脚本是否已存在
         if [[ -e "${INIT_SCRIPT_PATH}" ]]; then
@@ -376,16 +458,16 @@ install() {
                 return 1  # generic or unspecified error
         fi
 
-        log_success_msg 'Install successed.'
+        log_success_msg 'Install succeeded.'
         return 0  # successful
 }
 
 # 卸载
-remove() {
+svis_remove() {
         local rc  # return code
         local rt  # return text
 
-        echo "Removing ${DAEMON_NAME} ..."
+        echo "Removing ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查目标脚本是否不存在
         if [[ ! -e "${INIT_SCRIPT_PATH}" ]]; then
@@ -400,7 +482,7 @@ remove() {
         fi
 
         # 停止服务并禁用自动调用
-        "${INIT_SCRIPT_PATH}" stop &>'/dev/null'
+        svis_stop
         "${INIT_SCRIPT_PATH}" disable &>'/dev/null'
 
         # 从目标位置删除
@@ -411,71 +493,71 @@ remove() {
                 return 1  # generic or unspecified error
         fi
 
-        log_success_msg 'Remove successed.'
+        log_success_msg 'Remove succeeded.'
         return 0  # successful
 }
 
 # 重新安装
-reinstall() {
+svis_reinstall() {
         # 检查脚本位置
-        if [[ "${CURRENT_SCRIPT_DIR}" == '/etc/init.d' ]]; then
+        if [[ "${CURRENT_SCRIPT_DIRECTORY}" == '/etc/init.d' ]]; then
                 log_failure_msg "The init script doesn't need reinstall itself sames."
                 return 1  # generic or unspecified error
         fi
 
-        remove
-        install
+        svis_remove
+        svis_install
         return "$?"
 }
 
 # 行为分发
 case "${CURRENT_SCRIPT_ACTION}" in
         'start')
-                start
+                svis_start
                 exit "$?"
                 ;;
         'stop')
-                stop
+                svis_stop
                 exit "$?"
                 ;;
         'restart')
-                restart
+                svis_restart
                 exit "$?"
                 ;;
         'try-restart')
-                try_restart
+                svis_try_restart
                 exit "$?"
                 ;;
         'reload')
-                reload
+                svis_reload
                 exit "$?"
                 ;;
         'force-reload')
-                force_reload
+                svis_force_reload
                 exit "$?"
                 ;;
         'status')
-                status
+                svis_status
                 exit "$?"
                 ;;
         'enable')
-                enable
+                svis_enable
                 exit "$?"
                 ;;
         'disable')
-                disable
+                svis_disable
                 exit "$?"
                 ;;
         'install'|'')
-                install
+                svis_install
                 exit "$?"
                 ;;
         'remove')
-                remove
+                svis_remove
                 exit "$?"
                 ;;
         'reinstall')
-                reinstall
+                svis_reinstall
                 exit "$?"
                 ;;
         *)

@@ -6,54 +6,62 @@
 # | |  | |  | |/ / (_| |  __/ | | | | | (_) | | | |
 # |_|  |_|  |___/ \__,_|\___|_| |_| |_|\___/|_| |_|
 # zhengrr
-# 2019-10-31 – 2020-01-10
+# 2019-10-31 – 2020-04-21
 # Unlicense
 #
-# 一个简单的守护脚本
+# 一段简单的守护脚本
 
 # 配置
-readonly NAKING_USER='ubuntu'
-readonly NAKING_WDIR='/home/ubuntu/script'
-readonly NAKING_PATH='/home/ubuntu/script/rr.sh'
-readonly NAKING_ARGS=''
-readonly NAKING_INPFILE='/dev/null'
-readonly NAKING_LOGFILE='/home/ubuntu/script/rr.log'
-readonly NAKING_ERRFILE='/home/ubuntu/script/rr.err'
+readonly NAKED_WORKING_USER='zwh'
+readonly NAKED_WORKING_DIRECTORY='/home/scripts'
+readonly NAKED_EXECUTABLE='/home/scripts/rr.sh'
+readonly NAKED_ARGUMENTS=''
+readonly NAKED_INPUT_FILE='/dev/null'
+readonly NAKED_OUTPUT_FILE='/home/scripts/rr.log'
+readonly NAKED_ERROR_FILE='/home/scripts/rr.err'
 
 # 配置检验
-if (( "$(grep --count --word-regexp "${NAKING_USER}" '/etc/passwd')" == 0 )); then
-        echo "The config NAKING_USER isn't an existing user."
+if (( "$(grep --word-regexp --count "${NAKED_WORKING_USER}" '/etc/passwd')" == 0 )); then
+        echo "The config NAKED_WORKING_USER='${NAKED_WORKING_USER}' isn't an existing user."
         exit 1
 fi
-if [[ ! "${NAKING_WDIR}" == '/'* || ! -d "${NAKING_WDIR}" ]]; then
-        echo "The config NAKING_WDIR isn't an absolute path to directory."
+if [[ ! "${NAKED_WORKING_DIRECTORY}" == '/'* || ! -d "${NAKED_WORKING_DIRECTORY}" ]]; then
+        echo "The config NAKED_WORKING_DIRECTORY='${NAKED_WORKING_DIRECTORY}' isn't an absolute path to directory."
         exit 1
 fi
-if [[ ! "${NAKING_PATH}" == '/'* || ! -x "${NAKING_PATH}" ]]; then
-        echo "The config NAKING_PATH isn't an absolute path to execuable."
+if [[ ! "${NAKED_EXECUTABLE}" == '/'* || ! -x "${NAKED_EXECUTABLE}" ]]; then
+        echo "The config NAKED_EXECUTABLE='${NAKED_EXECUTABLE}' isn't an absolute path to executable."
         exit 1
 fi
 
 # 自行生成的值
-readonly NAKING_NAME="$(basename "${NAKING_PATH}")"
+readonly NAKED_EXECUTABLE_NAME="$(basename "${NAKED_EXECUTABLE}")"
 
 # 循环检查
 while true; do
 
-        if (( "$(ps aux | grep --count --word-regexp "${NAKING_NAME}")" <= 1 )); then
-                cd "${NAKING_WDIR}"
-                sudo --user="${NAKING_USER}" \
-                        nohup "${NAKING_PATH}" ${NAKING_ARGS} \
-                                0<"${NAKING_INPFILE}" \
-                                1>"${NAKING_LOGFILE}" \
-                                2>"${NAKING_ERRFILE}" \
+        if (( "$(ps aux | grep --invert-match 'grep' | grep --word-regexp --count "${NAKED_EXECUTABLE}")" == 0 )); then
+
+                cd "${NAKED_WORKING_DIRECTORY}"
+                rc="$?"
+                if (( rc != 0 )); then
+                        echo "Change directory to '${NAKED_WORKING_DIRECTORY}' failed."
+                        exit 1
+                fi
+
+                sudo --user="${NAKED_WORKING_USER}" \
+                        nohup "${NAKED_EXECUTABLE}" ${NAKED_ARGUMENTS} \
+                                0<"${NAKED_INPUT_FILE}" \
+                                1>"${NAKED_OUTPUT_FILE}" \
+                                2>"${NAKED_ERROR_FILE}" \
                                 &
                 rc="$?"
                 if (( rc != 0 )); then
-                        echo "Run ${NAKING_NAME} failed with code $rc, more information see ${NAKING_LOGFILE} and ${NAKING_ERRFILE}."
+                        echo "Run ${NAKED_EXECUTABLE_NAME} failed with code $rc, more information see '${NAKED_OUTPUT_FILE}' and '${NAKED_ERROR_FILE}'."
                 fi
+
         fi
 
-        sleep 60
+        sleep 15s
 
 done
