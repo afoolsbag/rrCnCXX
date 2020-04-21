@@ -21,7 +21,7 @@ using namespace std;
 
 namespace rrceph {
 
-constexpr char host[] {"172.16.0.28:7480"};
+constexpr char host[] {"127.0.0.1:7480"};
 constexpr char access_key[] {"access_key"};
 constexpr char secret_key[] {"secret_key"};
 constexpr char sample_bucket[] = "s3cpp_sample";
