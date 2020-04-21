@@ -390,14 +390,14 @@ inline void s3::download_object_as_memory(const std::string &bucket_name, const 
         secret_key_.c_str()
     };
 
-    static const S3GetObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
+    static const S3GetObjectHandler get_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
 
     // 用户数据
     user_data_t user_data;
     user_data.buffer = buffer;
 
     // 调用 API 下载对象，并等待完成
-    S3_get_object(&bucket_context, key.c_str(), nullptr, 0, 0, nullptr, &put_object_handler, &user_data);
+    S3_get_object(&bucket_context, key.c_str(), nullptr, 0, 0, nullptr, &get_object_handler, &user_data);
 
     // 检查异常
     if (user_data.status != S3StatusOK)
@@ -522,14 +522,14 @@ inline void s3::download_object_as_file(const std::string &bucket_name, const st
         secret_key_.c_str()
     };
 
-    static const S3GetObjectHandler put_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
+    static const S3GetObjectHandler get_object_handler {{response_properties_callback, response_complete_callback}, get_object_data_callback};
 
     // 用户数据
     user_data_t user_data;
     user_data.fp = fp.get();
 
     // 调用 API 下载对象，并等待完成
-    S3_get_object(&bucket_context, key.c_str(), nullptr, 0, 0, nullptr, &put_object_handler, &user_data);
+    S3_get_object(&bucket_context, key.c_str(), nullptr, 0, 0, nullptr, &get_object_handler, &user_data);
 
     // 检查异常
     if (user_data.status != S3StatusOK)
@@ -612,3 +612,4 @@ inline std::string s3::generate_download_url(const std::string &bucket_name, con
 }
 
 #endif
+
