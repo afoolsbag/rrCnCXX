@@ -3,9 +3,6 @@
 ### CentOS
 
 ```sh
-# 配置镜像源和额外源
-# ......
-
 # 安装 Networking Toolkit
 [user@host *]$ sudo yum install net-tools
 

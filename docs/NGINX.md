@@ -1,22 +1,102 @@
-# 网页服务器 [*NGINX*](https://nginx.com/)
+# 网页服务器 [*NGINX*](https://nginx.org/)
 
-## [*nginx-rtmp-module*](https://github.com/arut/nginx-rtmp-module)
+跨平台的网页服务器。
 
-```fish
-user@host *> vim path/to/nginx.conf
+## 安装
+
+### CentOS
+
+```sh
+[user@host *]$ sudo yum install nginx
 ```
 
-```vim
-# 全局配置
+## 常用操作
 
-worker_processes auto;  # 工作进程数
+```fish
+user@host *> nginx -v  # 版本
+user@host *> nginx -h  # 帮助
+user@host *> nginx -t  # 测试
 
+user@host *> nginx            # 启动
+user@host *> nginx -s stop    # 快速关闭
+user@host *> nginx -s quit    # 优雅关闭
+user@host *> nginx -s reload  # 重新加载配置文件
+user@host *> nginx -s reopen  # 重新打开日志文件
+```
+
+若有意外，可从以下方面排查：
+
+*   防火墙配置
+
+## 配置说明
+
+```fish
+user@host *> vim /etc/nginx/nginx.conf
+```
+
+```nginx.conf
+# 工作用户和组（https://nginx.org/docs/ngx_core_module.html#user）
+user nobody nobody;
+
+# 工作线程数（https://nginx.org/docs/ngx_core_module.html#worker_processes）
+worker_processes 1;
+
+# 事件上下文（https://nginx.org/docs/ngx_core_module.html#events）
 events {
-    worker_connections 1024;  # 每个工作线程的最大连接数
+    # 工作线程最大可连接数（https://nginx.org/docs/ngx_core_module.html#worker_connections）
+    worker_connections 512;
+
 }
 
-# HTTP 服务
+# HTTP 服务上下文（https://nginx.org/docs/http/ngx_http_core_module.html#http）
+http {
+    # 虚拟服务器配置（https://nginx.org/docs/http/ngx_http_core_module.html#server）
+    server {
+        # 监听（https://nginx.org/docs/http/ngx_http_core_module.html#listen）
+        listen *:80;    # root
+        listen *:8000;  # user
 
+        # URI 路由（https://nginx.org/docs/http/ngx_http_core_module.html#location）
+        location / {
+            # 请求的映射根目录（https://nginx.org/docs/http/ngx_http_core_module.html#root）
+            root html;
+
+            # URI 索引（https://nginx.org/docs/http/ngx_http_index_module.html#index）
+            index index.html;
+
+        }
+
+    }
+
+}
+```
+
+## 配置示例
+
+### 简单静态页面
+
+```nginx.conf
+worker_processes auto;
+events {
+    worker_connections 1024;
+}
+http {
+    server {
+        listen 80;
+        location / {
+            root /path/to/www;
+        }
+    }
+}
+```
+
+### [*nginx-rtmp-module*](https://github.com/arut/nginx-rtmp-module)
+
+```nginx.conf
+worker_processes auto;
+events {
+    worker_connections 1024;
+}
 http {
     include           mime.types;
     default_type      application/octet-stream;

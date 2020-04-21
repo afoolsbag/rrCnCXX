@@ -240,6 +240,7 @@ rrCnCxx\ ...............................项目根目录
 | [*dSniff*](https://monkey.org/~dugsong/dsniff/ "一款网络嗅探工具")
 | [*Ettercap*](https://www.ettercap-project.org "一款网络嗅探工具")
 | [*iPerf*](https://iperf.fr/ "一款网速测试工具")
+| [*Postman*](https://postman.com/ "一款 API 测试工具")
 | [*Wireshark*](https://wireshark.org/ "一款流量分析工具")
 
 ## 许可
