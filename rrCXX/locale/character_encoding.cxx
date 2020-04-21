@@ -1,7 +1,7 @@
 //===-- Character Encoding --------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gCharacterEncoding 字符编码
-/// \ingroup gLocale
+/// \defgroup groupCharacterEncoding 字符编码
+/// \ingroup groupLocale
 ///
 /// \sa [“你”](https://unicode-table.com/4F60/). *Unicode®字符百科*.
 /// \sa [“好”](https://unicode-table.com/597D/). *Unicode®字符百科*.
@@ -9,7 +9,7 @@
 /// \sa [“世”](https://unicode-table.com/4E16/). *Unicode®字符百科*.
 /// \sa [“界”](https://unicode-table.com/754C/). *Unicode®字符百科*.
 ///
-/// \version 2019-11-27
+/// \version 2020-04-21
 /// \since 2019-11-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -47,7 +47,7 @@ endian check_endian()
 }
 
 namespace rrcxx {
-/// \addtogroupg gCharacterEncoding
+/// \addtogroupg groupCharacterEncoding
 /// @{
 
 // Unicode | UTF-8    | UTF-16BE | UTF-16LE | UTF-32BE | UTF-32LE | CP936 | 字形

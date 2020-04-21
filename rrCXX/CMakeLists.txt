@@ -26,7 +26,8 @@ add_doxygen_con(
 
 include_conan_script()
 conan_cmake_run(
-  REQUIRES    gtest/1.10.0
+  REQUIRES    gtest/1.8.1@bincrafters/stable
+  #           gtest/1.10.0
               ms-gsl/2.0.0
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)

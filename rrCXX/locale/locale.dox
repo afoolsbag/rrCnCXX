@@ -1,11 +1,11 @@
 //===-- Localization Library ------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gLocale 本地化库
-/// \ingroup gRrCxx
+/// \defgroup groupLocale 本地化库
+/// \ingroup groupRrCxx
 ///
-/// \sa [“本地化库”](https://zh.cppreference.com/w/cpp/locale). *cppreference.com*.
+/// \sa <https://zh.cppreference.com/w/cpp/locale>
 ///
-/// \version 2019-11-26
+/// \version 2020-04-21
 /// \since 2019-11-26
 /// \authors zhengrr
 /// \copyright CC0-1.0
