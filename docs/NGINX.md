@@ -10,6 +10,12 @@
 [user@host *]$ sudo yum install nginx
 ```
 
+### Ubuntu
+
+```sh
+user@host:*$ sudo apt install nginx
+```
+
 ## 常用操作
 
 ```fish
@@ -18,8 +24,8 @@ user@host *> nginx -h  # 帮助
 user@host *> nginx -t  # 测试
 
 user@host *> nginx            # 启动
-user@host *> nginx -s stop    # 快速关闭
-user@host *> nginx -s quit    # 优雅关闭
+user@host *> nginx -s stop    # 快速停止
+user@host *> nginx -s quit    # 优雅地退出
 user@host *> nginx -s reload  # 重新加载配置文件
 user@host *> nginx -s reopen  # 重新打开日志文件
 ```
@@ -50,6 +56,19 @@ events {
 
 # HTTP 服务上下文（https://nginx.org/docs/http/ngx_http_core_module.html#http）
 http {
+    include mine.types;
+
+    # 默认 MINE 类型（https://nginx.org/docs/http/ngx_http_core_module.html#default_type）
+    default_type text/plain;
+
+    # 保活超时（https://nginx.org/docs/http/ngx_http_core_module.html#keepalive_timeout）
+    keepalive_timeout 75s;
+
+    # 是否启用 sendfile() 函数（https://nginx.org/docs/http/ngx_http_core_module.html#sendfile）
+    sendfile off;
+    # 是否启用 TCP_NOPUSH 或 TCP_CORK 选项（https://nginx.org/docs/http/ngx_http_core_module.html#tcp_nopush）
+    tcp_nopush off;
+
     # 虚拟服务器配置（https://nginx.org/docs/http/ngx_http_core_module.html#server）
     server {
         # 监听（https://nginx.org/docs/http/ngx_http_core_module.html#listen）
@@ -88,98 +107,4 @@ http {
         }
     }
 }
-```
-
-### [*nginx-rtmp-module*](https://github.com/arut/nginx-rtmp-module)
-
-```nginx.conf
-worker_processes auto;
-events {
-    worker_connections 1024;
-}
-http {
-    include           mime.types;
-    default_type      application/octet-stream;
-    sendfile          off;                       # 因磁盘 IO 重负载，所以不采用 sendfile 优化
-    tcp_nopush        on;
-    keepalive_timeout 65;                        # 保活超时（秒）
-
-    server {
-        listen        80;                        # HTTP、DASH 和 HLS 协议的访问端口
-
-        location /rtmp_stat {
-            rtmp_stat            all;
-            rtmp_stat_stylesheet rtmp_stat.xsl;
-        }
-
-        location /rtmp_stat.xsl {
-            root /usr/local/src/nginx-rtmp-module;
-        }
-
-        location /rtmp_control {
-            rtmp_control all;
-        }
-
-        # HLS
-        location /livehls {
-            types {
-                application/vnd.apple.mpegurl m3u8;
-                video/mp2t ts;
-            }
-            root /tmp;
-            add_header 'Cache-Control' 'no-cache';
-        }
-
-        # DASH
-        location /livedash {
-            root /tmp;
-            add_header 'Cache-Control' 'no-cache';
-        }
-
-    }
-}
-
-# RTMP 服务
-
-rtmp {
-
-    server {
-        listen 1935;
-        chunk_size 4000;
-
-        application livertmp {
-            # RTMP
-            live on;
-
-            # HLS
-            hls on;
-            hls_fragment 5s;
-            hls_playlist_length 30s;
-            hls_path /tmp/livehls;
-            hls_nested on;
-            hls_cleanup on;
-
-            # DASH
-            dash on;
-            dash_fragment 5s;
-            dash_playlist_length 30s;
-            dash_path /tmp/livedash;
-            dash_nested on;
-            dash_cleanup on;
-
-            # RECORDER
-            recorder rec_all {
-                record all manual;
-                record_path /usr/rec;
-                record_suffix _%F_%T.all.flv;
-                record_unique on;
-            }
-        }
-
-        application vod {
-            play /usr/rec;
-        }
-    }
-}
-
 ```

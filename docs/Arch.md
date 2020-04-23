@@ -1,4 +1,4 @@
-# Arch 安装
+# GNU/Linux 发行版 [*Arch*](https://archlinux.org/) 操作系统
 
 <https://wiki.archlinux.org/index.php/Installation_guide_(简体中文)>
 

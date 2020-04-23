@@ -1,6 +1,6 @@
-# 包管理工具 `apt` (advanced packaging tool)
+# 包管理工具 apt（advanced packaging tool）
 
-适用于 Debian、Kali 和 Ubuntu 的包管理工具，使用 `dpkg` (debian package) 格式安装包。
+适用于 Debian、Kali 和 Ubuntu 的包管理工具，使用 dpkg（debian package）格式安装包。
 
 *   [“dpkg”](https://wiki.debian.org/dpkg). *Debian Wiki*.
 *   [“dpkg”](https://help.ubuntu.com/lts/serverguide/dpkg.html). *Official Ubuntu Documentation*.

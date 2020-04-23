@@ -6,14 +6,14 @@
 
 ### CentOS
 
-```fish
-user@host *> systemctl status firewalld  # 查看 FirewallD 服务状态
+```sh
+[user@host *]$ systemctl status firewalld  # 查看 FirewallD 服务状态
 
-user@host *> sudo firewall-cmd --list-all  # 列出所有规则
+[user@host *]$ sudo firewall-cmd --list-all  # 列出所有规则
 
-user@host *> sudo firewall-cmd --query-port=<port>/<protocol>               # 查询一条规则
-user@host *> sudo firewall-cmd --permanent --add-port=<port>/<protocol>     # 持久添加一条规则
-user@host *> sudo firewall-cmd --permanent --remove-port=<port>/<protocol>  # 持久移除一条规则
+[user@host *]$ sudo firewall-cmd --query-port=<port>/<protocol>               # 查询一条规则
+[user@host *]$ sudo firewall-cmd --permanent --add-port=<port>/<protocol>     # 持久添加一条规则
+[user@host *]$ sudo firewall-cmd --permanent --remove-port=<port>/<protocol>  # 持久移除一条规则
 
-user@host *> sudo firewall-cmd --reload  # 重新加载配置
+[user@host *]$ sudo firewall-cmd --reload  # 重新加载配置
 ```

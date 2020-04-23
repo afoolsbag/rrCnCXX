@@ -6,10 +6,8 @@
 ## 常用命令组合
 
 ```shell script
-tar -xavf <archive.tar.*> -C <target-dir>   # 解压
-
-tar -czvf <archive.tar.gz> <source>         # 压缩
-tar -xzvf <archive.tar.gz> -C <target-dir>  # 解压
+tar -cavf <archive.tar.*> <source>         # 压缩
+tar -xavf <archive.tar.*> -C <target-dir>  # 解压
 ```
 
 ## 常见选项释义
