@@ -12,9 +12,19 @@
 ### Kali
 
 ```sh
-# Kali with USCT Mirror (https://mirrors.ustc.edu.cn/)
-#         deb https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-#         deb-src https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+# 备份原始源
+user@host:*$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+# 配置中科大镜像源（https://mirrors.ustc.edu.cn/）
+user@host:*$ sudo vim /etc/apt/sources.list
+# deb https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+# deb-src https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+
+# 同步索引
+user@host:*$ sudo apt update
+
+# 更新包
+user@host:*$ sudo apt upgrade
 ```
 
 ### Ubuntu
