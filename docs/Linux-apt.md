@@ -15,7 +15,7 @@
 # 备份原始源
 user@host:*$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
-# 配置中科大镜像源（https://mirrors.ustc.edu.cn/）
+# 配置中科大镜像源（https://mirrors.ustc.edu.cn/kali/）
 user@host:*$ sudo vim /etc/apt/sources.list
 # deb https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
 # deb-src https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
@@ -46,14 +46,12 @@ user@host:*$ sudo apt upgrade
 
 ## 搜索、展示、安装、卸载包
 
-### Ubuntu
-
-```sh
-user@host:*$ apt search <name>           # 搜索
-user@host:*$ apt show <package>          # 展示
-user@host:*$ sudo apt install <package>  # 安装
-user@host:*$ sudo apt remove <package>   # 卸载
-user@host:*$ sudo apt autoremove         # 卸载残留依赖
+```fish
+user@host *> apt search <name>           # 搜索
+user@host *> apt show <package>          # 展示
+user@host *> sudo apt install <package>  # 安装
+user@host *> sudo apt remove <package>   # 卸载
+user@host *> sudo apt autoremove         # 卸载残留依赖
 ```
 
 ## 离线安装、更新工具 [Keryx](https://launchpad.net/keryx)

@@ -1,6 +1,8 @@
-# 目录
+# GNU/Linux 操作系统
 
-```
+## 目录
+
+```text
 /              #                      根目录
 + bin          # binary               预装程序目录（由系统发行商维护）
 + boot         # boot                 启动相关目录
@@ -35,3 +37,49 @@
 + var          # variable             变量目录
   + log        #                      日志目录
 ```
+
+## 发行版信息
+
+```sh
+lsb_release -a       # linux standard base, print distribution-specific information
+cat /etc/os-release  # 若上述命令无效，尝试查看此文件
+```
+
+## 符号链接
+
+```sh
+ln -s <target-path> <new-path>
+```
+
+## 配置静态 IPv4
+
+### Kali
+
+图形用户界面，略。
+
+### CentOS
+
+```sh
+[user@host *]$ sudo vim /etc/sysconfig/network-scripts/ifcfg-en<*>
+```
+
+```/etc/sysconfig/network-scripts/ifcfg-en<*>
+# 动态网络配置
+BOOTPROTO=dhcp
+
+# 静态网络配置
+BOOTPROTO=static
+IPADDR=192.168.0.1
+NETMASK=255.255.255.0
+GATEWAY=192.168.0.254
+DNS1=223.6.6.6
+DNS2=8.8.8.8
+```
+
+```sh
+[user@host *]$ sudo systemctl restart network
+```
+
+### Ubuntu Desktop
+
+图形用户界面，略。

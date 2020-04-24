@@ -1,15 +1,14 @@
 # GNU/Linux 发行版 [*Arch*](https://archlinux.org/) 操作系统
 
-<https://wiki.archlinux.org/index.php/Installation_guide_(简体中文)>
+## 安装
 
-## 安装前的准备
-
+*   <https://wiki.archlinux.org/index.php/Installation_guide_(简体中文)>
 *   Shell 中以管理员权限执行：`sudo <command line>`
 *   VIM 中以管理员权限保存：`:w !sudo tee %`
 
 ### 验证启动模式
 
-```shell script
+```sh
 ls /sys/firmware/efi/efivars  # 若目录存在，说明选用的 UEFI
 ```
 
@@ -79,8 +78,6 @@ mount /dev/<sda>1 /mnt/boot/EFI
 # 检查分区挂载
 lsblk
 ```
-
-## 安装
 
 ### 选择镜像
 

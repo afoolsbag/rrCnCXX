@@ -16,7 +16,7 @@
 user@host:*$ sudo apt install nginx
 ```
 
-## 常用操作
+## 常用命令
 
 ```fish
 user@host *> nginx -v  # 版本

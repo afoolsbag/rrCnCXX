@@ -29,6 +29,13 @@ sudo pacman -S fish
 [user@host *]$ sudo yum install fish
 ```
 
+### Kali
+
+```sh
+# 安装 fish 3
+user@host:*$ sudo apt install fish
+```
+
 ### Ubuntu
 
 ```sh

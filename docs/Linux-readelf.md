@@ -1,6 +1,6 @@
 # [`readelf`](https://linux.die.net/man/1/readelf)
 
-```shell script
+```sh
 # Excutable and Linking Format
 fish> readelf <option(s)> <elf-file(s)>
 
@@ -23,6 +23,7 @@ Options:
 ```
 
 ## [`ldd`](https://linux.die.net/man/1/ldd)
+
 ```
 fish> ldd [option(s)] <file(s)>
 ```

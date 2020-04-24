@@ -157,24 +157,3 @@ rtmp {
 *   拉流（RTMP）：`rtmp://host/live/<name>`
 *   拉流（DASH）：`http://host/live/<name>/index.mpd`
 *   拉流（HLS）：`http://host/live/<name>/index.m3u8`
-
-### FFmpeg 转文件流到 RTMP 流
-
-```cmder
-λ ffmpeg ^
-      -re ^
-      -i </path/to/video.flv> ^
-      -c copy ^
-      -f flv ^
-      rtmp://host/live/<stream>
-```
-
-### FFmpeg 转 RTSP 流到 RTMP 流
-
-```cmder
-λ ffmpeg ^
-      -i rtsp://host/<path/to/stream> ^
-      -c copy ^
-      -f flv ^
-      rtmp://host/live/<stream>
-```

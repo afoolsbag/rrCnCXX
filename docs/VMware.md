@@ -5,6 +5,10 @@
 *   虚拟系统拥有虚拟 CD/DVD 驱动设备
 *   用户拥有管理员权限
 
+### Kali
+
+图形用户界面，略。
+
 ### CentOS
 
 ```sh
@@ -25,5 +29,4 @@
 
 # 安装 VMware Tools
 [user@host *]# sudo ~/vmware-tools-distrib/vmware-install.pl --default
-
 ```
