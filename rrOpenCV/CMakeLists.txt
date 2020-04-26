@@ -4,7 +4,7 @@
 # | '__| '__| | | | '_ \ / _ \ '_ \| |   | | | |
 # | |  | |  \ \_/ / |_) |  __/ | | | \__/\ \_/ /
 # |_|  |_|   \___/| .__/ \___|_| |_|\____/\___/  zhengrr
-#                 | |                            2018-01-22 – 2019-10-22
+#                 | |                            2018-01-22 – 2020-04-21
 #                 |_|                            Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -48,4 +48,4 @@ macro(quickadd_opencv_executable)
                                         CONAN_PKG::opencv)
 endmacro()
 
-add_aux_subdirectories_con(WITHOUT_OPTION)
+add_subdirectory_aux(WITHOUT_OPTION)
