@@ -7,10 +7,10 @@
 # |_|  |_|  \____/ \__, |___/\__\___|_| |_| |_|\___/ \___/_| |_|_|\__\____/ \___|_|  |_| .__/ \__|
 #                   __/ |                                                              | |
 # zhengrr          |___/                                                               |_|
-# 2019-09-09 – 2020-04-21
+# 2019-09-09 – 2020-04-25
 # Unlicense
 #
-# 初始化脚本：在系统切换运行级别时由系统调用，且可通过 `service` 命令由用户便捷调用。
+# 初始化脚本：在系统切换运行级别时由系统调用，且可通过 `service` 或 `systemctl` 命令由用户便捷调用。
 #
 # see also: [22.2. Init Script Actions](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html)
 #           [22.3. Comment Conventions for Init Scripts](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/initscrcomconv.html)
@@ -22,7 +22,7 @@
 #
 # 实测：
 #
-# Ubuntu OKAY
+# Ubuntu                OKAY
 #
 # CentOS [user@host *]$ sudo yum install redhat-lsb
 

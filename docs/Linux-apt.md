@@ -31,7 +31,7 @@ user@host:*$ sudo apt upgrade
 
 ```sh
 # 备份原始源
-user@host:*$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+user@host:*$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bck
 
 # 配置阿里云镜像源 (https://developer.aliyun.com/mirror/ubuntu)
 user@host:*$ sudo vim /etc/apt/sources.list

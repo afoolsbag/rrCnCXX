@@ -79,7 +79,7 @@ mount /dev/<sda>1 /mnt/boot/EFI
 lsblk
 ```
 
-### 选择镜像
+### 选择包管理器的在线源的镜像
 
 ```shell script
 vim /etc/pacman.d/mirrorlist
@@ -144,30 +144,56 @@ vim /etc/locale.conf  # 编辑本地化配置
 
 ### 设置网络
 
-```shell script
-vim /etc/hostname  # 配置主机名
+配置主机名和本地静态域名解析
 
-vim /etc/hosts     # 配置本地静态域名解析
-                   # 127.0.0.1       localhost
-                   # ::1             localhost
-                   # 127.0.0.1       <hostname>.localdomain  <hostname>
+```sh
+[user@host *]$ sudo vim /etc/hostname  # 配置主机名
 
-# 若无法联网，则为新系统配置网络：
+[user@host *]$ sudo vim /etc/hosts     # 配置本地静态域名解析
+# 127.0.0.1       localhost
+# ::1             localhost
+# 127.0.0.1       <hostname>.localdomain  <hostname>
+```
 
-# 配置并启用 DHCP：
-vim /etc/systemd/network/<dhcp>.network
+选用 [*systemd-networkd*](https://wiki.archlinux.org/index.php/Systemd-networkd) 进行网络管理
+
+```sh
+# 二选一：动态主机配置
+[user@host *] sudo vim /etc/systemd/network/<dhcp>.network
 # [Match]
 # Name=en*
 #
 # [Network]
 # DHCP=ipv4
-sudo systemctl start systemd-networkd.service
-sudo systemctl enable systemd-networkd.service
 
-# 通过 DHCP 获取 DNS：
-ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-sudo systemctl start systemd-resolved.service
-sudo systemctl enable systemd-resolved.service
+# 二选一：静态主机配置
+[user@host *] sudo vim /etc/systemd/network/<en*>.network
+# [Match]
+# Name=<en*>
+#
+# [Network]
+# Address=192.168.0.1/24
+# Gateway=192.168.0.254
+# DNS=10.1.10.1
+# DNS=8.8.8.8
+
+# 启用并启动 systemd-networkd 网络管理器
+[user@host *] sudo systemctl enable systemd-networkd
+[user@host *] sudo systemctl start systemd-networkd
+# 或者若其已经启动，则强制其重载配置
+[user@host *] sudo systemctl force-reload systemd-networkd
+
+```
+
+选用 [*systemd-resolved*](https://wiki.archlinux.org/index.php/Systemd-resolved) 进行域名解析
+
+```sh
+# 若需要，可通过 DHCP 获取 DNS：
+[user@host *] ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+# 启用并启动 systemd-resolved 网络管理器
+[user@host *] sudo systemctl enable systemd-resolved
+[user@host *] sudo systemctl start systemd-resolved
 ```
 
 ### 系统管理员密码

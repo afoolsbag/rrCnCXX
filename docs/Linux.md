@@ -1,6 +1,6 @@
 # GNU/Linux 操作系统
 
-## 目录
+## 目录结构说明
 
 ```text
 /              #                      根目录
@@ -38,11 +38,26 @@
   + log        #                      日志目录
 ```
 
-## 发行版信息
+## 系统信息
 
-```sh
-lsb_release -a       # linux standard base, print distribution-specific information
-cat /etc/os-release  # 若上述命令无效，尝试查看此文件
+```fish
+# 查看发行版信息
+user@host *> lsb_release -a (--all)
+# 或者
+user@host *> cat /etc/os-release
+
+# CentOS
+user@host *> cat /etc/redhat-release
+
+
+# 查看处理器信息
+user@host *> cat /proc/cpuinfo
+
+# 查看内存信息
+user@host *> free -h (--human)
+
+# 查看硬盘信息
+user@host *> lsblk
 ```
 
 ## 符号链接
