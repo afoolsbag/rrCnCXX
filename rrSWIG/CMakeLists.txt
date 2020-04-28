@@ -97,7 +97,7 @@ add_executable_con(
   INCLUDE_DIRECTORIES PRIVATE "rrtx"
   LINK_LIBRARIES      PRIVATE rrlc
                               rrlx
-                              GTest::main)
+                              GTest::gtest_main)
 
 add_test(NAME rrtx COMMAND rrtx)
 
