@@ -19,7 +19,7 @@
 
 # 拉取 NGINX 源码（https://nginx.org/en/download.html）
 [user@host nginx-rtmp-src]$ wget https://nginx.org/download/nginx-1.18.0.tar.gz
-[user@host nginx-rtmp-src]$ tar -xzvf nginx-1.18.0.tar.gz
+[user@host nginx-rtmp-src]$ tar -xavf nginx-1.18.0.tar.gz
 
 # 拉取 nginx-rtmp-module 源码
 [user@host nginx-rtmp-src]$ git clone https://github.com/arut/nginx-rtmp-module.git
@@ -55,7 +55,7 @@ user@host:*$ cd ~/nginx-rtmp-src
 
 # 拉取 NGINX 源码（https://nginx.org/en/download.html）
 user@host:~/nginx-rtmp-src$ wget https://nginx.org/download/nginx-1.18.0.tar.gz
-user@host:~/nginx-rtmp-src$ tar -xzvf nginx-1.18.0.tar.gz
+user@host:~/nginx-rtmp-src$ tar -xavf nginx-1.18.0.tar.gz
 
 # 拉取 nginx-rtmp-module 源码
 user@host:~/nginx-rtmp-src$ git clone https://github.com/arut/nginx-rtmp-module.git

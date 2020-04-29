@@ -1,0 +1,6 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "rrStarUML",
+	"documentation": "如何作 UML 图？\n\n高层的、设计的、粗略的，使用工具画出 UML 图；\n\n底层的、实现的、细节的，使用代码生成 UML 图。\n"
+}

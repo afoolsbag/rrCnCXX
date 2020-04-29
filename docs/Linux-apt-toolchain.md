@@ -28,8 +28,10 @@ user@host:*$ sudo apt install gdb
 # 安装 pip3
 user@host:*$ sudo apt install python3-pip
 # 确保 PATH 环境变量包含 ~/.local/bin
+# 确保 sys.path (PYTHONPATH) 环境变量包含 ~/.local/lib/python3.?/site-packages
 
 # 配置 pip 源
+user@host:*$ mkdir -p (--parents) ~/.config/pip
 user@host:*$ vim ~/.config/pip/pip.conf
 # [global]
 # index-url = https://pypi.doubanio.com/simple

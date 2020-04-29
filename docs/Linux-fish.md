@@ -63,17 +63,46 @@ user@host *> sudo vim /etc/passwd        # 切换默认壳层（重新登录以�
 
 ## bash
 
-```fish
-# ~/.bash_profile  # 壳层相关的配置入口
-#   ~/.profile     # 壳层无关的用户配置，如 PATH
-#   ~/.bashrc      # 壳层相关的用户配置
-#     /etc/bashrc  # 壳层相关的通用配置
+```text
+# 系统环境变量（键值对列表）
+/etc/environment
+
+# 系统配置（脚本）
+/etc/profile
+/etc/profile.d/*.sh
+/etc/profile.d/sh.local  # CentOS
+
+# 系统壳层配置（脚本）
+/etc/bash.bashrc  # Ubuntu
+/etc/bashrc       # CentOS
+
+# 用户环境变量（键值对）
+~/.pam_environment  # Ubuntu
+
+# 用户配置（脚本）
+~/.profile
+
+# 用户壳层配置（脚本）
+~/.bash_profile
+~/.bashrc
+```
+
+```sh
+export PATH="${PATH}:/path/to/directory"
 ```
 
 ## fish
 
-```fish
-# ~/.config/fish/config.fish  # 用户配置
+```text
+# 系统配置（脚本）
+/etc/fish/config.fish
+/etc/fish/conf.d/*.fish
 
-user@host *> set --export PATH {$PATH} /path/to/added
+# 用户配置（脚本）
+~/.config/fish/config.fish
+~/.config/fish/conf.d/*.fish
+```
+
+```fish
+set --export PATH {$PATH} /path/to/directory
 ```
