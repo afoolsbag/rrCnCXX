@@ -5,7 +5,7 @@
 ///
 /// \sa [PImpl](https://zh.cppreference.com/w/cpp/language/pimpl)
 ///
-/// \version 2019-07-19
+/// \version 2020-04-30
 /// \since 2019-05-14
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -13,8 +13,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRLX_RRLX_HXX_
-#define RRLX_RRLX_HXX_
+#ifndef RRLIBX_RRLIBX_HXX_
+#define RRLIBX_RRLIBX_HXX_
 #ifdef __cplusplus
 
 #include <cstdint>
@@ -25,7 +25,7 @@
 
 #include "api.h"
 
-namespace rrlx {
+namespace rrlibx {
 
 struct version_t {
     int major;
@@ -35,39 +35,39 @@ struct version_t {
 };
 
 /// \brief 版本。
-RRLX_API version_t STDCALL version();
+RRLIBX_API version_t STDCALL version();
 
 /// \brief 类。
 class clazz final {
 public:
-    RRLX_API explicit clazz();
-    RRLX_API clazz(const clazz &) = delete;
-    RRLX_API clazz &operator=(const clazz &) = delete;
-    RRLX_API clazz(clazz &&) noexcept;
-    RRLX_API clazz &operator=(clazz &&) noexcept;
-    RRLX_API ~clazz() noexcept;
+    RRLIBX_API explicit clazz();
+    RRLIBX_API clazz(const clazz &) = delete;
+    RRLIBX_API clazz &operator=(const clazz &) = delete;
+    RRLIBX_API clazz(clazz &&) noexcept;
+    RRLIBX_API clazz &operator=(clazz &&) noexcept;
+    RRLIBX_API ~clazz() noexcept;
 
     /// \brief 基础赋值。
-    RRLX_API void basic(int value);
+    RRLIBX_API void basic(int value);
     /// \brief 基础取值。
-    [[nodiscard]] RRLX_API int basic() const;
+    [[nodiscard]] RRLIBX_API int basic() const;
 
     using array_t = std::vector<std::uint8_t>;
     /// \brief 数组赋值。
-    RRLX_API void array(const array_t &value);
+    RRLIBX_API void array(const array_t &value);
     /// \brief 数组取值。
-    [[nodiscard]] RRLX_API const array_t &array() const;
+    [[nodiscard]] RRLIBX_API const array_t &array() const;
 
     /// \brief 字串赋值。
-    RRLX_API void string(const std::string &value);
+    RRLIBX_API void string(const std::string &value);
     /// \brief 字串取值。
-    [[nodiscard]] RRLX_API const std::string &string() const;
+    [[nodiscard]] RRLIBX_API const std::string &string() const;
 
     using callback_t = std::function<void(void *)>;
     /// \brief 回调设置。
-    RRLX_API void set_callback(const callback_t &callback, void *p_user_data);
+    RRLIBX_API void set_callback(const callback_t &callback, void *p_user_data);
     /// \brief 回调调用。
-    RRLX_API void invoke_callback() const;
+    RRLIBX_API void invoke_callback() const;
 
 private:
     class impl;

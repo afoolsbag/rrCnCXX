@@ -4,7 +4,7 @@
 /// \brief 配置。
 /// \details 名称、版本、作者、版权等信息。
 ///
-/// \version 2019-07-18
+/// \version 2020-04-30
 /// \since 2017-01-12
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -12,8 +12,8 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRLX_CFG_HXX_
-#define RRLX_CFG_HXX_
+#ifndef RRLIBX_CFG_HXX_
+#define RRLIBX_CFG_HXX_
 
 #include <cstdint>
 
@@ -38,7 +38,7 @@
 /// \brief 产品微调版本号。
 #define PRODUCT_VERSION_TWEAK @PRODUCT_VERSION_TWEAK@
 
-namespace rrlx {
+namespace rrlibx {
 constexpr char product_authors[] {PRODUCT_AUTHORS};                     ///< 产品作者。
 constexpr char product_description[] {PRODUCT_DESCRIPTION};             ///< 产品描述。
 constexpr char product_homepage_url[] {PRODUCT_HOMEPAGE_URL};           ///< 产品主页。
@@ -79,7 +79,7 @@ constexpr std::intmax_t product_version_tweak {PRODUCT_VERSION_TWEAK};  ///< 产
 /// \brief 项目微调版本号。
 #define PROJECT_VERSION_TWEAK @PROJECT_VERSION_TWEAK@
 
-namespace rrlx {
+namespace rrlibx {
 constexpr char project_authors[] {PROJECT_AUTHORS};                     ///< 项目作者。
 constexpr char project_description[] {PROJECT_DESCRIPTION};             ///< 项目描述。
 constexpr char project_homepage_url[] {PROJECT_HOMEPAGE_URL};           ///< 项目主页。

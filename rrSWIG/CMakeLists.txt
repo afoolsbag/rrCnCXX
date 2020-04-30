@@ -2,7 +2,7 @@
 #           /  ___|| |  | |_   _|  __ \
 #  _ __ _ __\ `--. | |  | | | | | |  \/
 # | '__| '__|`--. \| |/\| | | | | | __  zhengrr
-# | |  | |  /\__/ /\  /\  /_| |_| |_\ \ 2019-01-14 – 2019-08-28
+# | |  | |  /\__/ /\  /\  /_| |_| |_\ \ 2019-01-14 – 2020-04-30
 # |_|  |_|  \____/  \/  \/ \___/ \____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -24,82 +24,82 @@ add_compile_options_ex(
 #-------------------------------------------------------------------------------
 # zhengrr's library by C
 
-configure_file("rrlc/src/cfg.h.in" "rrlc/src/cfg.h" @ONLY)
-aux_source_directory_con("rrlc/include"                         zInclude   RECURSE PREFIX "include")
-aux_source_directory_con("rrlc/src"                             zSrc       RECURSE PREFIX "src")
-aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrlc/src" zGenerated RECURSE PREFIX "generated")
+configure_file("rrlibc/src/cfg.h.in" "rrlibc/src/cfg.h" @ONLY)
+aux_source_directory_con("rrlibc/include"                         zInclude   RECURSE PREFIX "include")
+aux_source_directory_con("rrlibc/src"                             zSrc       RECURSE PREFIX "src")
+aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrlibc/src" zGenerated RECURSE PREFIX "generated")
 add_library_con(
-  rrlc
+  rrlibc
   SHARED              ${zInclude} ${zSrc} ${zGenerated}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
                       SOVERSION           1.0.0
-  COMPILE_DEFINITIONS PUBLIC  "RRLC_SHARED"
-                      PRIVATE "RRLC_EXPORTS"
-  INCLUDE_DIRECTORIES PUBLIC  "rrlc/include"
-                      PRIVATE "rrlc/src"
-                              "${CMAKE_CURRENT_BINARY_DIR}/rrlc/src")
+  COMPILE_DEFINITIONS PUBLIC              "RRLIBC_SHARED"
+                      PRIVATE             "RRLIBC_EXPORTS"
+  INCLUDE_DIRECTORIES PUBLIC              "rrlibc/include"
+                      PRIVATE             "rrlibc/src"
+                                          "${CMAKE_CURRENT_BINARY_DIR}/rrlibc/src")
 install(
-  DIRECTORY   "rrlc/include/"
+  DIRECTORY   "rrlibc/include/"
   DESTINATION "include/")
 
 #-------------------------------------------------------------------------------
 # zhengrr's library by C++
 
-configure_file("rrlx/src/cfg.hxx.in" "rrlx/src/cfg.hxx" @ONLY)
-aux_source_directory_con("rrlx/include"                         zInclude   RECURSE PREFIX "include")
-aux_source_directory_con("rrlx/src"                             zSrc       RECURSE PREFIX "src")
-aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrlx/src" zGenerated RECURSE PREFIX "generated")
+configure_file("rrlibx/src/cfg.hxx.in" "rrlibx/src/cfg.hxx" @ONLY)
+aux_source_directory_con("rrlibx/include"                         zInclude   RECURSE PREFIX "include")
+aux_source_directory_con("rrlibx/src"                             zSrc       RECURSE PREFIX "src")
+aux_source_directory_con("${CMAKE_CURRENT_BINARY_DIR}/rrlibx/src" zGenerated RECURSE PREFIX "generated")
 add_library_con(
-  rrlx
+  rrlibx
   SHARED              ${zInclude} ${zSrc} ${zGenerated}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
                       SOVERSION             1.0.0
-  COMPILE_DEFINITIONS PUBLIC  "RRLX_SHARED"
-                      PRIVATE "RRLX_EXPORTS"
-  INCLUDE_DIRECTORIES PUBLIC  "rrlx/include"
-                      PRIVATE "rrlx/src"
-                              "${CMAKE_CURRENT_BINARY_DIR}/rrlx/src")
+  COMPILE_DEFINITIONS PUBLIC                "RRLIBX_SHARED"
+                      PRIVATE               "RRLIBX_EXPORTS"
+  INCLUDE_DIRECTORIES PUBLIC                "rrlibx/include"
+                      PRIVATE               "rrlibx/src"
+                                            "${CMAKE_CURRENT_BINARY_DIR}/rrlibx/src")
 if(CMAKE_COMPILER_IS_GNUCXX)
-  target_link_libraries(rrlx PRIVATE stdc++fs)
+  target_link_libraries(rrlibx PRIVATE stdc++fs)
 endif()
 install(
-  DIRECTORY   "rrlx/include/"
+  DIRECTORY   "rrlibx/include/"
   DESTINATION "include/")
 
 #-------------------------------------------------------------------------------
-# zhengrr's test by C
+# zhengrr's executable by C
 
 find_package(Check REQUIRED)
-aux_source_directory_con("rrtc" zSrc RECURSE)
+aux_source_directory_con("rrexec" zSrc RECURSE)
 add_executable_con(
-  rrtc                ${zSrc}
+  rrexec              ${zSrc}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrtc"
-  LINK_LIBRARIES      PRIVATE rrlc
-                              rrlx
-                              Check::check)
-
-add_test(NAME rrtc COMMAND rrtc)
+  COMPILE_OPTIONS     PRIVATE             $<$<CXX_COMPILER_ID:MSVC>:/wd4100>
+  INCLUDE_DIRECTORIES PRIVATE             "rrexec"
+  LINK_LIBRARIES      PRIVATE             rrlibc
+                                          rrlibx
+                                          Check::check)
+add_test(NAME rrexec COMMAND rrexec)
 
 #-------------------------------------------------------------------------------
-# zhengrr's test by C++
+# zhengrr's executable by C++
 
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
-aux_source_directory_con("rrtx" zSrc RECURSE)
+aux_source_directory_con("rrexex" zSrc RECURSE)
 add_executable_con(
-  rrtx                ${zSrc}
+  rrexex              ${zSrc}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
-  INCLUDE_DIRECTORIES PRIVATE "rrtx"
-  LINK_LIBRARIES      PRIVATE rrlc
-                              rrlx
-                              GTest::gtest_main)
+  INCLUDE_DIRECTORIES PRIVATE               "rrexex"
+  LINK_LIBRARIES      PRIVATE               rrlibc
+                                            rrlibx
+                                            GTest::gtest_main)
 
-add_test(NAME rrtx COMMAND rrtx)
+add_test(NAME rrexex COMMAND rrexex)
 
 #-------------------------------------------------------------------------------
 # zhengrr's library by C++ with SWIG
@@ -108,23 +108,23 @@ find_package(SWIG)
 if(SWIG_FOUND)
 
   add_library_swig(
-    rrlxswigcsharp
+    rrlibx_swig_csharp
     SHARED
     SWIG_LANGUAGE  CSHARP
-    SWIG_INTERFACE "rrlx/rrlx.swg"
+    SWIG_INTERFACE "rrlibx/rrlibx.swg"
     SWIG_ARGUMENTS "-namespace"          "RrSwig"
     PROPERTIES     CXX_STANDARD          20
                    CXX_STANDARD_REQUIRED ON
-    LINK_LIBRARIES rrlx)
+    LINK_LIBRARIES rrlibx)
 
   add_library_swig(
-    rrlxswigjava
+    rrlibx_swig_java
     SHARED
     SWIG_LANGUAGE  JAVA
-    SWIG_INTERFACE "rrlx/rrlx.swg"
+    SWIG_INTERFACE "rrlibx/rrlibx.swg"
     SWIG_ARGUMENTS "-package"            "rrswig"
     PROPERTIES     CXX_STANDARD          20
                    CXX_STANDARD_REQUIRED ON
-    LINK_LIBRARIES rrlx)
+    LINK_LIBRARIES rrlibx)
 
 endif()
