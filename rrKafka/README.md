@@ -2,6 +2,12 @@
 
 [*Apache Kafka*](https://kafka.apache.org/)
 
+```fish
+# 列出话题
+user@host kafka/bin> ./kafka-topics.sh --bootstrap-server "host:9092[,...]" \
+                                       --list
+```
+
 [*RdKafka*](https://github.com/edenhill/librdkafka)
 
 ## Awesome
