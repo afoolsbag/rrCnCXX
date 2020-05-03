@@ -2,10 +2,10 @@
 
 [Windows desktop applications](https://developer.microsoft.com/windows/desktop)
 
-/ [Desktop technologies](https://msdn.microsoft.com/library/windows/desktop/bg126469)
-/ [Server and system technologies](https://msdn.microsoft.com/library/windows/desktop/mt842907)
-/ [Graphics and game technologies](https://msdn.microsoft.com/library/windows/desktop/ee663279)
-/ [API index](https://msdn.microsoft.com/library/windows/desktop/hh920508)
+| [Desktop technologies](https://msdn.microsoft.com/library/windows/desktop/bg126469)
+| [Server and system technologies](https://msdn.microsoft.com/library/windows/desktop/mt842907)
+| [Graphics and game technologies](https://msdn.microsoft.com/library/windows/desktop/ee663279)
+| [API index](https://msdn.microsoft.com/library/windows/desktop/hh920508)
 
 ## 参考
 

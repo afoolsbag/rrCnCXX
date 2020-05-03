@@ -30,3 +30,7 @@
 # 安装 VMware Tools
 [user@host *]# sudo ~/vmware-tools-distrib/vmware-install.pl --default
 ```
+
+## 注册码
+
+请到官网 [*VMware*](https://vmware.com/) 购买以支持正版。

@@ -2,9 +2,9 @@
 ///
 /// \file
 /// \brief System
-/// \sa <https://boost.org/doc/libs/master/libs/system/doc/html/system.html>
+/// \sa <https://boost.org/doc/libs/master/libs/system/>
 ///
-/// \version 2019-01-10
+/// \version 2020-04-30
 /// \since 2019-01-08
 /// \authors zhengrr
 /// \copyright Unlicense

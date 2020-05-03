@@ -10,7 +10,7 @@ K&R 和 Stroustrup 风格布局；
 
 ## 指南
 
-*   通过 Conan/CMake-Conan 管理安装和链接
+*   通过 Conan/cmake-conan 管理安装和链接
 *   手动安装，并使用 CMake 进行链接（Windows）
     1.  访问 Boost 官网，下载源码并解压
     2.  获取 [*zlib*](https://zlib.net/) 源码，解压放入 Boost 目录，假定为 `zlib-1.2.11`
@@ -20,7 +20,7 @@ K&R 和 Stroustrup 风格布局；
     6.  设置环境变量 `BOOST_ROOT` 或 `BOOSTROOT`
     7.  通过 CMake 的 `FindBoost` 模块链接使用 Boost 库
 
-/ [*Boost C++ 库*](http://zh.highscore.de/cpp/boost/)
+| [*Boost C++ 库*](http://zh.highscore.de/cpp/boost/)
 
 ## 许可
 

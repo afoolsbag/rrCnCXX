@@ -2,7 +2,7 @@
 #           /  __ \
 #  _ __ _ __| /  \/
 # | '__| '__| |     zhengrr
-# | |  | |  | \__/\ 2016-08-01 – 2020-01-09
+# | |  | |  | \__/\ 2016-08-01 – 2020-05-01
 # |_|  |_|   \____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -17,6 +17,7 @@ add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
   UTF-8
+  VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
 find_package(Check REQUIRED)
