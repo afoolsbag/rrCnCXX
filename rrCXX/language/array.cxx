@@ -49,7 +49,7 @@ TEST(array, raw_array)
 }
 
 /// \brief 容器数组。
-/// \remarks ES.107: 不要对下标使用 `unsigned`，优先使用 `gsl::gsl::index`
+/// \remarks ES.107: 不要对下标使用 `unsigned`，优先使用 `gsl::index`
 TEST(array, std_array)
 {
     static constexpr array<const int, 6> std_array {1, 2, 3, 4, 5, 6};
@@ -67,9 +67,9 @@ TEST(array, gsl_span)
     {
         static constexpr int raw_array[] {1, 2, 3, 4, 5, 6};
         static constexpr span raw_array_span {raw_array};
-        for (index i {0}; i < raw_array_span.size(); ++i) {
-            ASSERT_EQ(raw_array_span[i], i + 1);     // 进行边界检查，安全。
-            ASSERT_EQ(raw_array_span.at(i), i + 1);  // 进行边界检查，安全。
+        for (index i {0}; i < static_cast<index>(raw_array_span.size()); ++i) {
+            ASSERT_EQ(raw_array_span[i], i + 1);      // 进行边界检查，安全。
+            ASSERT_EQ(at(raw_array_span, i), i + 1);  // 进行边界检查，安全。
         }
         for (const auto &e : raw_array_span)
             ASSERT_GE(e, 0);
@@ -78,9 +78,9 @@ TEST(array, gsl_span)
     {
         static constexpr array<const int, 6> std_array {1, 2, 3, 4, 5, 6};
         static const span<const int> std_array_span {std_array};
-        for (index i {0}; i < std_array_span.size(); ++i) {
-            ASSERT_EQ(std_array_span[i], i + 1);     // 进行边界检查，安全。
-            ASSERT_EQ(std_array_span.at(i), i + 1);  // 进行边界检查，安全。
+        for (index i {0}; i < static_cast<index>(std_array_span.size()); ++i) {
+            ASSERT_EQ(std_array_span[i], i + 1);      // 进行边界检查，安全。
+            ASSERT_EQ(at(std_array_span, i), i + 1);  // 进行边界检查，安全。
         }
         for (const auto &e : std_array_span)
             ASSERT_GE(e, 0);

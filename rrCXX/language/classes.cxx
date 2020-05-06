@@ -1,12 +1,12 @@
 //===-- Classes -------------------------------------------------*- C++ -*-===//
 ///
-/// \defgroup gClasses 类
-/// \ingroup gLanguage
+/// \defgroup groupClasses 类
+/// \ingroup groupLanguage
 ///
-/// \sa gMemory
-/// \sa [类](https://zh.cppreference.com/w/cpp/language/classes)
+/// \sa groupMemory
+/// \sa <https://zh.cppreference.com/w/cpp/language/classes>
 ///
-/// \version 2019-08-06
+/// \version 2020-05-06
 /// \since 2018-10-09
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -90,7 +90,7 @@ public:
 }
 
 namespace rrcxx {
-/// \addtogroup gClasses
+/// \addtogroup groupClasses
 /// @{
 
 /// \details 通过 `{}` 调用构造函数，以与可能的 `()` 操作符区分
@@ -102,8 +102,8 @@ TEST(classes, constructor)
 /// @}
 }
 
-//==============================================================================
-// 复制省略 COPY ELISION
+//------------------------------------------------------------------------------
+// 复制省略（COPY ELISION）
 //
 // 长求总：
 //
@@ -117,24 +117,21 @@ TEST(classes, constructor)
 namespace {
 class clazz {
 public:
-    explicit clazz() : sn_ {++global_serial_number_} { cout << "object-" << sn_ << ": default constructor" << endl; }
-    clazz(const clazz &other) : sn_ {++global_serial_number_} { cout << "object-" << sn_ << ": copy constructor from object-" << other.sn_ << endl; }
-    clazz(clazz &&other) noexcept : sn_ {++global_serial_number_}
-    {
-        cout << "object-" << sn_ << ": move constructor from object-" << other.sn_ << endl;
-    }
+    explicit clazz() : sn_ {++gsn_} { cout << "object-" << sn_ << ": default constructor" << endl; }
+    clazz(const clazz &other) : sn_ {++gsn_} { cout << "object-" << sn_ << ": copy constructor from object-" << other.sn_ << endl; }
+    clazz(clazz &&other) noexcept : sn_ {++gsn_} { cout << "object-" << sn_ << ": move constructor from object-" << other.sn_ << endl; }
     virtual ~clazz() noexcept { cout << "object-" << sn_ << ": destructor" << endl; }
     clazz &operator=(const clazz &other) = delete;
     clazz &operator=(clazz &&other) = delete;
 private:
-    const std::size_t sn_;
-    static std::size_t global_serial_number_;
+    const std::size_t sn_;    ///< serial number
+    static std::size_t gsn_;  ///< global serial number
 };
-std::size_t clazz::global_serial_number_ {};
+std::size_t clazz::gsn_ {};
 }
 
 namespace rrcxx {
-/// \addtogroup gClasses
+/// \addtogroup groupClasses
 /// @{
 
 /// \brief 构造并立即返回左值
@@ -142,7 +139,7 @@ namespace rrcxx {
 TEST(classes, lvalue_rvo)
 {
     // 消耗一次构造、一次析构
-    const auto &get_by_lvalue_rvo = []() -> clazz {
+    static const auto &get_by_lvalue_rvo = []() -> clazz {
         return clazz {};
     };
     [[maybe_unused]] const auto obj = get_by_lvalue_rvo();
@@ -152,7 +149,7 @@ TEST(classes, lvalue_rvo)
 TEST(classes, lvalue_move)
 {
     // 消耗一次构造、一次移动构造、两次析构
-    const auto &get_by_lvalue_move = []() -> clazz {
+    static const auto &get_by_lvalue_move = []() -> clazz {
         clazz object;
         return object;
     };
@@ -163,7 +160,7 @@ TEST(classes, lvalue_move)
 TEST(classes, lvalue_copy_1)
 {
     // 消耗一次构造、一次复制构造、两次析构
-    const auto &get_by_lvalue_copy_1 = []() -> clazz {
+    static const auto &get_by_lvalue_copy_1 = []() -> clazz {
         const clazz object;
         return object;
     };
@@ -175,7 +172,7 @@ TEST(classes, lvalue_copy_1)
 TEST(classes, lvalue_copy_2)
 {
     // 消耗一次构造、一次复制构造、两次析构
-    const auto &get_by_lvalue_copy_2 = [](bool cond = true) -> clazz {
+    static const auto &get_by_lvalue_copy_2 = [](bool cond = true) -> clazz {
         clazz object;
         return cond ? object : ((void)0, object);
     };
