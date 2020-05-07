@@ -4,15 +4,15 @@ SETLOCAL ENABLEEXTENSIONS
 SET script_directory=%~dp0
 
 WHERE /Q git ^
-        || ECHO The git executable not found. && ^
-           CALL :pause_if_double_click && ^
-           EXIT /B 1
+        || ECHO The git executable not found. ^
+        && CALL :pause_if_double_click ^
+        && EXIT /B 1
 
 git submodule update --remote %script_directory% ^
         && ECHO Update git submodules succeed. ^
-        || ECHO Update git submodules failed. && ^
-           CALL :pause_if_double_click && ^
-           EXIT /B 2
+        || ECHO Update git submodules failed. ^
+        && CALL :pause_if_double_click ^
+        && EXIT /B 2
 
 CALL :pause_if_double_click
 EXIT /B 0
