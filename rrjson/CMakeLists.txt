@@ -4,7 +4,7 @@
 # | '__| '__| / __|/ _ \| '_ \ 
 # | |  | |  | \__ \ (_) | | | |
 # |_|  |_|  | |___/\___/|_| |_| zhengrr
-#          _/ |                 2019-09-23 – 2019-09-23
+#          _/ |                 2019-09-23 – 2020-05-06
 #         |__/                  Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -15,8 +15,6 @@ project_ex(
   TIME_AS_VERSION
   LANGUAGES CXX)
 
-include_conan_script()
-
 add_compile_options_ex(
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
@@ -24,9 +22,10 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
+include_conan_script()
 conan_cmake_run(
-  REQUIRES    gtest/1.8.1@bincrafters/stable
-              jsonformoderncpp/3.7.0@vthiery/stable
+  REQUIRES    gtest/1.8.1
+              jsonformoderncpp/3.7.0
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 

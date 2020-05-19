@@ -2,6 +2,10 @@
 
 [*libuv*](https://libuv.org/)
 
+## 参考
+
+*   [*libuv 中文教程*](https://github.com/luohaha/Chinese-uvbook)
+
 ## 许可
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：

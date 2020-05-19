@@ -6,11 +6,24 @@
 
 using namespace std;
 
-namespace rrspdlog {
+namespace rrjson {
 
-TEST(test, gft)
+TEST(test, the_1st_step)
 {
-    constexpr char json[] {R"({"string":"this is a string","number":1337,"true":true,"false":false,"null":null,"array":[1,2,3,4,5,6,7],"object":{"k1":"v1","k2":"v2","k3":"v3"}})"};
+    constexpr char json[] {R"(
+    {
+      "string": "this is a string",
+      "number": 1337,
+      "true": true,
+      "false": false,
+      "null": null,
+      "array": [1, 2, 3, 4, 5, 6, 7],
+      "object": {
+        "k1": "v1",
+        "k2": "v2",
+        "k3": "v3"
+      }
+    })"};
 
     auto j = nlohmann::json::parse(json);
 
