@@ -1,0 +1,57 @@
+@startuml
+
+title
+  组件图示例
+  https://plantuml.com/zh/component-diagram
+end title
+
+cloud "视频平台\nVideo Platform" as VideoPlatform {
+  [视频平台服务\nVideo Platform Service] as VideoPlatformService
+  () "GB/T 28181" as VideoPlatformService_Gbt28101
+  VideoPlatformService - VideoPlatformService_Gbt28101
+}
+
+node "媒体服务器\nMedia Server\n（Linux）" as MediaServer {
+  [转发服务\nForwarding Service] as ForwardingService
+  () "转发控制\nForwarding Control" as ForwardingService_Control
+  ForwardingService - ForwardingService_Control
+  () "RTSP" as ForwardingService_Rtsp
+  ForwardingService -- ForwardingService_Rtsp
+
+  storage "视频存储\nVideo Storage" as VideoStorage
+
+  [视频点播服务\nVOD Service] as VodService
+  () "RTSP" as VodService_Rtsp
+  VodService - VodService_Rtsp
+
+  VideoPlatformService_Gbt28101 <-- ForwardingService
+  VideoStorage <- ForwardingService
+  VideoStorage <--- VodService
+}
+
+rectangle "计算服务器集群\nCompute Server Cluster" as ComputeServerCluster {
+  node "计算服务器 1\nCompute Server 1\n（Windows）"
+  node "计算服务器 2\nCompute Server 2\n（Windows）"
+  node "计算服务器 3\nCompute Server 3\n（Windows）"
+  node "计算服务器 ...\nCompute Server ...\n（Windows）"
+}
+
+node "网页服务器\nWeb Server\n（Windows）" as WebServer {
+  [网页服务\nWeb Service] as WebService
+
+   ForwardingService_Control <- WebService
+}
+
+node "用户机\nUser Computer\n（Windows）" as UserComputer {
+  [用户端\nUser Client] as UserClient
+
+  [播放控件\nPlayer Control] as PlayerControl
+
+  PlayerControl - UserClient : ActiveX 控件
+
+  WebService <-- UserClient
+  ForwardingService_Rtsp <- PlayerControl
+  VodService_Rtsp <- PlayerControl
+}
+
+@enduml

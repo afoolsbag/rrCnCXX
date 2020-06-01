@@ -1,0 +1,62 @@
+@startuml
+
+title
+  我对于 UML 图的分类
+  https://www.omg.org/spec/UML/2.5.1/PDF § Annex A
+end title
+
+card "UML 2.5.1 图" as Diagram
+
+card "结构图" as StructureDiagram
+card "行为图" as BehaviourDiagram
+Diagram <-- StructureDiagram
+Diagram <-- BehaviourDiagram
+
+together {
+  card "静态图" as StaticDiagram
+  card "剖面图" as ProfileDiagram
+  card "复合结构图" as CompositeStructureDiagram
+  card "实现图" as ImplementationDiagram
+}
+StructureDiagram <-- StaticDiagram
+StructureDiagram <-- ProfileDiagram
+StructureDiagram <-- CompositeStructureDiagram
+StructureDiagram <-- ImplementationDiagram
+
+together {
+  card "对象图" as ObjectDiagram
+  card "类图" as ClassDiagram
+  card "包图" as PackageDiagram
+}
+StaticDiagram <-- ObjectDiagram
+StaticDiagram <-- ClassDiagram
+StaticDiagram <-- PackageDiagram
+
+together {
+  card "组件图" as ComponentDiagram
+  card "部署图" as DeploymentDiagram
+}
+ImplementationDiagram <-- ComponentDiagram
+ImplementationDiagram <-- DeploymentDiagram
+
+together {
+  card "用例图" as UseCaseDiagram
+  card "活动图" as ActivityDiagram
+  card "通信图" as CommunicationDiagram
+  card "状态机图" as StateMachineDiagram
+}
+BehaviourDiagram <-- UseCaseDiagram
+BehaviourDiagram <-- ActivityDiagram
+BehaviourDiagram <-- CommunicationDiagram
+BehaviourDiagram <-- StateMachineDiagram
+
+card "交互概述图" as InteractionOverviewDiagram
+ActivityDiagram <.. InteractionOverviewDiagram
+
+card "顺序图" as SequenceDiagram
+CommunicationDiagram <.. SequenceDiagram
+
+card "时间图" as TimingDiagram
+StateMachineDiagram <.. TimingDiagram
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+
+title
+  顺序图示例
+  https://plantuml.com/zh/sequence-diagram
+end title
+
+hide footbox
+
+participant "FTP 服务" as FtpService
+participant "业务逻辑服务（Java）" as BusinessLogicService
+participant "消息中间件" as MessageMiddleware
+participant "存储中间件" as StorageMiddleware
+participant "后台接入服务（C++）" as BackgroundAccessService
+participant "人体识别服务（C++）" as BodyRecognitionService
+participant "人脸识别服务（C++）" as FaceRecognitionService
+
+[->> FtpService: 摄像机检测到行人，\n抓拍图像并存入服务器
+note right
+  全景图（必有）
+  人体扣图（可能）
+  人脸抠图（可能）
+end note
+activate FtpService
+
+FtpService <- BusinessLogicService: 定时扫描新增图像
+
+FtpService --> BusinessLogicService
+deactivate FtpService
+activate BusinessLogicService
+
+BusinessLogicService -> BackgroundAccessService: HTTP POST
+note right
+  命令
+  摄像机名
+  录像机名
+  时间戳
+  全景图路径（必有）
+  人体抠图路径（可能）
+  人脸抠图路径（可能）
+end note
+activate BackgroundAccessService
+
+@enduml
