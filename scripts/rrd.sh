@@ -6,7 +6,7 @@
 # | |  | |  | |/ / (_| |  __/ | | | | | (_) | | | |
 # |_|  |_|  |___/ \__,_|\___|_| |_| |_|\___/|_| |_|
 # zhengrr
-# 2019-10-31 – 2020-06-01
+# 2019-10-31 – 2020-06-08
 # Unlicense
 #
 # 一段简单的守护脚本
@@ -26,6 +26,7 @@ readonly CONFIGURATION_NAKED_ERROR_FILE=''
 ARGUMENT_BACKGROUND=0
 ARGUMENT_DEBUG=0
 ARGUMENT_HELP=0
+ARGUMENT_KILL=0
 ARGUMENT_TEST=0
 ARGUMENT_NAKED_WORKING_USER=''
 ARGUMENT_NAKED_WORKING_DIRECTORY=''
@@ -34,8 +35,8 @@ ARGUMENT_NAKED_ARGUMENTS=''
 ARGUMENT_NAKED_INPUT_FILE=''
 ARGUMENT_NAKED_OUTPUT_FILE=''
 ARGUMENT_NAKED_ERROR_FILE=''
-ARGUMENTS=$(getopt --options 'bdhtu:f:x:a:i:o:e:' \
-                   --longoptions 'background,debug,help,test,working-user:,working-directory:,executable:,arguments:,input-file:,output-file:,error-file:' \
+ARGUMENTS=$(getopt --options 'bdhktu:f:x:a:i:o:e:' \
+                   --longoptions 'background,debug,help,kill,test,working-user:,working-directory:,executable:,arguments:,input-file:,output-file:,error-file:' \
                    --name "$0" -- "$@")
 if (( $? )); then
         echo 'Command line arguments parsing failed.'
@@ -49,6 +50,7 @@ while true; do
                 '-b'|'--background')         ARGUMENT_BACKGROUND=1;                  shift;    ;;
                 '-d'|'--debug')              ARGUMENT_DEBUG=1;                       shift;    ;;
                 '-h'|'--help')               ARGUMENT_HELP=1;                        shift;    ;;
+                '-k'|'--kill')               ARGUMENT_KILL=1;                        shift;    ;;
                 '-t'|'--test')               ARGUMENT_TEST=1;                        shift;    ;;
                 '-u'|'--working-user')       ARGUMENT_NAKED_WORKING_USER="$2";       shift 2;  ;;
                 '-f'|'--working-directory')  ARGUMENT_NAKED_WORKING_DIRECTORY="$2";  shift 2;  ;;
@@ -62,7 +64,7 @@ while true; do
         esac
 done
 if [[ -n "$*" ]]; then
-        echo "$0: unexpected arguments: $*"
+        echo "$0: unexpected arguments: '$*'"
         echo 'Command line arguments parsing failed.'
         echo "Try '$0 --help' for help text."
         exit 3
@@ -78,6 +80,7 @@ if (( ARGUMENT_HELP )); then
         echo '  -b, --background                                 Run in the background.'
         echo '  -d, --debug                                      Show debug information.'
         echo '  -h, --help                                       Show this message and exit.'
+        echo '  -k, --kill                                       Kill daemon and naked process(es) by name.'
         echo '  -t, --test                                       Verify configurations and exit.'
         echo ''
         echo ' Argument options:'
@@ -94,7 +97,7 @@ fi
 # 配置验证和缺省值 CONFIGURATION VERIFICATION AND DEFAULT VALUES
 #-------------------------------------------------------------------------------
 readonly SCRIPT="$(readlink --canonicalize-existing "${BASH_SOURCE[0]}")"
-readonly SCRIPT_DIRECTORY="$(readlink --canonicalize-existing "$(dirname SCRIPT)")"
+readonly SCRIPT_DIRECTORY="$(readlink --canonicalize-existing "$(dirname "${SCRIPT}")")"
 readonly SCRIPT_BASENAME="$(basename "${SCRIPT}" '.sh')"
 
 # 工作用户
@@ -147,26 +150,26 @@ elif [[ -n "${CONFIGURATION_NAKED_WORKING_DIRECTORY}" ]]; then
         readonly NAKED_WORKING_DIRECTORY="$tmp"
 elif [[ -n "${ARGUMENT_NAKED_EXECUTABLE}" ]]; then
         if [[ "${ARGUMENT_NAKED_EXECUTABLE:0:1}" == '/' ]]; then
-                tmp="$(dirname "$(readlink --canonicalize-missing "${ARGUMENT_NAKED_EXECUTABLE}")")"
+                tmp="$(readlink --canonicalize-missing "${ARGUMENT_NAKED_EXECUTABLE}")"
         else
-                tmp="$(dirname "$(readlink --canonicalize-missing "${SCRIPT_DIRECTORY}/${ARGUMENT_NAKED_EXECUTABLE}")")"
+                tmp="$(readlink --canonicalize-missing "${SCRIPT_DIRECTORY}/${ARGUMENT_NAKED_EXECUTABLE}")"
         fi
         if [[ ! -x "$tmp" ]]; then
                 echo "The ARGUMENT_NAKED_EXECUTABLE='${ARGUMENT_NAKED_EXECUTABLE}' isn't an path to executable."
                 exit 8
         fi
-        readonly NAKED_WORKING_DIRECTORY="$tmp"
+        readonly NAKED_WORKING_DIRECTORY="$(dirname "$tmp")"
 elif [[ -n "${CONFIGURATION_NAKED_EXECUTABLE}" ]]; then
         if [[ "${CONFIGURATION_NAKED_EXECUTABLE:0:1}" == '/' ]]; then
-                tmp="$(dirname "$(readlink --canonicalize-missing "${CONFIGURATION_NAKED_EXECUTABLE}")")"
+                tmp="$(readlink --canonicalize-missing "${CONFIGURATION_NAKED_EXECUTABLE}")"
         else
-                tmp="$(dirname "$(readlink --canonicalize-missing "${SCRIPT_DIRECTORY}/${CONFIGURATION_NAKED_EXECUTABLE}")")"
+                tmp="$(readlink --canonicalize-missing "${SCRIPT_DIRECTORY}/${CONFIGURATION_NAKED_EXECUTABLE}")"
         fi
         if [[ ! -x "$tmp" ]]; then
                 echo "The CONFIGURATION_NAKED_EXECUTABLE='${CONFIGURATION_NAKED_EXECUTABLE}' isn't an path to executable."
                 exit 9
         fi
-        readonly NAKED_WORKING_DIRECTORY="$tmp"
+        readonly NAKED_WORKING_DIRECTORY="$(dirname "$tmp")"
 else
         readonly NAKED_WORKING_DIRECTORY="${SCRIPT_DIRECTORY}"
 fi
@@ -327,26 +330,34 @@ if (( ARGUMENT_TEST )); then
         exit 0
 fi
 
+# 按名称杀死守护进程和裸进程 KILL DAEMON AND NAKED PROCESS(ES) BY NAME
+#-------------------------------------------------------------------------------
+if (( ARGUMENT_KILL )); then
+        ps -Af | grep --invert-match 'grep' | grep --word-regexp "${SCRIPT}" | grep --invert-match --word-regexp "${$}" | awk '{print $2}' | xargs kill -TERM &>'/dev/null'
+        ps -Af | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}' | xargs kill -TERM &>'/dev/null'
+        exit 0
+fi
+
 # 后台运行 RUN IN THE BACKGROUND
 #-------------------------------------------------------------------------------
 if (( ARGUMENT_BACKGROUND )); then
-        nohup "$0" \
-                ${ARGUMENT_NAKED_WORKING_USER+-u} "${ARGUMENT_NAKED_WORKING_USER}" \
-                ${ARGUMENT_NAKED_WORKING_DIRECTORY+-f} "${ARGUMENT_NAKED_WORKING_DIRECTORY}" \
-                ${ARGUMENT_NAKED_EXECUTABLE+-x} "${ARGUMENT_NAKED_EXECUTABLE}" \
-                ${ARGUMENT_NAKED_ARGUMENTS+-a} "${ARGUMENT_NAKED_ARGUMENTS}" \
-                ${ARGUMENT_NAKED_INPUT_FILE+-i} "${ARGUMENT_NAKED_INPUT_FILE}" \
-                ${ARGUMENT_NAKED_OUTPUT_FILE+-o} "${ARGUMENT_NAKED_OUTPUT_FILE}" \
-                ${ARGUMENT_NAKED_ERROR_FILE+-e} "${ARGUMENT_NAKED_ERROR_FILE}" \
+        nohup "${SCRIPT}" \
+                -u "${ARGUMENT_NAKED_WORKING_USER}" \
+                -f "${ARGUMENT_NAKED_WORKING_DIRECTORY}" \
+                -x "${ARGUMENT_NAKED_EXECUTABLE}" \
+                -a "${ARGUMENT_NAKED_ARGUMENTS}" \
+                -i "${ARGUMENT_NAKED_INPUT_FILE}" \
+                -o "${ARGUMENT_NAKED_OUTPUT_FILE}" \
+                -e "${ARGUMENT_NAKED_ERROR_FILE}" \
                 0<'/dev/null' 1>'/dev/null' 2>'/dev/null' &
         exit 0
 fi
 
-# 守护循环 DAEMON LOOP
+# 按名称守护循环 DAEMON LOOP BY NAME
 #-------------------------------------------------------------------------------
 while true; do
 
-        if (( "$(ps ax | grep --invert-match 'grep' | grep --word-regexp --count "${NAKED_EXECUTABLE}")" == 0 )); then
+        if (( "$(ps -Af | grep --invert-match 'grep' | grep --word-regexp --count "${NAKED_EXECUTABLE}")" == 0 )); then
 
                 cd "${NAKED_WORKING_DIRECTORY}" \
                         || { echo "Change directory to '${NAKED_WORKING_DIRECTORY}' failed."; \

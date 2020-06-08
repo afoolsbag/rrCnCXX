@@ -285,7 +285,7 @@ svis_stop() {
 
         # 停止可能的裸进程
         if [[ -x "${NAKED_EXECUTABLE}" ]]; then
-                kill $(ps aux | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}') &>'/dev/null'
+                ps -Af | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}' | xargs kill -TERM &>'/dev/null'
         fi
 
         if (( rc == 0 )); then

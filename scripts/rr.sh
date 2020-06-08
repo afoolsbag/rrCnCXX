@@ -22,7 +22,7 @@ left=60  # left time in seconds
 
 echo "$((left)) SECONDS TIMING..."
 while (( 0 < left )); do
-        sleep 1
+        sleep 1s
         echo "$((--left))s"
 done
 echo "...TIME OUT"
