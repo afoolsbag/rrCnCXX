@@ -7,7 +7,7 @@
 # |_|  |_|  \____/ \__, |___/\__\___|_| |_| |_|\___/ \___/_| |_|_|\__\____/ \___|_|  |_| .__/ \__|
 #                   __/ |                                                              | |
 # zhengrr          |___/                                                               |_|
-# 2019-09-09 – 2020-04-25
+# 2019-09-09 – 2020-06-09
 # Unlicense
 #
 # 初始化脚本：在系统切换运行级别时由系统调用，且可通过 `service` 或 `systemctl` 命令由用户便捷调用。
@@ -19,12 +19,6 @@
 #           [22.6. Facility Names](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/facilname.html)
 #           [22.7. Script Names](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/scrptnames.html)
 #           [22.8. Init Script Functions](https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptfunc.html)
-#
-# 实测：
-#
-# Ubuntu                OKAY
-#
-# CentOS [user@host *]$ sudo yum install redhat-lsb
 
 # 初始化脚本的注释约定，供 `install_initd` 和 `remove_initd` 命令使用：
 #
@@ -56,15 +50,15 @@
 # 6 重启
 #
 # 返回值：
-#         WITHOUT ACTION status                           WITH ACTION status
+#         OTHER ACTIONS                                   STATUS ACTION
 #   0     successful                                      program is running or service is OK
 #   1     generic or unspecified error (current practice) program is dead and /var/run pid file exists
 #   2     invalid or excess argument(s)                   program is dead and /var/lock lock file exists
 #   3     unimplemented feature (for example, "reload")   program is not running
 #   4     user had insufficient privilege                 program or service status is unknown
 #   5     program is not installed                        reserved for future LSB use
-#   6     program is not configured                       reserved for future LSB use
-#   7     program is not running                          reserved for future LSB use
+#   6     program is not configured                       -
+#   7     program is not running                          -
 #   8- 99                                    reserved for future LSB use
 # 100-149                                    reserved for distribution use
 # 150-199                                    reserved for application use
@@ -72,7 +66,14 @@
 # 255                                        unspecified
 
 # 包入指定脚本 `/lib/lsb/init-functions`
-. /lib/lsb/init-functions
+if [[ ! -e '/lib/lsb/init-functions' ]]; then
+        echo 'Linux Standard Base (LSB) is required.'
+        if [[ -e '/etc/redhat-release' ]]; then
+                echo "Try type 'sudo yum install redhat-lsb' to install."
+        fi
+        exit 1
+fi
+. '/lib/lsb/init-functions'
 
 # 包入可能的工具脚本
 #if [[ -e '/etc/init.d/functions' ]]; then
@@ -80,28 +81,28 @@
 #fi
 
 # 配置
-readonly DAEMON_EXECUTABLE='/home/scripts/rrd.sh'
+readonly DAEMON_EXECUTABLE='/mnt/d/Workspace/rrCnCxx/scripts/rrd.sh'
 readonly DAEMON_ARGUMENTS=''
-readonly NAKED_EXECUTABLE='/home/scripts/rr.sh'
+readonly NAKED_EXECUTABLE='/mnt/d/Workspace/rrCnCxx/scripts/rr.sh'
 
-# 配置检验
-if [[ ! "${DAEMON_EXECUTABLE}" == '/'* || ! -x "${DAEMON_EXECUTABLE}" ]]; then
-        log_failure_msg "The config DAEMON_EXECUTABLE='${DAEMON_EXECUTABLE}' isn't an absolute path to execuable."
+# 配置验证
+if [[ "${DAEMON_EXECUTABLE:0:1}" != '/' || ! -x "${DAEMON_EXECUTABLE}" ]]; then
+        log_failure_msg "The DAEMON_EXECUTABLE='${DAEMON_EXECUTABLE}' isn't an absolute path to executable."
         exit 5  # program is not installed
 fi
-if [[ -n "${NAKED_EXECUTABLE}" && ( ! "${NAKED_EXECUTABLE}" == '/'* || ! -x "${NAKED_EXECUTABLE}" ) ]]; then
-        log_failure_msg "The config NAKED_EXECUTABLE='${NAKED_EXECUTABLE}' is set, but isn't an absolute path to executable."
+if [[ -n "${NAKED_EXECUTABLE}" && ( "${NAKED_EXECUTABLE:0:1}" != '/' || ! -x "${NAKED_EXECUTABLE}" ) ]]; then
+        log_failure_msg "The NAKED_EXECUTABLE='${NAKED_EXECUTABLE}' is set, but isn't an absolute path to executable."
         exit 5  # program is not installed
 fi
 
-# 自行生成的值
-readonly CURRENT_SCRIPT_PATH="$(readlink --canonicalize "$0")"
-readonly CURRENT_SCRIPT_DIRECTORY="$(dirname "${CURRENT_SCRIPT_PATH}")"
-readonly CURRENT_SCRIPT_NAME="$(basename "${CURRENT_SCRIPT_PATH}")"
+# 推断出的值
+readonly CURRENT_SCRIPT="$(readlink --canonicalize-existing "${BASH_SOURCE[0]}")"
+readonly CURRENT_SCRIPT_DIRECTORY="$(dirname "${CURRENT_SCRIPT}")"
+readonly CURRENT_SCRIPT_NAME="$(basename "${CURRENT_SCRIPT}")"
 readonly CURRENT_SCRIPT_ACTION="$1"
 
 readonly INIT_SCRIPT_DIRECTORY='/etc/init.d'
-readonly INIT_SCRIPT_PATH="${INIT_SCRIPT_DIRECTORY}/${CURRENT_SCRIPT_NAME}"
+readonly INIT_SCRIPT="${INIT_SCRIPT_DIRECTORY}/${CURRENT_SCRIPT_NAME}"
 
 readonly DAEMON_EXECUTABLE_NAME="$(basename "${DAEMON_EXECUTABLE}")"
 readonly DAEMON_PIDFILE="/var/run/${DAEMON_EXECUTABLE_NAME}.pid"
@@ -268,7 +269,7 @@ svis_stop() {
                 svis_status &>'/dev/null'
                 rc="$?"
                 if (( rc == 0 )); then
-                        kill $(tee < "${DAEMON_PIDFILE}")
+                        pgrep --pidfile "${DAEMON_PIDFILE}" | xargs kill --signal TERM &>'/dev/null'
                 fi
                 if [[ -e "${DAEMON_PIDFILE}" ]]; then
                         rm "${DAEMON_PIDFILE}"
@@ -285,7 +286,7 @@ svis_stop() {
 
         # 停止可能的裸进程
         if [[ -x "${NAKED_EXECUTABLE}" ]]; then
-                ps -Af | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}' | xargs kill -TERM &>'/dev/null'
+                ps -Af | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}' | xargs kill --signal TERM &>'/dev/null'
         fi
 
         if (( rc == 0 )); then
@@ -364,7 +365,7 @@ svis_enable() {
 
         # 启用脚本
         if [[ -x '/usr/lib/lsb/install_initd' ]]; then
-                rt="$(/usr/lib/lsb/install_initd "${CURRENT_SCRIPT_PATH}" 2>&1)"
+                rt="$(/usr/lib/lsb/install_initd "${CURRENT_SCRIPT}" 2>&1)"
                 rc="$?"
                 if (( rc != 0 )); then
                         log_failure_msg "Enable failed: $rt."
@@ -408,7 +409,7 @@ svis_disable() {
 
         # 禁用脚本
         if [[ -x '/usr/lib/lsb/remove_initd' ]]; then
-                rt="$(/usr/lib/lsb/remove_initd "${CURRENT_SCRIPT_PATH}" 2>&1)"
+                rt="$(/usr/lib/lsb/remove_initd "${CURRENT_SCRIPT}" 2>&1)"
                 rc="$?"
                 if (( rc != 0 )); then
                         log_failure_msg "Disable failed: $rt."
@@ -439,8 +440,8 @@ svis_install() {
         echo "Installing ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查目标脚本是否已存在
-        if [[ -e "${INIT_SCRIPT_PATH}" ]]; then
-                log_failure_msg "The init script ${INIT_SCRIPT_PATH} already exists."
+        if [[ -e "${INIT_SCRIPT}" ]]; then
+                log_failure_msg "The init script ${INIT_SCRIPT} already exists."
                 return 1  # generic or unspecified error
         fi
 
@@ -451,10 +452,10 @@ svis_install() {
         fi
 
         # 复制到目标位置
-        rt="$(cp "${CURRENT_SCRIPT_PATH}" "${INIT_SCRIPT_PATH}" 2>&1)"
+        rt="$(cp "${CURRENT_SCRIPT}" "${INIT_SCRIPT}" 2>&1)"
         rc="$?"
         if (( rc != 0 )); then
-                log_failure_msg "Copy ${CURRENT_SCRIPT_PATH} to ${INIT_SCRIPT_PATH} failed: $rt."
+                log_failure_msg "Copy ${CURRENT_SCRIPT} to ${INIT_SCRIPT} failed: $rt."
                 return 1  # generic or unspecified error
         fi
 
@@ -470,8 +471,8 @@ svis_remove() {
         echo "Removing ${DAEMON_EXECUTABLE_NAME} ..."
 
         # 检查目标脚本是否不存在
-        if [[ ! -e "${INIT_SCRIPT_PATH}" ]]; then
-                log_failure_msg "The init script ${INIT_SCRIPT_PATH} not found."
+        if [[ ! -e "${INIT_SCRIPT}" ]]; then
+                log_failure_msg "The init script ${INIT_SCRIPT} not found."
                 return 6  # program is not configured
         fi
 
@@ -483,13 +484,13 @@ svis_remove() {
 
         # 停止服务并禁用自动调用
         svis_stop
-        "${INIT_SCRIPT_PATH}" disable &>'/dev/null'
+        "${INIT_SCRIPT}" disable &>'/dev/null'
 
         # 从目标位置删除
-        rt="$(rm -- "${INIT_SCRIPT_PATH}" 2>&1)"
+        rt="$(rm -- "${INIT_SCRIPT}" 2>&1)"
         rc="$?"
         if (( rc != 0 )); then
-                log_failure_msg "Remove ${INIT_SCRIPT_PATH} failed: $rt."
+                log_failure_msg "Remove ${INIT_SCRIPT} failed: $rt."
                 return 1  # generic or unspecified error
         fi
 
@@ -562,7 +563,7 @@ case "${CURRENT_SCRIPT_ACTION}" in
                 ;;
         *)
                 log_failure_msg "Unknown command with arguments: $0 $*"
-                echo "Usage: ${CURRENT_SCRIPT_PATH} <start|stop|restart|try-restart|reload|force-reload|status|enable|disable|install|remove|reinstall>"
+                echo "Usage: ${CURRENT_SCRIPT} <start|stop|restart|try-restart|reload|force-reload|status|enable|disable|install|remove|reinstall>"
                 exit 2  # invalid or excess argument(s)
                 ;;
 esac

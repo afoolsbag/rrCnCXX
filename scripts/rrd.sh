@@ -333,8 +333,8 @@ fi
 # 按名称杀死守护进程和裸进程 KILL DAEMON AND NAKED PROCESS(ES) BY NAME
 #-------------------------------------------------------------------------------
 if (( ARGUMENT_KILL )); then
-        ps -Af | grep --invert-match 'grep' | grep --word-regexp "${SCRIPT}" | grep --invert-match --word-regexp "${$}" | awk '{print $2}' | xargs kill -TERM &>'/dev/null'
-        ps -Af | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}' | xargs kill -TERM &>'/dev/null'
+        ps -Af | grep --invert-match 'grep' | grep --word-regexp "${SCRIPT}" | grep --invert-match --word-regexp "${$}" | awk '{print $2}' | xargs kill --signal TERM &>'/dev/null'
+        ps -Af | grep --invert-match 'grep' | grep --word-regexp "${NAKED_EXECUTABLE}" | awk '{print $2}' | xargs kill --signal TERM &>'/dev/null'
         exit 0
 fi
 
