@@ -3,7 +3,7 @@
 /// \file
 /// \brief 异常类。
 ///
-/// \version 2020-04-30
+/// \version 2020-06-03
 /// \since 2019-05-14
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -11,14 +11,14 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-#ifndef RRLIBX_EXCEPTION_HXX_
-#define RRLIBX_EXCEPTION_HXX_
+#ifndef RRX_EXCEPTION_HXX_
+#define RRX_EXCEPTION_HXX_
 #ifdef __cplusplus
 
 #include <exception>
 #include <string>
 
-namespace rrlibx {
+namespace rrx {
 
 /// \brief 内部异常（基异常）。
 class internal_exception : public std::exception {

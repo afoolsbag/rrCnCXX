@@ -2,7 +2,7 @@
  * copyright Unlicense
  */
 
-#include "rrlibc/rrlibc.h"
+#include "rrc/rrc.h"
 
 #include <stdbool.h>
 #include <string.h>
@@ -56,8 +56,8 @@ EXTERN_C void __attribute__ ((destructor)) fini(void)
 }
 #endif
 
-EXTERN_C RRLIBC_API enum rrlibc_status_t CDECL
-rrlibc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT
+EXTERN_C RRC_API enum rrc_status_t CDECL
+rrc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT
 {
     if (r_major)
         *r_major = (int)project_version_major;
@@ -67,14 +67,14 @@ rrlibc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXC
         *r_patch = (int)project_version_patch;
     if (r_tweak)
         *r_tweak = (int)project_version_tweak;
-    return rrlibc_success;
+    return rrc_success;
 }
 
-EXTERN_C RRLIBC_API enum rrlibc_status_t CDECL
-rrlibc_sigh(time_t *r_time) NOEXCEPT
+EXTERN_C RRC_API enum rrc_status_t CDECL
+rrc_sigh(time_t *r_time) NOEXCEPT
 {
     if (!r_time)
-        return rrlibc_invalid_argument;
+        return rrc_invalid_argument;
 
     struct tm ts;
     memset(&ts, 0x00, sizeof ts);
@@ -84,8 +84,8 @@ rrlibc_sigh(time_t *r_time) NOEXCEPT
 
     const time_t tmp = mktime(&ts);
     if (tmp == -1)
-        return rrlibc_overflow_error;
+        return rrc_overflow_error;
 
     *r_time = tmp;
-    return rrlibc_success;
+    return rrc_success;
 }

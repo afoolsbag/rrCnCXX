@@ -1,6 +1,6 @@
 /// \copyright Unlicense
 
-#include "rrlibx/rrlibx.hxx"
+#include "rrx/rrx.hxx"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -52,9 +52,9 @@ EXTERN_C void __attribute__ ((destructor)) fini(void)
 }
 #endif
 
-namespace rrlibx {
+namespace rrx {
 
-RRLIBX_API version_t STDCALL version()
+RRX_API version_t STDCALL version()
 {
     return {
         static_cast<int>(project_version_major),
@@ -93,55 +93,55 @@ private:
     void *p_user_data_ {};
 };
 
-RRLIBX_API clazz::clazz() : impl_ {make_unique<impl>()} {}
-RRLIBX_API clazz::clazz(clazz &&) noexcept = default;
-RRLIBX_API clazz &clazz::operator=(clazz&&) noexcept = default;
-RRLIBX_API clazz::~clazz() noexcept = default;
+RRX_API clazz::clazz() : impl_ {make_unique<impl>()} {}
+RRX_API clazz::clazz(clazz &&) noexcept = default;
+RRX_API clazz &clazz::operator=(clazz&&) noexcept = default;
+RRX_API clazz::~clazz() noexcept = default;
 
-RRLIBX_API void clazz::basic(int value) { return impl_->basic(value); }
+RRX_API void clazz::basic(int value) { return impl_->basic(value); }
 inline void clazz::impl::basic(int value)
 {
     basic_ = value;
 }
 
-[[nodiscard]] RRLIBX_API int clazz::basic() const { return impl_->basic(); }
+[[nodiscard]] RRX_API int clazz::basic() const { return impl_->basic(); }
 [[nodiscard]] inline int clazz::impl::basic() const
 {
     return basic_;
 }
 
-RRLIBX_API void clazz::array(const array_t &value) { return impl_->array(value); }
+RRX_API void clazz::array(const array_t &value) { return impl_->array(value); }
 inline void clazz::impl::array(const array_t &value)
 {
     array_ = value;
 }
 
-[[nodiscard]] RRLIBX_API const clazz::array_t &clazz::array() const { return impl_->array(); }
+[[nodiscard]] RRX_API const clazz::array_t &clazz::array() const { return impl_->array(); }
 [[nodiscard]] inline const clazz::array_t &clazz::impl::array() const
 {
     return array_;
 }
 
-RRLIBX_API void clazz::string(const std::string &value) { return impl_->string(value); }
+RRX_API void clazz::string(const std::string &value) { return impl_->string(value); }
 inline void clazz::impl::string(const std::string &value)
 {
     string_ = value;
 }
 
-[[nodiscard]] RRLIBX_API const std::string &clazz::string() const { return impl_->string(); }
+[[nodiscard]] RRX_API const std::string &clazz::string() const { return impl_->string(); }
 [[nodiscard]] inline const std::string &clazz::impl::string() const
 {
     return string_;
 }
 
-RRLIBX_API void clazz::set_callback(const callback_t &callback, void *p_user_data) { return impl_->set_callback(callback, p_user_data); }
+RRX_API void clazz::set_callback(const callback_t &callback, void *p_user_data) { return impl_->set_callback(callback, p_user_data); }
 inline void clazz::impl::set_callback(const callback_t &callback, void *p_user_data)
 {
     callback_ = callback;
     p_user_data_ = p_user_data;
 }
 
-RRLIBX_API void clazz::invoke_callback() const { return impl_->invoke_callback(); }
+RRX_API void clazz::invoke_callback() const { return impl_->invoke_callback(); }
 inline void clazz::impl::invoke_callback() const
 {
     if (callback_)

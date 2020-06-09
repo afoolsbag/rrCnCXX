@@ -6,7 +6,7 @@
  *
  * \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
  *
- * \version 2020-04-30
+ * \version 2020-06-03
  * \since 2018-01-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -14,8 +14,8 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRLIBX_RRLIBX_H_
-#define RRLIBX_RRLIBX_H_
+#ifndef RRX_RRX_H_
+#define RRX_RRX_H_
 
 #ifdef __cplusplus
 #include <cstddef>
@@ -36,29 +36,29 @@
  * \param[out] r_patch 补丁版本号引用，可空
  * \param[out] r_tweak 微调版本号引用，可空
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT;
 
 /**
  * \brief 实例句柄类型。
  */
-typedef struct incomplete_rrlibx_t *rrlibx_handle_t;
+typedef struct incomplete_rrx_t *rrx_handle_t;
 
 /**
  * \brief 构造实例。
  *
  * \param[out] r_handle 实例句柄引用
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_construct(rrlibx_handle_t *r_handle) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_construct(rrx_handle_t *r_handle) NOEXCEPT;
 
 /**
  * \brief 析构实例。
  *
  * \param handle 实例句柄
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_destruct(rrlibx_handle_t handle) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_destruct(rrx_handle_t handle) NOEXCEPT;
 
 /**
  * \brief 基础赋值。
@@ -66,8 +66,8 @@ rrlibx_destruct(rrlibx_handle_t handle) NOEXCEPT;
  * \param handle 实例句柄
  * \param value  值
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_set_basic(rrlibx_handle_t handle, int value) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_set_basic(rrx_handle_t handle, int value) NOEXCEPT;
 
 /**
  * \brief 基础取值。
@@ -75,8 +75,8 @@ rrlibx_set_basic(rrlibx_handle_t handle, int value) NOEXCEPT;
  * \param[in]  handle  实例句柄
  * \param[out] r_value 值引用
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_basic(rrlibx_handle_t handle, int *r_value) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_basic(rrx_handle_t handle, int *r_value) NOEXCEPT;
 
 /**
  * \brief 数组赋值。
@@ -85,8 +85,8 @@ rrlibx_get_basic(rrlibx_handle_t handle, int *r_value) NOEXCEPT;
  * \param data   只读数组首指针
  * \param size   数组尺寸
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_set_array(rrlibx_handle_t handle, const uint8_t *data, size_t size) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_set_array(rrx_handle_t handle, const uint8_t *data, size_t size) NOEXCEPT;
 
 /**
  * \brief 数组取值。
@@ -95,8 +95,8 @@ rrlibx_set_array(rrlibx_handle_t handle, const uint8_t *data, size_t size) NOEXC
  * \param[out]    buffer 缓存数组首指针，可空
  * \param[in,out] r_size 尺寸引用，输入缓存尺寸，输出数据尺寸。
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_array(rrlibx_handle_t handle, uint8_t *buffer, size_t *r_size) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_array(rrx_handle_t handle, uint8_t *buffer, size_t *r_size) NOEXCEPT;
 
 /**
  * \brief 数组取值，只读易变引用（const volatile reference）变种。
@@ -105,8 +105,8 @@ rrlibx_get_array(rrlibx_handle_t handle, uint8_t *buffer, size_t *r_size) NOEXCE
  * \param[out] r_data 只读数组引用
  * \param[out] r_size 尺寸引用
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_array_cvr(rrlibx_handle_t handle, const uint8_t *(*r_data), size_t *r_size) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_array_cvr(rrx_handle_t handle, const uint8_t *(*r_data), size_t *r_size) NOEXCEPT;
 
 /**
  * \brief 字串赋值。
@@ -114,11 +114,11 @@ rrlibx_get_array_cvr(rrlibx_handle_t handle, const uint8_t *(*r_data), size_t *r
  * \param handle 实例句柄
  * \param string 只读字串
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_set_string(rrlibx_handle_t handle, const char *string) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_set_string(rrx_handle_t handle, const char *string) NOEXCEPT;
 
 enum {
-    rrlibx_string_fsb_size = 777  /**< 字串定长缓存尺寸 */
+    rrx_string_fsb_size = 777  /**< 字串定长缓存尺寸 */
 };
 
 /**
@@ -127,8 +127,8 @@ enum {
  * \param[in]  handle 实例句柄
  * \param[out] buffer 定长缓存
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_string_fsb(rrlibx_handle_t handle, char buffer[rrlibx_string_fsb_size]) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_string_fsb(rrx_handle_t handle, char buffer[rrx_string_fsb_size]) NOEXCEPT;
 
 /**
  * \brief 字串取值，只读易变引用（const volatile reference）变种。
@@ -136,13 +136,13 @@ rrlibx_get_string_fsb(rrlibx_handle_t handle, char buffer[rrlibx_string_fsb_size
  * \param[in]  handle   实例句柄
  * \param[out] r_string 只读字串引用
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_string_cvr(rrlibx_handle_t handle, const char *(*r_string)) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_string_cvr(rrx_handle_t handle, const char *(*r_string)) NOEXCEPT;
 
 /**
  * \brief 回调函数类型。
  */
-EXTERN_C_FP typedef void(CDECL *rrlibx_callback_t)(void *p_user_data);
+EXTERN_C_FP typedef void(CDECL *rrx_callback_t)(void *p_user_data);
 
 /**
  * \brief 回调设置。
@@ -151,19 +151,19 @@ EXTERN_C_FP typedef void(CDECL *rrlibx_callback_t)(void *p_user_data);
  * \param callback    回调函数
  * \param p_user_data 用户数据指针，在回调时将原样传递此指针，用户需维护其指向内容的生存期。
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_set_callback(rrlibx_handle_t handle, rrlibx_callback_t callback, void *p_user_data) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_set_callback(rrx_handle_t handle, rrx_callback_t callback, void *p_user_data) NOEXCEPT;
 
 /**
  * \brief 回调调用。
  *
  * \param handle      实例句柄
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_invoke_callback(rrlibx_handle_t handle) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_invoke_callback(rrx_handle_t handle) NOEXCEPT;
 
 enum {
-    rrlibx_last_error_message_fsb_size = 128  /**< 最后错误消息定长缓存尺寸 */
+    rrx_last_error_message_fsb_size = 128  /**< 最后错误消息定长缓存尺寸 */
 };
 
 /**
@@ -172,7 +172,7 @@ enum {
  * \param[in]  handle 实例句柄
  * \param[out] buffer 定长缓存
  */
-EXTERN_C RRLIBX_API enum rrlibx_status_t CDECL
-rrlibx_get_last_error_message(rrlibx_handle_t handle, char buffer[rrlibx_last_error_message_fsb_size]) NOEXCEPT;
+EXTERN_C RRX_API enum rrx_status_t CDECL
+rrx_get_last_error_message(rrx_handle_t handle, char buffer[rrx_last_error_message_fsb_size]) NOEXCEPT;
 
 #endif

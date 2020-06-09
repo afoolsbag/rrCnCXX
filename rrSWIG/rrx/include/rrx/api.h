@@ -3,7 +3,7 @@
  * \file
  * \brief 应用程序接口宏。
  *
- * \version 2020-04-30
+ * \version 2020-06-03
  * \since 2017-01-12
  * \authors zhengrr
  * \copyright Unlicense
@@ -11,23 +11,23 @@
 **//*===-------------------------------------------------------------------===*/
 
 #pragma once
-#ifndef RRLIBX_API_H_
-#define RRLIBX_API_H_
+#ifndef RRX_API_H_
+#define RRX_API_H_
 
 #include "apiaux.h"
 
-#if !!(RRLIBX_STATIC) + !!(RRLIBX_SHARED) != 1
-#error Single choice options: RRLIBX_STATIC & RRLIBX_SHARED
+#if !!(RRX_STATIC) + !!(RRX_SHARED) != 1
+#error Single choice options: RRX_STATIC & RRX_SHARED
 #endif
 
-#ifdef RRLIBX_SHARED
-# ifdef RRLIBX_EXPORTS
-#  define RRLIBX_API EXPORT
+#ifdef RRX_SHARED
+# ifdef RRX_EXPORTS
+#  define RRX_API EXPORT
 # else
-#  define RRLIBX_API IMPORT
+#  define RRX_API IMPORT
 # endif
 #else
-# define RRLIBX_API
+# define RRX_API
 #endif
 
 #endif
