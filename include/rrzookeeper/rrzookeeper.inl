@@ -43,7 +43,6 @@ inline std::optional<std::string> client::zpath(const char *path)
         return string {path};
 }
 
-
 inline client::client(ZooLogLevel log_level) noexcept
 {
     zoo_set_debug_level(log_level);
@@ -212,7 +211,7 @@ inline void client::deleta(const std::string &path, const deleta::flag &flags)
 inline void client::init_watcher(zhandle_t *zh, int type, int state, const char *path, void *watcherCtx)
 {
     (void)zh;
-    const auto self = reinterpret_cast<client *>(watcherCtx);
+    auto *const self = reinterpret_cast<client *>(watcherCtx);
     if (self->event_callback_)
         self->event_callback_(self, ztype(type), zstate(state), zpath(path), self->event_callback_p_user_data_);
 }

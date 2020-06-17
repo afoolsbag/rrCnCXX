@@ -2,7 +2,7 @@
 #           | | / /      / _| |
 #  _ __ _ __| |/ /  __ _| |_| | ____ _
 # | '__| '__|    \ / _` |  _| |/ / _` | zhengrr
-# | |  | |  | |\  \ (_| | | |   < (_| | 2019-07-29 – 2020-04-19
+# | |  | |  | |\  \ (_| | | |   < (_| | 2019-07-29 – 2020-06-16
 # |_|  |_|  \_| \_/\__,_|_| |_|\_\__,_| Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -37,13 +37,7 @@ if(WIN32)
 endif()
 
 find_package(RdKafka REQUIRED)
-aux_source_directory_con("../include/rrkafka" zWrapper RECURSE PREFIX "/include/rrkafka")
-add_library_ex(
-  rrKafka             INTERFACE
-  COMPILE_FEATURES    INTERFACE cxx_std_17
-  INCLUDE_DIRECTORIES INTERFACE "../include"
-  LINK_LIBRARIES      INTERFACE RdKafka::rdkafka++
-  SOURCES             INTERFACE ${zWrapper})
+find_package(rrKafka REQUIRED CONFIG HINTS "${PRODUCT_SOURCE_DIR}/include/rrkafka")
 
 aux_source_directory_ex("." zTest RECURSE)
 add_executable_con(

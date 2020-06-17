@@ -1,11 +1,11 @@
-#          ______            _
-#         |___  /           | |
-#  _ __ _ __ / /  ___   ___ | | _____  ___ _ __   ___ _ __
-# | '__| '__/ /  / _ \ / _ \| |/ / _ \/ _ \ '_ \ / _ \ '__|
-# | |  | |./ /__| (_) | (_) |   <  __/  __/ |_) |  __/ |
-# |_|  |_|\_____/\___/ \___/|_|\_\___|\___| .__/ \___|_|
-# zhengrr                                 | |
-# 2018-12-29 – 2019-11-20                 |_|
+#          ______            _   __
+#         |___  /           | | / /
+#  _ __ _ __ / /  ___   ___ | |/ /  ___  ___ _ __   ___ _ __
+# | '__| '__/ /  / _ \ / _ \|    \ / _ \/ _ \ '_ \ / _ \ '__|
+# | |  | |./ /__| (_) | (_) | |\  \  __/  __/ |_) |  __/ |
+# |_|  |_|\_____/\___/ \___/\_| \_/\___|\___| .__/ \___|_|
+# zhengrr                                   | |
+# 2018-12-29 – 2019-11-20                   |_|
 # Unlicense
 
 cmake_minimum_required(VERSION 3.12)
@@ -14,7 +14,7 @@ cmake_policy(VERSION 3.12)
 include_hunter_gate_script()
 
 project_ex(
-  rrZookeeper
+  rrZooKeeper
   TIME_AS_VERSION
   LANGUAGES CXX)
 
@@ -34,21 +34,15 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-aux_source_directory_con("../include/rrzookeeper" zWrapper RECURSE PREFIX "include/rrzookeeper")
-add_library_ex(
-  rrZookeeper         INTERFACE
-  COMPILE_FEATURES    INTERFACE cxx_std_17
-  INCLUDE_DIRECTORIES INTERFACE "../include"
-  LINK_LIBRARIES      INTERFACE zookeeper::zookeeper_mt
-  SOURCES             INTERFACE ${zWrapper})
+find_package(rrZooKeeper REQUIRED CONFIG HINTS "${PRODUCT_SOURCE_DIR}/include/rrzookeeper")
 
 aux_source_directory_ex("." zTest RECURSE)
 add_executable_con(
-  rrZookeeperTest     ${zTest}
+  rrZooKeeperTest     ${zTest}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
   INCLUDE_DIRECTORIES PRIVATE "."
-  LINK_LIBRARIES      PRIVATE rrZookeeper
+  LINK_LIBRARIES      PRIVATE rrZooKeeper
                               CONAN_PKG::gtest)
 
-add_test(NAME rrZookeeperTest COMMAND rrZookeeperTest)
+add_test(NAME rrZooKeeperTest COMMAND rrZooKeeperTest)

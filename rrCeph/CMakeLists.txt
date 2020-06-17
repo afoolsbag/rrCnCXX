@@ -4,15 +4,13 @@
 # | '__| '__| |    / _ \ '_ \| '_ \ 
 # | |  | |  | \__/\  __/ |_) | | | |
 # |_|  |_|   \____/\___| .__/|_| |_| zhengrr
-#                      | |           2019-07-29 – 2020-04-19
+#                      | |           2019-07-29 – 2020-06-17
 #                      |_|           Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
-if(WIN32)
-  include_hunter_gate_script()
-endif()
+include_hunter_gate_script()
 
 project_ex(
   rrCeph
@@ -29,42 +27,18 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
+conan_cmake_run(
+  REQUIRES    gtest/1.10.0
+  BASIC_SETUP CMAKE_TARGETS
+  BUILD       missing)
 
-if(UNIX)
-  conan_cmake_run(
-    REQUIRES    gtest/1.8.1@bincrafters/stable
-    BASIC_SETUP CMAKE_TARGETS
-    BUILD       missing)
-endif()
-if(WIN32)
-  conan_cmake_run(
-    REQUIRES    gtest/1.10.0
-    BASIC_SETUP CMAKE_TARGETS
-    BUILD       missing)
-endif()
-
-if(UNIX)
-  find_package(S3 REQUIRED)
-  aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
-  add_library_ex(
-    rrCeph              INTERFACE
-    COMPILE_FEATURES    INTERFACE cxx_std_11
-    INCLUDE_DIRECTORIES INTERFACE "../include"
-    LINK_LIBRARIES      INTERFACE S3::s3
-    SOURCES             INTERFACE ${zWrapper})
-endif()
-if(WIN32)
-# hunter_add_package(s3)
-# find_package(s3 CONFIG REQUIRED)
-  aux_source_directory_ex("../include/rrceph" zWrapper RECURSE PREFIX "include/rrceph")
-  add_library_ex(
-    rrCeph              INTERFACE
-    COMPILE_FEATURES    INTERFACE cxx_std_11
-    INCLUDE_DIRECTORIES INTERFACE "../include"
-                                  "../include/linux/usr/include"
-#   LINK_LIBRARIES      INTERFACE s3::s3
-    SOURCES             INTERFACE ${zWrapper})
-endif()
+#if(UNIX)
+#  find_package(S3 REQUIRED)
+#elseif(WIN32)
+#endif()
+hunter_add_package(s3)
+find_package(s3 CONFIG REQUIRED)
+find_package(rrCeph REQUIRED CONFIG HINTS "${PRODUCT_SOURCE_DIR}/include/rrceph")
 
 aux_source_directory_ex("." zTest RECURSE)
 add_executable_con(

@@ -4,13 +4,13 @@
 # | '__| '__/ __| '_ \ / _` | |/ _ \ / _` |
 # | |  | |  \__ \ |_) | (_| | | (_) | (_| |
 # |_|  |_|  |___/ .__/ \__,_|_|\___/ \__, | zhengrr
-#               | |                   __/ | 2018-08-04 – 2019-11-20
+#               | |                   __/ | 2018-08-04 – 2020-06-17
 #               |_|                  |___/  Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
-project_ex(
+rr_project(
   rrspdlog
   TIME_AS_VERSION
   LANGUAGES CXX)
@@ -24,19 +24,13 @@ add_compile_options_ex(
 
 include_conan_script()
 conan_cmake_run(
-  REQUIRES    boost/1.71.0@conan/stable
+  REQUIRES    boost/1.73.0
               gtest/1.10.0
-              spdlog/1.4.2
+              spdlog/1.6.1
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-aux_source_directory_con("../include/rrspdlog" zWrapper RECURSE PREFIX "include/rrspdlog")
-add_library_ex(
-  rrspdlog            INTERFACE
-  COMPILE_FEATURES    INTERFACE cxx_std_17
-  INCLUDE_DIRECTORIES INTERFACE "../include"
-  LINK_LIBRARIES      INTERFACE CONAN_PKG::spdlog
-  SOURCES             INTERFACE ${zWrapper})
+find_package(rrspdlog CONFIG HINTS "${PRODUCT_SOURCE_DIR}/include/rrspdlog")
 
 aux_source_directory_con("." zTest RECURSE)
 add_executable_con(
@@ -46,6 +40,8 @@ add_executable_con(
   INCLUDE_DIRECTORIES PRIVATE "."
   LINK_LIBRARIES      PRIVATE rrspdlog
                               CONAN_PKG::gtest
-                              CONAN_PKG::boost)
+                              CONAN_PKG::boost
+                              $<$<PLATFORM_ID:Linux>:dl>
+                              $<$<PLATFORM_ID:Linux>:stdc++fs>)
 
 add_test(NAME rrspdlogTest COMMAND rrspdlogTest)

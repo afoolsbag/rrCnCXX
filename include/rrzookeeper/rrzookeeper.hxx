@@ -35,8 +35,10 @@ class client {
 public:
     enum class event { created, deleted, changed, child, session, not_watching, unknown };
     inline static event ztype(int type) noexcept;
+
     enum class state { closed, connecting, association, connected, expired_session, auth_failed, invalid };
     inline static state zstate(int state) noexcept;
+
     inline static std::optional<std::string> zpath(const char *path);
 
     struct create {
@@ -51,6 +53,7 @@ public:
         static constexpr flag ignore_if_exists {1uLL << _ignore_if_exists};  ///< 若节点已存在，则忽略本次操作
         static constexpr flag force {1uLL << _recursive | 1uLL << _set_if_exists};
     };
+
     struct set {
     private:
         enum { _create_if_not_exists, _count };
@@ -59,6 +62,7 @@ public:
         static constexpr flag create_if_not_exists {1uLL << _create_if_not_exists};  ///< 若节点不存在，则递归创建该节点
         static constexpr flag force {1uLL << _create_if_not_exists};
     };
+
     struct deleta {
     private:
         enum { _traversal, _ignore_if_not_exists, _count };

@@ -1,7 +1,5 @@
 /// \copyright Unlicense
 
-#include <filesystem>
-
 #include <boost/dll.hpp>
 #include <gtest/gtest.h>
 
