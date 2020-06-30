@@ -1,6 +1,6 @@
 # zhengrr 所知的 AutoHotkey                                          {#mainpage}
 
-[*AutoHotkey*](https://autohotkey.com/)
+官网 <https://www.autohotkey.com/>。
 
 ## 许可
 
