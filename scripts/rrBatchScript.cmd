@@ -40,7 +40,7 @@ ECHO 提供以下实参变量：
 ECHO.
 ECHO %%0                             %0
 ECHO %%~f0 (fully)                   %~f0
-ECHO %%~d1 (drive)                   %~d0
+ECHO %%~d0 (drive)                   %~d0
 ECHO %%~p0 (path)                    %~p0
 ECHO %%~n0 (name)                    %~n0
 ECHO %%~x0 (extension)               %~x0
