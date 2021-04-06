@@ -5,7 +5,7 @@
 :: | |  | |  | |_/ / (_| | || (__| | | /\__/ / (__| |  | | |_) | |_
 :: |_|  |_|  \____/ \__,_|\__\___|_| |_\____/ \___|_|  |_| .__/ \__|
 :: zhengrr                                               | |
-:: 2019-09-10 – 2019-12-23                               |_|
+:: 2019-09-10 – 2021-04-06                               |_|
 :: Unlicense
 ::
 :: see also: https://steve-jansen.github.io/guides/windows-batch-scripting/
@@ -16,7 +16,7 @@
 @ECHO OFF
 
 :: "切换字符编码（Change Code Page）到代码页 65001，即 UTF-8"
-CHCP 65001
+CHCP 65001 > NUL
 
 REM "官方提供的注释方式（Remark）"
 :: "或者使用两次标签操作，在大多数情形下可以用作注释，且更具可读性"
@@ -123,7 +123,11 @@ IF NOT "%var%" == "hello, world" (
         EXIT /B 1
 )
 
-:: 检查是否从资源管理器（双击）运行，若是则在退出前暂停，以供使用者查看输出
+:: "一种防止子例程结束父例程的技巧"
+START "" /B /WAIT CMD /C ^
+        ECHO. & ECHO The quick brown fox jumps over the lazy dog.
+
+:: "检查是否从资源管理器（双击）运行，若是则在退出前暂停，以供使用者查看输出"
 CALL :pause_if_double_click
 EXIT /B 0
 
@@ -132,6 +136,6 @@ EXIT /B 0
 :: cmd      CMDCMDLINE="C:\Windows\System32\cmd.exe"
 :: cmder    CMDCMDLINE="C:\WINDOWS\SYSTEM32\cmd.exe" /K ""CmderInitPath" "
 :pause_if_double_click
-        ECHO %CMDCMDLINE% | FINDSTR /L %COMSPEC% 1>NUL 2>NUL ^
+        ECHO %CMDCMDLINE% | FINDSTR /L %COMSPEC% > NUL ^
                 && PAUSE
         EXIT /B 0
