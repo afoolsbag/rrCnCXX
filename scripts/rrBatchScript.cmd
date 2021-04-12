@@ -5,7 +5,7 @@
 :: | |  | |  | |_/ / (_| | || (__| | | /\__/ / (__| |  | | |_) | |_
 :: |_|  |_|  \____/ \__,_|\__\___|_| |_\____/ \___|_|  |_| .__/ \__|
 :: zhengrr                                               | |
-:: 2019-09-10 – 2021-04-06                               |_|
+:: 2019-09-10 – 2021-04-12                               |_|
 :: Unlicense
 ::
 :: see also: https://steve-jansen.github.io/guides/windows-batch-scripting/
@@ -124,18 +124,31 @@ IF NOT "%var%" == "hello, world" (
 )
 
 :: "一种防止子例程结束父例程的技巧"
-START "" /B /WAIT CMD /C ^
-        ECHO. & ECHO The quick brown fox jumps over the lazy dog.
+START "" /B /WAIT ^
+        CMD /C ^
+                ECHO. & ECHO The quick brown fox jumps over the lazy dog.
 
 :: "检查是否从资源管理器（双击）运行，若是则在退出前暂停，以供使用者查看输出"
+ECHO.
+ECHO %%COMSPEC%%                      %COMSPEC%
+ECHO %%CMDCMDLINE%%                   %CMDCMDLINE%
 CALL :pause_if_double_click
 EXIT /B 0
 
-::             COMSPEC=C:\WINDOWS\system32\cmd.exe
-:: explorer CMDCMDLINE=C:\WINDOWS\system32\cmd.exe /C ""ScriptFullPath" "
-:: cmd      CMDCMDLINE="C:\Windows\System32\cmd.exe"
-:: cmder    CMDCMDLINE="C:\WINDOWS\SYSTEM32\cmd.exe" /K ""CmderInitPath" "
+::                                           COMSPEC                      CMDCMDLINE
+:: [x] Double click in explorer.             C:\WINDOWS\system32\cmd.exe  C:\WINDOWS\system32\cmd.exe /c ""path\to\script.cmd" "
+:: [x] Run via start menu (Run).             ~                            C:\WINDOWS\system32\cmd.exe /c ""path\to\script.cmd" "
+:: [x] Run via address bar.                  ~                            C:\WINDOWS\system32\cmd.exe /c ""path\to\script.cmd" "
+:: [ ] Run via Cmd from start menu.          ~                            "C:\WINDOWS\system32\cmd.exe"
+:: [ ] Run via Cmd from address bar.         ~                            "C:\Windows\System32\cmd.exe"
+:: [ ] Run via Cmd in terminal.              ~                            cmd.exe
+:: [x] Run via PowerShell from start menu.   ~                            C:\WINDOWS\system32\cmd.exe /c ""path\to\script.cmd" "
+:: [x] Run via PowerShell from address bar.  ~                            C:\WINDOWS\system32\cmd.exe /c ""path\to\script.cmd" "
+:: [x] Run via PowerShell in terminal.       ~                            C:\WINDOWS\system32\cmd.exe /c ""path\to\script.cmd" "
+:: [ ] Run via Cmder from start menu.        ~                            cmd /k ""path\to\init.bat" "
+:: [ ] Run via Cmder from address bar.       ~                            cmd /k ""path\to\init.bat" "
+:: [ ] Run via Cmder in terminal.            ~                            cmd /k ""path\to\init.bat" "
 :pause_if_double_click
-        ECHO %CMDCMDLINE% | FINDSTR /L %COMSPEC% > NUL ^
+        ECHO %CMDCMDLINE% | FINDSTR /L /B %COMSPEC% > NUL ^
                 && PAUSE
         EXIT /B 0
