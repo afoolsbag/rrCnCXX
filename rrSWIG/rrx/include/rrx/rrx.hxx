@@ -1,11 +1,11 @@
-//===-- C++ Interface -------------------------------------------*- C++ -*-===//
+//===-- C++ Interface of zhengrr's Library in C++ ---------------*- C++ -*-===//
 ///
 /// \file
-/// \brief C++ 接口。
+/// \brief 由 C++ 编写的 zhengrr 库的 C++ 接口。
 ///
 /// \sa [PImpl](https://zh.cppreference.com/w/cpp/language/pimpl)
 ///
-/// \version 2020-06-03
+/// \version 2021-04-16
 /// \since 2019-05-14
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -25,8 +25,10 @@
 
 #include "api.h"
 
+/// \brief 库的命名空间。
 namespace rrx {
 
+/// \brief 版本信息结构体。
 struct version_t {
     int major;
     int minor;
@@ -34,10 +36,13 @@ struct version_t {
     int tweak;
 };
 
-/// \brief 版本。
+/// \brief 获取库的版本信息。
+/// \returns 返回一个存有版本信息的结构体。
 RRX_API version_t STDCALL version();
 
-/// \brief 类。
+/// \brief 库导出类。
+/// \note 库导出类的实例不应存在副本，所以禁用其复制构造函数和复制赋值函数。
+///       同时，为避免暴露内部构造，导出类仅提供必要接口，具体实现由实现类（`impl`）实现。
 class clazz final {
 public:
     RRX_API explicit clazz();
@@ -63,6 +68,7 @@ public:
     /// \brief 字串取值。
     [[nodiscard]] RRX_API const std::string &string() const;
 
+    /// \brief 回调函数类型。
     using callback_t = std::function<void(void *)>;
     /// \brief 回调设置。
     RRX_API void set_callback(const callback_t &callback, void *p_user_data);
@@ -70,7 +76,9 @@ public:
     RRX_API void invoke_callback() const;
 
 private:
+    /// \brief 库实现类。
     class impl;
+    /// \brief 库导出类实例持有的库实现类实例。
     std::unique_ptr<impl> impl_;
 };
 

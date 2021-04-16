@@ -73,23 +73,36 @@ public:
     impl &operator=(impl &&) noexcept = default;
     ~impl() noexcept = default;
 
+    /// \brief 基础赋值的具体实现。
     inline void basic(int value);
+    /// \brief 基础取值的具体实现。
     [[nodiscard]] inline int basic() const;
 
+    /// \brief 数组赋值的具体实现。
     void array(const array_t &value);
+    /// \brief 数组取值的具体实现。
     [[nodiscard]] inline const array_t &array() const;
 
+    /// \brief 字串赋值的具体实现。
     inline void string(const std::string &value);
+    /// \brief 字串取值的具体实现。
     [[nodiscard]] inline const std::string &string() const;
 
+    /// \brief 回调设置的具体实现。
     inline void set_callback(const callback_t &callback, void *p_user_data);
+    /// \brief 回调调用的具体实现。
     inline void invoke_callback() const;
 
 private:
+    /// \brief 存储的基础数据。
     int basic_ {};
+    /// \brief 存储的数组数据。
     array_t array_;
+    /// \brief 存储的字串数据。
     std::string string_;
+    /// \brief 存储的回调函数。
     callback_t callback_;
+    /// \brief 存储的用于回调函数的用户数据指针。
     void *p_user_data_ {};
 };
 

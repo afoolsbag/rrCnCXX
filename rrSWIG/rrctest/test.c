@@ -1,6 +1,6 @@
 /*===-- rrctest ------------------------------------------------*- C -*-===*//**
  *
- * \version 2020-06-03
+ * \version 2021-04-16
  * \since 2016-10-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -24,7 +24,7 @@ START_TEST(tf_rrc_version)
 {
     ck_assert_int_eq(rrc_success, rrc_get_version(NULL, NULL, NULL, NULL));
 }
-END_TEST;
+END_TEST
 
 static TCase *tc_rrc(void)
 {
@@ -52,7 +52,7 @@ START_TEST(tf_rrx_version)
 {
     ck_assert_int_eq(rrx_success, rrx_get_version(NULL, NULL, NULL, NULL));
 }
-END_TEST;
+END_TEST
 
 START_TEST(tf_rrx_basic)
 {
@@ -64,7 +64,7 @@ START_TEST(tf_rrx_basic)
 
     ck_assert_int_eq(in_value, out_value);
 }
-END_TEST;
+END_TEST
 
 START_TEST(tf_rrx_array)
 {
@@ -86,7 +86,7 @@ START_TEST(tf_rrx_array)
     ck_assert_int_eq(rrx_success, rrx_get_array_cvr(tc_rrx_handle, &ref_data, &ref_size));
     ck_assert_mem_eq(in_data, ref_data, min(in_size, ref_size));
 }
-END_TEST;
+END_TEST
 
 START_TEST(tf_rrx_string)
 {
@@ -101,7 +101,7 @@ START_TEST(tf_rrx_string)
     ck_assert_int_eq(rrx_success, rrx_get_string_cvr(tc_rrx_handle, &ref_string));
     ck_assert_str_eq(in_string, ref_string);
 }
-END_TEST;
+END_TEST
 
 static void CDECL callback(void *p_user_data)
 {
@@ -116,7 +116,7 @@ START_TEST(tf_rrlx_callback)
     while (!pass)
         continue;
 }
-END_TEST;
+END_TEST
 
 static TCase *tc_rrx(void)
 {

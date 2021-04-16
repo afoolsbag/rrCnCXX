@@ -1,11 +1,11 @@
-/*===-- zhengrr's Library With C -------------------------------*- C -*-===*//**
+/*===-- Zhengrr's Library in C ---------------------------------*- C -*-===*//**
  *
  * \file
- * \brief zhengrr's library with C
+ * \brief 由 C 编写的 zhengrr 库。
  *
- * \sa [*DLL 编写教程*](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
+ * \sa [DLL 编写教程](http://blogjava.net/wxb_nudt/archive/2007/09/11/144371.html)
  *
- * \version 2020-06-03
+ * \version 2021-04-16
  * \since 2017-01-06
  * \authors zhengrr
  * \copyright Unlicense
@@ -25,7 +25,7 @@
 #include "rrc/api.h"
 
 /**
- * \brief 状态码。
+ * \brief 库函数的返回状态码。
  */
 enum rrc_status_t {
     rrc_success = 0,
@@ -61,18 +61,18 @@ enum rrc_status_t {
 };
 
 /**
- * \brief 获取版本。
+ * \brief 获取库的版本信息。
  *
- * \param[out] r_major 主版本号引用
- * \param[out] r_minor 次版本号引用
- * \param[out] r_patch 补丁版本号引用
- * \param[out] r_tweak 微调版本号引用
+ * \param[out] r_major 主版本号引用，可为空
+ * \param[out] r_minor 次版本号引用，可为空
+ * \param[out] r_patch 补丁版本号引用，可为空
+ * \param[out] r_tweak 微调版本号引用，可为空
  */
 EXTERN_C RRC_API enum rrc_status_t CDECL
 rrc_get_version(int *r_major, int *r_minor, int *r_patch, int *r_tweak) NOEXCEPT;
 
 /**
- * \brief 叹。
+ * \brief 太息。
  *
  * \param[out] r_time 时间引用
  */

@@ -3,7 +3,9 @@
  * \file
  * \brief 应用程序接口辅助宏。
  *
- * \version 2019-07-19
+ * \sa <https://raw.githubusercontent.com/afoolsbag/rrCnCxx/master/rrSWIG/rrc/include/rrc/apiaux.h>
+ *
+ * \version 2021-04-16
  * \since 2019-03-11
  * \authors zhengrr
  * \copyright Unlicense
@@ -15,7 +17,7 @@
 #define APIAUX_H_
 
 /*==============================================================================
- * 语言连接：LANGUAGE LINKAGE
+ * 语言连接（LANGUAGE LINKAGE）
  * 影响调用约定和名字重整，参见 <https://zh.cppreference.com/w/cpp/language/language_linkage>
  *----------------------------------------------------------------------------*/
 
@@ -78,7 +80,7 @@
 #endif
 
 /*==============================================================================
- * 符号可见性：SYMBOLS VISIBILITY
+ * 符号可见性（SYMBOLS VISIBILITY）
  * 参见 <https://gcc.gnu.org/wiki/Visibility>
  * 参见 <https://docs.microsoft.com/cpp/cpp/dllexport-dllimport>
  *----------------------------------------------------------------------------*/
@@ -152,7 +154,7 @@
 #endif
 
 /*==============================================================================
- * 调用约定：CALLING CONVENTION
+ * 调用约定（CALLING CONVENTION）
  * 参见 <https://docs.microsoft.com/cpp/cpp/cdecl>
  * 参见 <https://stackoverflow.com/questions/3404372/stdcall-and-cdecl>
  *----------------------------------------------------------------------------*/
@@ -201,7 +203,7 @@
 #endif
 
 /*==============================================================================
- * 异常声明：EXCEPTION DECLARATION
+ * 异常声明（EXCEPTION DECLARATION）
  *----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus

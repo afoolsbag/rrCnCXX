@@ -46,11 +46,6 @@ clazz2handle &clazz2handle::ref(rrx_handle_t handle)
 
 unordered_map<rrx_handle_t, unique_ptr<clazz2handle>> clazz2handle::wrappers_owner_;
 
-clazz *clazz2handle::operator->()
-{
-    return &content;
-}
-
 void clazz2handle::last_error_message(const string &value)
 {
     last_error_message_[this_thread::get_id()] = value;

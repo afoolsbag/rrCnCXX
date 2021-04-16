@@ -1,12 +1,11 @@
-/*===-- C Interface --------------------------------------------*- C -*-===*//**
+/*===-- C Interface of zhengrr's Library in C++ ----------------*- C -*-===*//**
  *
  * \file
- * \brief C 接口。
- * \note 基础 C 接口应尽可能基础，“若非必须勿添什物”。
+ * \brief 由 C++ 编写的 zhengrr 库的 C 接口。
  *
  * \sa [HowTo: Export C++ classes from a DLL](https://codeproject.com/Articles/28969/HowTo-Export-C-classes-from-a-DLL)
  *
- * \version 2020-06-03
+ * \version 2021-04-16
  * \since 2018-01-09
  * \authors zhengrr
  * \copyright Unlicense
@@ -29,7 +28,7 @@
 #include "status.h"
 
 /**
- * \brief 获取版本。
+ * \brief 获取库的版本信息。
  *
  * \param[out] r_major 主版本号引用，可空
  * \param[out] r_minor 次版本号引用，可空
