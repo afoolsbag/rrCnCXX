@@ -2,13 +2,11 @@
 #           /  ___|| |  | |_   _|  __ \
 #  _ __ _ __\ `--. | |  | | | | | |  \/
 # | '__| '__|`--. \| |/\| | | | | | __  zhengrr
-# | |  | |  /\__/ /\  /\  /_| |_| |_\ \ 2019-01-14 – 2021-04-16
+# | |  | |  /\__/ /\  /\  /_| |_| |_\ \ 2019-01-14 – 2021-04-22
 # |_|  |_|  \____/  \/  \/ \___/ \____/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
-
-rr_include_conan_script()
 
 rr_project(
   rrSWIG
@@ -23,6 +21,7 @@ rr_add_compile_options(
   WARNING_AS_ERROR)
 
 # conan
+rr_include_conan_script()
 #[[
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
@@ -52,7 +51,7 @@ configure_file("rrc/src/cfg.h.in" "rrc/src/cfg.h" @ONLY)
 rr_aux_source_directory_with_convention("rrc/include"                         zInclude   RECURSE PREFIX "include")
 rr_aux_source_directory_with_convention("rrc/src"                             zSrc       RECURSE PREFIX "src")
 rr_aux_source_directory_with_convention("${CMAKE_CURRENT_BINARY_DIR}/rrc/src" zGenerated RECURSE PREFIX "generated")
-rr_add_library_with_convention(
+rr_add_library_wcon(
   rrc
   SHARED              ${zInclude} ${zSrc} ${zGenerated}
   PROPERTIES          C_STANDARD          11
@@ -75,7 +74,7 @@ configure_file("rrx/src/cfg.hxx.in" "rrx/src/cfg.hxx" @ONLY)
 rr_aux_source_directory_with_convention("rrx/include"                         zInclude   RECURSE PREFIX "include")
 rr_aux_source_directory_with_convention("rrx/src"                             zSrc       RECURSE PREFIX "src")
 rr_aux_source_directory_with_convention("${CMAKE_CURRENT_BINARY_DIR}/rrx/src" zGenerated RECURSE PREFIX "generated")
-rr_add_library_with_convention(
+rr_add_library_wcon(
   rrx
   SHARED              ${zInclude} ${zSrc} ${zGenerated}
   PROPERTIES          CXX_STANDARD          17
@@ -96,13 +95,13 @@ install(
 # rrctest
 #find_package(libcheck CONFIG REQUIRED)
 rr_aux_source_directory_with_convention("rrctest" zSrc RECURSE)
-rr_add_executable_with_convention(
+rr_add_executable_wcon(
   rrctest             ${zSrc}
   PROPERTIES          C_STANDARD          11
                       C_STANDARD_REQUIRED ON
                       BUILD_RPATH         "$ORIGIN"
                       INSTALL_RPATH       "$ORIGIN"
-  COMPILE_OPTIONS     PRIVATE             $<$<CXX_COMPILER_ID:MSVC>:/wd4100>
+  COMPILE_OPTIONS     PRIVATE             $<$<C_COMPILER_ID:MSVC>:/wd4100>
   INCLUDE_DIRECTORIES PRIVATE             "rrctest"
   LINK_LIBRARIES      PRIVATE             rrc
                                           rrx
@@ -113,7 +112,7 @@ add_test(NAME rrctest COMMAND rrctest)
 # rrxtest
 #find_package(gtest CONFIG REQUIRED)
 rr_aux_source_directory_with_convention("rrxtest" zSrc RECURSE)
-rr_add_executable_with_convention(
+rr_add_executable_wcon(
   rrxtest             ${zSrc}
   PROPERTIES          CXX_STANDARD          17
                       CXX_STANDARD_REQUIRED ON
@@ -130,7 +129,7 @@ add_test(NAME rrexex COMMAND rrexex)
 find_package(SWIG)
 if(SWIG_FOUND)
 
-  rr_add_library_with_convention_and_swig(
+  rr_add_library_wconswig(
     rrx_swig_csharp
     SHARED
     SWIG_LANGUAGE  CSHARP
@@ -140,7 +139,7 @@ if(SWIG_FOUND)
                    CXX_STANDARD_REQUIRED ON
     LINK_LIBRARIES rrx)
 
-  rr_add_library_with_convention_and_swig(
+  rr_add_library_wconswig(
     rrx_swig_java
     SHARED
     SWIG_LANGUAGE  JAVA

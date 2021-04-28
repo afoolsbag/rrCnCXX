@@ -20,6 +20,24 @@ rrCnCxx\ ...............................项目根目录
   UNLICENSE.txt ........................版权声明
 ```
 
+## Awesome
+
+### C/C++ 构建工具 CMake
+
+``` batch
+:: 使用 Scoop 安装 CMake
+%USERPROFILE%> scoop install cmake
+
+:: 使用命令行的构建示例
+%USERPROFILE%> cmake -G "Visual Studio 16 2019" ^
+                     -A "x64" ^
+                     -S "." ^
+                     -B "build64"
+
+:: 或使用图形界面构建
+%USERPROFILE%> cmake-gui
+```
+
 ## 许可
 
 项目采用 Unlicense 许可，文档采用 CC0-1.0 许可：

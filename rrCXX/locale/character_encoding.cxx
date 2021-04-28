@@ -9,7 +9,7 @@
 /// \sa [“世”](https://unicode-table.com/4E16/). *Unicode®字符百科*.
 /// \sa [“界”](https://unicode-table.com/754C/). *Unicode®字符百科*.
 ///
-/// \version 2020-04-21
+/// \version 2021-04-22
 /// \since 2019-11-26
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -21,18 +21,27 @@
 
 #include <gtest/gtest.h>
 
+#include "cxx_versions.hxx"
+
 using namespace std;
 
 namespace {
+
+#ifndef FEATURE_P0463R1
 /// \brief 字节序
 enum class endian {
     big,     ///< 大尾序
     little,  ///< 小尾序
     unexpected
 };
+#endif
+
 /// \brief 检查字节序
 endian check_endian()
 {
+#ifdef FEATURE_P0463R1
+    return endian::native;
+#else
     union {
         uint32_t byte4;
         uint8_t  byte1[4];
@@ -43,6 +52,7 @@ endian check_endian()
         return endian::little;
     else
         return endian::unexpected;
+#endif
 }
 }
 

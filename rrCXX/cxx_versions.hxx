@@ -6,7 +6,7 @@
 /// \sa [*Pre-defined Compiler Macros*](https://sourceforge.net/p/predef/wiki/)
 /// \sa ["C++ 编译器支持情况表"](https://zh.cppreference.com/w/cpp/compiler_support). *cppreference.com*.
 ///
-/// \version 2019-08-16
+/// \version 2021-04-22
 /// \since 2017-12-13
 /// \authors zhengrr
 /// \copyright Unlicense
@@ -66,9 +66,13 @@
 #error A C++ compiler is required.
 #endif
 
-/// \brief C++20
+/// \brief C++23
 /// \sa <https://isocpp.org/std/status>
-#define STANDARD_CXX20              (201703L<__cplusplus)
+#define STANDARD_CXX23              (202002L<__cplusplus)
+
+/// \brief ISO/IEC 14882:2020
+/// \sa <https://iso.org/standard/79358.html>
+#define STANDARD_CXX20              (202002L<=__cplusplus)
 
 /// \brief ISO/IEC 14882:2017
 /// \sa <https://iso.org/standard/68564.html>
@@ -238,7 +242,7 @@
 
 /// \brief `std::endian`
 /// \sa <https://wg21.link/p0463r1>
-#define FEATURE_P0463R1             (STANDARD_CXX20 || NORMALIZED_VERSION(8,0,0)<=NORMALIZED_GNUC_VERSION)
+#define FEATURE_P0463R1             (STANDARD_CXX20 || NORMALIZED_VERSION(8,0,0)<=NORMALIZED_GNUC_VERSION || NORMALIZED_VERSION(19,22,0)<=NORMALIZED_MSC_VERSION)
 
 /// \brief 字符串前缀与后缀检查
 /// \sa <https://wg21.link/p0457r2>

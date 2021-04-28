@@ -2,18 +2,18 @@
 #           /  __ \\ \ / /\ \ / /
 #  _ __ _ __| /  \/ \ V /  \ V /
 # | '__| '__| |     /   \  /   \  zhengrr
-# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2020-05-06
+# | |  | |  | \__/\/ /^\ \/ /^\ \ 2016-08-01 – 2021-04-22
 # |_|  |_|   \____/\/   \/\/   \/ Unlicense
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(VERSION 3.12)
 
-project_ex(
+rr_project(
   rrCXX
   TIME_AS_VERSION
   LANGUAGES CXX)
 
-add_compile_options_ex(
+rr_add_compile_options(
   DISABLE_LANGUAGE_EXTENSIONS
   RECOMMENDED_WARNING_LEVEL
   MULTIPLE_PROCESSES
@@ -21,27 +21,26 @@ add_compile_options_ex(
   VISIBLE_DEFAULT_HIDDEN
   WARNING_AS_ERROR)
 
-add_doxygen_con(
+rr_add_doxygen_wcon(
   rrCxxDoc)
 
-include_conan_script()
+rr_include_conan_script()
 conan_cmake_run(
-  REQUIRES    gtest/1.8.1
-              #gtest/1.10.0
-              ms-gsl/3.0.1
+  REQUIRES    gtest/1.10.0
+              ms-gsl/3.1.0
   BASIC_SETUP CMAKE_TARGETS
   BUILD       missing)
 
-aux_source_directory_con("../include/rrcxx" zWrapper RECURSE PREFIX "include/rrcxx")
-add_library_ex(
+rr_aux_source_directory_with_convention("../include/rrcxx" zWrapper RECURSE PREFIX "include/rrcxx")
+rr_add_library(
   rrCXX               INTERFACE
   COMPILE_FEATURES    INTERFACE cxx_std_17
   INCLUDE_DIRECTORIES INTERFACE "../include"
   LINK_LIBRARIES      INTERFACE CONAN_PKG::ms-gsl
   SOURCES             INTERFACE ${zWrapper})
 
-aux_source_directory_con("." zTest RECURSE)
-add_executable_con(
+rr_aux_source_directory_with_convention("." zTest RECURSE)
+rr_add_executable_wcon(
   rrCxxTest           ${zTest}
   PROPERTIES          CXX_STANDARD          20
                       CXX_STANDARD_REQUIRED ON
